@@ -3,6 +3,11 @@
   command = "npm run build"
   publish = "dist"
 
+# Vite 7 / vite-react-ssg need Node >= 20.19; pin a modern Node so the deploy build
+# doesn't fail on an older default.
+[build.environment]
+  NODE_VERSION = "22"
+
 # Serve /treatments/x from x.html and 301 the .html form to the clean URL,
 # so the React Router clean routes always match after hydration.
 [build.processing.html]
