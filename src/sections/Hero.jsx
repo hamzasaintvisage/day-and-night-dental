@@ -20,12 +20,13 @@ export default function Hero() {
       {/* Atmospheric backdrop portrait — heavily darkened for depth */}
       <div className="dn-hero-backdrop">
         <img
-          src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1800&h=1200&fit=crop&q=80&fm=webp"
+          src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1100&h=733&fit=crop&q=55&fm=webp"
           alt=""
           aria-hidden="true"
-          width={1800}
-          height={1200}
+          width={1100}
+          height={733}
           decoding="async"
+          fetchPriority="low"
         />
       </div>
 
