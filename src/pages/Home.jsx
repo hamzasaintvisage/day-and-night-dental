@@ -120,6 +120,11 @@ export default function Home() {
       <Concerns />
       <About />
       <WhyChooseUs />
+      <CtaBand
+        eyebrow="Open When You Need Us"
+        heading="A dentist in Glasgow, day or night."
+        sub="Routine care by day, emergencies around the clock. Call us now or book an appointment online."
+      />
       <Treatments />
       <CtaBand
         eyebrow="Don't Wait Until Morning"
@@ -130,12 +135,12 @@ export default function Home() {
       <SmileGallery />
       <Register />
       <Testimonials />
-      <Team />
       <CtaBand
         eyebrow="Day, Evening, Overnight"
         heading="We're open when you need us, not just office hours."
         sub="Register as a new patient, or call us straight away if it can't wait."
       />
+      <Team />
       <AreasServed />
       <HomeFaq />
       <Contact />

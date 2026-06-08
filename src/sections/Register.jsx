@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
+import { PRACTICE } from '../data/practice';
 
 const DENTIST_OPTIONS = [
   { value: 'no-preference', label: 'No preference, just assign me someone' },
@@ -19,6 +20,8 @@ export default function Register() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -60,12 +63,17 @@ export default function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setSubmitting(true);
+    setError(false);
     const go = () => navigate('/registered', { state: { firstName: form.firstName, email: form.email, phone: form.phone } });
+    const fail = () => { setSubmitting(false); setError(true); };
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'register', ...form }),
-    }).then(go).catch(go);
+    })
+      .then((res) => (res.ok ? go() : fail()))
+      .catch(fail);
   };
 
   const canProceedStep1 = form.firstName && form.lastName && form.phone && form.email;
@@ -92,6 +100,10 @@ export default function Register() {
           <p className="dn-section-lead">
             We’re taking on new patients for every treatment we offer. Fill in the form
             below and we’ll confirm your first appointment within one working hour.
+          </p>
+          <p className="dn-register-urgent">
+            In pain right now? Don’t wait to register —{' '}
+            <a href={`tel:${PRACTICE.phoneE164}`}>call our 24/7 emergency line on {PRACTICE.phoneDisplay}</a>.
           </p>
         </div>
 
@@ -236,8 +248,8 @@ export default function Register() {
                     <h3 className="dn-display">How would you like to be seen?</h3>
 
                     <div className="dn-form-row">
-                      <span className="dn-form-label">Care type</span>
-                      <div className="dn-form-radios">
+                      <span className="dn-form-label" id="care-type-label">Care type</span>
+                      <div className="dn-form-radios" role="radiogroup" aria-labelledby="care-type-label">
                         {[
                           { v: 'private', label: 'Private', side: 'day', desc: 'Full choice of times and treatments' },
                           { v: 'nhs', label: 'NHS', side: 'night', desc: 'When we have space' },
@@ -285,12 +297,18 @@ export default function Register() {
                       </label>
                     </div>
 
+                    {error && (
+                      <p className="dn-form-error" role="alert">
+                        Sorry, something went wrong sending your registration. Please try again, or call us on{' '}
+                        <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a>.
+                      </p>
+                    )}
                     <div className="dn-register-actions">
                       <button type="button" className="dn-btn dn-btn-ghost" onClick={back}>
                         <span className="arrow-back">←</span> Back
                       </button>
-                      <button type="submit" className="dn-btn primary" disabled={!form.consent}>
-                        Complete Registration <span className="arrow">→</span>
+                      <button type="submit" className="dn-btn primary" disabled={!form.consent || submitting}>
+                        {submitting ? 'Sending…' : 'Complete Registration'}{!submitting && <span className="arrow"> →</span>}
                       </button>
                     </div>
                   </div>
@@ -333,6 +351,22 @@ export default function Register() {
 
       <style>{`
         .dn-register { position: relative; }
+        .dn-register-urgent {
+          margin-top: 1.25rem;
+          font-size: 0.9rem;
+          color: var(--dn-bone-dim);
+        }
+        .dn-register-urgent a { color: var(--dn-night-soft); font-weight: 600; }
+        .dn-form-error {
+          margin: 0 0 1rem;
+          padding: 0.85rem 1rem;
+          border: 1px solid #ef4444;
+          background: rgba(239, 68, 68, 0.08);
+          color: var(--dn-bone);
+          font-size: 0.85rem;
+          border-radius: 4px;
+        }
+        .dn-form-error a { color: var(--dn-night-soft); font-weight: 600; }
         .dn-register-grid {
           display: grid;
           grid-template-columns: 1fr 1.3fr;

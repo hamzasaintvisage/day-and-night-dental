@@ -68,11 +68,15 @@ export default function Hero() {
             <span className="dn-btn-pulse" />
             Call our 24/7 emergency line
           </a>
-          <a href="/register-as-patient" className="dn-btn">
+          <a href="#contact" className="dn-btn">
             Book an appointment
             <span className="arrow">→</span>
           </a>
         </div>
+
+        <p className="dn-hero-trust dn-reveal dn-delay-5">
+          GDC-registered dentists · Same-day emergencies · A real dentist answers, 24/7
+        </p>
 
         {/* Bottom meta strip */}
         <div className="dn-hero-meta dn-reveal dn-delay-5">
@@ -82,7 +86,7 @@ export default function Hero() {
           </div>
           <div className="dn-hero-meta-divider" />
           <div className="dn-hero-meta-item center">
-            <span className="dn-eyebrow">Open Seven Days</span>
+            <span className="dn-eyebrow">Emergency Line</span>
             <span className="time gradient">24 / 7</span>
           </div>
           <div className="dn-hero-meta-divider" />
@@ -251,6 +255,12 @@ export default function Hero() {
           margin-top: 3rem;
           flex-wrap: wrap;
         }
+        .dn-hero-trust {
+          margin: 1.25rem auto 0;
+          font-size: 0.8rem;
+          letter-spacing: 0.02em;
+          color: var(--dn-bone-dim);
+        }
 
         .dn-hero-meta {
           display: flex;
@@ -317,7 +327,9 @@ export default function Hero() {
         }
 
         @media (max-width: 640px) {
-          .dn-hero-meta { flex-direction: column; gap: 1.5rem; }
+          .dn-hero { min-height: auto; padding: 6.5rem 0 3rem; }
+          .dn-hero-eyebrow { margin-bottom: 1.75rem; }
+          .dn-hero-meta { flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; padding-top: 2rem; }
           .dn-hero-meta-divider { display: none; }
         }
       `}</style>

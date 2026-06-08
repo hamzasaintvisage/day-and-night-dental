@@ -87,6 +87,7 @@ export default function Dropdown({ name, value, onChange, options, placeholder =
         ref={triggerRef}
         className="dn-dropdown-trigger"
         aria-haspopup="listbox"
+        aria-controls={`${baseId}-list`}
         aria-label={ariaLabel}
         aria-expanded={open}
         aria-activedescendant={open && activeIndex >= 0 ? `${baseId}-opt-${activeIndex}` : undefined}
@@ -97,7 +98,7 @@ export default function Dropdown({ name, value, onChange, options, placeholder =
         <span className="dn-dropdown-chev" aria-hidden="true" />
       </button>
       {open && (
-        <ul className="dn-dropdown-list" role="listbox" tabIndex={-1}>
+        <ul id={`${baseId}-list`} className="dn-dropdown-list" role="listbox" tabIndex={-1}>
           {options.map((opt, i) => (
             <li
               key={opt.value}

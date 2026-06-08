@@ -16,7 +16,7 @@ export default function EmergencyBand() {
         <div className="dn-emergency-content">
           <div className="dn-eyebrow night">Dental Emergency?</div>
           <h2 className="dn-display">
-            A <em>24-hour emergency dentist</em> in Glasgow. We see you the same day, every day.
+            A <em>24-hour emergency dentist</em> in Glasgow. We aim to see you the same day, every day.
           </h2>
         </div>
 
@@ -25,10 +25,9 @@ export default function EmergencyBand() {
             <span className="label">Emergency Line</span>
             <span className="number">{PRACTICE.phoneDisplay}</span>
           </a>
-          <a href="#contact" className="dn-btn primary dn-btn-emergency">
+          <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency">
             <span className="dn-btn-pulse" />
-            Book Emergency
-            <span className="arrow">→</span>
+            Call now
           </a>
         </div>
       </div>
@@ -83,13 +82,13 @@ export default function EmergencyBand() {
           0% { transform: scale(1); opacity: 0.6; }
           100% { transform: scale(1.4); opacity: 0; }
         }
-        .dn-emergency-content h3 {
+        .dn-emergency-content h2 {
           font-size: clamp(1.3rem, 2.5vw, 1.8rem);
           font-weight: 700;
           margin-top: 0.25rem;
           color: var(--dn-bone);
         }
-        .dn-emergency-content h3 em {
+        .dn-emergency-content h2 em {
           font-style: normal;
           background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
           -webkit-background-clip: text;

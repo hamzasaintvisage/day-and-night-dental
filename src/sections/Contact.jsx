@@ -11,6 +11,8 @@ const treatmentOptions = [
 export default function Contact() {
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -30,14 +32,20 @@ export default function Contact() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // Netlify Forms: POST the encoded fields to the site root, then go to the
-    // trackable /thank-you page (works locally too via the .catch fallback).
+    setSubmitting(true);
+    setError(false);
+    // Netlify Forms: POST the encoded fields to the site root. Only a 2xx response
+    // counts as success; anything else surfaces an error so an enquiry is never
+    // silently dropped — the patient is told to call instead.
     const go = () => navigate('/thank-you', { state: { firstName: (form.name || '').split(' ')[0] } });
+    const fail = () => { setSubmitting(false); setError(true); };
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...form }),
-    }).then(go).catch(go);
+    })
+      .then((res) => (res.ok ? go() : fail()))
+      .catch(fail);
   };
 
   return (
@@ -161,8 +169,8 @@ export default function Contact() {
                 </div>
 
                 <div className="dn-form-row">
-                  <span className="dn-form-label">Preferred time</span>
-                  <div className="dn-form-radios">
+                  <span className="dn-form-label" id="pref-time-label">Preferred time</span>
+                  <div className="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
                     {[
                       { v: 'emergency', label: 'Emergency, today', side: 'night', emergency: true },
                       { v: 'day', label: 'Day (7am to 5pm)', side: 'day' },
@@ -187,17 +195,15 @@ export default function Contact() {
                 </div>
 
                 <div className="dn-form-row">
-                  <label>
-                    <span>Treatment of interest</span>
-                    <Dropdown
-                      name="treatment"
-                      value={form.treatment}
-                      onChange={setField('treatment')}
-                      options={treatmentOptions}
-                      placeholder="Select an option"
-                      ariaLabel="Treatment of interest"
-                    />
-                  </label>
+                  <span className="dn-form-label">Treatment of interest</span>
+                  <Dropdown
+                    name="treatment"
+                    value={form.treatment}
+                    onChange={setField('treatment')}
+                    options={treatmentOptions}
+                    placeholder="Select an option"
+                    ariaLabel="Treatment of interest"
+                  />
                 </div>
 
                 <div className="dn-form-row">
@@ -213,10 +219,16 @@ export default function Contact() {
                   </label>
                 </div>
 
-                <button type="submit" className={`dn-btn primary dn-form-submit ${form.preference === 'emergency' ? 'dn-btn-emergency' : ''}`}>
-                  {form.preference === 'emergency' && <span className="dn-btn-pulse" />}
-                  {form.preference === 'emergency' ? 'Request Emergency Appointment' : 'Request Booking'}
-                  <span className="arrow">→</span>
+                {error && (
+                  <p className="dn-form-error" role="alert">
+                    Sorry, something went wrong sending your request. Please try again, or call us now on{' '}
+                    <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a>.
+                  </p>
+                )}
+                <button type="submit" disabled={submitting} className={`dn-btn primary dn-form-submit ${form.preference === 'emergency' ? 'dn-btn-emergency' : ''}`}>
+                  {form.preference === 'emergency' && !submitting && <span className="dn-btn-pulse" />}
+                  {submitting ? 'Sending…' : (form.preference === 'emergency' ? 'Request Emergency Appointment' : 'Request Booking')}
+                  {!submitting && <span className="arrow">→</span>}
                 </button>
 
                 <p className="dn-form-disclaimer">
@@ -254,6 +266,17 @@ export default function Contact() {
 
       <style>{`
         .dn-contact { position: relative; }
+        .dn-form-error {
+          margin: 1rem 0 0;
+          padding: 0.85rem 1rem;
+          border: 1px solid #ef4444;
+          background: rgba(239, 68, 68, 0.08);
+          color: var(--dn-bone);
+          font-size: 0.85rem;
+          border-radius: 4px;
+        }
+        .dn-form-error a { color: var(--dn-night-soft); font-weight: 600; }
+        .dn-contact-form .dn-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .dn-contact-grid {
           display: grid;
           grid-template-columns: 1fr 1.1fr;

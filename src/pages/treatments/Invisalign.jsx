@@ -59,7 +59,7 @@ const data = {
   ],
   faqHeading: 'Invisalign questions, answered',
   faqs: [
-    { q: 'How much does Invisalign cost?', a: 'Invisalign at Day & Night Dental starts from [£X], with the exact fee confirmed after your free consultation and 3D scan. We offer 0% interest finance to spread the cost over 12 months.' },
+    { q: 'How much does Invisalign cost?', a: 'Invisalign at Day & Night Dental is priced for you, with the exact fee confirmed after your free consultation and 3D scan. We offer 0% interest finance to spread the cost over 12 months.' },
     { q: 'How long does treatment take?', a: 'Most cases finish in 6 to 18 months, depending on how much movement is needed. Minor corrections can be done in as little as 3 to 4 months, and your ClinCheck plan gives you an exact timeline before you begin.' },
     { q: 'Is Invisalign painful?', a: 'The aligners are smooth and custom-fitted, so they are far more comfortable than fixed braces. You might feel a little pressure for a day or two each time you move to a new set, which just means the treatment is doing its job.' },
     { q: 'Can I see my results before I commit?', a: 'Yes. Using a 3D ClinCheck simulation we show you a digital preview of your finished smile at your consultation, before you commit to anything.' },

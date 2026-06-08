@@ -67,8 +67,8 @@ export default function Team() {
             The people behind your <em>smile</em>
           </h2>
           <p className="dn-section-lead">
-            Our dentists trained at some of the UK's best dental schools, and they
-            still teach and publish today. You'll see the same faces every time you come in.
+            Our dentists are GDC-registered and experienced across emergency, restorative
+            and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
           </p>
         </div>
 

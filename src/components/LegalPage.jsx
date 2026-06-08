@@ -32,10 +32,6 @@ export default function LegalPage({ slug, title, description, updated, intro, se
               {s.body.map((p, j) => <p key={j}>{p}</p>)}
             </div>
           ))}
-          <p className="dn-legal-note">
-            This is a starter document provided as a template. Please review it (and where
-            appropriate, take legal advice) and replace any bracketed placeholders before publishing.
-          </p>
         </div>
       </section>
     </>

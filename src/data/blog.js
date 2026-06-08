@@ -33,7 +33,7 @@ export const posts = [
     intro: 'Cost is the first question almost everyone asks about dental implants, and it is a fair one. Here is an honest look at what goes into the price, and why the cheapest quote is not always the one to trust.',
     sections: [
       { heading: 'What you are actually paying for', paragraphs: [
-        'An implant is not a single item, it is a treatment. The price covers the planning, including an on-site 3D CBCT scan, the titanium implant itself, the surgery to place it, and the custom crown that goes on top. A single implant at Day & Night Dental starts from [£X], confirmed in writing after your consultation.',
+        'An implant is not a single item, it is a treatment. The price covers the planning, including an on-site 3D CBCT scan, the titanium implant itself, the surgery to place it, and the custom crown that goes on top. A single implant at Day & Night Dental is quoted for you and confirmed in writing after your consultation.',
       ] },
       { heading: 'What changes the price', paragraphs: [
         'How many teeth you are replacing is the biggest factor. A single implant costs far less than an implant-supported bridge or a full-arch option like All-on-4. Any preparatory work, such as a bone graft, also adds to the total. We set all of this out clearly before you commit.',

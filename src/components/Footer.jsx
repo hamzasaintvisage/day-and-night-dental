@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { PRACTICE } from '../data/practice';
 
 export default function Footer() {
+  // SSR-safe year: render the build year on server + first client paint (no
+  // hydration mismatch), then update to the live year after mount.
+  const [year, setYear] = useState(2026);
+  useEffect(() => { setYear(new Date().getFullYear()); }, []);
+
   return (
     <footer className="dn-footer">
       <div className="dn-divider" />
@@ -12,7 +17,7 @@ export default function Footer() {
         <div className="dn-footer-brand">
           <Logo size={50} showText={true} />
           <p className="dn-footer-tagline">
-            Luxury dentistry, around the clock.
+            Expert dental care, around the clock.
           </p>
         </div>
 
@@ -57,7 +62,7 @@ export default function Footer() {
       <div className="dn-footer-bottom">
         <div className="dn-container">
           <div className="dn-footer-legal">
-            <span>© {new Date().getFullYear()} Day & Night Dental</span>
+            <span>© {year} Day & Night Dental</span>
             <span className="sep">·</span>
             <Link to="/privacy">Privacy</Link>
             <span className="sep">·</span>

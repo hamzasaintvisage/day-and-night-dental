@@ -8,6 +8,9 @@ export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   // Inline above-the-fold critical CSS into each pre-rendered page, defer the rest.
   ssgOptions: {
+    // Emit nested index.html files (e.g. /treatments/invisalign/index.html) so clean
+    // URLs resolve natively and don't depend solely on Netlify's pretty-URL processing.
+    dirStyle: 'nested',
     beastiesOptions: { preload: 'swap', pruneSource: false },
   },
   build: isSsrBuild

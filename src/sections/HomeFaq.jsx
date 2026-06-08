@@ -1,3 +1,5 @@
+import { PRACTICE } from '../data/practice'
+
 const faqs = [
   {
     q: 'Is there an emergency dentist open now in Glasgow?',
@@ -46,6 +48,9 @@ export default function HomeFaq() {
             </details>
           ))}
         </div>
+        <p style={{ textAlign: 'center', marginTop: '2.5rem', color: 'var(--dn-bone-dim)', fontSize: '0.95rem' }}>
+          Still not sure? <a href={`tel:${PRACTICE.phoneE164}`} style={{ color: 'var(--dn-night-soft)', fontWeight: 600 }}>Call us on {PRACTICE.phoneDisplay}</a> — a real dentist will talk it through, 24/7.
+        </p>
       </div>
     </section>
   )

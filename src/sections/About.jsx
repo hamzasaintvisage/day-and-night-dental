@@ -72,7 +72,7 @@ export default function About() {
               <div className="dn-pillar">
                 <span className="dn-pillar-num night">02</span>
                 <h5>Emergency On-Call</h5>
-                <p>A duty dentist is reachable 24 hours for registered patients.</p>
+                <p>A duty dentist is on call for dental emergencies, 24 hours a day.</p>
               </div>
               <div className="dn-pillar">
                 <span className="dn-pillar-num day">03</span>

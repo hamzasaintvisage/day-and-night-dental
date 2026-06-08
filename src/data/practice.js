@@ -20,7 +20,7 @@ export const PRACTICE = {
   phoneDisplay: '0000 000 0000',           // TODO real, e.g. '0141 management 000'
   phoneE164: '+440000000000',              // TODO real E.164, no spaces e.g. '+441410000000'
 
-  email: 'reception@daynightdental.co.uk',
+  email: 'reception@dayandnightdental.co.uk',
 
   // Approx Merchant City centroid. TODO replace with rooftop coords from the verified GBP pin.
   geo: { lat: 55.8588, lng: -4.2456 },

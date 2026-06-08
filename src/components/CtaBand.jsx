@@ -12,13 +12,16 @@ export default function CtaBand({ eyebrow = 'Day or Night', heading, sub, callLa
             <span className="dn-eyebrow night">{eyebrow}</span>
             <h2 className="dn-display">{heading}</h2>
             {sub && <p>{sub}</p>}
+            <p style={{ marginTop: '0.85rem', fontSize: '0.78rem', color: 'var(--dn-bone-dim)', letterSpacing: '0.02em' }}>
+              GDC-registered · Same-day emergencies · A real dentist answers, 24/7
+            </p>
           </div>
           <div className="dn-ctaband-actions">
             <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency">
               <span className="dn-btn-pulse" />
               {callLabel || `Call ${PRACTICE.phoneDisplay}`}
             </a>
-            <Link to="/register-as-patient" className="dn-btn">
+            <Link to="/#contact" className="dn-btn">
               Book an appointment<span className="arrow"> →</span>
             </Link>
           </div>
