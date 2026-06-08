@@ -53,11 +53,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body, .dn-root {
   background: var(--dn-black);
   color: var(--dn-bone);
+  overflow-x: clip;
+  max-width: 100%;
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.6;
@@ -1153,7 +1156,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-concerns-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           gap: 0;
           border: 1px solid var(--dn-mist);
         }
@@ -1632,7 +1635,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
       
 
 /* === Register === */
-        .dn-register { position: relative; }
+        .dn-register { position: relative; overflow-x: clip; }
         .dn-register-urgent {
           margin-top: 1.25rem;
           font-size: 0.9rem;
@@ -2199,7 +2202,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
       
 
 /* === Contact === */
-        .dn-contact { position: relative; }
+        .dn-contact { position: relative; overflow-x: clip; }
         .dn-form-error {
           margin: 1rem 0 0;
           padding: 0.85rem 1rem;
@@ -2263,6 +2266,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-contact-hours table {
           width: 100%;
+          table-layout: fixed;
           margin-top: 1rem;
           border-collapse: collapse;
         }
@@ -2574,3 +2578,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           }
         }
       
+
+/* === Responsive overflow fixes (added 2026-06) === */
+@media (max-width: 1100px) {
+  /* Burger menu is active at this width; the emergency CTA lives in the menu
+     and the sticky mobile call bar, so the header button is hidden to keep the
+     bar clean and prevent overflow on small screens. */
+  .dn-header-cta { display: none; }
+}
+@media (max-width: 480px) {
+  .dn-footer-cols { grid-template-columns: 1fr; }
+}
