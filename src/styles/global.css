@@ -485,7 +485,7 @@ a {
     padding: 0.95rem 1rem; border-radius: 4px;
     font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
   }
-  .dn-callbar-btn.call { background: #ef4444; color: #fff; }
+  .dn-callbar-btn.call { background: #dc2626; color: #fff; }
   .dn-callbar-btn.book { background: transparent; color: var(--dn-bone); border: 1.5px solid var(--dn-bone-faint); }
   main { padding-bottom: 4.9rem; }
 }

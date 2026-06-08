@@ -88,7 +88,7 @@ export default function Dropdown({ name, value, onChange, options, placeholder =
         className="dn-dropdown-trigger"
         aria-haspopup="listbox"
         aria-controls={`${baseId}-list`}
-        aria-label={ariaLabel}
+        aria-label={`${ariaLabel}${selected ? ': ' + selected.label : ': ' + placeholder}`}
         aria-expanded={open}
         aria-activedescendant={open && activeIndex >= 0 ? `${baseId}-opt-${activeIndex}` : undefined}
         onClick={() => (open ? setOpen(false) : openMenu())}
