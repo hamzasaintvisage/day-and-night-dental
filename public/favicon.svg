@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="44" fill="#0a0a0c"/>
+  <g stroke="#F4C24A" stroke-width="6" stroke-linecap="round">
+    <line x1="100" y1="34" x2="100" y2="48"/><line x1="58" y1="50" x2="67" y2="60"/>
+    <line x1="38" y1="78" x2="51" y2="82"/><line x1="34" y1="100" x2="48" y2="100"/>
+    <line x1="38" y1="122" x2="51" y2="118"/><line x1="58" y1="150" x2="67" y2="140"/>
+  </g>
+  <path d="M 100 46 A 58 58 0 0 0 100 154" stroke="#F4C24A" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 100 46 A 58 58 0 0 1 100 154" stroke="#4A95E5" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 100 62 A 44 44 0 0 1 100 138" stroke="#4A95E5" stroke-width="5" fill="none" opacity="0.7" stroke-linecap="round"/>
+  <g stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round" fill="none">
+    <path d="M 100 84 Q 88 82, 83 92 Q 79 104, 81 118 Q 83 130, 86 135 Q 90 140, 92 132 Q 95 123, 99 121 L 100 121 Z" stroke="#F4C24A"/>
+    <path d="M 100 84 Q 112 82, 117 92 Q 121 104, 119 118 Q 117 130, 114 135 Q 110 140, 108 132 Q 105 123, 101 121 L 100 121 Z" stroke="#4A95E5"/>
+  </g>
+</svg>

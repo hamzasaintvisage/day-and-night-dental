@@ -1,0 +1,36 @@
+import TreatmentPage from '../../components/TreatmentPage'
+
+const data = {
+  concern: {
+    heading: "Worn-down teeth, or a smile you’ve stopped showing?",
+    body: ["Teeth wear, chip and discolour over the years, from grinding, acidic foods, old fillings or simply time. Bit by bit, a lot of people stop smiling in photos without ever really deciding to. It creeps up on you.", "Cosmetic dentistry is about getting that confidence back. Whether it’s gentle composite bonding, porcelain veneers or a full smile makeover, we design the result around your face here in Glasgow, and show you a preview before any work begins."],
+    symptoms: ["Teeth that look short, worn or flat", "Chips, cracks or uneven edges", "Old discoloured fillings on show", "Staining that whitening alone won’t fix", "Hiding your teeth in photos"],
+  },
+  ctaPrimaryLabel: 'Book Free Consultation',
+  lastReviewed: '2026-06-08',
+  lastReviewedLabel: 'June 2026',
+  slug: "cosmetic-dentistry",
+  side: "night",
+  tag: "Smile Design",
+  h1Plain: "Cosmetic Dentistry",
+  procedureType: "CosmeticProcedure",
+  title: (<>Cosmetic dentistry, <em>a smile designed around your face</em></>),
+  lead: "From porcelain veneers to subtle composite bonding, we build your cosmetic plan around your features, your goals and the way you want to feel when you smile.",
+  seo: { title: "Cosmetic Dentistry in Glasgow | Day & Night Dental", description: "Cosmetic dentistry in Glasgow. Porcelain veneers, composite bonding and smile makeovers at Day & Night Dental, with a digital smile preview, 7 days a week." },
+  meta: [{"k": "Treatment time", "v": "1 to 6 weeks", "tone": "day"}, {"k": "See it first", "v": "Digital smile preview", "tone": ""}, {"k": "Finance from", "v": "0% APR", "tone": "night"}],
+  overviewHeading: "A smile makeover, designed just for you",
+  overview: ["Cosmetic dentistry is about more than whiter, straighter teeth. It is about creating a smile that suits your face and feels like you. We start with a proper look at your teeth, gums and bite, then design a plan that puts your dental health first and the look second.", "Every face is different, so no two smile makeovers are the same. Maybe you want to close a small gap, tidy up a chipped edge with composite bonding, or change several teeth with porcelain veneers. Whatever it is, we match the shade, shape and proportions so the result looks natural and not obvious. For a lot of people, a few small changes make the biggest difference.", "We want you to feel sure before anything begins, so we use a digital smile preview wherever we can. That way you get to see where things are heading before you decide. All treatment is carried out by GDC-registered clinicians, and we will always be honest with you about your options, the likely result and anything it cannot do."],
+  facts: [{"dt": "Best for", "dd": "Chips, gaps, discolouration, worn or uneven teeth"}, {"dt": "Options", "dd": "Porcelain veneers, composite bonding, full smile makeovers"}, {"dt": "Anaesthetic", "dd": "Often none needed; local anaesthetic in suitable cases"}, {"dt": "Longevity", "dd": "Veneers typically last many years with good care"}, {"dt": "Preview", "dd": "Digital smile design before you commit"}],
+  benefitsHeading: "Why patients choose our cosmetic care",
+  benefits: [{"title": "Designed around your face", "body": "We plan the shade, shape and proportion to suit your features, so your new smile looks balanced and natural and never too uniform or too bright."}, {"title": "Minimally invasive options", "body": "Composite bonding can often reshape teeth with little or no drilling. In the right cases it is a gentle way to sort out chips, gaps and small imperfections."}, {"title": "See it before you decide", "body": "A digital smile preview shows you where things are likely to end up early on. You can tweak the look and feel sure of yourself before any permanent work starts."}, {"title": "Care that fits your life", "body": "We open day and evening, seven days a week, so you can fit your smile makeover around work and family without the usual scheduling headache."}],
+  stepsHeading: "Your smile makeover journey",
+  steps: [{"title": "Consultation and smile assessment", "body": "We listen to what you would like to change, check your teeth, gums and bite, and talk through which options realistically suit your goals and your budget."}, {"title": "Digital smile preview", "body": "Using photos and digital design, we show you a picture of where your new smile could go, then adjust the shape and shade together until it feels right."}, {"title": "Bespoke treatment", "body": "We carry out the treatment you have chosen, whether that is veneers, bonding or a mix of both, taking care over the detail and keeping you comfortable and in the loop at every visit."}, {"title": "Reveal and aftercare", "body": "We fine-tune the final result, check your bite and finish, and give you advice on cleaning and care that is tailored to you, so your smile keeps looking its best."}],
+  faqHeading: "Cosmetic dentistry, your questions answered",
+  faqs: [{"q": "How much does cosmetic dentistry cost?", "a": "Costs vary because every plan is built around you. Composite bonding usually starts from [£X] per tooth, and porcelain veneers and full smile makeovers are priced for you after your assessment. You will get a clear written quote before any treatment, and 0% finance is available in many cases."}, {"q": "Does cosmetic dental treatment hurt?", "a": "Most cosmetic treatment is comfortable. Composite bonding is often done with no anaesthetic at all, and veneers may need a little local anaesthetic in some cases. Most people find the whole thing straightforward, and we will always check you are comfortable as we go."}, {"q": "How long does a smile makeover take?", "a": "It depends on the treatment. Composite bonding can often be done in a single appointment. Porcelain veneers usually take a couple of visits over a few weeks while your veneers are made for you. We will give you a realistic timeline at your consultation."}, {"q": "Is cosmetic dentistry available on the NHS?", "a": "Treatments done purely for appearance, like cosmetic veneers and smile makeovers, are not generally available on the NHS, which funds treatment based on clinical need. At Day & Night Dental we offer these privately, with clear pricing and finance options to help spread the cost."}, {"q": "How long do veneers and bonding last?", "a": "With good cleaning and regular check-ups, porcelain veneers usually last many years, and composite bonding often lasts several years before it needs a refresh. Steer clear of biting your nails or hard objects, and wear a guard at night if you grind, and your results will last longer."}],
+  related: [{"slug": "invisalign", "title": "Invisalign®", "tag": "Clear Aligners"}, {"slug": "teeth-whitening", "title": "Teeth Whitening", "tag": "Brighter Smile"}, {"slug": "dental-implants", "title": "Dental Implants", "tag": "Permanent Solutions"}],
+  cta: { heading: (<>Book your free<br /> <em>smile design consultation</em></>), sub: "Day and evening appointments, 7 days a week. See your new smile before you commit." },
+}
+
+export default function CosmeticDentistry() {
+  return <TreatmentPage data={data} />
+}

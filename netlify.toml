@@ -1,0 +1,31 @@
+# Day & Night Dental — Netlify deploy config
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Serve /treatments/x from x.html and 301 the .html form to the clean URL,
+# so the React Router clean routes always match after hydration.
+[build.processing.html]
+  pretty_urls = true
+
+# --- Caching: content-hashed assets are immutable for a year ---
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# --- Security headers (baseline trust + HTTPS signals) ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# --- Canonical host: 301 apex -> www (also set www primary + Force HTTPS in Netlify UI) ---
+[[redirects]]
+  from = "https://dayandnightdental.co.uk/*"
+  to = "https://www.dayandnightdental.co.uk/:splat"
+  status = 301
+  force = true
