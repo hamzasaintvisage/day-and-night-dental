@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from './Logo';
 import { PRACTICE } from '../data/practice';
 
 export default function Footer() {
@@ -15,7 +14,7 @@ export default function Footer() {
 
       <div className="dn-container dn-footer-inner">
         <div className="dn-footer-brand">
-          <Logo size={50} showText={true} />
+          <img src="/logo.png" alt="Day & Night Dental" className="dn-footer-logo-img" width="160" height="160" />
           <p className="dn-footer-tagline">
             Expert dental care, around the clock.
           </p>
@@ -94,6 +93,11 @@ export default function Footer() {
           flex-direction: column;
           align-items: flex-start;
           gap: 1.5rem;
+        }
+        .dn-footer-logo-img {
+          width: 160px;
+          height: auto;
+          display: block;
         }
         .dn-footer-tagline {
           font-family: var(--font-body);

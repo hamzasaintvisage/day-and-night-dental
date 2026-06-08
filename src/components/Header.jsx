@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Logo from './Logo';
 import { PRACTICE } from '../data/practice';
 
 export default function Header() {
@@ -24,14 +23,8 @@ export default function Header() {
     <>
       <header className={`dn-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="dn-header-inner">
-          <a href="/" className="dn-header-logo">
-            <Logo size={42} />
-            <div className="dn-header-wordmark">
-              <span className="day">DAY</span>
-              <span className="amp">&</span>
-              <span className="night">NIGHT</span>
-              <span className="sub">DENTAL</span>
-            </div>
+          <a href="/" className="dn-header-logo" aria-label="Day & Night Dental home">
+            <img src="/logo.png" alt="Day & Night Dental" className="dn-header-logo-img" width="56" height="56" />
           </a>
 
           <nav className="dn-header-nav">
@@ -109,6 +102,13 @@ export default function Header() {
           align-items: center;
           gap: 0.75rem;
         }
+        .dn-header-logo-img {
+          height: 56px;
+          width: auto;
+          display: block;
+          transition: height 0.4s ease;
+        }
+        .dn-header.scrolled .dn-header-logo-img { height: 46px; }
         .dn-header-wordmark {
           display: flex;
           flex-direction: column;
@@ -222,7 +222,7 @@ export default function Header() {
           .dn-header-phone { display: none; }
         }
         @media (max-width: 640px) {
-          .dn-header-wordmark { display: none; }
+          .dn-header-logo-img { height: 44px; }
           .dn-header-cta .dn-btn { padding: 0.7rem 1.2rem; font-size: 0.7rem; }
         }
       `}</style>
