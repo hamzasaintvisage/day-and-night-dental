@@ -654,6 +654,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   .dn-js .dn-section { opacity: 1; transition: none; }
 }
+
+/* Subtle desktop hover lift for the card/pillar/step blocks that did not already have one.
+   Wrapped in @media (hover: hover) so touch devices never get a stuck hover state, and only
+   transforms/shadows (no layout shift). Matches the site's existing translateY(-4px) language. */
+@media (hover: hover) {
+  .dn-hero-meta-item { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .dn-hero-meta-item:hover { transform: translateY(-3px); }
+
+  .dn-pillar { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease; }
+  .dn-pillar:hover { transform: translateY(-5px); box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.6); }
+
+  .dn-why-item { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; }
+  .dn-why-item::before { transition: opacity 0.3s ease; }
+  .dn-why-item:hover { transform: translateY(-4px); border-color: var(--dn-day-deep); }
+  .dn-why-item:hover::before { opacity: 1; }
+
+  .tp-step { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease; }
+  .tp-step:hover { transform: translateY(-5px); box-shadow: 0 16px 34px -18px rgba(0, 0, 0, 0.6); }
+
+  .dn-register-includes li { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+  .dn-register-includes li:hover { transform: translateX(4px); }
+
+  .dn-article-related-links a { display: inline-block; transition: transform 0.3s ease; }
+  .dn-article-related-links a:hover { transform: translateX(3px); }
+}
 .dn-article-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); }
 .dn-article-related-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.75rem; }
 .dn-article-related-links a { color: var(--dn-day); font-size: 0.9rem; }
