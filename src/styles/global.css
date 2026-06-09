@@ -655,13 +655,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-js .dn-section { opacity: 1; transform: none; transition: none; }
 }
 
-/* Subtle desktop hover lift for the card/pillar/step blocks that did not already have one.
-   Wrapped in @media (hover: hover) so touch devices never get a stuck hover state, and only
-   transforms/shadows (no layout shift). Matches the site's existing translateY(-4px) language. */
+/* Desktop hover, unified across EVERY card / pillar / step / stat / panel: a small lift plus a
+   gold->blue gradient border that lights up around the block (the brand's interlinked day/night
+   look). ::after is free on these cards (they use ::before for their own accents), so no conflict.
+   @media (hover: hover) so touch devices never get a stuck hover state. */
 @media (hover: hover) {
-  /* ONE unified hover across every card / tile / pillar / step on the site, so the whole thing
-     responds the same way: a small lift + the brand GOLD accent (gold border + soft gold glow).
-     This also overrides the older mixed blue/gold hovers so everything is consistently gold. */
   .dn-pillar,
   .dn-why-item,
   .dn-hero-meta-item,
@@ -670,6 +668,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-review,
   .dn-gallery-item,
   .tp-facts,
+  .tp-meta .item,
   .tp-benefit,
   .tp-step,
   .tp-related-card,
@@ -678,7 +677,40 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-register-step,
   .dn-success-card,
   .dn-success-step {
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  .dn-pillar::after,
+  .dn-why-item::after,
+  .dn-hero-meta-item::after,
+  .dn-concern-card::after,
+  .dn-team-card::after,
+  .dn-review::after,
+  .dn-gallery-item::after,
+  .tp-facts::after,
+  .tp-meta .item::after,
+  .tp-benefit::after,
+  .tp-step::after,
+  .tp-related-card::after,
+  .dn-blog-card::after,
+  .dn-radio-card::after,
+  .dn-register-step::after,
+  .dn-success-card::after,
+  .dn-success-step::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.6px;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(125deg, var(--dn-day), var(--dn-night) 78%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
   .dn-pillar:hover,
   .dn-why-item:hover,
@@ -688,6 +720,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-review:hover,
   .dn-gallery-item:hover,
   .tp-facts:hover,
+  .tp-meta .item:hover,
   .tp-benefit:hover,
   .tp-step:hover,
   .tp-related-card:hover,
@@ -696,15 +729,33 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-register-step:hover,
   .dn-success-card:hover,
   .dn-success-step:hover {
-    transform: translateY(-5px);
-    border-color: var(--dn-day);
-    box-shadow: 0 18px 40px -20px rgba(244, 194, 74, 0.30);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 42px -18px rgba(74, 149, 229, 0.35), 0 8px 20px -12px rgba(244, 194, 74, 0.30);
+  }
+  .dn-pillar:hover::after,
+  .dn-why-item:hover::after,
+  .dn-hero-meta-item:hover::after,
+  .dn-concern-card:hover::after,
+  .dn-team-card:hover::after,
+  .dn-review:hover::after,
+  .dn-gallery-item:hover::after,
+  .tp-facts:hover::after,
+  .tp-meta .item:hover::after,
+  .tp-benefit:hover::after,
+  .tp-step:hover::after,
+  .tp-related-card:hover::after,
+  .dn-blog-card:hover::after,
+  .dn-radio-card:hover::after,
+  .dn-register-step:hover::after,
+  .dn-success-card:hover::after,
+  .dn-success-step:hover::after {
+    opacity: 1;
   }
   .dn-why-item::before { transition: opacity 0.3s ease; }
   .dn-why-item:hover::before { opacity: 1; }
 
-  /* Sidebar rows, area chips and inline link chips: gold accent (lighter motion, no big lift) */
-  .dn-treatment-item { transition: color 0.3s ease, border-color 0.3s ease; }
+  /* Sidebar rows, area chips and inline link chips: gold accent */
+  .dn-treatment-item { transition: color 0.3s ease; }
   .dn-treatment-item:hover { color: var(--dn-day); }
   .dn-area-chip:hover { border-color: var(--dn-day); color: var(--dn-day); }
   .dn-register-includes li { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
