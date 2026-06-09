@@ -659,25 +659,58 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
    Wrapped in @media (hover: hover) so touch devices never get a stuck hover state, and only
    transforms/shadows (no layout shift). Matches the site's existing translateY(-4px) language. */
 @media (hover: hover) {
-  .dn-hero-meta-item { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-  .dn-hero-meta-item:hover { transform: translateY(-4px); }
-
-  .dn-pillar { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease; }
-  .dn-pillar:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(74, 149, 229, 0.35); }
-
-  .dn-why-item { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease; }
+  /* ONE unified hover across every card / tile / pillar / step on the site, so the whole thing
+     responds the same way: a small lift + the brand GOLD accent (gold border + soft gold glow).
+     This also overrides the older mixed blue/gold hovers so everything is consistently gold. */
+  .dn-pillar,
+  .dn-why-item,
+  .dn-hero-meta-item,
+  .dn-concern-card,
+  .dn-team-card,
+  .dn-review,
+  .dn-gallery-item,
+  .tp-facts,
+  .tp-benefit,
+  .tp-step,
+  .tp-related-card,
+  .dn-blog-card,
+  .dn-radio-card,
+  .dn-register-step,
+  .dn-success-card,
+  .dn-success-step {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+  }
+  .dn-pillar:hover,
+  .dn-why-item:hover,
+  .dn-hero-meta-item:hover,
+  .dn-concern-card:hover,
+  .dn-team-card:hover,
+  .dn-review:hover,
+  .dn-gallery-item:hover,
+  .tp-facts:hover,
+  .tp-benefit:hover,
+  .tp-step:hover,
+  .tp-related-card:hover,
+  .dn-blog-card:hover,
+  .dn-radio-card:hover,
+  .dn-register-step:hover,
+  .dn-success-card:hover,
+  .dn-success-step:hover {
+    transform: translateY(-5px);
+    border-color: var(--dn-day);
+    box-shadow: 0 18px 40px -20px rgba(244, 194, 74, 0.30);
+  }
   .dn-why-item::before { transition: opacity 0.3s ease; }
-  .dn-why-item:hover { transform: translateY(-6px); border-color: var(--dn-day-deep); box-shadow: 0 20px 40px -22px rgba(244, 194, 74, 0.3); }
   .dn-why-item:hover::before { opacity: 1; }
 
-  .tp-step { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease; }
-  .tp-step:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -20px rgba(74, 149, 229, 0.3); }
-
+  /* Sidebar rows, area chips and inline link chips: gold accent (lighter motion, no big lift) */
+  .dn-treatment-item { transition: color 0.3s ease, border-color 0.3s ease; }
+  .dn-treatment-item:hover { color: var(--dn-day); }
+  .dn-area-chip:hover { border-color: var(--dn-day); color: var(--dn-day); }
   .dn-register-includes li { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
   .dn-register-includes li:hover { transform: translateX(5px); }
-
-  .dn-article-related-links a { display: inline-block; transition: transform 0.3s ease; }
-  .dn-article-related-links a:hover { transform: translateX(3px); }
+  .dn-article-related-links a { display: inline-block; transition: transform 0.3s ease, color 0.3s ease; }
+  .dn-article-related-links a:hover { transform: translateX(3px); color: var(--dn-day); }
 }
 .dn-article-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); }
 .dn-article-related-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.75rem; }
