@@ -106,11 +106,13 @@ export default function TreatmentPage({ data }) {
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
 
-      {/* Structured data — rendered into the static HTML for rich results */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(procedureLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      {/* Structured data — emitted into <head> (via Head) for rich results */}
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(procedureLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(serviceLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
+      </Head>
 
       {/* Breadcrumb */}
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">

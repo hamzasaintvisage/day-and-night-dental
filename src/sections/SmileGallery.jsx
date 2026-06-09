@@ -63,13 +63,14 @@ export default function SmileGallery() {
                       <circle cx="10" cy="10" r="3.5" stroke="currentColor" strokeWidth="1" />
                       {Array.from({ length: 8 }).map((_, idx) => {
                         const angle = (idx * 45 * Math.PI) / 180;
+                        const r = (n) => Math.round(n * 1000) / 1000;
                         return (
                           <line
                             key={idx}
-                            x1={10 + Math.cos(angle) * 5.5}
-                            y1={10 + Math.sin(angle) * 5.5}
-                            x2={10 + Math.cos(angle) * 8}
-                            y2={10 + Math.sin(angle) * 8}
+                            x1={r(10 + Math.cos(angle) * 5.5)}
+                            y1={r(10 + Math.sin(angle) * 5.5)}
+                            x2={r(10 + Math.cos(angle) * 8)}
+                            y2={r(10 + Math.sin(angle) * 8)}
                             stroke="currentColor"
                             strokeWidth="1"
                             strokeLinecap="round"

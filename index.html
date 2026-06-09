@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a0c" />
+    <!-- Mark JS available so the subtle scroll-reveal only applies with JS; failsafe reveals all
+         sections if the bundle is slow or fails, so content is never left hidden. -->
+    <script>
+      document.documentElement.classList.add('dn-js');
+      addEventListener('load', function () {
+        setTimeout(function () {
+          if (!document.querySelector('.dn-section.dn-in')) {
+            document.querySelectorAll('.dn-section').forEach(function (s) { s.classList.add('dn-in'); });
+          }
+        }, 1600);
+      });
+    </script>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <!-- Google Search Console: paste your verification <meta name="google-site-verification" ...> tag here -->
     <!-- Bing Webmaster Tools verification meta tag can also go here -->

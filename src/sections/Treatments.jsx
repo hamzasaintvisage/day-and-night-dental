@@ -41,7 +41,7 @@ const treatments = [
     title: 'Dental Implants',
     tag: 'Permanent Solutions',
     side: 'night',
-    description: 'About as close to a real tooth as it gets. We plan single implants, bridges and full-arch work using our own CBCT scanner here in the practice.',
+    description: 'Designed to look, feel and work like a natural tooth. We plan single implants, bridges and full-arch work using our own CBCT scanner here in the practice.',
     points: ['Single tooth implants', 'Implant-supported bridges', 'All-on-4 restoration', 'CBCT scan included'],
   },
   {
@@ -49,7 +49,7 @@ const treatments = [
     title: 'Teeth Whitening',
     tag: 'Brighter Smile',
     side: 'day',
-    description: 'Enlighten and combination whitening, done by trained clinicians using proven systems. A world away from the kits you find on the high street.',
+    description: 'Enlighten and combination whitening, carried out by trained clinicians using clinically established systems. A world away from the kits you find on the high street.',
     points: ['Enlighten Evolution', 'In-chair acceleration', 'Home top-up trays', 'Sensitivity managed'],
   },
   {
@@ -141,13 +141,14 @@ export default function Treatments() {
                     <circle cx="50" cy="50" r="20" stroke="var(--dn-day)" strokeWidth="1" fill="none" />
                     {Array.from({ length: 12 }).map((_, i) => {
                       const angle = (i * 30 * Math.PI) / 180;
+                      const r = (n) => Math.round(n * 1000) / 1000;
                       return (
                         <line
                           key={i}
-                          x1={50 + Math.cos(angle) * 28}
-                          y1={50 + Math.sin(angle) * 28}
-                          x2={50 + Math.cos(angle) * 38}
-                          y2={50 + Math.sin(angle) * 38}
+                          x1={r(50 + Math.cos(angle) * 28)}
+                          y1={r(50 + Math.sin(angle) * 28)}
+                          x2={r(50 + Math.cos(angle) * 38)}
+                          y2={r(50 + Math.sin(angle) * 38)}
                           stroke="var(--dn-day)"
                           strokeWidth="1"
                           strokeLinecap="round"

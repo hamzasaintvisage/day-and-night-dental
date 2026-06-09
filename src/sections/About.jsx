@@ -26,10 +26,11 @@ export default function About() {
                 {Array.from({ length: 7 }).map((_, i) => {
                   const angle = -90 + (i - 3) * 22;
                   const rad = (angle * Math.PI) / 180;
-                  const x1 = 200 + Math.cos(rad) * 145;
-                  const y1 = 200 + Math.sin(rad) * 145;
-                  const x2 = 200 + Math.cos(rad) * 175;
-                  const y2 = 200 + Math.sin(rad) * 175;
+                  const r = (n) => Math.round(n * 1000) / 1000;
+                  const x1 = r(200 + Math.cos(rad) * 145);
+                  const y1 = r(200 + Math.sin(rad) * 145);
+                  const x2 = r(200 + Math.cos(rad) * 175);
+                  const y2 = r(200 + Math.sin(rad) * 175);
                   return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
                 })}
               </g>

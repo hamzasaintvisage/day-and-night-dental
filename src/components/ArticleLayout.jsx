@@ -1,6 +1,7 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
+import { posts } from '../data/blog'
 
 const TREATMENT_TITLES = {
   'emergency-dentist': 'Emergency Dentist',
@@ -10,6 +11,9 @@ const TREATMENT_TITLES = {
   'invisalign': 'Invisalign',
   'teeth-whitening': 'Teeth Whitening',
 }
+
+// slug -> title for blog-to-blog "Related reading" links
+const POST_TITLES = Object.fromEntries(posts.map((p) => [p.slug, p.title]))
 
 export default function ArticleLayout({ post }) {
   const url = `${SITE}/blog/${post.slug}`
@@ -25,6 +29,24 @@ export default function ArticleLayout({ post }) {
     mainEntityOfPage: url,
     image: `${SITE}/og-image.jpg`,
   }
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: url },
+    ],
+  }
+  const faqLd = post.faqs && post.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  } : null
 
   return (
     <>
@@ -42,13 +64,17 @@ export default function ArticleLayout({ post }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
       </Head>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(ld)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        {faqLd && <script type="application/ld+json">{JSON.stringify(faqLd)}</script>}
+      </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
         <div className="dn-container">
           <Link to="/">Home</Link>
           <span className="crumb-sep">/</span>
-          <Link to="/blog">Advice</Link>
+          <Link to="/blog">Blog</Link>
           <span className="crumb-sep">/</span>
           <span className="current">{post.title}</span>
         </div>
@@ -66,12 +92,35 @@ export default function ArticleLayout({ post }) {
             </div>
           ))}
 
+          {post.faqs && post.faqs.length > 0 && (
+            <div className="dn-legal-section">
+              <h2>Common questions</h2>
+              {post.faqs.map((f, i) => (
+                <div className="dn-article-faq" key={i}>
+                  <h3>{f.q}</h3>
+                  <p>{f.a}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
           {post.related && post.related.length > 0 && (
             <div className="dn-article-related">
               <span className="dn-eyebrow">Related treatments</span>
               <div className="dn-article-related-links">
                 {post.related.map((slug) => (
                   <Link key={slug} to={`/treatments/${slug}`}>{TREATMENT_TITLES[slug]} →</Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {post.relatedPosts && post.relatedPosts.length > 0 && (
+            <div className="dn-article-related">
+              <span className="dn-eyebrow">Related reading</span>
+              <div className="dn-article-related-links">
+                {post.relatedPosts.map((slug) => POST_TITLES[slug] && (
+                  <Link key={slug} to={`/blog/${slug}`}>{POST_TITLES[slug]} →</Link>
                 ))}
               </div>
             </div>

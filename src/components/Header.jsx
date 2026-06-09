@@ -1,15 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import Logo from './Logo';
+import MobileMenu from './MobileMenu';
 import { PRACTICE } from '../data/practice';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const burgerRef = useRef(null);
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Close the overlay whenever the route or hash changes (i.e. a link was followed).
+  useEffect(() => { setMenuOpen(false); }, [pathname, hash]);
+
+  // If the viewport grows past the mobile breakpoint while the menu is open,
+  // close it so the scroll-lock is never left stuck on desktop.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onResize = () => { if (window.innerWidth > 1100) setMenuOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [menuOpen]);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeAndRefocus = useCallback(() => {
+    setMenuOpen(false);
+    burgerRef.current?.focus();
   }, []);
 
   const navItems = [
@@ -22,7 +44,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`dn-header ${scrolled ? 'scrolled' : ''}`}>
+      <header className={`dn-header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="dn-header-inner">
           <a href="/" className="dn-header-logo">
             <Logo size={42} />
@@ -53,9 +75,10 @@ export default function Header() {
           </div>
 
           <button
+            ref={burgerRef}
             className="dn-burger"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
@@ -64,20 +87,7 @@ export default function Header() {
         </div>
       </header>
 
-      {menuOpen && (
-        <div className="dn-mobile-menu" id="mobile-menu">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
-              {item.label}
-            </a>
-          ))}
-          <a href="/#contact" className="dn-btn primary dn-btn-emergency" onClick={() => setMenuOpen(false)}>
-            <span className="dn-btn-pulse" />
-            Emergency Booking →
-          </a>
-        </div>
-      )}
-
+      <MobileMenu open={menuOpen} onClose={closeMenu} onEscClose={closeAndRefocus} />
     </>
   );
 }

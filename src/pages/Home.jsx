@@ -112,8 +112,10 @@ export default function Home() {
         <meta name="twitter:description" content={DESCRIPTION} />
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dentistLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }} />
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(dentistLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(websiteLd)}</script>
+      </Head>
 
       <Hero />
       <EmergencyBand />

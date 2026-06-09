@@ -360,13 +360,18 @@ a {
 .tp-meta .v { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--dn-bone); }
 .tp-meta .v.day { color: var(--dn-day); }
 .tp-meta .v.night { color: var(--dn-night-soft); }
+/* Tablet: stack the three stats so multi-word values ("30 to 45 minutes") never clip */
+@media (max-width: 820px) {
+  .tp-meta { grid-template-columns: 1fr; }
+  .tp-meta .v { white-space: normal; line-height: 1.25; }
+}
 
 /* Section heads */
 .tp-section-head { margin-bottom: 3rem; }
 .tp-section-head h2 { font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 700; margin-top: 0.9rem; max-width: 760px; }
 
 /* Overview: text + facts card */
-.tp-overview-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
+.tp-overview-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: start; }
 .tp-prose p { color: var(--dn-bone-dim); font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 620px; }
 .tp-prose p strong { color: var(--dn-bone); font-weight: 600; }
 .tp-facts { background: linear-gradient(135deg, var(--dn-near-black), var(--dn-charcoal)); border: 1px solid var(--dn-mist); padding: 2.5rem; position: relative; overflow: hidden; }
@@ -483,7 +488,7 @@ a {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
     display: grid; grid-template-columns: 1fr 0.55fr; gap: 0.6rem;
     padding: 0.6rem 0.8rem calc(0.6rem + env(safe-area-inset-bottom, 0px));
-    background: rgba(10, 10, 12, 0.94);
+    background: var(--dn-near-black);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border-top: 1px solid var(--dn-mist);
   }
@@ -494,11 +499,14 @@ a {
   }
   .dn-callbar-btn.call { background: #dc2626; color: #fff; }
   .dn-callbar-btn.book { background: transparent; color: var(--dn-bone); border: 1.5px solid var(--dn-bone-faint); }
-  main { padding-bottom: 4.9rem; }
+  /* The footer and the call bar are siblings of <main>, so reserve the bar's height on the page
+     itself (not on <main>) so the fixed bar can never cover the footer or end-of-page content. */
+  body { padding-bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); }
+  html { scroll-padding-bottom: 5.5rem; }
 }
 
 /* ===== Legal / policy pages ===== */
-.dn-legal { max-width: 820px; padding-top: 2rem; }
+.dn-legal { max-width: 760px; margin: 0 auto; padding-top: 2rem; }
 .dn-legal h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem; }
 .dn-legal-updated { color: var(--dn-bone-faint); font-size: 0.85rem; margin-bottom: 2rem; }
 .dn-legal-intro { color: var(--dn-bone-dim); font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.7; }
@@ -634,6 +642,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 .dn-blog-card .go { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dn-day); }
 @media (max-width: 900px) { .dn-blog-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .dn-blog-grid { grid-template-columns: 1fr; } }
+.dn-article-faq { margin-bottom: 1.25rem; }
+.dn-article-faq h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--dn-bone); margin-bottom: 0.35rem; }
+.dn-article-faq p { color: var(--dn-bone-dim); margin-bottom: 0; line-height: 1.7; }
+
+/* Subtle scroll-reveal: sections gently fade in as they enter view. Opacity-only so it can
+   never break sticky elements; gated by .dn-js so no-JS users always see content; off for
+   reduced-motion. The .dn-in class is added by an IntersectionObserver in Layout.jsx. */
+.dn-js .dn-section { opacity: 0; transition: opacity 0.6s ease; }
+.dn-js .dn-section.dn-in { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .dn-js .dn-section { opacity: 1; transition: none; }
+}
 .dn-article-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); }
 .dn-article-related-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.75rem; }
 .dn-article-related-links a { color: var(--dn-day); font-size: 0.9rem; }
@@ -752,43 +772,212 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           box-shadow: 0 0 8px #4ade80;
           animation: dn-glow-day 2s infinite;
         }
+        /* --- Mobile burger: three bars that morph into an X --- */
         .dn-burger {
           display: none;
+          position: relative;
+          width: 30px;
+          height: 22px;
           background: none;
           border: none;
-          flex-direction: column;
-          gap: 4px;
           cursor: pointer;
-          padding: 8px;
+          padding: 0;
+          z-index: 101;
         }
         .dn-burger span {
-          width: 24px;
-          height: 1px;
+          position: absolute;
+          left: 3px;
+          right: 3px;
+          height: 2px;
+          border-radius: 2px;
           background: var(--dn-bone);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
         }
+        .dn-burger span:nth-child(1) { top: 4px; }
+        .dn-burger span:nth-child(2) { top: 10px; }
+        .dn-burger span:nth-child(3) { top: 16px; }
+        .dn-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .dn-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0.3); }
+        .dn-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        /* Keep the bar readable over the overlay even at the very top of the page */
+        .dn-header.menu-open {
+          background: rgba(10, 10, 12, 0.85);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* --- Full-screen mobile menu overlay --- */
         .dn-mobile-menu {
           position: fixed;
-          top: 70px;
-          left: 0;
-          right: 0;
-          z-index: 99;
-          background: rgba(10, 10, 12, 0.98);
-          backdrop-filter: blur(20px);
-          padding: 2rem;
+          inset: 0;
+          z-index: 95;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
-          border-bottom: 1px solid var(--dn-mist);
+          justify-content: center;
+          padding: 6rem 2rem 2.5rem;
+          background:
+            radial-gradient(120% 75% at 100% 0%, rgba(74, 149, 229, 0.16), transparent 60%),
+            radial-gradient(120% 75% at 0% 100%, rgba(244, 194, 74, 0.13), transparent 60%),
+            rgba(10, 10, 12, 0.98);
+          -webkit-backdrop-filter: blur(24px);
+          backdrop-filter: blur(24px);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          /* On close: fade opacity, then flip to hidden after the fade (delay).
+             On open (below): flip to visible instantly so the panel is focusable. */
+          transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+          overflow-y: auto;
+          overscroll-behavior: contain;
         }
-        .dn-mobile-menu a {
-          font-size: 0.9rem;
+        .dn-mobile-menu[data-open="true"] {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transition: opacity 0.45s ease, visibility 0s linear 0s;
+        }
+        /* While the overlay is open, suppress the fixed call bar + cookie banner
+           so they don't pile up over the menu's own actions. */
+        body.dn-menu-open .dn-callbar,
+        body.dn-menu-open .dn-cookie { display: none; }
+        .dn-mm-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          width: 100%;
+          max-width: 460px;
+          /* auto margins centre vertically AND stay scroll-safe when content is tall */
+          margin: auto;
+        }
+        /* Entrance: each top-level item rises and fades in, lightly staggered */
+        .dn-mobile-menu .dn-mm-nav > * {
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dn-mobile-menu[data-open="true"] .dn-mm-nav > * {
+          opacity: 1;
+          transform: translateY(0);
+          transition-delay: calc(var(--i, 0) * 0.06s);
+        }
+        .dn-mm-link,
+        .dn-mm-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          padding: 0.8rem 0;
+          font-family: var(--font-display);
+          font-size: 1.55rem;
+          font-weight: 800;
+          letter-spacing: 0.01em;
+          color: var(--dn-bone);
+          background: none;
+          border: none;
+          border-bottom: 1px solid var(--dn-mist);
+          text-align: left;
+          cursor: pointer;
+          transition: color 0.3s ease;
+        }
+        .dn-mm-link:hover,
+        .dn-mm-toggle:hover,
+        .dn-mm-toggle.is-open {
+          color: var(--dn-day);
+        }
+        .dn-mm-link.active {
+          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .dn-mm-chev {
+          flex: none;
+          width: 9px;
+          height: 9px;
+          border-right: 2px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          transform: rotate(45deg);
+          transition: transform 0.35s ease;
+          margin-right: 5px;
+        }
+        .dn-mm-toggle.is-open .dn-mm-chev { transform: rotate(-135deg); margin-top: 5px; }
+        .dn-mm-sub {
+          display: grid;
+          grid-template-rows: 0fr;
+          visibility: hidden;
+          transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+        }
+        .dn-mm-sub[data-open="true"] { grid-template-rows: 1fr; visibility: visible; }
+        .dn-mm-sub-inner {
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+        }
+        .dn-mm-sublink {
+          padding: 0.6rem 0 0.6rem 1rem;
+          margin-left: 2px;
+          border-left: 2px solid var(--dn-mist);
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--dn-bone-dim);
+          transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .dn-mm-sub-inner .dn-mm-sublink:first-child { margin-top: 0.5rem; }
+        .dn-mm-sublink:hover,
+        .dn-mm-sublink.active {
+          color: var(--dn-bone);
+          border-color: var(--dn-day);
+        }
+        .dn-mm-cta {
+          margin-top: 1.6rem;
+          justify-content: center;
+        }
+        .dn-mm-foot {
+          margin-top: 1.75rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          align-items: flex-start;
+        }
+        .dn-mm-phone {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+          font-size: 1.05rem;
+          font-weight: 700;
+          color: var(--dn-bone);
+        }
+        .dn-mm-phone .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #4ade80;
+          box-shadow: 0 0 8px #4ade80;
+        }
+        .dn-mm-meta {
+          font-size: 0.78rem;
           letter-spacing: 0.18em;
           text-transform: uppercase;
+          color: var(--dn-bone-faint);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .dn-mobile-menu,
+          .dn-mobile-menu .dn-mm-nav > *,
+          .dn-burger span,
+          .dn-mm-sub,
+          .dn-mm-chev {
+            transition-duration: 0.01ms !important;
+          }
+          .dn-mobile-menu .dn-mm-nav > * { transform: none !important; }
         }
         @media (max-width: 1100px) {
           .dn-header-nav { display: none; }
-          .dn-burger { display: flex; }
+          .dn-burger { display: block; }
           .dn-header-phone { display: none; }
+        }
+        @media (min-width: 1101px) {
+          .dn-mobile-menu { display: none; }
         }
         @media (max-width: 640px) {
           .dn-header-wordmark { display: none; }
@@ -2469,8 +2658,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-footer-inner {
           display: grid;
-          grid-template-columns: 1.2fr 2fr;
-          gap: 4rem;
+          grid-template-columns: 1fr 2.4fr;
+          gap: 3rem;
           padding-block: 4rem;
         }
         .dn-footer-brand {

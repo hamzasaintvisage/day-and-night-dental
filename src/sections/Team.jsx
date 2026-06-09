@@ -84,14 +84,6 @@ export default function Team() {
             </article>
           ))}
         </div>
-
-        <div className="dn-team-note">
-          <span className="dn-eyebrow">Note</span>
-          <p>
-            These portraits are stock photos standing in for now. We'll swap them for proper
-            photographs of the team before launch. The names and credentials are placeholders too.
-          </p>
-        </div>
       </div>
 
     </section>

@@ -35,8 +35,12 @@ export default function OurTeam() {
         <meta property="og:image" content={OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG_IMAGE} />
+        <meta name="twitter:title" content="Our Team | Day & Night Dental, Glasgow" />
+        <meta name="twitter:description" content="Meet the GDC-registered team behind Day & Night Dental, Glasgow." />
       </Head>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(teamLd) }} />
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(teamLd)}</script>
+      </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
         <div className="dn-container">

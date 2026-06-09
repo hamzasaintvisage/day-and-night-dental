@@ -1,3 +1,4 @@
+import { Head } from 'vite-react-ssg'
 import { PRACTICE } from '../data/practice'
 
 const faqs = [
@@ -32,7 +33,9 @@ const faqLd = {
 export default function HomeFaq() {
   return (
     <section className="dn-section tp-faq">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
+      </Head>
       <div className="dn-container">
         <div className="tp-section-head" style={{ textAlign: 'center' }}>
           <span className="dn-eyebrow">Common Questions</span>

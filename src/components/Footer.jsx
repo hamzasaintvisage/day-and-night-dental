@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="dn-footer-brand">
           <img src="/logo.png" alt="Day & Night Dental" className="dn-footer-logo-img" width="160" height="160" />
           <p className="dn-footer-tagline">
-            Expert dental care, around the clock.
+            Trusted dental care, day and night.
           </p>
         </div>
 

@@ -22,6 +22,8 @@ export default function RegisterAsPatient() {
         <meta property="og:image" content={OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG_IMAGE} />
+        <meta name="twitter:title" content="Register as a Patient | Day & Night Dental, Glasgow" />
+        <meta name="twitter:description" content="Become a new patient at Day & Night Dental, Glasgow — day, evening and weekend appointments." />
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">

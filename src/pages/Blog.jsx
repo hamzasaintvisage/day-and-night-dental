@@ -21,6 +21,8 @@ export default function Blog() {
         <meta property="og:image" content={`${SITE}/og-image.jpg`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
+        <meta name="twitter:title" content="Dental Advice & Guides | Day & Night Dental" />
+        <meta name="twitter:description" content="Honest dental advice from our Glasgow team." />
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
