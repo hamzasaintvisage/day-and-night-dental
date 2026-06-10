@@ -30,21 +30,31 @@ npx wrangler@3 pages deploy dist --project-name=daynightdental --branch=main --c
   (KV-backed; fails open so a real patient is never blocked).
 - No secrets in the browser bundle; API keys live only in Cloudflare environment variables.
 
-## STILL TO DO — owner / team (these are DNS changes, not code)
-1. **Verify the sending domain in Resend.** Add these 3 records to `daynightdental.co.uk` DNS
-   (they sit on sub-names, so they do NOT affect the existing `reception@` mailbox):
-   - `TXT`  name `resend._domainkey`  value `p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCtdQ5zVXfRHd1dtR5AtL4exnXzYnptTAAVZWy+7OmRYoDPzABFZVbiZdJ9WObbF/qs0cwPvmnJOreMTeJuKyeIzl14ikLxBZq/JalycrSLTLHJfFY8sIzYSDYFiiVBigwrSxI7QTdci4mbfltZ8QxIV25RQD+bSaCuZiiSMeIxwIDAQAB`
-   - `MX`   name `send`  value `feedback-smtp.eu-west-1.amazonses.com`  priority `10`
-   - `TXT`  name `send`  value `v=spf1 include:amazonses.com ~all`
-   Until this is done the form returns an error and no email is sent.
-2. **Tighten DMARC** (anti-spoofing for the practice domain). Current `_dmarc.daynightdental.co.uk`
-   is `p=none` (forged emails are not stopped). Change it to start at
-   `v=DMARC1; p=quarantine; adkim=s; aspf=s; pct=100; rua=mailto:<an address you check>` and,
-   after watching reports for a couple of weeks, move to `p=reject`. Google Workspace mail is
-   unaffected.
-3. **Move the domain's nameservers to Cloudflare** (for the custom domain). Before flipping
-   them, confirm the existing email (MX) records are copied into Cloudflare DNS or inbound mail
-   to `reception@` breaks.
+## Domain facts (verified 2026-06-10 via dig/whois)
+- **Registrar (owned at):** Namecheap. The nameserver change MUST be done in the Namecheap account.
+- **DNS currently managed by:** Hostinger (nameservers `aurora.dns-parking.com` / `nebula.dns-parking.com`
+  = Hostinger parking). The domain currently just shows a parking page; it is NOT on Netlify or Cloudflare.
+- **Email:** Google Workspace (`MX -> SMTP.GOOGLE.COM`, `SPF v=spf1 include:_spf.google.com ~all`,
+  Google DKIM). `reception@` and `admin@` are Google Workspace. This MUST be preserved.
+- **Old Netlify records (A 75.2.60.5, www -> netlify): never applied (confirmed absent). Discard them.**
+
+## STILL TO DO
+**Team (the only DNS work needed):**
+1. In **Cloudflare**, add `daynightdental.co.uk`. Cloudflare auto-imports existing records — CONFIRM the
+   Google Workspace records came across (MX `SMTP.GOOGLE.COM`, the `_spf.google.com` SPF, and the
+   `google._domainkey` DKIM) so `reception@`/`admin@` email is never interrupted.
+2. In **Namecheap**, change the nameservers from the Hostinger ones to the two Cloudflare provides.
+
+**Me (after the nameserver move, all via the Cloudflare/Resend APIs — no team work):**
+- Add the Resend sending records in Cloudflare DNS, then trigger Resend domain verification:
+  - `TXT resend._domainkey = p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCtdQ5zVXfRHd1dtR5AtL4exnXzYnptTAAVZWy+7OmRYoDPzABFZVbiZdJ9WObbF/qs0cwPvmnJOreMTeJuKyeIzl14ikLxBZq/JalycrSLTLHJfFY8sIzYSDYFiiVBigwrSxI7QTdci4mbfltZ8QxIV25RQD+bSaCuZiiSMeIxwIDAQAB`
+  - `MX send = feedback-smtp.eu-west-1.amazonses.com` (priority 10)
+  - `TXT send = v=spf1 include:amazonses.com ~all`
+  (These sit on the `send` / `resend._domainkey` sub-names, so they do NOT touch the Google root MX/SPF.)
+- Tighten DMARC: `_dmarc` is currently `v=DMARC1; p=none; rua=mailto:admin@daynightdental.co.uk`.
+  Move to `p=quarantine; adkim=s; aspf=s; pct=100` (keep the rua), then to `p=reject` after watching
+  reports. Both Google Workspace and Resend mail align (DKIM), so legit mail is unaffected.
+- Attach the custom domain to the Pages project (POST .../pages/projects/daynightdental/domains).
 
 ## CUTOVER CHECKLIST (when the domain goes live on Cloudflare)
 - [ ] Confirm the Resend domain shows "verified", then submit each form once and check the email arrives.
