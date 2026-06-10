@@ -3,35 +3,34 @@
 // business details can NEVER drift across the site (a core local-SEO signal).
 // Values marked TODO are placeholders — replace with the real practice data.
 
-export const SITE = 'https://www.dayandnightdental.co.uk'
+export const SITE = 'https://www.daynightdental.co.uk'
 
 export const PRACTICE = {
-  name: 'Day & Night Dental',
+  name: 'Day Night Dental',
 
   // --- NAP (TODO: real values from the owner) ---
-  streetAddress: '[Practice Street Name]', // TODO real street
+  streetAddress: '80 Hutcheson St',
   locality: 'Merchant City',
   city: 'Glasgow',
   region: 'Glasgow City',
-  postcode: '[Postcode]',                  // TODO real G1/G2 postcode
+  postcode: 'G1 1SH',
   country: 'GB',
 
   // Phone — ONE canonical format. tel:/schema use E.164 (no spaces); UI shows display.
-  phoneDisplay: '0000 000 0000',           // TODO real, e.g. '0141 management 000'
-  phoneE164: '+440000000000',              // TODO real E.164, no spaces e.g. '+441410000000'
+  phoneDisplay: '0141 548 6548',
+  phoneE164: '+441415486548',
 
-  email: 'reception@dayandnightdental.co.uk',
+  email: 'reception@daynightdental.co.uk',
 
-  // Approx Merchant City centroid. TODO replace with rooftop coords from the verified GBP pin.
-  geo: { lat: 55.8588, lng: -4.2456 },
+  // Exact coords from the Google Business Profile pin.
+  geo: { lat: 55.8592, lng: -4.2474899 },
 
-  // Filled once the owner creates GBP + social profiles (feeds schema sameAs).
-  // TODO add: Google Business Profile, Facebook, Instagram, NHS.uk listing URLs.
-  sameAs: [],
+  // Google Business Profile (feeds schema sameAs). Add Facebook/Instagram/NHS.uk when live.
+  sameAs: ['https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z'],
 
-  // Google Maps "place" embed URL — set once the GBP exists. Empty = generic area map.
-  mapEmbed: '',
-  googleMapsUrl: '', // GBP place URL -> schema hasMap
+  // Live business map for the contact section (no API key; labelled pin via name + address).
+  mapEmbed: 'https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed',
+  googleMapsUrl: 'https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z', // schema hasMap
   rating: null,      // { value: '4.9', count: '120' } once real reviews exist -> aggregateRating
 }
 

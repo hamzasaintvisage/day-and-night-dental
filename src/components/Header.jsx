@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import Logo from './Logo';
 import MobileMenu from './MobileMenu';
 import { PRACTICE } from '../data/practice';
 
@@ -46,12 +45,10 @@ export default function Header() {
     <>
       <header className={`dn-header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="dn-header-inner">
-          <a href="/" className="dn-header-logo">
-            <Logo size={42} />
+          <a href="/" className="dn-header-logo" aria-label="Day Night Dental home">
+            <img src="/logo-mark.png" className="dn-header-mark" alt="" width="280" height="243" />
             <div className="dn-header-wordmark">
-              <span className="day">DAY</span>
-              <span className="amp">&</span>
-              <span className="night">NIGHT</span>
+              <span className="name"><span className="day">Day</span><span className="night">Night</span></span>
               <span className="sub">DENTAL</span>
             </div>
           </a>

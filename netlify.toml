@@ -1,4 +1,4 @@
-# Day & Night Dental — Netlify deploy config
+# Day Night Dental — Netlify deploy config
 [build]
   command = "npm run build"
   publish = "dist"
@@ -27,6 +27,8 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    X-Frame-Options = "DENY"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
 
 # --- Pretty /api/* path -> Netlify Functions (custom Resend email pipeline) ---
 [[redirects]]
@@ -37,8 +39,8 @@
 
 # --- Canonical host: 301 apex -> www (also set www primary + Force HTTPS in Netlify UI) ---
 [[redirects]]
-  from = "https://dayandnightdental.co.uk/*"
-  to = "https://www.dayandnightdental.co.uk/:splat"
+  from = "https://daynightdental.co.uk/*"
+  to = "https://www.daynightdental.co.uk/:splat"
   status = 301
   force = true
 

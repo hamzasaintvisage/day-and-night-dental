@@ -7,8 +7,6 @@ import { SITE } from '../data/practice'
 export default function Registered() {
   const { state } = useLocation()
   const firstName = state?.firstName
-  const email = state?.email
-  const phone = state?.phone
 
   useEffect(() => {
     // Conversion events — no-op until analytics loads (after cookie consent).
@@ -19,9 +17,9 @@ export default function Registered() {
   return (
     <>
       <Head>
-        <title>Welcome to the practice | Day &amp; Night Dental</title>
+        <title>Welcome to the practice | Day Night Dental</title>
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href={`${SITE}/registered`} />
+        <link rel="canonical" href={`${SITE}/registered/`} />
       </Head>
       <FormSuccess
         eyebrow="Registration received"
@@ -36,24 +34,7 @@ export default function Registered() {
           { to: '/our-team', label: 'Meet the team' },
           { href: '/#treatments', label: 'Browse treatments' },
         ]}
-      >
-        {(email || phone) && (
-          <div className="dn-success-details">
-            {email && (
-              <div>
-                <span className="dn-eyebrow day">Confirmation to</span>
-                <span>{email}</span>
-              </div>
-            )}
-            {phone && (
-              <div>
-                <span className="dn-eyebrow night">We'll call you on</span>
-                <span>{phone}</span>
-              </div>
-            )}
-          </div>
-        )}
-      </FormSuccess>
+      />
     </>
   )
 }

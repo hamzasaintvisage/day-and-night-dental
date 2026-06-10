@@ -17,9 +17,9 @@ export default function ThankYou() {
   return (
     <>
       <Head>
-        <title>Thank you | Day &amp; Night Dental</title>
+        <title>Thank you | Day Night Dental</title>
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href={`${SITE}/thank-you`} />
+        <link rel="canonical" href={`${SITE}/thank-you/`} />
       </Head>
       <FormSuccess
         eyebrow="Enquiry received"

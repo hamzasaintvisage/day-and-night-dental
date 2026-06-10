@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
 import { PRACTICE } from '../data/practice';
+import { submitEnquiry, buildEnquiryExtras } from '../lib/submitEnquiry';
 
 const DENTIST_OPTIONS = [
   { value: 'no-preference', label: 'No preference, just assign me someone' },
@@ -19,7 +20,6 @@ const YEARS = Array.from({ length: DOB_CURRENT_YEAR - 1915 + 1 }, (_, i) => { co
 export default function Register() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
@@ -42,6 +42,10 @@ export default function Register() {
   };
   const setField = (field) => (value) => setForm((f) => ({ ...f, [field]: value }));
 
+  // Form-load time for the server-side time-trap (client-only; SSG hydration-safe).
+  const loadedAt = useRef(0);
+  useEffect(() => { loadedAt.current = Date.now(); }, []);
+
   // Date of birth assembled from three dropdowns into form.dob (YYYY-MM-DD, or '').
   const [dob, setDob] = useState({ day: '', month: '', year: '' });
   const setDobPart = (part) => (v) => {
@@ -56,24 +60,24 @@ export default function Register() {
   const next = () => setStep(Math.min(step + 1, 2));
   const back = () => setStep(Math.max(step - 1, 1));
 
-  const encode = (data) =>
-    Object.keys(data)
-      .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-      .join('&');
-
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setError(false);
-    const go = () => navigate('/registered', { state: { firstName: form.firstName, email: form.email, phone: form.phone } });
-    const fail = () => { setSubmitting(false); setError(true); };
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'register', ...form }),
-    })
-      .then((res) => (res.ok ? go() : fail()))
-      .catch(fail);
+    const botField = e.target['bot-field']?.value || '';
+    const extras = buildEnquiryExtras(loadedAt.current, botField);
+
+    // Submit to the email pipeline (/api/send-enquiry). Route to the welcome page on
+    // success; on any failure show the "please call us" error.
+    try {
+      const res = await submitEnquiry('register', form, extras);
+      if (res.ok) {
+        navigate('/registered', { state: { firstName: form.firstName } });
+        return;
+      }
+    } catch { /* network error -> error state below */ }
+    setSubmitting(false);
+    setError(true);
   };
 
   const canProceedStep1 = form.firstName && form.lastName && form.phone && form.email;
@@ -118,28 +122,28 @@ export default function Register() {
                 <li>
                   <span className="num">01</span>
                   <div>
-                    <h5>Comprehensive examination</h5>
+                    <h4>Comprehensive examination</h4>
                     <p>A full assessment with intra-oral scans and bite analysis. That’s 45 minutes with your assigned dentist.</p>
                   </div>
                 </li>
                 <li>
                   <span className="num">02</span>
                   <div>
-                    <h5>Digital x-rays</h5>
+                    <h4>Digital x-rays</h4>
                     <p>Low-dose digital imaging when it’s clinically needed. There are no films to develop, so you won’t be left waiting.</p>
                   </div>
                 </li>
                 <li>
                   <span className="num">03</span>
                   <div>
-                    <h5>Personalised treatment plan</h5>
+                    <h4>Personalised treatment plan</h4>
                     <p>You’ll get a written plan with the cost of each item set out before any work starts, so you always know where you stand.</p>
                   </div>
                 </li>
                 <li>
                   <span className="num">04</span>
                   <div>
-                    <h5>Hygiene appointment</h5>
+                    <h4>Hygiene appointment</h4>
                     <p>We book this in alongside your examination, so you leave with a proper clean and a fresh start.</p>
                   </div>
                 </li>
@@ -159,18 +163,15 @@ export default function Register() {
 
           {/* Right — multi-step form */}
           <div className="dn-register-form-wrap">
-            {!submitted ? (
               <form
                 className="dn-register-form"
-                name="register"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 onSubmit={onSubmit}
               >
-                <input type="hidden" name="form-name" value="register" />
-                <p hidden>
-                  <label>Leave this empty: <input name="bot-field" /></label>
+                {/* Honeypot — the function drops any submission where this is filled.
+                    Hidden from users, password managers and the keyboard so a real visitor
+                    never trips it (autoComplete off, not tabbable, aria-hidden). */}
+                <p hidden aria-hidden="true">
+                  <label>Leave this empty: <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
                 </p>
                 {/* Progress */}
                 <div className="dn-register-progress">
@@ -193,11 +194,11 @@ export default function Register() {
                     <div className="dn-form-row dn-form-row-2">
                       <label>
                         <span>First name *</span>
-                        <input type="text" required name="firstName" value={form.firstName} onChange={update('firstName')} />
+                        <input type="text" required name="firstName" autoComplete="given-name" value={form.firstName} onChange={update('firstName')} />
                       </label>
                       <label>
                         <span>Last name *</span>
-                        <input type="text" required name="lastName" value={form.lastName} onChange={update('lastName')} />
+                        <input type="text" required name="lastName" autoComplete="family-name" value={form.lastName} onChange={update('lastName')} />
                       </label>
                     </div>
 
@@ -214,22 +215,22 @@ export default function Register() {
                     <div className="dn-form-row dn-form-row-2">
                       <label>
                         <span>Phone *</span>
-                        <input type="tel" required name="phone" value={form.phone} onChange={update('phone')} placeholder="Best contact number" />
+                        <input type="tel" required name="phone" autoComplete="tel" inputMode="tel" value={form.phone} onChange={update('phone')} placeholder="Best contact number" />
                       </label>
                       <label>
                         <span>Email *</span>
-                        <input type="email" required name="email" value={form.email} onChange={update('email')} placeholder="you@email.com" />
+                        <input type="email" required name="email" autoComplete="email" inputMode="email" value={form.email} onChange={update('email')} placeholder="you@email.com" />
                       </label>
                     </div>
 
                     <div className="dn-form-row dn-form-row-2">
                       <label>
                         <span>Address</span>
-                        <input type="text" name="address" value={form.address} onChange={update('address')} placeholder="Street address" />
+                        <input type="text" name="address" autoComplete="street-address" value={form.address} onChange={update('address')} placeholder="Street address" />
                       </label>
                       <label>
                         <span>Postcode</span>
-                        <input type="text" name="postcode" value={form.postcode} onChange={update('postcode')} placeholder="SW1A 1AA" />
+                        <input type="text" name="postcode" autoComplete="postal-code" value={form.postcode} onChange={update('postcode')} placeholder="SW1A 1AA" />
                       </label>
                     </div>
 
@@ -291,7 +292,7 @@ export default function Register() {
                           onChange={update('consent')}
                         />
                         <span>
-                          I’m happy for Day & Night Dental to hold my information in line
+                          I’m happy for Day Night Dental to hold my information in line
                           with their privacy policy, and to contact me about my registration.
                         </span>
                       </label>
@@ -314,37 +315,6 @@ export default function Register() {
                   </div>
                 )}
               </form>
-            ) : (
-              <div className="dn-register-success">
-                <div className="dn-success-mark">
-                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                    <circle cx="30" cy="30" r="28" stroke="url(#grad-reg-success)" strokeWidth="1" />
-                    <path d="M18 30 L26 38 L42 22" stroke="url(#grad-reg-success)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                    <defs>
-                      <linearGradient id="grad-reg-success" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stopColor="#D4A453" />
-                        <stop offset="1" stopColor="#5B8FBF" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-                <h3 className="dn-display">Welcome to the practice, {form.firstName}.</h3>
-                <p>
-                  That’s your registration done. One of the team will be in touch within
-                  one working hour to confirm your first appointment.
-                </p>
-                <div className="dn-success-details">
-                  <div>
-                    <span className="dn-eyebrow day">Confirmation sent to</span>
-                    <span>{form.email}</span>
-                  </div>
-                  <div>
-                    <span className="dn-eyebrow night">We'll call you on</span>
-                    <span>{form.phone}</span>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

@@ -17,7 +17,10 @@ function walk(dir) {
     const orig = html
     html = html.replace(/<meta[^>]*charset[^>]*>/gi, '')             // remove any existing charset meta
     html = html.replace(/(<head[^>]*>)/i, '$1<meta charset="utf-8">') // re-insert as the first head child
-    if (html !== orig) { writeFileSync(full, html); fixed++ }
+    if (html !== orig) {
+      try { writeFileSync(full, html); fixed++ }
+      catch (err) { console.error(`[fix-head] failed to write ${full}: ${err.message}`) }
+    }
   }
 }
 

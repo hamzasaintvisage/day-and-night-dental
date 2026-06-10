@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Maps the homepage tab ids to their dedicated treatment-page slugs.
@@ -57,7 +57,7 @@ const treatments = [
     title: 'Emergency Care',
     tag: '24/7 Available',
     side: 'night',
-    description: 'Toothache, a broken crown, a knocked-out tooth, an abscess. There’s a clinician on call any hour of the day, and we always keep same-day slots free.',
+    description: 'Toothache, a broken crown, a knocked-out tooth, an abscess. There’s emergency help any hour of the day, and we always keep same-day slots free.',
     points: ['24-hour helpline', 'Same-day appointments', 'Out-of-hours surgery', 'Pain relief priority'],
     highlight: true,
   },
@@ -138,7 +138,7 @@ export default function Treatments() {
               <svg viewBox="0 0 100 100" width="100" height="100">
                 {current.side === 'day' ? (
                   <>
-                    <circle cx="50" cy="50" r="20" stroke="var(--dn-day)" strokeWidth="1" fill="none" />
+                    <circle cx="50" cy="50" r="15" fill="var(--dn-day)" />
                     {Array.from({ length: 12 }).map((_, i) => {
                       const angle = (i * 30 * Math.PI) / 180;
                       const r = (n) => Math.round(n * 1000) / 1000;

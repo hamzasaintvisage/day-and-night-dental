@@ -6,11 +6,11 @@ export default function Privacy() {
     <LegalPage
       slug="privacy"
       title="Privacy Policy"
-      description="How Day & Night Dental in Glasgow collects, uses and protects your personal and health information."
+      description="How Day Night Dental in Glasgow collects, uses and protects your personal and health information."
       updated="June 2026"
-      intro={`Day & Night Dental ("we", "us") is committed to protecting your privacy. This policy explains what information we collect, why, and your rights under UK data protection law (UK GDPR and the Data Protection Act 2018). For any privacy question, contact us at ${PRACTICE.email}.`}
+      intro={`Day Night Dental ("we", "us") is committed to protecting your privacy. This policy explains what information we collect, why, and your rights under UK data protection law (UK GDPR and the Data Protection Act 2018). For any privacy question, contact us at ${PRACTICE.email}.`}
       sections={[
-        { h: 'Who we are', body: [`Day & Night Dental, ${PRACTICE.locality}, ${PRACTICE.city}. We are the data controller for the information we hold about you. Our registration with the Information Commissioner's Office (ICO) is [ICO registration number].`] },
+        { h: 'Who we are', body: [`Day Night Dental, ${PRACTICE.locality}, ${PRACTICE.city}. We are the data controller for the information we hold about you. Our registration with the Information Commissioner's Office (ICO) is [ICO registration number].`] },
         { h: 'Information we collect', body: [
           'When you contact us or register as a patient we may collect your name, contact details, date of birth and address.',
           'As a dental practice we also hold health information necessary for your care, such as your medical history, medications, clinical records, X-rays and treatment notes. This is "special category" data and is handled with additional care.',

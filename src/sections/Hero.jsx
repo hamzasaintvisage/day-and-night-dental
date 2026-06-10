@@ -1,5 +1,3 @@
-import React from 'react';
-import Logo from '../components/Logo';
 import { PRACTICE } from '../data/practice';
 
 export default function Hero() {
@@ -43,10 +41,11 @@ export default function Hero() {
 
         {/* Main title */}
         <h1 className="dn-hero-title dn-display">
-          <span className="word-day dn-reveal dn-delay-1">Day</span>
-          <span className="word-amp dn-reveal dn-delay-2">&</span>
-          <span className="word-night dn-reveal dn-delay-3">Night</span>
-          <span className="dn-visually-hidden">Day &amp; Night Dental, your 24-hour emergency and cosmetic dentist in Merchant City, Glasgow</span>
+          {/* Decorative split-word lockup; aria-hidden so the accessible name is the
+              single descriptive string below, not "DayNight Day Night Dental…". */}
+          <span className="word-day dn-reveal dn-delay-1" aria-hidden="true">Day</span>
+          <span className="word-night dn-reveal dn-delay-3" aria-hidden="true">Night</span>
+          <span className="dn-visually-hidden">Day Night Dental, your 24-hour emergency and cosmetic dentist in Merchant City, Glasgow</span>
         </h1>
 
         <div className="dn-hero-subtitle dn-reveal dn-delay-4">
@@ -59,8 +58,8 @@ export default function Hero() {
 
         {/* Tagline */}
         <p className="dn-hero-tagline dn-reveal dn-delay-5">
-          Toothache at 2am? A broken tooth on a Sunday? We're open when other dentists are closed.<br />
-          <strong>A real dentist on the phone in Glasgow, day or night.</strong>
+          <strong>Pain doesn't wait. Neither do we.</strong><br />
+          24/7 emergency dental care in Glasgow. Same-day treatment for urgent dental pain.
         </p>
 
         {/* CTAs — phone first for emergency intent */}
@@ -76,7 +75,7 @@ export default function Hero() {
         </div>
 
         <p className="dn-hero-trust dn-reveal dn-delay-5">
-          GDC-registered dentists · Same-day emergencies · A real dentist answers, 24/7
+          24/7 emergency line · Same-day emergency treatment · Glasgow
         </p>
 
         {/* Bottom meta strip */}

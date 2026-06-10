@@ -13,7 +13,7 @@ export default function CtaBand({ eyebrow = 'Day or Night', heading, sub, callLa
             <h2 className="dn-display">{heading}</h2>
             {sub && <p>{sub}</p>}
             <p style={{ marginTop: '0.85rem', fontSize: '0.78rem', color: 'var(--dn-bone-dim)', letterSpacing: '0.02em' }}>
-              GDC-registered · Same-day emergencies · A real dentist answers, 24/7
+              GDC-registered · Same-day emergencies · Urgent dental help, 24/7
             </p>
           </div>
           <div className="dn-ctaband-actions">

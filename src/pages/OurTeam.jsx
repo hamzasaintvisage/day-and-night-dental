@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Team, { team } from '../sections/Team'
 import { SITE, PRACTICE } from '../data/practice'
 
-const url = `${SITE}/our-team`
+const url = `${SITE}/our-team/`
 const OG_IMAGE = `${SITE}/og-image.jpg`
 
 // Person schema per clinician (E-E-A-T for a medical site). Real names + GDC
@@ -23,20 +23,20 @@ export default function OurTeam() {
   return (
     <>
       <Head>
-        <title>Our Team — Meet the Dentists | Day &amp; Night Dental, Glasgow</title>
-        <meta name="description" content="Meet the GDC-registered dentists and team behind Day & Night Dental in Merchant City, Glasgow — the people who look after your smile, day and night." />
+        <title>Our Team — Meet the Dentists | Day Night Dental, Glasgow</title>
+        <meta name="description" content="Meet the GDC-registered dentists and team behind Day Night Dental in Merchant City, Glasgow — the people who look after your smile, day and night." />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Our Team | Day & Night Dental, Glasgow" />
-        <meta property="og:description" content="Meet the GDC-registered team behind Day & Night Dental, Glasgow." />
+        <meta property="og:title" content="Our Team | Day Night Dental, Glasgow" />
+        <meta property="og:description" content="Meet the GDC-registered team behind Day Night Dental, Glasgow." />
         <meta property="og:url" content={url} />
-        <meta property="og:site_name" content="Day & Night Dental" />
+        <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
         <meta property="og:image" content={OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG_IMAGE} />
-        <meta name="twitter:title" content="Our Team | Day & Night Dental, Glasgow" />
-        <meta name="twitter:description" content="Meet the GDC-registered team behind Day & Night Dental, Glasgow." />
+        <meta name="twitter:title" content="Our Team | Day Night Dental, Glasgow" />
+        <meta name="twitter:description" content="Meet the GDC-registered team behind Day Night Dental, Glasgow." />
       </Head>
       <Head>
         <script type="application/ld+json">{JSON.stringify(teamLd)}</script>
@@ -50,7 +50,7 @@ export default function OurTeam() {
         </div>
       </nav>
 
-      <h1 className="dn-visually-hidden">Meet the dental team at Day &amp; Night Dental in Glasgow</h1>
+      <h1 className="dn-visually-hidden">Meet the dental team at Day Night Dental in Glasgow</h1>
       <Team />
 
       <section className="dn-section tp-cta">

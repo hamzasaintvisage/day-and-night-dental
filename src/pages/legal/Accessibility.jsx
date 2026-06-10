@@ -6,7 +6,7 @@ export default function Accessibility() {
     <LegalPage
       slug="accessibility"
       title="Accessibility Statement"
-      description="Our commitment to making the Day & Night Dental website usable for everyone."
+      description="Our commitment to making the Day Night Dental website usable for everyone."
       updated="June 2026"
       intro="We want everyone to be able to use this website, including people who rely on assistive technology. We are working to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at level AA."
       sections={[

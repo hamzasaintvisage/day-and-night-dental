@@ -6,7 +6,7 @@ export default function Complaints() {
     <LegalPage
       slug="complaints"
       title="Complaints Procedure"
-      description="How to raise a concern or complaint about your care at Day & Night Dental, Glasgow, and what happens next."
+      description="How to raise a concern or complaint about your care at Day Night Dental, Glasgow, and what happens next."
       updated="June 2026"
       intro="We aim to give every patient excellent care and a friendly, professional service. If something has not met your expectations, please tell us. We take all concerns seriously and use them to improve."
       sections={[

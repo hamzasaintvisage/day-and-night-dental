@@ -4,11 +4,11 @@ import { SITE } from '../data/practice'
 
 // Shared layout for legal / policy pages (Privacy, Complaints, Terms, Accessibility).
 export default function LegalPage({ slug, title, description, updated, intro, sections }) {
-  const url = `${SITE}/${slug}`
+  const url = `${SITE}/${slug}/`
   return (
     <>
       <Head>
-        <title>{title} | Day &amp; Night Dental</title>
+        <title>{title} | Day Night Dental</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={url} />
       </Head>

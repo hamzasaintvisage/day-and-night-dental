@@ -17,9 +17,9 @@ import CtaBand from '../components/CtaBand'
 
 const DENTIST_ID = `${SITE}/#dentist`
 const OG_IMAGE = `${SITE}/og-image.jpg`
-const TITLE = 'Emergency & Cosmetic Dentist in Glasgow | Day & Night Dental'
+const TITLE = 'Emergency & Cosmetic Dentist in Glasgow | Day Night Dental'
 const DESCRIPTION =
-  '24/7 emergency dentist in Glasgow. Day & Night Dental offers same-day emergency care, Invisalign, implants and cosmetic dentistry. Open 7 days a week.'
+  '24/7 emergency dentist in Glasgow. Day Night Dental offers same-day emergency care, Invisalign, implants and cosmetic dentistry. Open 7 days a week.'
 
 const svc = (name, slug) => ({ '@type': 'MedicalProcedure', name, url: `${SITE}/treatments/${slug}` })
 
@@ -101,12 +101,12 @@ export default function Home() {
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:url" content={`${SITE}/`} />
-        <meta property="og:site_name" content="Day & Night Dental" />
+        <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
         <meta property="og:image" content={OG_IMAGE} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Day & Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
+        <meta property="og:image:alt" content="Day Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESCRIPTION} />
@@ -124,14 +124,14 @@ export default function Home() {
       <WhyChooseUs />
       <CtaBand
         eyebrow="Open When You Need Us"
-        heading="A dentist in Glasgow, day or night."
+        heading={<>A dentist in Glasgow, <em>day or night</em>.</>}
         sub="Routine care by day, emergencies around the clock. Call us now or book an appointment online."
       />
       <Treatments />
       <CtaBand
         eyebrow="Don't Wait Until Morning"
-        heading="In pain right now? A clinician is on call, every hour."
-        sub="Whether it's the middle of the night or the middle of the week, you can speak to a real dentist in Glasgow straight away."
+        heading={<>In pain right now? Help is on hand, <em>every hour</em>.</>}
+        sub="Whether it's the middle of the night or the middle of the week, you can call us in Glasgow straight away for urgent help."
         callLabel="Call our 24/7 line"
       />
       <SmileGallery />
@@ -139,7 +139,7 @@ export default function Home() {
       <Testimonials />
       <CtaBand
         eyebrow="Day, Evening, Overnight"
-        heading="We're open when you need us, not just office hours."
+        heading={<>We're open <em>when you need us</em>, not just office hours.</>}
         sub="Register as a new patient, or call us straight away if it can't wait."
       />
       <Team />

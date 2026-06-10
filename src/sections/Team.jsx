@@ -1,4 +1,3 @@
-import React from 'react';
 
 // Placeholder portraits pulled from Unsplash (free, no attribution required for use,
 // but credit appreciated). Swap each `image` for the dentist's actual photo when ready.
@@ -50,7 +49,7 @@ export const team = [
 function Portrait({ image, name, side }) {
   return (
     <div className={`dn-portrait ${side}`}>
-      <img src={image} alt={`${name}, dentist at Day & Night Dental, Glasgow`} width={600} height={840} loading="lazy" decoding="async" />
+      <img src={image} alt={`${name}, dentist at Day Night Dental, Glasgow`} width={600} height={840} loading="lazy" decoding="async" />
       <div className="dn-portrait-overlay" />
       <div className="dn-portrait-frame" />
     </div>
@@ -78,7 +77,7 @@ export default function Team() {
               <Portrait image={member.image} name={member.name} side={member.side} />
               <div className="dn-team-info">
                 <span className={`dn-eyebrow ${member.side}`}>{member.role}</span>
-                <h4>{member.name}</h4>
+                <h3>{member.name}</h3>
                 <span className="dn-team-specialty">{member.specialty}</span>
               </div>
             </article>

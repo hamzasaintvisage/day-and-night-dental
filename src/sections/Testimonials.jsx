@@ -1,12 +1,11 @@
-import React from 'react';
 
 // Pre-launch: the practice is not open yet, so there are no real reviews.
 // This section states honest commitments instead. Swap to real patient reviews
 // (with consent) once they exist — then a genuine rating can be shown.
 const promises = [
   {
-    statement: "When you are in pain at 2am, you won't reach an answering machine. You will speak to a real dentist who can see you.",
-    label: "Open day & night",
+    statement: "When you are in pain at 2am, you are not left waiting until morning. We aim to see you the same day.",
+    label: "Open day and night",
     side: "night",
   },
   {

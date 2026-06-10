@@ -26,11 +26,11 @@ export default async (_req) => {
     const status = `${res.status} ${res.statusText}`.trim()
     console.error(`healthcheck: Resend domains check failed (${status})`)
 
-    const from = process.env.SEND_FROM || 'Day & Night Dental <onboarding@resend.dev>'
+    const from = process.env.SEND_FROM || 'Day Night Dental <onboarding@resend.dev>'
     const to =
       process.env.ALERT_EMAIL ||
       process.env.ENQUIRY_TO ||
-      'reception@dayandnightdental.co.uk'
+      'reception@daynightdental.co.uk'
 
     try {
       await fetch('https://api.resend.com/emails', {
@@ -42,8 +42,8 @@ export default async (_req) => {
         body: JSON.stringify({
           from,
           to,
-          subject: 'ALERT: Day & Night Dental form pipeline failing',
-          text: `The Day & Night Dental form pipeline health check failed.\n\nResend /domains responded with: ${status}\n\nForm submissions may not be delivered. Please investigate.`,
+          subject: 'ALERT: Day Night Dental form pipeline failing',
+          text: `The Day Night Dental form pipeline health check failed.\n\nResend /domains responded with: ${status}\n\nForm submissions may not be delivered. Please investigate.`,
         }),
       })
     } catch (err) {

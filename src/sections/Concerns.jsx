@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const concerns = [
@@ -92,7 +91,7 @@ export default function Concerns() {
               <div className="dn-concern-icon">
                 <Icon type={c.icon} />
               </div>
-              <h4>{c.title}</h4>
+              <h3>{c.title}</h3>
               <span className="dn-concern-arrow">→</span>
             </Link>
           ))}

@@ -4,7 +4,7 @@ import { PRACTICE } from '../data/practice'
 const faqs = [
   {
     q: 'Is there an emergency dentist open now in Glasgow?',
-    a: 'Yes. Day & Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can speak to a clinician any time, including evenings and weekends, so there’s no need to sit in pain until Monday.',
+    a: 'Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.',
   },
   {
     q: 'Do you take NHS patients?',
@@ -40,7 +40,7 @@ export default function HomeFaq() {
         <div className="tp-section-head" style={{ textAlign: 'center' }}>
           <span className="dn-eyebrow">Common Questions</span>
           <h2 className="dn-display" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-            Emergency &amp; dental questions, answered
+            <em>Emergency</em> &amp; dental questions, answered
           </h2>
         </div>
         <div className="tp-faq-list">
@@ -52,7 +52,7 @@ export default function HomeFaq() {
           ))}
         </div>
         <p style={{ textAlign: 'center', marginTop: '2.5rem', color: 'var(--dn-bone-dim)', fontSize: '0.95rem' }}>
-          Still not sure? <a href={`tel:${PRACTICE.phoneE164}`} style={{ color: 'var(--dn-night-soft)', fontWeight: 600 }}>Call us on {PRACTICE.phoneDisplay}</a> — a real dentist will talk it through, 24/7.
+          Still not sure? <a href={`tel:${PRACTICE.phoneE164}`} style={{ color: 'var(--dn-night-soft)', fontWeight: 600 }}>Call us on {PRACTICE.phoneDisplay}</a> — we will talk through your options, 24/7.
         </p>
       </div>
     </section>

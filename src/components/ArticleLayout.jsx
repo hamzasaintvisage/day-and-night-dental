@@ -16,7 +16,7 @@ const TREATMENT_TITLES = {
 const POST_TITLES = Object.fromEntries(posts.map((p) => [p.slug, p.title]))
 
 export default function ArticleLayout({ post }) {
-  const url = `${SITE}/blog/${post.slug}`
+  const url = `${SITE}/blog/${post.slug}/`
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -51,14 +51,14 @@ export default function ArticleLayout({ post }) {
   return (
     <>
       <Head>
-        <title>{post.title} | Day &amp; Night Dental</title>
+        <title>{post.title} | Day Night Dental</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:url" content={url} />
-        <meta property="og:site_name" content="Day & Night Dental" />
+        <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
         <meta property="og:image" content={`${SITE}/og-image.jpg`} />
         <meta name="twitter:card" content="summary_large_image" />

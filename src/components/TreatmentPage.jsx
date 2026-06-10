@@ -41,7 +41,7 @@ function HeroMark({ side }) {
  * lastReviewedLabel, procedureType.
  */
 export default function TreatmentPage({ data }) {
-  const url = `${SITE}/treatments/${data.slug}`
+  const url = `${SITE}/treatments/${data.slug}/`
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -94,12 +94,12 @@ export default function TreatmentPage({ data }) {
         <meta property="og:title" content={data.seo.title} />
         <meta property="og:description" content={data.seo.description} />
         <meta property="og:url" content={url} />
-        <meta property="og:site_name" content="Day & Night Dental" />
+        <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
         <meta property="og:image" content={OG_IMAGE} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Day & Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
+        <meta property="og:image:alt" content="Day Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={data.seo.title} />
         <meta name="twitter:description" content={data.seo.description} />
@@ -271,7 +271,7 @@ export default function TreatmentPage({ data }) {
         <div className="dn-container">
           <div className="tp-section-head">
             <span className="dn-eyebrow">Explore More</span>
-            <h2 className="dn-display">Related treatments</h2>
+            <h2 className="dn-display">Related <em>treatments</em></h2>
           </div>
           <div className="tp-related-grid">
             {data.related.map((r) => (

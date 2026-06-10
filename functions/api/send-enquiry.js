@@ -1,13 +1,9 @@
-// Modern Netlify Function (req, context) => Response.
-// Custom Resend email pipeline that runs ALONGSIDE Netlify Forms.
-// This is additive: Netlify Forms keep working untouched.
-//
-// Netlify Functions are bundled separately from src/ and must NOT import from
-// src/. So the canonical site URL is hardcoded here (kept in sync by hand with
-// `SITE` in src/data/practice.js).
-const SITE = 'https://www.daynightdental.co.uk'
+// Cloudflare Pages Function — POST /api/send-enquiry
+// Email-ONLY enquiry pipeline via Resend. No data store (GDPR: patient enquiry data,
+// incl. health-adjacent free-text, is NOT persisted in KV — it is emailed straight to
+// the practice inbox). Uses only web-standard APIs (fetch/Request/Response/URL/Intl).
+// Ported from the original Netlify function: same validation/escaping/honeypot/time-trap.
 
-// --- Origin / referer allowlist -------------------------------------------
 const STATIC_ALLOWED = [
   'https://www.daynightdental.co.uk',
   'https://daynightdental.co.uk',
@@ -15,21 +11,13 @@ const STATIC_ALLOWED = [
 
 // Field length caps (chars). Anything over is rejected.
 const CAPS = {
-  name: 100,
-  firstName: 100,
-  lastName: 100,
-  email: 150,
-  phone: 30,
-  address: 200,
-  postcode: 200,
-  // free text
-  notes: 2000,
-  message: 2000,
+  name: 100, firstName: 100, lastName: 100, email: 150, phone: 30,
+  address: 200, postcode: 200, notes: 2000, message: 2000,
 }
 const DEFAULT_TEXT_CAP = 2000
 
-// Minimum plausible time to fill + submit (ms). Faster = bot. Measured on the CLIENT clock
-// (load -> submit), so immune to client/server clock skew. Kept in sync with the Cloudflare twin.
+// Minimum plausible time to fill + submit the form (ms). Anything faster is treated as a
+// bot. Measured on the CLIENT clock (load -> submit) so it is immune to client/server skew.
 const MIN_FILL_MS = 600
 // Hard ceiling on field count (the forms send ~15) — bounds abuse via giant payloads.
 const MAX_FIELDS = 40
@@ -37,12 +25,34 @@ const MAX_FIELDS = 40
 // Internal fields that never appear in the email body.
 const SKIP_FIELDS = new Set(['bot-field', 'ts', 'elapsed', 'turnstileToken', 'form-name', 'formType'])
 
-// Sane-enough email regex (single @, no whitespace, a dot in the domain).
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-const json = (obj, status = 200) => Response.json(obj, { status })
+// Free-text textarea fields may contain newlines/tabs (HTML-escaped into the body); all
+// other single-line fields reject CR/LF/TAB to block email-header injection.
+const MULTILINE_FIELDS = new Set(['notes', 'message'])
 
-// Escape user values for safe embedding in HTML.
+// JSON response with defence-in-depth headers. _headers does NOT apply to Function
+// responses, so set the security/no-cache headers here too. `extra` allows e.g. Allow.
+const json = (obj, status = 200, extra = {}) =>
+  new Response(JSON.stringify(obj), {
+    status,
+    headers: {
+      'content-type': 'application/json',
+      'cache-control': 'no-store',
+      'x-content-type-options': 'nosniff',
+      'referrer-policy': 'strict-origin-when-cross-origin',
+      'x-frame-options': 'DENY',
+      ...extra,
+    },
+  })
+
+// This endpoint only accepts POST; answer other methods with a clean 405 (+ Allow).
+const methodNotAllowed = () => json({ ok: false, error: 'Method not allowed' }, 405, { allow: 'POST' })
+export const onRequestGet = methodNotAllowed
+export const onRequestPut = methodNotAllowed
+export const onRequestDelete = methodNotAllowed
+export const onRequestPatch = methodNotAllowed
+
 function esc(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -52,49 +62,28 @@ function esc(value) {
     .replace(/'/g, '&#39;')
 }
 
-// Build the list of allowed origins (static + Netlify-provided env URLs).
-function allowedOrigins() {
-  const list = [...STATIC_ALLOWED]
-  if (process.env.URL) list.push(process.env.URL)
-  if (process.env.DEPLOY_PRIME_URL) list.push(process.env.DEPLOY_PRIME_URL)
-  return list
-}
-
-// True if the request origin/referer is acceptable.
+// True if the request origin/referer is acceptable: the live domain, any Cloudflare
+// Pages preview/prod URL for this project, or localhost for dev.
 function originAllowed(origin) {
   let host
-  try {
-    host = new URL(origin).origin
-  } catch {
-    return false
-  }
-  if (allowedOrigins().includes(host)) return true
-  // Any localhost / 127.0.0.1 (any port) is allowed for local dev.
+  try { host = new URL(origin).origin } catch { return false }
+  if (STATIC_ALLOWED.includes(host)) return true
+  if (/^https:\/\/([a-z0-9-]+\.)?daynightdental\.pages\.dev$/.test(host)) return true
   if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(host)) return true
   return false
 }
 
-// A human-friendly London timestamp.
 function londonNow() {
   return new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Europe/London',
-    dateStyle: 'full',
-    timeStyle: 'short',
+    timeZone: 'Europe/London', dateStyle: 'full', timeStyle: 'short',
   }).format(new Date())
 }
 
-// Pretty label for a field key (firstName -> "First name").
 function labelFor(key) {
   const spaced = key.replace(/([A-Z])/g, ' $1').replace(/[_-]+/g, ' ')
   return spaced.charAt(0).toUpperCase() + spaced.slice(1).toLowerCase().trim()
 }
 
-// Free-text textarea fields may contain newlines/tabs (they are HTML-escaped into the
-// email body). All other (single-line) fields reject CR/LF/TAB to block header injection.
-const MULTILINE_FIELDS = new Set(['notes', 'message'])
-
-// Validate a single string field against caps + injection chars.
-// Returns an error string, or null if OK.
 function validateField(key, value) {
   if (value == null) return null
   // Booleans (consent) and numbers (elapsed) are valid as-is. Arrays/objects are never
@@ -107,14 +96,14 @@ function validateField(key, value) {
   return null
 }
 
-export default async (req, _context) => {
-  // 1) Method
-  if (req.method !== 'POST') return json({ ok: false, error: 'Method not allowed' }, 405)
+export async function onRequestPost(context) {
+  const { request, env } = context
+  const SITE = env.SITE || 'https://www.daynightdental.co.uk'
 
-  // 2) Parse body
+  // 1) Parse body
   let body
   try {
-    body = await req.json()
+    body = await request.json()
   } catch {
     return json({ ok: false, error: 'Invalid JSON' }, 400)
   }
@@ -125,44 +114,43 @@ export default async (req, _context) => {
     return json({ ok: false, error: 'Too many fields' }, 400)
   }
 
-  // 3) Form type
+  // 2) Form type
   const formType = body.formType
   if (formType !== 'contact' && formType !== 'register') {
     return json({ ok: false, error: 'Unknown form type' }, 400)
   }
 
-  // 4) Origin / referer allowlist
-  const origin = req.headers.get('origin') || req.headers.get('referer')
-  if (!origin) {
-    console.warn('send-enquiry: no origin/referer header present — allowing')
-  } else if (!originAllowed(origin)) {
-    console.warn(`send-enquiry: blocked origin/referer: ${origin}`)
+  // 3) Origin / referer allowlist — a real browser submission always sends one of these
+  // (same-origin POST). Missing BOTH = a non-browser/script request -> reject (hardening).
+  const origin = request.headers.get('origin') || request.headers.get('referer')
+  if (!origin || !originAllowed(origin)) {
+    console.warn(`send-enquiry: blocked origin/referer: ${origin || '(none)'}`)
     return json({ ok: false, error: 'Forbidden' }, 403)
   }
 
-  // 5) Honeypot — silently accept (don't tip off bots).
+  // 4) Honeypot — silently accept (don't tip off bots).
   if (typeof body['bot-field'] === 'string' && body['bot-field'].length > 0) {
     console.warn('send-enquiry: honeypot tripped — dropping submission')
     return json({ ok: true })
   }
 
-  // 6) Time-trap. `elapsed` is the fill duration (ms), measured on the CLIENT clock
-  // (load -> submit), so it is immune to client/server clock skew. Missing/non-finite/
-  // non-positive => no signal => allow (never drop a real enquiry over a missing timestamp).
-  // No upper bound (a long-open tab is a real user). Only an implausibly fast submit is
-  // dropped — silently accepted (don't tip off bots) but not sent.
+  // 5) Time-trap. `elapsed` is the fill duration (ms), measured entirely on the CLIENT
+  // clock (form load -> submit), so it is immune to client/server clock skew. Missing,
+  // non-finite, or non-positive => "no signal" => allow (NEVER drop a real enquiry over a
+  // missing timestamp). There is deliberately NO upper bound: a tab left open for hours is
+  // a real (if slow) user, not a bot, and an attacker can forge any value anyway. Only an
+  // implausibly fast submit is dropped — silently accepted (don't tip off bots) but not sent.
   const elapsed = Number(body.elapsed)
   if (Number.isFinite(elapsed) && elapsed > 0 && elapsed < MIN_FILL_MS) {
     console.warn(`send-enquiry: time-trap tripped (elapsed=${elapsed}ms) — dropping`)
     return json({ ok: true })
   }
 
-  // 7) Validation
+  // 6) Required fields
   const required =
     formType === 'contact'
       ? ['name', 'phone', 'email']
       : ['firstName', 'lastName', 'phone', 'email', 'consent']
-
   for (const key of required) {
     const val = body[key]
     if (key === 'consent') {
@@ -174,30 +162,31 @@ export default async (req, _context) => {
     }
   }
 
-  // Length caps + injection chars on EVERY string field.
+  // 7) Length caps + injection chars on every string field.
   for (const [key, val] of Object.entries(body)) {
     const err = validateField(key, val)
     if (err) return json({ ok: false, error: err }, 400)
   }
 
-  // Email format.
+  // 8) Email format.
   const email = typeof body.email === 'string' ? body.email.trim() : ''
   const emailValid = EMAIL_RE.test(email) && email.length <= CAPS.email
   if (!emailValid) return json({ ok: false, error: 'A valid email is required' }, 400)
 
-  // 8) CAPTCHA: intentionally NOT enforced server-side. A Turnstile check is only safe once
-  // the CLIENT half is also wired (renders the widget + sends a token). That half does not
-  // exist yet, so enforcing on the env var alone would 400 every real submission. Re-add BOTH
-  // halves together when enabling CAPTCHA. Honeypot + time-trap + origin allowlist are active.
+  // 9) CAPTCHA: intentionally NOT enforced server-side. A Turnstile check is only safe once
+  // the CLIENT half is also wired (renders the widget and sends a token). That half does not
+  // exist yet (TURNSTILE_SITE_KEY is empty, no widget in the DOM), so enforcing here on the
+  // presence of an env var alone would 400 every real submission and silently kill all lead
+  // capture. When enabling CAPTCHA, add BOTH halves together. The honeypot, time-trap, and
+  // origin allowlist above are the active anti-spam guards in the meantime.
 
-  // 9) Build the email -------------------------------------------------------
+  // 10) Build the email --------------------------------------------------------
   const formLabel = formType === 'contact' ? 'Website enquiry (Contact)' : 'New patient registration'
   const subject =
     formType === 'contact'
       ? `New website enquiry — ${body.name}`
       : `New patient registration — ${body.firstName} ${body.lastName}`
 
-  // Ordered, human-readable list of every submitted field (minus internals).
   const rows = Object.entries(body)
     .filter(([key, val]) => !SKIP_FIELDS.has(key) && val != null && val !== '')
     .map(([key, val]) => ({
@@ -207,7 +196,6 @@ export default async (req, _context) => {
 
   const when = londonNow()
 
-  // Plaintext (complete — all critical info lives here too).
   const text = [
     formLabel,
     `Received: ${when}`,
@@ -217,7 +205,6 @@ export default async (req, _context) => {
     `— Sent from ${SITE}`,
   ].join('\n')
 
-  // Branded HTML (logo at top, but every field repeated in text-safe markup).
   const htmlRows = rows
     .map(
       (r) =>
@@ -254,56 +241,38 @@ export default async (req, _context) => {
   </body>
 </html>`
 
-  // 10) Recipients ----------------------------------------------------------
-  const to = process.env.ENQUIRY_TO || 'reception@daynightdental.co.uk'
-  // onboarding@resend.dev is Resend's built-in test sender — replace via the
-  // SEND_FROM env var with a verified domain address at launch.
-  const from = process.env.SEND_FROM || 'Day Night Dental <onboarding@resend.dev>'
-  const reply_to = emailValid ? email : undefined
-
-  // 11) Send decision matrix ------------------------------------------------
-  const mode = process.env.FORMS_DRY_RUN === 'true'
-    ? 'dry-run (FORMS_DRY_RUN)'
-    : process.env.RESEND_API_KEY
-      ? 'send (Resend)'
-      : process.env.CONTEXT !== 'production'
-        ? 'dry-run (non-production preview)'
-        : 'unconfigured (production, no key)'
-  console.log(`send-enquiry: mode=${mode} formType=${formType}`)
-
-  const payloadSummary = { formType, to, from, subject, reply_to }
-
-  if (process.env.FORMS_DRY_RUN === 'true') {
-    console.log('send-enquiry: DRY RUN payload', payloadSummary)
-    return json({ ok: true, dryRun: true })
+  // 11) Recipients + sender (FAIL LOUD if not configured — no silent dry-run, no test-domain fallback).
+  const apiKey = env.RESEND_API_KEY
+  const from = env.SEND_FROM
+  if (!apiKey || !from) {
+    console.error('send-enquiry: missing RESEND_API_KEY or SEND_FROM env var')
+    return json({ ok: false, error: 'Email not configured' }, 500)
   }
+  // Primary recipient + optional second practice-controlled backup inbox (comma-separated).
+  const to = (env.ENQUIRY_TO || 'reception@daynightdental.co.uk')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+  const reply_to = email
 
-  if (process.env.RESEND_API_KEY) {
-    try {
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ from, to, subject, html, text, reply_to }),
-      })
-      if (!res.ok) {
-        const errBody = await res.text().catch(() => '')
-        console.error(`send-enquiry: Resend error ${res.status}: ${errBody.slice(0, 300)}`)
-        return json({ ok: false, error: 'Failed to send' }, 502)
-      }
-      return json({ ok: true })
-    } catch (err) {
-      console.error('send-enquiry: Resend request error', err)
+  // 12) Send via Resend.
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ from, to, subject, html, text, reply_to }),
+    })
+    if (!res.ok) {
+      const errBody = await res.text().catch(() => '')
+      console.error(`send-enquiry: Resend error ${res.status}: ${errBody.slice(0, 300)}`)
       return json({ ok: false, error: 'Failed to send' }, 502)
     }
+    return json({ ok: true })
+  } catch (err) {
+    console.error('send-enquiry: Resend request error', err)
+    return json({ ok: false, error: 'Failed to send' }, 502)
   }
-
-  if (process.env.CONTEXT !== 'production') {
-    console.log('send-enquiry: DRY RUN (preview) payload', payloadSummary)
-    return json({ ok: true, dryRun: true })
-  }
-
-  return json({ ok: false, error: 'Email not configured' }, 503)
 }

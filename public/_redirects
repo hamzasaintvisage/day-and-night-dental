@@ -1,0 +1,3 @@
+# Canonical host: apex -> www (matches SITE + canonical tags). Only fires on the custom
+# domain; the *.pages.dev preview URL is unaffected.
+https://daynightdental.co.uk/* https://www.daynightdental.co.uk/:splat 301!

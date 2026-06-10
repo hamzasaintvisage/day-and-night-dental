@@ -1,10 +1,10 @@
 const points = [
-  { h: '24/7 emergency cover', p: 'When you ring us in pain, a real clinician answers. There is no answering machine, day or night.' },
-  { h: 'GDC-registered clinicians', p: 'Every treatment is carried out by dental professionals registered with, and regulated by, the General Dental Council.' },
-  { h: 'Same-day appointments', p: 'We hold back urgent slots every day, so patients across Glasgow in pain get seen quickly rather than next week.' },
-  { h: 'On-site digital technology', p: 'We have CBCT 3D scanning and intraoral scanners on site, so your treatment is more precise and a good bit more comfortable.' },
-  { h: '0% finance available', p: 'Spread the cost of implants, Invisalign and cosmetic treatment with interest-free payment plans.' },
-  { h: 'In the heart of Merchant City', p: 'We are easy to reach from across Glasgow city centre, with parking nearby and good transport links on the doorstep.' },
+  { h: 'Around-the-clock emergency access', p: 'Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.' },
+  { h: 'Seen fast, treated properly', p: 'Urgent cases are prioritised for same-day assessment and emergency treatment.' },
+  { h: 'No judgement, just care', p: 'Nervous, embarrassed or overdue? We keep things calm, clear and focused on getting you treated.' },
+  { h: 'Precision-led dentistry', p: 'State-of-the-art digital technology supports clearer diagnosis, careful planning and more precise treatment.' },
+  { h: 'Costs explained first', p: 'Your options, fees and next steps are explained clearly before treatment begins.' },
+  { h: 'Merchant City, central Glasgow', p: 'A central Glasgow practice for emergency, general and cosmetic dentistry.' },
 ]
 
 export default function WhyChooseUs() {
@@ -12,8 +12,8 @@ export default function WhyChooseUs() {
     <section className="dn-section">
       <div className="dn-container">
         <div className="tp-section-head">
-          <span className="dn-eyebrow">Why Day &amp; Night</span>
-          <h2 className="dn-display">Why patients across <em>Glasgow</em> choose Day &amp; Night Dental</h2>
+          <span className="dn-eyebrow">Why Day Night</span>
+          <h2 className="dn-display">Why <em>Glasgow</em> patients choose Day Night Dental</h2>
         </div>
         <div className="dn-why-grid">
           {points.map((pt) => (

@@ -1,16 +1,15 @@
+functionsDirectory = "/Users/admin/Downloads/day-and-night-dental-recovered/netlify/functions"
+functionsDirectoryOrigin = "default"
 headersOrigin = "config"
 redirectsOrigin = "config"
 plugins = []
-
-[functions]
-
-[functions."*"]
 
 [build]
 publish = "/Users/admin/Downloads/day-and-night-dental-recovered/dist"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
+functions = "/Users/admin/Downloads/day-and-night-dental-recovered/netlify/functions"
 
 [build.environment]
 NODE_VERSION = "22"
@@ -28,6 +27,13 @@ pretty_urls = true
 
 [build.services]
 
+[functions]
+
+[functions.healthcheck]
+schedule = "@daily"
+
+[functions."*"]
+
 [[headers]]
 for = "/assets/*"
 
@@ -42,6 +48,18 @@ Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
 
 [[redirects]]
 from = "https://dayandnightdental.co.uk/*"

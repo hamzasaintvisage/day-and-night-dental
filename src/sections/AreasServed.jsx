@@ -10,7 +10,7 @@ export default function AreasServed() {
           <h2 className="dn-display">A 24-hour dentist in the heart of <em>Merchant City</em></h2>
         </div>
         <p className="dn-areas-lead">
-          You will find Day &amp; Night Dental in Merchant City, central Glasgow. We are a short walk from Queen
+          You will find Day Night Dental in Merchant City, central Glasgow. We are a short walk from Queen
           Street station, Buchanan Street and George Square, and there is parking close by. Patients come to us
           from all over the city. That includes Glasgow city centre, the Merchant City and Trongate, the West End,
           Finnieston, Dennistoun, the East End and the Southside.

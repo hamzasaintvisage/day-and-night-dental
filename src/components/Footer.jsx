@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PRACTICE } from '../data/practice';
 
@@ -14,7 +14,13 @@ export default function Footer() {
 
       <div className="dn-container dn-footer-inner">
         <div className="dn-footer-brand">
-          <img src="/logo.png" alt="Day & Night Dental" className="dn-footer-logo-img" width="160" height="160" />
+          <div className="dn-footer-logo">
+            <img src="/logo-mark.png" alt="Day Night Dental" className="dn-footer-mark" width="280" height="243" />
+            <span className="dn-footer-wordmark">
+              <span className="name"><span className="day">Day</span><span className="night">Night</span></span>
+              <span className="sub">DENTAL</span>
+            </span>
+          </div>
           <p className="dn-footer-tagline">
             Trusted dental care, day and night.
           </p>
@@ -22,7 +28,7 @@ export default function Footer() {
 
         <div className="dn-footer-cols">
           <div className="dn-footer-col">
-            <h6 className="dn-eyebrow day">Treatments</h6>
+            <h2 className="dn-eyebrow day">Treatments</h2>
             <ul>
               <li><Link to="/treatments/general-dentistry">General Dentistry</Link></li>
               <li><Link to="/treatments/cosmetic-dentistry">Cosmetic Dentistry</Link></li>
@@ -34,7 +40,7 @@ export default function Footer() {
           </div>
 
           <div className="dn-footer-col">
-            <h6 className="dn-eyebrow night">Practice</h6>
+            <h2 className="dn-eyebrow night">Practice</h2>
             <ul>
               <li><Link to="/our-team">Our Team</Link></li>
               <li><Link to="/register-as-patient">Register as Patient</Link></li>
@@ -47,7 +53,7 @@ export default function Footer() {
           </div>
 
           <div className="dn-footer-col">
-            <h6 className="dn-eyebrow">Visit Us</h6>
+            <h2 className="dn-eyebrow">Visit Us</h2>
             <address>
               {PRACTICE.streetAddress}<br />
               {PRACTICE.locality}, {PRACTICE.city} {PRACTICE.postcode}
@@ -61,7 +67,7 @@ export default function Footer() {
       <div className="dn-footer-bottom">
         <div className="dn-container">
           <div className="dn-footer-legal">
-            <span>© {year} Day & Night Dental</span>
+            <span>© {year} Day Night Dental</span>
             <span className="sep">·</span>
             <Link to="/privacy">Privacy</Link>
             <span className="sep">·</span>

@@ -10,7 +10,23 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.netlify
 *.local
+
+# Secrets — never commit. API keys live in Cloudflare/Netlify env vars only.
+.env
+.env.*
+*.key
+*.pem
+
+# Local audit / analysis artifacts (not part of the site source)
+audit-screenshots/
+codex-deep-integrity-screenshots/
+daynight-dental-audit-handoff-*/
+daynight-dental-audit-handoff-*.zip
+daynight-dental-*-audit.md
+daynight-dental-*-review.md
+_verify_*.mjs
 
 # Editor directories and files
 .vscode/*

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PRACTICE } from '../data/practice';
 import Dropdown from '../components/Dropdown';
+import { submitEnquiry, buildEnquiryExtras } from '../lib/submitEnquiry';
 
 const treatmentOptions = [
   'Emergency / pain', 'New patient examination', 'Hygienist appointment',
@@ -10,7 +11,6 @@ const treatmentOptions = [
 
 export default function Contact() {
   const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
@@ -22,30 +22,32 @@ export default function Contact() {
     notes: '',
   });
 
+  // Form-load time for the server-side time-trap (client-only; never at render/module
+  // scope, to keep SSG hydration-safe).
+  const loadedAt = useRef(0);
+  useEffect(() => { loadedAt.current = Date.now(); }, []);
+
   const update = (field) => (e) => setForm({ ...form, [field]: e.target.value });
   const setField = (field) => (value) => setForm({ ...form, [field]: value });
 
-  const encode = (data) =>
-    Object.keys(data)
-      .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-      .join('&');
-
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setError(false);
-    // Netlify Forms: POST the encoded fields to the site root. Only a 2xx response
-    // counts as success; anything else surfaces an error so an enquiry is never
-    // silently dropped — the patient is told to call instead.
-    const go = () => navigate('/thank-you', { state: { firstName: (form.name || '').split(' ')[0] } });
-    const fail = () => { setSubmitting(false); setError(true); };
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...form }),
-    })
-      .then((res) => (res.ok ? go() : fail()))
-      .catch(fail);
+    const botField = e.target['bot-field']?.value || '';
+    const extras = buildEnquiryExtras(loadedAt.current, botField);
+
+    // Submit to the email pipeline (/api/send-enquiry). Route to thank-you on success;
+    // on any failure show the "please call us" error so an enquiry is never lost silently.
+    try {
+      const res = await submitEnquiry('contact', form, extras);
+      if (res.ok) {
+        navigate('/thank-you', { state: { firstName: (form.name || '').split(' ')[0] } });
+        return;
+      }
+    } catch { /* network error -> error state below */ }
+    setSubmitting(false);
+    setError(true);
   };
 
   return (
@@ -67,12 +69,12 @@ export default function Contact() {
           <div className="dn-contact-info">
             <span className="dn-eyebrow">Book Appointment</span>
             <h2 className="dn-display">
-              Pain doesn't wait.<br />
-              <em>Neither do we.</em>
+              Tooth trouble?<br />
+              Let’s get you <em>seen</em>.
             </h2>
             <p className="dn-contact-lead">
-              We see emergencies the same day, every day. For a routine booking, just tell
-              us when suits and we’ll call you back within the hour while we’re open.
+              For urgent toothache, swelling or a broken tooth, call our 24/7 emergency line.
+              For routine appointments, send us your details and the team will get back to you.
             </p>
 
             <div className="dn-contact-details">
@@ -85,7 +87,7 @@ export default function Contact() {
               <div className="dn-contact-detail">
                 <span className="dn-eyebrow night">Night & Emergency</span>
                 <a href={`tel:${PRACTICE.phoneE164}`} className="value">{PRACTICE.phoneDisplay}</a>
-                <span className="hint">24-hour duty dentist</span>
+                <span className="hint">24-hour emergency line</span>
               </div>
 
               <div className="dn-contact-detail">
@@ -106,7 +108,7 @@ export default function Contact() {
 
             <div className="dn-contact-map">
               <iframe
-                title="Day & Night Dental, Merchant City, Glasgow map"
+                title="Day Night Dental, Merchant City, Glasgow map"
                 src={PRACTICE.mapEmbed || 'https://www.google.com/maps?q=Merchant+City,+Glasgow&output=embed'}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -134,37 +136,33 @@ export default function Contact() {
 
           {/* Right — form */}
           <div className="dn-contact-form-wrap">
-            {!submitted ? (
               <form
                 className="dn-contact-form"
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 onSubmit={onSubmit}
               >
-                {/* Netlify Forms plumbing */}
-                <input type="hidden" name="form-name" value="contact" />
-                <p hidden>
-                  <label>Leave this empty: <input name="bot-field" /></label>
+                {/* Honeypot — the function drops any submission where this is filled.
+                    Hidden from users, password managers and the keyboard so a real visitor
+                    never trips it (autoComplete off, not tabbable, aria-hidden). */}
+                <p hidden aria-hidden="true">
+                  <label>Leave this empty: <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
                 </p>
                 <h3 className="dn-display">Request an appointment</h3>
 
                 <div className="dn-form-row">
                   <label>
                     <span>Your name</span>
-                    <input type="text" name="name" required value={form.name} onChange={update('name')} placeholder="Full name" />
+                    <input type="text" name="name" required autoComplete="name" value={form.name} onChange={update('name')} placeholder="Full name" />
                   </label>
                 </div>
 
                 <div className="dn-form-row dn-form-row-2">
                   <label>
                     <span>Phone</span>
-                    <input type="tel" name="phone" required value={form.phone} onChange={update('phone')} placeholder="Best number to call" />
+                    <input type="tel" name="phone" required autoComplete="tel" inputMode="tel" value={form.phone} onChange={update('phone')} placeholder="Best number to call" />
                   </label>
                   <label>
                     <span>Email</span>
-                    <input type="email" name="email" required value={form.email} onChange={update('email')} placeholder="you@email.com" />
+                    <input type="email" name="email" required autoComplete="email" inputMode="email" value={form.email} onChange={update('email')} placeholder="you@email.com" />
                   </label>
                 </div>
 
@@ -175,7 +173,7 @@ export default function Contact() {
                       { v: 'emergency', label: 'Emergency, today', side: 'night', emergency: true },
                       { v: 'day', label: 'Day (7am to 5pm)', side: 'day' },
                       { v: 'evening', label: 'Evening (5pm to 11pm)', side: 'night' },
-                      { v: 'weekend', label: 'Weekend', side: 'day' },
+                      { v: 'weekend', label: 'Weekend', side: 'night' },
                     ].map(opt => (
                       <label key={opt.v} className={`dn-radio ${opt.side} ${opt.emergency ? 'urgent' : ''} ${form.preference === opt.v ? 'checked' : ''}`}>
                         <input
@@ -236,30 +234,6 @@ export default function Contact() {
                   contact you about your enquiry. Read our <Link to="/privacy">privacy policy</Link>.
                 </p>
               </form>
-            ) : (
-              <div className="dn-contact-success">
-                <div className="dn-success-mark">
-                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                    <circle cx="30" cy="30" r="28" stroke="url(#grad-success)" strokeWidth="1" />
-                    <path d="M18 30 L26 38 L42 22" stroke="url(#grad-success)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                    <defs>
-                      <linearGradient id="grad-success" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stopColor="#D4A453" />
-                        <stop offset="1" stopColor="#5B8FBF" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-                <h3 className="dn-display">Thank you, {form.name.split(' ')[0]}.</h3>
-                <p>
-                  Your request has come through. One of the team will give you a ring
-                  shortly to sort out a time that suits you.
-                </p>
-                <p className="dn-success-emergency">
-                  In bad pain right now? Call our emergency line on <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a>.
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </div>

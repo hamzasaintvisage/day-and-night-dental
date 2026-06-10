@@ -3,14 +3,14 @@
 @font-face{font-family:'Inter Tight';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/inter-tight.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 
 /* ===========================================================
-   DAY & NIGHT DENTAL — Global design system (Vite build)
+   Day Night Dental — Global design system (Vite build)
    Part A: brand tokens, typography, buttons, layout, atmosphere
    Part B: treatment-page (tp-*) styles for dedicated routes
    (Header/Footer carry their own component-scoped styles.)
    =========================================================== */
 
 /* ============================================
-   DAY & NIGHT DENTAL — Core Stylesheet
+   Day Night Dental — Core Stylesheet
    Updated to match the bolder revised brand mark.
    ============================================ */
 
@@ -103,13 +103,6 @@ a {
 .dn-eyebrow.night { color: var(--dn-night); }
 
 /* The signature gradient — gold to blue, the entire brand in one line */
-.dn-gradient-text {
-  background: linear-gradient(90deg, var(--dn-day) 0%, var(--dn-day-soft) 25%, var(--dn-bone) 50%, var(--dn-night-soft) 75%, var(--dn-night) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
 
 /* Inline emphasis treatment — replaces the old italic em styling.
    Now: bold weight + gradient color, no italic. */
@@ -390,7 +383,8 @@ a {
   padding: 2rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist); position: relative;
   transition: border-color 0.4s, transform 0.4s cubic-bezier(0.16,1,0.3,1);
 }
-.tp-benefit:hover { border-color: var(--dn-day-deep); transform: translateY(-4px); }
+/* Lift + gold->blue gradient ring come from the shared card-hover block (one source, identical on every
+   .tp-benefit on both treatment and areas-served pages). .bar below adds a unique left-edge accent. */
 .tp-benefit .num { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--dn-bone-faint); }
 .tp-benefit h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin: 0.75rem 0 0.6rem; }
 .tp-benefit p { font-size: 0.92rem; color: var(--dn-bone-dim); }
@@ -411,13 +405,21 @@ a {
 .tp-faq details { border-bottom: 1px solid var(--dn-mist); padding: 1.5rem 0; }
 .tp-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 2rem; cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dn-bone); transition: color 0.3s; }
 .tp-faq summary::-webkit-details-marker { display: none; }
-.tp-faq summary:hover { color: var(--dn-day); }
+.tp-faq summary:hover {
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
 .tp-faq summary .icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; transition: transform 0.3s; }
 .tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: all 0.3s; }
 .tp-faq summary .icon::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
 .tp-faq summary .icon::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
 .tp-faq details[open] summary .icon::after { transform: translateX(-50%) scaleY(0); }
-.tp-faq details[open] summary { color: var(--dn-day); }
+.tp-faq details[open] summary {
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 
 /* Related treatments */
@@ -465,8 +467,8 @@ a {
 .dn-areas { background: var(--dn-near-black); }
 .dn-areas-lead { color: var(--dn-bone-dim); max-width: 680px; font-size: 1.05rem; }
 .dn-areas-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
-.dn-area-chip { padding: 0.6rem 1.15rem; border: 1px solid var(--dn-mist); border-radius: 999px; font-size: 0.9rem; color: var(--dn-bone-dim); transition: border-color 0.3s, color 0.3s; }
-.dn-area-chip:hover { border-color: var(--dn-day-deep); color: var(--dn-bone); }
+.dn-area-chip { padding: 0.6rem 1.15rem; border: 1px solid var(--dn-mist); border-radius: 999px; font-size: 0.9rem; color: var(--dn-bone-dim); position: relative; transition: border-color 0.3s, color 0.3s; }
+.dn-area-chip:hover { color: var(--dn-bone); }
 
 /* Why-choose-us */
 .dn-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
@@ -509,10 +511,10 @@ a {
 .dn-legal { max-width: 760px; margin: 0 auto; padding-top: 2rem; }
 .dn-legal h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem; }
 .dn-legal-updated { color: var(--dn-bone-faint); font-size: 0.85rem; margin-bottom: 2rem; }
-.dn-legal-intro { color: var(--dn-bone-dim); font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.7; }
+.dn-legal-intro { color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.7; }
 .dn-legal-section { margin-bottom: 2rem; }
 .dn-legal-section h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
-.dn-legal-section p { color: var(--dn-bone-dim); margin-bottom: 0.85rem; line-height: 1.7; }
+.dn-legal-section p { color: rgba(255, 255, 255, 0.85); margin-bottom: 0.85rem; line-height: 1.7; }
 .dn-legal a { color: var(--dn-day); }
 .dn-legal-note { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); font-size: 0.85rem; color: var(--dn-bone-faint); font-style: italic; }
 
@@ -554,7 +556,7 @@ a {
 
 /* Date of birth (Day / Month / Year) */
 .dn-dob-grid { display: grid; grid-template-columns: 0.8fr 1.3fr 1fr; gap: 0.6rem; margin-top: 0.5rem; }
-@media (max-width: 480px) { .dn-dob-grid { grid-template-columns: 1fr 1fr 1fr; } }
+@media (max-width: 480px) { .dn-dob-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); } }
 
 .dn-form-row > .dn-dropdown { margin-top: 0.5rem; }
 
@@ -655,48 +657,34 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-js .dn-section { opacity: 1; transform: none; transition: none; }
 }
 
-/* Desktop hover, unified across EVERY card / pillar / step / stat / panel: a small lift plus a
-   gold->blue gradient border that lights up around the block (the brand's interlinked day/night
-   look). ::after is free on these cards (they use ::before for their own accents), so no conflict.
-   @media (hover: hover) so touch devices never get a stuck hover state. */
+/* Desktop hover, ONLY on genuine bounded content cards — NOT on text blocks, pillars, numbered steps,
+   stat strips, hero stat labels or container/form wrappers. A small lift plus a gold->blue gradient
+   border that lights up around the card (the brand's interlinked day/night look). ::after is free on
+   these cards (they use ::before for their own accents). @media (hover: hover) so touch never sticks. */
 @media (hover: hover) {
-  .dn-pillar,
   .dn-why-item,
-  .dn-hero-meta-item,
   .dn-concern-card,
   .dn-team-card,
   .dn-review,
   .dn-gallery-item,
-  .tp-facts,
-  .tp-meta .item,
   .tp-benefit,
-  .tp-step,
   .tp-related-card,
   .dn-blog-card,
   .dn-radio-card,
-  .dn-register-step,
-  .dn-success-card,
-  .dn-success-step {
+  .dn-success-card {
     position: relative;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
-  .dn-pillar::after,
   .dn-why-item::after,
-  .dn-hero-meta-item::after,
   .dn-concern-card::after,
   .dn-team-card::after,
   .dn-review::after,
   .dn-gallery-item::after,
-  .tp-facts::after,
-  .tp-meta .item::after,
   .tp-benefit::after,
-  .tp-step::after,
   .tp-related-card::after,
   .dn-blog-card::after,
   .dn-radio-card::after,
-  .dn-register-step::after,
-  .dn-success-card::after,
-  .dn-success-step::after {
+  .dn-success-card::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -712,52 +700,51 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
     opacity: 0;
     transition: opacity 0.4s ease;
   }
-  .dn-pillar:hover,
   .dn-why-item:hover,
-  .dn-hero-meta-item:hover,
   .dn-concern-card:hover,
   .dn-team-card:hover,
   .dn-review:hover,
   .dn-gallery-item:hover,
-  .tp-facts:hover,
-  .tp-meta .item:hover,
   .tp-benefit:hover,
-  .tp-step:hover,
   .tp-related-card:hover,
   .dn-blog-card:hover,
   .dn-radio-card:hover,
-  .dn-register-step:hover,
-  .dn-success-card:hover,
-  .dn-success-step:hover {
+  .dn-success-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 18px 42px -18px rgba(74, 149, 229, 0.35), 0 8px 20px -12px rgba(244, 194, 74, 0.30);
   }
-  .dn-pillar:hover::after,
   .dn-why-item:hover::after,
-  .dn-hero-meta-item:hover::after,
   .dn-concern-card:hover::after,
   .dn-team-card:hover::after,
   .dn-review:hover::after,
   .dn-gallery-item:hover::after,
-  .tp-facts:hover::after,
-  .tp-meta .item:hover::after,
   .tp-benefit:hover::after,
-  .tp-step:hover::after,
   .tp-related-card:hover::after,
   .dn-blog-card:hover::after,
   .dn-radio-card:hover::after,
-  .dn-register-step:hover::after,
-  .dn-success-card:hover::after,
-  .dn-success-step:hover::after {
+  .dn-success-card:hover::after {
     opacity: 1;
   }
   .dn-why-item::before { transition: opacity 0.3s ease; }
   .dn-why-item:hover::before { opacity: 1; }
 
-  /* Sidebar rows, area chips and inline link chips: gold accent */
+  /* Sidebar rows, area chips and inline link chips: gold accent only, no box */
   .dn-treatment-item { transition: color 0.3s ease; }
   .dn-treatment-item:hover { color: var(--dn-day); }
-  .dn-area-chip:hover { border-color: var(--dn-day); color: var(--dn-day); }
+  /* Area chips: gold->blue gradient ring on hover (the interlinked day/night look), not flat gold */
+  .dn-area-chip::after {
+    content: ''; position: absolute; inset: 0; border-radius: 999px; padding: 1.5px; pointer-events: none;
+    background: linear-gradient(125deg, var(--dn-day), var(--dn-night) 80%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .dn-area-chip:hover { color: var(--dn-bone); }
+  .dn-area-chip:hover::after { opacity: 1; }
+  /* About pillars: a subtle lift on hover. No box, no colour overlay. */
+  .dn-pillar { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .dn-pillar:hover { transform: translateY(-6px); }
   .dn-register-includes li { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
   .dn-register-includes li:hover { transform: translateX(5px); }
   .dn-article-related-links a { display: inline-block; transition: transform 0.3s ease, color 0.3s ease; }
@@ -807,6 +794,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           align-items: center;
           gap: 0.75rem;
         }
+        .dn-header-mark { height: 36px; width: auto; display: block; }
         .dn-header-wordmark {
           display: flex;
           flex-direction: column;
@@ -819,8 +807,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           display: inline;
         }
         .dn-header-wordmark .day { color: var(--dn-day); font-size: 1.05rem; letter-spacing: 0.04em; }
-        .dn-header-wordmark .amp { color: var(--dn-bone); margin: 0 0.2em; }
-        .dn-header-wordmark .night { color: var(--dn-night); letter-spacing: 0.04em; }
+        .dn-header-wordmark .night { color: var(--dn-night); letter-spacing: 0.04em; margin-left: 0.26em; }
         .dn-header-wordmark .sub {
           font-family: var(--font-display);
           font-size: 0.55rem;
@@ -923,7 +910,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           z-index: 95;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          /* `safe` keeps the menu centred when it fits, but top-aligns (instead of
+             clipping the top) when the Treatments submenu makes it taller than the screen. */
+          justify-content: safe center;
           padding: 6rem 2rem 2.5rem;
           background:
             radial-gradient(120% 75% at 100% 0%, rgba(74, 149, 229, 0.16), transparent 60%),
@@ -956,8 +945,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           gap: 0.25rem;
           width: 100%;
           max-width: 460px;
-          /* auto margins centre vertically AND stay scroll-safe when content is tall */
-          margin: auto;
+          /* horizontal centring only; vertical handled by the parent's `safe center`
+             so a tall (Treatments-expanded) menu scrolls from the top, never clips. */
+          margin: 0 auto;
         }
         /* Entrance: each top-level item rises and fades in, lightly staggered */
         .dn-mobile-menu .dn-mm-nav > * {
@@ -1190,17 +1180,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           display: flex;
           align-items: baseline;
           justify-content: center;
-          gap: clamp(0.5rem, 2vw, 1.5rem);
+          gap: 0;
           font-style: normal;
         }
         .word-day { color: var(--dn-day); }
-        .word-amp {
-          color: var(--dn-bone);
-          font-size: 0.65em;
-          font-style: normal;
-          font-weight: 700;
-        }
-        .word-night { color: var(--dn-night); }
+        .word-night { color: var(--dn-night); margin-left: 0.2em; }
 
         .dn-hero-subtitle {
           margin-top: 1.5rem;
@@ -1493,7 +1477,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-concern-card:nth-child(odd):hover .dn-concern-icon { color: var(--dn-day); }
         .dn-concern-card:nth-child(even):hover .dn-concern-icon { color: var(--dn-night); }
-        .dn-concern-card h4 {
+        .dn-concern-card h3 {
           font-family: var(--font-display);
           font-size: 1.15rem;
           font-weight: 700;
@@ -1611,7 +1595,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-pillar-num.day { color: var(--dn-day); }
         .dn-pillar-num.night { color: var(--dn-night); }
-        .dn-pillar h5 {
+        .dn-pillar h3 {
           font-family: var(--font-display);
           font-size: 1.05rem;
           font-weight: 700;
@@ -2010,7 +1994,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           line-height: 1;
         }
         .dn-register-includes li:nth-child(even) .num { color: var(--dn-night); }
-        .dn-register-includes h5 {
+        .dn-register-includes h4 {
           font-family: var(--font-display);
           font-size: 1.05rem;
           font-weight: 700;
@@ -2163,7 +2147,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         .dn-register-form input:focus,
         .dn-register-form select:focus,
         .dn-register-form textarea:focus {
-          outline: none;
+          outline: 2px solid var(--dn-day);
+          outline-offset: 2px;
           border-color: var(--dn-day);
         }
         .dn-form-radios {
@@ -2182,8 +2167,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           flex-direction: column;
           gap: 0.3rem;
         }
+        /* Visually hidden but KEPT in the tab order + keyboard-operable (never display:none). */
         .dn-radio-card input {
-          display: none;
+          position: absolute;
+          width: 1px; height: 1px;
+          opacity: 0;
+          margin: 0;
+        }
+        .dn-radio-card:has(input:focus-visible) {
+          outline: 2px solid var(--dn-day);
+          outline-offset: 2px;
         }
         .dn-radio-card .title {
           font-family: var(--font-display);
@@ -2313,11 +2306,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         @media (max-width: 600px) {
           .dn-register-form,
           .dn-register-aside-inner { padding: 2rem 1.5rem; }
+          /* Grid children must be allowed to shrink below their content width, or they
+             overflow the viewport on narrow phones (currently masked by overflow-x: clip). */
+          .dn-register-aside,
+          .dn-register-form,
+          .dn-register-aside-inner { min-width: 0; }
           .dn-register-form .dn-form-row-2 { grid-template-columns: 1fr; }
           .dn-form-radios { grid-template-columns: 1fr; }
           .dn-success-details { grid-template-columns: 1fr; }
           .dn-register-progress { gap: 0.25rem; }
           .dn-progress-label { font-size: 0.6rem; }
+        }
+        @media (max-width: 360px) {
+          .dn-register-form,
+          .dn-register-aside-inner { padding: 1.5rem 1rem; }
+          .dn-dob-grid { gap: 0.4rem; }
+          .dn-dob-grid .dn-dropdown { min-width: 0; }
+          .dn-dob-grid .dn-dropdown-trigger { min-width: 0; padding-left: 0.55rem; padding-right: 0.55rem; gap: 0.3rem; overflow: hidden; }
+          .dn-dob-grid .dn-dropdown-trigger > * { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         }
       
 
@@ -2410,7 +2416,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           gap: 1.5rem;
           transition: transform 0.5s ease;
         }
-        .dn-team-card:hover { transform: translateY(-4px); }
+        /* Card lift + gradient ring come from the shared card-hover block (translateY -6px, in
+           @media hover:hover so touch never sticks). Keep only the bespoke portrait reveal below. */
         .dn-portrait {
           position: relative;
           aspect-ratio: 5/7;
@@ -2468,7 +2475,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           flex-direction: column;
           gap: 0.5rem;
         }
-        .dn-team-info h4 {
+        .dn-team-info h3 {
           font-family: var(--font-display);
           font-size: 1.5rem;
           font-weight: 700;
@@ -2652,7 +2659,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         .dn-contact-form input:focus,
         .dn-contact-form select:focus,
         .dn-contact-form textarea:focus {
-          outline: none;
+          outline: 2px solid var(--dn-day);
+          outline-offset: 2px;
           border-color: var(--dn-day);
         }
         .dn-form-radios {
@@ -2663,6 +2671,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-radio {
           padding: 0.75rem 1rem;
+          min-height: 44px;
+          display: flex;
+          align-items: center;
           background: var(--dn-charcoal);
           border: 1px solid var(--dn-mist);
           cursor: pointer;
@@ -2670,8 +2681,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           font-size: 0.85rem;
           color: var(--dn-bone-dim);
         }
+        /* Visually hidden but KEPT in the tab order + keyboard-operable (never display:none). */
         .dn-radio input {
-          display: none;
+          position: absolute;
+          width: 1px; height: 1px;
+          opacity: 0;
+          margin: 0;
+        }
+        .dn-radio:has(input:focus-visible) {
+          outline: 2px solid var(--dn-day);
+          outline-offset: 2px;
         }
         .dn-radio.checked.day {
           border-color: var(--dn-day);
@@ -2777,11 +2796,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           align-items: flex-start;
           gap: 1.5rem;
         }
-        .dn-footer-logo-img {
-          width: 160px;
-          height: auto;
-          display: block;
-        }
+        .dn-footer-logo { display: flex; align-items: center; gap: 0.85rem; }
+        .dn-footer-mark { height: 52px; width: auto; display: block; }
+        .dn-footer-wordmark { display: flex; flex-direction: column; font-family: var(--font-display); line-height: 1; font-weight: 800; }
+        .dn-footer-wordmark .name { font-size: 1.5rem; letter-spacing: -0.01em; }
+        .dn-footer-wordmark .name .day { color: var(--dn-day); }
+        .dn-footer-wordmark .name .night { color: var(--dn-night); margin-left: 0.22em; }
+        .dn-footer-wordmark .sub { font-size: 0.6rem; letter-spacing: 0.34em; color: var(--dn-bone-dim); margin-top: 0.42rem; font-weight: 700; }
         .dn-footer-tagline {
           font-family: var(--font-body);
           font-weight: 500;
@@ -2795,7 +2816,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           grid-template-columns: 1fr 1fr 1.3fr;
           gap: 2rem;
         }
-        .dn-footer-col h6 {
+        .dn-footer-col h2 {
           margin-bottom: 1.5rem;
         }
         .dn-footer-col ul {

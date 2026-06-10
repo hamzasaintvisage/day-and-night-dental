@@ -1,4 +1,3 @@
-import React from 'react';
 
 // Six patient smile images — diverse, warm, real human warmth against the dark palette.
 // Replace with actual practice patient photography (with written consent) before launch.
@@ -10,7 +9,7 @@ const smiles = [
   },
   {
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=800&fit=crop&q=80&fm=webp',
-    caption: 'Invisalign, 9 months',
+    caption: 'Invisalign',
     side: 'night',
   },
   {
@@ -42,7 +41,7 @@ export default function SmileGallery() {
         <div className="dn-section-head">
           <span className="dn-eyebrow">The Results</span>
           <h2 className="dn-display">
-            Real <em>smiles</em>, made here
+            Modern dentistry, <em>illustrated</em>
           </h2>
           <p className="dn-section-lead">
             A glimpse of what modern dentistry can do, from a brighter smile to a full
@@ -55,7 +54,7 @@ export default function SmileGallery() {
           {smiles.map((s, i) => (
             <figure key={i} className={`dn-gallery-item ${s.side}`} style={{ animationDelay: `${i * 0.08}s` }}>
               <div className="dn-gallery-image">
-                <img src={s.image} alt={`${s.caption}, Day & Night Dental, Glasgow`} width={600} height={800} loading="lazy" decoding="async" />
+                <img src={s.image} alt={`${s.caption}, Day Night Dental, Glasgow`} width={600} height={800} loading="lazy" decoding="async" />
                 <div className="dn-gallery-overlay" />
                 <div className="dn-gallery-marker">
                   {s.side === 'day' ? (

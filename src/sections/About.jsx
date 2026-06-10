@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function About() {
   return (
@@ -10,7 +9,7 @@ export default function About() {
             <div className="dn-about-photo">
               <img
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&h=900&fit=crop&q=80&fm=webp"
-                alt="Day & Night Dental practice interior, Merchant City, Glasgow"
+                alt="Day Night Dental practice interior, Merchant City, Glasgow"
                 width={900}
                 height={900}
                 loading="lazy"
@@ -53,7 +52,7 @@ export default function About() {
               meets you in <em>your</em> hours
             </h2>
             <p className="dn-about-lead">
-              We opened Day & Night Dental for one reason. Toothache doesn't keep
+              We opened Day Night Dental for one reason. Toothache doesn't keep
               office hours, and the people living with it shouldn't have to either.
             </p>
             <p>
@@ -67,17 +66,17 @@ export default function About() {
             <div className="dn-about-pillars">
               <div className="dn-pillar">
                 <span className="dn-pillar-num day">01</span>
-                <h5>Open Seven Days</h5>
+                <h3>Open Seven Days</h3>
                 <p>7am to 11pm, every day of the year, bank holidays included.</p>
               </div>
               <div className="dn-pillar">
                 <span className="dn-pillar-num night">02</span>
-                <h5>Emergency On-Call</h5>
-                <p>A duty dentist is on call for dental emergencies, 24 hours a day.</p>
+                <h3>Emergency On-Call</h3>
+                <p>Emergency dental care available 24 hours a day.</p>
               </div>
               <div className="dn-pillar">
                 <span className="dn-pillar-num day">03</span>
-                <h5>Same-Day Treatment</h5>
+                <h3>Same-Day Treatment</h3>
                 <p>Most cosmetic and restorative work completed in a single visit.</p>
               </div>
             </div>

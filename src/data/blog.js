@@ -38,7 +38,7 @@ export const posts = [
         'After an extraction or a knock, fold a piece of clean gauze or a cotton handkerchief into a pad, place it over the area, and bite firmly for fifteen to twenty minutes without checking it. Avoid rinsing, spitting or hot drinks, which dislodge the clot that needs to form. If heavy bleeding will not settle, seek urgent care, and for severe uncontrolled bleeding go to A&E.',
       ] },
       { heading: 'Being seen quickly in Glasgow', paragraphs: [
-        'Day & Night Dental runs a 24-hour emergency line from our Merchant City practice, and we hold back same-day appointments every day for exactly these situations. Rather than waiting for an out-of-hours slot that could be miles away, you can speak to a real dentist straight away and get clear advice on what to do next. Call as early as you can, as the first appointments go quickly.',
+        'Day Night Dental runs a 24-hour emergency line from our Merchant City practice, and we hold back same-day appointments every day for exactly these situations. Rather than waiting for an out-of-hours slot that could be miles away, you can call for urgent help straight away and get clear advice on what to do next. Call as early as you can, as the first appointments go quickly.',
       ] },
       { heading: 'A small home kit worth keeping', paragraphs: [
         'A few inexpensive items make a real difference in the moment: a painkiller you tolerate, some dental wax, a tube of temporary filling cement, sugar-free gum, and a small clean container for a knocked-out tooth. Save our number in your phone now, so you are not searching for it in pain at 2am.',
@@ -148,10 +148,10 @@ export const posts = [
     sections: [
       { heading: 'What counts as a dental emergency?', paragraphs: [
         'Severe or worsening toothache, facial swelling or an abscess, a knocked-out or badly broken tooth, uncontrolled bleeding, and a lost crown or filling that is causing pain are all good reasons to seek urgent care. A knocked-out adult tooth in particular is time-critical, so do not wait until morning.',
-        'If you are unsure, it is always worth a phone call. A clinician can tell you over the phone how urgently you need to be seen.',
+        'If you are unsure, it is always worth a phone call. We can talk you through how urgently you need to be seen.',
       ] },
       { heading: 'Being seen tonight in Glasgow', paragraphs: [
-        'Day & Night Dental runs a 24-hour emergency helpline from our Merchant City practice, with same-day appointments held back every day for exactly these moments. Rather than waiting for an NHS out-of-hours slot that may be miles away, you can speak to a real dentist straight away.',
+        'Day Night Dental runs a 24-hour emergency helpline from our Merchant City practice, with same-day appointments held back every day for exactly these moments. Rather than waiting for an NHS out-of-hours slot that may be miles away, you can call for urgent help straight away.',
       ] },
       { heading: 'What to do while you wait', paragraphs: [
         'For pain, an over-the-counter painkiller you normally tolerate can help, and a cold compress against the cheek may ease swelling. For a knocked-out adult tooth, hold it by the crown, avoid touching the root, and keep it in milk or saliva until you reach us.',
@@ -170,7 +170,7 @@ export const posts = [
     intro: 'Cost is the first question almost everyone asks about dental implants, and it is a fair one. Here is an honest look at what goes into the price, and why the cheapest quote is not always the one to trust.',
     sections: [
       { heading: 'What you are actually paying for', paragraphs: [
-        'An implant is not a single item, it is a treatment. The price covers the planning, including an on-site 3D CBCT scan, the titanium implant itself, the surgery to place it, and the custom crown that goes on top. A single implant at Day & Night Dental is quoted for you and confirmed in writing after your consultation.',
+        'An implant is not a single item, it is a treatment. The price covers the planning, including an on-site 3D CBCT scan, the titanium implant itself, the surgery to place it, and the custom crown that goes on top. A single implant at Day Night Dental is quoted for you and confirmed in writing after your consultation.',
       ] },
       { heading: 'What changes the price', paragraphs: [
         'How many teeth you are replacing is the biggest factor. A single implant costs far less than an implant-supported bridge or a full-arch option like All-on-4. Any preparatory work, such as a bone graft, also adds to the total. We set all of this out clearly before you commit.',

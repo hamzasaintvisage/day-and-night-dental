@@ -1,16 +1,22 @@
 // Shared browser helper for the custom Resend email pipeline.
 // SSR-safe: no window/document/Date access at module scope.
-// NOTE: not wired into Contact/Register yet — Stage 2 does that.
+// Used by both Contact and Register form onSubmit handlers.
 
 /**
- * Build the anti-bot "extras" to merge into a submission: a render timestamp
- * (`ts`, ms) for the server-side time-trap and an empty honeypot (`bot-field`).
- * Call this when the form renders, then pass the result to submitEnquiry().
+ * Build the anti-bot "extras" to merge into a submission.
  *
- * @returns {{ ts: number, 'bot-field': string }}
+ * `elapsed` is the fill duration in ms, measured entirely on the CLIENT clock
+ * (form load -> submit). Sending the delta (not an absolute timestamp) keeps the
+ * server-side time-trap immune to client/server clock skew. If the form-load time
+ * is unknown (ref not yet set) we send null, which the server treats as "no signal".
+ * `bot-field` is the honeypot — it must stay empty for real users.
+ *
+ * @param {number} loadedAt - Date.now() captured when the form mounted (0 if unset).
+ * @param {string} [botField] - the honeypot input's value.
+ * @returns {{ elapsed: number|null, 'bot-field': string }}
  */
-export function buildEnquiryExtras() {
-  return { ts: Date.now(), 'bot-field': '' }
+export function buildEnquiryExtras(loadedAt, botField = '') {
+  return { elapsed: loadedAt ? Date.now() - loadedAt : null, 'bot-field': botField }
 }
 
 /**

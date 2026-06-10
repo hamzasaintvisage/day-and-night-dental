@@ -1,4 +1,3 @@
-import React from 'react';
 import { PRACTICE } from '../data/practice';
 
 export default function EmergencyBand() {
