@@ -21,6 +21,9 @@ const DEFAULT_TEXT_CAP = 2000
 const MIN_FILL_MS = 600
 // Hard ceiling on field count (the forms send ~15) — bounds abuse via giant payloads.
 const MAX_FIELDS = 40
+// Per-IP rate limit: max submissions per window (KV-backed; see onRequestPost step 3b).
+const RATE_LIMIT_MAX = 8
+const RATE_LIMIT_WINDOW_S = 60 // KV minimum TTL is 60s
 
 // Internal fields that never appear in the email body.
 const SKIP_FIELDS = new Set(['bot-field', 'ts', 'elapsed', 'turnstileToken', 'form-name', 'formType'])
@@ -60,6 +63,13 @@ function esc(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;')
+}
+
+// Hash a value (e.g. an IP) so the rate-limit KV stores no raw identifier — just a tally.
+async function sha256hex(value) {
+  const data = new TextEncoder().encode(String(value))
+  const buf = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
 // True if the request origin/referer is acceptable: the live domain, any Cloudflare
@@ -126,6 +136,27 @@ export async function onRequestPost(context) {
   if (!origin || !originAllowed(origin)) {
     console.warn(`send-enquiry: blocked origin/referer: ${origin || '(none)'}`)
     return json({ ok: false, error: 'Forbidden' }, 403)
+  }
+
+  // 3b) Per-IP rate limit via a KV counter (hashed IP, short TTL window). Caps abuse and
+  // inbox-flooding. Stores ONLY a transient request tally (a small integer under a hashed
+  // key, 60s TTL) — never enquiry or patient data — so it does not change the email-only
+  // data-protection posture. Fails OPEN: if the namespace is absent or errors, a genuine
+  // enquiry is NEVER blocked. (An edge WAF rate-limit rule supersedes this once the custom
+  // domain is on Cloudflare.)
+  if (env.RATE_LIMIT_KV) {
+    try {
+      const ip = request.headers.get('CF-Connecting-IP') || 'unknown'
+      const rlKey = `rl:${await sha256hex(ip)}`
+      const count = parseInt(await env.RATE_LIMIT_KV.get(rlKey), 10) || 0
+      if (count >= RATE_LIMIT_MAX) {
+        console.warn('send-enquiry: rate limit hit')
+        return json({ ok: false, error: 'Too many requests. Please wait a minute and try again, or call us.' }, 429)
+      }
+      await env.RATE_LIMIT_KV.put(rlKey, String(count + 1), { expirationTtl: RATE_LIMIT_WINDOW_S })
+    } catch (err) {
+      console.error('send-enquiry: rate limiter error (failing open)', err)
+    }
   }
 
   // 4) Honeypot — silently accept (don't tip off bots).
