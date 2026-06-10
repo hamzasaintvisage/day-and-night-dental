@@ -21,6 +21,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const submittingRef = useRef(false); // synchronous guard: blocks rapid double/triple-clicks
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
     firstName: '',
@@ -62,6 +63,8 @@ export default function Register() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (submittingRef.current) return; // a submit is already in flight; ignore repeat clicks
+    submittingRef.current = true;
     setSubmitting(true);
     setError(false);
     const botField = e.target['bot-field']?.value || '';
@@ -76,11 +79,15 @@ export default function Register() {
         return;
       }
     } catch { /* network error -> error state below */ }
+    submittingRef.current = false;
     setSubmitting(false);
     setError(true);
   };
 
-  const canProceedStep1 = form.firstName && form.lastName && form.phone && form.email;
+  // Gate step 1 on a real email format (not just presence), so a typo is caught here with a
+  // clear UI block rather than only failing at the server with a generic error after submit.
+  const canProceedStep1 = form.firstName.trim() && form.lastName.trim() && form.phone.trim()
+    && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((form.email || '').trim());
 
   return (
     <section id="register" className="dn-section dn-register">

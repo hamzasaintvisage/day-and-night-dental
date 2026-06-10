@@ -41,3 +41,6 @@ _verify_*.mjs
 
 # Hostinger secret config (contains the Resend key) — never commit
 hostinger/api/_config.php
+
+# Temporary preview gate (contains gate secret) - never commit
+hostinger/preview.php

@@ -16,6 +16,10 @@
   Header always set X-Permitted-Cross-Domain-Policies "none"
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 
+  # Don't disclose the PHP version (X-Powered-By) on any response.
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+
   # HTML must not be cached long, so a go-live (or any edit) is seen immediately.
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache, must-revalidate"
@@ -60,6 +64,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{REQUEST_URI} !^/coming-soon\.html$
+  # Private preview gate: holders of the secret cookie (set by /preview.php) see the real
+  # WIP site; everyone else still gets coming-soon. Remove these 2 lines + preview.php at go-live.
+  RewriteCond %{REQUEST_URI} !^/preview\.php$
+  RewriteCond %{HTTP_COOKIE} !(^|;\s)dnd_preview=13ae86f0eda921dae9d1eff6cb36bdf9(;|$)
   RewriteCond %{REQUEST_URI} !^/api/
   RewriteCond %{REQUEST_URI} !^/(assets|fonts)/
   RewriteCond %{REQUEST_URI} !\.(png|jpe?g|gif|svg|webp|ico|woff2?|css|js|map|webmanifest|xml|txt)$

@@ -12,6 +12,7 @@ const treatmentOptions = [
 export default function Contact() {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
+  const submittingRef = useRef(false); // synchronous guard: blocks rapid double/triple-clicks
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: '',
@@ -32,6 +33,8 @@ export default function Contact() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (submittingRef.current) return; // a submit is already in flight; ignore repeat clicks
+    submittingRef.current = true;
     setSubmitting(true);
     setError(false);
     const botField = e.target['bot-field']?.value || '';
@@ -46,6 +49,7 @@ export default function Contact() {
         return;
       }
     } catch { /* network error -> error state below */ }
+    submittingRef.current = false;
     setSubmitting(false);
     setError(true);
   };
@@ -212,7 +216,7 @@ export default function Contact() {
                       rows="3"
                       value={form.notes}
                       onChange={update('notes')}
-                      placeholder="Optional. Concerns, dental anxiety, accessibility needs..."
+                      placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."
                     />
                   </label>
                 </div>

@@ -2141,7 +2141,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           border: 1px solid var(--dn-mist);
           color: var(--dn-bone);
           font-family: var(--font-body);
-          font-size: 0.95rem;
+          font-size: 1rem; /* 16px: prevents iOS Safari zoom-on-focus on mobile */
           transition: border-color 0.3s;
         }
         .dn-register-form input:focus,
@@ -2653,7 +2653,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           border: 1px solid var(--dn-mist);
           color: var(--dn-bone);
           font-family: var(--font-body);
-          font-size: 0.95rem;
+          font-size: 1rem; /* 16px: prevents iOS Safari zoom-on-focus on mobile */
           transition: border-color 0.3s;
         }
         .dn-contact-form input:focus,

@@ -28,9 +28,18 @@ export function buildEnquiryExtras(loadedAt, botField = '') {
  * @returns {Promise<Response>} the raw fetch Response so callers can check res.ok.
  */
 export async function submitEnquiry(formType, fields, extras = {}) {
-  return fetch('/api/send-enquiry.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ formType, ...fields, ...extras }),
-  })
+  // Abort after 15s so a hung/unreachable endpoint surfaces the "please call us" error
+  // (via the caller's catch) instead of leaving the form stuck on "Sending…" forever.
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 15000)
+  try {
+    return await fetch('/api/send-enquiry.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formType, ...fields, ...extras }),
+      signal: controller.signal,
+    })
+  } finally {
+    clearTimeout(timer)
+  }
 }

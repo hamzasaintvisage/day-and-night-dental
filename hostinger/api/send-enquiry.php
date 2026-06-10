@@ -13,10 +13,12 @@
  */
 
 declare(strict_types=1);
+ini_set('display_errors', '0'); // never surface PHP errors/warnings to the client
 
 // --- Response helper: JSON + defence-in-depth headers (since .htaccess doesn't always
 //     cover PHP responses identically). Never leak internals. --------------------------
 function respond(array $obj, int $status = 200, array $extra = []): void {
+    header_remove('X-Powered-By'); // don't disclose the exact PHP version
     http_response_code($status);
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: no-store');
@@ -66,11 +68,29 @@ function origin_allowed(?string $origin, array $static): bool {
     if (!$origin) return false;
     $parts = parse_url($origin);
     if (!$parts || empty($parts['scheme']) || empty($parts['host'])) return false;
-    $host = strtolower($parts['scheme']) . '://' . strtolower($parts['host']);
+    // Exact, case-sensitive match. Real browsers always send a lowercased, untrimmed
+    // Origin, so do NOT normalise case/whitespace here — doing so would accept spoofed
+    // variants like HTTPS://DAYNIGHTDENTAL.CO.UK or space-padded origins.
+    $host = $parts['scheme'] . '://' . $parts['host'];
     if (!empty($parts['port'])) $host .= ':' . $parts['port'];
     if (in_array($host, $static, true)) return true;
     if (preg_match('#^http://(localhost|127\.0\.0\.1)(:\d+)?$#', $host)) return true;
     return false;
+}
+// The site is served DIRECTLY by Hostinger (no Cloudflare proxy in front), so forwarded-IP
+// headers (CF-Connecting-IP, X-Forwarded-For) are client-spoofable and MUST NOT be trusted —
+// trusting them lets an attacker rotate the value to defeat the rate limiter. Use the real peer.
+function client_ip(): string {
+    return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+}
+// Rate-limit bucket key. Normalise IPv6 to its /64 prefix so one allocation can't rotate
+// individual addresses to win fresh buckets.
+function rate_limit_key(string $ip): string {
+    if (strpos($ip, ':') !== false) {
+        $bin = @inet_pton($ip);
+        if ($bin !== false && strlen($bin) === 16) $ip = bin2hex(substr($bin, 0, 8)) . '/64';
+    }
+    return hash('sha256', $ip);
 }
 // Resolve a private storage dir ABOVE the web root (best effort), with safe fallbacks.
 function private_dir(): ?string {
@@ -136,8 +156,7 @@ $priv = private_dir();
 if ($priv) {
     $rlDir = $priv . '/rl';
     if (is_dir($rlDir) || @mkdir($rlDir, 0700, true)) {
-        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
-        $rlFile = $rlDir . '/' . hash('sha256', $ip) . '.json';
+        $rlFile = $rlDir . '/' . rate_limit_key(client_ip()) . '.json';
         $fh = @fopen($rlFile, 'c+');
         if ($fh) {
             flock($fh, LOCK_EX);
@@ -240,7 +259,7 @@ if ($priv) {
         'at' => gmdate('c'),
         'formType' => $formType,
         'fields' => array_diff_key($body, array_flip(['bot-field', 'ts', 'elapsed', 'turnstileToken', 'form-name'])),
-        'iph' => substr(hash('sha256', ($_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? ''))), 0, 16),
+        'iph' => substr(hash('sha256', client_ip()), 0, 16),
     ];
     $line = json_encode($record, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
     $store = $priv . '/enquiries.ndjson';
