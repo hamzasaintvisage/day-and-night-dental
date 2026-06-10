@@ -54,12 +54,8 @@ npx wrangler@3 pages deploy dist --project-name=daynightdental --branch=main --c
 - [ ] Deploy the health monitor (see `monitor/worker.js` header for the exact steps).
 
 ## Automatic backups
-A scheduled job is installed to commit and push any changes to GitHub every couple of hours
-(`~/.daynight-backup.sh`, run by `~/Library/LaunchAgents/com.daynightdental.backup.plist`).
-It refuses to commit any secret-looking file. Log: `~/.daynight-backup.log`.
-
-**One-time setup needed:** because this project sits in the `Downloads` folder (which macOS
-protects), the scheduled job needs Full Disk Access to run. Grant it once:
-System Settings > Privacy & Security > Full Disk Access > add `/bin/sh` (press Cmd-Shift-G,
-type `/bin/sh`). Until then the job logs a permission error and does nothing — but every change
-is still pushed manually after it's made, so nothing is lost.
+The project lives at `/Users/admin/day-and-night-dental-recovered` (home folder, NOT Downloads,
+so macOS does not block background access — no Full Disk Access switch needed). A scheduled job
+commits and pushes any changes to GitHub every 2 hours (`~/.daynight-backup.sh`, run by
+`~/Library/LaunchAgents/com.daynightdental.backup.plist`). It refuses to commit any
+secret-looking file. Log: `~/.daynight-backup.log`. Fully hands-off.
