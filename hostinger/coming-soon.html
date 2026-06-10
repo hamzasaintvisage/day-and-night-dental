@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <title>Day Night Dental — Coming soon | Emergency &amp; Cosmetic Dentist, Glasgow</title>
+  <meta name="description" content="Day Night Dental is coming soon to Merchant City, Glasgow — 24/7 emergency, general and cosmetic dentistry. Dentistry that meets you in your hours." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/plus-jakarta-sans.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-tight.woff2" />
+  <style>
+    @font-face {
+      font-family: 'Plus Jakarta Sans';
+      src: url('/fonts/plus-jakarta-sans.woff2') format('woff2');
+      font-weight: 200 800; font-display: swap; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Inter Tight';
+      src: url('/fonts/inter-tight.woff2') format('woff2');
+      font-weight: 100 900; font-display: swap; font-style: normal;
+    }
+    :root {
+      --canvas: #0a0a0c;
+      --day: #F4C24A;
+      --night: #4A95E5;
+      --bone: #ffffff;
+      --bone-dim: rgba(255,255,255,0.62);
+      --bone-faint: rgba(255,255,255,0.40);
+      --mist: rgba(255,255,255,0.10);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: var(--canvas);
+      color: var(--bone);
+      font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem 1.25rem;
+    }
+    /* atmospheric glows */
+    .glow {
+      position: fixed; border-radius: 50%; filter: blur(120px);
+      pointer-events: none; z-index: 0;
+    }
+    .glow.day  { width: 600px; height: 600px; top: -220px; left: -160px;
+      background: radial-gradient(circle, rgba(244,194,74,0.16), transparent 70%); }
+    .glow.night{ width: 600px; height: 600px; bottom: -220px; right: -160px;
+      background: radial-gradient(circle, rgba(74,149,229,0.15), transparent 70%); }
+    /* faint centre divider seam */
+    .seam {
+      position: fixed; top: 0; bottom: 0; left: 50%; width: 1px; z-index: 0;
+      background: linear-gradient(180deg, transparent, rgba(244,194,74,0.18) 20%, rgba(74,149,229,0.18) 80%, transparent);
+      opacity: 0.5;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 680px; }
+    .mark {
+      width: 96px; height: auto; display: block; margin: 0 auto 2rem;
+      filter: drop-shadow(0 8px 30px rgba(0,0,0,0.5));
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--bone-dim);
+      margin-bottom: 1.4rem;
+      position: relative; padding: 0 0 0.9rem;
+    }
+    .eyebrow::after {
+      content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+      width: 56px; height: 1px;
+      background: linear-gradient(90deg, var(--day), var(--night));
+    }
+    .brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.0;
+      font-size: clamp(2.6rem, 9vw, 4.6rem);
+      margin-bottom: 0.5rem;
+    }
+    .brand .day  { color: var(--day); }
+    .brand .night{ color: var(--night); }
+    .sub-word {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(0.7rem, 2.4vw, 0.9rem); font-weight: 600;
+      letter-spacing: 0.34em; text-transform: uppercase; color: var(--bone-faint);
+      margin-bottom: 2rem;
+    }
+    .lead {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; letter-spacing: -0.01em;
+      font-size: clamp(1.25rem, 4vw, 1.9rem); line-height: 1.2;
+      margin-bottom: 1.1rem;
+    }
+    .lead em { font-style: normal; background: linear-gradient(90deg, var(--day), var(--night));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .body {
+      font-size: clamp(0.98rem, 2.4vw, 1.1rem); color: var(--bone-dim);
+      max-width: 30rem; margin: 0 auto 2.2rem;
+    }
+    .meta {
+      display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem 1rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--bone-faint);
+    }
+    .meta span { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .dot.day  { background: var(--day); }
+    .dot.night{ background: var(--night); }
+    .footer {
+      position: fixed; left: 0; right: 0; bottom: 1.4rem; z-index: 1;
+      font-size: 0.74rem; color: var(--bone-faint); letter-spacing: 0.04em;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .wrap { animation: rise 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+      @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow day"></div>
+  <div class="glow night"></div>
+  <div class="seam"></div>
+
+  <main class="wrap">
+    <img class="mark" src="/logo-mark.png" alt="Day Night Dental" width="96" height="83" />
+    <span class="eyebrow">Coming soon</span>
+    <h1 class="brand"><span class="day">Day</span> <span class="night">Night</span></h1>
+    <div class="sub-word">Dental</div>
+    <p class="lead">Dentistry that meets you in <em>your hours</em>.</p>
+    <p class="body">
+      24/7 emergency, general and cosmetic dental care is coming soon to
+      Merchant City, Glasgow. We're putting the finishing touches in place.
+    </p>
+    <div class="meta">
+      <span><span class="dot day"></span> Merchant City, Glasgow</span>
+      <span><span class="dot night"></span> Opening soon</span>
+    </div>
+  </main>
+
+  <div class="footer">Day Night Dental · Merchant City, Glasgow</div>
+</body>
+</html>

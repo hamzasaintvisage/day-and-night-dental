@@ -38,3 +38,6 @@ _verify_*.mjs
 *.njsproj
 *.sln
 *.sw?
+
+# Hostinger secret config (contains the Resend key) — never commit
+hostinger/api/_config.php

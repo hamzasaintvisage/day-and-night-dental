@@ -21,9 +21,10 @@ export default function Privacy() {
         ] },
         { h: 'How we store and share it', body: [
           'Your records are stored securely in our practice management system. We do not sell your data.',
+          'When you send an enquiry or registration through our website, it is delivered to us by email through a third-party email provider acting as our processor. A copy is also held in a secure backup on our website host so that no enquiry is lost if email delivery fails. This backup is not used for any other purpose and is not accessible from the public website.',
           'We share information only where necessary: for example with other healthcare providers involved in your care, laboratories, our regulator, or where required by law. Any processors we use are bound by data protection agreements.',
         ] },
-        { h: 'How long we keep it', body: ['We keep dental records in line with NHS and professional guidance (generally at least 11 years for adults, or until age 25 for children, whichever is longer). Enquiry data is kept only as long as needed to deal with your enquiry.'] },
+        { h: 'How long we keep it', body: ['We keep dental records in line with NHS and professional guidance (generally at least 11 years for adults, or until age 25 for children, whichever is longer). Enquiry data is kept only as long as needed to deal with your enquiry. The secure backup copy of website form submissions is held separately from your clinical records and is automatically deleted after 90 days.'] },
         { h: 'Your rights', body: [
           'You have the right to access your records, correct inaccuracies, object to certain processing, and request erasure where it applies. To exercise any right, contact us using the details below.',
           `If you are unhappy with how we handle your data you can complain to the ICO at ico.org.uk. We would ask that you raise it with us first at ${PRACTICE.email}.`,

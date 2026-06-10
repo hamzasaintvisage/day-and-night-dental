@@ -20,7 +20,7 @@ export function buildEnquiryExtras(loadedAt, botField = '') {
 }
 
 /**
- * POST a form submission to the custom email pipeline at /api/send-enquiry.
+ * POST a form submission to the custom email pipeline at /api/send-enquiry.php.
  *
  * @param {'contact'|'register'} formType - which form is submitting.
  * @param {Record<string, unknown>} fields - the user-entered fields.
@@ -28,7 +28,7 @@ export function buildEnquiryExtras(loadedAt, botField = '') {
  * @returns {Promise<Response>} the raw fetch Response so callers can check res.ok.
  */
 export async function submitEnquiry(formType, fields, extras = {}) {
-  return fetch('/api/send-enquiry', {
+  return fetch('/api/send-enquiry.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ formType, ...fields, ...extras }),
