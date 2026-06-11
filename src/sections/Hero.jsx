@@ -59,7 +59,7 @@ export default function Hero() {
         {/* Tagline */}
         <p className="dn-hero-tagline dn-reveal dn-delay-5">
           <strong>Pain doesn't wait. Neither do we.</strong><br />
-          24/7 emergency dental care in Glasgow. Same-day treatment for urgent dental pain.
+          24/7 emergency care and same-day treatment, in the heart of Glasgow.
         </p>
 
         {/* CTAs — phone first for emergency intent */}
