@@ -1,12 +1,11 @@
 
 // Placeholders. Replace names + add real photos once available.
+// Three dentists max (owner). Replace bracketed names/roles + add real photos and
+// GDC numbers before go-live — these are placeholders.
 export const team = [
   { name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day' },
-  { name: 'Dr. [Implant Specialist]', role: 'Implantologist', specialty: 'BDS, MSc Implant Dentistry', side: 'night' },
-  { name: 'Dr. [Cosmetic Lead]', role: 'Cosmetic Lead', specialty: 'BDS, PG Cert Aesthetic', side: 'day' },
-  { name: 'Dr. [Orthodontist]', role: 'Orthodontist', specialty: 'BDS, MOrth RCS', side: 'night' },
-  { name: '[Hygienist Name]', role: 'Dental Hygienist', specialty: 'GDC Registered', side: 'day' },
-  { name: '[Practice Manager]', role: 'Practice Manager', specialty: 'Patient Coordinator', side: 'night' },
+  { name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'night' },
+  { name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'day' },
 ]
 
 export function AvatarSvg() {
