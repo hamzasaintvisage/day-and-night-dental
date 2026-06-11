@@ -503,7 +503,21 @@ a {
 .dn-why-item.night::before { background: var(--dn-night); opacity: 0.75; }
 .dn-why-item:hover .dn-why-icon { transform: scale(1.08); }
 @media (max-width: 900px) { .dn-why-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .dn-why-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  /* Why Day Night becomes a swipe filmstrip on phones (matches the gallery) */
+  .dn-why-grid {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.9rem;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .dn-why-grid::-webkit-scrollbar { display: none; }
+  .dn-why-item { flex: 0 0 80%; scroll-snap-align: start; }
+}
 
 /* Embedded map (Contact) — toned to the dark theme */
 .dn-contact-map { margin-top: 2rem; border: 1px solid var(--dn-mist); overflow: hidden; }

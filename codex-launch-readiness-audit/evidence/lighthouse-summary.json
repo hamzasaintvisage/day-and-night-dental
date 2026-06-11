@@ -1,0 +1,72 @@
+[
+  {
+    "file": "lighthouse-blog-article.json",
+    "url": "http://127.0.0.1:4173/blog/dental-emergency-what-to-do-glasgow/",
+    "performance": 96,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100,
+    "lcp": "2.6 s",
+    "cls": "0",
+    "tbt": "0 ms",
+    "transfer": "Total size was 294 KiB",
+    "unusedJS": "Est savings of 49 KiB",
+    "unusedCSS": "Est savings of 13 KiB"
+  },
+  {
+    "file": "lighthouse-emergency.json",
+    "url": "http://127.0.0.1:4173/treatments/emergency-dentist/",
+    "performance": 96,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100,
+    "lcp": "2.6 s",
+    "cls": "0",
+    "tbt": "0 ms",
+    "transfer": "Total size was 297 KiB",
+    "unusedJS": "Est savings of 47 KiB",
+    "unusedCSS": "Est savings of 12 KiB"
+  },
+  {
+    "file": "lighthouse-home.json",
+    "url": "http://127.0.0.1:4173/",
+    "performance": 94,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100,
+    "lcp": "2.8 s",
+    "cls": "0",
+    "tbt": "20 ms",
+    "transfer": "Total size was 373 KiB",
+    "unusedJS": "Est savings of 24 KiB",
+    "unusedCSS": ""
+  },
+  {
+    "file": "lighthouse-invisalign.json",
+    "url": "http://127.0.0.1:4173/treatments/invisalign/",
+    "performance": 97,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 100,
+    "lcp": "2.5 s",
+    "cls": "0",
+    "tbt": "0 ms",
+    "transfer": "Total size was 296 KiB",
+    "unusedJS": "Est savings of 47 KiB",
+    "unusedCSS": "Est savings of 12 KiB"
+  },
+  {
+    "file": "lighthouse-register.json",
+    "url": "http://127.0.0.1:4173/register-as-patient/",
+    "performance": 96,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100,
+    "lcp": "2.7 s",
+    "cls": "0",
+    "tbt": "0 ms",
+    "transfer": "Total size was 293 KiB",
+    "unusedJS": "Est savings of 46 KiB",
+    "unusedCSS": "Est savings of 12 KiB"
+  }
+]

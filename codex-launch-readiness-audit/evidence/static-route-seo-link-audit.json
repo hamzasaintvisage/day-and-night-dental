@@ -1,0 +1,475 @@
+{
+  "generatedAt": "2026-06-11T22:58:26.738Z",
+  "distHtmlFiles": 24,
+  "routes": [
+    {
+      "route": "/404.html",
+      "file": "dist/404.html",
+      "title": "Page not found — Day Night Dental",
+      "descriptionLength": 0,
+      "robots": "noindex",
+      "canonical": "",
+      "h1Count": 1,
+      "h1": [
+        "This page has slipped through the gap."
+      ],
+      "h2Count": 0,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 2254,
+      "links": 6,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/accessibility/",
+      "file": "dist/accessibility/index.html",
+      "title": "",
+      "descriptionLength": 74,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/accessibility/",
+      "h1Count": 1,
+      "h1": [
+        "Accessibility Statement"
+      ],
+      "h2Count": 6,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 24431,
+      "links": 43,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/areas-served/",
+      "file": "dist/areas-served/index.html",
+      "title": "",
+      "descriptionLength": 145,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/areas-served/",
+      "h1Count": 1,
+      "h1": [
+        "A 24-hour dentist for the whole of Glasgow"
+      ],
+      "h2Count": 5,
+      "ldJsonCount": 1,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 31465,
+      "links": 47,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/dental-emergency-what-to-do-glasgow/",
+      "file": "dist/blog/dental-emergency-what-to-do-glasgow/index.html",
+      "title": "",
+      "descriptionLength": 163,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/dental-emergency-what-to-do-glasgow/",
+      "h1Count": 1,
+      "h1": [
+        "What to do in a dental emergency: a step-by-step Glasgow guide"
+      ],
+      "h2Count": 13,
+      "ldJsonCount": 3,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 36020,
+      "links": 49,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/dental-implants-cost-glasgow/",
+      "file": "dist/blog/dental-implants-cost-glasgow/index.html",
+      "title": "",
+      "descriptionLength": 117,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/dental-implants-cost-glasgow/",
+      "h1Count": 1,
+      "h1": [
+        "How much do dental implants cost in Glasgow?"
+      ],
+      "h2Count": 6,
+      "ldJsonCount": 2,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 28371,
+      "links": 49,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/emergency-dentist-glasgow-at-night/",
+      "file": "dist/blog/emergency-dentist-glasgow-at-night/index.html",
+      "title": "",
+      "descriptionLength": 130,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/emergency-dentist-glasgow-at-night/",
+      "h1Count": 1,
+      "h1": [
+        "Where to find an emergency dentist in Glasgow at night"
+      ],
+      "h2Count": 6,
+      "ldJsonCount": 2,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 28708,
+      "links": 49,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/",
+      "file": "dist/blog/index.html",
+      "title": "",
+      "descriptionLength": 155,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/",
+      "h1Count": 1,
+      "h1": [
+        "Dental advice from our Glasgow team"
+      ],
+      "h2Count": 9,
+      "ldJsonCount": 0,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 28203,
+      "links": 49,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/invisalign-vs-braces/",
+      "file": "dist/blog/invisalign-vs-braces/index.html",
+      "title": "",
+      "descriptionLength": 120,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/invisalign-vs-braces/",
+      "h1Count": 1,
+      "h1": [
+        "Invisalign vs braces: which is right for you?"
+      ],
+      "h2Count": 6,
+      "ldJsonCount": 2,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 28330,
+      "links": 50,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/teeth-whitening-professional-vs-home-glasgow/",
+      "file": "dist/blog/teeth-whitening-professional-vs-home-glasgow/index.html",
+      "title": "",
+      "descriptionLength": 159,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/teeth-whitening-professional-vs-home-glasgow/",
+      "h1Count": 1,
+      "h1": [
+        "Professional teeth whitening vs home kits: what actually works"
+      ],
+      "h2Count": 11,
+      "ldJsonCount": 3,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 34656,
+      "links": 50,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/blog/veneers-glasgow-cost-types/",
+      "file": "dist/blog/veneers-glasgow-cost-types/index.html",
+      "title": "",
+      "descriptionLength": 169,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/blog/veneers-glasgow-cost-types/",
+      "h1Count": 1,
+      "h1": [
+        "Veneers in Glasgow: composite vs porcelain, costs and what to expect"
+      ],
+      "h2Count": 11,
+      "ldJsonCount": 3,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 34110,
+      "links": 50,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/complaints/",
+      "file": "dist/complaints/index.html",
+      "title": "",
+      "descriptionLength": 104,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/complaints/",
+      "h1Count": 1,
+      "h1": [
+        "Complaints Procedure"
+      ],
+      "h2Count": 7,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 25226,
+      "links": 43,
+      "containsPlaceholder": true
+    },
+    {
+      "route": "/",
+      "file": "dist/index.html",
+      "title": "",
+      "descriptionLength": 148,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/",
+      "h1Count": 1,
+      "h1": [
+        "Day Night Day Night Dental, your 24-hour emergency and cosmetic dentist in Merchant City, Glasgow"
+      ],
+      "h2Count": 18,
+      "ldJsonCount": 3,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 125988,
+      "links": 82,
+      "containsPlaceholder": true
+    },
+    {
+      "route": "/our-team/",
+      "file": "dist/our-team/index.html",
+      "title": "",
+      "descriptionLength": 146,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/our-team/",
+      "h1Count": 1,
+      "h1": [
+        "Meet the dental team at Day Night Dental in Glasgow"
+      ],
+      "h2Count": 5,
+      "ldJsonCount": 1,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 31835,
+      "links": 45,
+      "containsPlaceholder": true
+    },
+    {
+      "route": "/privacy/",
+      "file": "dist/privacy/index.html",
+      "title": "",
+      "descriptionLength": 97,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/privacy/",
+      "h1Count": 1,
+      "h1": [
+        "Privacy Policy"
+      ],
+      "h2Count": 10,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 26799,
+      "links": 43,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/register-as-patient/",
+      "file": "dist/register-as-patient/index.html",
+      "title": "",
+      "descriptionLength": 164,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/register-as-patient/",
+      "h1Count": 1,
+      "h1": [
+        "Register as a new patient at Day Night Dental, Glasgow"
+      ],
+      "h2Count": 4,
+      "ldJsonCount": 0,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 36869,
+      "links": 44,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/registered/",
+      "file": "dist/registered/index.html",
+      "title": "",
+      "descriptionLength": 0,
+      "robots": "noindex, follow",
+      "canonical": "https://www.daynightdental.co.uk/registered/",
+      "h1Count": 1,
+      "h1": [
+        "Welcome to the practice."
+      ],
+      "h2Count": 3,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 26253,
+      "links": 44,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/terms/",
+      "file": "dist/terms/index.html",
+      "title": "",
+      "descriptionLength": 60,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/terms/",
+      "h1Count": 1,
+      "h1": [
+        "Terms of Use"
+      ],
+      "h2Count": 9,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 24989,
+      "links": 43,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/thank-you/",
+      "file": "dist/thank-you/index.html",
+      "title": "",
+      "descriptionLength": 0,
+      "robots": "noindex, follow",
+      "canonical": "https://www.daynightdental.co.uk/thank-you/",
+      "h1Count": 1,
+      "h1": [
+        "Thank you."
+      ],
+      "h2Count": 3,
+      "ldJsonCount": 0,
+      "ogImage": "",
+      "htmlBytes": 26781,
+      "links": 45,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/treatments/cosmetic-dentistry/",
+      "file": "dist/treatments/cosmetic-dentistry/index.html",
+      "title": "",
+      "descriptionLength": 153,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/treatments/cosmetic-dentistry/",
+      "h1Count": 1,
+      "h1": [
+        "Cosmetic dentistry, a smile designed around your face"
+      ],
+      "h2Count": 10,
+      "ldJsonCount": 4,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 47452,
+      "links": 51,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/treatments/dental-implants/",
+      "file": "dist/treatments/dental-implants/index.html",
+      "title": "",
+      "descriptionLength": 158,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/treatments/dental-implants/",
+      "h1Count": 1,
+      "h1": [
+        "Dental implants, the closest thing to a natural tooth"
+      ],
+      "h2Count": 10,
+      "ldJsonCount": 4,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 47831,
+      "links": 51,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/treatments/emergency-dentist/",
+      "file": "dist/treatments/emergency-dentist/index.html",
+      "title": "",
+      "descriptionLength": 157,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/treatments/emergency-dentist/",
+      "h1Count": 1,
+      "h1": [
+        "Emergency dentist in Glasgow. We are awake and ready"
+      ],
+      "h2Count": 9,
+      "ldJsonCount": 4,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 46774,
+      "links": 51,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/treatments/general-dentistry/",
+      "file": "dist/treatments/general-dentistry/index.html",
+      "title": "",
+      "descriptionLength": 104,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/treatments/general-dentistry/",
+      "h1Count": 1,
+      "h1": [
+        "General dentistry, everyday care for teeth that last a lifetime"
+      ],
+      "h2Count": 9,
+      "ldJsonCount": 4,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 46061,
+      "links": 51,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/treatments/invisalign/",
+      "file": "dist/treatments/invisalign/index.html",
+      "title": "",
+      "descriptionLength": 187,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/treatments/invisalign/",
+      "h1Count": 1,
+      "h1": [
+        "Invisalign ® , a straighter smile, almost invisibly"
+      ],
+      "h2Count": 10,
+      "ldJsonCount": 4,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 45716,
+      "links": 51,
+      "containsPlaceholder": false
+    },
+    {
+      "route": "/treatments/teeth-whitening/",
+      "file": "dist/treatments/teeth-whitening/index.html",
+      "title": "",
+      "descriptionLength": 139,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.daynightdental.co.uk/treatments/teeth-whitening/",
+      "h1Count": 1,
+      "h1": [
+        "Teeth whitening, done properly. Brighter and even"
+      ],
+      "h2Count": 10,
+      "ldJsonCount": 4,
+      "ogImage": "https://www.daynightdental.co.uk/og-image.jpg",
+      "htmlBytes": 48056,
+      "links": 51,
+      "containsPlaceholder": false
+    }
+  ],
+  "links": {
+    "total": 1137,
+    "broken": [],
+    "anchorIssues": [],
+    "externalCount": 0,
+    "external": []
+  },
+  "sitemap": {
+    "count": 21,
+    "urls": [
+      "https://www.daynightdental.co.uk/",
+      "https://www.daynightdental.co.uk/blog/emergency-dentist-glasgow-at-night/",
+      "https://www.daynightdental.co.uk/treatments/emergency-dentist/",
+      "https://www.daynightdental.co.uk/treatments/cosmetic-dentistry/",
+      "https://www.daynightdental.co.uk/treatments/dental-implants/",
+      "https://www.daynightdental.co.uk/treatments/general-dentistry/",
+      "https://www.daynightdental.co.uk/treatments/invisalign/",
+      "https://www.daynightdental.co.uk/treatments/teeth-whitening/",
+      "https://www.daynightdental.co.uk/accessibility/",
+      "https://www.daynightdental.co.uk/areas-served/",
+      "https://www.daynightdental.co.uk/complaints/",
+      "https://www.daynightdental.co.uk/our-team/",
+      "https://www.daynightdental.co.uk/privacy/",
+      "https://www.daynightdental.co.uk/register-as-patient/",
+      "https://www.daynightdental.co.uk/terms/",
+      "https://www.daynightdental.co.uk/blog/",
+      "https://www.daynightdental.co.uk/blog/dental-emergency-what-to-do-glasgow/",
+      "https://www.daynightdental.co.uk/blog/dental-implants-cost-glasgow/",
+      "https://www.daynightdental.co.uk/blog/invisalign-vs-braces/",
+      "https://www.daynightdental.co.uk/blog/teeth-whitening-professional-vs-home-glasgow/",
+      "https://www.daynightdental.co.uk/blog/veneers-glasgow-cost-types/"
+    ]
+  },
+  "domainRefs": {
+    "www": 21,
+    "apex": 0
+  }
+}

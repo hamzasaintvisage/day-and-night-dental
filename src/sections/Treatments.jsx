@@ -168,7 +168,7 @@ export default function Treatments() {
                     className="dn-tx-head"
                     aria-expanded={isActive}
                     aria-controls={`tx-body-${t.id}`}
-                    onClick={() => setActive(t.id)}
+                    onClick={() => setActive(active === t.id ? null : t.id)}
                     onMouseEnter={() => setActive(t.id)}
                     onFocus={() => setActive(t.id)}
                   >
