@@ -1,7 +1,7 @@
 import TreatmentPage from '../../components/TreatmentPage'
 
 const data = {
-  ctaPrimaryLabel: 'Book Free Consultation',
+  ctaPrimaryLabel: 'Book a Consultation',
   lastReviewed: '2026-06-08',
   lastReviewedLabel: 'June 2026',
   slug: "general-dentistry",

@@ -728,9 +728,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-why-item::before { transition: opacity 0.3s ease; }
   .dn-why-item:hover::before { opacity: 1; }
 
-  /* Sidebar rows, area chips and inline link chips: gold accent only, no box */
-  .dn-treatment-item { transition: color 0.3s ease; }
-  .dn-treatment-item:hover { color: var(--dn-day); }
+  /* Area chips and inline link chips: gold accent only, no box */
   /* Area chips: gold->blue gradient ring on hover (the interlinked day/night look), not flat gold */
   .dn-area-chip::after {
     content: ''; position: absolute; inset: 0; border-radius: 999px; padding: 1.5px; pointer-events: none;
@@ -1621,111 +1619,106 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
       
 
 /* === Treatments === */
-        .dn-treatments-layout {
-          display: grid;
-          grid-template-columns: 1fr 1.4fr;
-          gap: 3rem;
-          border-top: 1px solid var(--dn-mist);
-        }
-        .dn-treatments-list {
-          display: flex;
-          flex-direction: column;
-          border-right: 1px solid var(--dn-mist);
-        }
-        .dn-treatment-item {
-          display: grid;
-          grid-template-columns: auto 1fr auto;
-          gap: 1.5rem;
-          align-items: center;
-          padding: 1.75rem 1.5rem 1.75rem 0;
-          background: none;
-          border: none;
-          border-bottom: 1px solid var(--dn-mist);
-          color: var(--dn-bone-dim);
-          cursor: pointer;
-          text-align: left;
-          font-family: var(--font-body);
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        /* Treatments — premium index on desktop, tap-accordion on mobile.
+           All six treatments are rendered into the HTML; the desktop panel and
+           the mobile accordion bodies just reveal what is already there, so
+           search engines read every treatment regardless of layout. */
+        .dn-tx { border-top: 1px solid var(--dn-mist); }
+
+        /* ----- Mobile-first base: vertical tap-accordion ----- */
+        .dn-tx-list { display: flex; flex-direction: column; }
+        .dn-tx-item {
           position: relative;
+          border-bottom: 1px solid var(--dn-mist);
         }
-        .dn-treatment-item::before {
+        .dn-tx-item::before {
           content: '';
           position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
+          left: 0; top: 0; bottom: 0;
           width: 2px;
           background: transparent;
           transition: background 0.4s;
         }
-        .dn-treatment-item.active::before,
-        .dn-treatment-item:hover::before {
+        .dn-tx-item.is-active::before {
           background: linear-gradient(180deg, var(--dn-day), var(--dn-night));
         }
-        .dn-treatment-item.active {
-          color: var(--dn-bone);
+        .dn-tx-head {
+          width: 100%;
+          display: grid;
+          grid-template-columns: auto auto 1fr auto;
+          gap: 1rem;
+          align-items: center;
+          padding: 1.35rem 0.5rem 1.35rem 1.25rem;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+          font-family: var(--font-body);
+          color: var(--dn-bone-dim);
+          transition: color 0.3s ease;
         }
-        .dn-treatment-num {
+        .dn-tx-item.is-active .dn-tx-head { color: var(--dn-bone); }
+        .dn-tx-num {
           font-family: var(--font-display);
-          font-style: normal;
-          font-size: 1.1rem;
           font-weight: 700;
+          font-size: 1rem;
           color: var(--dn-bone-faint);
-          padding-left: 1.5rem;
+          transition: color 0.3s ease;
         }
-        .dn-treatment-item.active.day .dn-treatment-num { color: var(--dn-day); }
-        .dn-treatment-item.active.night .dn-treatment-num { color: var(--dn-night); }
-        .dn-treatment-titles {
+        .dn-tx-item.is-active.day .dn-tx-num,
+        .dn-tx-item.is-active.day .dn-tx-ico { color: var(--dn-day); }
+        .dn-tx-item.is-active.night .dn-tx-num,
+        .dn-tx-item.is-active.night .dn-tx-ico { color: var(--dn-night); }
+        .dn-tx-ico {
+          display: inline-flex;
+          color: var(--dn-bone-faint);
+          transition: color 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dn-tx-ico svg { width: 26px; height: 26px; }
+        .dn-tx-item.is-active .dn-tx-ico { transform: scale(1.1); }
+        .dn-tx-titles {
           display: flex;
           flex-direction: column;
-          gap: 0.25rem;
+          gap: 0.2rem;
+          min-width: 0;
         }
-        .dn-treatment-tag {
-          font-size: 0.65rem;
+        .dn-tx-tag {
+          font-size: 0.6rem;
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--dn-bone-faint);
           font-weight: 600;
         }
-        .dn-treatment-title {
+        .dn-tx-title {
           font-family: var(--font-display);
-          font-size: 1.3rem;
+          font-size: 1.15rem;
           font-weight: 700;
           letter-spacing: -0.01em;
         }
-        .dn-treatment-indicator {
-          font-size: 0.6rem;
-          color: var(--dn-bone-faint);
+        .dn-tx-chev {
+          width: 9px; height: 9px;
+          border-right: 2px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          transform: rotate(45deg);
+          opacity: 0.45;
+          margin-right: 0.6rem;
+          transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
         }
-        .dn-treatment-item.active .dn-treatment-indicator {
-          color: var(--dn-bone);
-        }
+        .dn-tx-item.is-active .dn-tx-chev { transform: rotate(-135deg); opacity: 0.9; }
 
-        .dn-treatment-detail {
-          position: relative;
-          padding: 3rem;
-          background: linear-gradient(135deg, var(--dn-near-black), var(--dn-charcoal));
-          border: 1px solid var(--dn-mist);
-          overflow: hidden;
-          min-height: 500px;
+        /* Accordion body: collapse with grid-rows (0fr -> 1fr) so the content
+           stays in the DOM even when closed — keeps all six crawlable. */
+        .dn-tx-body {
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .dn-treatment-detail::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          opacity: 0.5;
-        }
-        .dn-treatment-detail.day::before {
-          background: radial-gradient(ellipse at top left, rgba(212, 164, 83, 0.12), transparent 60%);
-        }
-        .dn-treatment-detail.night::before {
-          background: radial-gradient(ellipse at top right, rgba(91, 143, 191, 0.12), transparent 60%);
-        }
-        .dn-treatment-detail-inner {
-          position: relative;
-          z-index: 1;
-        }
-        .dn-treatment-badge {
+        .dn-tx-item.is-active .dn-tx-body { grid-template-rows: 1fr; }
+        .dn-tx-body-inner { overflow: hidden; min-height: 0; }
+        .dn-tx-pad { padding: 0.25rem 1.25rem 1.85rem 1.5rem; }
+
+        /* ----- Shared content styling (panel + accordion bodies) ----- */
+        .dn-tx-badge {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
@@ -1735,54 +1728,55 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           font-size: 0.65rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
-        .dn-treatment-badge .dot {
+        .dn-tx-badge .dot {
           width: 6px; height: 6px; border-radius: 50%;
           background: #4ade80;
           box-shadow: 0 0 8px #4ade80;
         }
-        .dn-treatment-detail h3 {
+        .dn-tx-panel-title {
           font-size: clamp(1.55rem, 2.8vw, 2.1rem);
           font-weight: 700;
           margin-bottom: 1rem;
         }
-        .dn-treatment-detail p {
-          font-size: 1.05rem;
+        .dn-tx-desc {
+          font-size: 1rem;
           color: var(--dn-bone-dim);
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           max-width: 480px;
         }
-        .dn-treatment-points {
+        .dn-tx-points {
           list-style: none;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1rem;
-          margin-bottom: 2.5rem;
-          padding-top: 1.5rem;
+          grid-template-columns: 1fr;
+          gap: 0.85rem;
+          margin: 0 0 1.75rem;
+          padding-top: 1.25rem;
           border-top: 1px solid var(--dn-mist);
         }
-        .dn-treatment-points li {
+        .dn-tx-points li {
           display: flex;
           align-items: center;
           gap: 0.75rem;
           font-size: 0.9rem;
           color: var(--dn-bone);
         }
-        .dn-treatment-points .bullet {
+        .dn-tx-points .bullet {
           width: 4px; height: 4px;
           border-radius: 50%;
           background: var(--dn-day);
           flex-shrink: 0;
         }
-        .dn-treatment-detail.night .dn-treatment-points .bullet { background: var(--dn-night); }
-        .dn-treatment-actions {
+        .dn-tx-item.night .dn-tx-points .bullet,
+        .dn-tx-detail.night .dn-tx-points .bullet { background: var(--dn-night); }
+        .dn-tx-actions {
           display: flex;
           align-items: center;
-          gap: 2rem;
+          gap: 1.75rem;
           flex-wrap: wrap;
         }
-        .dn-treatment-link {
+        .dn-tx-link {
           font-size: 0.75rem;
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -1792,9 +1786,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           gap: 0.5rem;
           transition: color 0.3s;
         }
-        .dn-treatment-link:hover { color: var(--dn-bone); }
+        .dn-tx-link:hover { color: var(--dn-bone); }
 
-        .dn-treatment-mark {
+        /* Detail panel is desktop-only */
+        .dn-tx-detail { display: none; }
+        .dn-tx-mark {
           position: absolute;
           bottom: 2rem;
           right: 2rem;
@@ -1802,19 +1798,62 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           z-index: 0;
         }
 
-        @media (max-width: 900px) {
-          .dn-treatments-layout {
-            grid-template-columns: 1fr;
+        /* ----- Desktop: index layout (list + sticky detail panel) ----- */
+        @media (min-width: 901px) {
+          .dn-tx {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 3rem;
+            align-items: start;
           }
-          .dn-treatments-list {
-            border-right: none;
+          .dn-tx-list { border-right: 1px solid var(--dn-mist); }
+          .dn-tx-head { padding: 1.7rem 1.5rem; }
+          .dn-tx-title { font-size: 1.3rem; }
+          .dn-tx-chev { display: none; }
+          .dn-tx-body { display: none; }
+
+          .dn-tx-detail {
+            display: block;
+            position: sticky;
+            top: 96px;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--dn-near-black), var(--dn-charcoal));
+            border: 1px solid var(--dn-mist);
+            overflow: hidden;
+            min-height: 460px;
           }
-          .dn-treatment-points {
-            grid-template-columns: 1fr;
+          .dn-tx-detail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.5;
           }
-          .dn-treatment-detail {
-            padding: 2rem;
+          .dn-tx-detail.day::before {
+            background: radial-gradient(ellipse at top left, rgba(212, 164, 83, 0.12), transparent 60%);
           }
+          .dn-tx-detail.night::before {
+            background: radial-gradient(ellipse at top right, rgba(91, 143, 191, 0.12), transparent 60%);
+          }
+          .dn-tx-detail-inner {
+            position: relative;
+            z-index: 1;
+            animation: dn-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .dn-tx-detail .dn-tx-desc { font-size: 1.05rem; margin-bottom: 2rem; }
+          .dn-tx-detail .dn-tx-points {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding-top: 1.5rem;
+          }
+          .dn-tx-detail .dn-tx-actions { gap: 2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .dn-tx-body,
+          .dn-tx-ico,
+          .dn-tx-chev { transition: none; }
+          .dn-tx-detail-inner { animation: none; }
         }
       
 
@@ -1911,7 +1950,180 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
             grid-template-columns: 1fr;
           }
         }
-      
+
+        /* ---------- Gallery: Option A — Filmstrip ---------- */
+        .dn-strip-wrap { position: relative; margin-top: 4rem; }
+        .dn-strip-track {
+          display: flex;
+          gap: 1rem;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          padding: 4px 0 14px;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .dn-strip-track::-webkit-scrollbar { display: none; }
+        .dn-strip-card {
+          position: relative;
+          flex: 0 0 340px;
+          scroll-snap-align: start;
+          aspect-ratio: 4/5;
+          overflow: hidden;
+          border: 1px solid var(--dn-mist);
+          margin: 0;
+          background: var(--dn-near-black);
+        }
+        .dn-strip-card img {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%;
+          object-fit: cover;
+          filter: grayscale(30%) brightness(0.9) contrast(1.1);
+          transition: filter 0.6s, transform 0.6s;
+        }
+        .dn-strip-card:hover img { filter: grayscale(0%) brightness(1) contrast(1); transform: scale(1.04); }
+        .dn-strip-ov {
+          position: absolute; inset: 0;
+          background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
+          pointer-events: none;
+        }
+        .dn-strip-marker {
+          position: absolute; top: 0.75rem; right: 0.75rem;
+          padding: 0.4rem;
+          background: rgba(0,0,0,0.5);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(244, 239, 230, 0.2);
+          display: flex; align-items: center; justify-content: center;
+        }
+        .dn-strip-marker.day { color: var(--dn-day); }
+        .dn-strip-marker.night { color: var(--dn-night); }
+        .dn-strip-cap {
+          position: absolute; left: 1rem; right: 1rem; bottom: 1rem;
+          display: flex; flex-direction: column; gap: 0.25rem;
+        }
+        .dn-strip-tag {
+          font-size: 0.65rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+        .dn-strip-tag.day { color: var(--dn-day); }
+        .dn-strip-tag.night { color: var(--dn-night-soft); }
+        .dn-strip-title {
+          font-family: var(--font-display);
+          font-size: 1.05rem;
+          font-weight: 700;
+          color: var(--dn-bone);
+        }
+        .dn-strip-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 2;
+          width: 40px; height: 40px;
+          border-radius: 50%;
+          border: 1px solid var(--dn-mist);
+          background: rgba(10, 10, 12, 0.8);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: var(--dn-bone);
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: border-color 0.2s, background 0.2s;
+        }
+        .dn-strip-arrow:hover { border-color: var(--dn-day); }
+        .dn-strip-arrow.prev { left: -8px; }
+        .dn-strip-arrow.next { right: -8px; }
+        @media (max-width: 700px) {
+          .dn-strip-card { flex: 0 0 78%; }
+          .dn-strip-arrow { display: none; }
+        }
+
+        /* ---------- Gallery: Option B — Spotlight ---------- */
+        .dn-spot-grid {
+          display: grid;
+          grid-template-columns: 1.3fr 1fr;
+          gap: 1.5rem;
+          margin-top: 4rem;
+          align-items: stretch;
+        }
+        .dn-spot-feature {
+          position: relative;
+          aspect-ratio: 4/5;
+          overflow: hidden;
+          border: 1px solid var(--dn-mist);
+          background: var(--dn-near-black);
+        }
+        .dn-spot-feature img {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%;
+          object-fit: cover;
+        }
+        .dn-spot-ov {
+          position: absolute; inset: 0;
+          background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.85) 100%);
+          pointer-events: none;
+        }
+        .dn-spot-cap { position: absolute; left: 1.5rem; right: 1.5rem; bottom: 1.5rem; }
+        .dn-spot-cap h3 {
+          font-family: var(--font-display);
+          font-size: clamp(1.3rem, 2vw, 1.8rem);
+          font-weight: 700;
+          margin: 0.4rem 0 0;
+          color: var(--dn-bone);
+        }
+        .dn-spot-tag {
+          font-size: 0.7rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+        .dn-spot-tag.day { color: var(--dn-day); }
+        .dn-spot-tag.night { color: var(--dn-night-soft); }
+        .dn-spot-rail { display: flex; flex-direction: column; gap: 0.5rem; }
+        .dn-spot-thumb {
+          display: flex;
+          gap: 0.75rem;
+          align-items: center;
+          padding: 0.6rem 0.75rem;
+          border: 1px solid var(--dn-mist);
+          background: transparent;
+          color: var(--dn-bone);
+          text-align: left;
+          cursor: pointer;
+          font: inherit;
+          transition: border-color 0.2s, background 0.2s;
+        }
+        .dn-spot-thumb:hover { border-color: var(--dn-bone-faint); }
+        .dn-spot-thumb.on.day { border-color: var(--dn-day); background: rgba(244, 194, 74, 0.04); }
+        .dn-spot-thumb.on.night { border-color: var(--dn-night-soft); background: rgba(74, 149, 229, 0.04); }
+        .dn-spot-th-img {
+          width: 56px; height: 56px;
+          flex: none;
+          overflow: hidden;
+          background: var(--dn-near-black);
+          display: block;
+        }
+        .dn-spot-th-img img { width: 100%; height: 100%; object-fit: cover; }
+        .dn-spot-th-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .dn-spot-th-cat {
+          font-size: 0.62rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+        .dn-spot-th-cat.day { color: var(--dn-day); }
+        .dn-spot-th-cat.night { color: var(--dn-night-soft); }
+        .dn-spot-th-title {
+          font-family: var(--font-display);
+          font-size: 0.95rem;
+          font-weight: 700;
+        }
+        @media (max-width: 820px) {
+          .dn-spot-grid { grid-template-columns: 1fr; }
+        }
+
 
 /* === Register === */
         .dn-register { position: relative; overflow-x: clip; }
@@ -2501,7 +2713,165 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         @media (max-width: 500px) {
           .dn-team-grid { grid-template-columns: 1fr; }
         }
-      
+
+        /* ---------- Shared Avatar (for Team Options A / B / C) ---------- */
+        .dn-avatar {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background:
+            radial-gradient(circle at 50% 36%, var(--avatar-wash, rgba(255,255,255,0.03)), transparent 62%),
+            var(--dn-near-black);
+        }
+        .dn-avatar.day  { color: var(--dn-day);        --avatar-wash: rgba(244, 194, 74, 0.12); }
+        .dn-avatar.night { color: var(--dn-night-soft); --avatar-wash: rgba(74, 149, 229, 0.14); }
+        .dn-avatar svg { width: 44%; height: 44%; opacity: 0.92; }
+
+        /* ---------- Team: Option B — Wall ---------- */
+        .dn-team-wall {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1rem;
+          margin-top: 4rem;
+        }
+        .dn-wall-card {
+          position: relative;
+          padding: 1.75rem 1.5rem;
+          border: 1px solid var(--dn-mist);
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          align-items: flex-start;
+          transition: border-color 0.3s;
+        }
+        .dn-wall-card.day:hover  { border-color: rgba(212, 164, 83, 0.4); }
+        .dn-wall-card.night:hover { border-color: rgba(91, 143, 191, 0.4); }
+        .dn-wall-avwrap {
+          position: relative;
+          width: 76px;
+          height: 76px;
+          border-radius: 50%;
+          overflow: visible;
+          margin-bottom: 0.5rem;
+        }
+        .dn-wall-avwrap .dn-avatar { border-radius: 50%; overflow: hidden; }
+        .dn-wall-ring {
+          position: absolute;
+          inset: -3px;
+          border-radius: 50%;
+          border: 1px solid transparent;
+          pointer-events: none;
+        }
+        .dn-wall-card.day  .dn-wall-ring { border-color: rgba(244, 194, 74, 0.3); }
+        .dn-wall-card.night .dn-wall-ring { border-color: rgba(74, 149, 229, 0.3); }
+        .dn-wall-name {
+          font-family: var(--font-display);
+          font-size: 1.2rem;
+          font-weight: 700;
+          margin: 0.2rem 0;
+        }
+        @media (max-width: 820px) {
+          .dn-team-wall { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ---------- Team: Option C — Spotlight ---------- */
+        .dn-team-spotlight {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          margin-top: 4rem;
+          align-items: start;
+        }
+        .dn-ts-feature {
+          position: sticky;
+          top: 96px;
+          padding: 2rem;
+          border: 1px solid var(--dn-mist);
+          background: linear-gradient(160deg, #14141a, var(--dn-near-black));
+          overflow: hidden;
+        }
+        .dn-ts-feature::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+        }
+        .dn-ts-feature-avatar {
+          width: 110px;
+          height: 110px;
+          border-radius: 50%;
+          border: 1px solid var(--dn-mist);
+          margin-bottom: 1.25rem;
+          overflow: hidden;
+        }
+        .dn-ts-feature-name {
+          font-family: var(--font-display);
+          font-size: 1.65rem;
+          font-weight: 700;
+          margin: 0.4rem 0;
+        }
+        .dn-ts-feature-bio {
+          margin-top: 1rem;
+          color: var(--dn-bone-dim);
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+        .dn-ts-mini {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.75rem;
+        }
+        .dn-ts-mc {
+          display: flex;
+          gap: 0.75rem;
+          align-items: center;
+          padding: 0.75rem;
+          border: 1px solid var(--dn-mist);
+          background: transparent;
+          color: var(--dn-bone);
+          text-align: left;
+          cursor: pointer;
+          font: inherit;
+          transition: border-color 0.2s, background 0.2s;
+        }
+        .dn-ts-mc:hover { border-color: var(--dn-bone-faint); }
+        .dn-ts-mc.on.day  { border-color: var(--dn-day);        background: rgba(244, 194, 74, 0.04); }
+        .dn-ts-mc.on.night { border-color: var(--dn-night-soft); background: rgba(74, 149, 229, 0.04); }
+        .dn-ts-mc .dn-avatar {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          flex: none;
+          overflow: hidden;
+        }
+        .dn-ts-mc-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .dn-ts-mc-name {
+          font-family: var(--font-display);
+          font-size: 0.95rem;
+          font-weight: 700;
+        }
+        @media (max-width: 900px) {
+          .dn-team-spotlight { grid-template-columns: 1fr; }
+          .dn-ts-feature { position: relative; top: 0; }
+        }
+
+        /* ---------- Mobile team: shared 2-col roster across all options ---------- */
+        @media (max-width: 640px) {
+          .dn-team-grid,
+          .dn-team-wall { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+          .dn-ts-mini   { grid-template-columns: 1fr 1fr; }
+          .dn-team-card .dn-portrait { aspect-ratio: 1 / 1; }
+          .dn-team-info h3 { font-size: 1rem; }
+          .dn-team-specialty { display: none; }
+          .dn-wall-card { padding: 1rem 0.85rem; }
+          .dn-wall-name { font-size: 0.95rem; }
+          .dn-ts-feature { padding: 1.25rem; }
+          .dn-ts-feature-avatar { width: 84px; height: 84px; }
+        }
+
 
 /* === Contact === */
         .dn-contact { position: relative; overflow-x: clip; }

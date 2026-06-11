@@ -8,9 +8,12 @@ import About from '../sections/About'
 import WhyChooseUs from '../sections/WhyChooseUs'
 import Treatments from '../sections/Treatments'
 import SmileGallery from '../sections/SmileGallery'
+import SmileGallerySpotlight from '../sections/SmileGallerySpotlight'
 import Register from '../sections/Register'
 import Testimonials from '../sections/Testimonials'
 import Team from '../sections/Team'
+import TeamWall from '../sections/TeamWall'
+import TeamSpotlight from '../sections/TeamSpotlight'
 import AreasServed from '../sections/AreasServed'
 import HomeFaq from '../sections/HomeFaq'
 import Contact from '../sections/Contact'
@@ -139,7 +142,11 @@ export default function Home() {
         sub="Whether it's the middle of the night or the middle of the week, you can call us in Glasgow straight away for urgent help."
         callLabel="Call our 24/7 line"
       />
+      {/* TEMP — Gallery Option A (filmstrip) vs Option B (spotlight) for review. Remove the loser. */}
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-day)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option A · Filmstrip</div>
       <SmileGallery />
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-night)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option B · Spotlight</div>
+      <SmileGallerySpotlight />
       <Register />
       <Testimonials />
       <CtaBand
@@ -147,7 +154,13 @@ export default function Home() {
         heading={<>We're open <em>when you need us</em>, not just office hours.</>}
         sub="Register as a new patient, or call us straight away if it can't wait."
       />
+      {/* TEMP — Team Options A / B / C for review. Mobile uses the shared 2-col roster. Remove the losers. */}
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-day)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option A · Avatar grid</div>
       <Team />
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-bone-dim)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option B · Wall</div>
+      <TeamWall />
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-night)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option C · Spotlight</div>
+      <TeamSpotlight />
       <AreasServed />
       <HomeFaq />
       <Contact />

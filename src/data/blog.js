@@ -76,7 +76,7 @@ export const posts = [
         'The best choice depends on your budget, how many teeth you are treating, how long you want the result to last, and the current condition of your teeth. Some patients have a mix, for example porcelain on the most visible teeth and composite elsewhere. At a consultation we will look at your teeth, listen to what you want, and tell you honestly which option fits.',
       ] },
       { heading: 'What veneers cost in Glasgow', paragraphs: [
-        'Veneers are priced per tooth, and the total depends on whether you choose composite or porcelain and how many teeth you are treating. We give you a clear quote and confirm it in writing after your consultation, so you know the cost before you decide. Where it helps, 0% interest finance can spread the cost over manageable monthly payments.',
+        'Veneers are priced per tooth, and the total depends on whether you choose composite or porcelain and how many teeth you are treating. We give you a clear quote and confirm it in writing after your consultation, so you know the cost before you decide. Where it helps, finance options can spread the cost over manageable monthly payments.',
       ] },
       { heading: 'Looking after veneers', paragraphs: [
         'Veneers are cared for much like natural teeth: brush and floss well, keep up regular check-ups, and avoid using your teeth as tools or biting nails and ice. If you grind your teeth at night, a simple guard protects your investment. With that care, composite tends to last a few years and porcelain considerably longer.',
@@ -89,7 +89,7 @@ export const posts = [
       { q: 'Do veneers ruin your teeth?', a: 'Porcelain veneers involve removing a small amount of enamel, which is permanent, while composite veneers often need little or no removal. Done well and looked after, veneers protect and improve the look of a tooth. We explain the trade-offs for your specific case before you decide.' },
       { q: 'How long do veneers last?', a: 'Composite veneers typically last a few years, while porcelain veneers often last ten to fifteen years with good oral hygiene and regular check-ups.' },
       { q: 'Are veneers better than whitening?', a: 'They do different jobs. Whitening lightens natural teeth, while veneers cover shape, chips and stains that will not whiten. Sometimes the best plan is to whiten first, then treat individual teeth.' },
-      { q: 'How much do veneers cost in Glasgow?', a: 'Cost is per tooth and depends on the material and the number of teeth. We provide a clear quote confirmed in writing at your consultation, and 0% finance is available to spread it.' },
+      { q: 'How much do veneers cost in Glasgow?', a: 'Cost is per tooth and depends on the material and the number of teeth. We provide a clear quote confirmed in writing at your consultation, and finance options are available to spread it.' },
       { q: 'Will veneers look natural?', a: 'Yes, when they are matched to your face and your other teeth. Porcelain in particular looks very natural, and we can show you a preview of the design before you commit.' },
     ],
     related: ['cosmetic-dentistry', 'teeth-whitening'],
@@ -170,13 +170,13 @@ export const posts = [
     intro: 'Cost is the first question almost everyone asks about dental implants, and it is a fair one. Here is an honest look at what goes into the price, and why the cheapest quote is not always the one to trust.',
     sections: [
       { heading: 'What you are actually paying for', paragraphs: [
-        'An implant is not a single item, it is a treatment. The price covers the planning, including an on-site 3D CBCT scan, the titanium implant itself, the surgery to place it, and the custom crown that goes on top. A single implant at Day Night Dental is quoted for you and confirmed in writing after your consultation.',
+        'An implant is not a single item, it is a treatment. The price covers the planning, the titanium implant itself, the surgery to place it, and the custom crown that goes on top. A single implant at Day Night Dental is quoted for you and confirmed in writing after your consultation.',
       ] },
       { heading: 'What changes the price', paragraphs: [
         'How many teeth you are replacing is the biggest factor. A single implant costs far less than an implant-supported bridge or a full-arch option like All-on-4. Any preparatory work, such as a bone graft, also adds to the total. We set all of this out clearly before you commit.',
       ] },
       { heading: 'Spreading the cost', paragraphs: [
-        'You do not have to pay it all at once. We offer 0% interest finance so you can spread implant treatment over manageable monthly payments. We are happy to talk through the options at your consultation.',
+        'You do not have to pay it all at once. Finance options are available so you can spread implant treatment over manageable monthly payments. We are happy to talk through the options at your consultation.',
       ] },
     ],
     related: ['dental-implants', 'cosmetic-dentistry'],
@@ -198,7 +198,7 @@ export const posts = [
         'Invisalign is popular with adults and older teens who want to straighten their teeth discreetly. Fixed braces can have the edge for very complex movements. At a consultation we will tell you honestly which is the better fit for your case.',
       ] },
       { heading: 'Seeing the result first', paragraphs: [
-        'One real advantage of Invisalign is that we can show you a 3D simulation of your finished smile before you start, using ClinCheck. Patients come to our Merchant City practice from across Glasgow to straighten their teeth this way.',
+        'One real advantage of Invisalign is that we can show you a 3D simulation of your finished smile before you start. Patients come to our Merchant City practice from across Glasgow to straighten their teeth this way.',
       ] },
     ],
     related: ['invisalign', 'teeth-whitening'],

@@ -1,59 +1,31 @@
 
-// Placeholder portraits pulled from Unsplash (free, no attribution required for use,
-// but credit appreciated). Swap each `image` for the dentist's actual photo when ready.
+// Placeholders. Replace names + add real photos once available.
 export const team = [
-  {
-    name: 'Dr. [Principal Name]',
-    role: 'Principal Dentist',
-    specialty: 'BDS, MFDS RCS',
-    side: 'day',
-    image: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=600&h=840&fit=crop&q=80&fm=webp',
-  },
-  {
-    name: 'Dr. [Implant Specialist]',
-    role: 'Implantologist',
-    specialty: 'BDS, MSc Implant Dentistry',
-    side: 'night',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=840&fit=crop&q=80&fm=webp',
-  },
-  {
-    name: 'Dr. [Cosmetic Lead]',
-    role: 'Cosmetic Lead',
-    specialty: 'BDS, PG Cert Aesthetic',
-    side: 'day',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=840&fit=crop&q=80&fm=webp',
-  },
-  {
-    name: 'Dr. [Orthodontist]',
-    role: 'Orthodontist',
-    specialty: 'BDS, MOrth RCS',
-    side: 'night',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&h=840&fit=crop&q=80&fm=webp',
-  },
-  {
-    name: '[Hygienist Name]',
-    role: 'Dental Hygienist',
-    specialty: 'GDC Registered',
-    side: 'day',
-    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&h=840&fit=crop&q=80&fm=webp',
-  },
-  {
-    name: '[Practice Manager]',
-    role: 'Practice Manager',
-    specialty: 'Patient Coordinator',
-    side: 'night',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=840&fit=crop&q=80&fm=webp',
-  },
-];
+  { name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day' },
+  { name: 'Dr. [Implant Specialist]', role: 'Implantologist', specialty: 'BDS, MSc Implant Dentistry', side: 'night' },
+  { name: 'Dr. [Cosmetic Lead]', role: 'Cosmetic Lead', specialty: 'BDS, PG Cert Aesthetic', side: 'day' },
+  { name: 'Dr. [Orthodontist]', role: 'Orthodontist', specialty: 'BDS, MOrth RCS', side: 'night' },
+  { name: '[Hygienist Name]', role: 'Dental Hygienist', specialty: 'GDC Registered', side: 'day' },
+  { name: '[Practice Manager]', role: 'Practice Manager', specialty: 'Patient Coordinator', side: 'night' },
+]
 
-function Portrait({ image, name, side }) {
+export function AvatarSvg() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="32" cy="25" r="11" />
+      <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52" />
+    </svg>
+  )
+}
+
+function Portrait({ side }) {
   return (
     <div className={`dn-portrait ${side}`}>
-      <img src={image} alt={`${name}, dentist at Day Night Dental, Glasgow`} width={600} height={840} loading="lazy" decoding="async" />
+      <div className={`dn-avatar ${side}`}><AvatarSvg /></div>
       <div className="dn-portrait-overlay" />
       <div className="dn-portrait-frame" />
     </div>
-  );
+  )
 }
 
 export default function Team() {
@@ -74,7 +46,7 @@ export default function Team() {
         <div className="dn-team-grid">
           {team.map((member) => (
             <article key={member.name} className="dn-team-card">
-              <Portrait image={member.image} name={member.name} side={member.side} />
+              <Portrait side={member.side} />
               <div className="dn-team-info">
                 <span className={`dn-eyebrow ${member.side}`}>{member.role}</span>
                 <h3>{member.name}</h3>
@@ -84,7 +56,6 @@ export default function Team() {
           ))}
         </div>
       </div>
-
     </section>
-  );
+  )
 }
