@@ -36,12 +36,18 @@ export const PRACTICE = {
 
 // Neighbourhoods/areas for local-relevance copy + structured data.
 export const AREAS_SERVED = [
-  'Merchant City',
   'Glasgow City Centre',
-  'Glasgow West End',
+  'Merchant City',
+  'Trongate',
+  'West End',
   'Finnieston',
   'Dennistoun',
-  'The Southside',
+  'East End',
+  'Southside',
+  'Partick',
+  'Hillhead',
+  'Govanhill',
+  'Shawlands',
 ]
 
 export const fullAddressLine = () =>
