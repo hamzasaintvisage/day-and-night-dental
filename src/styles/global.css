@@ -1270,10 +1270,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-hero-meta-item .time {
           font-family: var(--font-display);
-          font-size: 2rem;
-          font-weight: 700;
+          font-size: 2.4rem;
+          font-weight: 800;
           letter-spacing: -0.02em;
         }
+        .dn-hero-meta-item .time.day { color: var(--dn-day); text-shadow: 0 0 26px rgba(244, 194, 74, 0.4); }
+        .dn-hero-meta-item .time.night { color: var(--dn-night); text-shadow: 0 0 26px rgba(74, 149, 229, 0.4); }
         .dn-hero-meta-item .time.gradient {
           background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
           -webkit-background-clip: text;
@@ -1469,67 +1471,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         }
         .dn-concerns-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 0;
-          border: 1px solid var(--dn-mist);
+          grid-template-columns: repeat(3, 1fr); /* locked to 3 so 6 cards = clean 3+3, no orphan gaps */
+          gap: 1rem;
         }
+        @media (max-width: 900px) { .dn-concerns-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .dn-concerns-grid { grid-template-columns: 1fr; } }
         .dn-concern-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1.25rem;
-          padding: 3rem 1.5rem;
-          border-right: 1px solid var(--dn-mist);
-          border-bottom: 1px solid var(--dn-mist);
-          color: var(--dn-bone);
-          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-          overflow: hidden;
+          position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem;
+          padding: 1.85rem 1.6rem; border: 1px solid var(--dn-mist); border-radius: 12px;
+          background: var(--dn-near-black); color: var(--dn-bone); overflow: hidden;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
         }
         .dn-concern-card::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, rgba(212, 164, 83, 0.08), rgba(91, 143, 191, 0.08));
-          opacity: 0;
-          transition: opacity 0.5s;
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+          background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); opacity: 0.4; transition: opacity 0.4s; z-index: 4;
         }
-        .dn-concern-card:hover {
-          background: var(--dn-near-black);
-        }
-        .dn-concern-card:hover::before {
-          opacity: 1;
-        }
-        .dn-concern-icon {
-          color: var(--dn-bone-dim);
-          transition: color 0.4s;
-          position: relative;
-          z-index: 1;
-        }
+        .dn-concern-card:hover::before { opacity: 1; }
+        .dn-concern-icon { color: var(--dn-bone-dim); transition: color 0.4s; }
         .dn-concern-card:nth-child(odd):hover .dn-concern-icon { color: var(--dn-day); }
         .dn-concern-card:nth-child(even):hover .dn-concern-icon { color: var(--dn-night); }
-        .dn-concern-card h3 {
-          font-family: var(--font-display);
-          font-size: 1.15rem;
-          font-weight: 700;
-          letter-spacing: 0.02em;
-          text-align: center;
-          position: relative;
-          z-index: 1;
-        }
-        .dn-concern-arrow {
-          position: relative;
-          z-index: 1;
-          font-size: 0.9rem;
-          color: var(--dn-bone-faint);
-          opacity: 0;
-          transform: translateY(-5px);
-          transition: all 0.4s;
-        }
-        .dn-concern-card:hover .dn-concern-arrow {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        .dn-concern-card h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; letter-spacing: 0.01em; }
+        .dn-concern-lead { font-size: 0.92rem; line-height: 1.55; color: var(--dn-bone-dim); margin: 0; flex: 1 0 auto; }
+        .dn-concern-cta { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dn-bone-faint); transition: color 0.3s; }
+        .dn-concern-card:hover .dn-concern-cta { color: var(--dn-day); }
+        .dn-concern-arrow { transition: transform 0.3s; }
+        .dn-concern-card:hover .dn-concern-arrow { transform: translateX(4px); }
       
 
 /* === About === */

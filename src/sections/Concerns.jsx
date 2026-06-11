@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom';
 
 const concerns = [
-  { title: 'Fix My Worn Teeth', icon: 'tooth', href: '/treatments/cosmetic-dentistry#concern' },
-  { title: 'Replace Missing Teeth', icon: 'gap', href: '/treatments/dental-implants#concern' },
-  { title: 'Straighten My Teeth', icon: 'align', href: '/treatments/invisalign#concern' },
-  { title: 'Whiten My Smile', icon: 'sparkle', href: '/treatments/teeth-whitening#concern' },
-  { title: 'Replace My Dentures', icon: 'denture', href: '/treatments/dental-implants#concern' },
-  { title: 'Improve My Smile', icon: 'smile', href: '/treatments/cosmetic-dentistry#concern' },
+  { title: 'Fix My Worn Teeth', tag: 'Cosmetic Dentistry', icon: 'tooth', href: '/treatments/cosmetic-dentistry#concern',
+    lead: 'Worn or chipped edges rebuilt with veneers, bonding or crowns, planned around your own smile.' },
+  { title: 'Replace Missing Teeth', tag: 'Dental Implants', icon: 'gap', href: '/treatments/dental-implants#concern',
+    lead: 'A gap closed for good with a natural-looking implant or bridge that restores your bite.' },
+  { title: 'Straighten My Teeth', tag: 'Invisalign', icon: 'align', href: '/treatments/invisalign#concern',
+    lead: 'Crowded or gappy teeth straightened discreetly with clear aligners, with a 3D preview before you commit.' },
+  { title: 'Whiten My Smile', tag: 'Teeth Whitening', icon: 'sparkle', href: '/treatments/teeth-whitening#concern',
+    lead: 'Clinician-led whitening that lifts years of stains safely and evenly, a world away from high-street kits.' },
+  { title: 'Replace My Dentures', tag: 'Dental Implants', icon: 'denture', href: '/treatments/dental-implants#concern',
+    lead: 'A stable, fixed alternative to loose dentures, with implant-secured teeth that stay put.' },
+  { title: 'Improve My Smile', tag: 'Cosmetic Dentistry', icon: 'smile', href: '/treatments/cosmetic-dentistry#concern',
+    lead: 'A complete smile makeover, designed around exactly what you want to change.' },
 ];
 
 // Hand-drawn line icons in the same minimal style as the logo
-function Icon({ type }) {
+export function Icon({ type }) {
   const common = {
     width: 36,
     height: 36,
@@ -86,13 +92,12 @@ export default function Concerns() {
         </div>
 
         <div className="dn-concerns-grid">
-          {concerns.map((c, i) => (
-            <Link key={c.title} to={c.href} className="dn-concern-card" style={{ animationDelay: `${i * 0.08}s` }}>
-              <div className="dn-concern-icon">
-                <Icon type={c.icon} />
-              </div>
+          {concerns.map((c) => (
+            <Link key={c.title} to={c.href} className="dn-concern-card">
+              <div className="dn-concern-icon"><Icon type={c.icon} /></div>
               <h3>{c.title}</h3>
-              <span className="dn-concern-arrow">→</span>
+              <p className="dn-concern-lead">{c.lead}</p>
+              <span className="dn-concern-cta">{c.tag}<span className="dn-concern-arrow"> →</span></span>
             </Link>
           ))}
         </div>

@@ -1,8 +1,9 @@
 import { Head } from 'vite-react-ssg'
 import { SITE, PRACTICE } from '../data/practice'
 import Hero from '../sections/Hero'
-import EmergencyBand from '../sections/EmergencyBand'
+import Journey from '../sections/Journey'
 import Concerns from '../sections/Concerns'
+import ConcernsBento from '../sections/ConcernsBento'
 import About from '../sections/About'
 import WhyChooseUs from '../sections/WhyChooseUs'
 import Treatments from '../sections/Treatments'
@@ -118,8 +119,12 @@ export default function Home() {
       </Head>
 
       <Hero />
-      <EmergencyBand />
+      <Journey />
+      {/* TEMP — Option A (grid) vs Option B (bento) for review. Remove the loser. */}
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-day)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option A · Grid</div>
       <Concerns />
+      <div style={{ textAlign: 'center', padding: '1.75rem 1rem 0', color: 'var(--dn-night)', fontSize: '0.7rem', letterSpacing: '0.24em', textTransform: 'uppercase', fontWeight: 700 }}>↓ Option B · Bento</div>
+      <ConcernsBento />
       <About />
       <WhyChooseUs />
       <CtaBand

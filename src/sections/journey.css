@@ -1,0 +1,57 @@
+/* "What to expect when you call" section. Scoped under .dn-journey; uses shared tokens. */
+.dn-journey {
+  border-top: 1px solid var(--dn-mist);
+  background: linear-gradient(90deg, rgba(244, 194, 74, 0.04), rgba(74, 149, 229, 0.04));
+  padding: 4rem 0;
+  position: relative;
+}
+.dn-journey-inner { width: var(--container); margin: 0 auto; }
+
+.dn-journey-eyebrow {
+  font-family: var(--font-body); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--dn-night-soft);
+}
+.dn-journey-head {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.2; margin: 0.6rem 0 0; max-width: 720px;
+}
+.dn-journey-head .grad {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.dn-journey-map { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.dn-journey-step {
+  position: relative; border: 1px solid var(--dn-mist); border-radius: 12px;
+  padding: 1.6rem 1.4rem; background: var(--dn-near-black);
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dn-journey-step::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); opacity: 0.55; border-radius: 12px 12px 0 0;
+}
+.dn-journey-step:hover { transform: translateY(-4px); border-color: var(--dn-bone-faint); }
+.dn-journey-step .num {
+  display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1;
+  background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.dn-journey-step h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0.7rem 0 0.4rem; color: var(--dn-bone); }
+.dn-journey-step p { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.55; margin: 0; }
+/* connector arrow between steps */
+.dn-journey-map .dn-journey-step:not(:last-child)::after {
+  content: '\2192'; position: absolute; right: -0.85rem; top: 50%; transform: translateY(-50%);
+  color: var(--dn-bone-faint); font-size: 1rem; z-index: 2;
+}
+
+.dn-journey-cta { display: flex; align-items: center; gap: 1.25rem; margin-top: 2rem; flex-wrap: wrap; }
+.dn-journey-num { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--dn-bone); text-decoration: none; transition: color 0.2s; }
+.dn-journey-num:hover { color: var(--dn-day); }
+
+@media (max-width: 760px) {
+  .dn-journey-map { grid-template-columns: 1fr; gap: 1.5rem; }
+  .dn-journey-map .dn-journey-step:not(:last-child)::after {
+    content: '\2193'; right: auto; left: 50%; top: auto; bottom: -1.05rem; transform: translateX(-50%);
+  }
+}

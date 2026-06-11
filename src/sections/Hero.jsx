@@ -82,7 +82,7 @@ export default function Hero() {
         <div className="dn-hero-meta dn-reveal dn-delay-5">
           <div className="dn-hero-meta-item">
             <span className="dn-eyebrow day">Mornings</span>
-            <span className="time">07:00</span>
+            <span className="time day">07:00</span>
           </div>
           <div className="dn-hero-meta-divider" />
           <div className="dn-hero-meta-item center">
@@ -92,7 +92,7 @@ export default function Hero() {
           <div className="dn-hero-meta-divider" />
           <div className="dn-hero-meta-item">
             <span className="dn-eyebrow night">Late Nights</span>
-            <span className="time">23:00</span>
+            <span className="time night">23:00</span>
           </div>
         </div>
       </div>
