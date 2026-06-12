@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Head } from 'vite-react-ssg'
 import { PRACTICE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 
 // NOTE: opening hours below are PLACEHOLDERS (Sat/Sun invented), confirm the real
 // hours with the owner before go-live.
@@ -38,7 +39,7 @@ export default function HomeFaq() {
   return (
     <section className="dn-section tp-faq dn-faq">
       <Head>
-        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
+        <script type="application/ld+json">{jsonLd(faqLd)}</script>
       </Head>
       <div className="dn-container">
         <div className="tp-section-head">

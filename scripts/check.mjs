@@ -6,6 +6,7 @@ import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
 const DIST = 'dist'
+const LAUNCH = process.env.LAUNCH === '1' // go-live mode: parked placeholders become hard failures
 const errors = []
 const warnings = []
 
@@ -17,6 +18,13 @@ const required = [
   'treatments/emergency-dentist/index.html',
 ]
 for (const f of required) if (!existsSync(join(DIST, f))) errors.push(`missing page: ${f}`)
+
+// 1b. Dev/trial artifacts must NEVER ship to production.
+if (existsSync(join(DIST, 'font-trial.html'))) errors.push('dev artifact in dist: font-trial.html')
+const distFonts = join(DIST, 'fonts')
+if (existsSync(distFonts)) {
+  for (const f of readdirSync(distFonts)) if (f.startsWith('trial-')) errors.push(`trial font artifact in dist: fonts/${f}`)
+}
 
 function walk(dir) {
   let out = []
@@ -30,12 +38,13 @@ function walk(dir) {
 
 // 2. No leftover fixed-data placeholders or old domain in any rendered page.
 const hardBanned = ['dayandnightdental', '[Practice Street Name]', '[Postcode]', '0000 000 0000']
-const softBanned = ['Dr. [', '[Name]'] // parked: real team + complaints manager name
+// Parked placeholders await owner data: warned about pre-launch, hard-failed at go-live (LAUNCH=1).
+const softBanned = ['Dr. [', '[Name]', '[Principal', '[Dentist']
 for (const file of walk(DIST)) {
   const txt = readFileSync(file, 'utf8')
   const rel = file.replace(DIST + '/', '')
   for (const b of hardBanned) if (txt.includes(b)) errors.push(`placeholder "${b}" in ${rel}`)
-  for (const b of softBanned) if (txt.includes(b)) warnings.push(`parked placeholder "${b}" in ${rel}`)
+  for (const b of softBanned) if (txt.includes(b)) (LAUNCH ? errors : warnings).push(`${LAUNCH ? 'placeholder' : 'parked placeholder'} "${b}" in ${rel}`)
 }
 
 // 3. Sitemap must use the canonical domain.

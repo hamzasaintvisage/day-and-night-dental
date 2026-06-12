@@ -2,6 +2,7 @@ import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import Team, { team } from '../sections/Team'
 import { SITE, PRACTICE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 
 const url = `${SITE}/our-team/`
 const OG_IMAGE = `${SITE}/og-image.jpg`
@@ -45,7 +46,7 @@ export default function OurTeam() {
       </Head>
       {teamLd && (
         <Head>
-          <script type="application/ld+json">{JSON.stringify(teamLd)}</script>
+          <script type="application/ld+json">{jsonLd(teamLd)}</script>
         </Head>
       )}
 

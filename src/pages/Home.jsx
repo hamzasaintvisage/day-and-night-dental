@@ -1,5 +1,6 @@
 import { Head } from 'vite-react-ssg'
 import { SITE, PRACTICE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 import Hero from '../sections/Hero'
 import Journey from '../sections/Journey'
 import ConcernsBento from '../sections/ConcernsBento'
@@ -43,7 +44,7 @@ const dentistLd = {
   address: {
     '@type': 'PostalAddress',
     streetAddress: PRACTICE.streetAddress,
-    addressLocality: PRACTICE.locality,
+    addressLocality: PRACTICE.city,
     addressRegion: PRACTICE.region,
     postalCode: PRACTICE.postcode,
     addressCountry: PRACTICE.country,
@@ -114,8 +115,8 @@ export default function Home() {
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
       <Head>
-        <script type="application/ld+json">{JSON.stringify(dentistLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(websiteLd)}</script>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
+        <script type="application/ld+json">{jsonLd(websiteLd)}</script>
       </Head>
 
       <Hero />

@@ -1,6 +1,7 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE, AREAS_SERVED } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 
 const url = `${SITE}/areas-served/`
 const OG_IMAGE = `${SITE}/og-image.jpg`
@@ -43,7 +44,7 @@ export default function AreasServed() {
         <meta name="twitter:description" content="A 24/7 dentist in the heart of Merchant City, serving the whole of Glasgow." />
       </Head>
       <Head>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">

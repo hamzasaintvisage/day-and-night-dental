@@ -1,0 +1,26 @@
+# Day Night Dental — API directory hardening (defense in depth).
+# The root .htaccess already denies _config.php by basename, but if that file is
+# ever not applied (server misconfig, a move), this keeps the Resend secret and
+# any stray data files unreachable. send-enquiry.php stays served normally.
+
+# Never serve the secret config or its source.
+<FilesMatch "^_config\.php$">
+  Require all denied
+</FilesMatch>
+
+# Never serve dotfiles or data/log/backup files that don't belong on the web.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(ndjson|log|env|bak|sql|json)$">
+  Require all denied
+</FilesMatch>
+
+# Don't advertise the PHP version.
+<IfModule mod_headers.c>
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+</IfModule>
+
+# No directory listing of /api.
+Options -Indexes

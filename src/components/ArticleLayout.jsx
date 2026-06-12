@@ -1,6 +1,7 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 import { posts } from '../data/blog'
 
 const TREATMENT_TITLES = {
@@ -65,9 +66,9 @@ export default function ArticleLayout({ post }) {
         <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
       </Head>
       <Head>
-        <script type="application/ld+json">{JSON.stringify(ld)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
-        {faqLd && <script type="application/ld+json">{JSON.stringify(faqLd)}</script>}
+        <script type="application/ld+json">{jsonLd(ld)}</script>
+        <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
+        {faqLd && <script type="application/ld+json">{jsonLd(faqLd)}</script>}
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">

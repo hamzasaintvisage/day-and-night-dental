@@ -74,7 +74,11 @@ function origin_allowed(?string $origin, array $static): bool {
     $host = $parts['scheme'] . '://' . $parts['host'];
     if (!empty($parts['port'])) $host .= ':' . $parts['port'];
     if (in_array($host, $static, true)) return true;
-    if (preg_match('#^http://(localhost|127\.0\.0\.1)(:\d+)?$#', $host)) return true;
+    // localhost is only trusted in development. A scripted client can spoof
+    // Origin: http://localhost, so production must reject it. Dev opts in by
+    // defining DND_ALLOW_LOCALHOST in _config.php (never set on the live server).
+    if (defined('DND_ALLOW_LOCALHOST') && DND_ALLOW_LOCALHOST
+        && preg_match('#^http://(localhost|127\.0\.0\.1)(:\d+)?$#', $host)) return true;
     return false;
 }
 // The site is served DIRECTLY by Hostinger (no Cloudflare proxy in front), so forwarded-IP

@@ -1,6 +1,7 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 
 const DENTIST_ID = `${SITE}/#dentist`
 const OG_IMAGE = `${SITE}/og-image.jpg`
@@ -108,10 +109,10 @@ export default function TreatmentPage({ data }) {
 
       {/* Structured data, emitted into <head> (via Head) for rich results */}
       <Head>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(procedureLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(serviceLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
+        <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
+        <script type="application/ld+json">{jsonLd(procedureLd)}</script>
+        <script type="application/ld+json">{jsonLd(serviceLd)}</script>
+        <script type="application/ld+json">{jsonLd(faqLd)}</script>
       </Head>
 
       {/* Breadcrumb */}
