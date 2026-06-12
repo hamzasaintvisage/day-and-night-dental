@@ -12,7 +12,7 @@
     "deploy:api": "bash hostinger/deploy-local.sh api",
     "deploy:htaccess": "bash hostinger/deploy-local.sh htaccess",
     "deploy:cron": "bash hostinger/deploy-local.sh cron",
-    "deploy:all": "npm run deploy:static && npm run deploy:htaccess && npm run deploy:cron",
+    "deploy:frontend": "npm run deploy:static && npm run deploy:htaccess && npm run deploy:cron",
     "lint": "eslint .",
     "lint:css": "stylelint \"src/**/*.css\"",
     "test": "vitest run",

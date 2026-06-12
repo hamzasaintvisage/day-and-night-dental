@@ -1,58 +1,54 @@
 # Day & Night Dental — Launch Checklist
 
-_Last updated: 2026-06-08. Merchant City, Glasgow practice._
+_Last updated: 2026-06-12. See RUNBOOK.md for deploy commands and go-live steps._
 
-## ✅ Done (built & verified)
-- [x] Vite + React + static-pre-render (SSG) site — 8 pages, all rendered to crawlable HTML
-- [x] Home page + 6 treatment pages (emergency, Invisalign, implants, whitening, cosmetic, general)
-- [x] Areas-served page (`/areas-served`)
-- [x] World-class on-page SEO: unique titles/descriptions/canonicals per page
-- [x] Structured data graph (Dentist + WebSite + Breadcrumb + FAQ + Service, linked by @id)
-- [x] Branded og:image, Twitter cards, full favicon/icon set, web manifest
-- [x] Performance: non-blocking fonts, vendor code-split, image dimensions (no layout shift), Netlify caching + security headers
-- [x] Internal linking (footer + concern cards + treatment rows all link to pages)
-- [x] Glasgow / Merchant City local targeting in copy + schema
-- [x] sitemap.xml + robots.txt + 404 page
-- [x] Human, de-AI'd copy (no em dashes), typography scale tuned
-- [x] Central NAP file (`src/data/practice.js`) — update once, applies everywhere
+Hosted on **Hostinger (LiteSpeed)**. Forms sent via **Resend** from hardened PHP endpoint.
+No Netlify. No Cloudflare Workers. No serverless functions.
 
-## 🟥 Needs YOU (data / decisions — these block "finished")
-- [ ] Real street address + postcode
-- [ ] Real phone number
-- [ ] Contact email (where form enquiries should land)
-- [ ] Prices (replaces the `[£X]` placeholders)
-- [ ] Team: names, roles, qualifications, **GDC numbers**, photos
-- [ ] Real practice photos (exterior w/ signage, reception, surgeries) to replace stock
-- [ ] **Testimonials decision** — supply real Google reviews OR remove the placeholder "200+ reviews" (compliance risk)
-- [ ] Netlify account + domain DNS access (for deploy)
-- [ ] Google Business Profile pin coordinates + URL (once created)
+---
 
-## 🟧 Must-do before launch
-- [x] Wire contact form to email (Netlify Forms) — built; just needs a notification email set at deploy
-- [x] Legal pages: Privacy Policy, **Complaints Procedure** (GDC-required), Terms, Accessibility Statement — starter content, review before publishing
-- [x] Sticky mobile "Call now" bar
-- [ ] Cookie-consent banner (UK/GDPR)
-- [ ] Analytics: GA4 + Google Search Console + conversion tracking (call clicks, form submits)
-- [ ] `/our-team` page (with Person schema per clinician)
-- [ ] `/register-as-patient` page (the registration form on its own page)
-- [ ] Link homepage Team/Register sections through to the new pages
-- [ ] Accessibility pass (contrast, focus states, prefers-reduced-motion, form labels)
-- [ ] Deploy to Netlify + point the domain (www, force HTTPS)
-- [ ] Submit sitemap in Search Console
+## Owner content — hard go-live blockers
 
-## 🟩 Off-page — the ~60% of local dental ranking (mostly you)
-- [ ] Create + fully optimise the Google Business Profile
-- [ ] Review-generation engine (steady real Google reviews, reply to each)
+`LAUNCH=1 npm run check` will hard-fail until every item below is in place.
+
+- [ ] Real dentist names + GDC registration numbers (`src/sections/Team.jsx`)
+- [ ] Per-treatment `reviewer` field (name + credentials) in each treatment data file
+- [ ] Confirmed opening hours (`PRACTICE` in `src/data/practice.js`)
+- [ ] Real street address + postcode (`src/data/practice.js`)
+- [ ] Complaints Manager name (`src/pages/legal/Complaints.jsx`)
+- [ ] Consented practice photography (exterior, reception, surgeries)
+- [ ] Google Business Profile URL + pin coordinates (`src/data/practice.js`)
+
+---
+
+## Done (built, verified, deployed behind preview gate)
+
+- [x] Vite + React 19 SSG — 23 pages pre-rendered to crawlable HTML
+- [x] 6 treatment pages + blog + areas-served + legal pages
+- [x] Unique title/description/canonical per page; `noindex` on utility pages only
+- [x] Full structured data graph: Dentist + LocalBusiness + WebSite + BreadcrumbList + FAQPage + BlogPosting
+- [x] Branded OG image, Twitter cards, SVG favicon, web manifest
+- [x] Non-blocking CSS (beasties critical-inline + async preload swap)
+- [x] Consent-gated analytics (GA4 + Meta Pixel via `CookieConsent`)
+- [x] GDPR cookie withdrawal (footer "Cookie settings" reopens banner, clears choice)
+- [x] PHP form endpoint: rate-limit, honeypot, time-trap, CORS allowlist, Resend timeout, NDJSON backup
+- [x] Hardened `.htaccess`: HSTS, CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy
+- [x] www → apex 301 redirect; sitemap.xml + robots.txt
+- [x] No prices anywhere (GDC/ASA compliance); no unverifiable claims
+- [x] WAI-ARIA tabs (FAQ), listbox (dropdowns), 44px tap targets
+- [x] Error boundary wraps every route; false thank-you pages gated on form state
+- [x] Emergency treatment page: call-first red CTA
+- [x] Preview gate active (remove at go-live — see RUNBOOK.md)
+- [x] ESLint (react-hooks + jsx-a11y), stylelint, vitest all passing in CI
+
+## Still needed before launch (no owner data required)
+
+- [ ] Display font decision (trial regeneration takes ~5 min — see RUNBOOK.md)
+- [ ] Send a real test enquiry from both forms on the live server
+- [ ] Verify apex 301, true 404, and that gate is gone
+
+## Off-page (your job after launch)
+
+- [ ] Google Business Profile: fully filled, photos added, first review replied to
 - [ ] UK dental citations: NHS.uk, GDC register, Bupa, Denplan, WhatClinic, Yell
-- [ ] Local backlinks: Merchant City BID, Glasgow Chamber, local press
-
-## 🟦 Growth (after launch)
-- [ ] Online booking integration (Dentally / Curve / Dentr) — biggest conversion upgrade
-- [ ] Blog / advice hub (e.g. "emergency dentist Glasgow at night", "implant cost Glasgow")
-- [ ] Fees page (high-intent search)
-- [ ] Nervous-patient / sedation page
-- [ ] Accreditation badges (Invisalign Provider, Enlighten, GDC, Healthcare Improvement Scotland)
-- [ ] Real before/after gallery (with patient consent)
-- [ ] Short practice walkthrough video
-- [ ] Individual dentist bio pages
-- [ ] "From £X/month" finance display on implants & Invisalign
+- [ ] Google Search Console: property added, sitemap submitted, key pages indexed

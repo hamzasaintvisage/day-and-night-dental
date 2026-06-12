@@ -14,7 +14,7 @@ FTP creds are read automatically from the macOS Keychain (`dnd-ftp`) or `hosting
 | `npm run deploy:htaccess` | `hostinger/.htaccess` (headers, gate, redirects) | any `.htaccess` change |
 | `npm run deploy:cron` | cron PHP (purge + monitor) | cron changes |
 | `DND_RESEND_KEY=… npm run deploy:api` | PHP endpoint + generated `_config.php` | endpoint/email changes |
-| `npm run deploy:all` | static + htaccess + cron (NOT api) | a full front-end + config push |
+| `npm run deploy:frontend` | static + htaccess + cron (NOT api) | a full front-end + config push |
 
 > ⚠️ `deploy:static` alone does **not** ship the API, `.htaccess` or crons. Use the right target.
 > `deploy:api` is separate because it needs `DND_RESEND_KEY` to render the server config.
@@ -34,7 +34,7 @@ npm run deploy:static
    `public/coming-soon.html` (it now ships with the build, so remove it once the gate is gone).
 3. Decide the display font (trial deferred): re-run the font trial if wanted, then keep or swap
    `--font-display` in `src/styles/modules/tokens.css`.
-5. `npm run deploy:all`, then `DND_RESEND_KEY=… npm run deploy:api`.
+5. `npm run deploy:frontend`, then `DND_RESEND_KEY=… npm run deploy:api`.
 6. Verify live:
    - `curl -I https://www.daynightdental.co.uk/` → **301** to apex.
    - `curl -I https://daynightdental.co.uk/` → **200**, and NOT the coming-soon page.

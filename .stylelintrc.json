@@ -22,6 +22,6 @@
     "function-url-quotes": null,
     "no-empty-source": null,
     "no-duplicate-selectors": [true, { "severity": "warning" }],
-    "property-no-deprecated": [true, { "severity": "warning" }]
+    "property-no-deprecated": true
   }
 }
