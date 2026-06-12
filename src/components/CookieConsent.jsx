@@ -14,6 +14,18 @@ export default function CookieConsent() {
     else if (!v) setShow(true)
   }, [])
 
+  // Let visitors reopen the banner to change or withdraw consent (GDPR Art 7(3):
+  // withdrawal must be as easy as granting). The footer "Cookie settings" control
+  // fires this event; declining then takes full effect on the next page load.
+  useEffect(() => {
+    const reopen = () => {
+      try { localStorage.removeItem('dnd-consent') } catch {}
+      setShow(true)
+    }
+    window.addEventListener('dnd-cookie-settings', reopen)
+    return () => window.removeEventListener('dnd-cookie-settings', reopen)
+  }, [])
+
   const decide = (granted) => {
     try { localStorage.setItem('dnd-consent', granted ? 'granted' : 'denied') } catch {}
     if (granted) loadAnalytics()

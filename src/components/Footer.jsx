@@ -45,8 +45,8 @@ export default function Footer() {
               <li><Link to="/our-team">Our Team</Link></li>
               <li><Link to="/areas-served">Areas We Serve</Link></li>
               <li><Link to="/register-as-patient">Register as Patient</Link></li>
-              <li><a href="/#testimonials">Reviews</a></li>
-              <li><a href="/#contact">Contact</a></li>
+              <li><Link to="/#testimonials">Reviews</Link></li>
+              <li><Link to="/#contact">Contact</Link></li>
               <li><Link to="/treatments/emergency-dentist">Emergency Care</Link></li>
               <li><Link to="/blog">Advice &amp; Guides</Link></li>
               <li><Link to="/register-as-patient">Fees &amp; first visit</Link></li>
@@ -77,6 +77,15 @@ export default function Footer() {
             <Link to="/terms">Terms</Link>
             <span className="sep">·</span>
             <Link to="/accessibility">Accessibility</Link>
+            <span className="sep">·</span>
+            <button
+              type="button"
+              className="dn-footer-cookie"
+              onClick={() => window.dispatchEvent(new Event('dnd-cookie-settings'))}
+              style={{ background: 'none', border: 0, padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textDecoration: 'underline' }}
+            >
+              Cookie settings
+            </button>
           </div>
           <div className="dn-footer-regulator">
             Regulated by the General Dental Council
