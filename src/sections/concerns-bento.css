@@ -1,57 +1,149 @@
-/* "Option B", Concerns bento grid. Featured hero tile + asymmetric mix; everything visible. */
+/* Premium concern-led bento grid. One hero tile + compact concern choices. */
 .bento {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(124px, auto);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(0, 0.95fr);
+  grid-template-rows: minmax(190px, auto) minmax(166px, auto) minmax(166px, auto);
+  gap: 1.35rem;
+  margin-top: 0.4rem;
   grid-template-areas:
-    "feat feat c1 c2"
-    "feat feat c3 c3"
-    "c4 c4 c5 c5";
+    "feat c1 c2"
+    "feat c3 c3"
+    "c4 c5 c5";
 }
 .bt {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.2rem;
-  padding: 1.5rem 1.6rem;
+  gap: 2.1rem;
+  min-height: 166px;
+  padding: 2rem 2.15rem;
   border: 1px solid var(--dn-mist);
   border-radius: 14px;
-  background: var(--dn-near-black);
+  background:
+    radial-gradient(circle at 14% 14%, rgba(255, 255, 255, 0.035), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.005)),
+    var(--dn-near-black);
   color: var(--dn-bone);
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
-.bt::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0.5; transition: opacity 0.4s; }
-.bt.day::before { background: var(--dn-day); }
-.bt.night::before { background: var(--dn-night); }
-.bt:hover { transform: translateY(-5px); border-color: var(--dn-bone-faint); box-shadow: 0 18px 42px -20px rgba(74, 149, 229, 0.4), 0 8px 22px -14px rgba(244, 194, 74, 0.3); }
+.bt.day { border-color: rgba(244, 194, 74, 0.72); }
+.bt.night { border-color: rgba(121, 190, 255, 0.62); }
+.bt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.74;
+  transition: opacity 0.4s;
+}
+.bt.day::before { background: linear-gradient(135deg, rgba(244, 194, 74, 0.1), transparent 48%); }
+.bt.night::before { background: linear-gradient(135deg, rgba(74, 149, 229, 0.12), transparent 52%); }
+.bt:hover {
+  transform: translateY(-5px);
+  border-color: var(--dn-bone-faint);
+  box-shadow: 0 22px 52px -24px rgba(74, 149, 229, 0.46), 0 10px 28px -18px rgba(244, 194, 74, 0.34);
+}
 .bt:hover::before { opacity: 1; }
 .bt-ic { color: var(--dn-bone-dim); transition: color 0.4s; }
-.bt.day:hover .bt-ic { color: var(--dn-day); }
-.bt.night:hover .bt-ic { color: var(--dn-night); }
-.bt-arr { position: absolute; top: 1.5rem; right: 1.6rem; color: var(--dn-bone-faint); transition: transform 0.35s, color 0.35s; }
-.bt:hover .bt-arr { transform: translateX(4px); color: var(--dn-bone); }
-.bt-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dn-bone-faint); }
-.bt-title { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1.15; margin: 0.3rem 0 0; }
-.bt-ds { display: block; font-size: 0.85rem; color: var(--dn-bone-dim); margin-top: 0.3rem; }
-.bt-lead { font-size: 0.95rem; line-height: 1.55; color: var(--dn-bone-dim); margin: 0.5rem 0 0; max-width: 40ch; }
-/* featured tile */
-.bt-feat { padding: 1.85rem 1.85rem; }
-.bt-feat .bt-title { font-size: clamp(1.6rem, 2.6vw, 2.4rem); margin-top: 0.4rem; }
-.bt-feat .bt-ic svg { width: 42px; height: 42px; }
+.bt-ic svg { width: 34px; height: 34px; }
+.bt.day .bt-ic { color: var(--dn-day); }
+.bt.night .bt-ic { color: var(--dn-night-soft); }
+.bt-arr {
+  position: absolute;
+  top: 1.9rem;
+  right: 2rem;
+  color: var(--dn-bone);
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.35s, color 0.35s;
+}
+.bt:hover .bt-arr { transform: translateX(5px); color: var(--dn-day); }
+.bt-body {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+}
+.bt-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 1.7vw, 1.62rem);
+  line-height: 1.08;
+  margin: 0;
+}
+.bt-ds {
+  display: block;
+  font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+  color: var(--dn-bone-dim);
+  line-height: 1.45;
+  margin-top: 0.58rem;
+}
+.bt-lead {
+  font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+  line-height: 1.55;
+  color: var(--dn-bone-dim);
+  margin: 0.58rem 0 0;
+  max-width: 40ch;
+}
+
+.bt-feat {
+  min-height: 100%;
+  padding: 2.25rem 2.45rem;
+}
+.bt-feat .bt-body { margin-top: auto; }
+.bt-feat .bt-title { font-size: clamp(2rem, 3vw, 2.75rem); }
+.bt-feat .bt-ic svg { width: 46px; height: 46px; }
 
 @media (max-width: 820px) {
-  .bento { grid-template-columns: repeat(2, 1fr); grid-template-areas: "feat feat" "c1 c2" "c3 c3" "c4 c5"; }
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-template-areas:
+      "feat feat"
+      "c1 c2"
+      "c3 c3"
+      "c4 c5";
+  }
+  .bt-feat { min-height: 300px; }
 }
 @media (max-width: 520px) {
-  /* Compact 2-up tiles on phones, everything visible + clickable, half the scroll.
-     Long leads/descriptors drop out; each tile still routes to its treatment page. */
-  .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; grid-template-areas: none; gap: 0.7rem; }
-  .bt, .bt-feat { grid-area: auto !important; padding: 1rem 1.05rem 1.1rem; gap: 0.4rem; min-height: 116px; }
-  .bt-lead, .bt-ds { display: none; }
-  .bt-ic svg, .bt-feat .bt-ic svg { width: 26px; height: 26px; }
-  .bt-title, .bt-feat .bt-title { font-size: 1rem; margin-top: 0.25rem; }
-  .bt-arr { top: 1rem; right: 1rem; }
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "feat"
+      "c1"
+      "c2"
+      "c3"
+      "c4"
+      "c5";
+    gap: 0.85rem;
+  }
+  .bt,
+  .bt-feat {
+    padding: 1.25rem 1.3rem;
+    gap: 1.35rem;
+    min-height: 132px;
+  }
+  .bt-feat { min-height: 190px; }
+  .bt-ic svg,
+  .bt-feat .bt-ic svg {
+    width: 28px;
+    height: 28px;
+  }
+  .bt-title,
+  .bt-feat .bt-title {
+    font-size: 1.12rem;
+  }
+  .bt-ds,
+  .bt-lead {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.45rem;
+  }
+  .bt-arr {
+    top: 1.2rem;
+    right: 1.25rem;
+    font-size: 1.05rem;
+  }
 }

@@ -10,24 +10,24 @@ export default function Journey() {
       <div className="dn-journey-inner">
         <span className="dn-journey-eyebrow">What to expect when you call</span>
         <h2 className="dn-journey-head">
-          From your call to <em className="grad">seen and sorted</em>, the same day or night.
+          Call in pain. Get seen fast. Day or night.
         </h2>
 
         <div className="dn-journey-map">
           <div className="dn-journey-step">
             <span className="num">01</span>
-            <h3>Immediate call triage</h3>
-            <p>You reach our on-call team, who assess how urgent it is and what happens next.</p>
+            <h3>Tell us what’s wrong</h3>
+            <p>We’ll ask a few quick questions, check how urgent it sounds, and guide you from there.</p>
           </div>
           <div className="dn-journey-step">
             <span className="num">02</span>
-            <h3>Same-day or night appointment</h3>
-            <p>We secure your emergency slot at the Merchant City clinic straight away, any hour.</p>
+            <h3>Priority care, day or night</h3>
+            <p>We’ll help arrange the earliest suitable emergency appointment.</p>
           </div>
           <div className="dn-journey-step">
             <span className="num">03</span>
-            <h3>Diagnosis &amp; pain relief</h3>
-            <p>Our dentists use on-site diagnostics to find the cause and get you comfortable.</p>
+            <h3>Relief and a clear plan</h3>
+            <p>We’ll assess the problem, explain your options, and provide urgent treatment where suitable.</p>
           </div>
         </div>
 

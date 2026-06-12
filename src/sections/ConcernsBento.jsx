@@ -3,21 +3,20 @@ import { Icon } from '../components/ConcernIcon';
 import './concerns-bento.css';
 
 // "Option B", bento layout: one featured hero tile + asymmetric mix, everything visible.
-// Big tiles carry a full selling sentence; small tiles get a short tag. Safe copy (no
-// brand-name / equipment claims to verify).
+// Safe copy with concern-led links into the relevant treatment page/section.
 const items = [
-  { area: 'feat', title: 'Whiten My Smile', tag: 'Teeth Whitening', icon: 'sparkle', side: 'day', href: '/treatments/teeth-whitening#concern',
-    lead: 'Clinician-led whitening that lifts years of stains safely and evenly, a world away from high-street kits.' },
-  { area: 'c1', title: 'Fix My Worn Teeth', tag: 'Cosmetic Dentistry', icon: 'tooth', side: 'night', href: '/treatments/cosmetic-dentistry#concern',
-    ds: 'Veneers, bonding & crowns' },
-  { area: 'c2', title: 'Replace Missing Teeth', tag: 'Dental Implants', icon: 'gap', side: 'day', href: '/treatments/dental-implants#concern',
-    ds: 'Implants & bridges' },
-  { area: 'c3', title: 'Straighten My Teeth', tag: 'Invisalign', icon: 'align', side: 'night', href: '/treatments/invisalign#concern',
-    lead: 'Crowded or gappy teeth straightened discreetly with clear aligners, and a 3D preview before you commit.' },
-  { area: 'c4', title: 'Move On From Dentures', tag: 'Dental Implants', icon: 'denture', side: 'day', href: '/treatments/dental-implants#concern',
-    ds: 'Fixed, secured alternatives' },
-  { area: 'c5', title: 'Transform My Smile', tag: 'Cosmetic Dentistry', icon: 'smile', side: 'night', href: '/treatments/cosmetic-dentistry#concern',
+  { area: 'feat', title: 'Transform My Smile', icon: 'smile', side: 'day', href: '/treatments/cosmetic-dentistry#concern',
     ds: 'A full smile makeover' },
+  { area: 'c1', title: 'Fix My Worn Teeth', icon: 'tooth', side: 'night', href: '/treatments/cosmetic-dentistry#concern',
+    ds: 'Veneers, bonding & crowns' },
+  { area: 'c2', title: 'Replace Missing Teeth', icon: 'gap', side: 'day', href: '/treatments/dental-implants#concern',
+    ds: 'Implants & bridges' },
+  { area: 'c3', title: 'Straighten My Teeth', icon: 'align', side: 'night', href: '/treatments/invisalign#concern',
+    ds: 'Clear aligners and discreet orthodontic options' },
+  { area: 'c4', title: 'Whiten My Smile', icon: 'sparkle', side: 'day', href: '/treatments/teeth-whitening#concern',
+    ds: 'Professional whitening for a brighter smile' },
+  { area: 'c5', title: 'Move On From Dentures', icon: 'denture', side: 'night', href: '/treatments/dental-implants#concern',
+    ds: 'Fixed, secured alternatives' },
 ];
 
 export default function ConcernsBento() {
@@ -39,7 +38,6 @@ export default function ConcernsBento() {
               <span className="bt-ic"><Icon type={c.icon} /></span>
               <span className="bt-arr" aria-hidden="true">→</span>
               <div className="bt-body">
-                <span className="bt-tag">{c.tag}</span>
                 <h3 className="bt-title">{c.title}</h3>
                 {c.lead ? <p className="bt-lead">{c.lead}</p> : <span className="bt-ds">{c.ds}</span>}
               </div>
