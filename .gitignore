@@ -50,3 +50,7 @@ hostinger/deploy-local.sh
 
 # Local FTP creds, kept in-project at owner request; gitignored so never committed
 hostinger/.deploy.env
+
+# temp: display-font trial artifacts (decide at go-live, then remove)
+public/font-trial.html
+public/fonts/trial-*.woff2
