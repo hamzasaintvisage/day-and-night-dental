@@ -187,12 +187,12 @@
         .dn-radio.checked.day {
           border-color: var(--dn-day);
           color: var(--dn-day);
-          background: rgba(212, 164, 83, 0.05);
+          background: rgba(244, 194, 74, 0.05);
         }
         .dn-radio.checked.night {
           border-color: var(--dn-night);
           color: var(--dn-night-soft);
-          background: rgba(91, 143, 191, 0.05);
+          background: rgba(74, 149, 229, 0.05);
         }
         .dn-radio.urgent {
           border-color: rgba(239, 68, 68, 0.3);

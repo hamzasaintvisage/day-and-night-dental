@@ -3,9 +3,9 @@ export default function About() {
   return (
     <section id="about" className="dn-section dn-mani">
       <div className="dn-container">
-        <span className="dn-eyebrow">Why we exist</span>
+        <span className="dn-eyebrow">Why I do this</span>
         <blockquote className="dn-mani-quote">
-          We opened for <span className="dn-mani-grad">one reason</span>. Toothache doesn&rsquo;t keep
+          I opened this practice for <span className="dn-mani-grad">one reason</span>. Toothache doesn&rsquo;t keep
           office hours,{' '}
           <span className="dn-mani-mut">and the people living with it shouldn&rsquo;t have to either.</span>
         </blockquote>

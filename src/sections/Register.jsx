@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
 import { PRACTICE } from '../data/practice';
 import { submitEnquiry, buildEnquiryExtras } from '../lib/submitEnquiry';
@@ -306,7 +306,9 @@ export default function Register() {
                         />
                         <span>
                           I’m happy for Day Night Dental to hold my information in line
-                          with their privacy policy, and to contact me about my registration.
+                          with the{' '}
+                          <Link to="/privacy" target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>privacy policy</Link>,
+                          and to contact me about my registration.
                         </span>
                       </label>
                     </div>

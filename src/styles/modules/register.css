@@ -283,12 +283,12 @@
         }
         .dn-radio-card.checked.day {
           border-color: var(--dn-day);
-          background: rgba(212, 164, 83, 0.05);
+          background: rgba(244, 194, 74, 0.05);
         }
         .dn-radio-card.checked.day .title { color: var(--dn-day); }
         .dn-radio-card.checked.night {
           border-color: var(--dn-night);
-          background: rgba(91, 143, 191, 0.05);
+          background: rgba(74, 149, 229, 0.05);
         }
         .dn-radio-card.checked.night .title { color: var(--dn-night-soft); }
 

@@ -15,6 +15,26 @@ const breadcrumbLd = {
   ],
 }
 
+// The Dentist entity with the areas it serves (this page's whole point); ties back
+// to the single business node on the homepage by @id.
+const dentistLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  '@id': `${SITE}/#dentist`,
+  name: PRACTICE.name,
+  url: `${SITE}/`,
+  telephone: PRACTICE.phoneE164,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: PRACTICE.streetAddress,
+    addressLocality: PRACTICE.city,
+    addressRegion: PRACTICE.region,
+    postalCode: PRACTICE.postcode,
+    addressCountry: PRACTICE.country,
+  },
+  areaServed: AREAS_SERVED.map((a) => ({ '@type': 'Place', name: a })),
+}
+
 const areas = [
   { name: 'Merchant City', note: 'This is our home. We’re in central Glasgow, right by Queen Street station, the Trongate and George Square.' },
   { name: 'Glasgow City Centre', note: 'Minutes from Buchanan Street, St Enoch and the main office districts.' },
@@ -28,7 +48,7 @@ export default function AreasServed() {
   return (
     <>
       <Head>
-        <title>Glasgow &amp; Merchant City Dentist | Day Night Dental</title>
+        <title>Areas We Serve in Glasgow | Day Night Dental</title>
         <meta name="description" content="Day Night Dental serves Merchant City and all of Glasgow, from the city centre to the West End. 24/7 emergency and cosmetic dentistry in Glasgow." />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="website" />
@@ -45,6 +65,7 @@ export default function AreasServed() {
       </Head>
       <Head>
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
