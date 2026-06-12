@@ -144,6 +144,13 @@ export default function Contact() {
 
           {/* Right, form */}
           <div className="dn-contact-form-wrap">
+              <noscript>
+                <p className="dn-form-error">
+                  This form needs JavaScript. Please call us on{' '}
+                  <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a> or email{' '}
+                  <a href={`mailto:${PRACTICE.email}`}>{PRACTICE.email}</a> and we’ll help straight away.
+                </p>
+              </noscript>
               <form
                 className="dn-contact-form"
                 onSubmit={onSubmit}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Head } from 'vite-react-ssg'
 import { PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
@@ -36,6 +36,24 @@ const faqLd = {
 
 export default function HomeFaq() {
   const [active, setActive] = useState(0)
+  const tabRefs = useRef([])
+
+  // Roving-tabindex keyboard support for the vertical tablist (WAI-ARIA tabs,
+  // automatic activation). Arrow keys move + select; Home/End jump to ends.
+  const onKeyDown = (e) => {
+    const last = faqs.length - 1
+    let next = null
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = active === last ? 0 : active + 1
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = active === 0 ? last : active - 1
+    else if (e.key === 'Home') next = 0
+    else if (e.key === 'End') next = last
+    if (next !== null) {
+      e.preventDefault()
+      setActive(next)
+      tabRefs.current[next]?.focus()
+    }
+  }
+
   return (
     <section className="dn-section tp-faq dn-faq">
       <Head>
@@ -51,16 +69,19 @@ export default function HomeFaq() {
             mobile to a wrapped row of questions + the card below. All answers are
             rendered (only the active shown) so search engines read every Q&A. */}
         <div className="dn-faq-side">
-          <div className="dn-faq-nav" role="tablist" aria-label="Common questions">
+          <div className="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical" onKeyDown={onKeyDown}>
             {faqs.map((f, i) => (
               <button
                 key={i}
                 type="button"
                 role="tab"
+                id={`faq-tab-${i}`}
+                ref={(el) => { tabRefs.current[i] = el }}
                 aria-selected={active === i}
+                aria-controls={`faq-panel-${i}`}
+                tabIndex={active === i ? 0 : -1}
                 className={`dn-faq-q ${active === i ? 'on' : ''}`}
                 onClick={() => setActive(i)}
-                onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
               >
                 {f.q}
@@ -69,7 +90,14 @@ export default function HomeFaq() {
           </div>
           <div className="dn-faq-panel">
             {faqs.map((f, i) => (
-              <div key={i} className={`dn-faq-a ${active === i ? 'on' : ''}`}>
+              <div
+                key={i}
+                role="tabpanel"
+                id={`faq-panel-${i}`}
+                aria-labelledby={`faq-tab-${i}`}
+                tabIndex={0}
+                className={`dn-faq-a ${active === i ? 'on' : ''}`}
+              >
                 <h3 className="q">{f.q}</h3>
                 <p className="a">{f.a}</p>
               </div>

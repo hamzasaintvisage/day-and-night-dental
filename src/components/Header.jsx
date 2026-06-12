@@ -73,6 +73,7 @@ export default function Header() {
 
           <button
             ref={burgerRef}
+            type="button"
             className="dn-burger"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}

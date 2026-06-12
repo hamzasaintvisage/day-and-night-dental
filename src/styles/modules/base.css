@@ -11,6 +11,13 @@ html {
   scroll-padding-top: 6rem;
 }
 
+/* Windows High Contrast / forced-colors mode: gradient-clipped headings set a
+   transparent -webkit-text-fill-color and would otherwise disappear. Restoring
+   currentColor brings them back, and is a no-op for normal text (already currentColor). */
+@media (forced-colors: active) {
+  * { -webkit-text-fill-color: currentColor !important; }
+}
+
 body, .dn-root {
   background: var(--dn-black);
   color: var(--dn-bone);

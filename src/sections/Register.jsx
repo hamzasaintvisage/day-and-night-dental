@@ -169,6 +169,13 @@ export default function Register() {
 
           {/* Right, multi-step form */}
           <div className="dn-register-form-wrap">
+              <noscript>
+                <p className="dn-form-error">
+                  This registration form needs JavaScript. Please call us on{' '}
+                  <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a> or email{' '}
+                  <a href={`mailto:${PRACTICE.email}`}>{PRACTICE.email}</a> to register.
+                </p>
+              </noscript>
               <form
                 className="dn-register-form"
                 onSubmit={onSubmit}
