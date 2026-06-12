@@ -22,7 +22,7 @@ export default function Register() {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const submittingRef = useRef(false); // synchronous guard: blocks rapid double/triple-clicks
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -66,22 +66,25 @@ export default function Register() {
     if (submittingRef.current) return; // a submit is already in flight; ignore repeat clicks
     submittingRef.current = true;
     setSubmitting(true);
-    setError(false);
+    setError('');
     const botField = e.target['bot-field']?.value || '';
     const extras = buildEnquiryExtras(loadedAt.current, botField);
 
     // Submit to the email pipeline (/api/send-enquiry). Route to the welcome page on
-    // success; on any failure show the "please call us" error.
+    // success; on failure surface the server's own reason, with the "call us" fallback.
+    let msg = 'Sorry, something went wrong sending your registration.';
     try {
       const res = await submitEnquiry('register', form, extras);
       if (res.ok) {
-        navigate('/registered', { state: { firstName: form.firstName } });
+        navigate('/registered', { state: { submitted: true, firstName: form.firstName } });
         return;
       }
-    } catch { /* network error -> error state below */ }
+      const data = await res.json().catch(() => null);
+      if (data?.error) msg = data.error;
+    } catch { msg = 'Sorry, we couldn’t reach our booking system.'; }
     submittingRef.current = false;
     setSubmitting(false);
-    setError(true);
+    setError(msg);
   };
 
   // Gate step 1 on a real email format (not just presence), so a typo is caught here with a
@@ -303,7 +306,7 @@ export default function Register() {
 
                     {error && (
                       <p className="dn-form-error" role="alert">
-                        Sorry, something went wrong sending your registration. Please try again, or call us on{' '}
+                        {error} Please try again, or call us on{' '}
                         <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a>.
                       </p>
                     )}

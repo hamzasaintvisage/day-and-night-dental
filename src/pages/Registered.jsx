@@ -1,18 +1,23 @@
 import { useEffect } from 'react'
 import { Head } from 'vite-react-ssg'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import FormSuccess from '../components/FormSuccess'
 import { SITE } from '../data/practice'
 
 export default function Registered() {
   const { state } = useLocation()
+  const navigate = useNavigate()
+  const submitted = state?.submitted
   const firstName = state?.firstName
 
   useEffect(() => {
-    // Conversion events, no-op until analytics loads (after cookie consent).
+    // Only a real registration lands here with state.submitted. A direct hit,
+    // refresh or shared link has no state: send them home rather than show a false
+    // confirmation, and never fire a phantom conversion event.
+    if (!submitted) { navigate('/', { replace: true }); return }
     window.gtag?.('event', 'sign_up', { method: 'patient_registration' })
     window.fbq?.('track', 'CompleteRegistration')
-  }, [])
+  }, [submitted, navigate])
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import MobileMenu from './MobileMenu';
 import { PRACTICE } from '../data/practice';
 
@@ -45,17 +45,17 @@ export default function Header() {
     <>
       <header className={`dn-header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="dn-header-inner">
-          <a href="/" className="dn-header-logo" aria-label="Day Night Dental home">
+          <Link to="/" className="dn-header-logo" aria-label="Day Night Dental home">
             <img src="/logo-mark.png" className="dn-header-mark" alt="" width="280" height="243" />
             <div className="dn-header-wordmark">
               <span className="name"><span className="day">Day</span><span className="night">Night</span></span>
               <span className="sub">DENTAL</span>
             </div>
-          </a>
+          </Link>
 
           <nav className="dn-header-nav">
             {navItems.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
+              <Link key={item.href} to={item.href}>{item.label}</Link>
             ))}
           </nav>
 
@@ -64,11 +64,11 @@ export default function Header() {
               <span className="dot" />
               {PRACTICE.phoneDisplay}
             </a>
-            <a href="/#contact" className="dn-btn primary dn-btn-emergency">
+            <Link to="/#contact" className="dn-btn primary dn-btn-emergency">
               <span className="dn-btn-pulse" />
               Emergency Booking
               <span className="arrow">→</span>
-            </a>
+            </Link>
           </div>
 
           <button

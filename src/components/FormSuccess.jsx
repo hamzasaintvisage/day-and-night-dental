@@ -42,17 +42,13 @@ export default function FormSuccess({ eyebrow, heading, lead, steps = [], childr
 
           {links.length > 0 && (
             <div className="dn-success-links">
-              {links.map((l) =>
-                l.to ? (
-                  <Link key={l.label} to={l.to} className={l.primary ? 'dn-btn primary' : 'dn-btn'}>
-                    {l.label}{l.primary && <span className="arrow"> →</span>}
-                  </Link>
-                ) : (
-                  <a key={l.label} href={l.href} className={l.primary ? 'dn-btn primary' : 'dn-btn'}>
-                    {l.label}
-                  </a>
-                )
-              )}
+              {links.map((l) => (
+                // All targets are in-app routes/hashes; Link keeps it an SPA nav and
+                // lets Layout's hash-scroll handler take over (no full page reload).
+                <Link key={l.label} to={l.to || l.href} className={l.primary ? 'dn-btn primary' : 'dn-btn'}>
+                  {l.label}{l.primary && <span className="arrow"> →</span>}
+                </Link>
+              ))}
             </div>
           )}
         </div>

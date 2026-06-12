@@ -13,7 +13,7 @@ export default function Contact() {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
   const submittingRef = useRef(false); // synchronous guard: blocks rapid double/triple-clicks
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -36,22 +36,26 @@ export default function Contact() {
     if (submittingRef.current) return; // a submit is already in flight; ignore repeat clicks
     submittingRef.current = true;
     setSubmitting(true);
-    setError(false);
+    setError('');
     const botField = e.target['bot-field']?.value || '';
     const extras = buildEnquiryExtras(loadedAt.current, botField);
 
     // Submit to the email pipeline (/api/send-enquiry). Route to thank-you on success;
-    // on any failure show the "please call us" error so an enquiry is never lost silently.
+    // on failure surface the server's own reason (rate limit, validation, etc.) so the
+    // visitor knows what to fix, with the "call us" fallback so an enquiry is never lost.
+    let msg = 'Sorry, something went wrong sending your request.';
     try {
       const res = await submitEnquiry('contact', form, extras);
       if (res.ok) {
-        navigate('/thank-you', { state: { firstName: (form.name || '').split(' ')[0] } });
+        navigate('/thank-you', { state: { submitted: true, firstName: (form.name || '').split(' ')[0] } });
         return;
       }
-    } catch { /* network error -> error state below */ }
+      const data = await res.json().catch(() => null);
+      if (data?.error) msg = data.error;
+    } catch { msg = 'Sorry, we couldn’t reach our booking system.'; }
     submittingRef.current = false;
     setSubmitting(false);
-    setError(true);
+    setError(msg);
   };
 
   return (
@@ -223,7 +227,7 @@ export default function Contact() {
 
                 {error && (
                   <p className="dn-form-error" role="alert">
-                    Sorry, something went wrong sending your request. Please try again, or call us now on{' '}
+                    {error} Please try again, or call us now on{' '}
                     <a href={`tel:${PRACTICE.phoneE164}`}>{PRACTICE.phoneDisplay}</a>.
                   </p>
                 )}
