@@ -6,6 +6,7 @@ import Footer from './Footer'
 import MobileCallBar from './MobileCallBar'
 import CookieConsent from './CookieConsent'
 import Analytics from './Analytics'
+import ErrorBoundary from './ErrorBoundary'
 import { PRACTICE, SITE } from '../data/practice'
 
 // Shared chrome for every route: noise overlay, sticky header, footer, mobile call bar.
@@ -71,7 +72,9 @@ export default function Layout() {
       <div className="dn-noise" />
       <Header />
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        <ErrorBoundary key={pathname}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
       <Footer />
       <MobileCallBar />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from './Concerns';
+import { Icon } from '../components/ConcernIcon';
 
 // Maps the homepage treatment ids to their dedicated treatment-page slugs.
 const slugMap = {

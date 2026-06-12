@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Icon } from './Concerns';
+import { Icon } from '../components/ConcernIcon';
 import './concerns-bento.css';
 
 // "Option B", bento layout: one featured hero tile + asymmetric mix, everything visible.
