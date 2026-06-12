@@ -45,6 +45,8 @@ export default function Layout() {
     <div className="dn-root">
       {/* Site-wide geo signals (consumed by Bing + citation parsers) */}
       <Head>
+        {/* Default robots for indexable routes; noindex pages (thank-you/registered) override by name. */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="geo.region" content="GB-GLG" />
         <meta name="geo.placename" content="Merchant City, Glasgow" />
         <meta name="geo.position" content={`${PRACTICE.geo.lat};${PRACTICE.geo.lng}`} />

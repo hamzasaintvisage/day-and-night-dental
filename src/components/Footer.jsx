@@ -28,7 +28,7 @@ export default function Footer() {
 
         <div className="dn-footer-cols">
           <div className="dn-footer-col">
-            <h2 className="dn-eyebrow day">Treatments</h2>
+            <p className="dn-eyebrow day">Treatments</p>
             <ul>
               <li><Link to="/treatments/general-dentistry">General Dentistry</Link></li>
               <li><Link to="/treatments/cosmetic-dentistry">Cosmetic Dentistry</Link></li>
@@ -40,9 +40,10 @@ export default function Footer() {
           </div>
 
           <div className="dn-footer-col">
-            <h2 className="dn-eyebrow night">Practice</h2>
+            <p className="dn-eyebrow night">Practice</p>
             <ul>
               <li><Link to="/our-team">Our Team</Link></li>
+              <li><Link to="/areas-served">Areas We Serve</Link></li>
               <li><Link to="/register-as-patient">Register as Patient</Link></li>
               <li><a href="/#testimonials">Reviews</a></li>
               <li><a href="/#contact">Contact</a></li>
@@ -53,7 +54,7 @@ export default function Footer() {
           </div>
 
           <div className="dn-footer-col">
-            <h2 className="dn-eyebrow">Visit Us</h2>
+            <p className="dn-eyebrow">Visit Us</p>
             <address>
               {PRACTICE.streetAddress}<br />
               {PRACTICE.locality}, {PRACTICE.city} {PRACTICE.postcode}
