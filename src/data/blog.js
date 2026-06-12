@@ -152,9 +152,11 @@ export const posts = [
       ] },
       { heading: 'Being seen tonight in Glasgow', paragraphs: [
         'Day Night Dental runs a 24-hour emergency helpline from our Merchant City practice, with same-day appointments held back every day for exactly these moments. Rather than waiting for an NHS out-of-hours slot that may be miles away, you can call for urgent help straight away.',
+        'If you cannot reach us, NHS 24 on 111 can also advise on urgent and out-of-hours dental care, and tell you where to go if you need it.',
       ] },
       { heading: 'What to do while you wait', paragraphs: [
         'For pain, an over-the-counter painkiller you normally tolerate can help, and a cold compress against the cheek may ease swelling. For a knocked-out adult tooth, hold it by the crown, avoid touching the root, and keep it in milk or saliva until you reach us.',
+        'A knocked-out baby (milk) tooth is different: do not try to put it back, as that can damage the adult tooth forming underneath. Keep your child calm and call us for advice.',
       ] },
     ],
     related: ['emergency-dentist', 'general-dentistry'],
