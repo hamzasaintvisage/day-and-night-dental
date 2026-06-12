@@ -159,9 +159,13 @@
           font-size: 2rem;
           font-weight: 700;
           font-style: normal;
+          /* same gold->blue gradient as every other number badge (site-wide consistency) */
+          background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
         }
-        .dn-pillar-num.day { color: var(--dn-day); }
-        .dn-pillar-num.night { color: var(--dn-night); }
         .dn-pillar h3 {
           font-family: var(--font-display);
           font-size: 1.05rem;

@@ -6,7 +6,7 @@ import './journey.css';
 export default function Journey() {
   const tel = `tel:${PRACTICE.phoneE164}`;
   return (
-    <section id="how-it-works" className="dn-journey">
+    <section id="how-it-works" className="dn-section dn-journey">
       <div className="dn-journey-inner">
         <span className="dn-journey-eyebrow">What to expect when you call</span>
         <h2 className="dn-journey-head">
