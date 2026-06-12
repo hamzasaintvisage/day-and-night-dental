@@ -310,6 +310,7 @@
           .dn-header-nav { display: none; }
           .dn-burger { display: block; }
           .dn-header-phone { display: none; }
+          .dn-header-cta { display: none; }
         }
         @media (min-width: 1101px) {
           .dn-mobile-menu { display: none; }

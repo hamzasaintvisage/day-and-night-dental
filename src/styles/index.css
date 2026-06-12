@@ -1,11 +1,6 @@
-/* Day Night Dental global styles.
-   Split from the former single global.css into ordered modules.
-
-   IMPORT ORDER IS LOAD-BEARING. The cascade depends on source order:
-   duplicate selectors across sections (.dn-form-error, .dn-success-mark,
-   .dn-form-row-2, .dn-form-radios), a shared hover-card @media block in
-   components.css, and the final responsive-fixes.css override
-   (.dn-header-cta display:none, footer columns). Do NOT reorder these. */
+/* Day Night Dental global styles — 19 ordered modules.
+   Responsive overrides live inside each module's own @media blocks;
+   there are no cross-file cascade dependencies. Reordering is safe. */
 @import url('./modules/tokens.css');
 @import url('./modules/base.css');
 @import url('./modules/buttons.css');
@@ -24,4 +19,3 @@
 @import url('./modules/team.css');
 @import url('./modules/contact.css');
 @import url('./modules/footer.css');
-@import url('./modules/responsive-fixes.css');
