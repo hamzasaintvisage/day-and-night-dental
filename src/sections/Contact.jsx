@@ -18,7 +18,7 @@ export default function Contact() {
     name: '',
     phone: '',
     email: '',
-    preference: 'emergency',
+    preference: '',
     treatment: '',
     notes: '',
   });

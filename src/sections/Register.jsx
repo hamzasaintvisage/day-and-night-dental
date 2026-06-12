@@ -157,12 +157,8 @@ export default function Register() {
               </ul>
 
               <div className="dn-register-aside-foot">
-                <div className="dn-register-price">
-                  <span className="label">First visit from</span>
-                  <span className="amount"><span className="currency">£</span>95</span>
-                </div>
                 <p className="dn-register-aside-note">
-                  NHS care is available when we have space. Children under 18 are examined free.
+                  We confirm the cost of your first visit before anything goes ahead, so there are no surprises. NHS care is available when we have space, and children under 18 are examined free.
                 </p>
               </div>
             </div>

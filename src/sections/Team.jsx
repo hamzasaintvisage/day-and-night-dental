@@ -3,9 +3,9 @@
 // Three dentists max (owner). Replace bracketed names/roles + add real photos and
 // GDC numbers before go-live, these are placeholders.
 export const team = [
-  { name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day' },
-  { name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'night' },
-  { name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'day' },
+  { id: 'principal', name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day' },
+  { id: 'dentist-2', name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'night' },
+  { id: 'dentist-3', name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'day' },
 ]
 
 export function AvatarSvg() {
@@ -44,7 +44,7 @@ export default function Team() {
 
         <div className="dn-team-grid">
           {team.map((member) => (
-            <article key={member.name} className="dn-team-card">
+            <article key={member.id} className="dn-team-card">
               <Portrait side={member.side} />
               <div className="dn-team-info">
                 <span className={`dn-eyebrow ${member.side}`}>{member.role}</span>

@@ -12,9 +12,9 @@ export default function About() {
         <div className="dn-mani-by">Day Night Dental &middot; Merchant City, Glasgow</div>
         <p className="dn-mani-body">
           We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
-          weekends, with a 24-hour line for emergencies. A routine check-up, a cosmetic consultation, or
-          urgent help when you need it &mdash; you shouldn&rsquo;t have to book time off work just to look
-          after your teeth.
+          weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+          consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+          to look after your teeth.
         </p>
         <div className="dn-mani-pills">
           <span className="dn-mani-pill"><span className="dot day" />Before the school run</span>

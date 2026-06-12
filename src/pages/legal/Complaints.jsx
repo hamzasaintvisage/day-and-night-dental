@@ -11,7 +11,7 @@ export default function Complaints() {
       intro="We aim to give every patient excellent care and a friendly, professional service. If something has not met your expectations, please tell us. We take all concerns seriously and use them to improve."
       sections={[
         { h: 'How to raise a complaint', body: [
-          `You can speak to any member of the team, or contact our Complaints Manager, [Name], by phone on ${PRACTICE.phoneDisplay} or by email at ${PRACTICE.email}. You can also write to us at ${PRACTICE.streetAddress}, ${PRACTICE.locality}, ${PRACTICE.city}, ${PRACTICE.postcode}.`,
+          `You can speak to any member of the team, or contact our Complaints Manager by phone on ${PRACTICE.phoneDisplay} or by email at ${PRACTICE.email}. You can also write to us at ${PRACTICE.streetAddress}, ${PRACTICE.locality}, ${PRACTICE.city}, ${PRACTICE.postcode}.`,
           'You can raise a concern on behalf of someone else with their consent.',
         ] },
         { h: 'What happens next', body: [

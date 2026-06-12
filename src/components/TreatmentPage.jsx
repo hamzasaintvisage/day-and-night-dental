@@ -135,13 +135,22 @@ export default function TreatmentPage({ data }) {
               <h1 className="dn-display">{data.title}</h1>
               {data.lastReviewedLabel && (
                 <p className="tp-byline">
-                  Clinically reviewed{data.reviewer ? <> by <strong>{data.reviewer}</strong></> : ''} · Last updated {data.lastReviewedLabel}
+                  {data.reviewer ? <>Clinically reviewed by <strong>{data.reviewer}</strong> · </> : ''}Last updated {data.lastReviewedLabel}
                 </p>
               )}
               <p className="lead">{data.lead}</p>
               <div className="tp-hero-actions">
-                <a href="/#contact" className="dn-btn primary">{data.ctaPrimaryLabel || 'Book a Consultation'}<span className="arrow">→</span></a>
-                <a href={`tel:${PRACTICE.phoneE164}`} className="tp-hero-ghost">Or call {PRACTICE.phoneDisplay}<span aria-hidden="true">→</span></a>
+                {data.emergency ? (
+                  <>
+                    <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency"><span className="dn-btn-pulse" aria-hidden="true" />Call {PRACTICE.phoneDisplay}<span className="arrow">→</span></a>
+                    <a href="/#contact" className="tp-hero-ghost">Or request a callback<span aria-hidden="true">→</span></a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/#contact" className="dn-btn primary">{data.ctaPrimaryLabel || 'Book a Consultation'}<span className="arrow">→</span></a>
+                    <a href={`tel:${PRACTICE.phoneE164}`} className="tp-hero-ghost">Or call {PRACTICE.phoneDisplay}<span aria-hidden="true">→</span></a>
+                  </>
+                )}
               </div>
             </div>
             <HeroMark side={data.side} />
@@ -191,7 +200,7 @@ export default function TreatmentPage({ data }) {
             <div className="tp-overview-grid">
               <div className="tp-prose">
                 <div className="tp-section-head">
-                  <span className="dn-eyebrow night">, , , Is This You?, , , </span>
+                  <span className="dn-eyebrow night">Is This You?</span>
                   <h2 className="dn-display">{data.concern.heading}</h2>
                 </div>
                 {data.concern.body.map((p, i) => <p key={i}>{p}</p>)}
@@ -294,8 +303,17 @@ export default function TreatmentPage({ data }) {
           <h2 className="dn-display">{data.cta.heading}</h2>
           <p>{data.cta.sub}</p>
           <div className="tp-cta-actions">
-            <a href="/#contact" className="dn-btn primary">Request an Appointment<span className="arrow">→</span></a>
-            <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn">Call {PRACTICE.phoneDisplay}</a>
+            {data.emergency ? (
+              <>
+                <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency"><span className="dn-btn-pulse" aria-hidden="true" />Call {PRACTICE.phoneDisplay}<span className="arrow">→</span></a>
+                <a href="/#contact" className="dn-btn">Request an appointment</a>
+              </>
+            ) : (
+              <>
+                <a href="/#contact" className="dn-btn primary">Request an Appointment<span className="arrow">→</span></a>
+                <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn">Call {PRACTICE.phoneDisplay}</a>
+              </>
+            )}
           </div>
         </div>
       </section>

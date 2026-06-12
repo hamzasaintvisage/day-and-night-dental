@@ -7,6 +7,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  /* keep in-page #anchor targets clear of the fixed header */
+  scroll-padding-top: 6rem;
 }
 
 body, .dn-root {

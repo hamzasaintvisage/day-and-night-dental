@@ -1,6 +1,7 @@
 import TreatmentPage from '../../components/TreatmentPage'
 
 const data = {
+  emergency: true,
   ctaPrimaryLabel: 'Book Emergency Appointment',
   lastReviewed: '2026-06-08',
   lastReviewedLabel: 'June 2026',

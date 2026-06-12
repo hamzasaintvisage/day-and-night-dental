@@ -64,20 +64,21 @@
   transform: translateX(4px);
 }
 
-/* Emergency CTA, solid red, unmissable */
+/* Emergency CTA, solid red, unmissable. #dc2626 on #fff = 4.83:1 (WCAG AA);
+   the hover gradient stays in the dark-red range so contrast holds throughout. */
 .dn-btn-emergency {
   position: relative;
-  background: #ef4444 !important;
-  border-color: #ef4444 !important;
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
   color: #ffffff !important;
   padding-left: 2.75rem;
 }
 .dn-btn-emergency::before {
-  background: linear-gradient(90deg, #dc2626, #ef4444) !important;
+  background: linear-gradient(90deg, #b91c1c, #dc2626) !important;
 }
 .dn-btn-emergency:hover {
   color: #ffffff !important;
-  border-color: #dc2626 !important;
+  border-color: #b91c1c !important;
 }
 .dn-btn-pulse {
   position: absolute;

@@ -8,16 +8,21 @@ const OG_IMAGE = `${SITE}/og-image.jpg`
 
 // Person schema per clinician (E-E-A-T for a medical site). Real names + GDC
 // numbers go in src/sections/Team.jsx; add `gdc` to a member to emit it here.
-const teamLd = {
-  '@context': 'https://schema.org',
-  '@graph': team.map((m) => ({
-    '@type': 'Person',
-    name: m.name,
-    jobTitle: m.role,
-    worksFor: { '@id': `${SITE}/#dentist` },
-    ...(m.gdc ? { identifier: { '@type': 'PropertyValue', propertyID: 'GDC', value: m.gdc } } : {}),
-  })),
-}
+// Placeholder entries (names like "[Principal Name]") are suppressed so no
+// unfinished identity reaches Google; the node appears once a real name lands.
+const realTeam = team.filter((m) => !/\[.*\]/.test(m.name))
+const teamLd = realTeam.length
+  ? {
+      '@context': 'https://schema.org',
+      '@graph': realTeam.map((m) => ({
+        '@type': 'Person',
+        name: m.name,
+        jobTitle: m.role,
+        worksFor: { '@id': `${SITE}/#dentist` },
+        ...(m.gdc ? { identifier: { '@type': 'PropertyValue', propertyID: 'GDC', value: m.gdc } } : {}),
+      })),
+    }
+  : null
 
 export default function OurTeam() {
   return (
@@ -38,9 +43,11 @@ export default function OurTeam() {
         <meta name="twitter:title" content="Our Team | Day Night Dental, Glasgow" />
         <meta name="twitter:description" content="Meet the GDC-registered team behind Day Night Dental, Glasgow." />
       </Head>
-      <Head>
-        <script type="application/ld+json">{JSON.stringify(teamLd)}</script>
-      </Head>
+      {teamLd && (
+        <Head>
+          <script type="application/ld+json">{JSON.stringify(teamLd)}</script>
+        </Head>
+      )}
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
         <div className="dn-container">
@@ -56,7 +63,7 @@ export default function OurTeam() {
       <section className="dn-section tp-cta">
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow">, , , Become a Patient, , , </span>
+          <span className="dn-eyebrow">Become a Patient</span>
           <h2 className="dn-display">Care from a team that <em>knows you</em></h2>
           <p>Register today and you'll see the same friendly faces every time you visit.</p>
           <div className="tp-cta-actions">
