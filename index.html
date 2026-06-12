@@ -23,6 +23,7 @@
 
 
     <!-- Icons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -30,8 +31,8 @@
 
     <!-- Self-hosted variable fonts (same origin, no Google round-trip), preloaded for fast text render -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/plus-jakarta-sans.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-tight.woff2" />
+    <!-- Font preloads are injected by the build (beasties) from the inlined critical CSS;
+         no static duplicates here (avoids double-preloading each woff2). -->
 
     <!-- Per-route <title>/meta are injected by vite-react-ssg <Head>; no static title here to avoid duplicates. -->
   </head>

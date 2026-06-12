@@ -6,7 +6,7 @@ import Footer from './Footer'
 import MobileCallBar from './MobileCallBar'
 import CookieConsent from './CookieConsent'
 import Analytics from './Analytics'
-import { PRACTICE } from '../data/practice'
+import { PRACTICE, SITE } from '../data/practice'
 
 // Shared chrome for every route: noise overlay, sticky header, footer, mobile call bar.
 // Handles scroll-to-top on navigation and smooth-scroll to #hash targets.
@@ -51,6 +51,21 @@ export default function Layout() {
         <meta name="geo.placename" content="Merchant City, Glasgow" />
         <meta name="geo.position" content={`${PRACTICE.geo.lat};${PRACTICE.geo.lng}`} />
         <meta name="ICBM" content={`${PRACTICE.geo.lat}, ${PRACTICE.geo.lng}`} />
+        {/* OG/Twitter defaults so every route (incl. legal pages) unfurls with a card.
+            Pages with their own Head override og:title/description/url + twitter:title/description. */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Day Night Dental" />
+        <meta property="og:locale" content="en_GB" />
+        <meta property="og:title" content="Day Night Dental — 24/7 emergency &amp; cosmetic dentist, Glasgow" />
+        <meta property="og:description" content="A 24/7 emergency and cosmetic dental practice in Merchant City, Glasgow. Same-day emergency care, Invisalign, implants and whitening." />
+        <meta property="og:image" content={`${SITE}/og-image.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Day Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Day Night Dental — 24/7 emergency &amp; cosmetic dentist, Glasgow" />
+        <meta name="twitter:description" content="A 24/7 emergency and cosmetic dental practice in Merchant City, Glasgow." />
+        <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
       </Head>
       <a href="#main" className="dn-skip-link">Skip to main content</a>
       <div className="dn-noise" />

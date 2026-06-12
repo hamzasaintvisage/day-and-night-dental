@@ -22,7 +22,7 @@ const data = {
   seo: {
     title: 'Invisalign in Glasgow | Clear Aligners, Day Night Dental',
     description:
-      'Straighten your teeth discreetly with Invisalign clear aligners at Day Night Dental in Glasgow. With a 3D digital preview of your results. Day and evening appointments, seven days a week.',
+      'Straighten your teeth discreetly with Invisalign clear aligners at Day Night Dental in Glasgow. 3D digital preview, day and evening appointments.',
   },
   meta: [
     { k: 'Treatment time', v: '6 to 18 months', tone: 'day' },

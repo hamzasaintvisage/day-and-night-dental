@@ -97,7 +97,7 @@ export const posts = [
   },
   {
     slug: 'teeth-whitening-professional-vs-home-glasgow',
-    title: 'Professional teeth whitening vs home kits: what actually works',
+    title: 'Professional teeth whitening vs home kits: what actually works in Glasgow',
     description: 'Whitening strips, charcoal, dentist treatments. Here is what really lightens teeth safely, what is a waste of money, and what teeth whitening costs in Glasgow.',
     date: '9 June 2026',
     dateISO: '2026-06-09',
@@ -184,7 +184,7 @@ export const posts = [
   },
   {
     slug: 'invisalign-vs-braces',
-    title: 'Invisalign vs braces: which is right for you?',
+    title: 'Invisalign vs braces in Glasgow: which is right for you?',
     description: 'Clear aligners or fixed braces? A straightforward comparison to help you choose how to straighten your teeth in Glasgow.',
     date: '8 June 2026',
     dateISO: '2026-06-08',
