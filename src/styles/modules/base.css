@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body, .dn-root {
+  background: var(--dn-black);
+  color: var(--dn-bone);
+  overflow-x: clip;
+  max-width: 100%;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+.dn-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.dn-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dn-bone-dim);
+}
+
+.dn-eyebrow.day { color: var(--dn-day); }
+.dn-eyebrow.night { color: var(--dn-night); }
+
+/* The signature gradient, gold to blue, the entire brand in one line */
+
+/* Inline emphasis treatment, replaces the old italic em styling.
+   Now: bold weight + gradient color, no italic. */
+.dn-display em {
+  font-style: normal;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+

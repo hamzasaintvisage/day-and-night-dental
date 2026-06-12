@@ -1,0 +1,105 @@
+/* ============================================
+   LAYOUT
+   ============================================ */
+
+.dn-container {
+  width: var(--container);
+  margin: 0 auto;
+}
+
+.dn-section {
+  padding-block: var(--space-section);
+  position: relative;
+}
+
+/* Hairline divider, the gold/blue split that runs through the brand */
+.dn-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--dn-day) 30%, var(--dn-day) 50%, var(--dn-night) 50%, var(--dn-night) 70%, transparent 100%);
+  opacity: 0.5;
+  width: 100%;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes dn-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dn-glow-day {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes dn-glow-night {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes dn-rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.dn-reveal {
+  animation: dn-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Stagger helpers */
+.dn-delay-1 { animation-delay: 0.1s; }
+.dn-delay-2 { animation-delay: 0.25s; }
+.dn-delay-3 { animation-delay: 0.4s; }
+.dn-delay-4 { animation-delay: 0.55s; }
+.dn-delay-5 { animation-delay: 0.7s; }
+
+/* ============================================
+   ATMOSPHERIC BACKGROUND ELEMENTS
+   ============================================ */
+
+.dn-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dn-glow.day {
+  background: radial-gradient(circle, var(--dn-day) 0%, transparent 70%);
+  animation: dn-glow-day 8s ease-in-out infinite;
+}
+
+.dn-glow.night {
+  background: radial-gradient(circle, var(--dn-night) 0%, transparent 70%);
+  animation: dn-glow-night 8s ease-in-out infinite;
+}
+
+/* Noise texture overlay, gives the black depth */
+.dn-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --space-section: 4rem;
+  }
+}
+

@@ -1,0 +1,47 @@
+/* self-hosted variable fonts */
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/plus-jakarta-sans.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/inter-tight.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+
+/* ===========================================================
+   Day Night Dental, Global design system (Vite build)
+   Part A: brand tokens, typography, buttons, layout, atmosphere
+   Part B: treatment-page (tp-*) styles for dedicated routes
+   (Header/Footer carry their own component-scoped styles.)
+   =========================================================== */
+
+/* ============================================
+   Day Night Dental, Core Stylesheet
+   Updated to match the bolder revised brand mark.
+   ============================================ */
+
+/* Fonts are loaded non-blocking via <link> in index.html (faster LCP), no @import here. */
+
+:root {
+  /* Brand palette, refreshed to match the brighter, bolder logo */
+  --dn-black: #000000;
+  --dn-near-black: #0a0a0c;
+  --dn-charcoal: #14141a;
+  --dn-graphite: #1f1f28;
+  --dn-mist: #2a2a35;
+
+  --dn-day: #F4C24A;          /* Punchy sun yellow, the day side */
+  --dn-day-soft: #FFD66D;
+  --dn-day-deep: #C7991E;
+
+  --dn-night: #4A95E5;        /* Confident sky blue, the night side */
+  --dn-night-soft: #7DB5F0;
+  --dn-night-deep: #2A6BB5;
+
+  --dn-bone: #FFFFFF;         /* Crisp white, matches logo's DENTAL text */
+  --dn-bone-dim: rgba(255, 255, 255, 0.72);
+  --dn-bone-faint: rgba(255, 255, 255, 0.55);
+
+  /* Typography, Plus Jakarta Sans for display, Inter Tight for body */
+  --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-body: 'Inter Tight', -apple-system, sans-serif;
+
+  /* Spacing rhythm */
+  --space-section: clamp(3.25rem, 8vw, 8rem);
+  --container: min(1320px, 92vw);
+}
+
