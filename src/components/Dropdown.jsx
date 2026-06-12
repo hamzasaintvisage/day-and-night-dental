@@ -100,6 +100,10 @@ export default function Dropdown({ name, value, onChange, options, placeholder =
       {open && (
         <ul id={`${baseId}-list`} className="dn-dropdown-list" role="listbox" tabIndex={-1}>
           {options.map((opt, i) => (
+            // Keyboard handling lives on the trigger button (aria-activedescendant
+            // listbox pattern): options are navigated by arrow keys + Enter there and
+            // are deliberately not individually focusable. onClick is the mouse path.
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
               key={opt.value}
               id={`${baseId}-opt-${i}`}

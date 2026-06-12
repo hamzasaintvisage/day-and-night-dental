@@ -69,7 +69,7 @@ export default function HomeFaq() {
             mobile to a wrapped row of questions + the card below. All answers are
             rendered (only the active shown) so search engines read every Q&A. */}
         <div className="dn-faq-side">
-          <div className="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical" onKeyDown={onKeyDown}>
+          <div className="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical">
             {faqs.map((f, i) => (
               <button
                 key={i}
@@ -83,6 +83,7 @@ export default function HomeFaq() {
                 className={`dn-faq-q ${active === i ? 'on' : ''}`}
                 onClick={() => setActive(i)}
                 onFocus={() => setActive(i)}
+                onKeyDown={onKeyDown}
               >
                 {f.q}
               </button>
