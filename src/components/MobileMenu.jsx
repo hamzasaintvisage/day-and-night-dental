@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PRACTICE } from '../data/practice';
 
-// The six real treatment pages — surfaced in an expandable group so mobile users
+// The six real treatment pages, surfaced in an expandable group so mobile users
 // can reach them directly instead of only the homepage #treatments anchor.
 const TREATMENTS = [
   { label: 'Emergency Dentist', to: '/treatments/emergency-dentist' },

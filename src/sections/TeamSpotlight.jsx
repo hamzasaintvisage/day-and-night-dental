@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AvatarSvg } from './Team'
 
-// Bios kept in general terms — no CBCT / 3D scanner / free / 0% APR claims.
+// Bios kept in general terms, no CBCT / 3D scanner / free / 0% APR claims.
 const team = [
   { name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day',
     bio: 'Founded Day Night Dental on one belief: dental pain should never wait for morning. Leads emergency and restorative care.' },
@@ -64,7 +64,7 @@ export default function TeamSpotlight() {
           </div>
         </div>
 
-        {/* SEO-only content — keeps all bios in the static HTML for crawlers. */}
+        {/* SEO-only content, keeps all bios in the static HTML for crawlers. */}
         <div className="dn-visually-hidden">
           {team.map((mm) => (
             <article key={mm.name}>

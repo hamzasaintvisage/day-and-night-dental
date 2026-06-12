@@ -113,13 +113,13 @@ export default function Register() {
             below and we’ll confirm your first appointment within one working hour.
           </p>
           <p className="dn-register-urgent">
-            In pain right now? Don’t wait to register —{' '}
+            In pain right now? Don’t wait to register, {' '}
             <a href={`tel:${PRACTICE.phoneE164}`}>call our 24/7 emergency line on {PRACTICE.phoneDisplay}</a>.
           </p>
         </div>
 
         <div className="dn-register-grid">
-          {/* Left — benefits / why register */}
+          {/* Left, benefits / why register */}
           <aside className="dn-register-aside">
             <div className="dn-register-aside-inner">
               <span className="dn-eyebrow day">What's Included</span>
@@ -168,13 +168,13 @@ export default function Register() {
             </div>
           </aside>
 
-          {/* Right — multi-step form */}
+          {/* Right, multi-step form */}
           <div className="dn-register-form-wrap">
               <form
                 className="dn-register-form"
                 onSubmit={onSubmit}
               >
-                {/* Honeypot — the function drops any submission where this is filled.
+                {/* Honeypot, the function drops any submission where this is filled.
                     Hidden from users, password managers and the keyboard so a real visitor
                     never trips it (autoComplete off, not tabbable, aria-hidden). */}
                 <p hidden aria-hidden="true">
@@ -193,7 +193,7 @@ export default function Register() {
                   ))}
                 </div>
 
-                {/* Step 1 — Personal details */}
+                {/* Step 1, Personal details */}
                 {step === 1 && (
                   <div className="dn-register-step">
                     <h3 className="dn-display">Tell us about you</h3>
@@ -250,7 +250,7 @@ export default function Register() {
                   </div>
                 )}
 
-                {/* Step 2 — Care preferences */}
+                {/* Step 2, Care preferences */}
                 {step === 2 && (
                   <div className="dn-register-step">
                     <h3 className="dn-display">How would you like to be seen?</h3>

@@ -69,7 +69,7 @@ export default function Contact() {
 
       <div className="dn-container">
         <div className="dn-contact-grid">
-          {/* Left — info */}
+          {/* Left, info */}
           <div className="dn-contact-info">
             <span className="dn-eyebrow">Book Appointment</span>
             <h2 className="dn-display">
@@ -138,13 +138,13 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* Right, form */}
           <div className="dn-contact-form-wrap">
               <form
                 className="dn-contact-form"
                 onSubmit={onSubmit}
               >
-                {/* Honeypot — the function drops any submission where this is filled.
+                {/* Honeypot, the function drops any submission where this is filled.
                     Hidden from users, password managers and the keyboard so a real visitor
                     never trips it (autoComplete off, not tabbable, aria-hidden). */}
                 <p hidden aria-hidden="true">

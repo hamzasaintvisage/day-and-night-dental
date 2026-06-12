@@ -1,7 +1,7 @@
 // SINGLE SOURCE OF TRUTH for NAP (Name/Address/Phone) + brand constants.
 // Imported by Home, TreatmentPage, Footer, Contact, Header, Layout so the
 // business details can NEVER drift across the site (a core local-SEO signal).
-// Values marked TODO are placeholders — replace with the real practice data.
+// Values marked TODO are placeholders, replace with the real practice data.
 
 export const SITE = 'https://daynightdental.co.uk'
 
@@ -16,7 +16,7 @@ export const PRACTICE = {
   postcode: 'G1 1SH',
   country: 'GB',
 
-  // Phone — ONE canonical format. tel:/schema use E.164 (no spaces); UI shows display.
+  // Phone, ONE canonical format. tel:/schema use E.164 (no spaces); UI shows display.
   phoneDisplay: '0141 548 6548',
   phoneE164: '+441415486548',
 

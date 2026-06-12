@@ -9,7 +9,7 @@
  * (form load -> submit). Sending the delta (not an absolute timestamp) keeps the
  * server-side time-trap immune to client/server clock skew. If the form-load time
  * is unknown (ref not yet set) we send null, which the server treats as "no signal".
- * `bot-field` is the honeypot — it must stay empty for real users.
+ * `bot-field` is the honeypot, it must stay empty for real users.
  *
  * @param {number} loadedAt - Date.now() captured when the form mounted (0 if unset).
  * @param {string} [botField] - the honeypot input's value.

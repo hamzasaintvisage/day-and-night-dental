@@ -9,7 +9,7 @@ export default function Registered() {
   const firstName = state?.firstName
 
   useEffect(() => {
-    // Conversion events — no-op until analytics loads (after cookie consent).
+    // Conversion events, no-op until analytics loads (after cookie consent).
     window.gtag?.('event', 'sign_up', { method: 'patient_registration' })
     window.fbq?.('track', 'CompleteRegistration')
   }, [])

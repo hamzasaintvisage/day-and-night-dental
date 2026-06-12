@@ -19,7 +19,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import { posts } from './data/blog'
 
-// Static routes — every path here is pre-rendered to HTML by vite-react-ssg.
+// Static routes, every path here is pre-rendered to HTML by vite-react-ssg.
 export const routes = [
   {
     path: '/',

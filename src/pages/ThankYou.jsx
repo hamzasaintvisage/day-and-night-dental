@@ -9,7 +9,7 @@ export default function ThankYou() {
   const firstName = state?.firstName
 
   useEffect(() => {
-    // Conversion events — no-op until analytics loads (after cookie consent).
+    // Conversion events, no-op until analytics loads (after cookie consent).
     window.gtag?.('event', 'generate_lead', { method: 'contact_form' })
     window.fbq?.('track', 'Lead')
   }, [])

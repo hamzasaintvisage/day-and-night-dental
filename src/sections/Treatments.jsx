@@ -70,7 +70,7 @@ const treatments = [
   },
 ];
 
-// Shared detail content — rendered in both the desktop panel and each mobile
+// Shared detail content, rendered in both the desktop panel and each mobile
 // accordion body, so every treatment's text + link is in the HTML for SEO.
 function TreatmentBody({ t, withTitle }) {
   return (
@@ -154,7 +154,7 @@ export default function Treatments() {
         </div>
 
         <div className="dn-tx">
-          {/* List — left column on desktop, tap-accordion on mobile */}
+          {/* List, left column on desktop, tap-accordion on mobile */}
           <div className="dn-tx-list">
             {treatments.map((t, i) => {
               const isActive = active === t.id;
@@ -181,7 +181,7 @@ export default function Treatments() {
                     <span className="dn-tx-chev" aria-hidden="true" />
                   </button>
 
-                  {/* Mobile accordion body — always in the DOM (collapsed via
+                  {/* Mobile accordion body, always in the DOM (collapsed via
                       grid-rows, not display:none) so search engines read it. */}
                   <div id={`tx-body-${t.id}`} className="dn-tx-body" role="region">
                     <div className="dn-tx-body-inner">
@@ -195,7 +195,7 @@ export default function Treatments() {
             })}
           </div>
 
-          {/* Detail panel — desktop only (hidden on mobile, where the accordion
+          {/* Detail panel, desktop only (hidden on mobile, where the accordion
               bodies above carry the same content). */}
           <div className={`dn-tx-detail ${current.side}`} aria-hidden="true">
             <div className="dn-tx-detail-inner" key={current.id}>

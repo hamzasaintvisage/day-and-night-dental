@@ -5,7 +5,7 @@ import { SITE, PRACTICE } from '../data/practice'
 const DENTIST_ID = `${SITE}/#dentist`
 const OG_IMAGE = `${SITE}/og-image.jpg`
 
-// Decorative hero mark — sun (day) or moon (night), each cradling the split tooth.
+// Decorative hero mark, sun (day) or moon (night), each cradling the split tooth.
 function HeroMark({ side }) {
   const accent = side === 'night' ? 'var(--dn-night)' : 'var(--dn-day)'
   return (
@@ -52,7 +52,7 @@ export default function TreatmentPage({ data }) {
       { '@type': 'ListItem', position: 3, name: data.h1Plain, item: url },
     ],
   }
-  // MedicalProcedure — references the single Dentist entity by @id (no duplicated provider).
+  // MedicalProcedure, references the single Dentist entity by @id (no duplicated provider).
   const procedureLd = {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
@@ -63,7 +63,7 @@ export default function TreatmentPage({ data }) {
     ...(data.lastReviewed ? { lastReviewed: data.lastReviewed } : {}),
     ...(data.reviewer ? { reviewedBy: { '@type': 'Person', name: data.reviewer } } : {}),
   }
-  // Service/Offer — signals the priced, bookable nature; price emitted only when real.
+  // Service/Offer, signals the priced, bookable nature; price emitted only when real.
   const serviceLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -106,7 +106,7 @@ export default function TreatmentPage({ data }) {
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
 
-      {/* Structured data — emitted into <head> (via Head) for rich results */}
+      {/* Structured data, emitted into <head> (via Head) for rich results */}
       <Head>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         <script type="application/ld+json">{JSON.stringify(procedureLd)}</script>
@@ -191,7 +191,7 @@ export default function TreatmentPage({ data }) {
             <div className="tp-overview-grid">
               <div className="tp-prose">
                 <div className="tp-section-head">
-                  <span className="dn-eyebrow night">——— Is This You? ———</span>
+                  <span className="dn-eyebrow night">, , , Is This You?, , , </span>
                   <h2 className="dn-display">{data.concern.heading}</h2>
                 </div>
                 {data.concern.body.map((p, i) => <p key={i}>{p}</p>)}

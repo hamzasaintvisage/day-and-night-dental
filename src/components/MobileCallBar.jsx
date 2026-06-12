@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PRACTICE } from '../data/practice'
 
-// Fixed bottom bar on mobile — the highest-converting element for emergency intent.
+// Fixed bottom bar on mobile, the highest-converting element for emergency intent.
 export default function MobileCallBar() {
   return (
     <div className="dn-callbar" role="region" aria-label="Quick contact">

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from './Concerns';
 import './concerns-bento.css';
 
-// "Option B" — bento layout: one featured hero tile + asymmetric mix, everything visible.
+// "Option B", bento layout: one featured hero tile + asymmetric mix, everything visible.
 // Big tiles carry a full selling sentence; small tiles get a short tag. Safe copy (no
 // brand-name / equipment claims to verify).
 const items = [

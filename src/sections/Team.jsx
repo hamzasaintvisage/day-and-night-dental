@@ -1,7 +1,7 @@
 
 // Placeholders. Replace names + add real photos once available.
 // Three dentists max (owner). Replace bracketed names/roles + add real photos and
-// GDC numbers before go-live — these are placeholders.
+// GDC numbers before go-live, these are placeholders.
 export const team = [
   { name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day' },
   { name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'night' },

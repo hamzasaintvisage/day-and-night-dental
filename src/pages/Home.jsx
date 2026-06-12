@@ -135,7 +135,7 @@ export default function Home() {
         sub="Whether it's the middle of the night or the middle of the week, you can call us in Glasgow straight away for urgent help."
         callLabel="Call our 24/7 line"
       />
-      {/* Results / smile gallery — same content, laid out per device:
+      {/* Results / smile gallery, same content, laid out per device:
           filmstrip on mobile, spotlight on desktop. */}
       <div className="dn-hide-desktop"><SmileGallery /></div>
       <div className="dn-hide-mobile"><SmileGallerySpotlight /></div>

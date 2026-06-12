@@ -3,40 +3,40 @@
 @font-face{font-family:'Inter Tight';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/inter-tight.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 
 /* ===========================================================
-   Day Night Dental — Global design system (Vite build)
+   Day Night Dental, Global design system (Vite build)
    Part A: brand tokens, typography, buttons, layout, atmosphere
    Part B: treatment-page (tp-*) styles for dedicated routes
    (Header/Footer carry their own component-scoped styles.)
    =========================================================== */
 
 /* ============================================
-   Day Night Dental — Core Stylesheet
+   Day Night Dental, Core Stylesheet
    Updated to match the bolder revised brand mark.
    ============================================ */
 
-/* Fonts are loaded non-blocking via <link> in index.html (faster LCP) — no @import here. */
+/* Fonts are loaded non-blocking via <link> in index.html (faster LCP), no @import here. */
 
 :root {
-  /* Brand palette — refreshed to match the brighter, bolder logo */
+  /* Brand palette, refreshed to match the brighter, bolder logo */
   --dn-black: #000000;
   --dn-near-black: #0a0a0c;
   --dn-charcoal: #14141a;
   --dn-graphite: #1f1f28;
   --dn-mist: #2a2a35;
 
-  --dn-day: #F4C24A;          /* Punchy sun yellow — the day side */
+  --dn-day: #F4C24A;          /* Punchy sun yellow, the day side */
   --dn-day-soft: #FFD66D;
   --dn-day-deep: #C7991E;
 
-  --dn-night: #4A95E5;        /* Confident sky blue — the night side */
+  --dn-night: #4A95E5;        /* Confident sky blue, the night side */
   --dn-night-soft: #7DB5F0;
   --dn-night-deep: #2A6BB5;
 
-  --dn-bone: #FFFFFF;         /* Crisp white — matches logo's DENTAL text */
+  --dn-bone: #FFFFFF;         /* Crisp white, matches logo's DENTAL text */
   --dn-bone-dim: rgba(255, 255, 255, 0.72);
   --dn-bone-faint: rgba(255, 255, 255, 0.55);
 
-  /* Typography — Plus Jakarta Sans for display, Inter Tight for body */
+  /* Typography, Plus Jakarta Sans for display, Inter Tight for body */
   --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-body: 'Inter Tight', -apple-system, sans-serif;
 
@@ -102,9 +102,9 @@ a {
 .dn-eyebrow.day { color: var(--dn-day); }
 .dn-eyebrow.night { color: var(--dn-night); }
 
-/* The signature gradient — gold to blue, the entire brand in one line */
+/* The signature gradient, gold to blue, the entire brand in one line */
 
-/* Inline emphasis treatment — replaces the old italic em styling.
+/* Inline emphasis treatment, replaces the old italic em styling.
    Now: bold weight + gradient color, no italic. */
 .dn-display em {
   font-style: normal;
@@ -159,7 +159,7 @@ a {
   color: var(--dn-black);
 }
 
-/* Primary is now filled — solid gold, confident */
+/* Primary is now filled, solid gold, confident */
 .dn-btn.primary {
   background: var(--dn-day);
   border-color: var(--dn-day);
@@ -182,7 +182,7 @@ a {
   transform: translateX(4px);
 }
 
-/* Emergency CTA — solid red, unmissable */
+/* Emergency CTA, solid red, unmissable */
 .dn-btn-emergency {
   position: relative;
   background: #ef4444 !important;
@@ -230,7 +230,7 @@ a {
   position: relative;
 }
 
-/* Hairline divider — the gold/blue split that runs through the brand */
+/* Hairline divider, the gold/blue split that runs through the brand */
 .dn-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--dn-day) 30%, var(--dn-day) 50%, var(--dn-night) 50%, var(--dn-night) 70%, transparent 100%);
@@ -301,7 +301,7 @@ a {
   animation: dn-glow-night 8s ease-in-out infinite;
 }
 
-/* Noise texture overlay — gives the black depth */
+/* Noise texture overlay, gives the black depth */
 .dn-noise {
   position: fixed;
   inset: 0;
@@ -519,7 +519,7 @@ a {
   .dn-why-item { flex: 0 0 80%; scroll-snap-align: start; }
 }
 
-/* Embedded map (Contact) — toned to the dark theme */
+/* Embedded map (Contact), toned to the dark theme */
 .dn-contact-map { margin-top: 2rem; border: 1px solid var(--dn-mist); overflow: hidden; }
 .dn-contact-map iframe { display: block; width: 100%; height: 320px; border: 0; }
 
@@ -697,7 +697,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-js .dn-section { opacity: 1; transform: none; transition: none; }
 }
 
-/* Desktop hover, ONLY on genuine bounded content cards — NOT on text blocks, pillars, numbered steps,
+/* Desktop hover, ONLY on genuine bounded content cards, NOT on text blocks, pillars, numbered steps,
    stat strips, hero stat labels or container/form wrappers. A small lift plus a gold->blue gradient
    border that lights up around the card (the brand's interlinked day/night look). ::after is free on
    these cards (they use ::before for their own accents). @media (hover: hover) so touch never sticks. */
@@ -1221,7 +1221,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           gap: 0;
           font-style: normal;
         }
-        /* Luminous wordmark — gold light behind "Day", blue behind "Night". */
+        /* Luminous wordmark, gold light behind "Day", blue behind "Night". */
         .word-day {
           color: var(--dn-day);
           text-shadow: 0 0 38px rgba(244, 194, 74, 0.45), 0 0 90px rgba(244, 194, 74, 0.22);
@@ -1233,7 +1233,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           text-shadow: 0 0 38px rgba(74, 149, 229, 0.45), 0 0 90px rgba(74, 149, 229, 0.28);
           transition: text-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* Glow lifts when you hover the wordmark — feels alive. */
+        /* Glow lifts when you hover the wordmark, feels alive. */
         .dn-hero-title:hover .word-day { text-shadow: 0 0 50px rgba(244, 194, 74, 0.78), 0 0 120px rgba(244, 194, 74, 0.42); }
         .dn-hero-title:hover .word-night { text-shadow: 0 0 50px rgba(74, 149, 229, 0.78), 0 0 120px rgba(74, 149, 229, 0.48); }
 
@@ -1537,7 +1537,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
       
 
 /* === About === */
-        /* Manifesto About — centred editorial statement, no photo */
+        /* Manifesto About, centred editorial statement, no photo */
         .dn-mani { text-align: center; }
         .dn-mani .dn-eyebrow { display: inline-block; }
         .dn-mani-quote {
@@ -1729,7 +1729,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
       
 
 /* === Treatments === */
-        /* Treatments — premium index on desktop, tap-accordion on mobile.
+        /* Treatments, premium index on desktop, tap-accordion on mobile.
            All six treatments are rendered into the HTML; the desktop panel and
            the mobile accordion bodies just reveal what is already there, so
            search engines read every treatment regardless of layout. */
@@ -1817,7 +1817,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         .dn-tx-item.is-active .dn-tx-chev { transform: rotate(-135deg); opacity: 0.9; }
 
         /* Accordion body: collapse with grid-rows (0fr -> 1fr) so the content
-           stays in the DOM even when closed — keeps all six crawlable. */
+           stays in the DOM even when closed, keeps all six crawlable. */
         .dn-tx-body {
           display: grid;
           grid-template-rows: 0fr;
@@ -1966,7 +1966,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           .dn-tx-detail-inner { animation: none; }
         }
 
-        /* Utility: per-device show/hide — same content, different layout per screen */
+        /* Utility: per-device show/hide, same content, different layout per screen */
         @media (max-width: 768px) {
           .dn-hide-mobile { display: none !important; }
         }
@@ -1974,7 +1974,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           .dn-hide-desktop { display: none !important; }
         }
 
-        /* FAQ — d3 side-nav: narrow question list + bordered answer card */
+        /* FAQ, d3 side-nav: narrow question list + bordered answer card */
         .dn-faq-side {
           display: grid;
           grid-template-columns: 0.5fr 1fr;
@@ -2117,7 +2117,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           }
         }
 
-        /* ---------- Gallery: Option A — Filmstrip ---------- */
+        /* ---------- Gallery: Option A, Filmstrip ---------- */
         .dn-strip-wrap { position: relative; margin-top: 4rem; }
         .dn-strip-track {
           display: flex;
@@ -2206,7 +2206,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           .dn-strip-arrow { display: none; }
         }
 
-        /* ---------- Gallery: Option B — Spotlight ---------- */
+        /* ---------- Gallery: Option B, Spotlight ---------- */
         .dn-spot-grid {
           display: grid;
           grid-template-columns: 1.3fr 1fr;
@@ -2466,6 +2466,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           color: var(--dn-bone-dim);
         }
         .dn-progress-step.active .dn-progress-num { color: var(--dn-bone); }
+
+        /* Consistent number badges site-wide: the gold->blue gradient (matches Journey's
+           step numbers). text-fill-color wins over the per-section solid/active colours. */
+        .dn-tx-num,
+        .dn-register-includes .num,
+        .dn-progress-num {
+          background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+        }
         .dn-progress-label {
           font-size: 0.7rem;
           letter-spacing: 0.2em;
@@ -2895,7 +2907,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
         .dn-avatar.night { color: var(--dn-night-soft); --avatar-wash: rgba(74, 149, 229, 0.14); }
         .dn-avatar svg { width: 44%; height: 44%; opacity: 0.92; }
 
-        /* ---------- Team: Option B — Wall ---------- */
+        /* ---------- Team: Option B, Wall ---------- */
         .dn-team-wall {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -2942,7 +2954,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
           .dn-team-wall { grid-template-columns: 1fr 1fr; }
         }
 
-        /* ---------- Team: Option C — Spotlight ---------- */
+        /* ---------- Team: Option C, Spotlight ---------- */
         .dn-team-spotlight {
           display: grid;
           grid-template-columns: 1fr 1fr;

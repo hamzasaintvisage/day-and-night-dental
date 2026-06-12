@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Head } from 'vite-react-ssg'
 import { PRACTICE } from '../data/practice'
 
-// NOTE: opening hours below are PLACEHOLDERS (Sat/Sun invented) — confirm the real
+// NOTE: opening hours below are PLACEHOLDERS (Sat/Sun invented), confirm the real
 // hours with the owner before go-live.
 const faqs = [
   {
@@ -77,7 +77,7 @@ export default function HomeFaq() {
         </div>
 
         <p className="dn-faq-foot">
-          Still not sure? <a href={`tel:${PRACTICE.phoneE164}`}>Call us on {PRACTICE.phoneDisplay}</a> — we will talk through your options, 24/7.
+          Still not sure? <a href={`tel:${PRACTICE.phoneE164}`}>Call us on {PRACTICE.phoneDisplay}</a>, we will talk through your options, 24/7.
         </p>
       </div>
     </section>

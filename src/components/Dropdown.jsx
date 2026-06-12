@@ -19,7 +19,7 @@ export default function Dropdown({ name, value, onChange, options, placeholder =
 
   const selected = options.find((o) => o.value === value)
 
-  // Close on outside click — only while open.
+  // Close on outside click, only while open.
   useEffect(() => {
     if (!open) return
     const onDown = (e) => {

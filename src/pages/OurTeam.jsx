@@ -23,8 +23,8 @@ export default function OurTeam() {
   return (
     <>
       <Head>
-        <title>Our Team — Meet the Dentists | Day Night Dental, Glasgow</title>
-        <meta name="description" content="Meet the GDC-registered dentists and team behind Day Night Dental in Merchant City, Glasgow — the people who look after your smile, day and night." />
+        <title>Our Team, Meet the Dentists | Day Night Dental, Glasgow</title>
+        <meta name="description" content="Meet the GDC-registered dentists and team behind Day Night Dental in Merchant City, Glasgow, the people who look after your smile, day and night." />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Our Team | Day Night Dental, Glasgow" />
@@ -56,7 +56,7 @@ export default function OurTeam() {
       <section className="dn-section tp-cta">
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow">——— Become a Patient ———</span>
+          <span className="dn-eyebrow">, , , Become a Patient, , , </span>
           <h2 className="dn-display">Care from a team that <em>knows you</em></h2>
           <p>Register today and you'll see the same friendly faces every time you visit.</p>
           <div className="tp-cta-actions">

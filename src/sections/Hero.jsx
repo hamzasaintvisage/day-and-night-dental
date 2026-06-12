@@ -15,7 +15,7 @@ export default function Hero() {
         opacity: 0.15,
       }} />
 
-      {/* Atmospheric backdrop portrait — heavily darkened for depth */}
+      {/* Atmospheric backdrop portrait, heavily darkened for depth */}
       <div className="dn-hero-backdrop">
         <img
           src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1100&h=733&fit=crop&q=55&fm=webp"
@@ -28,7 +28,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* The split divider line — full height, runs down the middle */}
+      {/* The split divider line, full height, runs down the middle */}
       <div className="dn-hero-divider" />
 
       <div className="dn-hero-inner">
@@ -62,7 +62,7 @@ export default function Hero() {
           24/7 emergency care and same-day treatment, in the heart of Glasgow.
         </p>
 
-        {/* CTAs — phone first for emergency intent */}
+        {/* CTAs, phone first for emergency intent */}
         <div className="dn-hero-actions dn-reveal dn-delay-5">
           <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency">
             <span className="dn-btn-pulse" />

@@ -10,7 +10,7 @@ export default function Blog() {
     <>
       <Head>
         <title>Dental Advice &amp; Guides | Day Night Dental, Glasgow</title>
-        <meta name="description" content="Honest dental advice from our Glasgow team — emergency care, the cost of treatments, Invisalign, implants and more. From Day Night Dental in Merchant City." />
+        <meta name="description" content="Honest dental advice from our Glasgow team, emergency care, the cost of treatments, Invisalign, implants and more. From Day Night Dental in Merchant City." />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Dental Advice & Guides | Day Night Dental" />

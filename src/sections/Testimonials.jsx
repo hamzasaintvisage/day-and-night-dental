@@ -1,7 +1,7 @@
 
 // Pre-launch: the practice is not open yet, so there are no real reviews.
 // This section states honest commitments instead. Swap to real patient reviews
-// (with consent) once they exist — then a genuine rating can be shown.
+// (with consent) once they exist, then a genuine rating can be shown.
 const promises = [
   {
     statement: "When you are in pain at 2am, you are not left waiting until morning. We aim to see you the same day.",

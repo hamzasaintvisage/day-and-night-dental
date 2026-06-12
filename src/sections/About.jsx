@@ -1,4 +1,4 @@
-// Manifesto About — editorial "why we exist" statement (no photo by design).
+// Manifesto About, editorial "why we exist" statement (no photo by design).
 export default function About() {
   return (
     <section id="about" className="dn-section dn-mani">
