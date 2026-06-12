@@ -229,7 +229,7 @@ foreach ($body as $key => $val) {
     ];
 }
 $when = (new DateTime('now', new DateTimeZone('Europe/London')))->format('l, j F Y, H:i');
-$SITE = defined('DND_SITE') ? DND_SITE : 'https://www.daynightdental.co.uk';
+$SITE = defined('DND_SITE') ? DND_SITE : 'https://daynightdental.co.uk';
 
 $textLines = [$formLabel, 'Received: ' . $when, ''];
 foreach ($rows as $r) $textLines[] = $r['label'] . ': ' . $r['value'];

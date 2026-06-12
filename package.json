@@ -7,7 +7,16 @@
     "dev": "vite",
     "build": "vite-react-ssg build && node scripts/fix-head.mjs && node scripts/sitemap.mjs",
     "preview": "vite preview --port 4173",
-    "check": "npm run build && node scripts/check.mjs"
+    "check": "npm run build && node scripts/check.mjs",
+    "deploy:static": "npm run build && bash hostinger/deploy-local.sh dist",
+    "deploy:api": "bash hostinger/deploy-local.sh api",
+    "deploy:htaccess": "bash hostinger/deploy-local.sh htaccess",
+    "deploy:cron": "bash hostinger/deploy-local.sh cron",
+    "deploy:all": "npm run deploy:static && npm run deploy:htaccess && npm run deploy:cron",
+    "lint": "eslint .",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "test": "vitest run",
+    "ci": "npm run lint && npm run lint:css && npm run test && npm run check"
   },
   "engines": {
     "node": ">=20.19"
@@ -18,9 +27,18 @@
     "react-router-dom": "^6.30.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@vitejs/plugin-react": "^5.2.0",
     "beasties": "^0.1.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1",
     "vite": "^7.3.5",
-    "vite-react-ssg": "0.9.0"
+    "vite-react-ssg": "0.9.0",
+    "vitest": "^4.1.8"
   }
 }

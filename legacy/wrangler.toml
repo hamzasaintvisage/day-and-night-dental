@@ -1,0 +1,13 @@
+# Cloudflare Pages config. Static output is the prebuilt dist/ (vite-react-ssg);
+# serverless code lives in functions/ at the project root (auto-routed, e.g.
+# functions/api/send-enquiry.js -> POST /api/send-enquiry). Email-only: no KV/bindings.
+name = "daynightdental"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-06-01"
+
+# Rate limiting: the function uses a KV counter bound as RATE_LIMIT_KV (per-IP, 8 / 60s),
+# and fails OPEN if the binding is absent. Once the custom domain is on Cloudflare, an edge
+# WAF rate-limiting rule on /api/* becomes the primary control (KV stays as a backstop).
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "f09b4bb2f381407790c4b89c54446bcb"

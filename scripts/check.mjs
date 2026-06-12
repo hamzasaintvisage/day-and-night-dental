@@ -40,7 +40,7 @@ for (const file of walk(DIST)) {
 
 // 3. Sitemap must use the canonical domain.
 const sm = existsSync(join(DIST, 'sitemap.xml')) ? readFileSync(join(DIST, 'sitemap.xml'), 'utf8') : ''
-if (!sm.includes('https://www.daynightdental.co.uk/')) errors.push('sitemap.xml missing canonical domain')
+if (!sm.includes('https://daynightdental.co.uk/')) errors.push('sitemap.xml missing canonical domain')
 
 if (warnings.length) console.warn(`[check] warnings (parked, not blocking):\n  - ${[...new Set(warnings)].join('\n  - ')}`)
 if (errors.length) {

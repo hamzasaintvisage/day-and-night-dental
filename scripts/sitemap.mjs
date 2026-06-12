@@ -2,8 +2,8 @@
 // page marked noindex (thank-you / registered / 404). Run after vite-react-ssg build.
 import { readdirSync, statSync, writeFileSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { SITE } from '../src/data/practice.js'
 
-const SITE = 'https://www.daynightdental.co.uk'
 const DIST = 'dist'
 const today = new Date().toISOString().slice(0, 10)
 
@@ -18,7 +18,7 @@ function collect(dir, base = '') {
       const html = readFileSync(full, 'utf8')
       if (/name=["']robots["'][^>]*noindex/i.test(html)) continue // skip noindex
       const slug = name.replace(/\.html$/, '')
-      // Trailing slash to match Netlify's served 200 URLs (folder/index.html) + the canonicals.
+      // Trailing slash to match Hostinger's served 200 URLs (folder/index.html) + the canonicals.
       const path = slug === 'index' ? `${base}/` : `${base}/${slug}`
       out.push(path)
     }

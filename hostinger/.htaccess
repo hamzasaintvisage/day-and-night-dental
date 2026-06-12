@@ -57,6 +57,15 @@
 ErrorDocument 404 /404.html
 
 # ----------------------------------------------------------------------------
+# Canonical host: force apex (no www). 301 www -> apex. PERMANENT — keep after go-live.
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.daynightdental\.co\.uk$ [NC]
+  RewriteRule ^ https://daynightdental.co.uk%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ----------------------------------------------------------------------------
 # COMING SOON MODE  ——  DELETE THIS WHOLE BLOCK TO GO LIVE
 # Serves coming-soon.html for every page request (URL stays the same), while
 # still letting static assets, fonts, the API and the holding page itself load.

@@ -62,7 +62,7 @@ def render_config():
         "define('DND_RESEND_KEY', '%s');\n"
         "define('DND_SEND_FROM',  'Day Night Dental <bookings@daynightdental.co.uk>');\n"
         "define('DND_ENQUIRY_TO', 'reception@daynightdental.co.uk');\n"
-        "define('DND_SITE',       'https://www.daynightdental.co.uk');\n"
+        "define('DND_SITE',       'https://daynightdental.co.uk');\n"
         % key
     ).encode("utf-8")
 

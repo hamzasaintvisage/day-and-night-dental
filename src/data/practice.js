@@ -3,7 +3,7 @@
 // business details can NEVER drift across the site (a core local-SEO signal).
 // Values marked TODO are placeholders — replace with the real practice data.
 
-export const SITE = 'https://www.daynightdental.co.uk'
+export const SITE = 'https://daynightdental.co.uk'
 
 export const PRACTICE = {
   name: 'Day Night Dental',
