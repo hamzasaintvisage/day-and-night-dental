@@ -3,11 +3,10 @@ export default function About() {
   return (
     <section id="about" className="dn-section dn-mani">
       <div className="dn-container">
-        <span className="dn-eyebrow">Why I do this</span>
+        <span className="dn-eyebrow">WHY WE&rsquo;RE DIFFERENT</span>
         <blockquote className="dn-mani-quote">
-          I opened this practice for <span className="dn-mani-grad">one reason</span>. Toothache doesn&rsquo;t keep
-          office hours,{' '}
-          <span className="dn-mani-mut">and the people living with it shouldn&rsquo;t have to either.</span>
+          Built for real life, not office hours.<br />
+          <span className="dn-mani-mut">Daytime dentistry. Night-time emergencies.</span>
         </blockquote>
         <div className="dn-mani-by">Day Night Dental &middot; Merchant City, Glasgow</div>
         <p className="dn-mani-body">
