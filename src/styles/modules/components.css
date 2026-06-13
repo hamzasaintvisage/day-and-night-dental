@@ -179,7 +179,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 @media (hover: hover) {
   .dn-why-item,
   .dn-concern-card,
-  .dn-team-card,
   .dn-review,
   .dn-gallery-item,
   .tp-benefit,
@@ -192,7 +191,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   }
   .dn-why-item::after,
   .dn-concern-card::after,
-  .dn-team-card::after,
   .dn-review::after,
   .dn-gallery-item::after,
   .tp-benefit::after,
@@ -217,7 +215,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   }
   .dn-why-item:hover,
   .dn-concern-card:hover,
-  .dn-team-card:hover,
   .dn-review:hover,
   .dn-gallery-item:hover,
   .tp-benefit:hover,
@@ -230,7 +227,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   }
   .dn-why-item:hover::after,
   .dn-concern-card:hover::after,
-  .dn-team-card:hover::after,
   .dn-review:hover::after,
   .dn-gallery-item:hover::after,
   .tp-benefit:hover::after,
@@ -275,4 +271,3 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
    live in the cached stylesheet instead of every page's HTML.
    Order = render order, to preserve the existing cascade exactly.
    ========================================================= */
-
