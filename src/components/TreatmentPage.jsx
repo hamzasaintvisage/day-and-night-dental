@@ -223,7 +223,7 @@ export default function TreatmentPage({ data }) {
 
       {/* Types / options (optional) */}
       {data.types && (
-        <section className="dn-section">
+        <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-section-head">
               <span className="dn-eyebrow day">{data.types.eyebrow || 'Your Options'}</span>
@@ -266,7 +266,7 @@ export default function TreatmentPage({ data }) {
 
       {/* Comparison vs alternatives (optional) */}
       {data.comparison && (
-        <section className="dn-section">
+        <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-section-head">
               <span className="dn-eyebrow night">{data.comparison.eyebrow || 'Your Smile, Your Choice'}</span>
@@ -325,7 +325,7 @@ export default function TreatmentPage({ data }) {
 
       {/* Aftercare / recovery (optional) */}
       {data.aftercare && (
-        <section className="dn-section">
+        <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-section-head">
               <span className="dn-eyebrow day">{data.aftercare.eyebrow || 'Recovery & Aftercare'}</span>
@@ -377,7 +377,7 @@ export default function TreatmentPage({ data }) {
 
       {/* Risks / honest complications (optional) */}
       {data.risks && (
-        <section className="dn-section">
+        <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-prose" style={{ maxWidth: '780px' }}>
               <div className="tp-section-head">

@@ -72,6 +72,8 @@
 .tp-type-ico svg { width: 28px; height: 28px; }
 .tp-type-ico.day { background: rgba(244, 194, 74, 0.1); color: var(--dn-day); border: 1px solid rgba(244, 194, 74, 0.28); }
 .tp-type-ico.night { background: rgba(74, 149, 229, 0.1); color: var(--dn-night); border: 1px solid rgba(74, 149, 229, 0.28); }
+/* Alternating section band for vertical rhythm on long treatment pages */
+.dn-section.tp-band { background: #0c0c10; border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
 
 /* Process steps */
 .tp-steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
