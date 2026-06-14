@@ -100,16 +100,23 @@
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 
 /* Comparison matrix (treatment vs alternatives) */
-.tp-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1rem; }
-.tp-compare { width: 100%; border-collapse: collapse; min-width: 600px; }
-.tp-compare th, .tp-compare td { padding: 0.95rem 1.1rem; text-align: left; border-bottom: 1px solid var(--dn-mist); vertical-align: top; }
-.tp-compare thead th { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--dn-bone); border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
-.tp-compare thead th:first-child { width: 28%; }
-.tp-compare tbody th { font-weight: 500; color: var(--dn-bone-dim); font-size: 0.92rem; }
-.tp-compare tbody td { color: var(--dn-bone); font-size: 0.92rem; }
-.tp-compare tbody tr:last-child th, .tp-compare tbody tr:last-child td { border-bottom: 0; }
-.tp-compare .feat { background: rgba(244, 194, 74, 0.06); }
-.tp-compare thead th.feat { color: var(--dn-day); border-top: 2px solid var(--dn-day); }
+.tp-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1.5rem; border: 1px solid var(--dn-mist); border-radius: 18px; }
+.tp-compare { width: 100%; border-collapse: collapse; min-width: 640px; }
+.tp-compare th, .tp-compare td { padding: 1.05rem 1.25rem; text-align: left; vertical-align: middle; }
+.tp-compare thead th { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--dn-bone); padding-top: 1.4rem; padding-bottom: 1.4rem; }
+.tp-compare thead th:first-child { width: 30%; font-family: var(--font-body); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dn-bone-faint); }
+.tp-compare tbody tr { border-top: 1px solid var(--dn-mist); }
+.tp-compare tbody th { font-weight: 500; color: var(--dn-bone-dim); font-size: 0.95rem; }
+.tp-compare tbody td { color: var(--dn-bone); font-size: 0.95rem; }
+.tp-compare tbody tr:nth-child(even) th, .tp-compare tbody tr:nth-child(even) td { background: rgba(255, 255, 255, 0.015); }
+.tp-compare tbody tr:hover th, .tp-compare tbody tr:hover td { background: rgba(255, 255, 255, 0.03); }
+.tp-compare .feat { background: rgba(244, 194, 74, 0.07); }
+.tp-compare tbody tr:nth-child(even) td.feat, .tp-compare tbody tr:hover td.feat { background: rgba(244, 194, 74, 0.1); }
+.tp-compare thead th.feat { color: var(--dn-day); box-shadow: inset 0 3px 0 var(--dn-day); border-top-left-radius: 14px; border-top-right-radius: 14px; }
+.tp-compare tbody tr:last-child td.feat { border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; }
+.tp-cmp-yes, .tp-cmp-no { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; font-size: 0.8rem; line-height: 1; }
+.tp-cmp-yes { background: rgba(244, 194, 74, 0.16); color: var(--dn-day); }
+.tp-cmp-no { background: rgba(255, 255, 255, 0.06); color: var(--dn-bone-faint); }
 .tp-compare-note { color: var(--dn-bone-faint); font-size: 0.82rem; margin-top: 0.9rem; }
 
 /* Related treatments */

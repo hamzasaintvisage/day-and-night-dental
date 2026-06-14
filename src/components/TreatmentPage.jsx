@@ -285,9 +285,13 @@ export default function TreatmentPage({ data }) {
                   {data.comparison.rows.map((r, i) => (
                     <tr key={i}>
                       <th scope="row">{r.label}</th>
-                      {r.values.map((v, j) => (
-                        <td key={j} className={data.comparison.columns[j] && data.comparison.columns[j].feat ? 'feat' : ''}>{v}</td>
-                      ))}
+                      {r.values.map((v, j) => {
+                        const feat = data.comparison.columns[j] && data.comparison.columns[j].feat
+                        let cell = v
+                        if (v === 'Yes') cell = <><span className="tp-cmp-yes" aria-hidden="true">✓</span><span className="dn-visually-hidden">Yes</span></>
+                        else if (v === 'No') cell = <><span className="tp-cmp-no" aria-hidden="true">✕</span><span className="dn-visually-hidden">No</span></>
+                        return <td key={j} className={feat ? 'feat' : ''}>{cell}</td>
+                      })}
                     </tr>
                   ))}
                 </tbody>
