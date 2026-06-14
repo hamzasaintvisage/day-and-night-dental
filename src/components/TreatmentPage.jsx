@@ -220,6 +220,28 @@ export default function TreatmentPage({ data }) {
         </section>
       )}
 
+      {/* Types / options (optional) */}
+      {data.types && (
+        <section className="dn-section">
+          <div className="dn-container">
+            <div className="tp-section-head">
+              <span className="dn-eyebrow day">{data.types.eyebrow || 'Your Options'}</span>
+              <h2 className="dn-display">{data.types.heading}</h2>
+            </div>
+            {data.types.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.types.intro}</p>}
+            <div className="tp-benefit-grid">
+              {data.types.items.map((t, i) => (
+                <article className="tp-benefit" key={i}>
+                  <span className="bar" />
+                  <h3>{t.title}</h3>
+                  <p>{t.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Benefits */}
       <section className="dn-section tp-benefits">
         <div className="dn-container">
@@ -240,6 +262,30 @@ export default function TreatmentPage({ data }) {
         </div>
       </section>
 
+      {/* Comparison vs alternatives (optional) */}
+      {data.comparison && (
+        <section className="dn-section">
+          <div className="dn-container">
+            <div className="tp-section-head">
+              <span className="dn-eyebrow night">{data.comparison.eyebrow || 'Your Smile, Your Choice'}</span>
+              <h2 className="dn-display">{data.comparison.heading}</h2>
+            </div>
+            {data.comparison.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.comparison.intro}</p>}
+            <div className="tp-benefit-grid">
+              {data.comparison.options.map((o, i) => (
+                <article className="tp-benefit" key={i}>
+                  <span className="bar" />
+                  <h3>{o.name}</h3>
+                  <ul className="tp-concern-list">
+                    {o.points.map((p, j) => <li key={j}>{p}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Process */}
       <section className="dn-section">
         <div className="dn-container">
@@ -258,6 +304,73 @@ export default function TreatmentPage({ data }) {
           </div>
         </div>
       </section>
+
+      {/* Aftercare / recovery (optional) */}
+      {data.aftercare && (
+        <section className="dn-section">
+          <div className="dn-container">
+            <div className="tp-section-head">
+              <span className="dn-eyebrow day">{data.aftercare.eyebrow || 'Recovery & Aftercare'}</span>
+              <h2 className="dn-display">{data.aftercare.heading}</h2>
+            </div>
+            {data.aftercare.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.aftercare.intro}</p>}
+            <div className="tp-benefit-grid">
+              {data.aftercare.phases.map((ph, i) => (
+                <article className="tp-benefit" key={i}>
+                  <span className="bar" />
+                  <h3>{ph.title}</h3>
+                  <ul className="tp-concern-list">
+                    {ph.items.map((it, j) => <li key={j}>{it}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Bone loss / not enough bone (optional) */}
+      {data.boneLoss && (
+        <section className="dn-section">
+          <div className="dn-container">
+            <div className="tp-overview-grid">
+              <div className="tp-prose">
+                <div className="tp-section-head">
+                  <span className="dn-eyebrow night">{data.boneLoss.eyebrow || 'Lost Bone?'}</span>
+                  <h2 className="dn-display">{data.boneLoss.heading}</h2>
+                </div>
+                {data.boneLoss.body.map((p, i) => <p key={i}>{p}</p>)}
+              </div>
+              <aside className="tp-facts">
+                <h3>{data.boneLoss.optionsTitle || 'Options we may consider'}</h3>
+                <dl>
+                  {data.boneLoss.options.map((o, i) => (
+                    <div className="fact" key={i}>
+                      <dt>{o.dt}</dt>
+                      <dd>{o.dd}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </aside>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Risks / honest complications (optional) */}
+      {data.risks && (
+        <section className="dn-section">
+          <div className="dn-container">
+            <div className="tp-prose" style={{ maxWidth: '780px' }}>
+              <div className="tp-section-head">
+                <span className="dn-eyebrow">{data.risks.eyebrow || 'Understanding the Risks'}</span>
+                <h2 className="dn-display">{data.risks.heading}</h2>
+              </div>
+              {data.risks.body.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="dn-section tp-faq">
