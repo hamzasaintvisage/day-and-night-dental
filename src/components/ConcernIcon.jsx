@@ -153,6 +153,13 @@ export function Icon({ type }) {
           <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
         </svg>
       );
+    case 'mail':
+      return (
+        <svg {...lucide}>
+          <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+        </svg>
+      );
     case 'implant':
       return (
         <svg {...common}>

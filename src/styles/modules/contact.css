@@ -50,6 +50,10 @@
           flex-direction: column;
           gap: 0.5rem;
         }
+        .dn-contact-ico { display: inline-flex; width: 24px; height: 24px; color: var(--dn-bone-dim); margin-bottom: 0.1rem; }
+        .dn-contact-ico svg { width: 24px; height: 24px; }
+        .dn-contact-ico.day { color: var(--dn-day); }
+        .dn-contact-ico.night { color: var(--dn-night); }
         .dn-contact-detail .value {
           font-family: var(--font-display);
           font-size: 1.2rem;

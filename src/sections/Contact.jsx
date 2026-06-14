@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PRACTICE } from '../data/practice';
 import Dropdown from '../components/Dropdown';
+import { Icon } from '../components/ConcernIcon';
 import { submitEnquiry, buildEnquiryExtras } from '../lib/submitEnquiry';
 
 const treatmentOptions = [
@@ -87,24 +88,28 @@ export default function Contact() {
 
             <div className="dn-contact-details">
               <div className="dn-contact-detail">
+                <span className="dn-contact-ico day" aria-hidden="true"><Icon type="phone" /></span>
                 <span className="dn-eyebrow day">Day Line</span>
                 <a href={`tel:${PRACTICE.phoneE164}`} className="value">{PRACTICE.phoneDisplay}</a>
                 <span className="hint">Mon to Sun, 7am to 11pm</span>
               </div>
 
               <div className="dn-contact-detail">
+                <span className="dn-contact-ico night" aria-hidden="true"><Icon type="pulse" /></span>
                 <span className="dn-eyebrow night">Night & Emergency</span>
                 <a href={`tel:${PRACTICE.phoneE164}`} className="value">{PRACTICE.phoneDisplay}</a>
                 <span className="hint">24-hour emergency line</span>
               </div>
 
               <div className="dn-contact-detail">
+                <span className="dn-contact-ico" aria-hidden="true"><Icon type="mail" /></span>
                 <span className="dn-eyebrow">Email</span>
                 <a href={`mailto:${PRACTICE.email}`} className="value">{PRACTICE.email}</a>
                 <span className="hint">We reply within 1 working hour</span>
               </div>
 
               <div className="dn-contact-detail">
+                <span className="dn-contact-ico" aria-hidden="true"><Icon type="pin" /></span>
                 <span className="dn-eyebrow">Visit</span>
                 <p className="value">
                   {PRACTICE.streetAddress}<br />
