@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
 import { dentistLd, DENTIST_ID } from '../lib/schemas'
+import { Icon } from './ConcernIcon'
 
 const OG_IMAGE = `${SITE}/og-image.jpg`
 
@@ -233,6 +234,7 @@ export default function TreatmentPage({ data }) {
               {data.types.items.map((t, i) => (
                 <article className="tp-benefit" key={i}>
                   <span className="bar" />
+                  {t.icon && <span className={`tp-type-ico ${i % 2 ? 'night' : 'day'}`} aria-hidden="true"><Icon type={t.icon} /></span>}
                   <h3>{t.title}</h3>
                   <p>{t.body}</p>
                 </article>

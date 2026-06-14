@@ -67,6 +67,11 @@
 .tp-benefit p { font-size: 0.92rem; color: var(--dn-bone-dim); }
 .tp-benefit .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--dn-day), var(--dn-night)); opacity: 0; transition: opacity 0.4s; }
 .tp-benefit:hover .bar { opacity: 1; }
+/* Circular icon badge for option cards (e.g. implant types) */
+.tp-type-ico { width: 54px; height: 54px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.tp-type-ico svg { width: 28px; height: 28px; }
+.tp-type-ico.day { background: rgba(244, 194, 74, 0.1); color: var(--dn-day); border: 1px solid rgba(244, 194, 74, 0.28); }
+.tp-type-ico.night { background: rgba(74, 149, 229, 0.1); color: var(--dn-night); border: 1px solid rgba(74, 149, 229, 0.28); }
 
 /* Process steps */
 .tp-steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }

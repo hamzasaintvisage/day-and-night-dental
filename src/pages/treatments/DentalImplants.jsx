@@ -37,10 +37,10 @@ const data = {
     heading: (<>One type of implant doesn’t fit <em>everyone</em></>),
     intro: "The right approach depends on how many teeth you’re replacing, the health of your gums and how much jawbone you have. We work that out together at your consultation. Broadly, there are four routes.",
     items: [
-      { title: 'Single tooth implant', body: 'One titanium post topped with a crown, to replace a single missing tooth without touching the healthy teeth either side.' },
-      { title: 'Implant bridge', body: 'Two or more teeth held by a small number of implants, for when you’re missing several teeth in a row.' },
-      { title: 'Full-arch (All-on-4)', body: 'A fixed set of teeth secured on four or more implants, to replace a whole upper or lower jaw without a removable plate.' },
-      { title: 'Denture stabilisation', body: 'Implants that anchor a new or existing denture so it clips firmly in place and stops slipping or rubbing.' },
+      { icon: 'tooth', title: 'Single tooth implant', body: 'One titanium post topped with a crown, to replace a single missing tooth without touching the healthy teeth either side.' },
+      { icon: 'gap', title: 'Implant bridge', body: 'Two or more teeth held by a small number of implants, for when you’re missing several teeth in a row.' },
+      { icon: 'denture', title: 'Full-arch (All-on-4)', body: 'A fixed set of teeth secured on four or more implants, to replace a whole upper or lower jaw without a removable plate.' },
+      { icon: 'smile', title: 'Denture stabilisation', body: 'Implants that anchor a new or existing denture so it clips firmly in place and stops slipping or rubbing.' },
     ],
   },
   comparison: {
