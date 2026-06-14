@@ -60,6 +60,82 @@ export function Icon({ type }) {
           <circle cx="22" cy="14" r="0.8" fill="currentColor" />
         </svg>
       );
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="18" cy="18" r="11" />
+          <path d="M18 12 L18 18 L22.5 21" />
+        </svg>
+      );
+    case 'calendar':
+      return (
+        <svg {...common}>
+          <rect x="8" y="11" width="20" height="17" rx="2.5" />
+          <line x1="8" y1="16" x2="28" y2="16" />
+          <line x1="13" y1="8" x2="13" y2="12" />
+          <line x1="23" y1="8" x2="23" y2="12" />
+        </svg>
+      );
+    case 'phone':
+      return (
+        <svg {...common}>
+          <path d="M13 9 Q11 8 10 11 Q9 14 11 18 Q14 24 20 27 Q24 29 26 27 Q28 25 26.5 23 L23 21.5 Q22 23 21 22.5 Q17 20.5 15 16.5 Q14.5 15.5 16 15 L17 12 Q17.5 10 13 9 Z" />
+        </svg>
+      );
+    case 'pin':
+      return (
+        <svg {...common}>
+          <path d="M18 7 C13 7 9 11 9 16 C9 22 18 29 18 29 C18 29 27 22 27 16 C27 11 23 7 18 7 Z" />
+          <circle cx="18" cy="15.5" r="3" />
+        </svg>
+      );
+    case 'shield':
+      return (
+        <svg {...common}>
+          <path d="M18 7 L27 11 V17 C27 23 23 27 18 30 C13 27 9 23 9 17 V11 Z" />
+          <path d="M14 18 L17 21 L23 14.5" />
+        </svg>
+      );
+    case 'heart':
+      return (
+        <svg {...common}>
+          <path d="M18 28 C9 22 8 14 13.5 12 C16 11 18 13 18 15 C18 13 20 11 22.5 12 C28 14 27 22 18 28 Z" />
+        </svg>
+      );
+    case 'pulse':
+      return (
+        <svg {...common}>
+          <path d="M7 18 H13 L16 11 L20 25 L23 18 H29" />
+        </svg>
+      );
+    case 'chat':
+      return (
+        <svg {...common}>
+          <path d="M9 11 Q9 9 11 9 H25 Q27 9 27 11 V20 Q27 22 25 22 H16 L11 27 V22 Q9 22 9 20 Z" />
+          <circle cx="14" cy="15.5" r="0.9" fill="currentColor" />
+          <circle cx="18" cy="15.5" r="0.9" fill="currentColor" />
+          <circle cx="22" cy="15.5" r="0.9" fill="currentColor" />
+        </svg>
+      );
+    case 'clipboard':
+      return (
+        <svg {...common}>
+          <rect x="10" y="9" width="16" height="21" rx="2.5" />
+          <rect x="14" y="6" width="8" height="5" rx="1.5" />
+          <line x1="13.5" y1="18" x2="22.5" y2="18" />
+          <line x1="13.5" y1="22" x2="22.5" y2="22" />
+          <line x1="13.5" y1="26" x2="19" y2="26" />
+        </svg>
+      );
+    case 'implant':
+      return (
+        <svg {...common}>
+          <path d="M13 12 Q13 8 18 8 Q23 8 23 12 Q23 15 21 16 L15 16 Q13 15 13 12 Z" />
+          <path d="M15.5 16 L20.5 16 L19 28 Q18 30.5 17 28 Z" />
+          <line x1="15.7" y1="20" x2="20.3" y2="20" />
+          <line x1="16" y1="23.5" x2="20" y2="23.5" />
+        </svg>
+      );
     default:
       return null;
   }
