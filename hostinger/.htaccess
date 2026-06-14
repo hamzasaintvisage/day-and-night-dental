@@ -1,6 +1,6 @@
 # Day Night Dental — Hostinger (LiteSpeed/Apache) config
-# Holds: security headers + caching + custom 404 + "coming soon" holding mode.
-# To GO LIVE: delete only the "COMING SOON MODE" block at the bottom. Keep everything else.
+# Holds: security headers + caching + custom 404 + canonical (www -> apex) redirect.
+# LIVE: the coming-soon holding gate has been removed.
 
 # ----------------------------------------------------------------------------
 # Security headers (applied to every response, including errors)
