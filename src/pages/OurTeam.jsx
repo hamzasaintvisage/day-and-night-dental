@@ -68,7 +68,7 @@ export default function OurTeam() {
           <h2 className="dn-display">Care from a team that <em>knows you</em></h2>
           <p>Register today and you'll see the same friendly faces every time you visit.</p>
           <div className="tp-cta-actions">
-            <Link to="/register-as-patient" className="dn-btn primary">Register as a patient<span className="arrow">→</span></Link>
+            <Link to="/register-as-patient/" className="dn-btn primary">Register as a patient<span className="arrow">→</span></Link>
             <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn">Call {PRACTICE.phoneDisplay}</a>
           </div>
         </div>

@@ -5,12 +5,12 @@ import { PRACTICE } from '../data/practice';
 // The six real treatment pages, surfaced in an expandable group so mobile users
 // can reach them directly instead of only the homepage #treatments anchor.
 const TREATMENTS = [
-  { label: 'Emergency Dentist', to: '/treatments/emergency-dentist' },
-  { label: 'General Dentistry', to: '/treatments/general-dentistry' },
-  { label: 'Cosmetic Dentistry', to: '/treatments/cosmetic-dentistry' },
-  { label: 'Dental Implants', to: '/treatments/dental-implants' },
-  { label: 'Invisalign', to: '/treatments/invisalign' },
-  { label: 'Teeth Whitening', to: '/treatments/teeth-whitening' },
+  { label: 'Emergency Dentist', to: '/treatments/emergency-dentist/' },
+  { label: 'General Dentistry', to: '/treatments/general-dentistry/' },
+  { label: 'Cosmetic Dentistry', to: '/treatments/cosmetic-dentistry/' },
+  { label: 'Dental Implants', to: '/treatments/dental-implants/' },
+  { label: 'Invisalign', to: '/treatments/invisalign/' },
+  { label: 'Teeth Whitening', to: '/treatments/teeth-whitening/' },
 ];
 
 // Full-screen overlay navigation for mobile/tablet. Animated, focus-trapped,
@@ -128,7 +128,7 @@ export default function MobileMenu({ open, onClose, onEscClose }) {
         </div>
 
         <Link
-          to="/our-team"
+          to="/our-team/"
           className={`dn-mm-link ${isActive('/our-team') ? 'active' : ''}`}
           aria-current={isActive('/our-team') ? 'page' : undefined}
           style={step()}
@@ -138,7 +138,7 @@ export default function MobileMenu({ open, onClose, onEscClose }) {
         </Link>
 
         <Link
-          to="/register-as-patient"
+          to="/register-as-patient/"
           className={`dn-mm-link ${isActive('/register-as-patient') ? 'active' : ''}`}
           aria-current={isActive('/register-as-patient') ? 'page' : undefined}
           style={step()}

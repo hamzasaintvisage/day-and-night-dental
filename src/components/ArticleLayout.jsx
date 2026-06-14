@@ -2,6 +2,7 @@ import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
+import { dentistLd } from '../lib/schemas'
 import { posts } from '../data/blog'
 
 const TREATMENT_TITLES = {
@@ -35,7 +36,7 @@ export default function ArticleLayout({ post }) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
       { '@type': 'ListItem', position: 3, name: post.title, item: url },
     ],
   }
@@ -52,7 +53,7 @@ export default function ArticleLayout({ post }) {
   return (
     <>
       <Head>
-        <title>{post.title} | Day Night Dental</title>
+        <title>{(post.seoTitle || post.title)} | Day Night Dental</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="article" />
@@ -63,9 +64,12 @@ export default function ArticleLayout({ post }) {
         <meta property="og:locale" content="en_GB" />
         <meta property="og:image" content={`${SITE}/og-image.jpg`} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
         <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
       </Head>
       <Head>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
         <script type="application/ld+json">{jsonLd(ld)}</script>
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
         {faqLd && <script type="application/ld+json">{jsonLd(faqLd)}</script>}
@@ -75,7 +79,7 @@ export default function ArticleLayout({ post }) {
         <div className="dn-container">
           <Link to="/">Home</Link>
           <span className="crumb-sep">/</span>
-          <Link to="/blog">Blog</Link>
+          <Link to="/blog/">Blog</Link>
           <span className="crumb-sep">/</span>
           <span className="current">{post.title}</span>
         </div>
@@ -110,7 +114,7 @@ export default function ArticleLayout({ post }) {
               <span className="dn-eyebrow">Related treatments</span>
               <div className="dn-article-related-links">
                 {post.related.map((slug) => (
-                  <Link key={slug} to={`/treatments/${slug}`}>{TREATMENT_TITLES[slug]} →</Link>
+                  <Link key={slug} to={`/treatments/${slug}/`}>{TREATMENT_TITLES[slug]} →</Link>
                 ))}
               </div>
             </div>
@@ -121,7 +125,7 @@ export default function ArticleLayout({ post }) {
               <span className="dn-eyebrow">Related reading</span>
               <div className="dn-article-related-links">
                 {post.relatedPosts.map((slug) => POST_TITLES[slug] && (
-                  <Link key={slug} to={`/blog/${slug}`}>{POST_TITLES[slug]} →</Link>
+                  <Link key={slug} to={`/blog/${slug}/`}>{POST_TITLES[slug]} →</Link>
                 ))}
               </div>
             </div>
@@ -131,7 +135,7 @@ export default function ArticleLayout({ post }) {
             <p>Need to be seen? We're open day and night in Merchant City, Glasgow.</p>
             <div className="tp-cta-actions">
               <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary">Call {PRACTICE.phoneDisplay}</a>
-              <Link to="/register-as-patient" className="dn-btn">Register as a patient</Link>
+              <Link to="/register-as-patient/" className="dn-btn">Register as a patient</Link>
             </div>
           </div>
         </div>

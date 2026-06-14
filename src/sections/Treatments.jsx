@@ -97,7 +97,7 @@ function TreatmentBody({ t, withTitle }) {
           Book Consultation
           <span className="arrow">→</span>
         </a>
-        <Link to={`/treatments/${slugMap[t.id]}`} className="dn-tx-link">
+        <Link to={`/treatments/${slugMap[t.id]}/`} className="dn-tx-link">
           Read full guide
           <span className="arrow">→</span>
         </Link>

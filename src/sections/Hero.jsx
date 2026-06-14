@@ -43,8 +43,8 @@ export default function Hero() {
         <h1 className="dn-hero-title dn-display">
           {/* Decorative split-word lockup; aria-hidden so the accessible name is the
               single descriptive string below, not "DayNight Day Night Dental…". */}
-          <span className="word-day dn-reveal dn-delay-1" aria-hidden="true">Day</span>
-          <span className="word-night dn-reveal dn-delay-3" aria-hidden="true">Night</span>
+          <span className="word-day" aria-hidden="true">Day</span>
+          <span className="word-night" aria-hidden="true">Night</span>
           <span className="dn-visually-hidden">Day Night Dental, your 24-hour emergency and cosmetic dentist in Merchant City, Glasgow</span>
         </h1>
 

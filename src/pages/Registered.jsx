@@ -36,7 +36,7 @@ export default function Registered() {
           'We send directions and what to bring.',
         ]}
         links={[
-          { to: '/our-team', label: 'Meet the team' },
+          { to: '/our-team/', label: 'Meet the team' },
           { href: '/#treatments', label: 'Browse treatments' },
         ]}
       />

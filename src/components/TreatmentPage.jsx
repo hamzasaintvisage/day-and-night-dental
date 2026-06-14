@@ -2,8 +2,8 @@ import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
+import { dentistLd, DENTIST_ID } from '../lib/schemas'
 
-const DENTIST_ID = `${SITE}/#dentist`
 const OG_IMAGE = `${SITE}/og-image.jpg`
 
 // Decorative hero mark, sun (day) or moon (night), each cradling the split tooth.
@@ -109,6 +109,7 @@ export default function TreatmentPage({ data }) {
 
       {/* Structured data, emitted into <head> (via Head) for rich results */}
       <Head>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
         <script type="application/ld+json">{jsonLd(procedureLd)}</script>
         <script type="application/ld+json">{jsonLd(serviceLd)}</script>
@@ -285,7 +286,7 @@ export default function TreatmentPage({ data }) {
           </div>
           <div className="tp-related-grid">
             {data.related.map((r) => (
-              <Link className="tp-related-card" to={`/treatments/${r.slug}`} key={r.slug}>
+              <Link className="tp-related-card" to={`/treatments/${r.slug}/`} key={r.slug}>
                 <span className="tag">{r.tag}</span>
                 <h3>{r.title}</h3>
                 <span className="go">View treatment →</span>

@@ -311,7 +311,7 @@ export default function Register() {
                         <span>
                           I’m happy for Day Night Dental to hold my information in line
                           with the{' '}
-                          <Link to="/privacy" target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>privacy policy</Link>,
+                          <Link to="/privacy/" target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>privacy policy</Link>,
                           and to contact me about my registration.
                         </span>
                       </label>

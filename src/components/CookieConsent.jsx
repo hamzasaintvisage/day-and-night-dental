@@ -38,7 +38,7 @@ export default function CookieConsent() {
     <div className="dn-cookie" role="dialog" aria-label="Cookie consent">
       <p>
         We use a few cookies to make this site work and, with your consent, to understand
-        how it's used. See our <Link to="/privacy">privacy policy</Link>.
+        how it's used. See our <Link to="/privacy/">privacy policy</Link>.
       </p>
       <div className="dn-cookie-actions">
         <button type="button" className="dn-cookie-btn ghost" onClick={() => decide(false)}>Decline</button>

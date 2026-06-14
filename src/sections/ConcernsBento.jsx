@@ -4,17 +4,17 @@ import './concerns-bento.css';
 // "Option B", bento layout: one featured hero tile + asymmetric mix, everything visible.
 // Safe copy with concern-led links into the relevant treatment page/section.
 const items = [
-  { area: 'feat', title: 'Transform My Smile', icon: '/icons/concerns/transform-smile.png', side: 'day', href: '/treatments/cosmetic-dentistry#concern',
+  { area: 'feat', title: 'Transform My Smile', icon: '/icons/concerns/transform-smile.png', side: 'day', href: '/treatments/cosmetic-dentistry/#concern',
     ds: 'A full smile makeover' },
-  { area: 'c1', title: 'Fix My Worn Teeth', icon: '/icons/concerns/worn-teeth.png', side: 'night', href: '/treatments/cosmetic-dentistry#concern',
+  { area: 'c1', title: 'Fix My Worn Teeth', icon: '/icons/concerns/worn-teeth.png', side: 'night', href: '/treatments/cosmetic-dentistry/#concern',
     ds: 'Veneers, bonding & crowns' },
-  { area: 'c2', title: 'Replace Missing Teeth', icon: '/icons/concerns/missing-teeth.png', side: 'day', href: '/treatments/dental-implants#concern',
+  { area: 'c2', title: 'Replace Missing Teeth', icon: '/icons/concerns/missing-teeth.png', side: 'day', href: '/treatments/dental-implants/#concern',
     ds: 'Implants & bridges' },
-  { area: 'c3', title: 'Straighten My Teeth', icon: '/icons/concerns/straighten-teeth.png', side: 'night', href: '/treatments/invisalign#concern',
+  { area: 'c3', title: 'Straighten My Teeth', icon: '/icons/concerns/straighten-teeth.png', side: 'night', href: '/treatments/invisalign/#concern',
     ds: 'Clear aligners and discreet orthodontic options' },
-  { area: 'c4', title: 'Whiten My Smile', icon: '/icons/concerns/whiten-smile.png', side: 'day', href: '/treatments/teeth-whitening#concern',
+  { area: 'c4', title: 'Whiten My Smile', icon: '/icons/concerns/whiten-smile.png', side: 'day', href: '/treatments/teeth-whitening/#concern',
     ds: 'Professional whitening for a brighter smile' },
-  { area: 'c5', title: 'Move On From Dentures', icon: '/icons/concerns/dentures.png', side: 'night', href: '/treatments/dental-implants#concern',
+  { area: 'c5', title: 'Move On From Dentures', icon: '/icons/concerns/dentures.png', side: 'night', href: '/treatments/dental-implants/#concern',
     ds: 'Fixed, secured alternatives' },
 ];
 

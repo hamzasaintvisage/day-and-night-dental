@@ -36,7 +36,7 @@ export default function ThankYou() {
           'You come in and meet the team.',
         ]}
         links={[
-          { to: '/treatments/emergency-dentist', label: 'Emergency info' },
+          { to: '/treatments/emergency-dentist/', label: 'Emergency info' },
           { href: '/#treatments', label: 'Browse treatments' },
         ]}
       >

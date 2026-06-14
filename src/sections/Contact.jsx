@@ -246,7 +246,7 @@ export default function Contact() {
 
                 <p className="dn-form-disclaimer">
                   We’ll never share your details. By sending this you’re happy for us to
-                  contact you about your enquiry. Read our <Link to="/privacy">privacy policy</Link>.
+                  contact you about your enquiry. Read our <Link to="/privacy/">privacy policy</Link>.
                 </p>
               </form>
           </div>

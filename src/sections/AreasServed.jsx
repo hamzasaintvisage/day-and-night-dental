@@ -24,7 +24,7 @@ export default function AreasServed() {
               ))}
             </div>
             <p style={{ marginTop: '1.75rem' }}>
-              <Link to="/areas-served" className="tp-hero-ghost">
+              <Link to="/areas-served/" className="tp-hero-ghost">
                 See the areas we serve across Glasgow<span aria-hidden="true"> →</span>
               </Link>
             </p>

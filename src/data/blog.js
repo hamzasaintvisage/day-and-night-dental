@@ -57,6 +57,7 @@ export const posts = [
   {
     slug: 'veneers-glasgow-cost-types',
     title: 'Veneers in Glasgow: composite vs porcelain, costs and what to expect',
+    seoTitle: 'Veneers in Glasgow: Costs & Types',
     description: 'Thinking about veneers? Here is how composite and porcelain compare, what affects the cost in Glasgow, how long they last, and whether they are the right choice for you.',
     date: '9 June 2026',
     dateISO: '2026-06-09',
@@ -98,6 +99,7 @@ export const posts = [
   {
     slug: 'teeth-whitening-professional-vs-home-glasgow',
     title: 'Professional teeth whitening vs home kits: what actually works in Glasgow',
+    seoTitle: 'Teeth Whitening in Glasgow: Pro vs Home',
     description: 'Whitening strips, charcoal, dentist treatments. Here is what really lightens teeth safely, what is a waste of money, and what teeth whitening costs in Glasgow.',
     date: '9 June 2026',
     dateISO: '2026-06-09',

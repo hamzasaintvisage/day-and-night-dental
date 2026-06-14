@@ -35,8 +35,8 @@ export default function Header() {
 
   const navItems = [
     { label: 'Treatments', href: '/#treatments' },
-    { label: 'Our Team', href: '/our-team' },
-    { label: 'Register', href: '/register-as-patient' },
+    { label: 'Our Team', href: '/our-team/' },
+    { label: 'Register', href: '/register-as-patient/' },
     { label: 'Reviews', href: '/#testimonials' },
     { label: 'Contact', href: '/#contact' },
   ];

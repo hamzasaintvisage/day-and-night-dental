@@ -20,7 +20,7 @@ export default function About() {
           <span className="dn-mani-pill"><span className="dot night" />On your lunch break</span>
           <span className="dn-mani-pill"><span className="dot night" />Or at midnight</span>
         </div>
-        <a href="/our-team" className="dn-mani-link">
+        <a href="/our-team/" className="dn-mani-link">
           Meet our team <span className="arrow">&rarr;</span>
         </a>
       </div>

@@ -2,6 +2,7 @@ import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { SITE, PRACTICE, AREAS_SERVED } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
+import { dentistLd } from '../lib/schemas'
 
 const url = `${SITE}/areas-served/`
 const OG_IMAGE = `${SITE}/og-image.jpg`
@@ -15,23 +16,10 @@ const breadcrumbLd = {
   ],
 }
 
-// The Dentist entity with the areas it serves (this page's whole point); ties back
-// to the single business node on the homepage by @id.
-const dentistLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Dentist',
-  '@id': `${SITE}/#dentist`,
-  name: PRACTICE.name,
-  url: `${SITE}/`,
-  telephone: PRACTICE.phoneE164,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: PRACTICE.streetAddress,
-    addressLocality: PRACTICE.city,
-    addressRegion: PRACTICE.region,
-    postalCode: PRACTICE.postcode,
-    addressCountry: PRACTICE.country,
-  },
+// The full Dentist business node, with this page's fuller area list overriding
+// the default. Same @id as the homepage, so the entity stays single + consistent.
+const areasServedLd = {
+  ...dentistLd,
   areaServed: AREAS_SERVED.map((a) => ({ '@type': 'Place', name: a })),
 }
 
@@ -65,7 +53,7 @@ export default function AreasServed() {
       </Head>
       <Head>
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
-        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
+        <script type="application/ld+json">{jsonLd(areasServedLd)}</script>
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
@@ -123,7 +111,7 @@ export default function AreasServed() {
           <p>Do not wait it out. Our emergency line is open day and night, with same-day appointments held back across the city.</p>
           <div className="tp-cta-actions">
             <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary">Call {PRACTICE.phoneDisplay}</a>
-            <Link to="/treatments/emergency-dentist" className="dn-btn">Emergency dentist info</Link>
+            <Link to="/treatments/emergency-dentist/" className="dn-btn">Emergency dentist info</Link>
           </div>
         </div>
       </section>

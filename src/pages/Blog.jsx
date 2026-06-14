@@ -2,8 +2,18 @@ import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import { posts } from '../data/blog'
 import { SITE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
 
 const url = `${SITE}/blog/`
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Advice & Guides', item: url },
+  ],
+}
 
 export default function Blog() {
   return (
@@ -24,6 +34,9 @@ export default function Blog() {
         <meta name="twitter:title" content="Dental Advice & Guides | Day Night Dental" />
         <meta name="twitter:description" content="Honest dental advice from our Glasgow team." />
       </Head>
+      <Head>
+        <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
+      </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
         <div className="dn-container">
@@ -41,7 +54,7 @@ export default function Blog() {
           </div>
           <div className="dn-blog-grid">
             {posts.map((p) => (
-              <Link key={p.slug} to={`/blog/${p.slug}`} className="dn-blog-card">
+              <Link key={p.slug} to={`/blog/${p.slug}/`} className="dn-blog-card">
                 <span className="meta">{p.date} · {p.readTime}</span>
                 <h2>{p.title}</h2>
                 <p>{p.description}</p>
