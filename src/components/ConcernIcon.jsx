@@ -1,6 +1,8 @@
-// Hand-drawn line icons in the same minimal style as the logo. Used by the
-// homepage concerns bento and the treatments list. (Extracted from the old
-// Concerns section so that section could be removed without losing the icons.)
+// Brand icon set. Dental-specific icons (tooth, gap, align, sparkle, denture,
+// smile, implant) are original hand-drawn line art in the logo's minimal style.
+// General UI icons (clock, calendar, phone, pin, shield, heart, pulse, chat,
+// clipboard) are from Lucide (ISC licence, github.com/lucide-icons/lucide),
+// thinned to 1.5 to sit beside the hand-drawn ones. Used across the site via <Icon type=…/>.
 export function Icon({ type }) {
   const common = {
     width: 36,
@@ -11,6 +13,12 @@ export function Icon({ type }) {
     strokeWidth: '1',
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
+  };
+  // General UI icons are sourced from Lucide (ISC licence, github.com/lucide-icons/lucide),
+  // thinned to 1.5 and rendered in currentColor so they sit beside the custom dental icons.
+  const lucide = {
+    width: 36, height: 36, viewBox: '0 0 24 24', fill: 'none',
+    stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round',
   };
 
   switch (type) {
@@ -62,69 +70,67 @@ export function Icon({ type }) {
       );
     case 'clock':
       return (
-        <svg {...common}>
-          <circle cx="18" cy="18" r="11" />
-          <path d="M18 12 L18 18 L22.5 21" />
+        <svg {...lucide}>
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 6v6l4 2" />
         </svg>
       );
     case 'calendar':
       return (
-        <svg {...common}>
-          <rect x="8" y="11" width="20" height="17" rx="2.5" />
-          <line x1="8" y1="16" x2="28" y2="16" />
-          <line x1="13" y1="8" x2="13" y2="12" />
-          <line x1="23" y1="8" x2="23" y2="12" />
+        <svg {...lucide}>
+          <path d="M8 2v4" />
+          <path d="M16 2v4" />
+          <rect width="18" height="18" x="3" y="4" rx="2" />
+          <path d="M3 10h18" />
         </svg>
       );
     case 'phone':
       return (
-        <svg {...common}>
-          <path d="M13 9 Q11 8 10 11 Q9 14 11 18 Q14 24 20 27 Q24 29 26 27 Q28 25 26.5 23 L23 21.5 Q22 23 21 22.5 Q17 20.5 15 16.5 Q14.5 15.5 16 15 L17 12 Q17.5 10 13 9 Z" />
+        <svg {...lucide}>
+          <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
         </svg>
       );
     case 'pin':
       return (
-        <svg {...common}>
-          <path d="M18 7 C13 7 9 11 9 16 C9 22 18 29 18 29 C18 29 27 22 27 16 C27 11 23 7 18 7 Z" />
-          <circle cx="18" cy="15.5" r="3" />
+        <svg {...lucide}>
+          <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+          <circle cx="12" cy="10" r="3" />
         </svg>
       );
     case 'shield':
       return (
-        <svg {...common}>
-          <path d="M18 7 L27 11 V17 C27 23 23 27 18 30 C13 27 9 23 9 17 V11 Z" />
-          <path d="M14 18 L17 21 L23 14.5" />
+        <svg {...lucide}>
+          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+          <path d="m9 12 2 2 4-4" />
         </svg>
       );
     case 'heart':
       return (
-        <svg {...common}>
-          <path d="M18 28 C9 22 8 14 13.5 12 C16 11 18 13 18 15 C18 13 20 11 22.5 12 C28 14 27 22 18 28 Z" />
+        <svg {...lucide}>
+          <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
         </svg>
       );
     case 'pulse':
       return (
-        <svg {...common}>
-          <path d="M7 18 H13 L16 11 L20 25 L23 18 H29" />
+        <svg {...lucide}>
+          <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" />
         </svg>
       );
     case 'chat':
       return (
-        <svg {...common}>
-          <path d="M9 11 Q9 9 11 9 H25 Q27 9 27 11 V20 Q27 22 25 22 H16 L11 27 V22 Q9 22 9 20 Z" />
-          <circle cx="14" cy="15.5" r="0.9" fill="currentColor" />
-          <circle cx="18" cy="15.5" r="0.9" fill="currentColor" />
-          <circle cx="22" cy="15.5" r="0.9" fill="currentColor" />
+        <svg {...lucide}>
+          <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />
         </svg>
       );
     case 'clipboard':
       return (
-        <svg {...common}>
-          <rect x="10" y="9" width="16" height="21" rx="2.5" />
-          <rect x="14" y="6" width="8" height="5" rx="1.5" />
-          <line x1="13.5" y1="18" x2="22.5" y2="18" />
-          <line x1="13.5" y1="22" x2="22.5" y2="22" />
-          <line x1="13.5" y1="26" x2="19" y2="26" />
+        <svg {...lucide}>
+          <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+          <path d="M12 11h4" />
+          <path d="M12 16h4" />
+          <path d="M8 11h.01" />
+          <path d="M8 16h.01" />
         </svg>
       );
     case 'implant':
