@@ -1,13 +1,13 @@
 import { useRef } from 'react'
 
-// Six patient smile placeholders. Replace with consented patient photography before launch.
+// Real consented patient results from across our group (bonding, veneers, implants).
 const smiles = [
-  { image: 'https://images.unsplash.com/photo-1521146764736-56c929d59c83?w=700&h=900&fit=crop&q=80&fm=webp', caption: 'Veneers & whitening', cat: 'Cosmetic', side: 'day' },
-  { image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=700&h=900&fit=crop&q=80&fm=webp', caption: 'Invisalign', cat: 'Invisalign', side: 'night' },
-  { image: 'https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?w=700&h=900&fit=crop&q=80&fm=webp', caption: 'Smile makeover', cat: 'Cosmetic', side: 'day' },
-  { image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=700&h=900&fit=crop&q=80&fm=webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'night' },
-  { image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=700&h=900&fit=crop&q=80&fm=webp', caption: 'Implant restoration', cat: 'Implants', side: 'day' },
-  { image: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=700&h=900&fit=crop&q=80&fm=webp', caption: 'Professional whitening', cat: 'Whitening', side: 'night' },
+  { image: '/smiles/charly-bonding.webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'day' },
+  { image: '/smiles/katie-veneers.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'night' },
+  { image: '/smiles/carlos-implants.webp', caption: 'Dental implants', cat: 'Implants', side: 'day' },
+  { image: '/smiles/tom-bonding.webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'night' },
+  { image: '/smiles/gosia-veneers.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'day' },
+  { image: '/smiles/jaffar-implants.webp', caption: 'Dental implants', cat: 'Implants', side: 'night' },
 ]
 
 function Marker({ side }) {
@@ -50,11 +50,10 @@ export default function SmileGallery() {
         <div className="dn-section-head">
           <span className="dn-eyebrow">The Results</span>
           <h2 className="dn-display">
-            Modern dentistry, <em>illustrated</em>
+            Real smiles, <em>real results</em>
           </h2>
           <p className="dn-section-lead">
-            Scroll through a filmstrip of cases. Images are illustrative only; we will share real
-            patient smiles, with their consent, once we are open.
+            Genuine patient results from across our group of clinics, shared with their consent.
           </p>
         </div>
 
