@@ -46,12 +46,24 @@ const data = {
   comparison: {
     eyebrow: 'Your Smile, Your Choice',
     heading: (<>How implants compare to a <em>bridge or denture</em></>),
-    intro: "Implants aren’t the only way to replace missing teeth. Here’s an honest look at how the three main options differ, so you can weigh up what suits you.",
-    options: [
-      { name: 'Dental implant', points: ['Replaces the tooth root, not just the visible crown', 'Stands alone, no need to reshape neighbouring teeth', 'Helps protect the jawbone from shrinking', 'The longest-lasting option with good care', 'Involves minor surgery and a healing period'] },
-      { name: 'Conventional bridge', points: ['Fills the gap using the teeth either side for support', 'No surgery, and usually quicker to complete', 'The neighbouring teeth have to be reshaped', 'Doesn’t stop the bone shrinking under the gap'] },
-      { name: 'Denture', points: ['Removable false teeth, taken out to clean', 'The least invasive and most affordable route', 'Can move, click or rub while eating or talking', 'May need relining or remaking over time'] },
+    intro: "Implants aren’t the only way to replace missing teeth. Here’s an honest, side-by-side look at the three main options so you can weigh up what suits you.",
+    attribute: 'At a glance',
+    columns: [
+      { name: 'Dental implant', feat: true },
+      { name: 'Conventional bridge' },
+      { name: 'Denture' },
     ],
+    rows: [
+      { label: 'Replaces the tooth root', values: ['Yes', 'No', 'No'] },
+      { label: 'Surgery involved', values: ['Minor surgery', 'No surgery', 'No surgery'] },
+      { label: 'Affects neighbouring teeth', values: ['No', 'Yes, they’re reshaped', 'No'] },
+      { label: 'Helps protect the jawbone', values: ['Yes', 'No', 'No'] },
+      { label: 'Stays fixed in place', values: ['Fixed', 'Fixed', 'Removable'] },
+      { label: 'Feels closest to a natural tooth', values: ['Closest', 'Close', 'Less so'] },
+      { label: 'Longevity with good care', values: ['Longest-lasting', 'Many years', 'Shorter; may need remaking'] },
+      { label: 'Up-front cost', values: ['Higher', 'Mid-range', 'Lower'] },
+    ],
+    note: 'A guide only. The right choice depends on your mouth, your health and what matters to you, which we’ll talk through at your consultation.',
   },
   aftercare: {
     eyebrow: 'Recovery & Aftercare',

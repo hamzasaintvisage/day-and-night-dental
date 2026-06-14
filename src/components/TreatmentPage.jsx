@@ -271,17 +271,29 @@ export default function TreatmentPage({ data }) {
               <h2 className="dn-display">{data.comparison.heading}</h2>
             </div>
             {data.comparison.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.comparison.intro}</p>}
-            <div className="tp-benefit-grid">
-              {data.comparison.options.map((o, i) => (
-                <article className="tp-benefit" key={i}>
-                  <span className="bar" />
-                  <h3>{o.name}</h3>
-                  <ul className="tp-concern-list">
-                    {o.points.map((p, j) => <li key={j}>{p}</li>)}
-                  </ul>
-                </article>
-              ))}
+            <div className="tp-compare-scroll">
+              <table className="tp-compare">
+                <thead>
+                  <tr>
+                    <th scope="col">{data.comparison.attribute || ''}</th>
+                    {data.comparison.columns.map((c, i) => (
+                      <th scope="col" key={i} className={c.feat ? 'feat' : ''}>{c.name}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.comparison.rows.map((r, i) => (
+                    <tr key={i}>
+                      <th scope="row">{r.label}</th>
+                      {r.values.map((v, j) => (
+                        <td key={j} className={data.comparison.columns[j] && data.comparison.columns[j].feat ? 'feat' : ''}>{v}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
+            {data.comparison.note && <p className="tp-compare-note">{data.comparison.note}</p>}
           </div>
         </section>
       )}

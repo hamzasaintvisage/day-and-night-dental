@@ -99,6 +99,19 @@
 }
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 
+/* Comparison matrix (treatment vs alternatives) */
+.tp-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1rem; }
+.tp-compare { width: 100%; border-collapse: collapse; min-width: 600px; }
+.tp-compare th, .tp-compare td { padding: 0.95rem 1.1rem; text-align: left; border-bottom: 1px solid var(--dn-mist); vertical-align: top; }
+.tp-compare thead th { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--dn-bone); border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
+.tp-compare thead th:first-child { width: 28%; }
+.tp-compare tbody th { font-weight: 500; color: var(--dn-bone-dim); font-size: 0.92rem; }
+.tp-compare tbody td { color: var(--dn-bone); font-size: 0.92rem; }
+.tp-compare tbody tr:last-child th, .tp-compare tbody tr:last-child td { border-bottom: 0; }
+.tp-compare .feat { background: rgba(244, 194, 74, 0.06); }
+.tp-compare thead th.feat { color: var(--dn-day); border-top: 2px solid var(--dn-day); }
+.tp-compare-note { color: var(--dn-bone-faint); font-size: 0.82rem; margin-top: 0.9rem; }
+
 /* Related treatments */
 .tp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .tp-related-card { padding: 2rem; border: 1px solid var(--dn-mist); background: var(--dn-charcoal); transition: border-color 0.4s, transform 0.4s; display: flex; flex-direction: column; gap: 0.5rem; }
