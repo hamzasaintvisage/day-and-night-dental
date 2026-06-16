@@ -10,31 +10,31 @@ export default function Journey() {
       <div className="dn-journey-inner">
         <span className="dn-journey-eyebrow">What to expect when you call</span>
         <h2 className="dn-journey-head">
-          Call in pain. Get seen fast. Day or night.
+          Call with dental pain. We’ll help you get seen fast.
         </h2>
 
         <div className="dn-journey-map">
           <div className="dn-journey-step">
             <span className="num">01</span>
-            <h3>Tell us what’s wrong</h3>
-            <p>We’ll ask a few quick questions, check how urgent it sounds, and guide you from there.</p>
+            <h3>Tell us what’s happening</h3>
+            <p>We’ll ask a few quick questions to understand your symptoms and how urgent they are.</p>
           </div>
           <div className="dn-journey-step">
             <span className="num">02</span>
-            <h3>Priority care, day or night</h3>
-            <p>We’ll help arrange the earliest suitable emergency appointment.</p>
+            <h3>We’ll find the earliest appointment</h3>
+            <p>If you need urgent care, we’ll help arrange the soonest suitable appointment.</p>
           </div>
           <div className="dn-journey-step">
             <span className="num">03</span>
-            <h3>Relief and a clear plan</h3>
-            <p>We’ll assess the problem, explain your options, and provide urgent treatment where suitable.</p>
+            <h3>Get relief and a clear plan</h3>
+            <p>A dentist will assess the problem, explain your options, and provide urgent treatment where appropriate.</p>
           </div>
         </div>
 
         <div className="dn-journey-cta">
           <a href={tel} className="dn-btn primary dn-btn-emergency">
             <span className="dn-btn-pulse" />
-            Call our 24/7 line<span className="arrow"> →</span>
+            Call the 24/7 emergency line<span className="arrow"> →</span>
           </a>
           <a href={tel} className="dn-journey-num">{PRACTICE.phoneDisplay}</a>
         </div>
