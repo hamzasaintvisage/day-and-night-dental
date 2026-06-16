@@ -67,6 +67,10 @@
 .tp-benefit p { font-size: 0.92rem; color: var(--dn-bone-dim); }
 .tp-benefit .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--dn-day), var(--dn-night)); opacity: 0; transition: opacity 0.4s; }
 .tp-benefit:hover .bar { opacity: 1; }
+/* Linked option cards (hub card grids on cosmetic + general dentistry) behave as clickable cards */
+.tp-benefit-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
+.tp-benefit-link .go { display: inline-block; margin-top: 1rem; font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--dn-day); }
+.tp-benefit-link:hover .go { color: var(--dn-night); }
 /* Circular icon badge for option cards (e.g. implant types) */
 .tp-type-ico { width: 54px; height: 54px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 .tp-type-ico svg { width: 28px; height: 28px; }

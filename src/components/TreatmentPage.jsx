@@ -231,14 +231,22 @@ export default function TreatmentPage({ data }) {
             </div>
             {data.types.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.types.intro}</p>}
             <div className="tp-benefit-grid">
-              {data.types.items.map((t, i) => (
-                <article className="tp-benefit" key={i}>
-                  <span className="bar" />
-                  {t.icon && <span className={`tp-type-ico ${i % 2 ? 'night' : 'day'}`} aria-hidden="true"><Icon type={t.icon} /></span>}
-                  <h3>{t.title}</h3>
-                  <p>{t.body}</p>
-                </article>
-              ))}
+              {data.types.items.map((t, i) => {
+                const inner = (
+                  <>
+                    <span className="bar" />
+                    {t.icon && <span className={`tp-type-ico ${i % 2 ? 'night' : 'day'}`} aria-hidden="true"><Icon type={t.icon} /></span>}
+                    <h3>{t.title}</h3>
+                    <p>{t.body}</p>
+                    {t.slug && <span className="go">View treatment →</span>}
+                  </>
+                )
+                return t.slug ? (
+                  <Link className="tp-benefit tp-benefit-link" to={`/treatments/${t.slug}/`} key={i}>{inner}</Link>
+                ) : (
+                  <article className="tp-benefit" key={i}>{inner}</article>
+                )
+              })}
             </div>
           </div>
         </section>

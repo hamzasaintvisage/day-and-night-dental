@@ -1,0 +1,58 @@
+import TreatmentPage from '../../components/TreatmentPage'
+
+const data = {
+  concern: {
+    heading: (<>Does the thought of the chair <em>knot your stomach</em>?</>),
+    body: ["If you have put off coming in for years, or your heart races at the idea of an appointment, you are not unusual and you are not a problem. Plenty of people feel exactly the same. We see nervous and anxious patients every week, and we are used to going slowly.", "For some it is a general unease. For others it is a specific fear, like needles, the sound of the drill, or feeling stuck in the chair. Whatever it is for you, we listen first, we explain everything, and we never make you feel small for being scared."],
+    symptoms: ["Putting off appointments for years", "A fear of needles or the drill", "Feeling trapped or out of control in the chair", "Embarrassment about the state of your teeth", "A strong gag reflex or general unease"],
+  },
+  ctaPrimaryLabel: 'Book a Consultation',
+  lastReviewed: '2026-06-16',
+  lastReviewedLabel: 'June 2026',
+  slug: "nervous-patients",
+  side: "night",
+  tag: "Gentle Care",
+  h1Plain: "Nervous Patients",
+  procedureType: "Dentistry",
+  title: (<>Nervous patient? You are <em>welcome here</em></>),
+  lead: "Nervous patient? You are welcome here, and you will not be judged.",
+  seo: { title: "Nervous Patients & Dental Anxiety in Glasgow | Day Night Dental", description: "Gentle, judgement-free care for nervous and anxious dental patients in Glasgow. We go at your pace. Day and evening appointments, 7 days a week." },
+  meta: [{"k": "Approach", "v": "At your pace", "tone": "day"}, {"k": "First visit", "v": "Can be just a chat", "tone": ""}, {"k": "Control", "v": "Agreed stop signal", "tone": "night"}],
+  overviewEyebrow: 'The Treatment',
+  overviewHeading: (<>Gentle care, <em>at your pace</em></>),
+  overview: ["Lots of people feel nervous about the dentist. If your stomach knots at the thought of the chair, or you have put off coming in for years, you are not unusual and you are not a problem. We see nervous and anxious patients every week at our practice in Merchant City, central Glasgow, and we are used to going slowly.", "Dental anxiety is common across Glasgow and the whole of the UK. For some people it is a general unease. For others it is a specific fear, like needles, the sound of the drill, or feeling stuck in the chair. Some people feel embarrassed about the state of their teeth after a long gap. None of that changes how we treat you. We listen first, we explain everything, and we never make you feel small for being scared.", "Because we are open day and evening, seven days a week, you can pick a quieter time that suits you. An early morning slot before work, or an evening one after it, often feels calmer than a busy midday waiting room. We serve patients from across Glasgow, and we will take the time you need."],
+  facts: [{"dt": "Dental anxiety is common", "dd": "Surveys suggest dental anxiety is very common among UK adults, and a smaller group experience a stronger phobia. You are far from alone."}, {"dt": "Triggers vary", "dd": "Anxiety can be general, or it can be triggered by something specific, like injections, the drill, or a strong gag reflex. Knowing your trigger helps us plan around it."}, {"dt": "We can measure it", "dd": "We can use a simple, validated questionnaire to measure how anxious you feel. It takes a minute and helps us tailor your care."}, {"dt": "A first visit can be just a chat", "dd": "There is no rule that says you must have treatment, or even an examination, on day one."}, {"dt": "You stay in control", "dd": "We agree a stop signal before we start anything, so you stay in control the whole time."}, {"dt": "You can book by phone", "dd": "If booking online feels like too much, talking it through with a person first is completely fine."}],
+  benefitsHeading: (<>Why nervous patients <em>feel at ease</em></>),
+  benefits: [{"title": "We go at your pace", "body": "If you need to stop, we stop. If you need a break, you take one. You set the speed, not us."}, {"title": "We explain each step", "body": "We talk you through every step in plain language before we do it, so nothing is a surprise. No jargon, no rush."}, {"title": "An agreed stop signal", "body": "We agree a hand signal that means stop. Raise it and we pause as soon as it is safe to do so. That puts you in charge."}, {"title": "Comfort comes first", "body": "We can use numbing gel before injections, and gentle techniques to keep treatment as comfortable as possible."}, {"title": "Calming options if you need them", "body": "We will talk through ways to keep you relaxed and comfortable, including options that suit you and your health history."}, {"title": "Quieter times to suit you", "body": "Early morning and evening appointments are available seven days a week, so you can avoid the times that stress you most."}],
+  stepsHeading: (<>How your <em>first visit</em> works</>),
+  steps: [{"title": "You tell us how you feel", "body": "Before anything else, we listen. What worries you, what has happened before, and what you would like to avoid. We may ask you to fill in a short anxiety questionnaire so we understand where you are starting from."}, {"title": "We agree how we will work together", "body": "We set your stop signal, agree to explain each step, and confirm that you can pause at any point. You set the pace, not us."}, {"title": "A gentle look, only when you are ready", "body": "When you feel able, we take a careful look at your teeth and gums. If you would rather not on the first visit, that is fine. There is no pressure."}, {"title": "We make a plan together", "body": "We talk through what you need, in what order, and the comfort options that might help. You decide what happens next and when."}, {"title": "Treatment at your pace", "body": "We take things one small step at a time, checking in with you throughout. You can stop whenever you need to."}],
+  aftercare: {
+    eyebrow: "Aftercare",
+    heading: (<>After <em>your visit</em></>),
+    intro: "Most appointments need no special recovery. If you have a calming option, we will plan it with you in advance.",
+    phases: [
+      { title: "Right after your visit", items: ["Most appointments need no special recovery.", "If you have had treatment such as a filling or an extraction, we will give you clear aftercare for that specific procedure."] },
+      { title: "If you have a calming or sedation option", items: ["Some comfort options need a bit more planning, and where that applies we will explain it fully in advance.", "You may need a responsible adult to bring you home and stay with you.", "You should not drive, operate machinery, or sign anything important for the rest of that day.", "Plan a quiet day and avoid alcohol.", "We will give you written instructions so nothing is left to memory."] },
+      { title: "In the days that follow", items: ["The hardest part is often just getting through the door. Once you have done it once, the next time is usually easier.", "Booking a routine check-up while you feel positive helps keep that momentum and protects your teeth long term."] },
+    ],
+  },
+  risks: {
+    eyebrow: "Honest considerations",
+    heading: (<>What to <em>weigh up</em></>),
+    body: [
+      "We start with reassurance, clear communication, and effective local anaesthetic. For most nervous patients, that is enough to get through a visit comfortably.",
+      "Calming and sedation options are an added support, not a replacement for the basics. We will only suggest what genuinely fits your situation.",
+      "Any sedation-style option depends on your health and medical history. It comes with sensible rules around fasting, escorts, and not driving afterwards. We will be upfront about all of this so there are no surprises.",
+      "We will be honest that a visit may not be completely free of any sensation. What we will always do is work to keep you comfortable, go gently, and stop the moment you ask.",
+      "If your anxiety runs deep and is affecting your wider life, talking therapies, which your GP can help you access, can support you alongside the care we give. We are happy to point you in the right direction.",
+    ],
+  },
+  faqHeading: (<>Nervous patient questions, <em>answered</em></>),
+  faqs: [{"q": "What causes dental anxiety or phobia?", "a": "There is no single cause. For some people it goes back to a bad experience, sometimes years ago. For others it is a fear of pain, of needles, or of the sound of the drill. Feeling trapped or out of control in the chair is common, and so is embarrassment about teeth that have been neglected. All of these are normal, and all of them are things we work around."}, {"q": "I have not been to a dentist in years. Will I be judged?", "a": "No. We see people every week who have stayed away for a long time, often because of fear. Your teeth are our job, not a reason to lecture you. We start from where you are now and move forward together."}, {"q": "Can I stop treatment if I feel uncomfortable?", "a": "Yes, always. Before we begin, we agree a stop signal, usually a raised hand. The moment you use it, we pause as soon as it is safe to do so. You are in control the whole way through."}, {"q": "Will it hurt?", "a": "We can use numbing gel before injections and gentle techniques to keep you comfortable, so treatment is often easier than people fear. We will not pretend you will feel nothing at all, but we will check in with you constantly and stop if you need us to."}, {"q": "What options are there to keep me relaxed?", "a": "This depends on you, your anxiety, and your health. For many people, our calm approach, clear explanations, and effective local anaesthetic are enough. For those who need more, we will talk through the comfort and relaxation options that suit you. We will explain how each one works and any rules that come with it before you decide anything."}, {"q": "How can I prepare for my visit?", "a": "Write down what worries you and any past experiences, tell us about your medical history and any medication, and arrive a little early so you are not rushed. Let us know if you would like a quick look around first."}, {"q": "Can I bring someone with me?", "a": "Yes. Bringing a friend or family member can make a big difference, and you are welcome to have someone with you for support."}, {"q": "Do you treat nervous children too?", "a": "Yes. Children get anxious about the dentist just like adults, and a calm, gentle first experience matters even more for them. We take the same patient, unhurried approach."}, {"q": "What if I am in pain right now but too scared to come in?", "a": "Please call us. We see emergency and urgent cases, and being nervous does not change that. We will be gentle, take it slowly, and help you out of pain. Booking by phone means you can talk it through with a person first."}, {"q": "Where are you, and how do I get in touch?", "a": "Our practice is in Merchant City in central Glasgow. If you would like to talk things through before booking, give us a call. We are happy to answer your questions first."}],
+  related: [{"slug": "emergency-dentist", "title": "Emergency Care", "tag": "24/7 Available"}, {"slug": "dental-check-ups", "title": "Dental Check-ups", "tag": "Prevention"}, {"slug": "childrens-dentistry", "title": "Children's Dentistry", "tag": "Family Care"}],
+  cta: { heading: (<>Take the<br /> <em>first gentle step</em></>), sub: "We go at your pace and never judge. Day and evening appointments, seven days a week." },
+}
+
+export default function NervousPatients() {
+  return <TreatmentPage data={data} />
+}
