@@ -3,10 +3,10 @@ import { useRef } from 'react'
 // Real consented patient results from across our group (bonding, veneers, implants).
 const smiles = [
   { image: '/smiles/implant-patient.webp', caption: 'Dental implants', cat: 'Implants', side: 'day' },
-  { image: '/smiles/charly-bonding.webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'night' },
-  { image: '/smiles/katie-veneers.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'day' },
   { image: '/smiles/bonding-patient.webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'night' },
-  { image: '/smiles/gosia-veneers.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'day' },
+  { image: '/smiles/bonding-patient-2.webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'day' },
+  { image: '/smiles/veneers-patient.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'night' },
+  { image: '/smiles/invisalign-patient.webp', caption: 'Invisalign', cat: 'Orthodontics', side: 'day' },
   { image: '/smiles/jaffar-implants.webp', caption: 'Dental implants', cat: 'Implants', side: 'night' },
 ]
 
