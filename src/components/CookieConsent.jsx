@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { loadAnalytics } from '../lib/analytics'
+import { loadAnalytics, disableAnalytics, readConsent, CONSENT_VERSION } from '../lib/analytics'
 
 // GDPR cookie banner. SSR-safe: renders nothing until mounted (localStorage read
 // in an effect). Analytics only loads after Accept (or if already granted).
@@ -8,10 +8,9 @@ export default function CookieConsent() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    let v = null
-    try { v = localStorage.getItem('dnd-consent') } catch {}
-    if (v === 'granted') loadAnalytics()
-    else if (!v) setShow(true)
+    const c = readConsent()
+    if (c?.value === 'granted') loadAnalytics()
+    else if (!c) setShow(true) // missing, expired, or policy version changed -> ask again
   }, [])
 
   // Let visitors reopen the banner to change or withdraw consent (GDPR Art 7(3):
@@ -27,8 +26,11 @@ export default function CookieConsent() {
   }, [])
 
   const decide = (granted) => {
-    try { localStorage.setItem('dnd-consent', granted ? 'granted' : 'denied') } catch {}
+    try {
+      localStorage.setItem('dnd-consent', JSON.stringify({ v: CONSENT_VERSION, value: granted ? 'granted' : 'denied', at: Date.now() }))
+    } catch { /* private mode: just hide the banner */ }
     if (granted) loadAnalytics()
+    else disableAnalytics() // withdrawal takes effect this session, not just next page load
     setShow(false)
   }
 

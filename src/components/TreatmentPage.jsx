@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom'
 import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
 import { dentistLd, DENTIST_ID } from '../lib/schemas'
+import { treatmentTitle, treatmentTag } from '../data/treatments'
 import { Icon } from './ConcernIcon'
 
 const OG_IMAGE = `${SITE}/og-image.jpg`
+
+const REVIEW_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+// Derive the human "Last updated" label from the ISO lastReviewed, so the visible month can never
+// drift from the date emitted in JSON-LD (they used to be two independently hand-typed strings).
+function reviewedLabel(iso, fallback) {
+  if (!iso) return fallback
+  const [y, m] = iso.split('-')
+  const mi = Number(m) - 1
+  return REVIEW_MONTHS[mi] ? `${REVIEW_MONTHS[mi]} ${y}` : fallback
+}
 
 // Decorative hero mark, sun (day) or moon (night), each cradling the split tooth.
 function HeroMark({ side }) {
@@ -50,14 +61,15 @@ export default function TreatmentPage({ data }) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-      { '@type': 'ListItem', position: 2, name: 'Treatments', item: `${SITE}/#treatments` },
+      { '@type': 'ListItem', position: 2, name: 'Treatments', item: `${SITE}/treatments/` },
       { '@type': 'ListItem', position: 3, name: data.h1Plain, item: url },
     ],
   }
   // MedicalProcedure, references the single Dentist entity by @id (no duplicated provider).
   const procedureLd = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalProcedure',
+    '@type': data.procedureType || 'MedicalProcedure',
+    '@id': `${url}#procedure`,
     name: data.h1Plain,
     description: data.seo.description,
     url,
@@ -69,6 +81,7 @@ export default function TreatmentPage({ data }) {
   const serviceLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${url}#service`,
     serviceType: data.h1Plain,
     provider: { '@id': DENTIST_ID },
     areaServed: { '@type': 'City', name: 'Glasgow' },
@@ -122,7 +135,7 @@ export default function TreatmentPage({ data }) {
         <div className="dn-container">
           <Link to="/">Home</Link>
           <span className="crumb-sep">/</span>
-          <a href="/#treatments">Treatments</a>
+          <Link to="/treatments/">Treatments</Link>
           <span className="crumb-sep">/</span>
           <span className="current">{data.h1Plain}</span>
         </div>
@@ -136,9 +149,9 @@ export default function TreatmentPage({ data }) {
             <div>
               <span className={`dn-eyebrow ${data.side} tag`}>{data.tag}</span>
               <h1 className="dn-display">{data.title}</h1>
-              {data.lastReviewedLabel && (
+              {(data.lastReviewed || data.lastReviewedLabel) && (
                 <p className="tp-byline">
-                  {data.reviewer ? <>Clinically reviewed by <strong>{data.reviewer}</strong> · </> : ''}Last updated {data.lastReviewedLabel}
+                  {data.reviewer ? <>Clinically reviewed by <strong>{data.reviewer}</strong> · </> : ''}Last updated {reviewedLabel(data.lastReviewed, data.lastReviewedLabel)}
                 </p>
               )}
               <p className="lead">{data.lead}</p>
@@ -441,8 +454,8 @@ export default function TreatmentPage({ data }) {
           <div className="tp-related-grid">
             {data.related.map((r) => (
               <Link className="tp-related-card" to={`/treatments/${r.slug}/`} key={r.slug}>
-                <span className="tag">{r.tag}</span>
-                <h3>{r.title}</h3>
+                <span className="tag">{r.tag || treatmentTag(r.slug)}</span>
+                <h3>{treatmentTitle(r.slug) || r.title}</h3>
                 <span className="go">View treatment →</span>
               </Link>
             ))}

@@ -39,7 +39,7 @@ export default function Register() {
 
   const update = (field) => (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setForm({ ...form, [field]: value });
+    setForm((f) => ({ ...f, [field]: value }));
   };
   const setField = (field) => (value) => setForm((f) => ({ ...f, [field]: value }));
 
@@ -52,14 +52,30 @@ export default function Register() {
   const setDobPart = (part) => (v) => {
     const nextDob = { ...dob, [part]: v };
     setDob(nextDob);
-    const combined = nextDob.year && nextDob.month && nextDob.day
-      ? `${nextDob.year}-${String(nextDob.month).padStart(2, '0')}-${String(nextDob.day).padStart(2, '0')}`
-      : '';
+    // Only assemble form.dob when all three are set AND form a real calendar date (rejects
+    // 31 Feb, 31 Apr, 29 Feb in a non-leap year) so a malformed ISO date is never submitted.
+    let combined = '';
+    if (nextDob.year && nextDob.month && nextDob.day) {
+      const y = Number(nextDob.year), m = Number(nextDob.month), d = Number(nextDob.day);
+      const probe = new Date(Date.UTC(y, m - 1, d));
+      if (probe.getUTCFullYear() === y && probe.getUTCMonth() === m - 1 && probe.getUTCDate() === d) {
+        combined = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      }
+    }
     setForm((f) => ({ ...f, dob: combined }));
   };
 
   const next = () => setStep(Math.min(step + 1, 2));
   const back = () => setStep(Math.max(step - 1, 1));
+
+  // Move focus to the new step's heading on change (not on first render) so keyboard/AT users
+  // aren't silently dropped to the top of the document when the step swaps. (WCAG 2.4.3 + 4.1.3)
+  const stepHeadingRef = useRef(null);
+  const firstStepRender = useRef(true);
+  useEffect(() => {
+    if (firstStepRender.current) { firstStepRender.current = false; return; }
+    stepHeadingRef.current?.focus();
+  }, [step]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +92,7 @@ export default function Register() {
     try {
       const res = await submitEnquiry('register', form, extras);
       if (res.ok) {
-        navigate('/registered', { state: { submitted: true, firstName: form.firstName } });
+        navigate('/registered/', { state: { submitted: true, firstName: form.firstName } });
         return;
       }
       const data = await res.json().catch(() => null);
@@ -193,7 +209,7 @@ export default function Register() {
                 {/* Progress */}
                 <div className="dn-register-progress">
                   {[1, 2].map((s) => (
-                    <div key={s} className={`dn-progress-step ${step >= s ? 'active' : ''} ${step === s ? 'current' : ''}`}>
+                    <div key={s} aria-current={step === s ? 'step' : undefined} className={`dn-progress-step ${step >= s ? 'active' : ''} ${step === s ? 'current' : ''}`}>
                       <span className="dn-progress-num">0{s}</span>
                       <span className="dn-progress-label">
                         {s === 1 && 'Your Details'}
@@ -206,7 +222,7 @@ export default function Register() {
                 {/* Step 1, Personal details */}
                 {step === 1 && (
                   <div className="dn-register-step">
-                    <h3 className="dn-display">Tell us about you</h3>
+                    <h3 className="dn-display" ref={stepHeadingRef} tabIndex={-1}>Tell us about you</h3>
 
                     <div className="dn-form-row dn-form-row-2">
                       <label>
@@ -253,9 +269,10 @@ export default function Register() {
 
                     <div className="dn-register-actions">
                       <span className="dn-step-counter">Step 1 of 2</span>
-                      <button type="button" className="dn-btn primary" onClick={next} disabled={!canProceedStep1}>
+                      <button type="button" className="dn-btn primary" onClick={next} disabled={!canProceedStep1} aria-describedby="dn-step1-hint">
                         Continue <span className="arrow">→</span>
                       </button>
+                      <span id="dn-step1-hint" className="dn-visually-hidden">Enter your first name, last name, phone number and a valid email address to continue.</span>
                     </div>
                   </div>
                 )}
@@ -263,7 +280,7 @@ export default function Register() {
                 {/* Step 2, Care preferences */}
                 {step === 2 && (
                   <div className="dn-register-step">
-                    <h3 className="dn-display">How would you like to be seen?</h3>
+                    <h3 className="dn-display" ref={stepHeadingRef} tabIndex={-1}>How would you like to be seen?</h3>
 
                     <div className="dn-form-row">
                       <span className="dn-form-label" id="care-type-label">Care type</span>

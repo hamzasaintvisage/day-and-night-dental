@@ -4,6 +4,7 @@ import { PRACTICE } from '../data/practice';
 import Dropdown from '../components/Dropdown';
 import { Icon } from '../components/ConcernIcon';
 import { submitEnquiry, buildEnquiryExtras } from '../lib/submitEnquiry';
+import { hasConsent } from '../lib/analytics';
 
 const treatmentOptions = [
   'Emergency / pain', 'New patient examination', 'Hygienist appointment',
@@ -29,8 +30,15 @@ export default function Contact() {
   const loadedAt = useRef(0);
   useEffect(() => { loadedAt.current = Date.now(); }, []);
 
-  const update = (field) => (e) => setForm({ ...form, [field]: e.target.value });
-  const setField = (field) => (value) => setForm({ ...form, [field]: value });
+  // Don't load the Google map (third-party cookies) until the visitor has consented, or
+  // explicitly chooses to show it (PECR: no non-essential cookies before consent).
+  const [showMap, setShowMap] = useState(false);
+  useEffect(() => { if (hasConsent()) setShowMap(true); }, []);
+
+  // Functional updates: multi-field browser autofill fires several change events before a
+  // re-render, so a stale-snapshot spread would drop all but the last. Merge from the latest state.
+  const update = (field) => (e) => { const { value } = e.target; setForm((f) => ({ ...f, [field]: value })); };
+  const setField = (field) => (value) => setForm((f) => ({ ...f, [field]: value }));
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +56,7 @@ export default function Contact() {
     try {
       const res = await submitEnquiry('contact', form, extras);
       if (res.ok) {
-        navigate('/thank-you', { state: { submitted: true, firstName: (form.name || '').split(' ')[0] } });
+        navigate('/thank-you/', { state: { submitted: true, firstName: (form.name || '').split(' ')[0] } });
         return;
       }
       const data = await res.json().catch(() => null);
@@ -120,13 +128,24 @@ export default function Contact() {
             </div>
 
             <div className="dn-contact-map">
-              <iframe
-                title="Day Night Dental, Merchant City, Glasgow map"
-                src={PRACTICE.mapEmbed || 'https://www.google.com/maps?q=Merchant+City,+Glasgow&output=embed'}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+              {showMap ? (
+                <iframe
+                  title="Day Night Dental, Merchant City, Glasgow map"
+                  src={PRACTICE.mapEmbed || 'https://www.google.com/maps?q=Merchant+City,+Glasgow&output=embed'}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              ) : (
+                <button type="button" className="dn-contact-map-facade" onClick={() => setShowMap(true)}>
+                  <span className="dn-contact-map-facade-ico" aria-hidden="true"><Icon type="pin" /></span>
+                  <span className="dn-contact-map-facade-text">
+                    <strong>{PRACTICE.locality}, {PRACTICE.city} {PRACTICE.postcode}</strong>
+                    Show Google map
+                  </span>
+                  <span className="dn-contact-map-facade-note">Loads Google Maps, which may set cookies.</span>
+                </button>
+              )}
             </div>
 
             <div className="dn-contact-hours">

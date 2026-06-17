@@ -5,7 +5,15 @@ import { join } from 'node:path'
 import { SITE } from '../src/data/practice.js'
 
 const DIST = 'dist'
-const today = new Date().toISOString().slice(0, 10)
+
+// Real per-page <lastmod>: prefer a date already embedded in the page's JSON-LD (treatment pages
+// carry lastReviewed, blog posts datePublished/dateModified) over a uniform build date, which
+// Google distrusts and which falsely re-stamps every static page "changed today" on each rebuild.
+// Pages with no embedded date simply omit lastmod (valid, and more honest than a fake one).
+function pageDate(html) {
+  const m = html.match(/"(?:lastReviewed|dateModified|datePublished)"\s*:\s*"(\d{4}-\d{2}-\d{2})/)
+  return m ? m[1] : null
+}
 
 function collect(dir, base = '') {
   let out = []
@@ -20,7 +28,7 @@ function collect(dir, base = '') {
       const slug = name.replace(/\.html$/, '')
       // Trailing slash to match Hostinger's served 200 URLs (folder/index.html) + the canonicals.
       const path = slug === 'index' ? `${base}/` : `${base}/${slug}`
-      out.push(path)
+      out.push({ path, date: pageDate(html) })
     }
   }
   return out
@@ -34,10 +42,13 @@ function priority(path) {
   return '0.7'
 }
 
-const paths = collect(DIST).sort((a, b) => Number(priority(b)) - Number(priority(a)) || a.localeCompare(b))
+const paths = collect(DIST).sort((a, b) => Number(priority(b.path)) - Number(priority(a.path)) || a.path.localeCompare(b.path))
 
 const body = paths
-  .map((p) => `  <url>\n    <loc>${SITE}${p}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority(p)}</priority>\n  </url>`)
+  .map(({ path, date }) => {
+    const lastmod = date ? `\n    <lastmod>${date}</lastmod>` : ''
+    return `  <url>\n    <loc>${SITE}${path}</loc>${lastmod}\n    <priority>${priority(path)}</priority>\n  </url>`
+  })
   .join('\n')
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`

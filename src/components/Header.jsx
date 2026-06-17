@@ -11,6 +11,7 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
+    onScroll(); // sample once on mount so a deep-link/refresh/bfcache restore at scrollY>30 styles correctly
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -34,7 +35,7 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: 'Treatments', href: '/#treatments' },
+    { label: 'Treatments', href: '/treatments/' },
     { label: 'Our Team', href: '/our-team/' },
     { label: 'Register', href: '/register-as-patient/' },
     { label: 'Reviews', href: '/#testimonials' },
@@ -46,16 +47,16 @@ export default function Header() {
       <header className={`dn-header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="dn-header-inner">
           <Link to="/" className="dn-header-logo" aria-label="Day Night Dental home">
-            <img src="/logo-mark.png" className="dn-header-mark" alt="Day Night Dental logo" width="280" height="243" />
+            <img src="/logo-mark.webp" className="dn-header-mark" alt="Day Night Dental logo" width="160" height="139" />
             <div className="dn-header-wordmark">
               <span className="name"><span className="day">Day</span><span className="night">Night</span></span>
               <span className="sub">DENTAL</span>
             </div>
           </Link>
 
-          <nav className="dn-header-nav">
+          <nav className="dn-header-nav" aria-label="Primary">
             {navItems.map((item) => (
-              <Link key={item.href} to={item.href}>{item.label}</Link>
+              <Link key={item.href} to={item.href} aria-current={pathname === item.href ? 'page' : undefined}>{item.label}</Link>
             ))}
           </nav>
 

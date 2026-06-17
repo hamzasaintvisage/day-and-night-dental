@@ -11,6 +11,12 @@ export default function LegalPage({ slug, title, description, updated, intro, se
         <title>{title} | Day Night Dental</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${title} | Day Night Dental`} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:title" content={`${title} | Day Night Dental`} />
+        <meta name="twitter:description" content={description} />
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">

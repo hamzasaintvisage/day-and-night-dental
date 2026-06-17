@@ -14,6 +14,9 @@
 
 declare(strict_types=1);
 ini_set('display_errors', '0'); // never surface PHP errors/warnings to the client
+// Create every private file/dir with restrictive perms from the moment of creation, so there
+// is no world-readable TOCTOU window before a later chmod. 0077 => new dirs 0700, files 0600.
+umask(0077);
 
 // --- Response helper: JSON + defence-in-depth headers (since .htaccess doesn't always
 //     cover PHP responses identically). Never leak internals. --------------------------
@@ -26,7 +29,8 @@ function respond(array $obj, int $status = 200, array $extra = []): void {
     header('Referrer-Policy: strict-origin-when-cross-origin');
     header('X-Frame-Options: DENY');
     foreach ($extra as $k => $v) { header($k . ': ' . $v); }
-    echo json_encode($obj);
+    $json = json_encode($obj);
+    echo $json === false ? '{"ok":false,"error":"Internal error"}' : $json;
     exit;
 }
 
@@ -103,7 +107,9 @@ function private_dir(): ?string {
         $candidates[] = dirname($_SERVER['DOCUMENT_ROOT']) . '/dnd-private';
     }
     $candidates[] = dirname(__DIR__, 2) . '/dnd-private';   // .../<domain>/dnd-private (above public_html)
-    $candidates[] = sys_get_temp_dir() . '/dnd-private';     // last resort
+    // NOTE: deliberately NO sys_get_temp_dir() fallback — on shared hosting the system temp dir
+    // is commonly world-readable, and this store holds enquiry PII. If no above-webroot dir is
+    // writable we return null and skip the backup (email is the primary record).
     foreach ($candidates as $dir) {
         if (is_dir($dir) || @mkdir($dir, 0700, true)) {
             if (is_writable($dir)) return $dir;
@@ -128,7 +134,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(['ok' => false, 'error' => 'Method not allowed'], 405, ['Allow' => 'POST']);
 }
 $ctype = $_SERVER['CONTENT_TYPE'] ?? '';
-if (stripos($ctype, 'application/json') === false) {
+$ctypeMain = strtolower(trim(explode(';', $ctype)[0])); // drop charset/boundary params, then exact match
+if ($ctypeMain !== 'application/json') {
     respond(['ok' => false, 'error' => 'Unsupported content type'], 415);
 }
 $raw = file_get_contents('php://input', false, null, 0, MAX_BODY_BYTES + 1);
@@ -148,21 +155,57 @@ if ($formType !== 'contact' && $formType !== 'register') {
     respond(['ok' => false, 'error' => 'Unknown form type'], 400);
 }
 
-// === 3) Origin / referer allowlist ==================================================
-$origin = $_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? null);
+// === 3) Origin allowlist ============================================================
+// Require the Origin header. Browsers always send it on a POST (same- or cross-origin);
+// Referer is easier to strip/forge, so we do NOT fall back to it.
+$origin = $_SERVER['HTTP_ORIGIN'] ?? null;
 if (!origin_allowed($origin, $STATIC_ALLOWED)) {
-    error_log('send-enquiry: blocked origin/referer');
+    error_log('send-enquiry: blocked origin');
     respond(['ok' => false, 'error' => 'Forbidden'], 403);
 }
 
-// === 3b) Per-IP rate limit (file-based, flock, hashed IP) ===========================
+// === 3a) Turnstile (Cloudflare) — verified ONLY when a secret is configured ==========
+// While DND_TURNSTILE_SECRET is unset the widget is off and this is skipped, so the
+// documented "skips verification unless the secret is set" behaviour is now literally true.
+if (defined('DND_TURNSTILE_SECRET') && DND_TURNSTILE_SECRET) {
+    $token = is_string($body['turnstileToken'] ?? null) ? $body['turnstileToken'] : '';
+    if ($token === '') {
+        respond(['ok' => false, 'error' => 'Verification required'], 400);
+    }
+    $vc = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    curl_setopt_array($vc, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => http_build_query(['secret' => DND_TURNSTILE_SECRET, 'response' => $token, 'remoteip' => client_ip()]),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 5,
+        CURLOPT_CONNECTTIMEOUT => 4,
+    ]);
+    $vres = curl_exec($vc);
+    $vcode = curl_getinfo($vc, CURLINFO_HTTP_CODE);
+    curl_close($vc);
+    $vok = false;
+    if ($vres !== false && $vcode >= 200 && $vcode < 300) {
+        $vjson = json_decode((string)$vres, true);
+        $vok = is_array($vjson) && !empty($vjson['success']);
+    }
+    if (!$vok) {
+        error_log('send-enquiry: turnstile verification failed');
+        respond(['ok' => false, 'error' => 'Verification failed. Please try again, or call us.'], 403);
+    }
+}
+
+// === 3b) Per-IP rate limit — file-based when private storage exists, APCu fallback
+//          otherwise, and FAIL-LOUD (not silently unprotected) if neither is available ==
 $priv = private_dir();
+$ipKey = rate_limit_key(client_ip());
+$rlOk = false;
 if ($priv) {
     $rlDir = $priv . '/rl';
     if (is_dir($rlDir) || @mkdir($rlDir, 0700, true)) {
-        $rlFile = $rlDir . '/' . rate_limit_key(client_ip()) . '.json';
+        $rlFile = $rlDir . '/' . $ipKey . '.json';
         $fh = @fopen($rlFile, 'c+');
         if ($fh) {
+            $rlOk = true;
             flock($fh, LOCK_EX);
             $data = json_decode((string)stream_get_contents($fh), true) ?: ['n' => 0, 't' => 0];
             $now = time();
@@ -176,6 +219,22 @@ if ($priv) {
             flock($fh, LOCK_UN); fclose($fh);
         }
     }
+}
+if (!$rlOk && function_exists('apcu_inc')) {
+    // In-memory fallback when no durable store is writable.
+    $akey = 'dnd_rl_' . $ipKey;
+    $ok = false;
+    $n = apcu_inc($akey, 1, $ok);
+    if (!$ok || $n === 1) { apcu_store($akey, 1, RATE_LIMIT_WINDOW); $n = 1; }
+    if ($n > RATE_LIMIT_MAX) {
+        respond(['ok' => false, 'error' => 'Too many requests. Please wait a minute and try again, or call us.'], 429);
+    }
+    $rlOk = true;
+}
+if (!$rlOk) {
+    // Neither a durable nor an in-memory store is available: do NOT run silently unprotected —
+    // make it loud so ops sees it (honeypot/time-trap/Origin checks still apply below).
+    error_log('send-enquiry: WARNING rate limiter unavailable (no private dir, no APCu) — request allowed unprotected');
 }
 
 // === 4) Honeypot — silently accept ==================================================
@@ -262,7 +321,11 @@ if ($priv) {
     $record = [
         'at' => gmdate('c'),
         'formType' => $formType,
-        'fields' => array_diff_key($body, array_flip(['bot-field', 'ts', 'elapsed', 'turnstileToken', 'form-name'])),
+        // Allowlist: store ONLY known enquiry fields, never attacker-injected extras.
+        'fields' => array_intersect_key($body, array_flip([
+            'formType', 'name', 'firstName', 'lastName', 'email', 'phone', 'address', 'postcode',
+            'dob', 'treatment', 'preferredTime', 'preferredDay', 'preferredContact', 'notes', 'message', 'consent',
+        ])),
         'iph' => substr(hash('sha256', client_ip()), 0, 16),
     ];
     $line = json_encode($record, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
@@ -293,6 +356,10 @@ $payload = json_encode([
     'text' => $text,
     'reply_to' => $email,
 ]);
+if ($payload === false) {
+    error_log('send-enquiry: failed to encode Resend payload');
+    respond(['ok' => false, 'error' => 'Failed to send'], 502);
+}
 $ch = curl_init('https://api.resend.com/emails');
 curl_setopt_array($ch, [
     CURLOPT_POST => true,
@@ -308,7 +375,8 @@ $curlErr = curl_error($ch);
 curl_close($ch);
 
 if ($resBody === false || $httpCode < 200 || $httpCode >= 300) {
-    error_log('send-enquiry: Resend error http=' . $httpCode . ' ' . substr((string)$curlErr, 0, 120) . ' ' . substr((string)$resBody, 0, 200));
+    // Log status + transport error only — never the Resend response body (it can echo PII).
+    error_log('send-enquiry: Resend error http=' . $httpCode . ' ' . substr((string)$curlErr, 0, 120));
     // Flag this enquiry for follow-up. Full data is already in the main backup; this is the
     // short "didn't email — chase it" list the monitor watches and the team works from.
     if ($priv) {

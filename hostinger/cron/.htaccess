@@ -1,3 +1,11 @@
-# These scripts run from cron (CLI) only — never over HTTP. They also self-guard on PHP_SAPI,
-# this is the second lock.
-Require all denied
+# These scripts run from cron (CLI) only — never over HTTP. They also self-guard on PHP_SAPI;
+# this is the second lock. Guard the authz directive so a server without mod_authz_core doesn't
+# 500, and never list the directory (parity with /api).
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>
+Options -Indexes

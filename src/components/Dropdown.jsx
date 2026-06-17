@@ -29,6 +29,13 @@ export default function Dropdown({ name, value, onChange, options, placeholder =
     return () => document.removeEventListener('mousedown', onDown)
   }, [open])
 
+  // Keep the active option visible when navigating by keyboard (the list is capped at ~260px with
+  // overflow:auto, so arrowing past the visible rows would otherwise scroll the highlight off-screen).
+  useEffect(() => {
+    if (!open || activeIndex < 0) return
+    document.getElementById(`${baseId}-opt-${activeIndex}`)?.scrollIntoView({ block: 'nearest' })
+  }, [activeIndex, open, baseId])
+
   const openMenu = () => {
     const idx = options.findIndex((o) => o.value === value)
     setActiveIndex(idx >= 0 ? idx : 0)

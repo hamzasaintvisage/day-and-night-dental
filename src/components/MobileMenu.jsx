@@ -82,7 +82,9 @@ export default function MobileMenu({ open, onClose, onEscClose }) {
     };
   }, [open, onClose, onEscClose]);
 
-  const isActive = (to) => pathname === to;
+  // Normalise trailing slashes so /our-team and /our-team/ compare equal (routes/links use the
+  // trailing-slash form, so a bare `pathname === to` never matched on /our-team or /register-as-patient).
+  const isActive = (to) => pathname.replace(/\/+$/, '') === to.replace(/\/+$/, '');
 
   // Per-item stagger index for the entrance animation.
   let i = 0;

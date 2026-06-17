@@ -10,11 +10,17 @@
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), browsing-topics=()"
-  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  # HSTS without includeSubDomains/preload: those would commit every subdomain (mail, cpanel,
+  # webmail, ftp) to HTTPS-only for 2 years and require preload-list submission. Add them
+  # deliberately later, only once every subdomain is confirmed to serve valid HTTPS.
+  Header always set Strict-Transport-Security "max-age=63072000"
   Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header always set X-Permitted-Cross-Domain-Policies "none"
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+  # Analytics domains (GA4 + Meta Pixel) are pre-allowed so enabling the IDs in config.js
+  # "just works" instead of being silently blocked by CSP. They load nothing until the owner
+  # sets the IDs and the visitor grants consent.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 
   # Don't disclose the PHP version (X-Powered-By) on any response.
   Header always unset X-Powered-By
@@ -36,6 +42,13 @@
 <FilesMatch "^\.">
   Require all denied
 </FilesMatch>
+
+# Belt-and-braces across the WHOLE document root (covers /cron, /assets, /fonts and any
+# subdir without its own rules): never serve data/log/backup files, never list a directory.
+<FilesMatch "\.(ndjson|log|env|bak|sql)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
 
 # ----------------------------------------------------------------------------
 # Caching: hashed build assets + fonts long; unhashed images a week
@@ -61,6 +74,11 @@ ErrorDocument 404 /404.html
 # ----------------------------------------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # Force HTTPS first: covers first-time/bookmarked plain-http hits (HSTS only protects clients
+  # who already visited over https; upgrade-insecure-requests doesn't cover top-level navigation).
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Canonical host: force apex (no www).
   RewriteCond %{HTTP_HOST} ^www\.daynightdental\.co\.uk$ [NC]
   RewriteRule ^ https://daynightdental.co.uk%{REQUEST_URI} [L,R=301]
 </IfModule>

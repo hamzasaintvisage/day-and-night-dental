@@ -6,6 +6,11 @@ import react from '@vitejs/plugin-react'
 // externalized and cannot be placed in a manual chunk.
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
+  // Vitest: don't treat the external Codex audit scratch dir (or legacy/) as test sources — its
+  // browser-audit.spec.mjs imports @playwright/test, which is intentionally not a dependency.
+  test: {
+    exclude: ['**/node_modules/**', '**/dist/**', 'codex-launch-readiness-audit*/**', 'legacy/**'],
+  },
   // Inline above-the-fold critical CSS into each pre-rendered page, defer the rest.
   ssgOptions: {
     // Emit nested index.html files (e.g. /treatments/invisalign/index.html) so clean

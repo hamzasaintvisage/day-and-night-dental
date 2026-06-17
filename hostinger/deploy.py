@@ -14,7 +14,7 @@ Usage:
 The FTP user lands inside public_html (chrooted), so remote paths are relative to it.
 """
 import os, sys
-from ftplib import FTP, error_perm
+from ftplib import FTP_TLS, error_perm
 from io import BytesIO
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +24,11 @@ def connect():
     host, user, pw = os.environ.get("FH"), os.environ.get("FU"), os.environ.get("FP")
     if not (host and user and pw):
         sys.exit("FH, FU, FP must be set in the environment")
-    ftp = FTP(); ftp.connect(host, 21, timeout=30); ftp.login(user, pw)
+    # Explicit FTPS (AUTH TLS, same port 21 + credentials Hostinger already uses): encrypts the
+    # control channel (login/password) and, via prot_p(), the data channel — so file contents
+    # incl. the rendered _config.php (which holds the Resend key) no longer cross the wire in clear.
+    ftp = FTP_TLS(); ftp.connect(host, 21, timeout=30); ftp.login(user, pw)
+    ftp.prot_p()
     ftp.set_pasv(True)
     return ftp
 

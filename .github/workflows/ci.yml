@@ -1,0 +1,22 @@
+name: CI
+
+# Runs the existing quality gates (eslint + stylelint + vitest + build smoke-check) on every push
+# and PR, pinned to the supported Node version from .nvmrc, so regressions can't land unchecked.
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm ci
+      - run: npm run ci
+      # Strict go-live gate: fails if any parked placeholder (e.g. "Dr. [") would ship.
+      - run: npm run check:launch

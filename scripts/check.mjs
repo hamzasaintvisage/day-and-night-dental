@@ -4,6 +4,7 @@
 // manager) are warned about, not failed, since they await owner data.
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { TREATMENT_SLUGS } from '../src/data/treatments.js'
 
 const DIST = 'dist'
 const LAUNCH = process.env.LAUNCH === '1' // go-live mode: parked placeholders become hard failures
@@ -46,6 +47,18 @@ for (const file of walk(DIST)) {
   for (const b of hardBanned) if (txt.includes(b)) errors.push(`placeholder "${b}" in ${rel}`)
   for (const b of softBanned) if (txt.includes(b)) (LAUNCH ? errors : warnings).push(`${LAUNCH ? 'placeholder' : 'parked placeholder'} "${b}" in ${rel}`)
 }
+
+// 2b. Every /treatments/<slug>/ link in the built HTML must resolve to a registered treatment
+//     (catches a typo'd related/types slug that would render a <Link> to a 404 with no build error).
+const knownSlugs = new Set(TREATMENT_SLUGS)
+const badLinks = new Set()
+for (const file of walk(DIST)) {
+  const txt = readFileSync(file, 'utf8')
+  for (const m of txt.matchAll(/\/treatments\/([a-z0-9-]+)\//g)) {
+    if (!knownSlugs.has(m[1])) badLinks.add(`${m[1]} (in ${file.replace(DIST + '/', '')})`)
+  }
+}
+if (badLinks.size) errors.push(`unknown treatment slug(s) linked: ${[...badLinks].join(', ')}`)
 
 // 3. Sitemap must use the canonical domain.
 const sm = existsSync(join(DIST, 'sitemap.xml')) ? readFileSync(join(DIST, 'sitemap.xml'), 'utf8') : ''

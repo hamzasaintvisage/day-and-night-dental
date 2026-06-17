@@ -67,3 +67,16 @@ foreach (['enquiries.ndjson', 'failed-sends.ndjson', 'monitor.log'] as $name) {
     [$removed, $kept] = purge_file($priv . '/' . $name, $cutoff);
     echo "purge: $name -> removed $removed, kept $kept\n";
 }
+
+// Sweep stale rate-limit buckets (one file per IP / IPv6-/64). Their window is 60s, so any
+// bucket untouched for a day is dead weight — delete it so an address-rotating flood can't
+// pile up files and exhaust inodes (which would silently disable rate limiting for everyone).
+$rlDir = $priv . '/rl';
+if (is_dir($rlDir)) {
+    $rlCut = time() - 86400;
+    $swept = 0;
+    foreach (glob($rlDir . '/*.json') ?: [] as $f) {
+        if (@filemtime($f) < $rlCut) { @unlink($f); $swept++; }
+    }
+    echo "purge: rl/ -> swept $swept stale buckets\n";
+}

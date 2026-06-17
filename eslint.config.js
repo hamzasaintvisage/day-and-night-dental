@@ -5,7 +5,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'legacy', 'node_modules', 'codex-launch-readiness-audit']),
+  globalIgnores(['dist', 'legacy', 'node_modules', 'codex-launch-readiness-audit*']),
   {
     files: ['**/*.{js,jsx,mjs}'],
     extends: [

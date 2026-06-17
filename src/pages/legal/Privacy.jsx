@@ -14,6 +14,7 @@ export default function Privacy() {
         { h: 'Information we collect', body: [
           'When you contact us or register as a patient we may collect your name, contact details, date of birth and address.',
           'As a dental practice we also hold health information necessary for your care, such as your medical history, medications, clinical records, X-rays and treatment notes. This is "special category" data and is handled with additional care.',
+          'If you mention symptoms, choose a treatment of interest, or select an option such as "Emergency / pain" in our website forms, that information can indicate something about your health. We treat the contents of website enquiries with the same care as other personal data, and we ask you not to include detailed medical information in the free-text box.',
         ] },
         { h: 'Why we use it and our lawful basis', body: [
           'We use your information to provide dental care, manage appointments, contact you about your treatment, process payments, and meet our legal and regulatory duties.',
@@ -29,7 +30,11 @@ export default function Privacy() {
           'You have the right to access your records, correct inaccuracies, object to certain processing, and request erasure where it applies. To exercise any right, contact us using the details below.',
           `If you are unhappy with how we handle your data you can complain to the ICO at ico.org.uk. We would ask that you raise it with us first at ${PRACTICE.email}.`,
         ] },
-        { h: 'Cookies', body: ['Our website uses a small number of cookies to make the site work and, with your consent, to understand how it is used. See the cookie notice shown on your first visit.'] },
+        { h: 'Cookies and analytics', body: [
+          'Our website uses a small number of essential cookies to make the site work. With your consent, we also use analytics cookies to understand how the site is used.',
+          'Where enabled, and only after you consent, these analytics are provided by Google Analytics 4 (Google Ireland Ltd) and the Meta (Facebook) Pixel (Meta Platforms Ireland Ltd) acting as our processors. They set cookies and may transfer data outside the UK/EEA under the providers’ approved safeguards. You can decline, or withdraw consent at any time, using the cookie notice shown on your first visit or the "Cookie settings" link in the footer.',
+          'Our embedded Google map loads only after you choose to display it, so Google map cookies are not set before then.',
+        ] },
       ]}
     />
   )

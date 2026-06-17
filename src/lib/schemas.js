@@ -4,11 +4,13 @@
 // references it (Google does not resolve @id across documents). Importing it
 // here keeps the business entity identical everywhere it appears.
 import { SITE, PRACTICE } from '../data/practice'
+import { treatmentTitle } from '../data/treatments'
 
 export const DENTIST_ID = `${SITE}/#dentist`
 const OG_IMAGE = `${SITE}/og-image.jpg`
 
-const svc = (name, slug) => ({ '@type': 'MedicalProcedure', name, url: `${SITE}/treatments/${slug}` })
+// Title comes from the treatment registry (no drift); trailing slash keeps the URL canonical.
+const svc = (slug) => ({ '@type': 'MedicalProcedure', name: treatmentTitle(slug), url: `${SITE}/treatments/${slug}/` })
 
 // One connected business entity (linked by @id), with full local-business signals.
 export const dentistLd = {
@@ -29,8 +31,10 @@ export const dentistLd = {
   address: {
     '@type': 'PostalAddress',
     streetAddress: PRACTICE.streetAddress,
-    addressLocality: PRACTICE.city,
-    addressRegion: PRACTICE.region,
+    // Mirror the visible NAP ("Merchant City, Glasgow") so the machine-readable address agrees
+    // with the printed one and keeps the strongest hyperlocal term (Merchant City) in the entity.
+    addressLocality: PRACTICE.locality,
+    addressRegion: PRACTICE.city,
     postalCode: PRACTICE.postcode,
     addressCountry: PRACTICE.country,
   },
@@ -55,12 +59,12 @@ export const dentistLd = {
     hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '00:00', closes: '23:59' },
   },
   availableService: [
-    svc('Emergency Dentist', 'emergency-dentist'),
-    svc('Invisalign', 'invisalign'),
-    svc('Dental Implants', 'dental-implants'),
-    svc('Teeth Whitening', 'teeth-whitening'),
-    svc('Cosmetic Dentistry', 'cosmetic-dentistry'),
-    svc('General Dentistry', 'general-dentistry'),
+    svc('emergency-dentist'),
+    svc('invisalign'),
+    svc('dental-implants'),
+    svc('teeth-whitening'),
+    svc('cosmetic-dentistry'),
+    svc('general-dentistry'),
   ],
   ...(PRACTICE.sameAs.length ? { sameAs: PRACTICE.sameAs } : {}),
   ...(PRACTICE.googleMapsUrl ? { hasMap: PRACTICE.googleMapsUrl } : {}),

@@ -30,6 +30,7 @@ import ThankYou from './pages/ThankYou'
 import Registered from './pages/Registered'
 import OurTeam from './pages/OurTeam'
 import RegisterAsPatient from './pages/RegisterAsPatient'
+import TreatmentsIndex from './pages/TreatmentsIndex'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import { posts } from './data/blog'
@@ -44,6 +45,7 @@ export const routes = [
       { path: 'areas-served', element: <AreasServed /> },
       { path: 'our-team', element: <OurTeam /> },
       { path: 'register-as-patient', element: <RegisterAsPatient /> },
+      { path: 'treatments', element: <TreatmentsIndex /> },
       { path: 'treatments/invisalign', element: <Invisalign /> },
       { path: 'treatments/general-dentistry', element: <GeneralDentistry /> },
       { path: 'treatments/cosmetic-dentistry', element: <CosmeticDentistry /> },

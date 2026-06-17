@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'Do you take NHS patients?',
-    a: 'Yes. DayNight Dental is a mixed NHS and private dental practice. We do take on NHS patients, subject to appointment availability and registration capacity, and we also offer private appointments where patients want faster access or different treatment options. Give us a call and we’ll talk you through what is available.',
+    a: 'Yes. Day Night Dental is a mixed NHS and private dental practice. We do take on NHS patients, subject to appointment availability and registration capacity, and we also offer private appointments where patients want faster access or different treatment options. Give us a call and we’ll talk you through what is available.',
   },
   {
     q: 'Where is the practice and where can I park?',

@@ -4,15 +4,7 @@ import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
 import { dentistLd } from '../lib/schemas'
 import { posts } from '../data/blog'
-
-const TREATMENT_TITLES = {
-  'emergency-dentist': 'Emergency Dentist',
-  'dental-implants': 'Dental Implants',
-  'general-dentistry': 'General Dentistry',
-  'cosmetic-dentistry': 'Cosmetic Dentistry',
-  'invisalign': 'Invisalign',
-  'teeth-whitening': 'Teeth Whitening',
-}
+import { treatmentTitle } from '../data/treatments'
 
 // slug -> title for blog-to-blog "Related reading" links
 const POST_TITLES = Object.fromEntries(posts.map((p) => [p.slug, p.title]))
@@ -22,11 +14,12 @@ export default function ArticleLayout({ post }) {
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `${url}#article`,
     headline: post.title,
     description: post.description,
     datePublished: post.dateISO,
-    dateModified: post.dateISO,
-    author: { '@type': 'Organization', name: PRACTICE.name },
+    dateModified: post.dateModified || post.dateISO,
+    author: { '@type': 'Organization', name: PRACTICE.name, url: `${SITE}/` },
     publisher: { '@id': `${SITE}/#dentist` },
     mainEntityOfPage: url,
     image: `${SITE}/og-image.jpg`,
@@ -113,8 +106,8 @@ export default function ArticleLayout({ post }) {
             <div className="dn-article-related">
               <span className="dn-eyebrow">Related treatments</span>
               <div className="dn-article-related-links">
-                {post.related.map((slug) => (
-                  <Link key={slug} to={`/treatments/${slug}/`}>{TREATMENT_TITLES[slug]} →</Link>
+                {post.related.map((slug) => treatmentTitle(slug) && (
+                  <Link key={slug} to={`/treatments/${slug}/`}>{treatmentTitle(slug)} →</Link>
                 ))}
               </div>
             </div>
