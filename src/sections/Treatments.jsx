@@ -43,7 +43,7 @@ const treatments = [
   {
     id: 'implants',
     title: 'Dental Implants',
-    tag: 'Permanent Solutions',
+    tag: 'Replacing Missing Teeth',
     side: 'night',
     icon: 'denture',
     description: 'Designed to look, feel and work like a natural tooth, for replacing a single tooth or several.',

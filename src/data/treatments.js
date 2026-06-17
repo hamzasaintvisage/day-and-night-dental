@@ -8,7 +8,7 @@
 export const TREATMENTS = [
   { slug: 'emergency-dentist', title: 'Emergency Dentist', tag: 'Emergency' },
   { slug: 'invisalign', title: 'Invisalign', tag: 'Clear Aligners' },
-  { slug: 'dental-implants', title: 'Dental Implants', tag: 'Permanent Solutions' },
+  { slug: 'dental-implants', title: 'Dental Implants', tag: 'Replacing Missing Teeth' },
   { slug: 'teeth-whitening', title: 'Teeth Whitening', tag: 'Brighter Smile' },
   { slug: 'cosmetic-dentistry', title: 'Cosmetic Dentistry', tag: 'Smile Design' },
   { slug: 'general-dentistry', title: 'General Dentistry', tag: 'Foundation Care' },

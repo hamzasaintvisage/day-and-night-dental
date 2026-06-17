@@ -11,8 +11,8 @@ const faqs = [
     a: 'Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.',
   },
   {
-    q: 'Do you take NHS patients?',
-    a: 'Yes. Day Night Dental is a mixed NHS and private dental practice. We do take on NHS patients, subject to appointment availability and registration capacity, and we also offer private appointments where patients want faster access or different treatment options. Give us a call and we’ll talk you through what is available.',
+    q: 'Are you taking on new patients?',
+    a: 'Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.',
   },
   {
     q: 'Where is the practice and where can I park?',

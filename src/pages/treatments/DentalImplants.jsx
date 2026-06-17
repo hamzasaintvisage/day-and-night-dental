@@ -3,7 +3,7 @@ import TreatmentPage from '../../components/TreatmentPage'
 const data = {
   concern: {
     heading: (<><em>Missing teeth</em>, or dentures that have had their day?</>),
-    body: ["Losing a tooth is never just cosmetic. The teeth either side start to drift, the bone beneath the gap slowly shrinks, and chewing on that side gets harder. Loose dentures bring their own daily frustrations, from sore spots to worrying they’ll slip at the worst moment.", "Implants put a stable, permanent tooth back where the gap is, or anchor a denture so it stops moving. From our Merchant City practice in Glasgow, we plan every case carefully, so you know exactly what is involved before you decide."],
+    body: ["Losing a tooth is never just cosmetic. The teeth either side start to drift, the bone beneath the gap slowly shrinks, and chewing on that side gets harder. Loose dentures bring their own daily frustrations, from sore spots to worrying they’ll slip at the worst moment.", "Implants put a stable, long-term replacement tooth back where the gap is, or anchor a denture so it stops moving. From our Merchant City practice in Glasgow, we plan every case carefully, so you know exactly what is involved before you decide."],
     symptoms: ["A gap from a lost or extracted tooth", "A denture that clicks, slips or rubs", "Avoiding certain foods on one side", "Feeling self-conscious when you smile", "An old bridge that has seen better days"],
   },
   ctaPrimaryLabel: 'Book a Consultation',
@@ -11,24 +11,24 @@ const data = {
   lastReviewedLabel: 'June 2026',
   slug: "dental-implants",
   side: "night",
-  tag: "Permanent Solutions",
+  tag: "Replacing Missing Teeth",
   h1Plain: "Dental Implants",
   procedureType: "SurgicalProcedure",
   title: (<>Dental implants, the closest thing <em>to a natural tooth</em></>),
   lead: "Losing a tooth affects more than how your smile looks. Dental implants at Day Night Dental replace the whole tooth, root and crown, so you can get back to eating, talking and smiling without thinking twice.",
   seo: { title: "Dental Implants in Glasgow | Day Night Dental", description: "Replace missing teeth with dental implants at Day Night Dental in Glasgow. Single implants, bridges and All-on-4. Day and evening appointments, 7 days a week." },
   meta: [{"k": "Suitable for", "v": "1 tooth to full arch", "tone": "night"}, {"k": "Implant lifespan", "v": "Designed to last", "tone": ""}, {"k": "Finance", "v": "0% finance available", "tone": "day"}],
-  overviewHeading: (<>A <em>permanent</em> foundation for missing teeth</>),
+  overviewHeading: (<>A stable, <em>long-term</em> foundation for missing teeth</>),
   overview: ["A dental implant is a small titanium post that takes the place of a missing tooth root. Over a few months it fuses with your jawbone in a natural healing process called osseointegration. Once it has, it gives a really solid base for a crown, a bridge or a full set of replacement teeth that look and feel a lot like your own.", "Because the implant joins with the bone, it also helps protect the jaw, which tends to shrink once a tooth is gone. The result is built to last, with nothing slipping or clicking, and we never have to touch the healthy teeth on either side of the gap.", "Every implant treatment here starts with detailed planning, so your clinician can work out exactly where the implant goes around your nerves, sinuses and the bone you have. A single tooth, an implant-supported bridge or a full-arch restoration, it’s all planned around you, and we talk you through it properly before we start."],
   facts: [{"dt": "Best for", "dd": "Single, multiple or all missing teeth"}, {"dt": "Planning", "dd": "Detailed assessment and written plan"}, {"dt": "Options", "dd": "Single implants, bridges, All-on-4"}, {"dt": "Healing time", "dd": "Usually 3 to 6 months to integrate"}, {"dt": "Anaesthetic", "dd": "Local; sedation available in suitable cases"}],
   benefitsHeading: (<>Why patients choose <em>implants</em></>),
   benefits: [
-    { title: 'Enjoy your favourite foods', body: 'Feel confident while enjoying a steak. Implants restore full bite strength so you can eat without pain or hesitation.' },
-    { title: 'A 30+ year solution', body: 'With good maintenance, your new smile can last 30+ years, making dental implants one of the most cost-effective long-term dental solutions.' },
+    { title: 'Enjoy your favourite foods', body: 'Feel confident at mealtimes again. Implants restore much of your natural bite, so you can eat more comfortably and with far less worry about slipping or soreness.' },
+    { title: 'Built to last', body: 'With good care, implants can last many years, and for many people decades. The titanium post is designed to go the distance; the crown on top may need refreshing over time.' },
     { title: 'Speak and laugh freely', body: 'Replaces loose and ill-fitting dentures causing you discomfort and inconvenience, so you can smile and speak with confidence once again.' },
-    { title: 'Protects your facial structure', body: 'Prevents bone loss by stimulating natural bone growth, reducing the risk of facial collapse (puckering).' },
+    { title: 'Helps protect your facial structure', body: 'An implant keeps the jawbone stimulated the way a natural root does, which helps preserve the bone and the facial support that an empty gap can let shrink over time.' },
     { title: 'Keeps other teeth in line', body: 'Stops your remaining natural teeth from migrating into the empty gaps and becoming misaligned.' },
-    { title: 'Looks completely natural', body: 'Topped with custom-crafted zirconia or porcelain crowns that look and feel exactly like a real tooth.' }
+    { title: 'Looks and feels natural', body: 'Topped with a custom-made zirconia or porcelain crown, shaped and shaded to blend in closely with your own teeth.' }
   ],
   stepsHeading: (<>Your <em>implant</em> journey</>),
   steps: [{"title": "Consultation and planning", "body": "We check your mouth, carry out a detailed assessment and talk through what you want. You leave with a clear written plan, a timeline and the costs, all before any treatment starts."}, {"title": "Implant placement", "body": "With the area numbed under local anaesthetic, your clinician places the titanium implant into the jawbone. Most patients are surprised by how comfortable and quick the appointment turns out to be."}, {"title": "Healing and integration", "body": "Over the next few months the implant fuses with the bone. We can fit a temporary tooth so you’re never left with a visible gap while you heal."}, {"title": "Fitting your new tooth", "body": "Once the implant has integrated, we attach your custom-made crown, bridge or full-arch restoration. We check the fit, the bite and the finish before you go."}],
@@ -94,7 +94,7 @@ const data = {
     eyebrow: 'Understanding the Risks',
     heading: (<>Honest about the <em>risks</em></>),
     body: [
-      "Dental implants have a high success rate, but no treatment is risk-free and we’d rather you hear that from us up front. The most common issue is an implant not fusing properly, which is more likely with smoking, gum disease or an uncontrolled health condition such as diabetes.",
+      "Dental implants have a high success rate, but no treatment is risk-free and we’d rather you hear that from us up front. The most common issue is an implant not fusing properly, which is more likely with smoking, gum disease or a poorly-controlled condition such as diabetes.",
       "Less commonly, an implant placed near a nerve can cause numbness or tingling in the lip, tongue or jaw. Careful 3D planning before surgery is exactly how we keep that risk low. If an implant does fail, it can usually be removed and replaced once the area has healed.",
       "Whatever happens, you’re not on your own with it. If something doesn’t feel right after your surgery, our 24/7 line means there’s always someone in Glasgow to call, day or night.",
     ],
