@@ -84,7 +84,7 @@ const data = {
     body: [
       "Composite bonding is priced per tooth, so the cost depends on how many teeth you are having treated. We do not work from a single flat figure.",
       "After your consultation you get a clear, written quote with the full cost set out, and no obligation to proceed.",
-      "To spread the cost, 0% interest-free finance is available over manageable monthly payments, subject to status, and our team will explain your options.",
+      "To spread the cost, interest-free finance is available, subject to status, and our team will explain your options.",
     ],
   },
   faqHeading: (<>Composite bonding questions, <em>answered</em></>),

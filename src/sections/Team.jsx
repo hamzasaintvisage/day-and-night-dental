@@ -1,11 +1,13 @@
 
-// Placeholders. Replace names + add real photos once available.
-// Three dentists max (owner). Replace bracketed names/roles + add real photos and
-// GDC numbers before go-live, these are placeholders.
+// Two real GDC-registered dentists + the principal (name/GDC pending — kept as a placeholder card
+// per owner). Photos pending: cards use a styled avatar until headshots arrive. The `gdc` value is
+// emitted into the Person schema by OurTeam.jsx; the bracketed principal name is auto-filtered out
+// of the schema until real, and `npm run check:launch` refuses go-live while a "[...]" placeholder
+// remains — so it can't accidentally ship unfinished.
 export const team = [
-  { id: 'principal', name: 'Dr. [Principal Name]', role: 'Principal Dentist', specialty: 'BDS, MFDS RCS', side: 'day' },
-  { id: 'dentist-2', name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'night' },
-  { id: 'dentist-3', name: 'Dr. [Dentist Name]', role: 'Dentist', specialty: 'BDS', side: 'day' },
+  { id: 'principal', name: 'Dr. [Principal Name]', role: 'Principal Dentist', side: 'day' },
+  { id: 'chiang', name: 'Dr Pei Hsin Chiang', role: 'Dentist', gdc: '333443', side: 'night' },
+  { id: 'lee', name: 'Dr Chia-Hsuan Lee', role: 'Dentist', gdc: '310152', side: 'day' },
 ]
 
 export function AvatarSvg() {
@@ -49,7 +51,7 @@ export default function Team() {
               <div className="dn-team-info">
                 <span className={`dn-eyebrow ${member.side}`}>{member.role}</span>
                 <h3>{member.name}</h3>
-                <span className="dn-team-specialty">{member.specialty}</span>
+                {member.gdc && <span className="dn-team-specialty">GDC No. {member.gdc}</span>}
               </div>
             </article>
           ))}

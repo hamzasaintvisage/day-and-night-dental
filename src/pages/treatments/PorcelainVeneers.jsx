@@ -83,7 +83,7 @@ const data = {
     body: [
       "Porcelain veneers are priced by the case, because the cost depends on how many teeth you are treating and the detail involved. We do not work from a fixed one-size figure.",
       "After your consultation you get a clear, written plan with the full cost set out, and no obligation to proceed.",
-      "To spread the cost, 0% interest-free finance is available over manageable monthly payments, subject to status, and we will talk you through it.",
+      "To spread the cost, interest-free finance is available, subject to status, and we will talk you through it.",
     ],
   },
   faqHeading: (<>Porcelain veneer questions, <em>answered</em></>),

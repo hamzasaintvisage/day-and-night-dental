@@ -17,7 +17,7 @@ const data = {
   title: (<>Dental implants, the closest thing <em>to a natural tooth</em></>),
   lead: "Losing a tooth affects more than how your smile looks. Dental implants at Day Night Dental replace the whole tooth, root and crown, so you can get back to eating, talking and smiling without thinking twice.",
   seo: { title: "Dental Implants in Glasgow | Day Night Dental", description: "Replace missing teeth with dental implants at Day Night Dental in Glasgow. Single implants, bridges and All-on-4. Day and evening appointments, 7 days a week." },
-  meta: [{"k": "Suitable for", "v": "1 tooth to full arch", "tone": "night"}, {"k": "Implant lifespan", "v": "Designed to last", "tone": ""}, {"k": "Finance", "v": "0% finance available", "tone": "day"}],
+  meta: [{"k": "Suitable for", "v": "1 tooth to full arch", "tone": "night"}, {"k": "Implant lifespan", "v": "Designed to last", "tone": ""}, {"k": "Finance", "v": "Finance available", "tone": "day"}],
   overviewHeading: (<>A stable, <em>long-term</em> foundation for missing teeth</>),
   overview: ["A dental implant is a small titanium post that takes the place of a missing tooth root. Over a few months it fuses with your jawbone in a natural healing process called osseointegration. Once it has, it gives a really solid base for a crown, a bridge or a full set of replacement teeth that look and feel a lot like your own.", "Because the implant joins with the bone, it also helps protect the jaw, which tends to shrink once a tooth is gone. The result is built to last, with nothing slipping or clicking, and we never have to touch the healthy teeth on either side of the gap.", "Every implant treatment here starts with detailed planning, so your clinician can work out exactly where the implant goes around your nerves, sinuses and the bone you have. A single tooth, an implant-supported bridge or a full-arch restoration, it’s all planned around you, and we talk you through it properly before we start."],
   facts: [{"dt": "Best for", "dd": "Single, multiple or all missing teeth"}, {"dt": "Planning", "dd": "Detailed assessment and written plan"}, {"dt": "Options", "dd": "Single implants, bridges, All-on-4"}, {"dt": "Healing time", "dd": "Usually 3 to 6 months to integrate"}, {"dt": "Anaesthetic", "dd": "Local; sedation available in suitable cases"}],
@@ -105,7 +105,7 @@ const data = {
     body: [
       "Dental implants are priced individually, because the cost depends on how many teeth you are replacing and any preparatory work such as a bone graft. We do not quote a one-size figure.",
       "After your consultation you get a clear, written treatment plan with the full cost set out, and no obligation to go ahead.",
-      "To spread the cost, 0% interest-free finance is available over manageable monthly payments, subject to status, and our team will talk you through what suits you.",
+      "To spread the cost, interest-free finance is available, subject to status, and our team will talk you through what suits you.",
     ],
   },
   faqHeading: (<>Dental implant questions, <em>answered</em></>),

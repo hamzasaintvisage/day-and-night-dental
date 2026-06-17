@@ -73,7 +73,7 @@ const data = {
     body: [
       "Whitening is priced for your case, and we confirm the exact cost after your assessment rather than quoting a one-size figure up front.",
       "You get a clear, written plan with the cost set out, and there is no obligation to go ahead.",
-      "If you would rather not pay in one go, 0% interest-free finance is available over manageable monthly payments, subject to status.",
+      "If you would rather not pay in one go, interest-free finance is available, subject to status.",
     ],
   },
   faqHeading: (<>Teeth whitening: <em>common questions</em></>),

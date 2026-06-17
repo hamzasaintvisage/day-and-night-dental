@@ -27,7 +27,7 @@ const data = {
   meta: [
     { k: 'Treatment time', v: '6 to 18 months', tone: 'day' },
     { k: 'Visibility', v: 'Near-invisible' },
-    { k: 'Finance', v: '0% finance available', tone: 'night' },
+    { k: 'Finance', v: 'Finance available', tone: 'night' },
   ],
   overviewEyebrow: 'The Treatment',
   overviewHeading: (<>Straightening <em>without the wires</em></>),
@@ -85,7 +85,7 @@ const data = {
     body: [
       "Invisalign is priced for your case, because the cost depends on how much your teeth need to move. We do not quote a one-size figure up front.",
       "After your consultation you get a clear, written treatment plan with the full cost set out, and no obligation to go ahead.",
-      "To spread the cost, 0% interest-free finance is available over manageable monthly payments, subject to status, and our team will talk you through it.",
+      "To spread the cost, interest-free finance is available, subject to status, and our team will talk you through it.",
     ],
   },
   faqHeading: (<>Invisalign questions, <em>answered</em></>),
