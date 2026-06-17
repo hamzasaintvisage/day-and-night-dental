@@ -1,0 +1,129 @@
+{
+  "config": {
+    "configFile": "/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17/playwright.audit.config.mjs",
+    "rootDir": "/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17",
+        "testIgnore": [],
+        "testMatch": [
+          "/browser-audit\\.spec\\.mjs/"
+        ],
+        "timeout": 260000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.49.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "browser-audit.spec.mjs",
+      "file": "browser-audit.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "full launch browser audit",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "timedOut",
+                  "duration": 240150,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17/browser-audit.spec.mjs",
+                        "column": 18,
+                        "line": 180
+                      },
+                      "message": "Error: page.waitForTimeout: Target page, context or browser has been closed\n\n  178 |     } catch (err) {\n  179 |       errors.push(`goto attempt ${attempt}: ${String(err.message || err).slice(0, 500)}`)\n> 180 |       await page.waitForTimeout(500)\n      |                  ^\n  181 |     }\n  182 |   }\n  183 |   if (!state) {\n    at auditRouteViewport (/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17/browser-audit.spec.mjs:180:18)\n    at /Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17/browser-audit.spec.mjs:239:26"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-06-16T23:23:56.189Z",
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/admin/day-and-night-dental-recovered/codex-launch-readiness-audit-2026-06-17/test-results/browser-audit-full-launch-browser-audit/test-failed-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "156808bcdb19764b42b3-b069f4f446794c67e425",
+          "file": "browser-audit.spec.mjs",
+          "line": 219,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-06-16T23:23:55.561Z",
+    "duration": 245191.918,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

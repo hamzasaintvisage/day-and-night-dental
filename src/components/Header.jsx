@@ -46,7 +46,7 @@ export default function Header() {
       <header className={`dn-header ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`}>
         <div className="dn-header-inner">
           <Link to="/" className="dn-header-logo" aria-label="Day Night Dental home">
-            <img src="/logo-mark.png" className="dn-header-mark" alt="" width="280" height="243" />
+            <img src="/logo-mark.png" className="dn-header-mark" alt="Day Night Dental logo" width="280" height="243" />
             <div className="dn-header-wordmark">
               <span className="name"><span className="day">Day</span><span className="night">Night</span></span>
               <span className="sub">DENTAL</span>

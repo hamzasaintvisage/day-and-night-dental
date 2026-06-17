@@ -1,0 +1,44 @@
+{
+  "@vitejs/plugin-react": {
+    "current": "5.2.0",
+    "wanted": "5.2.0",
+    "latest": "4.7.0",
+    "dependent": "day-and-night-dental-recovered",
+    "location": "/Users/admin/day-and-night-dental-recovered/node_modules/@vitejs/plugin-react"
+  },
+  "beasties": {
+    "current": "0.1.0",
+    "wanted": "0.1.0",
+    "latest": "0.4.2",
+    "dependent": "day-and-night-dental-recovered",
+    "location": "/Users/admin/day-and-night-dental-recovered/node_modules/beasties"
+  },
+  "react-router-dom": {
+    "current": "6.30.4",
+    "wanted": "6.30.4",
+    "latest": "7.18.0",
+    "dependent": "day-and-night-dental-recovered",
+    "location": "/Users/admin/day-and-night-dental-recovered/node_modules/react-router-dom"
+  },
+  "vite": {
+    "current": "7.3.5",
+    "wanted": "7.3.5",
+    "latest": "6.4.3",
+    "dependent": "day-and-night-dental-recovered",
+    "location": "/Users/admin/day-and-night-dental-recovered/node_modules/vite"
+  },
+  "vite-react-ssg": {
+    "current": "0.9.0",
+    "wanted": "0.9.0",
+    "latest": "0.9.1-beta.1",
+    "dependent": "day-and-night-dental-recovered",
+    "location": "/Users/admin/day-and-night-dental-recovered/node_modules/vite-react-ssg"
+  },
+  "vitest": {
+    "current": "4.1.8",
+    "wanted": "4.1.9",
+    "latest": "4.1.9",
+    "dependent": "day-and-night-dental-recovered",
+    "location": "/Users/admin/day-and-night-dental-recovered/node_modules/vitest"
+  }
+}

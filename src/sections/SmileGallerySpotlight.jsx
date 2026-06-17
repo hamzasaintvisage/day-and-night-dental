@@ -48,7 +48,7 @@ export default function SmileGallerySpotlight() {
                 aria-label={`Show ${s.caption}`}
               >
                 <span className="dn-spot-th-img">
-                  <img src={s.image} alt="" width={120} height={120} loading="lazy" decoding="async" />
+                  <img src={s.image} alt={`${s.caption}, Day Night Dental, Glasgow`} width={120} height={120} loading="lazy" decoding="async" />
                 </span>
                 <span className="dn-spot-th-text">
                   <span className={`dn-spot-th-cat ${s.side}`}>{s.cat}</span>
