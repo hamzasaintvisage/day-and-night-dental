@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day Night Dental — Why Choose Us, redesign concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --charcoal:#14141a;
+    --graphite:#1f1f28;
+    --mist:#2a2a35;
+    --bone:#f4f1ea;
+    --bone-dim:rgba(244,241,234,0.72);
+    --bone-faint:rgba(244,241,234,0.5);
+    --day:#F4C24A;       /* sun / gold */
+    --day-soft:#FFD66D;
+    --night:#4A95E5;     /* moon / blue */
+    --night-soft:#7DB5F0;
+    --font-display:'Plus Jakarta Sans',-apple-system,sans-serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--bone);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .concept-label{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 clamp(1.25rem,5vw,2.5rem);
+    font-family:var(--font-body);
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--bone-faint);
+  }
+  .dn-section{ position:relative; padding:clamp(3.5rem,8vw,7rem) 0; overflow:hidden; }
+  .dn-container{
+    position:relative;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 clamp(1.25rem,5vw,2.5rem);
+  }
+  /* shared header treatment, matches the brand */
+  .sec-head{ max-width:760px; margin:0 0 clamp(2.5rem,5vw,3.5rem); }
+  .sec-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .eyebrow{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+    margin-bottom:0.9rem;
+  }
+  .display{
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.06;
+    font-size:clamp(1.75rem,4vw,2.6rem);
+    margin:0;
+  }
+  .display em{
+    font-style:normal;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--day),var(--night));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+  }
+  .lede{ margin-top:1rem; color:var(--bone-dim); font-size:1.02rem; max-width:560px; }
+  .center .lede{ margin-left:auto; margin-right:auto; }
+
+  /* soft brand glows */
+  .glow{ position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+  .glow.day{ background:radial-gradient(circle, rgba(244,194,74,0.16), transparent 70%); }
+  .glow.night{ background:radial-gradient(circle, rgba(74,149,229,0.16), transparent 70%); }
+
+  /* ============================================================
+     CONCEPT 1 — Gradient-rim icon badge card row
+     ============================================================ */
+  .c1 .glow.day{ width:520px; height:520px; top:-180px; right:-160px; }
+  .c1 .glow.night{ width:480px; height:480px; bottom:-200px; left:-150px; }
+  .c1-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.4rem;
+  }
+  .c1-card{
+    position:relative;
+    background:linear-gradient(180deg,rgba(31,31,40,0.55),rgba(20,20,26,0.55));
+    border:1px solid var(--mist);
+    border-radius:24px;
+    padding:2.1rem 1.85rem;
+    transition:transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s ease, border-color 0.45s ease;
+  }
+  /* gradient-rim ring that lights up on hover, the interlinked day/night look */
+  .c1-card::after{
+    content:''; position:absolute; inset:0; border-radius:inherit; padding:1.5px;
+    background:linear-gradient(135deg,var(--day),var(--night) 80%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude; opacity:0; transition:opacity 0.45s ease; pointer-events:none;
+  }
+  .c1-card:hover{ transform:translateY(-6px); box-shadow:0 22px 48px -22px rgba(74,149,229,0.4),0 10px 24px -16px rgba(244,194,74,0.3); }
+  .c1-card:hover::after{ opacity:1; }
+  /* circular gradient-rim icon badge */
+  .c1-badge{
+    position:relative; width:62px; height:62px; border-radius:50%;
+    display:grid; place-items:center; margin-bottom:1.4rem;
+    background:var(--charcoal);
+  }
+  .c1-badge::before{
+    content:''; position:absolute; inset:0; border-radius:50%; padding:1.6px;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    mask-composite:exclude;
+  }
+  .c1-card.day .c1-badge::before{ background:linear-gradient(135deg,var(--day),var(--day-soft)); }
+  .c1-card.night .c1-badge::before{ background:linear-gradient(135deg,var(--night),var(--night-soft)); }
+  .c1-card.day .c1-badge{ color:var(--day); box-shadow:0 0 26px -6px rgba(244,194,74,0.45) inset; }
+  .c1-card.night .c1-badge{ color:var(--night); box-shadow:0 0 26px -6px rgba(74,149,229,0.45) inset; }
+  .c1-card h3{ font-family:var(--font-display); font-weight:700; font-size:1.12rem; margin:0 0 0.5rem; letter-spacing:-0.01em; }
+  .c1-card p{ margin:0; font-size:0.93rem; color:var(--bone-dim); }
+
+  /* ============================================================
+     CONCEPT 2 — Bold reasons list, oversized numbers
+     ============================================================ */
+  .c2 .glow.day{ width:440px; height:440px; top:-140px; left:-120px; }
+  .c2 .glow.night{ width:440px; height:440px; bottom:-160px; right:-120px; }
+  .c2-list{ position:relative; border-top:1px solid var(--mist); }
+  .c2-row{
+    position:relative;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:clamp(1.25rem,3vw,2.6rem);
+    align-items:baseline;
+    padding:1.9rem 0.5rem 1.9rem 0;
+    border-bottom:1px solid var(--mist);
+    transition:padding-left 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  /* gradient accent bar slides in on hover */
+  .c2-row::before{
+    content:''; position:absolute; left:-1.4rem; top:50%; transform:translateY(-50%);
+    width:3px; height:0; border-radius:3px;
+    background:linear-gradient(180deg,var(--day),var(--night));
+    transition:height 0.45s cubic-bezier(0.16,1,0.3,1); opacity:0;
+  }
+  .c2-row:hover{ padding-left:1.4rem; }
+  .c2-row:hover::before{ height:62%; opacity:1; }
+  .c2-num{
+    font-family:var(--font-display); font-weight:800; line-height:0.9;
+    font-size:clamp(2.6rem,6vw,4.4rem); letter-spacing:-0.04em;
+    -webkit-text-fill-color:transparent; -webkit-background-clip:text; background-clip:text;
+    min-width:1.4em;
+  }
+  .c2-row.day .c2-num{ background:linear-gradient(160deg,var(--day-soft),var(--day)); }
+  .c2-row.night .c2-num{ background:linear-gradient(160deg,var(--night-soft),var(--night)); }
+  .c2-body{ display:flex; gap:1.1rem; align-items:flex-start; padding-top:0.35rem; }
+  .c2-ico{ flex-shrink:0; margin-top:0.15rem; }
+  .c2-row.day .c2-ico{ color:var(--day); }
+  .c2-row.night .c2-ico{ color:var(--night); }
+  .c2-row h3{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.15rem,2vw,1.4rem); margin:0 0 0.4rem; letter-spacing:-0.01em; }
+  .c2-row p{ margin:0; color:var(--bone-dim); font-size:0.98rem; max-width:640px; }
+
+  /* ============================================================
+     CONCEPT 3 — Day vs Night, two-column device with sun->moon arc
+     ============================================================ */
+  .c3 .dn-container{ max-width:1040px; }
+  .c3-stage{ position:relative; }
+  /* the sun -> moon arc running down the centre seam */
+  .c3-arc{
+    position:absolute; left:50%; top:0; bottom:0; width:120px; transform:translateX(-50%);
+    z-index:2; pointer-events:none;
+  }
+  .c3-cols{
+    position:relative; display:grid; grid-template-columns:1fr 1fr; gap:0;
+    border:1px solid var(--mist); border-radius:28px; overflow:hidden;
+  }
+  .c3-col{ padding:clamp(1.8rem,4vw,2.8rem); position:relative; }
+  .c3-col.day{
+    background:
+      radial-gradient(120% 80% at 0% 0%, rgba(244,194,74,0.12), transparent 60%),
+      var(--charcoal);
+  }
+  .c3-col.night{
+    background:
+      radial-gradient(120% 80% at 100% 100%, rgba(74,149,229,0.12), transparent 60%),
+      var(--charcoal);
+    border-left:1px solid var(--mist);
+  }
+  .c3-coltop{ display:flex; align-items:center; gap:0.85rem; margin-bottom:1.7rem; }
+  .c3-orb{ width:44px; height:44px; border-radius:50%; flex-shrink:0; }
+  .c3-col.day .c3-orb{ background:radial-gradient(circle at 35% 30%,var(--day-soft),var(--day)); box-shadow:0 0 28px -4px rgba(244,194,74,0.6); }
+  .c3-col.night .c3-orb{ background:radial-gradient(circle at 35% 30%,var(--night-soft),var(--night)); box-shadow:0 0 28px -4px rgba(74,149,229,0.55); }
+  .c3-kick{ font-family:var(--font-body); font-size:0.72rem; font-weight:600; letter-spacing:0.24em; text-transform:uppercase; }
+  .c3-col.day .c3-kick{ color:var(--day); }
+  .c3-col.night .c3-kick{ color:var(--night); }
+  .c3-kick small{ display:block; letter-spacing:0.02em; text-transform:none; font-weight:400; font-size:0.82rem; color:var(--bone-faint); margin-top:0.15rem; }
+  .c3-item{ display:flex; gap:0.95rem; padding:1.15rem 0; border-top:1px solid var(--mist); }
+  .c3-item:first-of-type{ border-top:none; }
+  .c3-ico{ flex-shrink:0; margin-top:0.1rem; }
+  .c3-col.day .c3-ico{ color:var(--day); }
+  .c3-col.night .c3-ico{ color:var(--night); }
+  .c3-item h3{ font-family:var(--font-display); font-weight:700; font-size:1.05rem; margin:0 0 0.3rem; letter-spacing:-0.01em; }
+  .c3-item p{ margin:0; font-size:0.9rem; color:var(--bone-dim); }
+
+  /* shared pill CTA, brand rounded button */
+  .cta-row{ margin-top:clamp(2.2rem,5vw,3rem); display:flex; flex-wrap:wrap; gap:0.9rem; }
+  .center .cta-row{ justify-content:center; }
+  .pill{
+    display:inline-flex; align-items:center; gap:0.55rem; text-decoration:none;
+    font-family:var(--font-display); font-weight:700; font-size:0.95rem;
+    padding:0.85rem 1.7rem; border-radius:999px; transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pill.solid{ background:linear-gradient(120deg,var(--day),var(--night)); color:#0a0a0c; }
+  .pill.solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px -12px rgba(74,149,229,0.5); }
+  .pill.ghost{ background:transparent; color:var(--bone); border:1.5px solid var(--mist); }
+  .pill.ghost:hover{ border-color:var(--bone-faint); transform:translateY(-2px); }
+
+  /* section divider between concepts */
+  .divider{ max-width:1080px; margin:0 auto; height:1px; background:linear-gradient(90deg,transparent,var(--mist),transparent); }
+
+  /* ---------------- responsive ---------------- */
+  @media (max-width:880px){
+    .c1-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:760px){
+    .c3-arc{ display:none; }
+    .c3-cols{ grid-template-columns:1fr; }
+    .c3-col.night{ border-left:none; border-top:1px solid var(--mist); }
+  }
+  @media (max-width:560px){
+    .c1-grid{ grid-template-columns:1fr; }
+    .c2-row{ grid-template-columns:1fr; gap:0.6rem; }
+    .c2-num{ font-size:3rem; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CONCEPT 1 — Gradient-rim icon badge card row
+     ============================================================ -->
+<p class="concept-label">Concept 1 — Gradient-rim icon badge cards</p>
+<section class="dn-section c1">
+  <span class="glow day"></span>
+  <span class="glow night"></span>
+  <div class="dn-container">
+    <div class="sec-head center">
+      <span class="eyebrow">Why Day Night</span>
+      <h2 class="display">Why <em>Glasgow</em> patients choose Day Night Dental</h2>
+      <p class="lede">Emergency, general and cosmetic dentistry in Merchant City, looked after by a team that treats you fast and keeps you informed.</p>
+    </div>
+
+    <div class="c1-grid">
+      <!-- 1 clock / night -->
+      <article class="c1-card night">
+        <span class="c1-badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </span>
+        <h3>Around-the-clock emergency access</h3>
+        <p>Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.</p>
+      </article>
+
+      <!-- 2 bolt / day -->
+      <article class="c1-card day">
+        <span class="c1-badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        </span>
+        <h3>Seen fast, treated properly</h3>
+        <p>Urgent cases are prioritised for same-day assessment and emergency treatment.</p>
+      </article>
+
+      <!-- 3 heart / night -->
+      <article class="c1-card night">
+        <span class="c1-badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+        </span>
+        <h3>No judgement, just care</h3>
+        <p>Nervous, embarrassed or overdue? We keep things calm, clear and focused on getting you treated.</p>
+      </article>
+
+      <!-- 4 rise / day -->
+      <article class="c1-card day">
+        <span class="c1-badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+        </span>
+        <h3>Always investing in better care</h3>
+        <p>We are continually investing in modern equipment and techniques, so your care keeps getting better, safer and more comfortable.</p>
+      </article>
+
+      <!-- 5 tag / night -->
+      <article class="c1-card night">
+        <span class="c1-badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+        </span>
+        <h3>Costs explained first</h3>
+        <p>Your options, fees and next steps are explained clearly before any treatment begins.</p>
+      </article>
+
+      <!-- 6 pin / day -->
+      <article class="c1-card day">
+        <span class="c1-badge">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        <h3>Merchant City, central Glasgow</h3>
+        <p>A central Glasgow practice for emergency, general and cosmetic dentistry.</p>
+      </article>
+    </div>
+
+    <div class="cta-row">
+      <a class="pill solid" href="#">Book an appointment</a>
+      <a class="pill ghost" href="#">Call the emergency line</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================================================
+     CONCEPT 2 — Bold reasons list, oversized numbers
+     ============================================================ -->
+<p class="concept-label">Concept 2 — Bold reasons list, oversized numbers</p>
+<section class="dn-section c2">
+  <span class="glow day"></span>
+  <span class="glow night"></span>
+  <div class="dn-container">
+    <div class="sec-head">
+      <span class="eyebrow">Why Day Night</span>
+      <h2 class="display">Why <em>Glasgow</em> patients choose Day Night Dental</h2>
+    </div>
+
+    <div class="c2-list">
+      <!-- 1 clock / night -->
+      <div class="c2-row night">
+        <span class="c2-num">01</span>
+        <div class="c2-body">
+          <span class="c2-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </span>
+          <div>
+            <h3>Around-the-clock emergency access</h3>
+            <p>Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 bolt / day -->
+      <div class="c2-row day">
+        <span class="c2-num">02</span>
+        <div class="c2-body">
+          <span class="c2-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+          </span>
+          <div>
+            <h3>Seen fast, treated properly</h3>
+            <p>Urgent cases are prioritised for same-day assessment and emergency treatment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 heart / night -->
+      <div class="c2-row night">
+        <span class="c2-num">03</span>
+        <div class="c2-body">
+          <span class="c2-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          </span>
+          <div>
+            <h3>No judgement, just care</h3>
+            <p>Nervous, embarrassed or overdue? We keep things calm, clear and focused on getting you treated.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 rise / day -->
+      <div class="c2-row day">
+        <span class="c2-num">04</span>
+        <div class="c2-body">
+          <span class="c2-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+          </span>
+          <div>
+            <h3>Always investing in better care</h3>
+            <p>We are continually investing in modern equipment and techniques, so your care keeps getting better, safer and more comfortable.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 tag / night -->
+      <div class="c2-row night">
+        <span class="c2-num">05</span>
+        <div class="c2-body">
+          <span class="c2-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+          </span>
+          <div>
+            <h3>Costs explained first</h3>
+            <p>Your options, fees and next steps are explained clearly before any treatment begins.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 pin / day -->
+      <div class="c2-row day">
+        <span class="c2-num">06</span>
+        <div class="c2-body">
+          <span class="c2-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div>
+            <h3>Merchant City, central Glasgow</h3>
+            <p>A central Glasgow practice for emergency, general and cosmetic dentistry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="pill solid" href="#">Book an appointment</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================================================
+     CONCEPT 3 — Day vs Night, two-column device with sun->moon arc
+     ============================================================ -->
+<p class="concept-label">Concept 3 — Day vs Night two-column, sun to moon arc</p>
+<section class="dn-section c3">
+  <span class="glow day"></span>
+  <span class="glow night"></span>
+  <div class="dn-container">
+    <div class="sec-head center">
+      <span class="eyebrow">Why Day Night</span>
+      <h2 class="display">Why <em>Glasgow</em> patients choose Day Night Dental</h2>
+      <p class="lede">The same care by day and by night. One side gets you seen, the other keeps everything clear and comfortable.</p>
+    </div>
+
+    <div class="c3-stage">
+      <!-- sun -> moon arc down the centre seam -->
+      <svg class="c3-arc" viewBox="0 0 120 600" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="arcGrad" x1="60" y1="40" x2="60" y2="560" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#F4C24A"/>
+            <stop offset="1" stop-color="#4A95E5"/>
+          </linearGradient>
+          <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#FFD66D"/>
+            <stop offset="1" stop-color="#F4C24A"/>
+          </radialGradient>
+          <radialGradient id="moonGlow" cx="0.4" cy="0.4" r="0.6">
+            <stop offset="0" stop-color="#7DB5F0"/>
+            <stop offset="1" stop-color="#4A95E5"/>
+          </radialGradient>
+        </defs>
+        <path d="M60 56 C 8 200, 8 400, 60 544" stroke="url(#arcGrad)" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.7"/>
+        <circle cx="60" cy="48" r="17" fill="url(#sunGlow)"/>
+        <circle cx="60" cy="48" r="26" fill="none" stroke="#F4C24A" stroke-width="1" opacity="0.4"/>
+        <circle cx="60" cy="552" r="16" fill="url(#moonGlow)"/>
+        <path d="M65 545 a 12 12 0 1 0 6 14 a 9 9 0 0 1 -6 -14 z" fill="#0a0a0c" opacity="0.55"/>
+        <circle cx="60" cy="552" r="25" fill="none" stroke="#4A95E5" stroke-width="1" opacity="0.4"/>
+      </svg>
+
+      <div class="c3-cols">
+        <!-- DAY column -->
+        <div class="c3-col day">
+          <div class="c3-coltop">
+            <span class="c3-orb" aria-hidden="true"></span>
+            <span class="c3-kick">By day<small>Fast, clear, close to hand</small></span>
+          </div>
+
+          <!-- bolt -->
+          <div class="c3-item">
+            <span class="c3-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+            </span>
+            <div>
+              <h3>Seen fast, treated properly</h3>
+              <p>Urgent cases are prioritised for same-day assessment and emergency treatment.</p>
+            </div>
+          </div>
+
+          <!-- rise -->
+          <div class="c3-item">
+            <span class="c3-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+            </span>
+            <div>
+              <h3>Always investing in better care</h3>
+              <p>We are continually investing in modern equipment and techniques, so your care keeps getting better, safer and more comfortable.</p>
+            </div>
+          </div>
+
+          <!-- pin -->
+          <div class="c3-item">
+            <span class="c3-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <h3>Merchant City, central Glasgow</h3>
+              <p>A central Glasgow practice for emergency, general and cosmetic dentistry.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NIGHT column -->
+        <div class="c3-col night">
+          <div class="c3-coltop">
+            <span class="c3-orb" aria-hidden="true"></span>
+            <span class="c3-kick">By night<small>Always there, never rushed</small></span>
+          </div>
+
+          <!-- clock -->
+          <div class="c3-item">
+            <span class="c3-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            <div>
+              <h3>Around-the-clock emergency access</h3>
+              <p>Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.</p>
+            </div>
+          </div>
+
+          <!-- heart -->
+          <div class="c3-item">
+            <span class="c3-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+            </span>
+            <div>
+              <h3>No judgement, just care</h3>
+              <p>Nervous, embarrassed or overdue? We keep things calm, clear and focused on getting you treated.</p>
+            </div>
+          </div>
+
+          <!-- tag -->
+          <div class="c3-item">
+            <span class="c3-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+            </span>
+            <div>
+              <h3>Costs explained first</h3>
+              <p>Your options, fees and next steps are explained clearly before any treatment begins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="pill solid" href="#">Book an appointment</a>
+      <a class="pill ghost" href="#">Call the emergency line</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

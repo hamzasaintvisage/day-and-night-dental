@@ -192,5 +192,113 @@
             gap: 1.5rem;
           }
         }
+
+        /* === "Why we're different" arc (sunrise to midnight) === */
+        .dn-arc-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: clamp(2.5rem, 5vw, 4.5rem);
+          align-items: center;
+        }
+        .dn-arc-lede { display: flex; flex-direction: column; align-items: flex-start; }
+        .dn-arc-quote {
+          font-family: var(--font-display);
+          font-weight: 800;
+          font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          color: var(--dn-bone);
+          margin: 1.1rem 0 0.9rem;
+        }
+        .dn-arc-gold { color: var(--dn-day); }
+        .dn-arc-blue { color: var(--dn-night); }
+        .dn-arc-lead {
+          font-family: var(--font-display);
+          font-weight: 600;
+          font-size: 1.15rem;
+          color: var(--dn-bone);
+          margin: 0 0 1.3rem;
+        }
+        .dn-arc-body {
+          color: var(--dn-bone-dim);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          max-width: 46ch;
+          margin: 0 0 1.5rem;
+        }
+        .dn-arc-by {
+          font-size: 0.72rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--dn-bone-faint);
+          margin: 0 0 1.6rem;
+        }
+        .dn-arc-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.78rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--dn-bone-dim);
+          transition: color 0.3s ease;
+        }
+        .dn-arc-link:hover { color: var(--dn-day); }
+        .dn-arc-link .arrow { transition: transform 0.3s ease; }
+        .dn-arc-link:hover .arrow { transform: translateX(3px); }
+        .dn-arc-vis { position: relative; }
+        .dn-arc-vis svg { width: 100%; height: auto; display: block; overflow: visible; }
+        .dn-arc-ends {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 0.2rem;
+          font-family: var(--font-display);
+          font-weight: 700;
+          font-size: 0.7rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+        }
+        .dn-arc-ends .sun { color: var(--dn-day); }
+        .dn-arc-ends .moon { color: var(--dn-night); }
+        .dn-arc-legend {
+          list-style: none;
+          margin: 1.6rem 0 0;
+          padding: 0;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.2rem;
+        }
+        .dn-arc-lg { position: relative; padding-left: 1.3rem; }
+        .dn-arc-lg .dot {
+          position: absolute;
+          left: 0;
+          top: 0.4rem;
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+        }
+        .dn-arc-lg.day .dot { background: var(--dn-day); box-shadow: 0 0 10px var(--dn-day); }
+        .dn-arc-lg.night .dot { background: var(--dn-night); box-shadow: 0 0 10px var(--dn-night); }
+        .dn-arc-lg .t {
+          display: block;
+          font-family: var(--font-display);
+          font-weight: 700;
+          font-size: 0.98rem;
+          color: var(--dn-bone);
+          line-height: 1.25;
+        }
+        .dn-arc-lg .s {
+          display: block;
+          font-size: 0.8rem;
+          color: var(--dn-bone-faint);
+          margin-top: 0.15rem;
+        }
+        @media (max-width: 900px) {
+          .dn-arc-grid { grid-template-columns: 1fr; gap: 2.6rem; }
+          .dn-arc-body { max-width: none; }
+        }
+        @media (max-width: 560px) {
+          .dn-arc-legend { grid-template-columns: 1fr; gap: 0.9rem; }
+        }
       
 

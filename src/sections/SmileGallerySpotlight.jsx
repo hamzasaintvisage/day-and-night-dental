@@ -6,7 +6,6 @@ const smiles = [
   { image: '/smiles/bonding-patient-2.webp', caption: 'Composite bonding', cat: 'Cosmetic', side: 'night' },
   { image: '/smiles/implant-patient.webp', caption: 'Dental implants', cat: 'Implants', side: 'day' },
   { image: '/smiles/invisalign-patient.webp', caption: 'Invisalign', cat: 'Orthodontics', side: 'night' },
-  { image: '/smiles/veneers-patient.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'day' },
   { image: '/smiles/veneers-patient-2.webp', caption: 'Porcelain veneers', cat: 'Cosmetic', side: 'night' },
 ]
 
