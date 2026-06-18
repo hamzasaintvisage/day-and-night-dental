@@ -20,9 +20,9 @@
           position: relative;
           z-index: 2;
           width: 100%;
-          display: grid;
-          grid-template-columns: 1.05fr 0.95fr;
-          align-items: stretch;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           min-height: 100vh;
         }
 
@@ -30,15 +30,20 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 8rem clamp(2rem, 5vw, 5.5rem) 4rem clamp(1.5rem, 7vw, 7rem);
+          align-items: center;
+          text-align: center;
+          max-width: 880px;
+          margin: 0 auto;
+          padding: 7rem clamp(1.5rem, 5vw, 3rem) 5rem;
           position: relative;
         }
         /* Celestial arc sits behind the headline; text stays above it. */
         .dn-hero-arc {
           position: absolute;
-          top: clamp(3.5rem, 17%, 9.5rem);
-          left: clamp(1.5rem, 7vw, 7rem);
-          width: min(430px, 70%);
+          top: clamp(4rem, 16%, 9rem);
+          left: 50%;
+          transform: translateX(-50%);
+          width: min(500px, 84%);
           height: auto;
           z-index: 0;
           opacity: 0.95;
@@ -91,9 +96,9 @@
         .dn-hero-dental {
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 0.9rem;
           margin-top: 1rem;
-          padding-left: 0.45em;
           font-family: var(--font-display);
           font-weight: 700;
           font-size: clamp(0.8rem, 1.1vw, 0.95rem);
@@ -120,6 +125,7 @@
 
         .dn-hero-actions {
           display: flex;
+          justify-content: center;
           gap: 0.85rem;
           margin-top: 2.3rem;
           flex-wrap: wrap;
@@ -132,6 +138,7 @@
         .dn-hero-trust {
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 0.9rem;
           flex-wrap: wrap;
           margin: 2.4rem 0 0;
@@ -201,26 +208,9 @@
         .dn-hero-chip .tx span { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dn-bone-dim); }
 
         @media (max-width: 900px) {
-          /* Image-led hero on mobile: the photo becomes the full backdrop and the
-             message sits over it (the stacked version of the desktop split). */
-          .dn-hero { min-height: 92vh; }
-          .dn-hero-grid { display: block; position: relative; grid-template-columns: 1fr; min-height: 0; }
-          .dn-hero-media { position: absolute; inset: 0; order: 0; height: 100%; min-height: 0; z-index: 0; }
-          .dn-hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 14%; }
-          .dn-hero-media-fade {
-            background: linear-gradient(180deg, rgba(10, 10, 12, 0.30) 0%, rgba(10, 10, 12, 0.42) 28%, rgba(10, 10, 12, 0.82) 64%, var(--dn-near-black) 100%);
-          }
-          .dn-hero-chip { display: none; } /* avoids clashing with the header burger; 24/7 is already in the copy + CTA */
-          .dn-hero-content {
-            position: relative; z-index: 2;
-            justify-content: flex-end;
-            min-height: 92vh;
-            padding: 6rem 1.5rem 3rem;
-          }
-          .dn-hero-arc { display: none; }
-          .dn-hero-eyebrow { margin-bottom: 1.1rem; }
-          .dn-hero-tagline { margin-top: 1.4rem; }
-          .dn-hero-actions { margin-top: 1.6rem; }
-          .dn-hero-trust { margin-top: 1.6rem; }
-          .dn-hero-title { font-size: clamp(3rem, 15vw, 4.6rem); }
+          .dn-hero { min-height: 84vh; }
+          .dn-hero-grid { min-height: 84vh; }
+          .dn-hero-content { padding: 6rem 1.5rem 4rem; max-width: 620px; }
+          .dn-hero-arc { top: clamp(3rem, 13%, 6rem); width: min(420px, 88%); }
+          .dn-hero-title { font-size: clamp(3rem, 15vw, 4.8rem); }
         }
