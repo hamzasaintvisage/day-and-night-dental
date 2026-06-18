@@ -1,9 +1,10 @@
-/* "What to expect when you call" section. Scoped under .dn-journey; uses shared tokens. */
+/* "What to expect when you call" — connected timeline of 3 icon-node steps. Scoped under .dn-journey. */
 .dn-journey {
   border-top: 1px solid var(--dn-mist);
   background: linear-gradient(90deg, rgba(244, 194, 74, 0.04), rgba(74, 149, 229, 0.04));
   padding: 4rem 0;
   position: relative;
+  overflow: hidden;
 }
 .dn-journey-inner { width: var(--container); margin: 0 auto; }
 
@@ -13,45 +14,50 @@
 }
 .dn-journey-head {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.2; margin: 0.6rem 0 0; max-width: 720px;
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem); line-height: 1.2; margin: 0.6rem 0 0; max-width: 720px;
 }
 .dn-journey-head .grad {
-  font-style: normal;
   background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-.dn-journey-map { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
-.dn-journey-step {
-  position: relative; border: 1px solid var(--dn-mist); border-radius: 12px;
-  padding: 1.6rem 1.4rem; background: var(--dn-near-black);
-  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+/* timeline */
+.dn-journey-tl {
+  list-style: none; margin: 3rem 0 0; padding: 0;
+  position: relative;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
 }
-.dn-journey-step::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); opacity: 0.55; border-radius: 12px 12px 0 0;
+.dn-journey-tl::before {
+  content: ''; position: absolute; top: 35px; left: 16.5%; right: 16.5%; height: 2px;
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); opacity: 0.55; z-index: 0;
 }
-.dn-journey-step:hover { transform: translateY(-4px); border-color: var(--dn-bone-faint); }
-.dn-journey-step .num {
-  display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1;
+.dn-journey-st { position: relative; text-align: center; padding: 0 0.5rem; }
+.dn-journey-node {
+  display: block; width: 70px; height: 70px; border-radius: 50%; margin: 0 auto;
   background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  padding: 2px; position: relative; z-index: 2;
 }
-.dn-journey-step h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0.7rem 0 0.4rem; color: var(--dn-bone); }
-.dn-journey-step p { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.55; margin: 0; }
-/* connector arrow between steps */
-.dn-journey-map .dn-journey-step:not(:last-child)::after {
-  content: '\2192'; position: absolute; right: -0.85rem; top: 50%; transform: translateY(-50%);
-  color: var(--dn-bone-faint); font-size: 1rem; z-index: 2;
+.dn-journey-node-in {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: var(--dn-near-black);
+  display: flex; align-items: center; justify-content: center;
 }
+.dn-journey-node-in svg { width: 26px; height: 26px; stroke: var(--dn-bone); fill: none; stroke-width: 1.7; }
+.dn-journey-node-n {
+  position: absolute; top: -5px; right: -5px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--dn-day); color: #1a1205;
+  font-family: var(--font-display); font-weight: 800; font-size: 0.72rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.dn-journey-st h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 1.2rem 0 0.45rem; color: var(--dn-bone); }
+.dn-journey-st p { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.55; margin: 0 auto; max-width: 30ch; }
 
-.dn-journey-cta { display: flex; align-items: center; gap: 1.25rem; margin-top: 2rem; flex-wrap: wrap; }
+.dn-journey-cta { display: flex; align-items: center; gap: 1.25rem; margin-top: 3rem; flex-wrap: wrap; }
 .dn-journey-num { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--dn-bone); text-decoration: none; transition: color 0.2s; }
 .dn-journey-num:hover { color: var(--dn-day); }
 
 @media (max-width: 760px) {
-  .dn-journey-map { grid-template-columns: 1fr; gap: 1.5rem; }
-  .dn-journey-map .dn-journey-step:not(:last-child)::after {
-    content: '\2193'; right: auto; left: 50%; top: auto; bottom: -1.05rem; transform: translateX(-50%);
-  }
+  .dn-journey-tl { grid-template-columns: 1fr; gap: 2.2rem; }
+  .dn-journey-tl::before { display: none; }
 }
