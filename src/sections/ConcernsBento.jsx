@@ -1,47 +1,45 @@
 import { Link } from 'react-router-dom';
 import './concerns-bento.css';
 
-// "Option B", bento layout: one featured hero tile + asymmetric mix, everything visible.
-// Safe copy with concern-led links into the relevant treatment page/section.
+// "Your concerns, our craft" — editorial index: one calm list row per concern, each linking
+// into the relevant treatment page. day/night is a gold/blue colour rhythm only, not a category.
 const items = [
-  { area: 'feat', title: 'Transform My Smile', icon: '/icons/concerns/transform-smile.png', side: 'day', href: '/treatments/cosmetic-dentistry/#concern',
-    ds: 'A full smile makeover' },
-  { area: 'c1', title: 'Fix My Worn Teeth', icon: '/icons/concerns/worn-teeth.png', side: 'night', href: '/treatments/cosmetic-dentistry/#concern',
-    ds: 'Veneers, bonding & crowns' },
-  { area: 'c2', title: 'Replace Missing Teeth', icon: '/icons/concerns/missing-teeth.png', side: 'day', href: '/treatments/dental-implants/#concern',
-    ds: 'Implants & bridges' },
-  { area: 'c3', title: 'Straighten My Teeth', icon: '/icons/concerns/straighten-teeth.png', side: 'night', href: '/treatments/invisalign/#concern',
-    ds: 'Clear aligners and discreet orthodontic options' },
-  { area: 'c4', title: 'Whiten My Smile', icon: '/icons/concerns/whiten-smile.png', side: 'day', href: '/treatments/teeth-whitening/#concern',
-    ds: 'Professional whitening for a brighter smile' },
-  { area: 'c5', title: 'Move On From Dentures', icon: '/icons/concerns/dentures.png', side: 'night', href: '/treatments/dental-implants/#concern',
-    ds: 'Fixed, secured alternatives' },
+  { title: 'Transform My Smile', icon: '/icons/concerns/transform-smile.png', side: 'day', href: '/treatments/cosmetic-dentistry/#concern', ds: 'A full smile makeover', featured: true },
+  { title: 'Fix My Worn Teeth', icon: '/icons/concerns/worn-teeth.png', side: 'night', href: '/treatments/cosmetic-dentistry/#concern', ds: 'Veneers, bonding & crowns' },
+  { title: 'Replace Missing Teeth', icon: '/icons/concerns/missing-teeth.png', side: 'day', href: '/treatments/dental-implants/#concern', ds: 'Implants & bridges' },
+  { title: 'Straighten My Teeth', icon: '/icons/concerns/straighten-teeth.png', side: 'night', href: '/treatments/invisalign/#concern', ds: 'Clear aligners and discreet orthodontic options' },
+  { title: 'Whiten My Smile', icon: '/icons/concerns/whiten-smile.png', side: 'day', href: '/treatments/teeth-whitening/#concern', ds: 'Professional whitening for a brighter smile' },
+  { title: 'Move On From Dentures', icon: '/icons/concerns/dentures.png', side: 'night', href: '/treatments/dental-implants/#concern', ds: 'Fixed, secured alternatives' },
 ];
 
 export default function ConcernsBento() {
   return (
-    <section className="dn-section">
+    <section className="dn-section dn-concerns-index">
       <div className="dn-container">
-        <div className="dn-section-head">
+        <div className="dn-cx">
           <span className="dn-eyebrow">What Brings You In</span>
-          <h2 className="dn-display">Your <em>concerns</em>, our craft</h2>
-        </div>
-        <div className="bento">
-          {items.map((c) => (
-            <Link
-              key={c.title}
-              to={c.href}
-              className={`bt ${c.side}${c.area === 'feat' ? ' bt-feat' : ''}`}
-              style={{ gridArea: c.area }}
-            >
-              <span className="bt-ic" style={{ '--bt-icon': `url(${c.icon})` }} aria-hidden="true" />
-              <span className="bt-arr" aria-hidden="true">→</span>
-              <div className="bt-body">
-                <h3 className="bt-title">{c.title}</h3>
-                {c.lead ? <p className="bt-lead">{c.lead}</p> : <span className="bt-ds">{c.ds}</span>}
-              </div>
-            </Link>
-          ))}
+          <h2 className="dn-cx-head">Your <em>concerns</em>, our craft</h2>
+          <div className="dn-cx-list">
+            {items.map((c) => (
+              <Link
+                key={c.title}
+                to={c.href}
+                className={`dn-cx-row ${c.side}`}
+                style={{ '--cx-icon': `url(${c.icon})` }}
+              >
+                <span className="dn-cx-bar" aria-hidden="true" />
+                <span className="dn-cx-ic" aria-hidden="true" />
+                <span className="dn-cx-body">
+                  <span className="dn-cx-title">
+                    {c.title}
+                    {c.featured && <span className="dn-cx-feat">Featured</span>}
+                  </span>
+                  <span className="dn-cx-sub">{c.ds}</span>
+                </span>
+                <span className="dn-cx-arrow" aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
