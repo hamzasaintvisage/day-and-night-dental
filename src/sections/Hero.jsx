@@ -28,7 +28,7 @@ export default function Hero() {
           </div>
 
           <p className="dn-hero-tagline dn-reveal dn-delay-5">
-            <strong>Pain doesn&rsquo;t wait. Neither do we.</strong><br />
+            <strong>Pain doesn&rsquo;t wait. Neither do we.</strong>
             Same-day emergency care and confident, natural-looking dentistry, day and night in Merchant City.
           </p>
 

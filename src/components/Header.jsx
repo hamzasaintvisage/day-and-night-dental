@@ -49,8 +49,7 @@ export default function Header() {
           <Link to="/" className="dn-header-logo" aria-label="Day Night Dental home">
             <img src="/logo-mark.webp?v=2" className="dn-header-mark" alt="Day Night Dental logo" width="160" height="139" />
             <div className="dn-header-wordmark">
-              <span className="name"><span className="day">Day</span><span className="night">Night</span></span>
-              <span className="sub">DENTAL</span>
+              <span className="day">Day</span><span className="night">Night</span><span className="dental">Dental</span>
             </div>
           </Link>
 

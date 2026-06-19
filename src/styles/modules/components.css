@@ -11,8 +11,8 @@
   }
   .dn-callbar-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-    padding: 0.95rem 1rem; border-radius: 4px;
-    font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.95rem 1rem; border-radius: 999px;
+    font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
   }
   .dn-callbar-btn.call { background: #dc2626; color: #fff; }
   .dn-callbar-btn.book { background: transparent; color: var(--dn-bone); border: 1.5px solid var(--dn-bone-faint); }
@@ -109,7 +109,7 @@
 .dn-cookie a { color: var(--dn-day); }
 .dn-cookie-actions { display: flex; gap: 0.75rem; }
 .dn-cookie-btn { flex: 1; padding: 0.7rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+  text-transform: uppercase; cursor: pointer; border-radius: 999px; }
 .dn-cookie-btn.accept { background: var(--dn-day); color: #000; border: 1px solid var(--dn-day); }
 .dn-cookie-btn.ghost { background: transparent; color: var(--dn-bone-dim); border: 1px solid var(--dn-mist); }
 @media (min-width: 1101px) { .dn-cookie { left: auto; right: 1.5rem; bottom: 1.5rem; } }

@@ -32,13 +32,41 @@
   z-index: -1;
 }
 
-.dn-btn:hover::before {
+/* Filled buttons (primary / emergency) keep the gradient FILL slide on hover */
+.dn-btn.primary:hover::before {
   transform: translateX(0);
 }
-
-.dn-btn:hover {
+.dn-btn.primary:hover {
   border-color: transparent;
   color: var(--dn-black);
+}
+
+/* Ghost (secondary) button: gold->blue gradient EDGE on hover, interior stays clear,
+   text stays white (fixes the old black-on-blue contrast fail), + lift and soft blue glow. */
+.dn-btn:not(.primary)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(120deg, var(--dn-day), var(--dn-night));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.dn-btn:not(.primary):hover::after { opacity: 1; }
+.dn-btn:not(.primary):hover {
+  border-color: transparent;
+  color: var(--dn-bone);
+  transform: translateY(-2px);
+  box-shadow: 0 9px 24px -16px rgba(69, 144, 236, 0.34);
+}
+.dn-btn:not(.primary):active { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .dn-btn:not(.primary):hover { transform: none; }
 }
 
 /* Primary is now filled, solid gold, confident */

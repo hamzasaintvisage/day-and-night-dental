@@ -29,28 +29,21 @@
           align-items: center;
           gap: 0.75rem;
         }
-        .dn-header-mark { height: 44px; width: auto; display: block; }
+        .dn-header-mark { height: 54px; width: auto; display: block; }
+        /* One straight line: Day (gold) Night (blue) Dental (white), matching the logo lockup */
         .dn-header-wordmark {
           display: flex;
-          flex-direction: column;
+          align-items: baseline;
+          gap: 0.28em;
           font-family: var(--font-display);
           line-height: 1;
           font-weight: 800;
+          font-size: 1.22rem;
+          letter-spacing: 0.01em;
         }
-        .dn-header-wordmark > span:first-child,
-        .dn-header-wordmark > .day {
-          display: inline;
-        }
-        .dn-header-wordmark .day { color: var(--dn-day); font-size: 1.05rem; letter-spacing: 0.04em; }
-        .dn-header-wordmark .night { color: var(--dn-night); letter-spacing: 0.04em; margin-left: 0.26em; }
-        .dn-header-wordmark .sub {
-          font-family: var(--font-display);
-          font-size: 0.55rem;
-          letter-spacing: 0.32em;
-          color: var(--dn-bone-dim);
-          margin-top: 0.35rem;
-          font-weight: 700;
-        }
+        .dn-header-wordmark .day { color: var(--dn-day); }
+        .dn-header-wordmark .night { color: var(--dn-night); }
+        .dn-header-wordmark .dental { color: var(--dn-bone); }
         .dn-header-nav {
           display: flex;
           gap: 2.5rem;
@@ -94,6 +87,7 @@
           font-size: 0.8rem;
           letter-spacing: 0.05em;
           color: var(--dn-bone-dim);
+          font-variant-numeric: tabular-nums;
         }
         .dn-header-phone .dot {
           width: 6px;
@@ -318,7 +312,7 @@
         @media (max-width: 640px) {
           .dn-header-wordmark { display: none; }
           /* mark stands alone on mobile (wordmark hidden), so give it a touch more presence */
-          .dn-header-mark { height: 48px; }
+          .dn-header-mark { height: 54px; }
           .dn-header-cta .dn-btn { padding: 0.7rem 1.2rem; font-size: 0.7rem; }
         }
       
