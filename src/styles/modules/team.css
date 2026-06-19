@@ -43,14 +43,14 @@
           background: linear-gradient(180deg,
             transparent 0%,
             transparent 40%,
-            rgba(244, 194, 74, 0.08) 70%,
+            rgba(248, 199, 96, 0.08) 70%,
             rgba(0, 0, 0, 0.7) 100%);
         }
         .dn-portrait.night .dn-portrait-overlay {
           background: linear-gradient(180deg,
             transparent 0%,
             transparent 40%,
-            rgba(74, 149, 229, 0.08) 70%,
+            rgba(69, 144, 236, 0.08) 70%,
             rgba(0, 0, 0, 0.7) 100%);
         }
         .dn-portrait-frame {
@@ -60,8 +60,8 @@
           pointer-events: none;
           transition: border-color 0.5s;
         }
-        .dn-portrait.day .dn-portrait-frame { border-color: rgba(244, 194, 74, 0); }
-        .dn-portrait.night .dn-portrait-frame { border-color: rgba(74, 149, 229, 0); }
+        .dn-portrait.day .dn-portrait-frame { border-color: rgba(248, 199, 96, 0); }
+        .dn-portrait.night .dn-portrait-frame { border-color: rgba(69, 144, 236, 0); }
         .dn-team-info {
           display: flex;
           flex-direction: column;
@@ -108,8 +108,8 @@
             radial-gradient(circle at 50% 36%, var(--avatar-wash, rgba(255,255,255,0.03)), transparent 62%),
             var(--dn-near-black);
         }
-        .dn-avatar.day  { color: var(--dn-day);        --avatar-wash: rgba(244, 194, 74, 0.12); }
-        .dn-avatar.night { color: var(--dn-night-soft); --avatar-wash: rgba(74, 149, 229, 0.14); }
+        .dn-avatar.day  { color: var(--dn-day);        --avatar-wash: rgba(248, 199, 96, 0.12); }
+        .dn-avatar.night { color: var(--dn-night-soft); --avatar-wash: rgba(69, 144, 236, 0.14); }
         .dn-avatar svg { width: 44%; height: 44%; opacity: 0.92; }
 
         /* ---------- Team: Option B, Wall ---------- */
@@ -129,8 +129,8 @@
           align-items: flex-start;
           transition: border-color 0.3s;
         }
-        .dn-wall-card.day:hover  { border-color: rgba(244, 194, 74, 0.4); }
-        .dn-wall-card.night:hover { border-color: rgba(74, 149, 229, 0.4); }
+        .dn-wall-card.day:hover  { border-color: rgba(248, 199, 96, 0.4); }
+        .dn-wall-card.night:hover { border-color: rgba(69, 144, 236, 0.4); }
         .dn-wall-avwrap {
           position: relative;
           width: 76px;
@@ -147,8 +147,8 @@
           border: 1px solid transparent;
           pointer-events: none;
         }
-        .dn-wall-card.day  .dn-wall-ring { border-color: rgba(244, 194, 74, 0.3); }
-        .dn-wall-card.night .dn-wall-ring { border-color: rgba(74, 149, 229, 0.3); }
+        .dn-wall-card.day  .dn-wall-ring { border-color: rgba(248, 199, 96, 0.3); }
+        .dn-wall-card.night .dn-wall-ring { border-color: rgba(69, 144, 236, 0.3); }
         .dn-wall-name {
           font-family: var(--font-display);
           font-size: 1.2rem;
@@ -172,7 +172,7 @@
           top: 96px;
           padding: 2rem;
           border: 1px solid var(--dn-mist);
-          background: linear-gradient(160deg, #14141a, var(--dn-near-black));
+          background: linear-gradient(160deg, var(--dn-charcoal), var(--dn-near-black));
           overflow: hidden;
         }
         .dn-ts-feature::before {
@@ -221,8 +221,8 @@
           transition: border-color 0.2s, background 0.2s;
         }
         .dn-ts-mc:hover { border-color: var(--dn-bone-faint); }
-        .dn-ts-mc.on.day  { border-color: var(--dn-day);        background: rgba(244, 194, 74, 0.04); }
-        .dn-ts-mc.on.night { border-color: var(--dn-night-soft); background: rgba(74, 149, 229, 0.04); }
+        .dn-ts-mc.on.day  { border-color: var(--dn-day);        background: rgba(248, 199, 96, 0.04); }
+        .dn-ts-mc.on.night { border-color: var(--dn-night-soft); background: rgba(69, 144, 236, 0.04); }
         .dn-ts-mc .dn-avatar {
           width: 44px;
           height: 44px;

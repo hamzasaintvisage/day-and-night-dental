@@ -5,7 +5,7 @@ import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
 
 const url = `${SITE}/our-team/`
-const OG_IMAGE = `${SITE}/og-image.jpg`
+const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
 
 // Person schema per clinician (E-E-A-T for a medical site). Real names + GDC
 // numbers go in src/sections/Team.jsx; add `gdc` to a member to emit it here.

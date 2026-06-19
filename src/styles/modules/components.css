@@ -62,8 +62,8 @@
   display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
   transition: background 0.15s, color 0.15s; border-radius: 2px;
 }
-.dn-dropdown-option.active { background: rgba(244, 194, 74, 0.1); color: var(--dn-bone); }
-.dn-dropdown.night .dn-dropdown-option.active { background: rgba(74, 149, 229, 0.12); }
+.dn-dropdown-option.active { background: rgba(248, 199, 96, 0.1); color: var(--dn-bone); }
+.dn-dropdown.night .dn-dropdown-option.active { background: rgba(69, 144, 236, 0.12); }
 .dn-dropdown-option.selected { color: var(--dn-day); }
 .dn-dropdown.night .dn-dropdown-option.selected { color: var(--dn-night-soft); }
 .dn-dropdown-option .check { color: var(--dn-day); font-size: 0.85rem; }
@@ -137,11 +137,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 
 /* ===== CTA band (homepage conversion prompts) ===== */
 .dn-ctaband { position: relative; padding: 3.5rem 0; overflow: hidden;
-  background: linear-gradient(90deg, rgba(244,194,74,0.06), rgba(74,149,229,0.06));
+  background: linear-gradient(90deg, rgba(248, 199, 96,0.06), rgba(69, 144, 236,0.06));
   border-block: 1px solid var(--dn-mist); }
 .dn-ctaband::before { content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at left, rgba(244,194,74,0.1), transparent 55%),
-              radial-gradient(ellipse at right, rgba(74,149,229,0.1), transparent 55%); }
+  background: radial-gradient(ellipse at left, rgba(248, 199, 96,0.1), transparent 55%),
+              radial-gradient(ellipse at right, rgba(69, 144, 236,0.1), transparent 55%); }
 .dn-ctaband-inner { position: relative; z-index: 1; display: flex; align-items: center;
   justify-content: space-between; gap: 2.5rem; flex-wrap: wrap; }
 .dn-ctaband-text h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-top: 0.5rem; max-width: 620px; }
@@ -223,7 +223,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-radio-card:hover,
   .dn-success-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 42px -18px rgba(74, 149, 229, 0.35), 0 8px 20px -12px rgba(244, 194, 74, 0.30);
+    box-shadow: 0 18px 42px -18px rgba(69, 144, 236, 0.35), 0 8px 20px -12px rgba(248, 199, 96, 0.30);
   }
   .dn-why-item:hover::after,
   .dn-concern-card:hover::after,

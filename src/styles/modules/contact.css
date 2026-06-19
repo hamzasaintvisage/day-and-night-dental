@@ -3,8 +3,8 @@
         .dn-form-error {
           margin: 1rem 0 0;
           padding: 0.85rem 1rem;
-          border: 1px solid #ef4444;
-          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid #dc2626;
+          background: rgba(220, 38, 38, 0.08);
           color: var(--dn-bone);
           font-size: 0.85rem;
           border-radius: 4px;
@@ -191,20 +191,20 @@
         .dn-radio.checked.day {
           border-color: var(--dn-day);
           color: var(--dn-day);
-          background: rgba(244, 194, 74, 0.05);
+          background: rgba(248, 199, 96, 0.05);
         }
         .dn-radio.checked.night {
           border-color: var(--dn-night);
           color: var(--dn-night-soft);
-          background: rgba(74, 149, 229, 0.05);
+          background: rgba(69, 144, 236, 0.05);
         }
         .dn-radio.urgent {
-          border-color: rgba(239, 68, 68, 0.3);
-          background: rgba(239, 68, 68, 0.04);
+          border-color: rgba(220, 38, 38, 0.3);
+          background: rgba(220, 38, 38, 0.04);
         }
         .dn-radio.urgent.checked {
-          border-color: #ef4444 !important;
-          background: rgba(239, 68, 68, 0.1) !important;
+          border-color: #dc2626 !important;
+          background: rgba(220, 38, 38, 0.1) !important;
           color: var(--dn-bone) !important;
         }
         .urgent-dot {
@@ -212,9 +212,9 @@
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #ef4444;
+          background: #dc2626;
           margin-right: 0.5rem;
-          box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+          box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
           animation: emergency-pulse 1.8s infinite;
         }
         .dn-form-submit {

@@ -5,7 +5,7 @@ import { jsonLd } from '../lib/jsonLd'
 import { dentistLd } from '../lib/schemas'
 
 const url = `${SITE}/areas-served/`
-const OG_IMAGE = `${SITE}/og-image.jpg`
+const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
 
 const breadcrumbLd = {
   '@context': 'https://schema.org',

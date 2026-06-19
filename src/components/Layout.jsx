@@ -79,7 +79,7 @@ export default function Layout() {
         <meta property="og:locale" content="en_GB" />
         <meta property="og:title" content="Day Night Dental, 24/7 emergency &amp; cosmetic dentist, Glasgow" />
         <meta property="og:description" content="A 24/7 emergency and cosmetic dental practice in Merchant City, Glasgow. Same-day emergency care, Invisalign, implants and whitening." />
-        <meta property="og:image" content={`${SITE}/og-image.jpg`} />
+        <meta property="og:image" content={`${SITE}/og-image.jpg?v=2`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Day Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
@@ -87,7 +87,7 @@ export default function Layout() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Day Night Dental, 24/7 emergency &amp; cosmetic dentist, Glasgow" />
         <meta name="twitter:description" content="A 24/7 emergency and cosmetic dental practice in Merchant City, Glasgow." />
-        <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
+        <meta name="twitter:image" content={`${SITE}/og-image.jpg?v=2`} />
         <meta name="twitter:image:alt" content="Day Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
       </Head>
       <a href="#main" className="dn-skip-link">Skip to main content</a>

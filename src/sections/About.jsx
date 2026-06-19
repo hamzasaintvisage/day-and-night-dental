@@ -30,26 +30,26 @@ export default function About() {
             <svg viewBox="0 0 400 250" fill="none" aria-hidden="true">
               <defs>
                 <linearGradient id="dnArcGrad" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stopColor="#F4C24A" />
-                  <stop offset="0.5" stopColor="#7DB5F0" />
-                  <stop offset="1" stopColor="#4A95E5" />
+                  <stop offset="0" stopColor="var(--dn-day)" />
+                  <stop offset="0.5" stopColor="var(--dn-night-soft)" />
+                  <stop offset="1" stopColor="var(--dn-night)" />
                 </linearGradient>
               </defs>
               <path d="M20 222 Q 200 -8 380 222" stroke="url(#dnArcGrad)" strokeWidth="2" opacity="0.75" />
               {/* sun, rising at the start */}
-              <circle cx="20" cy="222" r="9" fill="#F4C24A" />
-              <g stroke="#F4C24A" strokeWidth="1.6" strokeLinecap="round" opacity="0.9">
+              <circle cx="20" cy="222" r="9" fill="var(--dn-day)" />
+              <g stroke="var(--dn-day)" strokeWidth="1.6" strokeLinecap="round" opacity="0.9">
                 <path d="M20 205v-6M20 245v-6M37 222h6M-3 222h6M32 210l4-4M8 234l-4 4M32 234l4 4M8 210l-4-4" />
               </g>
               {/* moon, setting at midnight */}
-              <path d="M380 213a9 9 0 1 0 0 18a7 7 0 0 1 0-18z" fill="#4A95E5" />
+              <path d="M380 213a9 9 0 1 0 0 18a7 7 0 0 1 0-18z" fill="var(--dn-night)" />
               {/* the three real-life moments along the day */}
-              <circle cx="92" cy="147" r="7" fill="#F4C24A" />
-              <circle cx="92" cy="147" r="12" fill="none" stroke="#F4C24A" strokeOpacity="0.4" />
-              <circle cx="200" cy="105" r="7" fill="#F4C24A" />
-              <circle cx="200" cy="105" r="12" fill="none" stroke="#F4C24A" strokeOpacity="0.4" />
-              <circle cx="308" cy="147" r="7" fill="#4A95E5" />
-              <circle cx="308" cy="147" r="12" fill="none" stroke="#4A95E5" strokeOpacity="0.4" />
+              <circle cx="92" cy="147" r="7" fill="var(--dn-day)" />
+              <circle cx="92" cy="147" r="12" fill="none" stroke="var(--dn-day)" strokeOpacity="0.4" />
+              <circle cx="200" cy="105" r="7" fill="var(--dn-day)" />
+              <circle cx="200" cy="105" r="12" fill="none" stroke="var(--dn-day)" strokeOpacity="0.4" />
+              <circle cx="308" cy="147" r="7" fill="var(--dn-night)" />
+              <circle cx="308" cy="147" r="12" fill="none" stroke="var(--dn-night)" strokeOpacity="0.4" />
             </svg>
             <div className="dn-arc-ends">
               <span className="sun">Sunrise</span>

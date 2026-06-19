@@ -18,7 +18,7 @@
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
           margin: 0;
-          transition: all 0.5s ease;
+          transition: border-color 0.4s, background 0.4s, transform 0.4s;
           overflow: hidden;
         }
         .dn-review::before {
@@ -31,7 +31,6 @@
         .dn-review.night::before { background: var(--dn-night); }
         .dn-review:hover {
           background: var(--dn-charcoal);
-          transform: translateY(-2px);
         }
         .dn-review-quote-mark {
           position: absolute;

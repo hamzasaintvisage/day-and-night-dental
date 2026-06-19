@@ -7,11 +7,11 @@
 }
 .dn-concerns-index::before {
   width: 420px; height: 420px; top: -160px; left: -120px;
-  background: radial-gradient(circle, rgba(244, 194, 74, 0.10), transparent 70%);
+  background: radial-gradient(circle, rgba(248, 199, 96, 0.10), transparent 70%);
 }
 .dn-concerns-index::after {
   width: 480px; height: 480px; bottom: -180px; right: -140px;
-  background: radial-gradient(circle, rgba(74, 149, 229, 0.10), transparent 70%);
+  background: radial-gradient(circle, rgba(69, 144, 236, 0.10), transparent 70%);
 }
 .dn-concerns-index .dn-container { position: relative; z-index: 1; }
 
@@ -31,17 +31,17 @@
 .dn-cx-row {
   position: relative; display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 1.3rem;
   padding: 1.6rem 1.4rem; text-decoration: none; color: inherit;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px;
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.4s ease;
+  border-top: 1px solid var(--dn-mist); border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
 }
-.dn-cx-row:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.dn-cx-row.day { --ac: var(--dn-day); --wash: linear-gradient(90deg, rgba(244, 194, 74, 0.10), transparent 82%); }
-.dn-cx-row.night { --ac: var(--dn-night); --wash: linear-gradient(90deg, rgba(74, 149, 229, 0.10), transparent 82%); }
+.dn-cx-row:last-child { border-bottom: 1px solid var(--dn-mist); }
+.dn-cx-row.day { --ac: var(--dn-day); --wash: linear-gradient(90deg, rgba(248, 199, 96, 0.10), transparent 82%); }
+.dn-cx-row.night { --ac: var(--dn-night); --wash: linear-gradient(90deg, rgba(69, 144, 236, 0.10), transparent 82%); }
 
 .dn-cx-bar {
   position: absolute; left: 0; top: 16%; bottom: 16%; width: 3px; border-radius: 999px;
   background: var(--ac); transform: scaleY(0); transform-origin: center;
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .dn-cx-ic {
   width: 42px; height: 42px; background: var(--ac);
@@ -61,7 +61,7 @@
 }
 .dn-cx-arrow {
   font-family: var(--font-body); font-size: 1.4rem; line-height: 1; color: var(--dn-bone-faint);
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
 }
 .dn-cx-row:hover { transform: translateX(10px); background: var(--wash); }
 .dn-cx-row:hover .dn-cx-bar { transform: scaleY(1); }

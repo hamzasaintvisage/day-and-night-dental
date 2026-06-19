@@ -30,7 +30,7 @@ export default class ErrorBoundary extends Component {
         <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '42ch' }}>
           Sorry about that. If you need urgent dental help, call our 24/7 line straight away, we&rsquo;re here around the clock.
         </p>
-        <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency" style={{ paddingLeft: '2.75rem' }}>
+        <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary dn-btn-emergency">
           <span className="dn-btn-pulse" aria-hidden="true" />Call {PRACTICE.phoneDisplay}
         </a>
         <a href="/" className="dn-btn">Back to home</a>

@@ -22,7 +22,7 @@ export default function ArticleLayout({ post }) {
     author: { '@type': 'Organization', name: PRACTICE.name, url: `${SITE}/` },
     publisher: { '@id': `${SITE}/#dentist` },
     mainEntityOfPage: url,
-    image: `${SITE}/og-image.jpg`,
+    image: `${SITE}/og-image.jpg?v=2`,
   }
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -55,11 +55,11 @@ export default function ArticleLayout({ post }) {
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
-        <meta property="og:image" content={`${SITE}/og-image.jpg`} />
+        <meta property="og:image" content={`${SITE}/og-image.jpg?v=2`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
+        <meta name="twitter:image" content={`${SITE}/og-image.jpg?v=2`} />
       </Head>
       <Head>
         <script type="application/ld+json">{jsonLd(dentistLd)}</script>

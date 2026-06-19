@@ -5,7 +5,7 @@
 // of the schema until real, and `npm run check:launch` refuses go-live while a "[...]" placeholder
 // remains — so it can't accidentally ship unfinished.
 export const team = [
-  { id: 'principal', name: 'Dr Willie Chang', role: 'Principal Dentist', side: 'day' },
+  { id: 'principal', name: 'Dr Willie Chang', role: 'Principal Dentist', gdc: '296929', side: 'day' },
   { id: 'chiang', name: 'Dr Pei Hsin Chiang', role: 'Dentist', gdc: '333443', side: 'night' },
   { id: 'lee', name: 'Dr Chia-Hsuan Lee', role: 'Dentist', gdc: '310152', side: 'day' },
 ]

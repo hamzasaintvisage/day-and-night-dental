@@ -1,7 +1,7 @@
 /* "What to expect when you call" — connected timeline of 3 icon-node steps. Scoped under .dn-journey. */
 .dn-journey {
   border-top: 1px solid var(--dn-mist);
-  background: linear-gradient(90deg, rgba(244, 194, 74, 0.04), rgba(74, 149, 229, 0.04));
+  background: linear-gradient(90deg, rgba(248, 199, 96, 0.04), rgba(69, 144, 236, 0.04));
   padding: 4rem 0;
   position: relative;
   overflow: hidden;
@@ -46,7 +46,7 @@
 .dn-journey-node-n {
   position: absolute; top: -5px; right: -5px;
   width: 24px; height: 24px; border-radius: 50%;
-  background: var(--dn-day); color: #1a1205;
+  background: var(--dn-day); color: var(--dn-black);
   font-family: var(--font-display); font-weight: 800; font-size: 0.72rem;
   display: flex; align-items: center; justify-content: center;
 }

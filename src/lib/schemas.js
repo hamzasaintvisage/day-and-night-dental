@@ -7,7 +7,7 @@ import { SITE, PRACTICE } from '../data/practice'
 import { treatmentTitle } from '../data/treatments'
 
 export const DENTIST_ID = `${SITE}/#dentist`
-const OG_IMAGE = `${SITE}/og-image.jpg`
+const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
 
 // Title comes from the treatment registry (no drift); trailing slash keeps the URL canonical.
 const svc = (slug) => ({ '@type': 'MedicalProcedure', name: treatmentTitle(slug), url: `${SITE}/treatments/${slug}/` })
@@ -23,7 +23,7 @@ export const dentistLd = {
   telephone: PRACTICE.phoneE164,
   email: PRACTICE.email,
   image: [OG_IMAGE],
-  logo: `${SITE}/logo.png`,
+  logo: `${SITE}/logo.png?v=2`,
   priceRange: '££',
   currenciesAccepted: 'GBP',
   paymentAccepted: 'Cash, Credit Card, Debit Card',

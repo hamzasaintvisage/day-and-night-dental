@@ -209,10 +209,10 @@
             opacity: 0.5;
           }
           .dn-tx-detail.day::before {
-            background: radial-gradient(ellipse at top left, rgba(244, 194, 74, 0.12), transparent 60%);
+            background: radial-gradient(ellipse at top left, rgba(248, 199, 96, 0.12), transparent 60%);
           }
           .dn-tx-detail.night::before {
-            background: radial-gradient(ellipse at top right, rgba(74, 149, 229, 0.12), transparent 60%);
+            background: radial-gradient(ellipse at top right, rgba(69, 144, 236, 0.12), transparent 60%);
           }
           .dn-tx-detail-inner {
             position: relative;
@@ -271,7 +271,7 @@
         .dn-faq-q.on {
           border-left-color: var(--dn-day);
           color: var(--dn-bone);
-          background: linear-gradient(90deg, rgba(244, 194, 74, 0.05), transparent);
+          background: linear-gradient(90deg, rgba(248, 199, 96, 0.05), transparent);
         }
         .dn-faq-panel {
           border: 1px solid var(--dn-mist);

@@ -28,9 +28,9 @@ export default function Blog() {
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
-        <meta property="og:image" content={`${SITE}/og-image.jpg`} />
+        <meta property="og:image" content={`${SITE}/og-image.jpg?v=2`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
+        <meta name="twitter:image" content={`${SITE}/og-image.jpg?v=2`} />
         <meta name="twitter:title" content="Dental Advice & Guides | Day Night Dental" />
         <meta name="twitter:description" content="Honest dental advice from our Glasgow team." />
       </Head>

@@ -12,8 +12,8 @@
           inset: 0;
           z-index: 0;
           background:
-            radial-gradient(ellipse at 18% 28%, rgba(244, 194, 74, 0.08) 0%, transparent 50%),
-            radial-gradient(ellipse at 92% 82%, rgba(74, 149, 229, 0.08) 0%, transparent 55%);
+            radial-gradient(ellipse at 18% 28%, rgba(248, 199, 96, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse at 92% 82%, rgba(69, 144, 236, 0.08) 0%, transparent 55%);
         }
 
         .dn-hero-grid {
@@ -47,7 +47,7 @@
           height: auto;
           z-index: 0;
           opacity: 0.95;
-          filter: drop-shadow(0 0 7px rgba(244, 194, 74, 0.18));
+          filter: drop-shadow(0 0 7px rgba(248, 199, 96, 0.18));
           pointer-events: none;
         }
         .dn-hero-content > *:not(.dn-hero-arc) { position: relative; z-index: 1; }
@@ -68,6 +68,10 @@
           width: 50px;
           background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
         }
+        /* mirrored right-hand rule so the centered eyebrow is symmetric */
+        .dn-hero-eyebrow .line-r {
+          background: linear-gradient(90deg, var(--dn-night), var(--dn-day));
+        }
 
         .dn-hero-title {
           font-family: var(--font-display);
@@ -81,17 +85,18 @@
         }
         .word-day {
           color: var(--dn-day);
-          text-shadow: 0 0 38px rgba(244, 194, 74, 0.4), 0 0 90px rgba(244, 194, 74, 0.2);
+          text-shadow: 0 0 38px rgba(248, 199, 96, 0.4), 0 0 90px rgba(248, 199, 96, 0.2);
           transition: text-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .word-night {
           color: var(--dn-night);
           margin-left: 0.12em;
-          text-shadow: 0 0 38px rgba(74, 149, 229, 0.42), 0 0 90px rgba(74, 149, 229, 0.26);
+          text-shadow: 0 0 38px rgba(69, 144, 236, 0.42), 0 0 90px rgba(69, 144, 236, 0.26);
           transition: text-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .dn-hero-title:hover .word-day { text-shadow: 0 0 50px rgba(244, 194, 74, 0.72), 0 0 120px rgba(244, 194, 74, 0.4); }
-        .dn-hero-title:hover .word-night { text-shadow: 0 0 50px rgba(74, 149, 229, 0.72), 0 0 120px rgba(74, 149, 229, 0.46); }
+        /* Each word lights up on its OWN hover: hover "Day" -> gold glow, hover "Night" -> blue glow */
+        .word-day:hover { text-shadow: 0 0 50px rgba(248, 199, 96, 0.85), 0 0 120px rgba(248, 199, 96, 0.5); }
+        .word-night:hover { text-shadow: 0 0 50px rgba(69, 144, 236, 0.85), 0 0 120px rgba(69, 144, 236, 0.55); }
 
         .dn-hero-dental {
           display: flex;
@@ -110,6 +115,9 @@
           width: 38px;
           border-radius: 1px;
           background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+        }
+        .dn-hero-dental .line-r {
+          background: linear-gradient(90deg, var(--dn-night), var(--dn-day));
         }
 
         .dn-hero-tagline {
@@ -133,7 +141,7 @@
         .dn-hero-actions .dn-btn { border-radius: 999px; }
         .dn-hero-actions .dn-btn-emergency { box-shadow: 0 8px 30px -10px rgba(239, 68, 68, 0.5); transition: box-shadow 0.3s ease, transform 0.3s ease; }
         .dn-hero-actions .dn-btn-emergency:hover { box-shadow: 0 14px 46px -8px rgba(239, 68, 68, 0.72); }
-        .dn-hero-actions .dn-btn:not(.primary):hover { box-shadow: 0 0 0 1px var(--dn-day), 0 10px 34px -14px rgba(74, 149, 229, 0.5); }
+        .dn-hero-actions .dn-btn:not(.primary):hover { box-shadow: 0 0 0 1px var(--dn-day), 0 10px 34px -14px rgba(69, 144, 236, 0.5); }
 
         .dn-hero-trust {
           display: flex;
@@ -161,7 +169,7 @@
         .dn-hero-media-wash {
           position: absolute;
           inset: 0;
-          background: linear-gradient(140deg, rgba(244, 194, 74, 0.18), transparent 42%, rgba(74, 149, 229, 0.28));
+          background: linear-gradient(140deg, rgba(248, 199, 96, 0.18), transparent 42%, rgba(69, 144, 236, 0.28));
         }
         .dn-hero-media-fade {
           position: absolute;

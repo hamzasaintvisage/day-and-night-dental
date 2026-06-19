@@ -6,7 +6,7 @@ import { dentistLd, DENTIST_ID } from '../lib/schemas'
 import { treatmentTitle, treatmentTag } from '../data/treatments'
 import { Icon } from './ConcernIcon'
 
-const OG_IMAGE = `${SITE}/og-image.jpg`
+const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
 
 const REVIEW_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 // Derive the human "Last updated" label from the ISO lastReviewed, so the visible month can never

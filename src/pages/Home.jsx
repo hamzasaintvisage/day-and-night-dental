@@ -18,7 +18,7 @@ import HomeFaq from '../sections/HomeFaq'
 import Contact from '../sections/Contact'
 import CtaBand from '../components/CtaBand'
 
-const OG_IMAGE = `${SITE}/og-image.jpg`
+const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
 const TITLE = 'Emergency & Cosmetic Dentist in Glasgow | Day Night Dental'
 const DESCRIPTION =
   '24/7 emergency dentist in Glasgow. Day Night Dental offers same-day emergency care, Invisalign, implants and cosmetic dentistry. Open 7 days a week.'

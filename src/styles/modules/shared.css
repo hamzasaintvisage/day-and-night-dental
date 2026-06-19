@@ -24,7 +24,7 @@
 .dn-areas-pin .dot {
   width: 14px; height: 14px; border-radius: 50%;
   background: var(--dn-night);
-  box-shadow: 0 0 0 4px rgba(74, 149, 229, 0.2), 0 0 14px var(--dn-night);
+  box-shadow: 0 0 0 4px rgba(69, 144, 236, 0.2), 0 0 14px var(--dn-night);
   flex: none;
 }
 .dn-areas-pin .nm { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--dn-bone); }

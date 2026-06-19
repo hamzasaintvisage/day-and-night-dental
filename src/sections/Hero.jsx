@@ -3,14 +3,16 @@ import { PRACTICE } from '../data/practice';
 export default function Hero() {
   return (
     <section id="top" className="dn-hero">
-      {/* Atmospheric glow on the content side */}
+      {/* Atmospheric glows: gold "day" on the left, blue "night" on the right — the brand as light */}
       <div className="dn-glow day" style={{ width: '600px', height: '600px', top: '-220px', left: '-160px', opacity: 0.16 }} />
+      <div className="dn-glow night" style={{ width: '600px', height: '600px', top: '-220px', right: '-160px', opacity: 0.14 }} />
 
       <div className="dn-hero-grid">
         <div className="dn-hero-content">
           <div className="dn-hero-eyebrow dn-reveal">
             <span className="line" />
             <span>Glasgow's 24/7 Emergency Dentist</span>
+            <span className="line line-r" />
           </div>
 
           {/* Title has no reveal animation so it paints immediately (LCP-safe). */}
@@ -22,6 +24,7 @@ export default function Hero() {
           <div className="dn-hero-dental dn-reveal dn-delay-4">
             <span className="line" />
             <span>DENTAL</span>
+            <span className="line line-r" />
           </div>
 
           <p className="dn-hero-tagline dn-reveal dn-delay-5">

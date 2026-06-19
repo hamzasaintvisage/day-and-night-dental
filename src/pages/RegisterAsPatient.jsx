@@ -4,7 +4,7 @@ import Register from '../sections/Register'
 import { SITE } from '../data/practice'
 
 const url = `${SITE}/register-as-patient/`
-const OG_IMAGE = `${SITE}/og-image.jpg`
+const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
 
 export default function RegisterAsPatient() {
   return (

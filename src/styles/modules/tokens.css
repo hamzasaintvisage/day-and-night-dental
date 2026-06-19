@@ -24,11 +24,11 @@
   --dn-graphite: #1f1f28;
   --dn-mist: #2a2a35;
 
-  --dn-day: #F4C24A;          /* Punchy sun yellow, the day side */
+  --dn-day: #f8c760;          /* Brand gold, matched exactly to the logo mark */
   --dn-day-soft: #FFD66D;
   --dn-day-deep: #C7991E;
 
-  --dn-night: #4A95E5;        /* Confident sky blue, the night side */
+  --dn-night: #4590ec;        /* Brand blue, matched exactly to the logo mark */
   --dn-night-soft: #7DB5F0;
   --dn-night-deep: #2A6BB5;
 

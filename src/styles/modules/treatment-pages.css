@@ -74,10 +74,10 @@
 /* Circular icon badge for option cards (e.g. implant types) */
 .tp-type-ico { width: 54px; height: 54px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 .tp-type-ico svg { width: 28px; height: 28px; }
-.tp-type-ico.day { background: rgba(244, 194, 74, 0.1); color: var(--dn-day); border: 1px solid rgba(244, 194, 74, 0.28); }
-.tp-type-ico.night { background: rgba(74, 149, 229, 0.1); color: var(--dn-night); border: 1px solid rgba(74, 149, 229, 0.28); }
+.tp-type-ico.day { background: rgba(248, 199, 96, 0.1); color: var(--dn-day); border: 1px solid rgba(248, 199, 96, 0.28); }
+.tp-type-ico.night { background: rgba(69, 144, 236, 0.1); color: var(--dn-night); border: 1px solid rgba(69, 144, 236, 0.28); }
 /* Alternating section band for vertical rhythm on long treatment pages */
-.dn-section.tp-band { background: #0c0c10; border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.dn-section.tp-band { background: var(--dn-near-black); border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
 
 /* Process steps */
 .tp-steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
@@ -99,7 +99,7 @@
   -webkit-text-fill-color: transparent; color: transparent;
 }
 .tp-faq summary .icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; transition: transform 0.3s; }
-.tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: all 0.3s; }
+.tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: transform 0.3s; }
 .tp-faq summary .icon::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
 .tp-faq summary .icon::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
 .tp-faq details[open] summary .icon::after { transform: translateX(-50%) scaleY(0); }
@@ -121,12 +121,12 @@
 .tp-compare tbody td { color: var(--dn-bone); font-size: 0.95rem; }
 .tp-compare tbody tr:nth-child(even) th, .tp-compare tbody tr:nth-child(even) td { background: rgba(255, 255, 255, 0.015); }
 .tp-compare tbody tr:hover th, .tp-compare tbody tr:hover td { background: rgba(255, 255, 255, 0.03); }
-.tp-compare .feat { background: rgba(244, 194, 74, 0.07); }
-.tp-compare tbody tr:nth-child(even) td.feat, .tp-compare tbody tr:hover td.feat { background: rgba(244, 194, 74, 0.1); }
+.tp-compare .feat { background: rgba(248, 199, 96, 0.07); }
+.tp-compare tbody tr:nth-child(even) td.feat, .tp-compare tbody tr:hover td.feat { background: rgba(248, 199, 96, 0.1); }
 .tp-compare thead th.feat { color: var(--dn-day); box-shadow: inset 0 3px 0 var(--dn-day); border-top-left-radius: 14px; border-top-right-radius: 14px; }
 .tp-compare tbody tr:last-child td.feat { border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; }
 .tp-cmp-yes, .tp-cmp-no { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; font-size: 0.8rem; line-height: 1; }
-.tp-cmp-yes { background: rgba(244, 194, 74, 0.16); color: var(--dn-day); }
+.tp-cmp-yes { background: rgba(248, 199, 96, 0.16); color: var(--dn-day); }
 .tp-cmp-no { background: rgba(255, 255, 255, 0.06); color: var(--dn-bone-faint); }
 .tp-compare-note { color: var(--dn-bone-faint); font-size: 0.82rem; margin-top: 0.9rem; }
 

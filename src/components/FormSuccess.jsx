@@ -16,8 +16,8 @@ export default function FormSuccess({ eyebrow, heading, lead, steps = [], childr
               <path className="dn-check-path" d="M22 37 L32 47 L51 26" stroke="url(#fs-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               <defs>
                 <linearGradient id="fs-grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#F4C24A" />
-                  <stop offset="1" stopColor="#4A95E5" />
+                  <stop offset="0" stopColor="var(--dn-day)" />
+                  <stop offset="1" stopColor="var(--dn-night)" />
                 </linearGradient>
               </defs>
             </svg>
