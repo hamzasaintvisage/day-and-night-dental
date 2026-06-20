@@ -43,5 +43,10 @@
   /* Spacing rhythm */
   --space-section: clamp(3.25rem, 8vw, 8rem);
   --container: min(1320px, 92vw);
+
+  /* Radius scale (cards vs nested elements) + semantic tokens */
+  --dn-r-card: 16px;
+  --dn-r-inset: 12px;
+  --dn-online: #4ade80;
 }
 

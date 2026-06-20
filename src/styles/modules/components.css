@@ -112,6 +112,18 @@
   text-transform: uppercase; cursor: pointer; border-radius: 999px; }
 .dn-cookie-btn.accept { background: var(--dn-day); color: #000; border: 1px solid var(--dn-day); }
 .dn-cookie-btn.ghost { background: transparent; color: var(--dn-bone-dim); border: 1px solid var(--dn-mist); }
+
+/* Mirror the main ghost button's gold|blue gradient-edge hover on the call-bar BOOK + cookie DECLINE */
+.dn-callbar-btn.book, .dn-cookie-btn.ghost { position: relative; }
+.dn-callbar-btn.book::after, .dn-cookie-btn.ghost::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-day) 45%, var(--dn-night) 55%, var(--dn-night));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
+}
+.dn-callbar-btn.book:hover::after, .dn-cookie-btn.ghost:hover::after { opacity: 1; }
+.dn-callbar-btn.book:hover, .dn-cookie-btn.ghost:hover { border-color: transparent; color: var(--dn-bone); }
 @media (min-width: 1101px) { .dn-cookie { left: auto; right: 1.5rem; bottom: 1.5rem; } }
 @media (max-width: 1100px) { .dn-cookie { bottom: 5.3rem; } }
 
@@ -130,7 +142,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 .dn-burger:focus-visible { outline: 2px solid var(--dn-bone); outline-offset: 4px; }
 .dn-skip-link {
-  position: absolute; left: -9999px; top: 0; z-index: 999;
+  position: absolute; left: -9999px; top: 0; z-index: 1001;
   background: var(--dn-day); color: #000; padding: 0.75rem 1.25rem; font-weight: 700;
 }
 .dn-skip-link:focus { left: 0; }
@@ -187,7 +199,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-radio-card,
   .dn-success-card {
     position: relative;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   }
   .dn-why-item::after,
   .dn-concern-card::after,

@@ -37,7 +37,7 @@
         @media (max-width: 560px) { .dn-concerns-grid { grid-template-columns: 1fr; } }
         .dn-concern-card {
           position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 0.8rem;
-          padding: 1.85rem 1.6rem; border: 1px solid var(--dn-mist); border-radius: 12px;
+          padding: 1.85rem 1.6rem; border: 1px solid var(--dn-mist); border-radius: var(--dn-r-card);
           background: var(--dn-near-black); color: var(--dn-bone); overflow: hidden;
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
         }

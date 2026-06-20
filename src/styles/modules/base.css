@@ -45,6 +45,10 @@ a {
    TYPOGRAPHY UTILITIES
    ============================================ */
 
+/* All headings use the display font (Fraunces). Fixes headings that lacked .dn-display
+   (tp-hero h1, tp-section-head h2, tp-cta h2, legal h1, formsuccess h1, ctaband h2). */
+h1, h2, h3, h4 { font-family: var(--font-display); }
+
 .dn-display {
   font-family: var(--font-display);
   font-weight: 700;
@@ -71,7 +75,7 @@ a {
 .dn-display em {
   font-style: normal;
   font-weight: 800;
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+  background: linear-gradient(90deg, var(--dn-day), var(--dn-day) 45%, var(--dn-night) 55%, var(--dn-night));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

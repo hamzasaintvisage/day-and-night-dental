@@ -93,8 +93,8 @@
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #4ade80;
-          box-shadow: 0 0 8px #4ade80;
+          background: var(--dn-online);
+          box-shadow: 0 0 8px var(--dn-online);
           animation: dn-glow-day 2s infinite;
         }
         /* --- Mobile burger: three bars that morph into an X --- */
@@ -281,8 +281,8 @@
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: #4ade80;
-          box-shadow: 0 0 8px #4ade80;
+          background: var(--dn-online);
+          box-shadow: 0 0 8px var(--dn-online);
         }
         .dn-mm-meta {
           font-size: 0.78rem;

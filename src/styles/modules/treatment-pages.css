@@ -111,7 +111,7 @@
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 
 /* Comparison matrix (treatment vs alternatives) */
-.tp-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1.5rem; border: 1px solid var(--dn-mist); border-radius: 18px; }
+.tp-compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1.5rem; border: 1px solid var(--dn-mist); border-radius: var(--dn-r-card); }
 .tp-compare { width: 100%; border-collapse: collapse; min-width: 640px; }
 .tp-compare th, .tp-compare td { padding: 1.05rem 1.25rem; text-align: left; vertical-align: middle; }
 .tp-compare thead th { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--dn-bone); padding-top: 1.4rem; padding-bottom: 1.4rem; }

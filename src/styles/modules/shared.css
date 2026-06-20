@@ -16,7 +16,7 @@
 .dn-areas-map { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; margin-top: 2.5rem; align-items: start; }
 .dn-areas-panel {
   border: 1px solid var(--dn-mist);
-  border-radius: 16px;
+  border-radius: var(--dn-r-card);
   padding: 2rem 2.1rem;
   background: linear-gradient(160deg, var(--dn-charcoal), var(--dn-near-black));
 }
