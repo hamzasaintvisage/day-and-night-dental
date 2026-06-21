@@ -1,0 +1,295 @@
+/* === Treatments === */
+        /* Treatments, premium index on desktop, tap-accordion on mobile.
+           All six treatments are rendered into the HTML; the desktop panel and
+           the mobile accordion bodies just reveal what is already there, so
+           search engines read every treatment regardless of layout. */
+        .dn-tx { border-top: 1px solid var(--dn-mist); }
+
+        /* ----- Mobile-first base: vertical tap-accordion ----- */
+        .dn-tx-list { display: flex; flex-direction: column; }
+        .dn-tx-item {
+          position: relative;
+          border-bottom: 1px solid var(--dn-mist);
+        }
+        .dn-tx-item::before {
+          content: '';
+          position: absolute;
+          left: 0; top: 0; bottom: 0;
+          width: 2px;
+          background: transparent;
+          transition: background 0.4s;
+        }
+        .dn-tx-item.is-active::before {
+          background: linear-gradient(180deg, var(--dn-day), var(--dn-night));
+        }
+        .dn-tx-head {
+          width: 100%;
+          display: grid;
+          grid-template-columns: auto auto 1fr auto;
+          gap: 1rem;
+          align-items: center;
+          padding: 1.35rem 0.5rem 1.35rem 1.25rem;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+          font-family: var(--font-body);
+          color: var(--dn-bone-dim);
+          transition: color 0.3s ease;
+        }
+        .dn-tx-item.is-active .dn-tx-head { color: var(--dn-bone); }
+        .dn-tx-num {
+          font-family: var(--font-display);
+          font-weight: 700;
+          font-size: 1rem;
+          color: var(--dn-bone-faint);
+          transition: color 0.3s ease;
+        }
+        .dn-tx-item.is-active.day .dn-tx-num,
+        .dn-tx-item.is-active.day .dn-tx-ico { color: var(--dn-day); }
+        .dn-tx-item.is-active.night .dn-tx-num,
+        .dn-tx-item.is-active.night .dn-tx-ico { color: var(--dn-night); }
+        .dn-tx-ico {
+          display: inline-flex;
+          color: var(--dn-bone-faint);
+          transition: color 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dn-tx-ico svg { width: 26px; height: 26px; }
+        .dn-tx-item.is-active .dn-tx-ico { transform: scale(1.1); }
+        .dn-tx-titles {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+          min-width: 0;
+        }
+        .dn-tx-tag {
+          font-size: 0.6rem;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--dn-bone-faint);
+          font-weight: 600;
+        }
+        .dn-tx-title {
+          font-family: var(--font-display);
+          font-size: 1.15rem;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+        }
+        .dn-tx-chev {
+          width: 9px; height: 9px;
+          border-right: 2px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          transform: rotate(45deg);
+          opacity: 0.45;
+          margin-right: 0.6rem;
+          transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+        }
+        .dn-tx-item.is-active .dn-tx-chev { transform: rotate(-135deg); opacity: 0.9; }
+
+        /* Accordion body: collapse with grid-rows (0fr -> 1fr) so the content
+           stays in the DOM even when closed, keeps all six crawlable. */
+        .dn-tx-body {
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dn-tx-item.is-active .dn-tx-body { grid-template-rows: 1fr; }
+        .dn-tx-body-inner { overflow: hidden; min-height: 0; }
+        .dn-tx-pad { padding: 0.25rem 1.25rem 1.85rem 1.5rem; }
+
+        /* ----- Shared content styling (panel + accordion bodies) ----- */
+        .dn-tx-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.4rem 0.8rem;
+          border: 1px solid var(--dn-night-deep);
+          color: var(--dn-night-soft);
+          font-size: 0.65rem;
+          letter-spacing: 0.25em;
+          text-transform: uppercase;
+          margin-bottom: 1.25rem;
+        }
+        .dn-tx-badge .dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: var(--dn-online);
+          box-shadow: 0 0 8px var(--dn-online);
+        }
+        .dn-tx-panel-title {
+          font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+          font-weight: 700;
+          margin-bottom: 1rem;
+        }
+        .dn-tx-desc {
+          font-size: 1rem;
+          color: var(--dn-bone-dim);
+          margin-bottom: 1.5rem;
+          max-width: 480px;
+        }
+        .dn-tx-points {
+          list-style: none;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0.85rem;
+          margin: 0 0 1.75rem;
+          padding-top: 1.25rem;
+          border-top: 1px solid var(--dn-mist);
+        }
+        .dn-tx-points li {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.9rem;
+          color: var(--dn-bone);
+        }
+        .dn-tx-points .bullet {
+          width: 4px; height: 4px;
+          border-radius: 50%;
+          background: var(--dn-day);
+          flex-shrink: 0;
+        }
+        .dn-tx-item.night .dn-tx-points .bullet,
+        .dn-tx-detail.night .dn-tx-points .bullet { background: var(--dn-night); }
+        .dn-tx-actions {
+          display: flex;
+          align-items: center;
+          gap: 1.75rem;
+          flex-wrap: wrap;
+        }
+        .dn-tx-link {
+          font-size: 0.75rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--dn-bone-dim);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          transition: color 0.3s;
+        }
+        .dn-tx-link:hover { color: var(--dn-bone); }
+
+        /* Detail panel is desktop-only */
+        .dn-tx-detail { display: none; }
+        .dn-tx-mark {
+          position: absolute;
+          bottom: 2rem;
+          right: 2rem;
+          opacity: 0.4;
+          z-index: 0;
+        }
+
+        /* ----- Desktop: index layout (list + sticky detail panel) ----- */
+        @media (min-width: 901px) {
+          .dn-tx {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 3rem;
+            align-items: start;
+          }
+          .dn-tx-list { border-right: 1px solid var(--dn-mist); }
+          .dn-tx-head { padding: 1.7rem 1.5rem; }
+          .dn-tx-title { font-size: 1.3rem; }
+          .dn-tx-chev { display: none; }
+          .dn-tx-body { display: none; }
+
+          .dn-tx-detail {
+            display: block;
+            position: sticky;
+            top: 96px;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--dn-near-black), var(--dn-charcoal));
+            border: 1px solid var(--dn-mist);
+            overflow: hidden;
+            min-height: 460px;
+          }
+          .dn-tx-detail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.5;
+          }
+          .dn-tx-detail.day::before {
+            background: radial-gradient(ellipse at top left, rgba(248, 199, 96, 0.12), transparent 60%);
+          }
+          .dn-tx-detail.night::before {
+            background: radial-gradient(ellipse at top right, rgba(69, 144, 236, 0.12), transparent 60%);
+          }
+          .dn-tx-detail-inner {
+            position: relative;
+            z-index: 1;
+            animation: dn-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .dn-tx-detail .dn-tx-desc { font-size: 1.05rem; margin-bottom: 2rem; }
+          .dn-tx-detail .dn-tx-points {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding-top: 1.5rem;
+          }
+          .dn-tx-detail .dn-tx-actions { gap: 2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .dn-tx-body,
+          .dn-tx-ico,
+          .dn-tx-chev { transition: none; }
+          .dn-tx-detail-inner { animation: none; }
+        }
+
+        /* Utility: per-device show/hide, same content, different layout per screen */
+        @media (max-width: 768px) {
+          .dn-hide-mobile { display: none !important; }
+        }
+        @media (min-width: 769px) {
+          .dn-hide-desktop { display: none !important; }
+        }
+
+        /* FAQ, d3 side-nav: narrow question list + bordered answer card */
+        .dn-faq-side {
+          display: grid;
+          grid-template-columns: 0.5fr 1fr;
+          gap: 30px;
+          align-items: start;
+          max-width: 920px;
+          margin: 3rem auto 0;
+        }
+        .dn-faq-nav { display: flex; flex-direction: column; gap: 4px; }
+        .dn-faq-q {
+          text-align: left;
+          background: transparent;
+          border: none;
+          border-left: 2px solid var(--dn-mist);
+          color: var(--dn-bone-dim);
+          padding: 10px 14px;
+          font-family: var(--font-body);
+          font-size: 0.82rem;
+          line-height: 1.45;
+          cursor: pointer;
+          transition: color 0.2s, background 0.2s, border-color 0.2s;
+        }
+        .dn-faq-q:hover { color: var(--dn-bone); }
+        .dn-faq-q.on {
+          border-left-color: var(--dn-day);
+          color: var(--dn-bone);
+          background: linear-gradient(90deg, rgba(248, 199, 96, 0.05), transparent);
+        }
+        .dn-faq-panel {
+          border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
+          padding: 26px 28px;
+          background: var(--dn-near-black);
+          min-height: 200px;
+        }
+        .dn-faq-a { display: none; }
+        .dn-faq-a.on { display: block; animation: dn-fade-up 0.3s ease; }
+        .dn-faq-a .q { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; margin: 0 0 12px; color: var(--dn-bone); }
+        .dn-faq-a .a { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.65; margin: 0; }
+        .dn-faq-foot { text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: var(--dn-bone-dim); }
+        .dn-faq-foot a { color: var(--dn-night-soft); font-weight: 600; }
+        @media (max-width: 768px) {
+          .dn-faq-side { grid-template-columns: 1fr; gap: 16px; }
+          .dn-faq-nav { flex-direction: row; flex-wrap: wrap; }
+        }
+        @media (prefers-reduced-motion: reduce) { .dn-faq-a.on { animation: none; } }
+      
+
