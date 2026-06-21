@@ -8,7 +8,6 @@ import ConcernsBento from '../sections/ConcernsBento'
 import About from '../sections/About'
 import WhyChooseUs from '../sections/WhyChooseUs'
 import Treatments from '../sections/Treatments'
-import SmileGallery from '../sections/SmileGallery'
 import SmileGallerySpotlight from '../sections/SmileGallerySpotlight'
 import Register from '../sections/Register'
 import Testimonials from '../sections/Testimonials'
@@ -67,10 +66,9 @@ export default function Home() {
         sub="Whether it's the middle of the night or the middle of the week, you can call us in Glasgow straight away for urgent help."
         callLabel="Call our 24/7 line"
       />
-      {/* Results / smile gallery, same content, laid out per device:
-          filmstrip on mobile, spotlight on desktop. */}
-      <div className="dn-hide-desktop"><SmileGallery /></div>
-      <div className="dn-hide-mobile"><SmileGallerySpotlight /></div>
+      {/* Results / smile gallery — "The Gold Standard" design (responsive: one
+          colossal hero smile + a gold numbered rail, collapses on phones). */}
+      <SmileGallerySpotlight />
       <Register />
       <Testimonials />
       <CtaBand
