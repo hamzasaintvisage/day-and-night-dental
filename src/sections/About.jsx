@@ -4,9 +4,11 @@ export default function About() {
   return (
     <section id="about" className="dn-section dn-arc">
       <div className="dn-container">
+        <div className="dn-arc-head dn-center-head">
+          <span className="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+        </div>
         <div className="dn-arc-grid">
           <div className="dn-arc-lede">
-            <span className="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
             <blockquote className="dn-arc-quote">
               Built for real life, not <span className="dn-arc-gold">office</span> hours.
             </blockquote>

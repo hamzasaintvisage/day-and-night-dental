@@ -1,8 +1,12 @@
 /* "What to expect when you call" — connected timeline of 3 icon-node steps. Scoped under .dn-journey. */
-.dn-journey {
+/* .dn-section.dn-journey (two classes) so this padding wins over the generic
+   .dn-section { padding-block: var(--space-section) } — otherwise the section
+   inherits the full ~7rem section padding and looks far too tall. */
+.dn-section.dn-journey {
   border-top: 1px solid var(--dn-mist);
   background: linear-gradient(90deg, rgba(248, 199, 96, 0.04), rgba(69, 144, 236, 0.04));
-  padding: 2.5rem 0;
+  padding-block: 2.25rem;
+  padding-inline: 0;
   position: relative;
   overflow: hidden;
 }
@@ -26,7 +30,7 @@
 }
 .dn-journey-head {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(1.45rem, 2.8vw, 2.1rem); line-height: 1.2; margin: 0.9rem auto 0; max-width: 720px;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.18; margin: 0.6rem auto 0; max-width: 720px;
   color: var(--dn-bone);
 }
 .dn-journey-head .grad {
@@ -36,17 +40,17 @@
 
 /* timeline */
 .dn-journey-tl {
-  list-style: none; margin: 1.85rem 0 0; padding: 0;
+  list-style: none; margin: 1.2rem 0 0; padding: 0;
   position: relative;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
 }
 .dn-journey-tl::before {
-  content: ''; position: absolute; top: 35px; left: 16.5%; right: 16.5%; height: 2px;
+  content: ''; position: absolute; top: 30px; left: 16.5%; right: 16.5%; height: 2px;
   background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); opacity: 0.55; z-index: 0;
 }
 .dn-journey-st { position: relative; text-align: center; padding: 0 0.5rem; }
 .dn-journey-node {
-  display: block; width: 70px; height: 70px; border-radius: 50%; margin: 0 auto;
+  display: block; width: 60px; height: 60px; border-radius: 50%; margin: 0 auto;
   background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
   padding: 2px; position: relative; z-index: 2;
 }
@@ -55,7 +59,7 @@
   background: var(--dn-near-black);
   display: flex; align-items: center; justify-content: center;
 }
-.dn-journey-node-in svg { width: 26px; height: 26px; stroke: var(--dn-bone); fill: none; stroke-width: 1.7; }
+.dn-journey-node-in svg { width: 23px; height: 23px; stroke: var(--dn-bone); fill: none; stroke-width: 1.7; }
 .dn-journey-node-n {
   position: absolute; top: -5px; right: -5px;
   width: 24px; height: 24px; border-radius: 50%;
@@ -63,10 +67,10 @@
   font-family: var(--font-display); font-weight: 800; font-size: 0.72rem;
   display: flex; align-items: center; justify-content: center;
 }
-.dn-journey-st h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 1.2rem 0 0.45rem; color: var(--dn-bone); }
+.dn-journey-st h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0.8rem 0 0.4rem; color: var(--dn-bone); }
 .dn-journey-st p { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.55; margin: 0 auto; max-width: 30ch; }
 
-.dn-journey-cta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 1.85rem; flex-wrap: wrap; }
+.dn-journey-cta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 1.2rem; flex-wrap: wrap; }
 .dn-journey-num { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--dn-bone); text-decoration: none; transition: color 0.2s; }
 .dn-journey-num:hover { color: var(--dn-day); }
 

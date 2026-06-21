@@ -221,15 +221,15 @@
 
 .cxg-chip:hover {
   transform: translateY(-3px);
-  /* clearly visible + EVEN hover: bright accent border, symmetric accent ring,
-     soft accent glow all around (not a one-sided dark shadow). */
-  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  /* clearly visible + EVEN hover: SOLID accent border, strong symmetric accent
+     ring, soft accent glow all around (not a one-sided dark shadow). */
+  border-color: var(--accent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
-    0 14px 30px -16px color-mix(in srgb, var(--accent) 42%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent),
+    0 16px 34px -16px color-mix(in srgb, var(--accent) 62%, transparent);
 }
 .cxg-chip:hover:not(.is-active) {
-  background: color-mix(in srgb, var(--accent) 7%, var(--cxg-bg-2));
+  background: color-mix(in srgb, var(--accent) 13%, var(--cxg-bg-2));
 }
 .cxg-chip:hover .cxg-ic {
   transform: scale(1.06) rotate(-3deg);

@@ -194,6 +194,7 @@
         }
 
         /* === "Why we're different" arc (sunrise to midnight) === */
+        .dn-arc-head { text-align: center; margin-bottom: clamp(1.6rem, 3.4vw, 2.6rem); }
         .dn-arc-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
