@@ -85,16 +85,18 @@
 .dn-why2-card:hover { transform: translateY(-4px); }
 /* per-side hover: gold sections glow gold, blue sections glow blue (even glow) */
 .dn-why2-card.day:hover {
-  border-color: color-mix(in srgb, var(--dn-day) 62%, transparent);
+  border-color: color-mix(in srgb, var(--dn-day) 82%, transparent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--dn-day) 32%, transparent),
-    0 22px 50px -26px color-mix(in srgb, var(--dn-day) 55%, transparent);
+    0 0 0 1.5px color-mix(in srgb, var(--dn-day) 75%, transparent),
+    0 0 32px -2px color-mix(in srgb, var(--dn-day) 48%, transparent),
+    0 22px 46px -18px color-mix(in srgb, var(--dn-day) 62%, transparent);
 }
 .dn-why2-card.night:hover {
-  border-color: color-mix(in srgb, var(--dn-night) 62%, transparent);
+  border-color: color-mix(in srgb, var(--dn-night) 82%, transparent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--dn-night) 32%, transparent),
-    0 22px 50px -26px color-mix(in srgb, var(--dn-night) 55%, transparent);
+    0 0 0 1.5px color-mix(in srgb, var(--dn-night) 75%, transparent),
+    0 0 32px -2px color-mix(in srgb, var(--dn-night) 48%, transparent),
+    0 22px 46px -18px color-mix(in srgb, var(--dn-night) 62%, transparent);
 }
 
 /* icon tile, glowing in its card's accent */

@@ -19,8 +19,8 @@
           border: 1px solid var(--dn-mist);
           transition: border-color 0.5s;
         }
-        .dn-gallery-item.day:hover .dn-gallery-image { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 30%, transparent), 0 14px 30px -16px color-mix(in srgb, var(--dn-day) 40%, transparent); }
-        .dn-gallery-item.night:hover .dn-gallery-image { border-color: color-mix(in srgb, var(--dn-night) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 30%, transparent), 0 14px 30px -16px color-mix(in srgb, var(--dn-night) 40%, transparent); }
+        .dn-gallery-item.day:hover .dn-gallery-image { border-color: color-mix(in srgb, var(--dn-day) 80%, transparent); box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-day) 72%, transparent), 0 0 26px -2px color-mix(in srgb, var(--dn-day) 46%, transparent), 0 16px 34px -16px color-mix(in srgb, var(--dn-day) 55%, transparent); }
+        .dn-gallery-item.night:hover .dn-gallery-image { border-color: color-mix(in srgb, var(--dn-night) 80%, transparent); box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-night) 72%, transparent), 0 0 26px -2px color-mix(in srgb, var(--dn-night) 46%, transparent), 0 16px 34px -16px color-mix(in srgb, var(--dn-night) 55%, transparent); }
 
         .dn-gallery-image img {
           width: 100%;

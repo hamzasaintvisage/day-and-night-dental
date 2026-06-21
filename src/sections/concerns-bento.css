@@ -179,8 +179,9 @@
      ring, soft accent glow all around (not a one-sided dark shadow). */
   border-color: var(--accent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent),
-    0 16px 34px -16px color-mix(in srgb, var(--accent) 62%, transparent);
+    0 0 0 1.5px color-mix(in srgb, var(--accent) 75%, transparent),
+    0 0 30px -2px color-mix(in srgb, var(--accent) 48%, transparent),
+    0 18px 38px -16px color-mix(in srgb, var(--accent) 62%, transparent);
 }
 .cxg-chip:hover:not(.is-active) {
   background: color-mix(in srgb, var(--accent) 13%, var(--cxg-bg-2));

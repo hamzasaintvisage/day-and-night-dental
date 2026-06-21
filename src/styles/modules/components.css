@@ -240,9 +240,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-radio-card:hover,
   .dn-success-card:hover {
     transform: translateY(-6px);
-    /* SINGLE gold accent (matches the gold ring) — never gold+blue together */
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 36%, transparent),
-                0 18px 38px -18px color-mix(in srgb, var(--dn-day) 50%, transparent);
+    /* SINGLE gold accent, bold + EVEN glow (lit all around, not a faint shadow) */
+    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-day) 72%, transparent),
+                0 0 30px -2px color-mix(in srgb, var(--dn-day) 46%, transparent),
+                0 20px 42px -18px color-mix(in srgb, var(--dn-day) 60%, transparent);
   }
   /* night-side cards hover all BLUE (matches their blue ring) */
   .dn-why-item.night:hover,
@@ -252,8 +253,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-gallery-item.night:hover,
   .tp-related-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 36%, transparent),
-                0 18px 38px -18px color-mix(in srgb, var(--dn-night) 50%, transparent);
+    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-night) 72%, transparent),
+                0 0 30px -2px color-mix(in srgb, var(--dn-night) 46%, transparent),
+                0 20px 42px -18px color-mix(in srgb, var(--dn-night) 60%, transparent);
   }
   .dn-why-item:hover::after,
   .dn-concern-card:hover::after,
