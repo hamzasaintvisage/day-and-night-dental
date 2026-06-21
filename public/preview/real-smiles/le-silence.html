@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+
+<title>Le Silence · Real Smiles — Day Night Dental</title>
+<style>
+/* ============ Le Silence — quiet-luxury minimal gallery ============ */
+.dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
+.dn-container{width:min(var(--container),100% - 2.6rem);margin-inline:auto;}
+
+/* section head — generous negative space, restrained */
+.dn-section-head{max-width:46rem;}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(2.3rem,5.4vw,4.1rem);
+  line-height:1.02;
+  letter-spacing:-.012em;
+  margin:1.3rem 0 0;
+}
+.dn-section-lead{
+  margin:1.35rem 0 0;
+  max-width:34rem;
+  color:var(--dn-bone-dim);
+  font-size:clamp(1rem,1.15vw,1.12rem);
+  font-weight:340;
+}
+
+/* ---- the silent split ---- */
+.dn-silent-grid{
+  display:grid;
+  grid-template-columns:1fr 248px;
+  gap:clamp(1.5rem,4vw,2.5rem);
+  align-items:end;
+  margin-top:clamp(2.5rem,6vw,4rem);
+}
+
+.dn-silent-hero{
+  position:relative;
+  aspect-ratio:16/10;
+  border:1px solid var(--dn-mist);
+  border-radius:var(--dn-r-card);
+  overflow:hidden;
+  background:var(--dn-near-black);
+  transition:border-color .6s ease, box-shadow .6s ease;
+}
+.dn-silent-hero.day{
+  border-color:color-mix(in srgb,var(--dn-day) 55%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 42%,transparent),0 0 36px -6px color-mix(in srgb,var(--dn-day) 34%,transparent);
+}
+.dn-silent-hero.night{
+  border-color:color-mix(in srgb,var(--dn-night) 55%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-night) 42%,transparent),0 0 36px -6px color-mix(in srgb,var(--dn-night) 34%,transparent);
+}
+.dn-silent-hero img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(18%) contrast(1.04);
+}
+/* crossfade stack — every smile is rendered; only the active one is visible */
+.dn-silent-hero .dn-silent-shot{
+  opacity:0;
+  transition:opacity .7s cubic-bezier(.16,1,.3,1);
+  z-index:1;
+}
+.dn-silent-hero .dn-silent-shot.on{opacity:1;z-index:2;}
+/* quiet readability gradient at the foot of the hero (single neutral wash, no hue) */
+.dn-silent-hero::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:62%;z-index:3;pointer-events:none;
+  background:linear-gradient(0deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.32) 42%,transparent 100%);
+}
+
+.dn-silent-meta{
+  position:absolute;left:clamp(1.1rem,2.6vw,2rem);bottom:clamp(1.1rem,2.6vw,1.9rem);z-index:4;
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.dn-silent-rule{height:1px;width:30px;margin-bottom:12px;display:block;}
+.dn-silent-hero.day .dn-silent-rule{background:var(--dn-day);}
+.dn-silent-hero.night .dn-silent-rule{background:var(--dn-night);}
+.dn-silent-meta .dn-silent-cap{margin-bottom:6px;}
+.dn-silent-title{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(1.5rem,2.6vw,2.15rem);
+  line-height:1.04;
+  letter-spacing:-.01em;
+}
+.dn-silent-count{
+  position:absolute;top:clamp(1.05rem,2.4vw,1.7rem);right:clamp(1.1rem,2.6vw,2rem);z-index:4;
+  font-family:var(--font-body);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.16em;
+  font-size:.72rem;
+  font-weight:600;
+  color:var(--dn-bone-dim);
+}
+
+/* ---- typographic index (table of contents, not a wall of images) ---- */
+.dn-silent-index{display:flex;flex-direction:column;}
+.dn-silent-row{
+  display:flex;align-items:center;gap:14px;
+  width:100%;min-height:44px;padding:13px 4px;
+  border:0;border-bottom:1px solid var(--dn-mist);
+  background:none;color:var(--dn-bone);text-align:left;cursor:pointer;font:inherit;
+  opacity:.6;
+  transition:opacity .3s,border-color .3s;
+}
+.dn-silent-row:first-child{border-top:1px solid var(--dn-mist);}
+.dn-silent-row.on{opacity:1;position:relative;}
+.dn-silent-row.on::before{content:"";position:absolute;left:-4px;top:0;bottom:0;width:2px;}
+.dn-silent-row.on.day::before{background:var(--dn-day);}
+.dn-silent-row.on.night::before{background:var(--dn-night);}
+.dn-silent-row:hover{opacity:1;}
+.dn-silent-row:focus-visible{outline:2px solid var(--dn-day);outline-offset:2px;opacity:1;}
+
+.dn-silent-th{
+  flex:0 0 auto;width:48px;height:48px;border-radius:8px;overflow:hidden;
+  background:var(--dn-charcoal);border:1px solid var(--dn-mist);
+}
+.dn-silent-th img{width:100%;height:100%;object-fit:cover;filter:grayscale(22%);}
+.dn-silent-rowtext{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.dn-silent-cap{
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;line-height:1;
+}
+.dn-silent-cap.day{color:var(--dn-day);}
+.dn-silent-cap.night{color:var(--dn-night-soft);}
+.dn-silent-rowtitle{
+  font-family:var(--font-display);font-weight:400;font-size:1.02rem;line-height:1.15;
+  letter-spacing:-.005em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* ---- single quiet CTA ---- */
+.dn-gallery-cta{margin-top:clamp(2.75rem,6vw,4rem);}
+.dn-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  min-height:48px;padding:.85rem 1.7rem;border-radius:999px;
+  font-family:var(--font-body);font-weight:600;font-size:.96rem;letter-spacing:.01em;
+  text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .25s ease,box-shadow .35s ease,background .25s ease;
+}
+.dn-btn.primary{
+  background:var(--dn-day);color:#0a0a0c;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 50%,transparent),0 0 34px -8px color-mix(in srgb,var(--dn-day) 60%,transparent);
+}
+.dn-btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 60%,transparent),0 0 44px -6px color-mix(in srgb,var(--dn-day) 70%,transparent);}
+.dn-btn .arrow{transition:transform .3s ease;}
+.dn-btn.primary:hover .arrow{transform:translateX(4px);}
+
+/* ---- mobile: index collapses below the hero into hairline scroll-snap chips ---- */
+@media (max-width:820px){
+  .dn-silent-grid{grid-template-columns:1fr;align-items:stretch;}
+  .dn-silent-hero{aspect-ratio:4/5;}
+  .dn-silent-index{
+    flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin:0 -1.3rem;padding:0 1.3rem;
+  }
+  .dn-silent-index::-webkit-scrollbar{display:none;}
+  .dn-silent-row{
+    flex:0 0 auto;min-height:44px;scroll-snap-align:start;
+    border-bottom:0;border-top:0;
+    padding:12px 14px 12px 10px;margin-right:10px;
+    border:1px solid var(--dn-mist);border-radius:999px;
+  }
+  .dn-silent-row:first-child{border-top:1px solid var(--dn-mist);}
+  .dn-silent-row.on::before{display:none;}
+  .dn-silent-row.on.day{border-color:color-mix(in srgb,var(--dn-day) 70%,transparent);}
+  .dn-silent-row.on.night{border-color:color-mix(in srgb,var(--dn-night) 70%,transparent);}
+  .dn-silent-th{width:34px;height:34px;border-radius:7px;}
+  .dn-silent-rowtitle{font-size:.92rem;}
+  .dn-gallery-cta .dn-btn.primary{display:flex;width:100%;justify-content:center;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.001ms !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#3</span> <b>Le Silence</b> <span class="lab-lens">minimal</span></div><span></span></div>
+
+<section class="dn-section dn-gallery dn-gallery-silent">
+  <div class="dn-container">
+    <div class="dn-section-head">
+      <span class="dn-eyebrow dn-pill day">Real Smiles</span>
+      <h2 class="dn-display">Real smiles, <em class="dn-hl-gold">real results</em></h2>
+      <p class="dn-section-lead">A look at the difference composite bonding, veneers, Invisalign and dental implants can make.</p>
+    </div>
+
+    <div class="dn-silent-grid">
+      <!-- HERO: a single quiet stage. Every smile is rendered as a crossfading layer;
+           only the active one is visible. Default (no-JS) = first smile shown. -->
+      <figure class="dn-silent-hero day" id="silentHero" aria-live="polite">
+        <div class="dn-silent-shot on" data-shot="0">
+          <img src="/smiles/bonding-patient.webp" alt="Composite bonding, Day Night Dental, Glasgow" width="900" height="563" loading="eager" decoding="async">
+        </div>
+        <div class="dn-silent-shot" data-shot="1">
+          <img src="/smiles/bonding-patient-2.webp" alt="Composite bonding, Day Night Dental, Glasgow" width="900" height="563" loading="lazy" decoding="async">
+        </div>
+        <div class="dn-silent-shot" data-shot="2">
+          <img src="/smiles/implant-patient.webp" alt="Dental implants, Day Night Dental, Glasgow" width="900" height="563" loading="lazy" decoding="async">
+        </div>
+        <div class="dn-silent-shot" data-shot="3">
+          <img src="/smiles/invisalign-patient.webp" alt="Invisalign, Day Night Dental, Glasgow" width="900" height="563" loading="lazy" decoding="async">
+        </div>
+        <div class="dn-silent-shot" data-shot="4">
+          <img src="/smiles/featured-smile.webp" alt="Porcelain veneers, Day Night Dental, Glasgow" width="900" height="563" loading="lazy" decoding="async">
+        </div>
+        <div class="dn-silent-shot" data-shot="5">
+          <img src="/smiles/veneers-patient-2.webp" alt="Porcelain veneers, Day Night Dental, Glasgow" width="900" height="563" loading="lazy" decoding="async">
+        </div>
+
+        <span class="dn-silent-count" id="silentCount">01&nbsp;/&nbsp;06</span>
+        <figcaption class="dn-silent-meta">
+          <span class="dn-silent-rule"></span>
+          <span class="dn-silent-cap day" id="silentCat">Cosmetic</span>
+          <span class="dn-silent-title" id="silentTitle">Composite bonding</span>
+        </figcaption>
+      </figure>
+
+      <!-- INDEX: a typographic table-of-contents. Hairline rows, tiny thumb, micro-label, serif caption. -->
+      <div class="dn-silent-index" role="tablist" aria-label="Real smile results">
+        <button type="button" role="tab" aria-selected="true" class="dn-silent-row day on" data-i="0" data-side="day" data-cat="Cosmetic" data-title="Composite bonding" data-img="/smiles/bonding-patient.webp">
+          <span class="dn-silent-th"><img src="/smiles/bonding-patient.webp" alt="" width="48" height="48" loading="lazy"></span>
+          <span class="dn-silent-rowtext"><span class="dn-silent-cap day">Cosmetic</span><span class="dn-silent-rowtitle">Composite bonding</span></span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="dn-silent-row night" data-i="1" data-side="night" data-cat="Cosmetic" data-title="Composite bonding" data-img="/smiles/bonding-patient-2.webp">
+          <span class="dn-silent-th"><img src="/smiles/bonding-patient-2.webp" alt="" width="48" height="48" loading="lazy"></span>
+          <span class="dn-silent-rowtext"><span class="dn-silent-cap night">Cosmetic</span><span class="dn-silent-rowtitle">Composite bonding</span></span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="dn-silent-row day" data-i="2" data-side="day" data-cat="Implants" data-title="Dental implants" data-img="/smiles/implant-patient.webp">
+          <span class="dn-silent-th"><img src="/smiles/implant-patient.webp" alt="" width="48" height="48" loading="lazy"></span>
+          <span class="dn-silent-rowtext"><span class="dn-silent-cap day">Implants</span><span class="dn-silent-rowtitle">Dental implants</span></span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="dn-silent-row night" data-i="3" data-side="night" data-cat="Orthodontics" data-title="Invisalign" data-img="/smiles/invisalign-patient.webp">
+          <span class="dn-silent-th"><img src="/smiles/invisalign-patient.webp" alt="" width="48" height="48" loading="lazy"></span>
+          <span class="dn-silent-rowtext"><span class="dn-silent-cap night">Orthodontics</span><span class="dn-silent-rowtitle">Invisalign</span></span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="dn-silent-row day" data-i="4" data-side="day" data-cat="Cosmetic" data-title="Porcelain veneers" data-img="/smiles/featured-smile.webp">
+          <span class="dn-silent-th"><img src="/smiles/featured-smile.webp" alt="" width="48" height="48" loading="lazy"></span>
+          <span class="dn-silent-rowtext"><span class="dn-silent-cap day">Cosmetic</span><span class="dn-silent-rowtitle">Porcelain veneers</span></span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="dn-silent-row night" data-i="5" data-side="night" data-cat="Cosmetic" data-title="Porcelain veneers" data-img="/smiles/veneers-patient-2.webp">
+          <span class="dn-silent-th"><img src="/smiles/veneers-patient-2.webp" alt="" width="48" height="48" loading="lazy"></span>
+          <span class="dn-silent-rowtext"><span class="dn-silent-cap night">Cosmetic</span><span class="dn-silent-rowtitle">Porcelain veneers</span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="dn-gallery-cta">
+      <a href="#contact" class="dn-btn primary">Begin your transformation <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var rows  = Array.prototype.slice.call(document.querySelectorAll('.dn-silent-row'));
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.dn-silent-shot'));
+  var hero  = document.getElementById('silentHero');
+  var elCat = document.getElementById('silentCat');
+  var elTitle = document.getElementById('silentTitle');
+  var elCount = document.getElementById('silentCount');
+  if(!rows.length) return;
+  var total = rows.length;
+  var pad = function(n){ return (n<10?'0':'')+n; };
+
+  function select(i){
+    rows.forEach(function(r){
+      var on = +r.dataset.i === i;
+      r.classList.toggle('on', on);
+      r.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    shots.forEach(function(s){ s.classList.toggle('on', +s.dataset.shot === i); });
+
+    var row = rows[i];
+    var side = row.dataset.side;          // 'day' | 'night'
+    hero.classList.remove('day','night');
+    hero.classList.add(side);
+    elCat.className = 'dn-silent-cap ' + side;
+    elCat.textContent = row.dataset.cat;
+    elTitle.textContent = row.dataset.title;
+    elCount.innerHTML = pad(i+1) + ' / ' + pad(total);
+  }
+
+  rows.forEach(function(r){
+    var i = +r.dataset.i;
+    r.addEventListener('mouseenter', function(){ select(i); });
+    r.addEventListener('focus',      function(){ select(i); });
+    r.addEventListener('click',      function(){ select(i); });
+  });
+
+  // keyboard: left/right move through the index like a tablist
+  var index = document.querySelector('.dn-silent-index');
+  index.addEventListener('keydown', function(e){
+    var cur = rows.findIndex(function(r){ return r.classList.contains('on'); });
+    if(cur < 0) cur = 0;
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){ e.preventDefault(); var n=(cur+1)%total; select(n); rows[n].focus(); }
+    else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){ e.preventDefault(); var p=(cur-1+total)%total; select(p); rows[p].focus(); }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Threshold — Register with the practice · Day Night Dental</title>
+<style>
+/* ============================================================
+   THRESHOLD — immersive full-bleed nocturnal scene.
+   Form floats as a lit, frosted glass plate.
+   ============================================================ */
+
+/* ---- Section: breaks the container into a full-bleed scene ---- */
+.dn-register{
+  position:relative;
+  overflow-x:clip;
+  isolation:isolate;
+  padding:clamp(4rem,9vw,8rem) clamp(1.1rem,4vw,2rem);
+}
+
+/* The atmospheric scene sits behind everything */
+.dn-register-scene{position:absolute;inset:0;z-index:-1;background:var(--dn-near-black);}
+.dn-register-scene::before{
+  content:'';position:absolute;width:min(70vw,640px);aspect-ratio:1;
+  left:-8%;bottom:-12%;
+  background:radial-gradient(circle,rgba(248,199,96,.16),transparent 68%);
+  filter:blur(2px);
+}
+.dn-register-scene::after{
+  content:'';position:absolute;width:min(60vw,560px);aspect-ratio:1;
+  right:-6%;top:-10%;
+  background:radial-gradient(circle,rgba(69,144,236,.14),transparent 70%);
+  filter:blur(2px);
+}
+/* faint horizon hairline so the scene reads as depth, not flat black */
+.dn-register-horizon{
+  position:absolute;left:0;right:0;top:58%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);
+}
+/* a second, lower starfield-ish dust to deepen the room (very subtle) */
+.dn-register-scene .dn-register-dust{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(1px 1px at 18% 22%,rgba(255,255,255,.10),transparent),
+    radial-gradient(1px 1px at 71% 16%,rgba(255,255,255,.08),transparent),
+    radial-gradient(1px 1px at 44% 71%,rgba(255,255,255,.06),transparent),
+    radial-gradient(1px 1px at 88% 64%,rgba(255,255,255,.07),transparent),
+    radial-gradient(1px 1px at 33% 88%,rgba(255,255,255,.05),transparent);
+  opacity:.6;pointer-events:none;
+}
+
+/* ---- Inner container ---- */
+.dn-container{max-width:var(--container);margin-inline:auto;}
+
+/* ---- Section head: centred, overlaying the scene ---- */
+.dn-section-head{
+  max-width:660px;margin:0 auto clamp(2.5rem,5vw,3.75rem);
+  text-align:center;
+}
+.dn-section-head .dn-eyebrow.dn-pill{margin-bottom:1.25rem;}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:340;
+  line-height:1.04;
+  letter-spacing:-.012em;
+  margin:0;
+}
+.dn-section-head .dn-display{font-size:clamp(2.3rem,5.4vw,3.6rem);}
+.dn-section-lead{
+  margin:1.1rem auto 0;max-width:48ch;
+  color:var(--dn-bone-dim);font-size:clamp(1rem,1.4vw,1.12rem);
+}
+.dn-register-urgent{
+  margin:1.4rem auto 0;display:inline-flex;align-items:center;gap:.55rem;
+  font-size:.9rem;color:var(--dn-bone-dim);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--dn-mist);border-radius:999px;
+  padding:.5rem 1.05rem;
+}
+.dn-register-urgent::before{
+  content:'';flex:none;width:8px;height:8px;border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:0 0 0 0 rgba(248,199,96,.6);
+  animation:dn-pulse 2.6s ease-out infinite;
+}
+@keyframes dn-pulse{0%{box-shadow:0 0 0 0 rgba(248,199,96,.45);}70%{box-shadow:0 0 0 9px rgba(248,199,96,0);}100%{box-shadow:0 0 0 0 rgba(248,199,96,0);}}
+.dn-register-urgent a{color:var(--dn-day);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(248,199,96,.4);}
+.dn-register-urgent a:hover{border-bottom-color:var(--dn-day);}
+
+/* ---- Two-column inner grid ---- */
+.dn-register-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1fr);
+  gap:clamp(2rem,4.5vw,4rem);
+  align-items:start;
+}
+@media(max-width:1000px){
+  .dn-register-grid{grid-template-columns:1fr;gap:2.5rem;}
+}
+
+/* ---- Left aside: quiet text directly on the scene, NO card ---- */
+.dn-register-aside{align-self:center;}
+.dn-register-aside-inner{
+  background:transparent;border:0;border-radius:0;padding-inline:0;
+}
+.dn-register-aside-inner::before{display:none;}
+.dn-register-aside .dn-eyebrow.day{
+  display:inline-block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:700;color:var(--dn-day);margin-bottom:.6rem;
+}
+.dn-register-aside h3.dn-display{font-size:clamp(1.65rem,2.6vw,2.1rem);margin-bottom:1.6rem;}
+
+.dn-register-includes{list-style:none;margin:0;padding:0;}
+.dn-register-includes li{
+  display:flex;gap:1.1rem;align-items:flex-start;
+  padding:1.05rem 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.dn-register-includes li:first-child{padding-top:0;}
+.dn-register-includes .num{
+  flex:none;font-family:var(--font-display);font-weight:600;
+  font-size:.92rem;color:var(--dn-day);
+  width:1.8rem;line-height:1.6;letter-spacing:.02em;
+}
+.dn-register-includes h4{
+  margin:0 0 .2rem;font-size:1.02rem;font-weight:600;
+  font-family:var(--font-body);color:var(--dn-bone);
+}
+.dn-register-includes p{margin:0;font-size:.92rem;color:var(--dn-bone-faint);line-height:1.55;}
+
+.dn-register-aside-foot{
+  margin-top:1.9rem;display:flex;gap:1.4rem;align-items:flex-start;flex-wrap:wrap;
+}
+.dn-register-price{
+  flex:none;display:flex;flex-direction:column;gap:.1rem;
+  padding-right:1.4rem;border-right:1px solid var(--dn-mist);
+}
+.dn-register-price .label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-register-price .amount{
+  font-family:var(--font-display);font-weight:500;font-size:2.5rem;line-height:1;color:var(--dn-bone);
+  display:inline-flex;align-items:flex-start;gap:.06em;
+}
+.dn-register-price .currency{font-size:1.2rem;margin-top:.35rem;color:var(--dn-day);}
+.dn-register-aside-note{flex:1;min-width:200px;margin:0;font-size:.84rem;color:var(--dn-bone-faint);line-height:1.55;}
+
+/* ---- Right: the frosted glass form plate floating in the room ---- */
+.dn-register-form-wrap{position:relative;}
+.dn-register-form{
+  position:relative;
+  background:color-mix(in srgb,var(--dn-charcoal) 82%,transparent);
+  -webkit-backdrop-filter:blur(18px) saturate(1.1);
+  backdrop-filter:blur(18px) saturate(1.1);
+  border:1px solid var(--dn-mist);
+  border-radius:var(--dn-r-card);
+  box-shadow:0 40px 90px -50px rgba(0,0,0,.9),0 0 0 1px rgba(248,199,96,.06);
+  padding:clamp(1.4rem,3vw,2.4rem);
+  overflow:hidden;
+}
+/* gold top-edge light */
+.dn-register-form::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:1px;
+  background:var(--dn-day);opacity:.85;
+}
+
+/* Progress / step rail */
+.dn-register-progress{
+  display:flex;gap:.6rem;margin-bottom:1.6rem;
+}
+.dn-progress-step{
+  flex:1;display:flex;align-items:center;gap:.6rem;
+  padding:.6rem .8rem;border-radius:12px;
+  border:1px solid var(--dn-mist);background:rgba(255,255,255,.02);
+  transition:border-color .25s ease,background .25s ease;
+}
+.dn-progress-step.active{border-color:rgba(248,199,96,.45);background:rgba(248,199,96,.06);}
+.dn-progress-num{
+  flex:none;width:26px;height:26px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:600;font-size:.78rem;
+  color:var(--dn-bone-faint);border:1px solid var(--dn-mist);
+}
+.dn-progress-step.active .dn-progress-num{color:#0a0a0c;background:var(--dn-day);border-color:var(--dn-day);}
+.dn-progress-label{font-size:.82rem;color:var(--dn-bone-dim);font-weight:500;}
+.dn-progress-step.active .dn-progress-label{color:var(--dn-bone);}
+
+/* Steps */
+.dn-register-step h3.dn-display{font-size:clamp(1.4rem,2.2vw,1.7rem);margin:0 0 1.3rem;}
+
+.dn-form-row{margin-bottom:1.1rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:520px){.dn-form-row-2{grid-template-columns:1fr;}}
+
+.dn-form-row label{display:block;}
+.dn-form-row label > span,.dn-form-label{
+  display:block;font-size:.78rem;letter-spacing:.04em;
+  color:var(--dn-bone-dim);margin-bottom:.4rem;font-weight:500;
+}
+.dn-register-form input[type=text],
+.dn-register-form input[type=tel],
+.dn-register-form input[type=email],
+.dn-register-form select{
+  width:100%;min-height:46px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--dn-mist);border-radius:11px;
+  color:var(--dn-bone);font:inherit;font-size:.96rem;
+  padding:.65rem .85rem;
+  transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.dn-register-form input::placeholder{color:rgba(255,255,255,.35);}
+.dn-register-form input:focus,
+.dn-register-form select:focus{
+  outline:none;border-color:rgba(248,199,96,.6);
+  background:rgba(255,255,255,.06);
+  box-shadow:0 0 0 3px rgba(248,199,96,.14);
+}
+.dn-register-form select{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23f8c760' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .9rem center;
+  padding-right:2.4rem;cursor:pointer;color:var(--dn-bone-dim);
+}
+.dn-register-form select option{background:var(--dn-charcoal);color:var(--dn-bone);}
+
+.dn-dob-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:.6rem;}
+
+/* Radio cards (care type) */
+.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+@media(max-width:520px){.dn-form-radios{grid-template-columns:1fr;}}
+.dn-radio-card{
+  position:relative;display:block;cursor:pointer;
+  padding:.85rem 1rem;border-radius:12px;
+  border:1px solid var(--dn-mist);background:rgba(255,255,255,.02);
+  transition:border-color .2s ease,background .2s ease;
+}
+.dn-radio-card input{position:absolute;opacity:0;width:0;height:0;}
+.dn-radio-card .title{display:block;font-weight:600;font-size:.96rem;margin-bottom:.15rem;}
+.dn-radio-card .desc{display:block;font-size:.8rem;color:var(--dn-bone-faint);line-height:1.4;}
+.dn-radio-card.checked.day{border-color:rgba(248,199,96,.6);background:rgba(248,199,96,.07);}
+.dn-radio-card.checked.day .title{color:var(--dn-day);}
+.dn-radio-card.checked.night{border-color:rgba(69,144,236,.6);background:rgba(69,144,236,.08);}
+.dn-radio-card.checked.night .title{color:var(--dn-night-soft);}
+.dn-radio-card:has(input:focus-visible){box-shadow:0 0 0 3px rgba(248,199,96,.18);}
+
+/* Checkbox */
+.dn-checkbox{display:flex;gap:.7rem;align-items:flex-start;cursor:pointer;font-size:.88rem;color:var(--dn-bone-dim);line-height:1.5;}
+.dn-checkbox input{flex:none;width:20px;height:20px;margin-top:.15rem;accent-color:var(--dn-day);}
+.dn-checkbox a{color:var(--dn-day);text-decoration:underline;text-underline-offset:2px;}
+
+/* Actions */
+.dn-register-actions{
+  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+  margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--dn-mist);
+}
+.dn-step-counter{font-size:.78rem;color:var(--dn-bone-faint);letter-spacing:.06em;}
+.dn-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  min-height:46px;padding:.7rem 1.5rem;border-radius:999px;
+  font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
+  border:1px solid transparent;transition:transform .15s ease,filter .2s ease,background .2s ease;
+}
+.dn-btn:active{transform:translateY(1px);}
+.dn-btn.primary{background:var(--dn-day);color:#0a0a0c;border-color:var(--dn-day);margin-left:auto;}
+.dn-btn.primary:hover{filter:brightness(1.06);}
+.dn-btn.primary:disabled{opacity:.4;cursor:not-allowed;filter:none;}
+.dn-btn-ghost{background:transparent;border-color:var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-btn-ghost:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.28);}
+.dn-btn .arrow,.dn-btn .arrow-back{font-size:1.05em;line-height:1;}
+
+/* Step visibility (JS toggles; default = step 1 visible without JS) */
+.dn-register-step[data-step="2"]{display:none;}
+.dn-register-form.on-step-2 .dn-register-step[data-step="1"]{display:none;}
+.dn-register-form.on-step-2 .dn-register-step[data-step="2"]{display:block;}
+.dn-register-form.on-step-2 .dn-progress-step[data-s="1"]{opacity:.65;}
+
+.dn-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+/* Mobile: keep glass plate first (above the fold), aside below */
+@media(max-width:1000px){
+  .dn-register-grid{display:flex;flex-direction:column;}
+  .dn-register-form-wrap{order:1;}
+  .dn-register-aside{order:2;}
+  .dn-register-scene::before{left:50%;transform:translateX(-50%);bottom:auto;top:30%;}
+  .dn-register-scene::after{right:50%;transform:translateX(50%);}
+}
+@media(max-width:520px){
+  .dn-register-progress{flex-direction:row;}
+  .dn-progress-label{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#6</span> <b>Threshold</b> <span class="lab-lens">immersive</span></div><span></span></div>
+
+<section id="register" class="dn-register">
+  <div class="dn-register-scene" aria-hidden="true">
+    <div class="dn-register-dust"></div>
+    <div class="dn-register-horizon"></div>
+  </div>
+
+  <div class="dn-container">
+    <div class="dn-section-head">
+      <span class="dn-eyebrow dn-pill day">New Patients</span>
+      <h2 class="dn-display">Register with the <em class="dn-hl-gold">practice</em></h2>
+      <p class="dn-section-lead">
+        We’re taking on new patients for every treatment we offer. Fill in the form
+        and we’ll confirm your first appointment within one working hour.
+      </p>
+      <p class="dn-register-urgent">
+        In pain right now? Don’t wait to register —
+        <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+      </p>
+    </div>
+
+    <div class="dn-register-grid">
+      <!-- Left: quiet "Your first visit" includes, directly on the scene (no card) -->
+      <aside class="dn-register-aside">
+        <div class="dn-register-aside-inner">
+          <span class="dn-eyebrow day">What's Included</span>
+          <h3 class="dn-display">Your first visit</h3>
+
+          <ul class="dn-register-includes">
+            <li>
+              <span class="num">01</span>
+              <div>
+                <h4>Comprehensive examination</h4>
+                <p>A full assessment with intra-oral scans and bite analysis. That’s 45 minutes with your assigned dentist.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div>
+                <h4>Digital x-rays</h4>
+                <p>Low-dose digital imaging when it’s clinically needed. There are no films to develop, so you won’t be left waiting.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div>
+                <h4>Personalised treatment plan</h4>
+                <p>You’ll get a written plan with the cost of each item set out before any work starts, so you always know where you stand.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">04</span>
+              <div>
+                <h4>Hygiene appointment</h4>
+                <p>We book this in alongside your examination, so you leave with a proper clean and a fresh start.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="dn-register-aside-foot">
+            <div class="dn-register-price">
+              <span class="label">First visit from</span>
+              <span class="amount"><span class="currency">£</span>95</span>
+            </div>
+            <p class="dn-register-aside-note">
+              We confirm the cost of your first visit before anything goes ahead, so there are no surprises. NHS care is available when we have space, and children under 18 are examined free.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right: frosted glass form plate -->
+      <div class="dn-register-form-wrap">
+        <form class="dn-register-form" id="dn-form" onsubmit="return false;">
+          <!-- Honeypot -->
+          <p hidden aria-hidden="true">
+            <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <!-- Progress -->
+          <div class="dn-register-progress">
+            <div class="dn-progress-step active current" data-s="1" aria-current="step">
+              <span class="dn-progress-num">01</span>
+              <span class="dn-progress-label">Your Details</span>
+            </div>
+            <div class="dn-progress-step" data-s="2">
+              <span class="dn-progress-num">02</span>
+              <span class="dn-progress-label">Your Care</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Personal details -->
+          <div class="dn-register-step" data-step="1">
+            <h3 class="dn-display">Tell us about you</h3>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>First name *</span>
+                <input type="text" name="firstName" autocomplete="given-name" placeholder="Jordan">
+              </label>
+              <label>
+                <span>Last name *</span>
+                <input type="text" name="lastName" autocomplete="family-name" placeholder="Cameron">
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Date of birth</span>
+              <div class="dn-dob-grid">
+                <select aria-label="Day of birth"><option value="">Day</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select>
+                <select aria-label="Month of birth"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select>
+                <select aria-label="Year of birth"><option value="">Year</option><option>2008</option><option>2000</option><option>1995</option><option>1990</option><option>1985</option><option>1980</option><option>1975</option><option>1970</option></select>
+              </div>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>Phone *</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number">
+              </label>
+              <label>
+                <span>Email *</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+              </label>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>Address</span>
+                <input type="text" name="address" autocomplete="street-address" placeholder="Street address">
+              </label>
+              <label>
+                <span>Postcode</span>
+                <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH">
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <span class="dn-step-counter">Step 1 of 2</span>
+              <button type="button" class="dn-btn primary" id="dn-next">Continue <span class="arrow">→</span></button>
+            </div>
+          </div>
+
+          <!-- Step 2: Care preferences -->
+          <div class="dn-register-step" data-step="2">
+            <h3 class="dn-display">How would you like to be seen?</h3>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label" id="care-type-label">Care type</span>
+              <div class="dn-form-radios" role="radiogroup" aria-labelledby="care-type-label">
+                <label class="dn-radio-card day checked">
+                  <input type="radio" name="careType" value="private" checked>
+                  <span class="title">Private</span>
+                  <span class="desc">Full choice of times and treatments</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="nhs">
+                  <span class="title">NHS</span>
+                  <span class="desc">When we have space</span>
+                </label>
+                <label class="dn-radio-card day">
+                  <input type="radio" name="careType" value="mixed">
+                  <span class="title">Either</span>
+                  <span class="desc">Whatever gets you seen soonest</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="unsure">
+                  <span class="title">Not sure yet</span>
+                  <span class="desc">We’ll talk it through on the call</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Dentist preference</span>
+              <select aria-label="Dentist preference">
+                <option value="no-preference">No preference, just assign me someone</option>
+                <option value="female">Female dentist preferred</option>
+                <option value="male">Male dentist preferred</option>
+                <option value="principal">Principal dentist if available</option>
+                <option value="anxiety-trained">Dentist experienced with anxious patients</option>
+              </select>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">How did you hear about us?</span>
+              <select aria-label="How did you hear about us?">
+                <option value="">Optional</option>
+                <option>Google search</option>
+                <option>Friend or family</option>
+                <option>Instagram</option>
+                <option>Walked past the practice</option>
+                <option>Existing patient</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="dn-form-row">
+              <label class="dn-checkbox">
+                <input type="checkbox" name="consent">
+                <span>I’m happy for Day Night Dental to hold my information in line with the <a href="/privacy/" target="_blank" rel="noopener">privacy policy</a>, and to contact me about my registration.</span>
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <button type="button" class="dn-btn dn-btn-ghost" id="dn-back"><span class="arrow-back">←</span> Back</button>
+              <button type="submit" class="dn-btn primary">Complete Registration<span class="arrow"> →</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Minimal, progressive-enhancement step toggle. Default state (no JS) shows step 1
+  // fully and the radio cards render correctly; step 2 is simply hidden via CSS.
+  (function(){
+    var form = document.getElementById('dn-form');
+    var next = document.getElementById('dn-next');
+    var back = document.getElementById('dn-back');
+    var steps = form.querySelectorAll('.dn-progress-step');
+
+    function setStep(n){
+      form.classList.toggle('on-step-2', n === 2);
+      steps.forEach(function(el){
+        var s = Number(el.getAttribute('data-s'));
+        el.classList.toggle('active', s <= n);
+        el.classList.toggle('current', s === n);
+        if (s === n) el.setAttribute('aria-current','step'); else el.removeAttribute('aria-current');
+      });
+      var h = form.querySelector('.dn-register-step[data-step="'+n+'"] h3');
+      if (h) h.setAttribute('tabindex','-1'), h.focus();
+    }
+    next && next.addEventListener('click', function(){ setStep(2); });
+    back && back.addEventListener('click', function(){ setStep(1); });
+
+    // Live highlight for the care-type radio cards.
+    form.querySelectorAll('input[name="careType"]').forEach(function(r){
+      r.addEventListener('change', function(){
+        form.querySelectorAll('.dn-radio-card').forEach(function(c){ c.classList.remove('checked'); });
+        r.closest('.dn-radio-card').classList.add('checked');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

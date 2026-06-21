@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+
+<title>The Reveal Wall — Real smiles, real results · Day Night Dental</title>
+
+<style>
+/* ============ The Reveal Wall — concept #6 (interactive) ============ */
+
+.dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
+.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem);}
+
+/* ambient light so the near-black canvas isn't flat */
+.dn-wall::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 50% at 12% -6%, rgba(248,199,96,.10), transparent 60%),
+    radial-gradient(54% 46% at 92% 4%, rgba(69,144,236,.09), transparent 62%);}
+.dn-wall .dn-container{position:relative;z-index:1;}
+
+/* ---- section head ---- */
+.dn-section-head{max-width:56ch;}
+.dn-display{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;
+  font-size:clamp(2.2rem,5.4vw,3.85rem);line-height:1.02;margin:1.1rem 0 0;}
+.dn-section-lead{margin:1.05rem 0 0;color:var(--dn-bone-dim);font-size:clamp(1rem,1.3vw,1.12rem);max-width:48ch;}
+
+/* ---- filter chips ---- */
+.dn-chip-row{display:flex;gap:.6rem;margin-top:clamp(1.7rem,3.5vw,2.4rem);flex-wrap:wrap;}
+.dn-chip{--dn-acc:var(--dn-day);display:inline-flex;align-items:center;gap:.5rem;min-height:44px;
+  padding:.55rem 1.15rem;border:1px solid var(--dn-mist);border-radius:999px;background:rgba(255,255,255,.02);
+  color:var(--dn-bone-dim);font:600 .74rem/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;
+  cursor:pointer;transition:border-color .3s,color .3s,background .3s,box-shadow .3s;white-space:nowrap;}
+.dn-chip.night{--dn-acc:var(--dn-night);}
+.dn-chip:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.28);}
+.dn-chip[aria-pressed="true"]{border-color:var(--dn-acc);color:var(--dn-acc);background:color-mix(in srgb,var(--dn-acc) 9%,transparent);
+  box-shadow:0 0 22px -6px color-mix(in srgb,var(--dn-acc) 55%,transparent);}
+.dn-chip .ct{font-family:var(--font-display);font-weight:600;letter-spacing:0;opacity:.7;font-size:.78rem;}
+.dn-chip[aria-pressed="true"] .ct{opacity:1;}
+
+/* ---- the wall grid ---- */
+.dn-wall-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:clamp(1.7rem,3.5vw,2.6rem);}
+.dn-wall-grid[data-filter] .dn-wall-card[data-cat]{display:none;}
+.dn-wall-grid[data-filter="all"] .dn-wall-card,
+.dn-wall-grid[data-filter="Cosmetic"] .dn-wall-card[data-cat="Cosmetic"],
+.dn-wall-grid[data-filter="Implants"] .dn-wall-card[data-cat="Implants"],
+.dn-wall-grid[data-filter="Orthodontics"] .dn-wall-card[data-cat="Orthodontics"]{display:block;}
+
+/* asymmetric masonry rhythm — a couple of cards run taller */
+.dn-wall-card{--dn-acc:var(--dn-day);position:relative;display:block;width:100%;aspect-ratio:4/5;
+  margin:0;padding:0;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);overflow:hidden;
+  background:var(--dn-near-black);color:var(--dn-bone);text-align:left;font:inherit;cursor:pointer;
+  transition:border-color .35s,box-shadow .35s,transform .35s cubic-bezier(.16,1,.3,1);}
+.dn-wall-card.night{--dn-acc:var(--dn-night);}
+.dn-wall-card.tall{aspect-ratio:4/5.55;}
+@media(hover:hover){
+  .dn-wall-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--dn-acc) 82%,transparent);
+    box-shadow:0 0 0 1.5px color-mix(in srgb,var(--dn-acc) 75%,transparent),0 0 32px -2px color-mix(in srgb,var(--dn-acc) 50%,transparent),0 22px 46px -18px color-mix(in srgb,var(--dn-acc) 60%,transparent);}
+}
+.dn-wall-card.is-active{transform:translateY(-4px);border-color:color-mix(in srgb,var(--dn-acc) 82%,transparent);
+  box-shadow:0 0 0 1.5px color-mix(in srgb,var(--dn-acc) 75%,transparent),0 0 32px -2px color-mix(in srgb,var(--dn-acc) 50%,transparent),0 22px 46px -18px color-mix(in srgb,var(--dn-acc) 60%,transparent);}
+.dn-wall-card:focus-visible{outline:2px solid var(--dn-acc);outline-offset:3px;}
+/* touch fallback (no hover) — give an even ring on press */
+@media(hover:none){
+  .dn-wall-card:active{border-color:color-mix(in srgb,var(--dn-acc) 75%,transparent);
+    box-shadow:0 0 0 1.5px color-mix(in srgb,var(--dn-acc) 70%,transparent),0 0 30px -2px color-mix(in srgb,var(--dn-acc) 48%,transparent);}
+}
+
+/* ---- before / after stack ---- */
+.dn-wall-media{position:absolute;inset:0;overflow:hidden;}
+.dn-wall-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+/* "before" layer underneath: same real photo, stylised as an un-treated state */
+.dn-wall-before img{filter:grayscale(82%) brightness(.74) contrast(1.04) sepia(8%);}
+.dn-wall-before::after{content:"";position:absolute;inset:0;background:rgba(10,10,12,.28);}
+/* "after" layer on top, wiped by the divider */
+.dn-wall-after{clip-path:inset(0 0 0 calc(var(--reveal,50%)));transition:clip-path .05s linear;}
+.dn-wall-after img{filter:saturate(1.04) contrast(1.03);}
+
+/* readability scrim + corner labels */
+.dn-wall-scrim{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,10,12,.42) 0%,transparent 26%,transparent 52%,rgba(10,10,12,.86) 100%);}
+.dn-wall-flag{position:absolute;top:12px;font:700 .56rem/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;
+  padding:5px 9px;border-radius:999px;background:rgba(10,10,12,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:1px solid var(--dn-mist);color:var(--dn-bone-dim);pointer-events:none;}
+.dn-wall-flag.before{left:12px;}
+.dn-wall-flag.after{right:12px;color:var(--dn-acc);border-color:color-mix(in srgb,var(--dn-acc) 50%,transparent);}
+
+/* ---- the scrubber divider ---- */
+.dn-wall-handle{position:absolute;top:0;bottom:0;left:var(--reveal,50%);width:2px;
+  background:var(--dn-acc);transform:translateX(-1px);box-shadow:0 0 14px color-mix(in srgb,var(--dn-acc) 60%,transparent);pointer-events:none;}
+.dn-wall-handle::after{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid var(--dn-acc);background:rgba(10,10,12,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 0 20px -4px color-mix(in srgb,var(--dn-acc) 55%,transparent);}
+.dn-wall-handle .grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;
+  font:700 .9rem/1 var(--font-body);color:var(--dn-acc);letter-spacing:-.05em;}
+
+/* the real range input that drives --reveal (visually invisible, fully usable) */
+.dn-wall-range{position:absolute;inset:0;width:100%;height:100%;margin:0;cursor:ew-resize;opacity:0;-webkit-appearance:none;appearance:none;background:transparent;z-index:3;}
+.dn-wall-range::-webkit-slider-thumb{-webkit-appearance:none;width:48px;height:100%;cursor:ew-resize;}
+.dn-wall-range::-moz-range-thumb{width:48px;height:100%;border:0;background:transparent;cursor:ew-resize;}
+.dn-wall-range:focus-visible{outline:none;}
+.dn-wall-card:has(.dn-wall-range:focus-visible){box-shadow:0 0 0 2px var(--dn-acc),0 0 0 1.5px color-mix(in srgb,var(--dn-acc) 75%,transparent),0 0 32px -2px color-mix(in srgb,var(--dn-acc) 50%,transparent);}
+
+/* ---- caption ---- */
+.dn-wall-cap{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;pointer-events:none;display:flex;flex-direction:column;gap:.4rem;}
+.dn-wall-tag{align-self:flex-start;font:700 .58rem/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;
+  padding:5px 11px;border-radius:999px;background:color-mix(in srgb,var(--dn-acc) 14%,rgba(10,10,12,.55));
+  border:1px solid color-mix(in srgb,var(--dn-acc) 46%,transparent);color:var(--dn-acc);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+.dn-wall-title{font-family:var(--font-display);font-weight:500;font-size:clamp(1.15rem,2.1vw,1.45rem);line-height:1.05;}
+.dn-wall-hint{display:flex;align-items:center;gap:.45rem;margin-top:.1rem;color:var(--dn-bone-faint);
+  font-size:.74rem;letter-spacing:.02em;transition:color .3s,opacity .3s;}
+.dn-wall-hint svg{flex:0 0 auto;}
+@media(hover:hover){.dn-wall-card:hover .dn-wall-hint{color:var(--dn-acc);}}
+
+/* ---- CTA ---- */
+.dn-gallery-cta{display:flex;justify-content:center;margin-top:clamp(2.6rem,5vw,4rem);}
+.dn-btn{display:inline-flex;align-items:center;gap:.6rem;min-height:52px;padding:.95rem 1.7rem;border-radius:999px;
+  font:600 1rem/1 var(--font-body);text-decoration:none;cursor:pointer;transition:transform .25s,box-shadow .3s,background .3s;}
+.dn-btn.primary{background:var(--dn-day);color:#0a0a0c;border:1px solid var(--dn-day);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 40%,transparent),0 0 40px -8px color-mix(in srgb,var(--dn-day) 70%,transparent);}
+.dn-btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 55%,transparent),0 0 54px -6px color-mix(in srgb,var(--dn-day) 85%,transparent);}
+.dn-btn .arrow{transition:transform .25s;}
+.dn-btn:hover .arrow{transform:translateX(4px);}
+
+.dn-wall-note{margin-top:1.4rem;text-align:center;color:var(--dn-bone-faint);font-size:.78rem;letter-spacing:.01em;}
+
+/* ============ responsive ============ */
+@media(max-width:980px){
+  .dn-wall-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:820px){
+  .dn-wall-grid{grid-template-columns:1fr;gap:1.1rem;}
+  .dn-wall-card,.dn-wall-card.tall{aspect-ratio:4/5;}
+  .dn-chip-row{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin-left:calc(-1*clamp(1.1rem,4vw,2rem));margin-right:calc(-1*clamp(1.1rem,4vw,2rem));
+    padding-left:clamp(1.1rem,4vw,2rem);padding-right:clamp(1.1rem,4vw,2rem);scrollbar-width:none;}
+  .dn-chip-row::-webkit-scrollbar{display:none;}
+  .dn-chip{scroll-snap-align:start;flex:0 0 auto;}
+}
+@media(max-width:420px){
+  .dn-display{font-size:clamp(1.9rem,8.5vw,2.4rem);}
+}
+@media(prefers-reduced-motion:reduce){
+  .dn-wall-card,.dn-btn,.dn-wall-after{transition:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#6</span> <b>The Reveal Wall</b> <span class="lab-lens">Interactive</span></div><span></span></div>
+
+<section class="dn-section dn-wall">
+  <div class="dn-container">
+
+    <div class="dn-section-head">
+      <span class="dn-eyebrow dn-pill day">Real Smiles</span>
+      <h2 class="dn-display">Real smiles, <em class="dn-hl-gold">real results</em></h2>
+      <p class="dn-section-lead">Drag the divider on any card to scrub between before and after — composite bonding, porcelain veneers, Invisalign and dental implants, all real patients in Glasgow.</p>
+    </div>
+
+    <div class="dn-chip-row" role="group" aria-label="Filter results">
+      <button type="button" class="dn-chip day" data-chip="all" aria-pressed="true">All <span class="ct">6</span></button>
+      <button type="button" class="dn-chip day" data-chip="Cosmetic" aria-pressed="false">Cosmetic <span class="ct">4</span></button>
+      <button type="button" class="dn-chip day" data-chip="Implants" aria-pressed="false">Implants <span class="ct">1</span></button>
+      <button type="button" class="dn-chip night" data-chip="Orthodontics" aria-pressed="false">Orthodontics <span class="ct">1</span></button>
+    </div>
+
+    <div class="dn-wall-grid" data-filter="all">
+
+      <!-- card 1 — Composite bonding (day) -->
+      <article class="dn-wall-card day tall" data-cat="Cosmetic">
+        <div class="dn-wall-media dn-wall-before"><img src="/smiles/bonding-patient.webp" alt="" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-media dn-wall-after"><img src="/smiles/bonding-patient.webp" alt="Composite bonding result, Day Night Dental, Glasgow" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-scrim"></div>
+        <span class="dn-wall-flag before">Before</span>
+        <span class="dn-wall-flag after">After</span>
+        <div class="dn-wall-handle"><span class="grip" aria-hidden="true">‹ ›</span></div>
+        <input class="dn-wall-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal before and after — Composite bonding">
+        <figcaption class="dn-wall-cap">
+          <span class="dn-wall-tag">Cosmetic</span>
+          <span class="dn-wall-title">Composite bonding</span>
+          <span class="dn-wall-hint">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M5 3 1.5 7 5 11M11 3l3.5 4-3.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reveal before &amp; after
+          </span>
+        </figcaption>
+      </article>
+
+      <!-- card 2 — Composite bonding (night) -->
+      <article class="dn-wall-card night" data-cat="Cosmetic">
+        <div class="dn-wall-media dn-wall-before"><img src="/smiles/bonding-patient-2.webp" alt="" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-media dn-wall-after"><img src="/smiles/bonding-patient-2.webp" alt="Composite bonding result, Day Night Dental, Glasgow" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-scrim"></div>
+        <span class="dn-wall-flag before">Before</span>
+        <span class="dn-wall-flag after">After</span>
+        <div class="dn-wall-handle"><span class="grip" aria-hidden="true">‹ ›</span></div>
+        <input class="dn-wall-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal before and after — Composite bonding">
+        <figcaption class="dn-wall-cap">
+          <span class="dn-wall-tag">Cosmetic</span>
+          <span class="dn-wall-title">Composite bonding</span>
+          <span class="dn-wall-hint">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M5 3 1.5 7 5 11M11 3l3.5 4-3.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reveal before &amp; after
+          </span>
+        </figcaption>
+      </article>
+
+      <!-- card 3 — Dental implants (day) -->
+      <article class="dn-wall-card day" data-cat="Implants">
+        <div class="dn-wall-media dn-wall-before"><img src="/smiles/implant-patient.webp" alt="" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-media dn-wall-after"><img src="/smiles/implant-patient.webp" alt="Dental implants result, Day Night Dental, Glasgow" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-scrim"></div>
+        <span class="dn-wall-flag before">Before</span>
+        <span class="dn-wall-flag after">After</span>
+        <div class="dn-wall-handle"><span class="grip" aria-hidden="true">‹ ›</span></div>
+        <input class="dn-wall-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal before and after — Dental implants">
+        <figcaption class="dn-wall-cap">
+          <span class="dn-wall-tag">Implants</span>
+          <span class="dn-wall-title">Dental implants</span>
+          <span class="dn-wall-hint">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M5 3 1.5 7 5 11M11 3l3.5 4-3.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reveal before &amp; after
+          </span>
+        </figcaption>
+      </article>
+
+      <!-- card 4 — Invisalign (night) -->
+      <article class="dn-wall-card night tall" data-cat="Orthodontics">
+        <div class="dn-wall-media dn-wall-before"><img src="/smiles/invisalign-patient.webp" alt="" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-media dn-wall-after"><img src="/smiles/invisalign-patient.webp" alt="Invisalign result, Day Night Dental, Glasgow" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-scrim"></div>
+        <span class="dn-wall-flag before">Before</span>
+        <span class="dn-wall-flag after">After</span>
+        <div class="dn-wall-handle"><span class="grip" aria-hidden="true">‹ ›</span></div>
+        <input class="dn-wall-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal before and after — Invisalign">
+        <figcaption class="dn-wall-cap">
+          <span class="dn-wall-tag">Orthodontics</span>
+          <span class="dn-wall-title">Invisalign</span>
+          <span class="dn-wall-hint">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M5 3 1.5 7 5 11M11 3l3.5 4-3.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reveal before &amp; after
+          </span>
+        </figcaption>
+      </article>
+
+      <!-- card 5 — Porcelain veneers (day) -->
+      <article class="dn-wall-card day" data-cat="Cosmetic">
+        <div class="dn-wall-media dn-wall-before"><img src="/smiles/featured-smile.webp" alt="" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-media dn-wall-after"><img src="/smiles/featured-smile.webp" alt="Porcelain veneers result, Day Night Dental, Glasgow" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-scrim"></div>
+        <span class="dn-wall-flag before">Before</span>
+        <span class="dn-wall-flag after">After</span>
+        <div class="dn-wall-handle"><span class="grip" aria-hidden="true">‹ ›</span></div>
+        <input class="dn-wall-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal before and after — Porcelain veneers">
+        <figcaption class="dn-wall-cap">
+          <span class="dn-wall-tag">Cosmetic</span>
+          <span class="dn-wall-title">Porcelain veneers</span>
+          <span class="dn-wall-hint">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M5 3 1.5 7 5 11M11 3l3.5 4-3.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reveal before &amp; after
+          </span>
+        </figcaption>
+      </article>
+
+      <!-- card 6 — Porcelain veneers (night) -->
+      <article class="dn-wall-card night" data-cat="Cosmetic">
+        <div class="dn-wall-media dn-wall-before"><img src="/smiles/veneers-patient-2.webp" alt="" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-media dn-wall-after"><img src="/smiles/veneers-patient-2.webp" alt="Porcelain veneers result, Day Night Dental, Glasgow" width="700" height="900" loading="lazy" decoding="async"></div>
+        <div class="dn-wall-scrim"></div>
+        <span class="dn-wall-flag before">Before</span>
+        <span class="dn-wall-flag after">After</span>
+        <div class="dn-wall-handle"><span class="grip" aria-hidden="true">‹ ›</span></div>
+        <input class="dn-wall-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal before and after — Porcelain veneers">
+        <figcaption class="dn-wall-cap">
+          <span class="dn-wall-tag">Cosmetic</span>
+          <span class="dn-wall-title">Porcelain veneers</span>
+          <span class="dn-wall-hint">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M5 3 1.5 7 5 11M11 3l3.5 4-3.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reveal before &amp; after
+          </span>
+        </figcaption>
+      </article>
+
+    </div>
+
+    <p class="dn-wall-note">Each card scrubs the same real patient photograph — the “before” side is shown in a muted, untreated tone. No stock or AI imagery.</p>
+
+    <div class="dn-gallery-cta">
+      <a href="#contact" class="dn-btn primary">Begin your transformation <span class="arrow">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  // ---- filter chips: toggle data-filter on the grid (CSS does the hiding) ----
+  var grid = document.querySelector('.dn-wall-grid');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.dn-chip'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+      chip.setAttribute('aria-pressed', 'true');
+      grid.setAttribute('data-filter', chip.getAttribute('data-chip'));
+    });
+  });
+
+  // ---- before/after scrubbers: each range input drives its card's --reveal ----
+  var ranges = Array.prototype.slice.call(document.querySelectorAll('.dn-wall-range'));
+  ranges.forEach(function (range) {
+    var card = range.closest('.dn-wall-card');
+    var sync = function () {
+      card.style.setProperty('--reveal', range.value + '%');
+    };
+    sync();
+    range.addEventListener('input', sync);
+    range.addEventListener('focus', function () { card.classList.add('is-active'); });
+    range.addEventListener('blur', function () { card.classList.remove('is-active'); });
+    // pointer activity marks the card active for the glow ring on touch devices
+    range.addEventListener('pointerdown', function () { card.classList.add('is-active'); });
+    window.addEventListener('pointerup', function () {
+      if (document.activeElement !== range) card.classList.remove('is-active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

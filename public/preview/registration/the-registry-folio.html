@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Registry Folio — Register with the practice · Day Night Dental</title>
+<style>
+/* ============================================================
+   THE REGISTRY FOLIO — editorial magazine spread
+   The form is the feature article. No card chrome; underline-only
+   "enrolment slip" fields, oversized gutter numerals, a real
+   folio/colophon line and pull-quote. Solid gold + a single
+   night-blue keyline. Fraunces display, Inter Tight captions.
+   ============================================================ */
+
+.dn-section{position:relative;}
+.dn-register{
+  padding:clamp(4rem,9vw,8rem) 0;
+  background:var(--dn-near-black);
+  position:relative;isolation:isolate;
+}
+/* Two separate, non-touching light-pools — each fades a single solid
+   colour to transparent. Never a gold->blue gradient. */
+.dn-register::before,
+.dn-register::after{content:'';position:absolute;z-index:-1;pointer-events:none;}
+.dn-register::before{/* gold pool, top-left */
+  top:0;left:0;width:60%;height:50%;
+  background:radial-gradient(circle at top left, rgba(248,199,96,.05), transparent 60%);
+}
+.dn-register::after{/* faint blue pool, bottom-right */
+  bottom:0;right:0;width:50%;height:45%;
+  background:radial-gradient(circle at bottom right, rgba(69,144,236,.045), transparent 65%);
+}
+.dn-container{
+  width:100%;max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:clamp(1.25rem,5vw,2.5rem);
+}
+
+/* ---------- Masthead ---------- */
+.dn-register-mast{margin-bottom:clamp(2.5rem,6vw,4.5rem);}
+.dn-register-mast .dn-eyebrow{margin-bottom:1.4rem;}
+.dn-register-masthead{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.6rem,7vw,5.2rem);line-height:.92;letter-spacing:-.02em;
+  margin:0;max-width:14ch;
+}
+.dn-register-folio{
+  display:flex;flex-wrap:wrap;gap:clamp(1rem,3vw,2.2rem);
+  margin:clamp(1.4rem,3vw,2rem) 0 0;padding-top:1rem;
+  border-top:1px solid var(--dn-mist);
+  font-family:var(--font-body);font-size:.7rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);
+}
+.dn-register-folio span{position:relative;}
+.dn-register-folio span + span::before{
+  content:'';position:absolute;left:calc(-1 * clamp(.5rem,1.5vw,1.1rem));top:50%;
+  width:3px;height:3px;border-radius:50%;background:var(--dn-bone-faint);transform:translateY(-50%);
+}
+.dn-register-folio .folio-no{color:var(--dn-day);}
+
+/* ---------- The spread grid ---------- */
+.dn-register-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(1.5rem,4vw,3.5rem);align-items:start;
+}
+.dn-register-aside{grid-column:1/5;position:sticky;top:96px;}
+.dn-register-form-wrap{grid-column:5/13;}
+
+/* ---------- Marginalia rail (aside) ---------- */
+.dn-aside-kicker{
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.66rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--dn-day);margin-bottom:.9rem;
+}
+.dn-aside-kicker::before{content:'';width:18px;height:1px;background:var(--dn-day);}
+.dn-aside-title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.7rem,3.2vw,2.3rem);line-height:1;letter-spacing:-.01em;
+  margin:0 0 1.6rem;
+}
+.dn-register-includes{list-style:none;margin:0 0 0;padding:0;}
+.dn-register-includes li{
+  display:grid;grid-template-columns:auto 1fr;gap:1.1rem;
+  padding:1.2rem 0;border-bottom:1px solid var(--dn-mist);
+}
+.dn-register-includes li:first-child{border-top:1px solid var(--dn-mist);}
+.dn-register-includes .num{
+  font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-size:1.7rem;line-height:.9;color:var(--dn-day);
+}
+.dn-register-includes h4{
+  margin:0 0 .3rem;font-family:var(--font-body);font-size:.98rem;font-weight:600;
+  letter-spacing:.01em;color:var(--dn-bone);
+}
+.dn-register-includes p{
+  margin:0;font-size:.82rem;line-height:1.55;color:var(--dn-bone-dim);
+}
+
+/* price colophon */
+.dn-register-price{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin-top:1.8rem;padding-top:1.4rem;
+}
+.dn-register-price .label{
+  font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+}
+.dn-register-price .amount{
+  font-family:var(--font-display);font-weight:600;font-size:clamp(2.6rem,5vw,3.4rem);
+  line-height:.85;color:var(--dn-day);
+}
+.dn-register-price .currency{font-size:.55em;vertical-align:.18em;margin-right:.02em;}
+.dn-register-aside-note{
+  margin:.6rem 0 0;font-size:.76rem;line-height:1.55;color:var(--dn-bone-faint);
+}
+
+/* ---------- Pull-quote / urgent line ---------- */
+.dn-register-urgent{
+  font-family:var(--font-display);font-style:italic;font-weight:400;
+  font-size:clamp(1.05rem,2.1vw,1.3rem);line-height:1.4;color:var(--dn-bone);
+  border-left:2px solid var(--dn-night);padding:.15rem 0 .15rem 1.2rem;
+  margin:0 0 clamp(2rem,4vw,3rem);max-width:46ch;
+}
+.dn-register-urgent a{color:var(--dn-night-soft);text-decoration:none;border-bottom:1px solid rgba(106,168,242,.4);padding-bottom:1px;font-style:normal;font-weight:500;}
+.dn-register-urgent a:hover{color:var(--dn-night-soft);border-bottom-color:var(--dn-night-soft);}
+
+/* ---------- The form as feature article ---------- */
+.dn-register-form{
+  border-top:1px solid var(--dn-night);
+  padding-top:clamp(2rem,4vw,2.8rem);
+  background:none;border-left:0;border-right:0;border-bottom:0;
+}
+.dn-register-lead{
+  font-size:clamp(1rem,1.4vw,1.12rem);line-height:1.65;color:var(--dn-bone-dim);
+  max-width:54ch;margin:0 0 clamp(2.2rem,4vw,3rem);
+}
+.dn-register-lead em{font-style:normal;color:var(--dn-day);}
+
+/* progress — folio-style step markers */
+.dn-register-progress{
+  display:flex;gap:clamp(1.5rem,4vw,3rem);
+  margin:0 0 clamp(2.4rem,5vw,3.4rem);padding-bottom:1.3rem;
+  border-bottom:1px solid var(--dn-mist);
+}
+.dn-progress-step{
+  display:flex;align-items:baseline;gap:.7rem;opacity:.42;transition:opacity .35s;
+}
+.dn-progress-step.active{opacity:1;}
+.dn-progress-num{
+  font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-size:1.5rem;line-height:1;color:var(--dn-bone);
+}
+.dn-progress-step.active .dn-progress-num{color:var(--dn-day);}
+.dn-progress-label{
+  font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dn-bone-dim);
+}
+
+/* step subhead with drop-cap-style numeral */
+.dn-register-step-head{display:flex;align-items:baseline;gap:.7rem;margin:0 0 clamp(1.8rem,4vw,2.4rem);}
+.dn-register-step-head .step-num{
+  font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-size:clamp(1.8rem,4vw,2.6rem);line-height:1;color:var(--dn-day);
+}
+.dn-register-step-head h3{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.8rem,4vw,2.6rem);line-height:1;letter-spacing:-.01em;margin:0;
+}
+
+/* form rows */
+.dn-form-row{margin-bottom:clamp(1.6rem,3vw,2.1rem);}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,3vw,2.2rem);}
+.dn-register-form label{display:grid;gap:.55rem;min-width:0;}
+.dn-register-form label > span,
+.dn-form-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+}
+
+/* underline-only "enrolment slip" inputs */
+.dn-register-form input[type=text],
+.dn-register-form input[type=tel],
+.dn-register-form input[type=email]{
+  width:100%;padding:.6rem 0;min-height:44px;
+  background:none;border:0;border-bottom:1px solid var(--dn-mist);border-radius:0;
+  color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;
+  transition:border-color .3s,box-shadow .3s;
+}
+.dn-register-form input::placeholder{color:rgba(255,255,255,.32);}
+.dn-register-form input:focus,
+.dn-register-form input:hover{
+  outline:0;border-bottom-color:var(--dn-day);
+  box-shadow:0 1px 0 var(--dn-day),0 8px 26px -16px var(--dn-day);
+}
+
+/* date of birth — three underline selects */
+.dn-dob-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:1rem;}
+.dn-select{
+  width:100%;padding:.6rem 1.4rem .6rem 0;min-height:44px;
+  background:none;border:0;border-bottom:1px solid var(--dn-mist);border-radius:0;
+  color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  transition:border-color .3s,box-shadow .3s;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23f8c760' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .2rem center;
+}
+.dn-select:focus,.dn-select:hover{
+  outline:0;border-bottom-color:var(--dn-day);
+  box-shadow:0 1px 0 var(--dn-day);
+}
+.dn-select option{background:var(--dn-charcoal);color:var(--dn-bone);}
+
+/* care-type radio cards — single colour per side */
+.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.dn-radio-card{
+  display:grid;gap:.25rem;padding:1rem 1.1rem;min-height:44px;cursor:pointer;
+  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  background:rgba(255,255,255,.015);
+  transition:border-color .3s,box-shadow .3s,background .3s;position:relative;
+}
+.dn-radio-card input{position:absolute;opacity:0;pointer-events:none;}
+.dn-radio-card .title{font-family:var(--font-display);font-weight:600;font-size:1.05rem;}
+.dn-radio-card .desc{font-size:.78rem;color:var(--dn-bone-dim);line-height:1.4;}
+.dn-radio-card.day.checked,.dn-radio-card.day:hover{
+  border-color:var(--dn-day);background:rgba(248,199,96,.06);
+  box-shadow:0 0 0 1px var(--dn-day),0 0 24px -10px rgba(248,199,96,.5);
+}
+.dn-radio-card.night.checked,.dn-radio-card.night:hover{
+  border-color:var(--dn-night);background:rgba(69,144,236,.06);
+  box-shadow:0 0 0 1px var(--dn-night),0 0 24px -10px rgba(69,144,236,.5);
+}
+
+/* consent checkbox */
+.dn-checkbox{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;cursor:pointer;}
+.dn-checkbox input{
+  appearance:none;-webkit-appearance:none;flex:none;
+  width:22px;height:22px;margin-top:.15rem;border:1px solid var(--dn-mist);
+  border-radius:5px;background:rgba(255,255,255,.02);cursor:pointer;position:relative;
+  transition:border-color .25s,background .25s;
+}
+.dn-checkbox input:checked{border-color:var(--dn-day);background:var(--dn-day);}
+.dn-checkbox input:checked::after{
+  content:'';position:absolute;left:7px;top:3px;width:5px;height:10px;
+  border:solid #0a0a0c;border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.dn-checkbox span{font-size:.85rem;line-height:1.55;color:var(--dn-bone-dim);}
+.dn-checkbox a{color:var(--dn-day);text-decoration:underline;text-underline-offset:2px;}
+
+/* actions */
+.dn-register-actions{
+  display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;
+  margin-top:clamp(2rem,4vw,2.8rem);padding-top:1.6rem;border-top:1px solid var(--dn-mist);
+}
+.dn-step-counter{
+  font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dn-bone-faint);margin-right:auto;
+}
+.dn-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--font-body);font-size:.92rem;font-weight:600;letter-spacing:.02em;
+  min-height:48px;padding:.8rem 1.6rem;border-radius:999px;cursor:pointer;
+  border:1px solid transparent;transition:box-shadow .3s,background .3s,color .3s,border-color .3s;
+  text-decoration:none;
+}
+.dn-btn.primary{background:var(--dn-day);color:#0a0a0c;border-color:var(--dn-day);}
+.dn-btn.primary:hover{box-shadow:0 0 0 1px var(--dn-day),0 0 30px -4px rgba(248,199,96,.6);}
+.dn-btn-ghost{background:none;color:var(--dn-bone-dim);border-color:var(--dn-mist);}
+.dn-btn-ghost:hover{color:var(--dn-bone);border-color:var(--dn-bone-faint);}
+.dn-btn .arrow,.dn-btn .arrow-back{display:inline-block;transition:transform .25s;}
+.dn-btn.primary:hover .arrow{transform:translateX(3px);}
+.dn-btn-ghost:hover .arrow-back{transform:translateX(-3px);}
+
+/* step panels */
+.dn-register-step{display:none;}
+.dn-register-step.is-active{display:block;animation:foliofade .45s ease;}
+@keyframes foliofade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ---------- Responsive ---------- */
+@media(max-width:900px){
+  .dn-register-aside,.dn-register-form-wrap{grid-column:1/13;position:static;}
+  .dn-register-grid{gap:clamp(2rem,6vw,3rem);}
+  /* marginalia rail becomes a horizontal "contents" strip */
+  .dn-register-aside{
+    border-bottom:1px solid var(--dn-mist);padding-bottom:clamp(2rem,5vw,2.5rem);
+  }
+}
+@media(max-width:560px){
+  .dn-form-row-2{grid-template-columns:1fr;}
+  .dn-form-radios{grid-template-columns:1fr;}
+  .dn-dob-grid{grid-template-columns:1fr 1.3fr 1fr;}
+  .dn-register-progress{gap:1.4rem;}
+  .dn-register-actions .dn-btn{flex:1 1 auto;justify-content:center;}
+  .dn-step-counter{flex-basis:100%;margin:0 0 .4rem;}
+}
+
+.dn-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#5</span> <b>The Registry Folio</b> <span class="lab-lens">editorial</span></div><span></span></div>
+
+<section id="register" class="dn-section dn-register">
+  <div class="dn-container">
+
+    <!-- ============ MASTHEAD ============ -->
+    <header class="dn-register-mast">
+      <span class="dn-eyebrow dn-pill day">New Patients</span>
+      <h2 class="dn-register-masthead">Register with the <em class="dn-hl-gold">practice</em></h2>
+      <p class="dn-register-folio">
+        <span class="folio-no">No. 01</span>
+        <span>Merchant City, Glasgow</span>
+        <span>Est. 2026</span>
+        <span>The First-Visit Edition</span>
+      </p>
+    </header>
+
+    <!-- ============ THE SPREAD ============ -->
+    <div class="dn-register-grid">
+
+      <!-- ---------- Marginalia rail ---------- -->
+      <aside class="dn-register-aside">
+        <span class="dn-aside-kicker">What's Included</span>
+        <h3 class="dn-aside-title">Your first visit</h3>
+
+        <ul class="dn-register-includes">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h4>Comprehensive examination</h4>
+              <p>A full assessment with intra-oral scans and bite analysis. That's 45 minutes with your assigned dentist.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h4>Digital x-rays</h4>
+              <p>Low-dose digital imaging when it's clinically needed. There are no films to develop, so you won't be left waiting.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h4>Personalised treatment plan</h4>
+              <p>You'll get a written plan with the cost of each item set out before any work starts, so you always know where you stand.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <h4>Hygiene appointment</h4>
+              <p>We book this in alongside your examination, so you leave with a proper clean and a fresh start.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="dn-register-price">
+          <span class="label">First visit from</span>
+          <span class="amount"><span class="currency">£</span>95</span>
+        </div>
+        <p class="dn-register-aside-note">
+          We confirm the cost of your first visit before anything goes ahead, so there are no surprises. NHS care is available when we have space, and children under 18 are examined free.
+        </p>
+      </aside>
+
+      <!-- ---------- The form as feature article ---------- -->
+      <div class="dn-register-form-wrap">
+
+        <p class="dn-register-urgent">
+          In pain right now? Don't wait to register —
+          <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        </p>
+
+        <form class="dn-register-form" onsubmit="return false;" novalidate>
+          <p class="dn-register-lead">
+            We're taking on new patients for <em>every treatment</em> we offer. Fill in the form below and we'll confirm your first appointment within one working hour.
+          </p>
+
+          <!-- progress -->
+          <div class="dn-register-progress">
+            <div class="dn-progress-step active" data-progress="1">
+              <span class="dn-progress-num">01</span>
+              <span class="dn-progress-label">Your Details</span>
+            </div>
+            <div class="dn-progress-step" data-progress="2">
+              <span class="dn-progress-num">02</span>
+              <span class="dn-progress-label">Your Care</span>
+            </div>
+          </div>
+
+          <!-- ===== STEP 1 ===== -->
+          <div class="dn-register-step is-active" data-step="1">
+            <div class="dn-register-step-head">
+              <span class="step-num">01</span>
+              <h3>Tell us about you</h3>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>First name *</span>
+                <input type="text" name="firstName" autocomplete="given-name" placeholder="Jane">
+              </label>
+              <label>
+                <span>Last name *</span>
+                <input type="text" name="lastName" autocomplete="family-name" placeholder="Doe">
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Date of birth</span>
+              <div class="dn-dob-grid">
+                <select class="dn-select" aria-label="Day of birth">
+                  <option value="">Day</option>
+                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                  <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                  <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                  <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                  <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                  <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                </select>
+                <select class="dn-select" aria-label="Month of birth">
+                  <option value="">Month</option>
+                  <option>January</option><option>February</option><option>March</option>
+                  <option>April</option><option>May</option><option>June</option>
+                  <option>July</option><option>August</option><option>September</option>
+                  <option>October</option><option>November</option><option>December</option>
+                </select>
+                <select class="dn-select" aria-label="Year of birth">
+                  <option value="">Year</option>
+                  <option>2008</option><option>2005</option><option>2000</option>
+                  <option>1995</option><option>1990</option><option>1985</option>
+                  <option>1980</option><option>1975</option><option>1970</option>
+                  <option>1965</option><option>1960</option><option>1955</option><option>1950</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>Phone *</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number">
+              </label>
+              <label>
+                <span>Email *</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+              </label>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>Address</span>
+                <input type="text" name="address" autocomplete="street-address" placeholder="Street address">
+              </label>
+              <label>
+                <span>Postcode</span>
+                <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH">
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <span class="dn-step-counter">Step 1 of 2</span>
+              <button type="button" class="dn-btn primary" data-next>
+                Continue <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== STEP 2 ===== -->
+          <div class="dn-register-step" data-step="2">
+            <div class="dn-register-step-head">
+              <span class="step-num">02</span>
+              <h3>How would you like to be seen?</h3>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label" id="care-type-label">Care type</span>
+              <div class="dn-form-radios" role="radiogroup" aria-labelledby="care-type-label">
+                <label class="dn-radio-card day checked">
+                  <input type="radio" name="careType" value="private" checked>
+                  <span class="title">Private</span>
+                  <span class="desc">Full choice of times and treatments</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="nhs">
+                  <span class="title">NHS</span>
+                  <span class="desc">When we have space</span>
+                </label>
+                <label class="dn-radio-card day">
+                  <input type="radio" name="careType" value="mixed">
+                  <span class="title">Either</span>
+                  <span class="desc">Whatever gets you seen soonest</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="unsure">
+                  <span class="title">Not sure yet</span>
+                  <span class="desc">We'll talk it through on the call</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="dn-form-row">
+              <label>
+                <span>Dentist preference</span>
+                <select class="dn-select" aria-label="Dentist preference">
+                  <option value="no-preference">No preference, just assign me someone</option>
+                  <option value="female">Female dentist preferred</option>
+                  <option value="male">Male dentist preferred</option>
+                  <option value="principal">Principal dentist if available</option>
+                  <option value="anxiety-trained">Dentist experienced with anxious patients</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <label>
+                <span>How did you hear about us?</span>
+                <select class="dn-select" aria-label="How did you hear about us?">
+                  <option value="">Optional</option>
+                  <option>Google search</option>
+                  <option>Friend or family</option>
+                  <option>Instagram</option>
+                  <option>Walked past the practice</option>
+                  <option>Existing patient</option>
+                  <option>Other</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <label class="dn-checkbox">
+                <input type="checkbox" name="consent">
+                <span>
+                  I'm happy for Day Night Dental to hold my information in line with the
+                  <a href="/privacy/" target="_blank" rel="noopener">privacy policy</a>,
+                  and to contact me about my registration.
+                </span>
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <button type="button" class="dn-btn dn-btn-ghost" data-back>
+                <span class="arrow-back">←</span> Back
+              </button>
+              <button type="submit" class="dn-btn primary">
+                Complete Registration <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Minimal progressive enhancement: step switch + radio-card state.
+   Default (no JS) leaves Step 1 visible and usable. */
+(function(){
+  var form = document.querySelector('.dn-register-form');
+  if(!form) return;
+  var steps = form.querySelectorAll('.dn-register-step');
+  var progress = form.querySelectorAll('.dn-progress-step');
+
+  function show(n){
+    steps.forEach(function(s){ s.classList.toggle('is-active', s.dataset.step === String(n)); });
+    progress.forEach(function(p){ p.classList.toggle('active', Number(p.dataset.progress) <= n); });
+    var head = form.querySelector('.dn-register-step.is-active .dn-register-step-head h3');
+    if(head){ head.setAttribute('tabindex','-1'); head.focus({preventScroll:true}); }
+    form.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  var nextBtn = form.querySelector('[data-next]');
+  var backBtn = form.querySelector('[data-back]');
+  if(nextBtn) nextBtn.addEventListener('click', function(){ show(2); });
+  if(backBtn) backBtn.addEventListener('click', function(){ show(1); });
+
+  /* care-type radio cards: reflect selection via .checked */
+  form.querySelectorAll('input[name="careType"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      form.querySelectorAll('.dn-radio-card').forEach(function(c){ c.classList.remove('checked'); });
+      r.closest('.dn-radio-card').classList.add('checked');
+    });
+  });
+})();
+</script>
+</body>
+</html>

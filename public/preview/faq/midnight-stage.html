@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+
+<title>Midnight Stage — Common Questions · Day Night Dental</title>
+<style>
+/* ----------------------------------------------------------------------------
+   MIDNIGHT STAGE — full-bleed cinematic FAQ
+   A near-black band breaks out of the container; questions read as faint stars
+   on the left, the active one ignites a gold radial lightwell on the right.
+---------------------------------------------------------------------------- */
+
+.dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
+.dn-container{width:min(100% - 2.5rem, var(--container));margin-inline:auto;}
+
+/* ---- masthead (centred head) ---- */
+.tp-section-head.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;margin-bottom:clamp(2.25rem,5vw,3.5rem);}
+.dn-display{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,5.2vw,3.35rem);line-height:1.08;letter-spacing:-.01em;margin:0;max-width:18ch;text-wrap:balance;}
+
+/* ---- the stage: full-bleed band ---- */
+.dn-faq-stage{
+  position:relative;
+  width:100vw;
+  margin-inline:calc(50% - 50vw);
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,.018), transparent 60%),
+    linear-gradient(180deg,#0c0c10 0%,var(--dn-near-black) 40%,#08080a 100%);
+  border-top:1px solid var(--dn-mist);
+  border-bottom:1px solid var(--dn-mist);
+  overflow:hidden;
+}
+/* gold lightwell — a single radial glow, NO gradient fill */
+.dn-faq-stage::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(58% 64% at 72% 40%,
+    color-mix(in srgb,var(--dn-day) 15%,transparent),
+    color-mix(in srgb,var(--dn-day) 5%,transparent) 42%,
+    transparent 72%);
+  transition:opacity .5s ease;
+}
+/* hairline horizon + low vignette for cinematic depth */
+.dn-faq-stage::after{
+  content:"";position:absolute;left:0;right:0;top:50%;height:1px;z-index:0;
+  background:linear-gradient(90deg,transparent,var(--dn-mist) 22%,var(--dn-mist) 78%,transparent);
+  opacity:.6;pointer-events:none;
+}
+.dn-faq-vignette{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(130% 120% at 50% 50%,transparent 52%,rgba(0,0,0,.55) 100%);
+}
+/* faint star specks scattered in the dark */
+.dn-faq-stars{
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1px 1px at 28% 68%, rgba(255,255,255,.28), transparent),
+    radial-gradient(1.2px 1.2px at 47% 16%, rgba(255,255,255,.30), transparent),
+    radial-gradient(1px 1px at 63% 80%, rgba(255,255,255,.22), transparent),
+    radial-gradient(1.5px 1.5px at 85% 30%, rgba(248,199,96,.45), transparent),
+    radial-gradient(1px 1px at 92% 64%, rgba(255,255,255,.25), transparent),
+    radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,.2), transparent),
+    radial-gradient(1.3px 1.3px at 70% 12%, rgba(255,255,255,.28), transparent);
+}
+
+/* ---- two-column stage layout ---- */
+.dn-faq-side{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:minmax(230px,.82fr) 1.4fr;
+  gap:clamp(20px,4vw,64px);
+  align-items:start;
+  width:min(100% - 2.5rem, var(--container));
+  margin-inline:auto;
+  padding:clamp(36px,6vw,84px) 0;
+}
+
+/* ---- left rail: questions as stars ---- */
+.dn-faq-nav{display:flex;flex-direction:column;gap:4px;}
+.dn-faq-rail-label{
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dn-bone-faint);padding:0 16px;margin:0 0 14px;
+}
+.dn-faq-q{
+  display:flex;align-items:center;gap:13px;min-height:48px;
+  padding:12px 16px;border:0;border-radius:var(--dn-r-card);
+  background:transparent;color:var(--dn-bone-dim);
+  font:600 .98rem/1.32 var(--font-body);text-align:left;
+  cursor:pointer;width:100%;
+  transition:color .25s,background .25s,box-shadow .25s;
+}
+.dn-faq-q::before{
+  content:"";flex:none;width:7px;height:7px;border-radius:50%;
+  background:var(--dn-mist);
+  transition:background .25s,box-shadow .25s,transform .25s;
+}
+.dn-faq-q:hover,.dn-faq-q:focus-visible{
+  color:var(--dn-bone);outline:none;
+  background:color-mix(in srgb,var(--dn-day) 8%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 45%,transparent),
+             0 0 28px -4px color-mix(in srgb,var(--dn-day) 42%,transparent);
+}
+.dn-faq-q:hover::before,.dn-faq-q:focus-visible::before{
+  background:color-mix(in srgb,var(--dn-day) 70%,var(--dn-bone));
+}
+.dn-faq-q.on{
+  color:var(--dn-bone);
+  background:color-mix(in srgb,var(--dn-day) 11%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-day) 24%,transparent);
+}
+.dn-faq-q.on::before{
+  background:var(--dn-day);transform:scale(1.05);
+  box-shadow:0 0 12px 1px color-mix(in srgb,var(--dn-day) 80%,transparent),
+             0 0 26px 4px color-mix(in srgb,var(--dn-day) 35%,transparent);
+}
+
+/* ---- right: the answer well ---- */
+.dn-faq-panel{position:relative;min-height:260px;}
+.dn-faq-well{
+  position:relative;
+  border:1px solid color-mix(in srgb,var(--dn-day) 22%,var(--dn-mist));
+  border-radius:var(--dn-r-card);
+  background:
+    radial-gradient(80% 80% at 28% 18%, color-mix(in srgb,var(--dn-day) 7%,transparent), transparent 70%),
+    var(--dn-charcoal);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02),
+    0 0 60px -14px color-mix(in srgb,var(--dn-day) 34%,transparent),
+    inset 0 1px 0 rgba(255,255,255,.04);
+  padding:clamp(26px,4vw,46px);
+}
+.dn-faq-well::before{
+  content:"";position:absolute;left:clamp(26px,4vw,46px);top:clamp(22px,3.5vw,40px);
+  width:34px;height:2px;border-radius:2px;background:var(--dn-day);
+  box-shadow:0 0 12px color-mix(in srgb,var(--dn-day) 70%,transparent);
+}
+.dn-faq-ord{
+  display:block;font-family:var(--font-display);font-weight:600;
+  font-size:.78rem;letter-spacing:.18em;color:var(--dn-day);
+  margin:24px 0 16px;text-transform:uppercase;
+}
+.dn-faq-a{display:none;}
+.dn-faq-a.on{display:block;animation:dn-fade-up .42s ease;}
+.dn-faq-a .q{
+  font:340 clamp(1.4rem,3vw,2.05rem)/1.16 var(--font-display);
+  color:var(--dn-bone);margin:0 0 18px;max-width:22ch;letter-spacing:-.01em;
+}
+.dn-faq-a .a{
+  font:400 clamp(1rem,1.3vw,1.06rem)/1.72 var(--font-body);
+  color:var(--dn-bone-dim);margin:0;max-width:48ch;
+}
+@keyframes dn-fade-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* ---- foot CTA on the same stage ---- */
+.dn-faq-foot{
+  position:relative;z-index:1;text-align:center;
+  width:min(100% - 2.5rem, var(--container));margin:0 auto;
+  padding:0 0 clamp(36px,6vw,72px);
+  color:var(--dn-bone-dim);font-size:1.02rem;
+}
+.dn-faq-foot a{
+  color:var(--dn-day);text-decoration:none;font-weight:600;
+  border-bottom:1px solid color-mix(in srgb,var(--dn-day) 40%,transparent);
+  padding-bottom:1px;transition:border-color .2s,text-shadow .2s;
+}
+.dn-faq-foot a:hover{
+  border-bottom-color:var(--dn-day);
+  text-shadow:0 0 18px color-mix(in srgb,var(--dn-day) 55%,transparent);
+}
+
+/* ---- mobile: star-row of pill tabs above one well ---- */
+@media (max-width:760px){
+  .dn-faq-side{grid-template-columns:1fr;gap:22px;padding-top:clamp(28px,8vw,48px);}
+  .dn-faq-rail-label{padding:0 2px;margin-bottom:10px;}
+  .dn-faq-nav{
+    flex-direction:row;flex-wrap:nowrap;gap:9px;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:6px;margin-inline:-2px;
+    scrollbar-width:none;
+  }
+  .dn-faq-nav::-webkit-scrollbar{display:none;}
+  .dn-faq-q{
+    scroll-snap-align:start;flex:0 0 auto;min-height:44px;
+    border:1px solid var(--dn-mist);border-radius:999px;
+    padding:10px 16px;font-size:.86rem;max-width:78vw;
+  }
+  .dn-faq-q .q-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:62vw;}
+  .dn-faq-q.on{border-color:color-mix(in srgb,var(--dn-day) 55%,transparent);}
+  .dn-faq-stage::after{display:none;}
+  .dn-faq-stage::before{background:radial-gradient(75% 45% at 50% 64%,
+      color-mix(in srgb,var(--dn-day) 16%,transparent),transparent 72%);}
+  .dn-faq-well::before{display:none;}
+  .dn-faq-ord{margin-top:0;}
+}
+@media (min-width:761px){
+  .dn-faq-q .q-text{display:inline;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-faq-a.on{animation:none;}
+  *{transition-duration:.01ms !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-top">
+  <a href="/preview/">← all designs</a>
+  <div class="lab-meta"><span class="lab-rank">#6</span> <b>Midnight Stage</b> <span class="lab-lens">Immersive</span></div>
+  <span></span>
+</div>
+
+<section class="dn-section dn-faq" aria-labelledby="faq-heading">
+  <div class="dn-container">
+    <div class="tp-section-head dn-center-head">
+      <span class="dn-eyebrow dn-pill day">Common Questions</span>
+      <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+    </div>
+  </div>
+
+  <div class="dn-faq-stage">
+    <div class="dn-faq-stars" aria-hidden="true"></div>
+    <div class="dn-faq-vignette" aria-hidden="true"></div>
+
+    <div class="dn-faq-side">
+      <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions">
+        <p class="dn-faq-rail-label" aria-hidden="true">Choose a question</p>
+
+        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">
+          <span class="q-text">Is there an emergency dentist open now in Glasgow?</span>
+        </button>
+        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">
+          <span class="q-text">Are you taking on new patients?</span>
+        </button>
+        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">
+          <span class="q-text">Where is the practice and where can I park?</span>
+        </button>
+        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">
+          <span class="q-text">What are your opening hours?</span>
+        </button>
+      </div>
+
+      <div class="dn-faq-panel">
+        <div class="dn-faq-well">
+          <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
+            <span class="dn-faq-ord" aria-hidden="true">Question 01 · Emergency care</span>
+            <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
+            <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+          </div>
+          <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a">
+            <span class="dn-faq-ord" aria-hidden="true">Question 02 · New patients</span>
+            <h3 class="q">Are you taking on new patients?</h3>
+            <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+          </div>
+          <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a">
+            <span class="dn-faq-ord" aria-hidden="true">Question 03 · Finding us</span>
+            <h3 class="q">Where is the practice and where can I park?</h3>
+            <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+          </div>
+          <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a">
+            <span class="dn-faq-ord" aria-hidden="true">Question 04 · Opening hours</span>
+            <h3 class="q">What are your opening hours?</h3>
+            <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="dn-faq-foot">
+      Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.
+    </p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-q'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
+  if(!tabs.length) return;
+
+  function activate(i, focus){
+    tabs.forEach(function(t, n){
+      var on = n === i;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p, n){ p.classList.toggle('on', n === i); });
+    if(focus) tabs[i].focus();
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ activate(i, false); });
+    tab.addEventListener('keydown', function(e){
+      var last = tabs.length - 1, next = null;
+      if(e.key === 'ArrowDown' || e.key === 'ArrowRight') next = i === last ? 0 : i + 1;
+      else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = i === 0 ? last : i - 1;
+      else if(e.key === 'Home') next = 0;
+      else if(e.key === 'End') next = last;
+      if(next !== null){ e.preventDefault(); activate(next, true); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Gold Masthead — The Practitioners · Day Night Dental</title>
+<style>
+/* ============ Section shell ============ */
+.dn-section{padding:clamp(4rem,9vw,8rem) 0;position:relative;}
+.dn-team{background:var(--dn-near-black);position:relative;overflow:hidden;}
+/* one soft, single-colour gold wash — no gradient across accents */
+.dn-team::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 60% at 78% -8%,rgba(248,199,96,.07),transparent 60%);pointer-events:none;}
+.dn-container{width:min(var(--container),100% - 2.5rem);margin-inline:auto;position:relative;z-index:1;}
+
+/* ============ Section head ============ */
+.dn-section-head{max-width:54ch;}
+.dn-display{font-family:var(--font-display);font-weight:600;line-height:1.02;letter-spacing:-.015em;font-size:clamp(2.3rem,5.4vw,4rem);margin:1.1rem 0 0;}
+.dn-section-lead{color:var(--dn-bone-dim);font-size:clamp(1rem,1.3vw,1.15rem);max-width:52ch;margin:1.25rem 0 0;}
+.dn-mast-baseline{display:flex;align-items:center;gap:.85rem;margin-top:1.9rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-variant-numeric:tabular-nums;}
+.dn-mast-baseline::after{content:"";flex:1;height:1px;background:var(--dn-mist);}
+
+/* ============ Masthead roster (rank #5 keyCss) ============ */
+.dn-roster{display:grid;gap:0;margin-top:clamp(2rem,5vw,4rem);}
+.dn-roster-row{--acc:var(--dn-day);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(1rem,3vw,2.5rem);padding:clamp(1.4rem,4vw,2.8rem) clamp(.4rem,1.4vw,1.2rem);border-top:1px solid var(--dn-mist);border-radius:var(--dn-r-card);transition:box-shadow .4s ease,background .4s ease;outline:none;}
+.dn-roster-row.night{--acc:var(--dn-night);}
+.dn-roster-row:last-child{border-bottom:1px solid var(--dn-mist);}
+
+.dn-roster-idx{font-family:var(--font-display);font-size:clamp(1rem,2vw,1.4rem);color:var(--acc);letter-spacing:.04em;font-variant-numeric:tabular-nums;align-self:start;padding-top:.35rem;}
+
+.dn-roster-body{min-width:0;}
+.dn-roster-name{font-family:var(--font-display);font-weight:700;line-height:.92;font-size:clamp(2rem,7.2vw,5.2rem);margin:0;color:transparent;-webkit-text-stroke:1px var(--dn-bone);text-stroke:1px var(--dn-bone);letter-spacing:-.01em;transition:color .4s ease,-webkit-text-stroke-color .4s ease;}
+.dn-roster-meta{font-family:var(--font-body);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-dim);margin:.7rem 0 0;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
+.dn-roster-meta .dot{width:4px;height:4px;border-radius:50%;background:var(--acc);flex:none;}
+.dn-roster-meta .gdc{color:var(--dn-bone-faint);}
+
+.dn-roster-disc{width:clamp(64px,10vw,112px);aspect-ratio:1;border-radius:50%;border:1px solid var(--dn-mist);overflow:hidden;display:grid;place-items:center;color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--dn-charcoal));transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s ease;flex:none;}
+.dn-roster-disc svg{width:62%;height:62%;}
+
+@media (hover:hover){
+  .dn-roster-row:hover,.dn-roster-row:focus-within{background:color-mix(in srgb,var(--acc) 5%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 34px -4px color-mix(in srgb,var(--acc) 42%,transparent);}
+}
+.dn-roster-row:hover .dn-roster-name,.dn-roster-row:focus-within .dn-roster-name,.dn-roster-row.is-active .dn-roster-name{color:var(--acc);-webkit-text-stroke-color:transparent;text-stroke-color:transparent;}
+.dn-roster-row:hover .dn-roster-disc,.dn-roster-row:focus-within .dn-roster-disc,.dn-roster-row.is-active .dn-roster-disc{transform:scale(1.06);border-color:color-mix(in srgb,var(--acc) 70%,transparent);}
+/* touch/active fallback so the statement still fires without hover */
+.dn-roster-row.is-active{background:color-mix(in srgb,var(--acc) 5%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 34px -4px color-mix(in srgb,var(--acc) 42%,transparent);}
+
+/* ============ Mobile (rank #5 layoutMobile) ============ */
+@media (max-width:640px){
+  .dn-roster-row{grid-template-columns:auto auto;grid-template-areas:"disc idx" "name name" "meta meta";align-items:center;gap:.6rem clamp(.8rem,4vw,1.4rem);padding:clamp(1.6rem,7vw,2.2rem) .15rem;}
+  .dn-roster-disc{grid-area:disc;}
+  .dn-roster-idx{grid-area:idx;justify-self:start;align-self:center;padding-top:0;}
+  .dn-roster-body{grid-area:name;}
+  .dn-roster-name{margin-top:.4rem;}
+  .dn-roster-meta{grid-area:meta;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-roster-row,.dn-roster-disc,.dn-roster-name{transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#5</span> <b>Gold Masthead</b> <span class="lab-lens">Statement</span></div><span></span></div>
+
+<section id="team" class="dn-section dn-team">
+  <div class="dn-container">
+    <div class="dn-section-head">
+      <span class="dn-eyebrow dn-pill day">The Practitioners</span>
+      <h2 class="dn-display">The people behind your <em class="dn-hl-gold">smile</em></h2>
+      <p class="dn-section-lead">
+        Our dentists are GDC-registered and experienced across emergency, restorative
+        and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
+      </p>
+      <p class="dn-mast-baseline">GDC-Registered · 03 Practitioners</p>
+    </div>
+
+    <div class="dn-roster">
+
+      <article class="dn-roster-row day" tabindex="0">
+        <span class="dn-roster-idx">01</span>
+        <div class="dn-roster-body">
+          <h3 class="dn-roster-name">Dr Willie Chang</h3>
+          <p class="dn-roster-meta"><span>Principal Dentist</span><span class="dot" aria-hidden="true"></span><span class="gdc">GDC No. 296929</span></p>
+        </div>
+        <div class="dn-roster-disc" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="25" r="11"/>
+            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="dn-roster-row night" tabindex="0">
+        <span class="dn-roster-idx">02</span>
+        <div class="dn-roster-body">
+          <h3 class="dn-roster-name">Dr Pei Hsin Chiang</h3>
+          <p class="dn-roster-meta"><span>Dentist</span><span class="dot" aria-hidden="true"></span><span class="gdc">GDC No. 333443</span></p>
+        </div>
+        <div class="dn-roster-disc" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="25" r="11"/>
+            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="dn-roster-row day" tabindex="0">
+        <span class="dn-roster-idx">03</span>
+        <div class="dn-roster-body">
+          <h3 class="dn-roster-name">Dr Chia-Hsuan Lee</h3>
+          <p class="dn-roster-meta"><span>Dentist</span><span class="dot" aria-hidden="true"></span><span class="gdc">GDC No. 310152</span></p>
+        </div>
+        <div class="dn-roster-disc" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="25" r="11"/>
+            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
+          </svg>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<script>
+// Default state is fully visible/usable without JS. This only adds a touch
+// affordance so the "outline → solid fill" statement also fires on tap,
+// since the spec calls for the accent to be reachable on touch devices.
+(function(){
+  var rows = document.querySelectorAll('.dn-roster-row');
+  if (!('ontouchstart' in window) && !navigator.maxTouchPoints) return;
+  rows.forEach(function(row){
+    row.addEventListener('touchstart', function(){
+      rows.forEach(function(r){ if (r !== row) r.classList.remove('is-active'); });
+      row.classList.toggle('is-active');
+    }, {passive:true});
+  });
+})();
+</script>
+</body>
+</html>

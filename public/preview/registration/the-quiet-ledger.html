@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+
+<title>The Quiet Ledger · Register with the practice — Day Night Dental</title>
+
+<style>
+/* ============================================================
+   THE QUIET LEDGER — rank #2 · lens: minimal
+   No cards. No filled panels. No glow blobs.
+   Pure negative space + 1px --dn-mist hairlines.
+   Gold appears EXACTLY twice: one progress tick, one £95 total.
+   ============================================================ */
+
+.dn-container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem);}
+
+.dn-register{position:relative;padding-block:clamp(4rem,8vw,8rem);}
+
+/* ---- Section head ---- */
+.dn-section-head{max-width:62ch;margin-bottom:clamp(2.5rem,5vw,4rem);}
+.dn-section-head .dn-eyebrow{margin-bottom:1.5rem;}
+.dn-display{font-family:var(--font-display);font-weight:430;letter-spacing:-.02em;line-height:1.02;margin:0;}
+.dn-section-head .dn-display{font-size:clamp(2.4rem,5.2vw,3.9rem);}
+.dn-section-lead{margin:1.5rem 0 0;color:var(--dn-bone-dim);font-size:clamp(1rem,1.4vw,1.12rem);max-width:54ch;}
+.dn-register-urgent{margin:1.1rem 0 0;font-size:.95rem;color:var(--dn-bone-faint);}
+.dn-register-urgent a{color:var(--dn-day);text-decoration:none;border-bottom:1px solid rgba(248,199,96,.32);padding-bottom:1px;transition:border-color .25s;}
+.dn-register-urgent a:hover{border-color:var(--dn-day);}
+
+/* ---- The single document: one hairline frame, one inner divide ---- */
+.dn-register-grid{display:grid;grid-template-columns:5fr 7fr;gap:0;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);overflow:hidden;}
+
+.dn-register-aside-inner,
+.dn-register-form{background:transparent;border:0;border-radius:0;padding:clamp(2rem,4vw,3.5rem);}
+.dn-register-aside-inner{border-right:1px solid var(--dn-mist);height:100%;display:flex;flex-direction:column;}
+.dn-register-aside-inner::before,.dn-register-form::before{display:none;}
+
+/* ---- The aside ledger ---- */
+.dn-register-aside-inner .dn-eyebrow.day{display:inline-block;font-family:var(--font-body);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-day);font-weight:600;margin-bottom:.9rem;}
+.dn-register-aside-inner h3.dn-display{font-size:clamp(1.6rem,2.6vw,2.15rem);margin-bottom:1.75rem;}
+
+.dn-register-includes{list-style:none;margin:0;padding:0;}
+.dn-register-includes li{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:1.5rem;border-bottom:1px solid var(--dn-mist);padding:1.4rem 0;}
+.dn-register-includes li:first-child{border-top:1px solid var(--dn-mist);}
+.dn-register-includes .num{font-family:var(--font-display);color:var(--dn-bone-dim);font-size:1.1rem;line-height:1.3;font-feature-settings:"tnum" 1;letter-spacing:.02em;}
+.dn-register-includes h4{margin:0 0 .35rem;font-family:var(--font-body);font-size:1rem;font-weight:600;letter-spacing:-.005em;color:var(--dn-bone);}
+.dn-register-includes p{margin:0;font-size:.86rem;line-height:1.55;color:var(--dn-bone-faint);}
+
+/* ---- The ledger total: gold appears here (1 of 2) ---- */
+.dn-register-aside-foot{margin-top:auto;}
+.dn-register-price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--dn-mist);padding-top:1.6rem;margin-top:1.8rem;gap:1rem;}
+.dn-register-price .label{font-family:var(--font-body);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-register-price .amount{font-family:var(--font-display);font-size:clamp(2rem,3.4vw,2.6rem);line-height:1;color:var(--dn-day);-webkit-text-fill-color:var(--dn-day);letter-spacing:-.01em;}
+.dn-register-price .amount .currency{font-size:.6em;margin-right:.06em;vertical-align:.08em;}
+.dn-register-aside-note{margin:1.2rem 0 0;font-size:.78rem;line-height:1.55;color:var(--dn-bone-faint);}
+
+/* ---- Progress rail: slim hairline, single gold tick (gold 2 of 2) ---- */
+.dn-register-progress{display:flex;gap:2.5rem;border:0;padding:0 0 2rem;margin-bottom:2.5rem;border-bottom:1px solid var(--dn-mist);}
+.dn-progress-step{border:0;background:none;opacity:.4;padding:0 0 0 1.25rem;position:relative;display:flex;flex-direction:column;gap:.15rem;transition:opacity .3s;}
+.dn-progress-step.active{opacity:1;}
+.dn-progress-step.active::before{content:'';position:absolute;left:0;top:.5rem;width:6px;height:6px;border-radius:50%;background:var(--dn-day);}
+.dn-progress-num{font-family:var(--font-display);font-size:.78rem;color:var(--dn-bone-faint);letter-spacing:.04em;}
+.dn-progress-step.active .dn-progress-num{color:var(--dn-bone-dim);}
+.dn-progress-label{font-size:.82rem;letter-spacing:.01em;color:var(--dn-bone-dim);}
+
+/* ---- Form in negative space: no inner panel, generous rhythm ---- */
+.dn-register-step{margin-bottom:0;}
+.dn-step-divide{border:0;border-top:1px solid var(--dn-mist);margin:3.25rem 0 3rem;}
+.dn-register-step > h3.dn-display{font-size:clamp(1.45rem,2.4vw,1.85rem);margin:0 0 2rem;}
+
+.dn-form-row{margin-bottom:2.25rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;}
+.dn-form-row:last-child{margin-bottom:0;}
+
+label{display:block;}
+.dn-register-form label > span,
+.dn-form-label{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:.7rem;font-weight:500;}
+
+.dn-register-form input{width:100%;min-height:48px;background:transparent;border:0;border-bottom:1px solid var(--dn-mist);border-radius:0;color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;padding:.55rem 0;transition:border-color .25s,box-shadow .25s;}
+.dn-register-form input::placeholder{color:rgba(255,255,255,.28);}
+.dn-register-form input:focus{outline:none;border-color:var(--dn-day);box-shadow:0 1px 0 0 var(--dn-day);}
+
+/* DOB triple */
+.dn-dob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.dn-select{position:relative;}
+.dn-select select{width:100%;min-height:48px;background:transparent;border:0;border-bottom:1px solid var(--dn-mist);border-radius:0;color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;padding:.55rem 1.8rem .55rem 0;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .25s,box-shadow .25s;}
+.dn-select select:focus{outline:none;border-color:var(--dn-day);box-shadow:0 1px 0 0 var(--dn-day);}
+.dn-select::after{content:'';position:absolute;right:.3rem;top:50%;width:7px;height:7px;border-right:1px solid var(--dn-bone-faint);border-bottom:1px solid var(--dn-bone-faint);transform:translateY(-65%) rotate(45deg);pointer-events:none;}
+.dn-select select option{background:var(--dn-charcoal);color:var(--dn-bone);}
+.dn-select select:invalid,.dn-select select [value=""]{color:var(--dn-bone-faint);}
+
+/* Care-type radios — hairline tiles, gold day / blue night sides */
+.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.dn-radio-card{position:relative;display:flex;flex-direction:column;gap:.3rem;padding:1.15rem 1.2rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);cursor:pointer;min-height:44px;transition:border-color .25s,box-shadow .25s;}
+.dn-radio-card input{position:absolute;opacity:0;width:0;height:0;margin:0;}
+.dn-radio-card .title{font-family:var(--font-display);font-size:1.08rem;font-weight:500;}
+.dn-radio-card .desc{font-size:.8rem;color:var(--dn-bone-faint);line-height:1.4;}
+.dn-radio-card.checked.day{border-color:var(--dn-day);box-shadow:0 0 0 1px var(--dn-day);}
+.dn-radio-card.checked.day .title{color:var(--dn-day);}
+.dn-radio-card.checked.night{border-color:var(--dn-night);box-shadow:0 0 0 1px var(--dn-night);}
+.dn-radio-card.checked.night .title{color:var(--dn-night-soft);}
+@media(hover:hover){
+  .dn-radio-card.day:hover{border-color:var(--dn-day);box-shadow:0 0 0 1px var(--dn-day),0 0 22px -8px rgba(248,199,96,.4);}
+  .dn-radio-card.night:hover{border-color:var(--dn-night);box-shadow:0 0 0 1px var(--dn-night),0 0 22px -8px rgba(69,144,236,.4);}
+}
+
+/* Consent checkbox */
+.dn-checkbox{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;cursor:pointer;}
+.dn-checkbox input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:.2rem 0 0;border:1px solid var(--dn-mist);border-radius:5px;background:transparent;cursor:pointer;position:relative;flex:none;transition:border-color .25s;}
+.dn-checkbox input:checked{border-color:var(--dn-day);}
+.dn-checkbox input:checked::after{content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;border-right:2px solid var(--dn-day);border-bottom:2px solid var(--dn-day);transform:rotate(42deg);}
+.dn-checkbox input:focus-visible{outline:2px solid var(--dn-day);outline-offset:2px;}
+.dn-checkbox span{font-size:.86rem;line-height:1.55;color:var(--dn-bone-dim);}
+.dn-checkbox a{color:var(--dn-day);text-decoration:none;border-bottom:1px solid rgba(248,199,96,.3);}
+
+/* Actions */
+.dn-register-actions{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-top:2.5rem;}
+.dn-step-counter{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.75rem 1.5rem;border-radius:999px;font-family:var(--font-body);font-size:.95rem;font-weight:600;letter-spacing:.01em;cursor:pointer;border:1px solid transparent;background:none;color:var(--dn-bone);transition:box-shadow .25s,border-color .25s,background .25s;}
+.dn-btn .arrow,.dn-btn .arrow-back{display:inline-block;transition:transform .25s;}
+.dn-btn.primary{background:var(--dn-day);color:var(--dn-near-black);}
+.dn-btn.primary:hover{box-shadow:0 0 0 1px var(--dn-day),0 0 28px -6px rgba(248,199,96,.55);}
+.dn-btn.primary:hover .arrow{transform:translateX(3px);}
+.dn-btn.dn-btn-ghost{border-color:var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-btn.dn-btn-ghost:hover{border-color:var(--dn-bone-faint);color:var(--dn-bone);}
+.dn-btn.dn-btn-ghost:hover .arrow-back{transform:translateX(-3px);}
+.dn-form-row-actions{margin-left:auto;}
+
+/* ---- Responsive ---- */
+@media(max-width:860px){
+  .dn-register-grid{grid-template-columns:1fr;border-left:0;border-right:0;border-radius:0;}
+  .dn-register-aside-inner{border-right:0;border-bottom:1px solid var(--dn-mist);}
+}
+@media(max-width:560px){
+  .dn-form-row-2{grid-template-columns:1fr;gap:0;}
+  .dn-form-row-2 label{margin-bottom:2.25rem;}
+  .dn-form-row-2 label:last-child{margin-bottom:0;}
+  .dn-form-radios{grid-template-columns:1fr;}
+  .dn-dob-grid{gap:.65rem;}
+  .dn-register-progress{gap:1.5rem;}
+  .dn-register-actions{gap:.85rem;}
+  .dn-form-row-actions{margin-left:0;}
+  .dn-register-form input,.dn-select select{min-height:48px;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#2</span> <b>The Quiet Ledger</b> <span class="lab-lens">MINIMAL</span></div><span></span></div>
+
+<section id="register" class="dn-register">
+  <div class="dn-container">
+    <div class="dn-section-head">
+      <span class="dn-eyebrow dn-pill day">New Patients</span>
+      <h2 class="dn-display">Register with the <em class="dn-hl-gold">practice</em></h2>
+      <p class="dn-section-lead">We’re taking on new patients for every treatment we offer. Fill in the form below and we’ll confirm your first appointment within one working hour.</p>
+      <p class="dn-register-urgent">In pain right now? Don’t wait to register, <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.</p>
+    </div>
+
+    <div class="dn-register-grid">
+      <!-- Left: the quiet ledger -->
+      <aside class="dn-register-aside">
+        <div class="dn-register-aside-inner">
+          <span class="dn-eyebrow day">What’s Included</span>
+          <h3 class="dn-display">Your first visit</h3>
+
+          <ul class="dn-register-includes">
+            <li>
+              <span class="num">01</span>
+              <div>
+                <h4>Comprehensive examination</h4>
+                <p>A full assessment with intra-oral scans and bite analysis. That’s 45 minutes with your assigned dentist.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div>
+                <h4>Digital x-rays</h4>
+                <p>Low-dose digital imaging when it’s clinically needed. There are no films to develop, so you won’t be left waiting.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div>
+                <h4>Personalised treatment plan</h4>
+                <p>You’ll get a written plan with the cost of each item set out before any work starts, so you always know where you stand.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">04</span>
+              <div>
+                <h4>Hygiene appointment</h4>
+                <p>We book this in alongside your examination, so you leave with a proper clean and a fresh start.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="dn-register-aside-foot">
+            <div class="dn-register-price">
+              <span class="label">First visit from</span>
+              <span class="amount"><span class="currency">£</span>95</span>
+            </div>
+            <p class="dn-register-aside-note">We confirm the cost of your first visit before anything goes ahead, so there are no surprises. NHS care is available when we have space, and children under 18 are examined free.</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right: the form, floating in negative space -->
+      <div class="dn-register-form-wrap">
+        <form class="dn-register-form" onsubmit="return false;" novalidate>
+          <!-- Progress: slim hairline rail, single gold tick -->
+          <div class="dn-register-progress">
+            <div class="dn-progress-step active" aria-current="step">
+              <span class="dn-progress-num">01</span>
+              <span class="dn-progress-label">Your Details</span>
+            </div>
+            <div class="dn-progress-step">
+              <span class="dn-progress-num">02</span>
+              <span class="dn-progress-label">Your Care</span>
+            </div>
+          </div>
+
+          <!-- Step 1 -->
+          <div class="dn-register-step">
+            <h3 class="dn-display">Tell us about you</h3>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>First name *</span>
+                <input type="text" name="firstName" autocomplete="given-name" placeholder="Jane">
+              </label>
+              <label>
+                <span>Last name *</span>
+                <input type="text" name="lastName" autocomplete="family-name" placeholder="Macdonald">
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Date of birth</span>
+              <div class="dn-dob-grid">
+                <div class="dn-select">
+                  <select aria-label="Day of birth">
+                    <option value="">Day</option>
+                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                    <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                    <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                  </select>
+                </div>
+                <div class="dn-select">
+                  <select aria-label="Month of birth">
+                    <option value="">Month</option>
+                    <option>January</option><option>February</option><option>March</option><option>April</option>
+                    <option>May</option><option>June</option><option>July</option><option>August</option>
+                    <option>September</option><option>October</option><option>November</option><option>December</option>
+                  </select>
+                </div>
+                <div class="dn-select">
+                  <select aria-label="Year of birth">
+                    <option value="">Year</option>
+                    <option>2008</option><option>2000</option><option>1995</option><option>1990</option>
+                    <option>1985</option><option>1980</option><option>1975</option><option>1970</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>Phone *</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number">
+              </label>
+              <label>
+                <span>Email *</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+              </label>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label>
+                <span>Address</span>
+                <input type="text" name="address" autocomplete="street-address" placeholder="Street address">
+              </label>
+              <label>
+                <span>Postcode</span>
+                <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH">
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <span class="dn-step-counter">Step 1 of 2</span>
+              <button type="button" class="dn-btn primary dn-form-row-actions">Continue <span class="arrow">→</span></button>
+            </div>
+          </div>
+
+          <hr class="dn-step-divide">
+
+          <!-- Step 2 -->
+          <div class="dn-register-step">
+            <h3 class="dn-display">How would you like to be seen?</h3>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label" id="care-type-label">Care type</span>
+              <div class="dn-form-radios" role="radiogroup" aria-labelledby="care-type-label">
+                <label class="dn-radio-card day checked">
+                  <input type="radio" name="careType" value="private" checked>
+                  <span class="title">Private</span>
+                  <span class="desc">Full choice of times and treatments</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="nhs">
+                  <span class="title">NHS</span>
+                  <span class="desc">When we have space</span>
+                </label>
+                <label class="dn-radio-card day">
+                  <input type="radio" name="careType" value="mixed">
+                  <span class="title">Either</span>
+                  <span class="desc">Whatever gets you seen soonest</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="unsure">
+                  <span class="title">Not sure yet</span>
+                  <span class="desc">We’ll talk it through on the call</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Dentist preference</span>
+              <div class="dn-select">
+                <select aria-label="Dentist preference">
+                  <option value="no-preference">No preference, just assign me someone</option>
+                  <option value="female">Female dentist preferred</option>
+                  <option value="male">Male dentist preferred</option>
+                  <option value="principal">Principal dentist if available</option>
+                  <option value="anxiety-trained">Dentist experienced with anxious patients</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">How did you hear about us?</span>
+              <div class="dn-select">
+                <select aria-label="How did you hear about us?">
+                  <option value="">Optional</option>
+                  <option>Google search</option>
+                  <option>Friend or family</option>
+                  <option>Instagram</option>
+                  <option>Walked past the practice</option>
+                  <option>Existing patient</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="dn-form-row">
+              <label class="dn-checkbox">
+                <input type="checkbox" name="consent">
+                <span>I’m happy for Day Night Dental to hold my information in line with the <a href="/privacy/" target="_blank" rel="noopener">privacy policy</a>, and to contact me about my registration.</span>
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <button type="button" class="dn-btn dn-btn-ghost"><span class="arrow-back">←</span> Back</button>
+              <button type="button" class="dn-btn primary dn-form-row-actions">Complete Registration <span class="arrow">→</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Minimal vanilla interaction — the page is fully visible/usable without it.
+   Care-type radio cards toggle their gold/blue 'checked' ring; the progress
+   tick + £95 total remain the only two gold marks at all times. */
+(function(){
+  var cards = document.querySelectorAll('.dn-radio-card');
+  cards.forEach(function(card){
+    var input = card.querySelector('input');
+    input.addEventListener('change', function(){
+      cards.forEach(function(c){ c.classList.remove('checked'); });
+      if (input.checked) card.classList.add('checked');
+    });
+  });
+})();
+</script>
+</body>
+</html>

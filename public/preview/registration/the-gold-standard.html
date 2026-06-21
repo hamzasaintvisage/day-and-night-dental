@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Register with the practice — Day Night Dental · The Gold Standard (#4)</title>
+<style>
+/* ============================================================
+   THE GOLD STANDARD — statement lens
+   Colossal gold numeral · oversized "Become a patient" headline ·
+   solid-gold spine · luxury price tag · charcoal form with gold edge
+   ============================================================ */
+
+.dn-section{position:relative;}
+.dn-register{position:relative;overflow:hidden;padding-block:clamp(4rem,9vw,8rem);isolation:isolate;}
+.dn-container{width:min(100% - 2.5rem,var(--container));margin-inline:auto;position:relative;z-index:1;}
+
+/* soft single-colour gold glows — never touching, never a gradient between */
+.dn-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.dn-glow.day{background:rgba(248,199,96,.14);}
+.dn-glow.night{background:rgba(69,144,236,.10);}
+
+/* ---------- HEAD with ghost numeral ---------- */
+.dn-register-head{position:relative;max-width:880px;margin-bottom:clamp(2.5rem,5vw,4rem);}
+.dn-register-ghostnum{
+  font-family:var(--font-display);font-weight:800;line-height:.8;
+  font-size:clamp(6rem,22vw,14rem);color:var(--dn-day);
+  opacity:.1;position:absolute;top:-.18em;right:0;z-index:0;
+  pointer-events:none;user-select:none;letter-spacing:-.04em;
+}
+.dn-register-head .dn-eyebrow{position:relative;z-index:1;}
+.dn-register .dn-display{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.6rem,7vw,5rem);letter-spacing:-.02em;line-height:1.02;
+  position:relative;z-index:1;margin:1.1rem 0 0;
+}
+.dn-section-lead{
+  position:relative;z-index:1;max-width:46ch;margin:1.25rem 0 0;
+  font-size:clamp(1rem,1.6vw,1.15rem);color:var(--dn-bone-dim);
+}
+.dn-register-urgent{
+  position:relative;z-index:1;margin:1.4rem 0 0;font-size:.95rem;color:var(--dn-bone-dim);
+}
+.dn-register-urgent a{color:var(--dn-day);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(248,199,96,.4);padding-bottom:1px;}
+.dn-register-urgent a:hover{border-bottom-color:var(--dn-day);}
+
+/* ---------- GRID ---------- */
+.dn-register-grid{
+  display:grid;grid-template-columns:0.82fr 1.18fr;gap:clamp(1.5rem,3.5vw,3rem);
+  align-items:start;
+}
+
+/* ---------- ASIDE: solid-gold spine ---------- */
+.dn-register-aside{position:relative;}
+.dn-register-aside-inner{
+  border:none;border-left:3px solid var(--dn-day);
+  border-radius:0 var(--dn-r-card) var(--dn-r-card) 0;
+  background:var(--dn-charcoal);
+  padding:clamp(1.75rem,3vw,2.5rem);
+  position:sticky;top:88px;
+}
+.dn-register-aside .dn-eyebrow.day{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-day);
+}
+.dn-register-aside .dn-eyebrow.day::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dn-day);}
+.dn-register-aside h3.dn-display{
+  font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,3vw,2.1rem);
+  letter-spacing:-.01em;line-height:1.05;margin:.7rem 0 1.5rem;
+}
+
+.dn-register-includes{list-style:none;margin:0;padding:0;}
+.dn-register-includes li{
+  display:grid;grid-template-columns:auto 1fr;gap:1.1rem;
+  padding:1.25rem 0;border-bottom:1px solid var(--dn-mist);
+}
+.dn-register-includes li:first-child{padding-top:0;}
+.dn-register-includes .num{
+  font-family:var(--font-display);font-weight:700;font-size:1.5rem;line-height:1;
+  color:var(--dn-day);font-feature-settings:"tnum" 1;
+}
+.dn-register-includes h4{
+  margin:0 0 .3rem;font-family:var(--font-body);font-size:1rem;font-weight:600;color:var(--dn-bone);
+}
+.dn-register-includes p{margin:0;font-size:.85rem;line-height:1.5;color:var(--dn-bone-dim);}
+
+/* price block — colossal gold tag */
+.dn-register-aside-foot{margin-top:1.75rem;padding-top:1.75rem;border-top:1px solid var(--dn-mist);}
+.dn-register-price{display:flex;flex-direction:column;gap:.15rem;}
+.dn-register-price .label{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;
+}
+.dn-register-price .amount{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(3.5rem,9vw,5.5rem);color:var(--dn-day);line-height:.9;letter-spacing:-.02em;
+  display:inline-flex;align-items:flex-start;gap:.1rem;
+}
+.dn-register-price .currency{font-size:.42em;line-height:1.4;font-weight:600;}
+.dn-register-aside-note{margin:1.1rem 0 0;font-size:.82rem;line-height:1.55;color:var(--dn-bone-dim);}
+
+/* ---------- FORM ---------- */
+.dn-register-form-wrap{position:relative;}
+.dn-register-form{
+  border-radius:var(--dn-r-card);border-top:2px solid var(--dn-day);
+  background:var(--dn-charcoal);
+  padding:clamp(1.75rem,3vw,2.75rem);
+  box-shadow:0 30px 70px -50px rgba(0,0,0,.9),0 0 0 1px var(--dn-mist);
+}
+
+/* progress — thick gold-fill rail, two segments */
+.dn-register-progress{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;
+  margin-bottom:2rem;
+}
+.dn-progress-step{
+  border-top:3px solid var(--dn-mist);padding-top:.85rem;opacity:.45;
+  transition:opacity .35s,border-color .35s;
+}
+.dn-progress-step.active{border-top-color:var(--dn-day);opacity:1;}
+.dn-progress-num{
+  display:block;font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--dn-day);line-height:1;
+}
+.dn-progress-label{display:block;margin-top:.2rem;font-size:.85rem;color:var(--dn-bone-dim);}
+
+.dn-register-step h3.dn-display{
+  font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,3vw,2rem);
+  letter-spacing:-.01em;margin:0 0 1.5rem;outline:none;
+}
+
+.dn-form-row{margin-bottom:1.4rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.dn-form-row label{display:grid;gap:.45rem;}
+.dn-form-row label > span,.dn-form-label{
+  font-size:.78rem;letter-spacing:.04em;color:var(--dn-bone-dim);font-weight:500;
+}
+.dn-form-label{display:block;margin-bottom:.55rem;}
+
+.dn-register-form input,
+.dn-select-trigger{
+  width:100%;min-height:46px;padding:.7rem .9rem;
+  background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:10px;
+  color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;
+  transition:border-color .25s,box-shadow .25s;
+}
+.dn-register-form input::placeholder{color:var(--dn-bone-faint);}
+.dn-register-form input:focus,
+.dn-register-form input:hover{
+  outline:none;border-color:var(--dn-day);
+  box-shadow:0 0 0 1px var(--dn-day),0 0 22px -6px rgba(248,199,96,.45);
+}
+
+/* DOB + custom selects (styled native selects for the static page) */
+.dn-dob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
+.dn-select-trigger{
+  display:flex;align-items:center;justify-content:space-between;cursor:pointer;
+  appearance:none;-webkit-appearance:none;background-image:none;
+}
+select.dn-select-trigger{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.4rem;
+}
+select.dn-select-trigger:focus,select.dn-select-trigger:hover{
+  outline:none;border-color:var(--dn-day);box-shadow:0 0 0 1px var(--dn-day),0 0 22px -6px rgba(248,199,96,.45);
+}
+select.dn-select-trigger option{background:var(--dn-near-black);color:var(--dn-bone);}
+
+/* care-type radio cards — gold day side, disciplined blue night side */
+.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.dn-radio-card{
+  position:relative;display:flex;flex-direction:column;gap:.2rem;
+  padding:1rem;min-height:44px;border:1px solid var(--dn-mist);border-radius:12px;
+  background:var(--dn-near-black);cursor:pointer;transition:border-color .25s,box-shadow .25s;
+}
+.dn-radio-card input{position:absolute;opacity:0;width:0;height:0;}
+.dn-radio-card .title{font-weight:600;font-size:1rem;}
+.dn-radio-card .desc{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.4;}
+.dn-radio-card.day.checked,.dn-radio-card.day:hover{
+  border-color:var(--dn-day);box-shadow:0 0 0 1px var(--dn-day),0 0 22px -8px rgba(248,199,96,.4);
+}
+.dn-radio-card.night.checked,.dn-radio-card.night:hover{
+  border-color:var(--dn-night);box-shadow:0 0 0 1px var(--dn-night),0 0 22px -8px rgba(69,144,236,.4);
+}
+.dn-radio-card.day.checked .title{color:var(--dn-day);}
+.dn-radio-card.night.checked .title{color:var(--dn-night-soft);}
+
+/* checkbox */
+.dn-checkbox{display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:start;cursor:pointer;}
+.dn-checkbox input{
+  appearance:none;-webkit-appearance:none;flex:none;
+  width:20px;height:20px;margin-top:.15rem;border:1px solid var(--dn-mist);border-radius:5px;
+  background:var(--dn-near-black);cursor:pointer;transition:border-color .2s,background .2s;position:relative;
+}
+.dn-checkbox input:checked{border-color:var(--dn-day);background:var(--dn-day);}
+.dn-checkbox input:checked::after{
+  content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid var(--dn-near-black);border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+.dn-checkbox span{font-size:.85rem;line-height:1.55;color:var(--dn-bone-dim);}
+.dn-checkbox a{color:var(--dn-day);text-decoration:underline;text-underline-offset:2px;}
+
+/* actions + buttons */
+.dn-register-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.75rem;}
+.dn-step-counter{font-size:.78rem;letter-spacing:.06em;color:var(--dn-bone-faint);text-transform:uppercase;margin-right:auto;}
+.dn-btn{
+  display:inline-flex;align-items:center;gap:.5rem;justify-content:center;
+  min-height:48px;padding:.8rem 1.6rem;border-radius:999px;border:1px solid transparent;
+  font-family:var(--font-body);font-weight:600;font-size:1rem;cursor:pointer;
+  transition:box-shadow .25s,background .25s,color .25s,border-color .25s;text-decoration:none;
+}
+.dn-btn.primary{
+  background:var(--dn-day);color:var(--dn-near-black);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 55%,transparent),0 0 34px -6px color-mix(in srgb,var(--dn-day) 60%,transparent);
+}
+.dn-btn.primary:hover,.dn-btn.primary:active{
+  box-shadow:0 0 0 2px var(--dn-day),0 0 46px -2px color-mix(in srgb,var(--dn-day) 70%,transparent);
+}
+.dn-btn-ghost{background:transparent;border-color:var(--dn-mist);color:var(--dn-bone);}
+.dn-btn-ghost:hover{border-color:var(--dn-bone-dim);}
+.dn-btn .arrow{transition:transform .2s;}
+.dn-btn:hover .arrow{transform:translateX(3px);}
+
+.dn-form-step-block[hidden]{display:none;}
+
+/* portrait flourish — real /smiles photo grounds the statement */
+.dn-register-aside-photo{
+  margin-top:1.75rem;border-radius:12px;overflow:hidden;border:1px solid var(--dn-mist);
+  position:relative;
+}
+.dn-register-aside-photo img{width:100%;height:160px;object-fit:cover;filter:saturate(1.02);}
+.dn-register-aside-photo figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:.75rem .9rem;
+  background:linear-gradient(to top,rgba(10,10,12,.92),transparent);
+  font-size:.78rem;color:var(--dn-bone-dim);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:880px){
+  /* form first (conversion priority), then includes + price */
+  .dn-register-grid{grid-template-columns:1fr;}
+  .dn-register-form-wrap{order:1;}
+  .dn-register-aside{order:2;}
+  .dn-register-aside-inner{
+    border-left:3px solid var(--dn-day);border-radius:0 var(--dn-r-card) var(--dn-r-card) 0;
+    position:static;
+  }
+  .dn-register-head .dn-display{font-size:clamp(2.4rem,9vw,3.4rem);}
+}
+@media(max-width:520px){
+  .dn-form-row-2{grid-template-columns:1fr;gap:1.4rem;}
+  .dn-form-radios{grid-template-columns:1fr;}
+  .dn-register-actions{gap:.75rem;}
+  .dn-btn{width:100%;}
+  .dn-step-counter{width:100%;margin-bottom:.25rem;}
+  .dn-dob-grid{gap:.45rem;}
+}
+@media(max-width:360px){
+  .dn-register-ghostnum{font-size:clamp(5rem,30vw,8rem);}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-top">
+  <a href="/preview/">← all designs</a>
+  <div class="lab-meta"><span class="lab-rank">#4</span> <b>The Gold Standard</b> <span class="lab-lens">statement</span></div>
+  <span></span>
+</div>
+
+<section id="register" class="dn-section dn-register">
+  <div class="dn-glow day" style="width:520px;height:520px;top:6%;left:-180px;"></div>
+  <div class="dn-glow night" style="width:480px;height:480px;bottom:8%;right:-180px;"></div>
+
+  <div class="dn-container">
+
+    <header class="dn-register-head">
+      <span aria-hidden="true" class="dn-register-ghostnum" data-ghostnum>01</span>
+      <span class="dn-eyebrow dn-pill day">New Patients</span>
+      <h2 class="dn-display">Register with the <em class="dn-hl-gold">practice</em></h2>
+      <p class="dn-section-lead">
+        We're taking on new patients for every treatment we offer. Fill in the form
+        below and we'll confirm your first appointment within one working hour — it takes
+        about three minutes.
+      </p>
+      <p class="dn-register-urgent">
+        In pain right now? Don't wait to register,
+        <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+      </p>
+    </header>
+
+    <div class="dn-register-grid">
+
+      <!-- Right (DOM order = form first for mobile conversion priority) -->
+      <div class="dn-register-form-wrap">
+        <form class="dn-register-form" novalidate aria-label="Register with the practice">
+
+          <!-- Progress -->
+          <div class="dn-register-progress" data-progress>
+            <div class="dn-progress-step active" data-step-pip="1" aria-current="step">
+              <span class="dn-progress-num">01</span>
+              <span class="dn-progress-label">Your Details</span>
+            </div>
+            <div class="dn-progress-step" data-step-pip="2">
+              <span class="dn-progress-num">02</span>
+              <span class="dn-progress-label">Your Care</span>
+            </div>
+          </div>
+
+          <!-- Step 1, Personal details (visible by default, no JS required) -->
+          <div class="dn-register-step dn-form-step-block" data-step="1">
+            <h3 class="dn-display" tabindex="-1">Tell us about you</h3>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label><span>First name *</span>
+                <input type="text" name="firstName" autocomplete="given-name" placeholder="Jane">
+              </label>
+              <label><span>Last name *</span>
+                <input type="text" name="lastName" autocomplete="family-name" placeholder="Doe">
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Date of birth</span>
+              <div class="dn-dob-grid">
+                <select class="dn-select-trigger" aria-label="Day of birth">
+                  <option value="">Day</option>
+                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                  <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                  <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                  <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                  <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                  <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                </select>
+                <select class="dn-select-trigger" aria-label="Month of birth">
+                  <option value="">Month</option>
+                  <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+                  <option value="4">April</option><option value="5">May</option><option value="6">June</option>
+                  <option value="7">July</option><option value="8">August</option><option value="9">September</option>
+                  <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+                </select>
+                <select class="dn-select-trigger" aria-label="Year of birth">
+                  <option value="">Year</option>
+                  <option>2008</option><option>2005</option><option>2000</option><option>1995</option>
+                  <option>1990</option><option>1985</option><option>1980</option><option>1975</option>
+                  <option>1970</option><option>1965</option><option>1960</option><option>1955</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label><span>Phone *</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number">
+              </label>
+              <label><span>Email *</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+              </label>
+            </div>
+
+            <div class="dn-form-row dn-form-row-2">
+              <label><span>Address</span>
+                <input type="text" name="address" autocomplete="street-address" placeholder="Street address">
+              </label>
+              <label><span>Postcode</span>
+                <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH">
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <span class="dn-step-counter">Step 1 of 2</span>
+              <button type="button" class="dn-btn primary" data-go="2">
+                Continue <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2, Care preferences (hidden until Continue; revealed via JS) -->
+          <div class="dn-register-step dn-form-step-block" data-step="2" hidden>
+            <h3 class="dn-display" tabindex="-1">How would you like to be seen?</h3>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label" id="care-type-label">Care type</span>
+              <div class="dn-form-radios" role="radiogroup" aria-labelledby="care-type-label">
+                <label class="dn-radio-card day checked">
+                  <input type="radio" name="careType" value="private" checked>
+                  <span class="title">Private</span>
+                  <span class="desc">Full choice of times and treatments</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="nhs">
+                  <span class="title">NHS</span>
+                  <span class="desc">When we have space</span>
+                </label>
+                <label class="dn-radio-card day">
+                  <input type="radio" name="careType" value="mixed">
+                  <span class="title">Either</span>
+                  <span class="desc">Whatever gets you seen soonest</span>
+                </label>
+                <label class="dn-radio-card night">
+                  <input type="radio" name="careType" value="unsure">
+                  <span class="title">Not sure yet</span>
+                  <span class="desc">We'll talk it through on the call</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">Dentist preference</span>
+              <select class="dn-select-trigger" name="dentistPreference" aria-label="Dentist preference">
+                <option value="no-preference">No preference, just assign me someone</option>
+                <option value="female">Female dentist preferred</option>
+                <option value="male">Male dentist preferred</option>
+                <option value="principal">Principal dentist if available</option>
+                <option value="anxiety-trained">Dentist experienced with anxious patients</option>
+              </select>
+            </div>
+
+            <div class="dn-form-row">
+              <span class="dn-form-label">How did you hear about us?</span>
+              <select class="dn-select-trigger" name="referral" aria-label="How did you hear about us?">
+                <option value="">Optional</option>
+                <option>Google search</option>
+                <option>Friend or family</option>
+                <option>Instagram</option>
+                <option>Walked past the practice</option>
+                <option>Existing patient</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="dn-form-row">
+              <label class="dn-checkbox">
+                <input type="checkbox" name="consent">
+                <span>
+                  I'm happy for Day Night Dental to hold my information in line with the
+                  <a href="/privacy/" target="_blank" rel="noopener">privacy policy</a>,
+                  and to contact me about my registration.
+                </span>
+              </label>
+            </div>
+
+            <div class="dn-register-actions">
+              <button type="button" class="dn-btn dn-btn-ghost" data-go="1">
+                <span class="arrow-back">←</span> Back
+              </button>
+              <button type="submit" class="dn-btn primary" onclick="return false;">
+                Complete Registration <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Left: solid-gold spine — What's Included + colossal £95 -->
+      <aside class="dn-register-aside">
+        <div class="dn-register-aside-inner">
+          <span class="dn-eyebrow day">What's Included</span>
+          <h3 class="dn-display">Your first visit</h3>
+
+          <ul class="dn-register-includes">
+            <li>
+              <span class="num">01</span>
+              <div>
+                <h4>Comprehensive examination</h4>
+                <p>A full assessment with intra-oral scans and bite analysis. That's 45 minutes with your assigned dentist.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div>
+                <h4>Digital x-rays</h4>
+                <p>Low-dose digital imaging when it's clinically needed. There are no films to develop, so you won't be left waiting.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div>
+                <h4>Personalised treatment plan</h4>
+                <p>You'll get a written plan with the cost of each item set out before any work starts, so you always know where you stand.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">04</span>
+              <div>
+                <h4>Hygiene appointment</h4>
+                <p>We book this in alongside your examination, so you leave with a proper clean and a fresh start.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="dn-register-aside-foot">
+            <div class="dn-register-price">
+              <span class="label">First visit from</span>
+              <span class="amount"><span class="currency">£</span>95</span>
+            </div>
+            <p class="dn-register-aside-note">
+              We confirm the cost of your first visit before anything goes ahead, so there are no surprises.
+              NHS care is available when we have space, and children under 18 are examined free.
+            </p>
+          </div>
+
+          <figure class="dn-register-aside-photo">
+            <img src="/smiles/featured-smile.webp" alt="A confident smile after treatment at Day Night Dental" loading="lazy" width="600" height="400">
+            <figcaption>Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH</figcaption>
+          </figure>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var form = document.querySelector('.dn-register-form');
+  if(!form) return;
+  var steps = form.querySelectorAll('[data-step]');
+  var pips  = form.querySelectorAll('[data-step-pip]');
+  var ghost = document.querySelector('[data-ghostnum]');
+
+  function show(n){
+    steps.forEach(function(s){
+      s.hidden = (s.getAttribute('data-step') !== String(n));
+    });
+    pips.forEach(function(p){
+      var on = Number(p.getAttribute('data-step-pip')) <= n;
+      p.classList.toggle('active', on);
+      if(Number(p.getAttribute('data-step-pip')) === n){ p.setAttribute('aria-current','step'); }
+      else { p.removeAttribute('aria-current'); }
+    });
+    if(ghost) ghost.textContent = '0' + n;
+    var heading = form.querySelector('[data-step="'+n+'"] h3');
+    if(heading){ heading.focus({preventScroll:true}); }
+  }
+
+  form.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-go]');
+    if(!btn) return;
+    show(Number(btn.getAttribute('data-go')));
+  });
+
+  // care-type radio card highlight
+  form.addEventListener('change', function(e){
+    if(e.target.name === 'careType'){
+      form.querySelectorAll('.dn-radio-card').forEach(function(c){
+        var input = c.querySelector('input');
+        c.classList.toggle('checked', input.checked);
+      });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

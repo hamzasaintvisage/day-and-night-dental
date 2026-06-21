@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Register · The Practitioners — Day Night Dental</title>
+<style>
+/* ── Section frame ─────────────────────────────────────────────── */
+.dn-section{
+  padding-block:clamp(4rem,9vw,8rem);
+  position:relative;
+}
+/* a faint single-spot wash, never a cross-gradient between accents */
+.dn-section::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 70% at 18% -8%,rgba(248,199,96,.06),transparent 60%);
+}
+.dn-container{
+  position:relative;
+  width:100%;max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:clamp(1.15rem,5vw,2.5rem);
+}
+
+/* ── Section head ──────────────────────────────────────────────── */
+.dn-section-head{max-width:48rem;}
+.dn-section-head .dn-eyebrow.dn-pill{margin-bottom:1.4rem;}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.2rem,5.6vw,3.7rem);
+  line-height:1.04;
+  letter-spacing:-.01em;
+  margin:0 0 1.2rem;
+}
+.dn-section-lead{
+  font-size:clamp(1rem,1.35vw,1.15rem);
+  color:var(--dn-bone-dim);
+  max-width:40rem;
+  margin:0;
+}
+
+/* small caption row under the head, echoing the masthead "registry" tone */
+.dn-roster-meta-line{
+  display:flex;align-items:center;gap:.85rem;
+  margin-top:1.6rem;
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-variant-numeric:tabular-nums;
+}
+.dn-roster-meta-line .dot{
+  flex:0 0 auto;width:4px;height:4px;border-radius:50%;
+  background:var(--dn-day);
+}
+
+/* ── The Register: hairline ledger (concept keyCss, lightly polished) ─ */
+.dn-roster{
+  list-style:none;margin:0;padding:0;
+  border-top:1px solid var(--dn-mist);
+  margin-top:clamp(2rem,5vw,3.5rem);
+}
+.dn-roster-row{
+  --accent:var(--dn-day);
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:clamp(1rem,3vw,2rem);
+  padding:clamp(1.6rem,4vw,2.4rem) clamp(.75rem,2vw,1.5rem);
+  border-bottom:1px solid var(--dn-mist);
+  border-radius:var(--dn-r-card);
+  transition:background .4s ease,box-shadow .4s ease,padding-left .4s cubic-bezier(.16,1,.3,1);
+  outline:none;
+}
+.dn-roster-row.night{--accent:var(--dn-night);}
+
+.dn-roster-text{display:flex;flex-direction:column;gap:.5rem;min-width:0;}
+.dn-roster-name{
+  font-family:var(--font-display);
+  font-size:clamp(1.5rem,4vw,2.1rem);
+  font-weight:700;line-height:1.05;
+  color:var(--dn-bone-dim);
+  transition:color .4s ease;
+}
+/* role uses the existing eyebrow language, per-side colour, no pill here */
+.dn-roster-text .dn-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  width:fit-content;
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+}
+.dn-roster-text .dn-eyebrow::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:currentColor;
+}
+.dn-roster-text .dn-eyebrow.day{color:var(--dn-day);}
+.dn-roster-text .dn-eyebrow.night{color:var(--dn-night);}
+
+.dn-roster-gdc{
+  font-family:var(--font-body);
+  font-variant-numeric:tabular-nums;
+  font-size:.8rem;letter-spacing:.04em;
+  color:var(--dn-bone-dim);
+  white-space:nowrap;
+  text-align:right;
+}
+
+.dn-roster-mono{
+  width:44px;height:44px;flex:0 0 44px;
+  border-radius:50%;
+  border:1px solid var(--dn-mist);
+  display:grid;place-items:center;
+  color:var(--accent);
+  transition:border-color .4s ease;
+}
+.dn-roster-mono svg{width:30px;height:30px;}
+
+@media (hover:hover){
+  .dn-roster-row:hover,.dn-roster-row:focus-within{
+    padding-left:clamp(1.25rem,3vw,2.25rem);
+    background:color-mix(in srgb,var(--accent) 5%,transparent);
+    box-shadow:inset 3px 0 0 var(--accent),0 0 28px -6px color-mix(in srgb,var(--accent) 42%,transparent);
+  }
+  .dn-roster-row:hover .dn-roster-name,
+  .dn-roster-row:focus-within .dn-roster-name{color:var(--dn-bone);}
+  .dn-roster-row:hover .dn-roster-mono,
+  .dn-roster-row:focus-within .dn-roster-mono{
+    border-color:color-mix(in srgb,var(--accent) 70%,transparent);
+  }
+}
+/* keyboard focus ring (also fires on touch via :focus-within above on supporting devices) */
+.dn-roster-row:focus-visible{
+  background:color-mix(in srgb,var(--accent) 5%,transparent);
+  box-shadow:inset 3px 0 0 var(--accent),0 0 28px -6px color-mix(in srgb,var(--accent) 42%,transparent);
+}
+
+/* ── Mobile reflow: monogram + name on top, role + GDC below ──────── */
+@media (max-width:600px){
+  .dn-roster-row{
+    grid-template-columns:44px 1fr;
+    grid-template-areas:
+      "mono name"
+      "mono meta";
+    column-gap:1rem;row-gap:.55rem;
+    align-items:center;
+    min-height:44px;
+  }
+  .dn-roster-mono{grid-area:mono;align-self:start;}
+  .dn-roster-text{grid-area:name;}
+  .dn-roster-gdc{
+    grid-area:meta;
+    text-align:left;
+    align-self:start;
+  }
+  .dn-roster-name{font-size:clamp(1.45rem,7.5vw,1.8rem);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-roster-row{transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#2</span> <b>The Register</b> <span class="lab-lens">minimal</span></div><span></span></div>
+
+<section id="team" class="dn-section dn-team">
+  <div class="dn-container">
+    <div class="dn-section-head">
+      <span class="dn-eyebrow dn-pill day">The Practitioners</span>
+      <h2 class="dn-display">The people behind your <em class="dn-hl-gold">smile</em></h2>
+      <p class="dn-section-lead">
+        Our dentists are GDC-registered and experienced across emergency, restorative
+        and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
+      </p>
+      <p class="dn-roster-meta-line"><span class="dot"></span>GDC-Registered · 03 Practitioners</p>
+    </div>
+
+    <ul class="dn-roster">
+      <li class="dn-roster-row day" tabindex="0">
+        <span class="dn-roster-mono">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="32" cy="25" r="11"/>
+            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
+          </svg>
+        </span>
+        <span class="dn-roster-text">
+          <span class="dn-roster-name">Dr Willie Chang</span>
+          <span class="dn-eyebrow day">Principal Dentist</span>
+        </span>
+        <span class="dn-roster-gdc">GDC No. 296929</span>
+      </li>
+
+      <li class="dn-roster-row night" tabindex="0">
+        <span class="dn-roster-mono">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="32" cy="25" r="11"/>
+            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
+          </svg>
+        </span>
+        <span class="dn-roster-text">
+          <span class="dn-roster-name">Dr Pei Hsin Chiang</span>
+          <span class="dn-eyebrow night">Dentist</span>
+        </span>
+        <span class="dn-roster-gdc">GDC No. 333443</span>
+      </li>
+
+      <li class="dn-roster-row day" tabindex="0">
+        <span class="dn-roster-mono">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="32" cy="25" r="11"/>
+            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
+          </svg>
+        </span>
+        <span class="dn-roster-text">
+          <span class="dn-roster-name">Dr Chia-Hsuan Lee</span>
+          <span class="dn-eyebrow day">Dentist</span>
+        </span>
+        <span class="dn-roster-gdc">GDC No. 310152</span>
+      </li>
+    </ul>
+  </div>
+</section>
+</body>
+</html>

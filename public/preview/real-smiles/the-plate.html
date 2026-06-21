@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Plate — Real Smiles · Day Night Dental</title>
+<style>
+/* ============================================================
+   THE PLATE — editorial results gallery
+   A magazine plate: oversized index numerals frame asymmetric
+   smile photography. Masthead left, contact-sheet canvas right.
+   ============================================================ */
+
+.dn-section{position:relative;}
+.dn-gallery-plate{
+  padding:clamp(4rem,9vw,8rem) clamp(1.1rem,4vw,2rem);
+  background:
+    radial-gradient(120% 90% at 88% 6%, rgba(69,144,236,.06), transparent 60%),
+    radial-gradient(120% 90% at 4% 100%, rgba(248,199,96,.06), transparent 55%),
+    var(--dn-near-black);
+}
+.dn-container{max-width:var(--container);margin:0 auto;width:100%;}
+
+/* --- 12-column editorial grid (4 / 8) --- */
+.dn-plate-grid{
+  display:grid;
+  grid-template-columns:minmax(0,4fr) minmax(0,8fr);
+  gap:clamp(1.5rem,4vw,3.5rem);
+}
+
+/* --- masthead (sticky left rail) --- */
+.dn-plate-masthead{position:sticky;top:6rem;align-self:start;}
+.dn-plate-rule{
+  height:1px;width:100%;background:var(--dn-mist);
+  margin:1.5rem 0;
+}
+.dn-plate-h{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.4rem,5vw,4rem);
+  line-height:.96;
+  letter-spacing:-.01em;
+  margin:1.3rem 0 0;
+}
+.dn-plate-lead{
+  color:var(--dn-bone-dim);
+  font-size:1rem;
+  max-width:34ch;
+  margin:1.1rem 0 0;
+}
+.dn-plate-running{
+  font-size:.66rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin:1.5rem 0 0;
+}
+
+/* --- index ticker --- */
+.dn-plate-index{
+  font-family:var(--font-body);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.12em;
+  color:var(--dn-bone-dim);
+  font-size:.78rem;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin:.7rem 0 0;
+}
+.dn-plate-index .dn-plate-active-no{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.05rem;
+  color:var(--dn-day);
+  transition:color .4s;
+}
+.dn-plate-index.is-night .dn-plate-active-no{color:var(--dn-night-soft);}
+.dn-plate-index .sep{opacity:.4;}
+
+/* progress bar of plates */
+.dn-plate-prog{
+  display:flex;gap:5px;margin:.9rem 0 0;
+}
+.dn-plate-prog span{
+  height:2px;flex:1;background:var(--dn-mist);border-radius:2px;transition:background .4s;
+}
+.dn-plate-prog span.on{background:var(--dn-day);}
+.dn-plate-prog span.on.night{background:var(--dn-night);}
+
+.dn-plate-cta-wrap{margin:1.8rem 0 0;}
+
+.dn-btn{
+  display:inline-flex;align-items:center;gap:.75rem;
+  padding:1.05rem 1.9rem;
+  font-family:var(--font-body);font-size:.82rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  border:1.5px solid var(--dn-day);background:var(--dn-day);color:var(--dn-black);
+  cursor:pointer;text-decoration:none;border-radius:999px;
+  transition:box-shadow .35s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1);
+  min-height:44px;
+}
+.dn-btn.primary:hover{
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 50%,transparent),0 16px 38px -16px color-mix(in srgb,var(--dn-day) 70%,transparent);
+  transform:translateY(-2px);
+}
+.dn-btn .arrow{transition:transform .3s ease;}
+.dn-btn:hover .arrow{transform:translateX(4px);}
+
+/* ============================================================
+   CANVAS — asymmetric plate: one tall hero + contact-sheet stack
+   ============================================================ */
+.dn-plate-canvas{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:1px;
+  background:var(--dn-mist);          /* hairline rules between figures */
+  border:1px solid var(--dn-mist);
+  border-radius:calc(var(--dn-r-card) + 2px);
+  overflow:hidden;
+}
+
+/* the stacked (contact-sheet) column */
+.dn-plate-stack{
+  display:grid;
+  grid-template-rows:repeat(5,1fr);
+  gap:1px;
+  background:var(--dn-mist);
+}
+
+/* a figure */
+.dn-plate-fig{
+  position:relative;
+  margin:0;
+  background:var(--dn-near-black);
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid transparent;
+  border-radius:var(--dn-r-card);
+  transition:box-shadow .45s cubic-bezier(.16,1,.3,1), border-color .45s;
+  -webkit-tap-highlight-color:transparent;
+}
+.dn-plate-fig:focus{outline:none;}
+.dn-plate-fig:focus-visible{
+  box-shadow:0 0 0 2px var(--dn-near-black),0 0 0 4px var(--dn-day);
+}
+
+/* hero (tall, full-bleed left) */
+.dn-plate-hero{grid-row:1 / span 1;min-height:clamp(420px,52vw,640px);}
+
+/* stack rows */
+.dn-plate-mini{min-height:0;}
+
+.dn-plate-fig img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:grayscale(34%) brightness(.9) contrast(1.08);
+  transition:filter .6s, transform .6s cubic-bezier(.16,1,.3,1);
+}
+
+/* oversized ghosted numeral bleeding off the top-left corner */
+.dn-plate-no{
+  position:absolute;
+  top:-.18em;left:.02em;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(3rem,7vw,6rem);
+  line-height:1;
+  color:rgba(255,255,255,.10);
+  pointer-events:none;
+  z-index:3;
+  transition:color .5s;
+  text-shadow:0 2px 18px rgba(0,0,0,.4);
+}
+.dn-plate-hero .dn-plate-no{font-size:clamp(4.5rem,11vw,9rem);}
+
+/* scrim so caption + numeral read on photography */
+.dn-plate-fig::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, rgba(10,10,12,.5) 0%, transparent 26%, transparent 56%, rgba(10,10,12,.86) 100%);
+  z-index:2;
+}
+
+/* caption — hangs on a baseline rule like a printed gallery plate */
+.dn-plate-cap{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  z-index:4;
+  display:flex;
+  align-items:baseline;
+  gap:.7rem;
+  margin:0 clamp(.7rem,2vw,1.2rem);
+  padding:.6rem 0;
+  border-top:1px solid var(--dn-mist);
+  font:600 .62rem/1.1 var(--font-body);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  flex-wrap:wrap;
+}
+.dn-plate-hero .dn-plate-cap{font-size:.68rem;}
+.dn-plate-tag{position:relative;padding-left:.95rem;}
+.dn-plate-tag::before{
+  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;background:currentColor;
+}
+.dn-plate-tag.day{color:var(--dn-day);}
+.dn-plate-tag.night{color:var(--dn-night-soft);}
+.dn-plate-treat{color:var(--dn-bone);letter-spacing:.1em;}
+
+/* the colour reveal + glow on hover / active */
+@media (hover:hover){
+  .dn-plate-fig:hover img,
+  .dn-plate-fig.on img{filter:none;transform:scale(1.03);}
+}
+.dn-plate-fig.on img{filter:none;}            /* keep active crisp even on touch */
+
+.dn-plate-fig.day.on .dn-plate-no,
+.dn-plate-fig.day:hover .dn-plate-no{color:color-mix(in srgb,var(--dn-day) 32%,transparent);}
+.dn-plate-fig.night.on .dn-plate-no,
+.dn-plate-fig.night:hover .dn-plate-no{color:color-mix(in srgb,var(--dn-night) 32%,transparent);}
+
+.dn-plate-fig.day.on,
+.dn-plate-fig.day:hover{
+  border-color:color-mix(in srgb,var(--dn-day) 80%,transparent);
+  box-shadow:0 0 0 1.5px color-mix(in srgb,var(--dn-day) 72%,transparent),0 0 32px -2px color-mix(in srgb,var(--dn-day) 46%,transparent);
+}
+.dn-plate-fig.night.on,
+.dn-plate-fig.night:hover{
+  border-color:color-mix(in srgb,var(--dn-night) 80%,transparent);
+  box-shadow:0 0 0 1.5px color-mix(in srgb,var(--dn-night) 72%,transparent),0 0 32px -2px color-mix(in srgb,var(--dn-night) 46%,transparent);
+}
+
+/* small "Featured" marker on the hero */
+.dn-plate-feat{
+  position:absolute;top:clamp(.7rem,2vw,1.1rem);right:clamp(.7rem,2vw,1.1rem);
+  z-index:4;
+  font:700 .54rem/1 var(--font-body);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dn-bone-dim);
+  border:1px solid var(--dn-mist);border-radius:999px;
+  padding:5px 11px;
+  background:rgba(10,10,12,.55);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-plate-fig img,.dn-plate-fig:hover img,.dn-plate-fig.on img{transition:none;transform:none;}
+  .dn-btn{transition:none;}
+}
+
+/* ============================================================
+   RESPONSIVE — single column "spread" with sticky index strip
+   ============================================================ */
+@media (max-width:820px){
+  .dn-plate-grid{grid-template-columns:1fr;gap:1.8rem;}
+  .dn-plate-masthead{position:static;}
+  .dn-plate-canvas{grid-template-columns:1fr;border:none;background:transparent;gap:1.5rem;}
+  .dn-plate-stack{grid-template-rows:none;gap:1.5rem;background:transparent;}
+  .dn-plate-fig{
+    border:1px solid var(--dn-mist);
+    aspect-ratio:4/5;
+    min-height:0 !important;
+  }
+  .dn-plate-hero{aspect-ratio:4/5;}
+
+  /* slim sticky index strip under the headline */
+  .dn-plate-stripwrap{
+    position:sticky;
+    top:49px;                 /* below lab-top bar */
+    z-index:30;
+    margin:1.2rem 0 0;
+    padding:.65rem 0;
+    background:rgba(10,10,12,.9);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    border-top:1px solid var(--dn-mist);
+    border-bottom:1px solid var(--dn-mist);
+  }
+}
+@media (min-width:821px){
+  .dn-plate-stripwrap{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#1</span> <b>The Plate</b> <span class="lab-lens">editorial</span> <span class="lab-win">Panel winner</span></div><span></span></div>
+
+<section class="dn-section dn-gallery-plate" aria-labelledby="plate-h">
+  <div class="dn-container dn-plate-grid">
+
+    <!-- ===================== MASTHEAD ===================== -->
+    <div class="dn-plate-masthead">
+      <span class="dn-eyebrow dn-pill day">Real Smiles</span>
+      <h2 class="dn-plate-h" id="plate-h">Real smiles, <em class="dn-hl-gold">real results</em></h2>
+      <p class="dn-plate-lead">A look at the difference composite bonding, veneers, Invisalign and dental implants can make — plate by plate.</p>
+
+      <div class="dn-plate-rule" role="presentation"></div>
+
+      <p class="dn-plate-running">The Day Night Portfolio · Merchant City, Glasgow</p>
+
+      <p class="dn-plate-index" id="plate-index" aria-live="polite">
+        <span class="dn-plate-label">Plate</span>
+        <span class="dn-plate-active-no" data-active-no>01</span>
+        <span class="sep" aria-hidden="true">—</span>
+        <span data-total>06</span>
+      </p>
+      <div class="dn-plate-prog" id="plate-prog" aria-hidden="true"></div>
+
+      <div class="dn-plate-cta-wrap">
+        <a href="#contact" class="dn-btn primary">Begin your transformation <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <!-- ===================== CANVAS ===================== -->
+    <!-- Sequence used: hero slot mirrors the active figure; the remaining five tile in the stack.
+         Default (no JS) state = figure 01 featured, fully visible & usable. -->
+    <div class="dn-plate-canvas">
+
+      <!-- HERO (active figure mirrored here) -->
+      <figure class="dn-plate-fig dn-plate-hero day on" id="plate-hero" data-side="day">
+        <span class="dn-plate-feat">Featured Plate</span>
+        <span class="dn-plate-no" aria-hidden="true" data-hero-no>01</span>
+        <img id="plate-hero-img" src="/smiles/bonding-patient.webp" alt="Composite bonding, Day Night Dental, Glasgow" width="900" height="1100" decoding="async">
+        <figcaption class="dn-plate-cap">
+          <span class="dn-plate-tag day" data-hero-cat>Cosmetic</span>
+          <span class="dn-plate-treat" data-hero-treat>Composite bonding</span>
+        </figcaption>
+      </figure>
+
+      <!-- CONTACT-SHEET STACK (all six figures; hover/focus/tap to feature) -->
+      <div class="dn-plate-stack">
+
+        <figure class="dn-plate-fig dn-plate-mini day on" tabindex="0" role="button"
+                aria-label="Feature plate 01 — Composite bonding"
+                data-index="0" data-side="day" data-cat="Cosmetic" data-treat="Composite bonding"
+                data-img="/smiles/bonding-patient.webp">
+          <span class="dn-plate-no" aria-hidden="true">01</span>
+          <img src="/smiles/bonding-patient.webp" alt="Composite bonding, Day Night Dental, Glasgow" width="700" height="540" loading="lazy" decoding="async">
+          <figcaption class="dn-plate-cap">
+            <span class="dn-plate-tag day">Cosmetic</span>
+            <span class="dn-plate-treat">Composite bonding</span>
+          </figcaption>
+        </figure>
+
+        <figure class="dn-plate-fig dn-plate-mini night" tabindex="0" role="button"
+                aria-label="Feature plate 02 — Composite bonding"
+                data-index="1" data-side="night" data-cat="Cosmetic" data-treat="Composite bonding"
+                data-img="/smiles/bonding-patient-2.webp">
+          <span class="dn-plate-no" aria-hidden="true">02</span>
+          <img src="/smiles/bonding-patient-2.webp" alt="Composite bonding, Day Night Dental, Glasgow" width="700" height="540" loading="lazy" decoding="async">
+          <figcaption class="dn-plate-cap">
+            <span class="dn-plate-tag night">Cosmetic</span>
+            <span class="dn-plate-treat">Composite bonding</span>
+          </figcaption>
+        </figure>
+
+        <figure class="dn-plate-fig dn-plate-mini day" tabindex="0" role="button"
+                aria-label="Feature plate 03 — Dental implants"
+                data-index="2" data-side="day" data-cat="Implants" data-treat="Dental implants"
+                data-img="/smiles/implant-patient.webp">
+          <span class="dn-plate-no" aria-hidden="true">03</span>
+          <img src="/smiles/implant-patient.webp" alt="Dental implants, Day Night Dental, Glasgow" width="700" height="540" loading="lazy" decoding="async">
+          <figcaption class="dn-plate-cap">
+            <span class="dn-plate-tag day">Implants</span>
+            <span class="dn-plate-treat">Dental implants</span>
+          </figcaption>
+        </figure>
+
+        <figure class="dn-plate-fig dn-plate-mini night" tabindex="0" role="button"
+                aria-label="Feature plate 04 — Invisalign"
+                data-index="3" data-side="night" data-cat="Orthodontics" data-treat="Invisalign"
+                data-img="/smiles/invisalign-patient.webp">
+          <span class="dn-plate-no" aria-hidden="true">04</span>
+          <img src="/smiles/invisalign-patient.webp" alt="Invisalign, Day Night Dental, Glasgow" width="700" height="540" loading="lazy" decoding="async">
+          <figcaption class="dn-plate-cap">
+            <span class="dn-plate-tag night">Orthodontics</span>
+            <span class="dn-plate-treat">Invisalign</span>
+          </figcaption>
+        </figure>
+
+        <figure class="dn-plate-fig dn-plate-mini day" tabindex="0" role="button"
+                aria-label="Feature plate 05 — Porcelain veneers"
+                data-index="4" data-side="day" data-cat="Cosmetic" data-treat="Porcelain veneers"
+                data-img="/smiles/featured-smile.webp">
+          <span class="dn-plate-no" aria-hidden="true">05</span>
+          <img src="/smiles/featured-smile.webp" alt="Porcelain veneers, Day Night Dental, Glasgow" width="700" height="540" loading="lazy" decoding="async">
+          <figcaption class="dn-plate-cap">
+            <span class="dn-plate-tag day">Cosmetic</span>
+            <span class="dn-plate-treat">Porcelain veneers</span>
+          </figcaption>
+        </figure>
+
+        <figure class="dn-plate-fig dn-plate-mini night" tabindex="0" role="button"
+                aria-label="Feature plate 06 — Porcelain veneers"
+                data-index="5" data-side="night" data-cat="Cosmetic" data-treat="Porcelain veneers"
+                data-img="/smiles/veneers-patient-2.webp">
+          <span class="dn-plate-no" aria-hidden="true">06</span>
+          <img src="/smiles/veneers-patient-2.webp" alt="Porcelain veneers, Day Night Dental, Glasgow" width="700" height="540" loading="lazy" decoding="async">
+          <figcaption class="dn-plate-cap">
+            <span class="dn-plate-tag night">Cosmetic</span>
+            <span class="dn-plate-treat">Porcelain veneers</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var figs   = Array.prototype.slice.call(document.querySelectorAll('.dn-plate-mini'));
+  var total  = figs.length;
+  var hero    = document.getElementById('plate-hero');
+  var heroImg = document.getElementById('plate-hero-img');
+  var heroNo  = hero.querySelector('[data-hero-no]');
+  var heroCat = hero.querySelector('[data-hero-cat]');
+  var heroTr  = hero.querySelector('[data-hero-treat]');
+  var idxWrap = document.getElementById('plate-index');
+  var activeNo= idxWrap.querySelector('[data-active-no]');
+  var prog    = document.getElementById('plate-prog');
+
+  // build the progress ticker
+  for (var p = 0; p < total; p++) {
+    prog.appendChild(document.createElement('span'));
+  }
+  var bars = Array.prototype.slice.call(prog.children);
+
+  function pad(n){ return ('0' + (n + 1)).slice(-2); }
+
+  function feature(i) {
+    var f   = figs[i];
+    var side= f.getAttribute('data-side');
+    var cat = f.getAttribute('data-cat');
+    var tr  = f.getAttribute('data-treat');
+    var img = f.getAttribute('data-img');
+
+    // promote to hero
+    heroImg.src = img;
+    heroImg.alt = tr + ', Day Night Dental, Glasgow';
+    heroNo.textContent  = pad(i);
+    heroCat.textContent = cat;
+    heroTr.textContent  = tr;
+    heroCat.className = 'dn-plate-tag ' + side;
+    hero.className = 'dn-plate-fig dn-plate-hero ' + side + ' on';
+    hero.setAttribute('data-side', side);
+
+    // mark active in the stack
+    figs.forEach(function (el, j) {
+      el.classList.toggle('on', j === i);
+    });
+
+    // index ticker
+    activeNo.textContent = pad(i);
+    idxWrap.classList.toggle('is-night', side === 'night');
+
+    // progress bars
+    bars.forEach(function (b, j) {
+      b.className = (j === i) ? 'on ' + side : '';
+    });
+  }
+
+  figs.forEach(function (f, i) {
+    f.addEventListener('mouseenter', function () { feature(i); });
+    f.addEventListener('focus',      function () { feature(i); });
+    f.addEventListener('click',      function () { feature(i); });
+    f.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); feature(i); }
+    });
+  });
+
+  // initialise progress on the default-featured plate (01)
+  bars[0].className = 'on day';
+})();
+</script>
+</body>
+</html>

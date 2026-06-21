@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Magnetic North — Where we are · Day Night Dental</title>
+<style>
+/* ====== Magnetic North — statement lens ====== */
+.dn-section{padding:clamp(4rem,8vw,8rem) 0;position:relative;}
+.dn-areas{
+  background:
+    radial-gradient(120% 80% at 8% 0%, rgba(248,199,96,.07), transparent 55%),
+    var(--dn-near-black);
+}
+.dn-container{max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem);}
+
+.dn-areas .dn-eyebrow{margin-bottom:clamp(1.75rem,3.5vw,2.75rem);}
+
+/* two-column statement lockup with a hairline-to-gold rule between */
+.dn-areas-map{
+  display:grid;
+  grid-template-columns:1.25fr 0.75fr;
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:start;
+  position:relative;
+}
+.dn-areas-map::before{
+  content:"";
+  position:absolute;
+  top:0.25rem;bottom:0.25rem;
+  left:calc((1.25 / (1.25 + 0.75)) * 100%);
+  width:1px;
+  transform:translateX(calc(clamp(2rem,5vw,4.5rem) / -2));
+  background:linear-gradient(180deg,var(--dn-mist),var(--dn-day) 22%,var(--dn-day) 78%,var(--dn-mist));
+  opacity:.85;
+}
+
+/* ---- colossal Fraunces wordmark ---- */
+.dn-areas-mega{
+  font-family:var(--font-display);
+  font-weight:800;
+  line-height:0.92;
+  font-size:clamp(2.6rem,9vw,5.5rem);
+  letter-spacing:-0.02em;
+  color:var(--dn-bone);
+  margin:0 0 1.25rem;
+  text-wrap:balance;
+}
+.dn-areas-mega em{font-style:normal;color:var(--dn-day);}      /* solid gold, no gradient */
+.dn-areas-mega .line2{color:var(--dn-bone-dim);font-weight:300;}
+
+.dn-areas-lead{
+  max-width:48ch;
+  margin:0 0 2rem;
+  color:var(--dn-bone-dim);
+  font-size:clamp(1.02rem,1.4vw,1.15rem);
+}
+
+/* ---- bold gold-stamp chip field ---- */
+.dn-areas-cap{
+  margin:0 0 1rem;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dn-bone-faint);font-weight:600;
+}
+.dn-areas-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.7rem;
+  margin:0 0 2.25rem;
+}
+.dn-area-chip{
+  padding:0.7rem 1.25rem;min-height:44px;
+  display:inline-flex;align-items:center;
+  border:1px solid var(--dn-mist);border-radius:999px;
+  font-weight:600;color:var(--dn-bone-dim);
+  background:transparent;
+  font-family:var(--font-body);
+  text-decoration:none;
+  transition:background-color .25s,color .25s,border-color .25s,box-shadow .25s,transform .25s;
+}
+.dn-area-chip:hover,.dn-area-chip:focus-visible,.dn-area-chip:active{   /* bold even gold glow, touch-safe */
+  background:var(--dn-day);color:var(--dn-near-black);border-color:var(--dn-day);
+  box-shadow:0 0 0 3px rgba(248,199,96,0.28),0 0 26px rgba(248,199,96,0.55);
+  transform:translateY(-1px);
+  outline:none;
+}
+
+/* ghost read-more link */
+.tp-hero-ghost{
+  display:inline-flex;align-items:center;gap:.5rem;
+  min-height:44px;
+  font-weight:600;color:var(--dn-bone);text-decoration:none;
+  letter-spacing:.01em;
+  border-bottom:1px solid var(--dn-mist);
+  padding-bottom:2px;
+  transition:color .25s,border-color .25s;
+}
+.tp-hero-ghost span{transition:transform .25s;}
+.tp-hero-ghost:hover,.tp-hero-ghost:focus-visible{
+  color:var(--dn-day);border-color:var(--dn-day);outline:none;
+}
+.tp-hero-ghost:hover span{transform:translateX(4px);}
+
+/* ---- engraved brass-plate address slab ---- */
+.dn-areas-panel{
+  border:1px solid var(--dn-day);
+  border-radius:var(--dn-r-card);
+  padding:clamp(1.75rem,3vw,2.4rem);
+  background:var(--dn-charcoal);
+  box-shadow:0 0 0 1px rgba(248,199,96,0.12),0 24px 60px rgba(0,0,0,0.5);
+  position:relative;
+  overflow:hidden;
+}
+/* subtle brass sheen line across the top of the plate */
+.dn-areas-panel::before{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(248,199,96,.65),transparent);
+}
+.dn-panel-photo{
+  border-radius:12px;
+  border:1px solid var(--dn-mist);
+  aspect-ratio:16/10;
+  object-fit:cover;
+  width:100%;
+  margin-bottom:1.5rem;
+  filter:saturate(.95) brightness(.92);
+}
+.dn-areas-pin{
+  display:flex;align-items:center;gap:.65rem;
+  margin-bottom:.5rem;
+}
+.dn-areas-pin .dot{
+  width:11px;height:11px;border-radius:50%;background:var(--dn-day);flex:none;
+  box-shadow:0 0 0 4px rgba(248,199,96,.16),0 0 16px rgba(248,199,96,.6);
+}
+.dn-areas-pin .nm{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.4rem;
+  letter-spacing:-.01em;
+}
+.dn-areas-addr{
+  margin:0 0 1.5rem;
+  color:var(--dn-bone-dim);
+  font-size:1.02rem;
+  line-height:1.55;
+  padding-bottom:1.5rem;
+  border-bottom:1px solid var(--dn-mist);
+}
+.dn-areas-land{
+  list-style:none;margin:0 0 1.75rem;padding:0;
+  display:grid;gap:.85rem;
+}
+.dn-areas-land li{
+  display:flex;align-items:flex-start;gap:.75rem;
+  color:var(--dn-bone-dim);font-size:.98rem;
+  font-variant-numeric:tabular-nums;
+}
+.dn-areas-land .b{
+  width:9px;height:9px;border-radius:50%;background:var(--dn-day);
+  box-shadow:0 0 12px rgba(248,199,96,0.6);flex:none;
+  margin-top:.55rem;
+}
+.dn-areas-land li strong{color:var(--dn-bone);font-weight:600;}
+
+.dn-panel-cta{
+  display:flex;flex-direction:column;gap:.7rem;
+  margin-top:.25rem;
+}
+.dn-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  width:100%;min-height:48px;
+  padding:0 1.25rem;
+  border-radius:999px;
+  font-family:var(--font-body);font-weight:700;font-size:1rem;
+  text-decoration:none;
+  transition:box-shadow .25s,background-color .25s,border-color .25s,color .25s;
+}
+.dn-btn.primary{
+  background:var(--dn-day);color:var(--dn-near-black);border:1px solid var(--dn-day);
+}
+.dn-btn.primary:hover,.dn-btn.primary:focus-visible{
+  box-shadow:0 0 0 3px rgba(248,199,96,.28),0 0 28px rgba(248,199,96,.5);outline:none;
+}
+.dn-btn.ghost{
+  background:transparent;color:var(--dn-bone);border:1px solid var(--dn-mist);
+}
+.dn-btn.ghost:hover,.dn-btn.ghost:focus-visible{
+  border-color:var(--dn-day);color:var(--dn-day);outline:none;
+}
+
+/* ---- responsive ---- */
+@media (max-width:820px){
+  .dn-areas-map{grid-template-columns:1fr;gap:2rem;}
+  .dn-areas-map::before{display:none;}
+  .dn-areas-mega{font-size:clamp(2.6rem,13vw,3.4rem);}  /* stays left-aligned for drama */
+}
+@media (max-width:420px){
+  .dn-area-chip{padding:0.6rem 1rem;font-size:.92rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#3</span> <b>Magnetic North</b> <span class="lab-lens">Statement</span></div><span></span></div>
+
+<section id="areas" class="dn-section dn-areas">
+  <div class="dn-container">
+    <span class="dn-eyebrow dn-pill day">Where we are</span>
+
+    <div class="dn-areas-map">
+      <div class="dn-areas-col">
+        <h2 class="dn-areas-mega">Merchant <em>City</em><br><span class="line2">is our home.</span></h2>
+
+        <p class="dn-areas-lead">
+          Patients come to us from right across Glasgow. The practice sits in Merchant City,
+          minutes from the stations and easy to reach by car — open day and night, every day.
+        </p>
+
+        <p class="dn-areas-cap">Serving across Glasgow</p>
+        <div class="dn-areas-grid">
+          <a class="dn-area-chip" href="#">Glasgow City Centre</a>
+          <a class="dn-area-chip" href="#">Merchant City</a>
+          <a class="dn-area-chip" href="#">Trongate</a>
+          <a class="dn-area-chip" href="#">West End</a>
+          <a class="dn-area-chip" href="#">Finnieston</a>
+          <a class="dn-area-chip" href="#">Dennistoun</a>
+          <a class="dn-area-chip" href="#">East End</a>
+          <a class="dn-area-chip" href="#">Southside</a>
+          <a class="dn-area-chip" href="#">Partick</a>
+          <a class="dn-area-chip" href="#">Hillhead</a>
+          <a class="dn-area-chip" href="#">Govanhill</a>
+          <a class="dn-area-chip" href="#">Shawlands</a>
+        </div>
+
+        <p style="margin:0;">
+          <a href="#" class="tp-hero-ghost">
+            See the areas we serve across Glasgow<span aria-hidden="true">→</span>
+          </a>
+        </p>
+      </div>
+
+      <aside class="dn-areas-panel" aria-label="Visit us in Merchant City">
+        <img class="dn-panel-photo" src="/smiles/featured-smile.webp" alt="A confident, healthy smile cared for at Day Night Dental" loading="lazy" width="640" height="400">
+
+        <div class="dn-areas-pin">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="nm">Day Night Dental</span>
+        </div>
+        <p class="dn-areas-addr">
+          80 Hutcheson St<br>
+          Merchant City, Glasgow G1 1SH
+        </p>
+
+        <ul class="dn-areas-land">
+          <li><span class="b" aria-hidden="true"></span><span><strong>3 min</strong> from Queen Street station</span></li>
+          <li><span class="b" aria-hidden="true"></span><span><strong>5 min</strong> from Buchanan Street</span></li>
+          <li><span class="b" aria-hidden="true"></span><span>Parking on <strong>Hutcheson St &amp; Albion St</strong></span></li>
+        </ul>
+
+        <div class="dn-panel-cta">
+          <a class="dn-btn primary" href="tel:+441415486548">Call 0141 548 6548</a>
+          <a class="dn-btn ghost" href="#">Book / register</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

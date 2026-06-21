@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Glasgow Index — Where We Are · Day Night Dental</title>
+<style>
+/* ============================================================
+   THE GLASGOW INDEX — editorial gazetteer
+   A typeset masthead + indexed list of every Glasgow district.
+   Pure typography: ordinal numerals, hairline rules, a colophon.
+   ============================================================ */
+
+.dn-section{padding-block:clamp(4rem,8vw,8rem);}
+.dn-container{width:min(var(--container),100% - 2.5rem);margin-inline:auto;}
+
+/* --- masthead head --- */
+.tp-section-head{max-width:62%;}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.3rem,5.6vw,4.4rem);
+  line-height:1.02;
+  letter-spacing:-0.015em;
+  margin:1.4rem 0 0;
+  text-wrap:balance;
+}
+.dn-display em.dn-hl-gold{font-weight:600;}
+
+/* --- the spread --- */
+.dn-areas-map{
+  display:grid;
+  grid-template-columns:1.62fr 1fr;
+  gap:clamp(2.5rem,6vw,5rem);
+  align-items:start;
+  margin-top:clamp(2.5rem,5vw,3.75rem);
+}
+
+/* --- standfirst / lead --- */
+.dn-areas-lead{
+  max-width:46ch;
+  padding-top:1.5rem;
+  border-top:1px solid var(--dn-day);
+  color:var(--dn-bone-dim);
+  font-size:1.05rem;
+  margin:0;
+}
+
+/* --- indexed gazetteer --- */
+.dn-areas-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:2.5rem;
+  margin-top:2.25rem;
+  counter-reset:dn-idx;
+}
+.dn-area-chip{
+  display:flex;
+  align-items:baseline;
+  gap:1rem;
+  min-height:44px;
+  padding:0.55rem 0;
+  border:0;
+  border-bottom:1px solid var(--dn-mist);
+  font-size:1.05rem;
+  color:var(--dn-bone);
+  text-decoration:none;
+  transition:color .3s,border-color .3s,box-shadow .3s,padding-left .3s;
+}
+.dn-area-chip::before{
+  counter-increment:dn-idx;
+  content:counter(dn-idx,decimal-leading-zero);
+  font-family:var(--font-display);
+  font-size:1.5rem;
+  font-weight:500;
+  color:var(--dn-bone-faint);
+  font-feature-settings:"tnum";
+  min-width:2.2ch;
+  transition:color .3s;
+}
+.dn-area-chip .nm{flex:1;}
+.dn-area-chip:hover,
+.dn-area-chip:focus-visible{
+  color:var(--dn-day);
+  border-color:var(--dn-day);
+  box-shadow:0 0 0 1px var(--dn-day),0 0 22px -6px var(--dn-day);
+  outline:none;
+}
+.dn-area-chip:hover::before,
+.dn-area-chip:focus-visible::before{color:var(--dn-day);}
+
+/* read-more ghost link */
+.dn-areas-more{margin-top:2.5rem;}
+.tp-hero-ghost{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  padding:.4rem 0;
+  font-family:var(--font-display);
+  font-size:1.05rem;
+  color:var(--dn-bone);
+  text-decoration:none;
+  border-bottom:1px solid var(--dn-day);
+  transition:color .3s,gap .3s;
+}
+.tp-hero-ghost span{color:var(--dn-day);transition:transform .3s;display:inline-block;}
+.tp-hero-ghost:hover{color:var(--dn-day);gap:.85rem;}
+
+/* --- colophon / location card --- */
+.dn-areas-panel{
+  padding:0 0 0 clamp(2rem,3vw,2.75rem);
+  border-left:1px solid var(--dn-day);
+  border-radius:0;
+  background:transparent;
+}
+.dn-areas-kicker{
+  font-size:.62rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin:0 0 1.25rem;
+}
+.dn-areas-pin{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+}
+.dn-areas-pin .dot{
+  width:9px;height:9px;border-radius:50%;flex:none;
+  background:var(--dn-day);
+  box-shadow:0 0 0 4px rgba(248,199,96,.14),0 0 12px var(--dn-day);
+}
+.dn-areas-pin .nm{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.5rem;
+  line-height:1.1;
+}
+.dn-areas-addr{
+  margin:.85rem 0 0;
+  color:var(--dn-bone-dim);
+  font-size:1.02rem;
+  line-height:1.7;
+}
+.dn-areas-contact{
+  margin:1.25rem 0 0;
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+  font-size:.95rem;
+}
+.dn-areas-contact a{
+  color:var(--dn-bone-dim);
+  text-decoration:none;
+  display:block;
+  min-height:24px;
+  transition:color .3s;
+}
+.dn-areas-contact a:hover{color:var(--dn-day);}
+.dn-areas-contact .lbl{
+  display:block;
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dn-bone-faint);margin-bottom:.15rem;
+}
+
+/* travel cues as captioned list with tabular numerals */
+.dn-areas-land{
+  list-style:none;
+  margin:1.75rem 0 0;
+  padding:1.5rem 0 0;
+  border-top:1px solid var(--dn-mist);
+}
+.dn-areas-land li{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:baseline;
+  gap:1rem;
+  padding:.7rem 0;
+  border-bottom:1px solid var(--dn-mist);
+  font-variant-numeric:tabular-nums;
+}
+.dn-areas-land li:last-child{border-bottom:0;padding-bottom:0;}
+.dn-areas-land .dur{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.15rem;
+  color:var(--dn-day);
+  font-feature-settings:"tnum";
+  white-space:nowrap;
+}
+.dn-areas-land .cue{color:var(--dn-bone-dim);font-size:.98rem;}
+
+/* ---------------- mobile ---------------- */
+@media(max-width:820px){
+  .tp-section-head{max-width:100%;}
+  .dn-areas-map{grid-template-columns:1fr;gap:2.25rem;}
+  .dn-areas-grid{grid-template-columns:1fr;}
+  .dn-areas-panel{
+    padding:1.75rem 0 0;
+    border-left:0;
+    border-top:1px solid var(--dn-day);
+  }
+}
+@media(max-width:420px){
+  .dn-areas-pin .nm{font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#1</span> <b>The Glasgow Index</b> <span class="lab-lens">EDITORIAL</span> <span class="lab-win">Panel winner</span></div><span></span></div>
+
+<main>
+  <section id="areas" class="dn-section dn-areas">
+    <div class="dn-container">
+      <div class="tp-section-head">
+        <span class="dn-eyebrow dn-pill day">Where We Are</span>
+        <h2 class="dn-display">A 24-hour dentist in the heart of <em class="dn-hl-gold">Merchant City</em></h2>
+      </div>
+
+      <div class="dn-areas-map">
+        <div class="dn-areas-col">
+          <p class="dn-areas-lead">
+            Patients come to us from right across Glasgow. The practice sits in Merchant City,
+            minutes from the stations and easy to reach by car &mdash; day or night.
+          </p>
+
+          <div class="dn-areas-grid" role="list" aria-label="Glasgow areas we serve">
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Glasgow City Centre</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Merchant City</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Trongate</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">West End</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Finnieston</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Dennistoun</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">East End</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Southside</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Partick</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Hillhead</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Govanhill</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Shawlands</span></a>
+          </div>
+
+          <p class="dn-areas-more">
+            <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true">&nbsp;→</span></a>
+          </p>
+        </div>
+
+        <aside class="dn-areas-panel" aria-label="Find us">
+          <p class="dn-areas-kicker">Find us</p>
+          <div class="dn-areas-pin">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="nm">Day Night Dental</span>
+          </div>
+          <p class="dn-areas-addr">
+            80 Hutcheson St<br>
+            Merchant City, Glasgow G1 1SH
+          </p>
+
+          <div class="dn-areas-contact">
+            <a href="tel:+441415486548"><span class="lbl">Call &mdash; open 24/7</span>0141 548 6548</a>
+            <a href="mailto:reception@daynightdental.co.uk"><span class="lbl">Email</span>reception@daynightdental.co.uk</a>
+          </div>
+
+          <ul class="dn-areas-land">
+            <li><span class="dur">3 min</span><span class="cue">walk from Queen Street station</span></li>
+            <li><span class="dur">5 min</span><span class="cue">walk from Buchanan Street</span></li>
+            <li><span class="dur">Parking</span><span class="cue">on Hutcheson St &amp; Albion St</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
