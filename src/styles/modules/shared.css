@@ -11,7 +11,8 @@
 .tp-byline strong { color: var(--dn-bone-dim); font-weight: 600; }
 
 /* Areas served */
-.dn-areas { background: var(--dn-near-black); }
+/* transparent so the continuous page glow flows through (was a solid near-black band) */
+.dn-areas { background: transparent; }
 .dn-areas-lead { color: var(--dn-bone-dim); max-width: 680px; font-size: 1.05rem; }
 .dn-areas-map { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; margin-top: 2.5rem; align-items: start; }
 .dn-areas-panel {

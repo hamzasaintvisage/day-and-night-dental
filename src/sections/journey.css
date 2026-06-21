@@ -3,12 +3,10 @@
    .dn-section { padding-block: var(--space-section) } — otherwise the section
    inherits the full ~7rem section padding and looks far too tall. */
 .dn-section.dn-journey {
-  border-top: 1px solid var(--dn-mist);
-  background: linear-gradient(90deg, rgba(248, 199, 96, 0.04), rgba(69, 144, 236, 0.04));
+  background: transparent;
   padding-block: 2.25rem;
   padding-inline: 0;
   position: relative;
-  overflow: hidden;
 }
 .dn-journey-inner { width: var(--container); margin: 0 auto; text-align: center; }
 

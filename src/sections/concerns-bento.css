@@ -30,15 +30,11 @@
 /* ACCENT 1 — section-scoped ambient day->night corner wash:
    gold radial glow anchored TOP-LEFT, blue radial glow anchored BOTTOM-RIGHT.
    Scoped to THIS section's root (not body/viewport) so it only lights here. */
+/* Disabled: the single continuous page glow (.dn-ambient) now lights this
+   section, so a section-scoped wash here would just create a brighter island /
+   seam at the section edges. Kept the element in markup; hidden via CSS. */
 .cxg-glow {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(58% 54% at 0% 0%, rgba(248, 199, 96, 0.26), transparent 60%),
-    radial-gradient(60% 56% at 100% 100%, rgba(69, 144, 236, 0.32), transparent 60%);
-  animation: cxg-washFlash 4s ease-in-out infinite;
+  display: none;
 }
 @keyframes cxg-washFlash {
   0%, 100% { opacity: 0.45; }

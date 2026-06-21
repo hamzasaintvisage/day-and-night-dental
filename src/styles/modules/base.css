@@ -31,6 +31,28 @@ body, .dn-root {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Stacking context so .dn-ambient (z-index:-1) paints above the page's black
+   base but below all content. */
+.dn-root {
+  position: relative;
+  isolation: isolate;
+}
+
+/* ONE continuous luxury page glow — a single fixed layer behind everything:
+   a soft gold bloom hugging the top-left of the viewport, a soft blue bloom
+   hugging the bottom-right. Because it's fixed and page-wide, the glow flows
+   smoothly across every section with no rectangular banding. Sections sit on
+   top of it with transparent backgrounds, so the light carries through. */
+.dn-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(68% 56% at 5% 3%, rgba(248, 199, 96, 0.17), transparent 60%),
+    radial-gradient(66% 58% at 95% 98%, rgba(69, 144, 236, 0.19), transparent 60%);
+}
+
 img {
   max-width: 100%;
   display: block;

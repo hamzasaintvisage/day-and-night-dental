@@ -76,8 +76,9 @@
 .tp-type-ico svg { width: 28px; height: 28px; }
 .tp-type-ico.day { background: rgba(248, 199, 96, 0.1); color: var(--dn-day); border: 1px solid rgba(248, 199, 96, 0.28); }
 .tp-type-ico.night { background: rgba(69, 144, 236, 0.1); color: var(--dn-night); border: 1px solid rgba(69, 144, 236, 0.28); }
-/* Alternating section band for vertical rhythm on long treatment pages */
-.dn-section.tp-band { background: var(--dn-near-black); border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+/* Transparent so the continuous page glow flows through; faint hairlines keep
+   subtle vertical rhythm on long treatment pages without a solid band fill. */
+.dn-section.tp-band { background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 
 /* Process steps */
 .tp-steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
@@ -88,7 +89,7 @@
 .tp-step::before { content: ''; position: absolute; top: 0; left: 0; width: 36px; height: 1px; background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); }
 
 /* FAQ */
-.tp-faq { background: var(--dn-near-black); }
+.tp-faq { background: transparent; }
 .tp-faq-list { max-width: 820px; margin: 0 auto; }
 .tp-faq details { border-bottom: 1px solid var(--dn-mist); padding: 1.5rem 0; }
 .tp-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 2rem; cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dn-bone); transition: color 0.3s; }

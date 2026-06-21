@@ -91,6 +91,8 @@ export default function Layout() {
         <meta name="twitter:image:alt" content="Day Night Dental, 24/7 emergency and cosmetic dentist in Glasgow" />
       </Head>
       <a href="#main" className="dn-skip-link">Skip to main content</a>
+      {/* Single continuous gold/blue page glow behind all content */}
+      <div className="dn-ambient" aria-hidden="true" />
       <div className="dn-noise" />
       <Header />
       <main id="main" tabIndex={-1}>
