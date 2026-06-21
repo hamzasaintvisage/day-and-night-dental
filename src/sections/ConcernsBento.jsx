@@ -141,7 +141,7 @@ export default function ConcernsBento() {
 
           <div className="cxg-result-stage">
             <div
-              className="cxg-result r-gold"
+              className={`cxg-result ${selected.side === 'night' ? 'r-blue' : 'r-gold'}`}
               key={selected.id}
               role="region"
               aria-label="Recommended treatment"

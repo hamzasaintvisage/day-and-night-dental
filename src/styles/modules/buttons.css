@@ -32,7 +32,7 @@
   z-index: -1;
 }
 
-/* Filled buttons (primary / emergency) keep the gradient FILL slide on hover */
+/* Filled primary buttons keep their gold fill treatment on hover. */
 .dn-btn.primary:hover::before {
   transform: translateX(0);
 }
@@ -41,8 +41,8 @@
   color: var(--dn-black);
 }
 
-/* Ghost (secondary) button: gold->blue gradient EDGE on hover, interior stays clear,
-   text stays white (fixes the old black-on-blue contrast fail), + lift and soft blue glow. */
+/* Ghost (secondary) button: solid night-blue edge on hover, with a clear interior
+   and white text for contrast. */
 .dn-btn:not(.primary)::after {
   content: '';
   position: absolute;
@@ -79,10 +79,6 @@
 
 .dn-btn.primary::before {
   background: linear-gradient(90deg, var(--dn-day-soft), var(--dn-day));
-}
-
-.dn-btn.primary:hover {
-  color: var(--dn-black);
 }
 
 .dn-btn .arrow {
@@ -127,4 +123,3 @@
   70% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
   100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
 }
-

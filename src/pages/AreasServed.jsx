@@ -89,8 +89,8 @@ export default function AreasServed() {
             <h2 className="dn-display">Patients we welcome from across <em className="dn-hl-gold">Glasgow</em></h2>
           </div>
           <div className="tp-benefit-grid">
-            {areas.map((a) => (
-              <article className="tp-benefit" key={a.name}>
+            {areas.map((a, i) => (
+              <article className={`tp-benefit ${i % 2 ? 'night' : 'day'}`} key={a.name}>
                 <span className="bar" />
                 <h3>{a.name}</h3>
                 <p>{a.note}</p>

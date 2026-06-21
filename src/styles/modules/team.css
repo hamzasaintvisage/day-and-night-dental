@@ -13,13 +13,16 @@
         }
         /* Team cards are not clickable, so keep hover feedback limited to the portrait itself. */
         .dn-portrait {
+          --dn-portrait-accent: var(--dn-day);
           position: relative;
           aspect-ratio: 5/7;
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
           border-radius: var(--dn-r-card);
           overflow: hidden;
+          transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
         }
+        .dn-portrait.night { --dn-portrait-accent: var(--dn-night); }
         .dn-portrait img {
           width: 100%;
           height: 100%;
@@ -27,9 +30,19 @@
           filter: grayscale(40%) brightness(0.85) contrast(1.1);
           transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .dn-team-card:hover .dn-portrait img {
-          filter: grayscale(0%) brightness(1) contrast(1);
-          transform: scale(1.03);
+        @media (hover: hover) {
+          .dn-team-card:hover .dn-portrait {
+            transform: translateY(-4px);
+            border-color: color-mix(in srgb, var(--dn-portrait-accent) 82%, transparent);
+            box-shadow:
+              0 0 0 1.5px color-mix(in srgb, var(--dn-portrait-accent) 75%, transparent),
+              0 0 32px -2px color-mix(in srgb, var(--dn-portrait-accent) 48%, transparent),
+              0 22px 46px -18px color-mix(in srgb, var(--dn-portrait-accent) 62%, transparent);
+          }
+          .dn-team-card:hover .dn-portrait img {
+            filter: grayscale(0%) brightness(1) contrast(1);
+            transform: scale(1.03);
+          }
         }
         .dn-portrait-overlay {
           position: absolute;

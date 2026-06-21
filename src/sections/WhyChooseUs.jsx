@@ -2,12 +2,12 @@ import { Icon } from '../components/ConcernIcon'
 import './why.css'
 
 const points = [
-  { icon: 'clock', side: 'night', h: 'Around-the-clock emergency access', p: 'Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.' },
-  { icon: 'bolt', side: 'day', h: 'Seen fast, treated properly', p: 'Urgent cases are prioritised for same-day assessment and emergency treatment.' },
-  { icon: 'heart', side: 'night', h: 'No judgement, just care', p: 'Nervous, embarrassed or overdue? We keep things calm, clear and focused on getting you treated.' },
-  { icon: 'rise', side: 'day', h: 'Always investing in better care', p: 'We are continually investing in modern equipment and techniques, so your care keeps getting better, safer and more comfortable.' },
-  { icon: 'tag', side: 'night', h: 'Costs explained first', p: 'Your options, fees and next steps are explained clearly before any treatment begins.' },
-  { icon: 'pin', side: 'day', h: 'Merchant City, central Glasgow', p: 'A central Glasgow practice for emergency, general and cosmetic dentistry.' },
+  { icon: 'clock', side: 'day', h: 'Around-the-clock emergency access', p: 'Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.' },
+  { icon: 'bolt', side: 'night', h: 'Seen fast, treated properly', p: 'Urgent cases are prioritised for same-day assessment and emergency treatment.' },
+  { icon: 'heart', side: 'day', h: 'No judgement, just care', p: 'Nervous, embarrassed or overdue? We keep things calm, clear and focused on getting you treated.' },
+  { icon: 'rise', side: 'night', h: 'Always investing in better care', p: 'We are continually investing in modern equipment and techniques, so your care keeps getting better, safer and more comfortable.' },
+  { icon: 'tag', side: 'day', h: 'Costs explained first', p: 'Your options, fees and next steps are explained clearly before any treatment begins.' },
+  { icon: 'pin', side: 'night', h: 'Merchant City, central Glasgow', p: 'A central Glasgow practice for emergency, general and cosmetic dentistry.' },
 ]
 
 // "Why Day Night" — aurora treatment: a soft sunrise-to-night sky glow + faint

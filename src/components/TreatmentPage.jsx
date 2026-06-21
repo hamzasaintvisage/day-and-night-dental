@@ -258,9 +258,9 @@ export default function TreatmentPage({ data }) {
                   </>
                 )
                 return t.slug ? (
-                  <Link className="tp-benefit tp-benefit-link" to={`/treatments/${t.slug}/`} key={i}>{inner}</Link>
+                  <Link className={`tp-benefit tp-benefit-link ${i % 2 ? 'night' : 'day'}`} to={`/treatments/${t.slug}/`} key={i}>{inner}</Link>
                 ) : (
-                  <article className="tp-benefit" key={i}>{inner}</article>
+                  <article className={`tp-benefit ${i % 2 ? 'night' : 'day'}`} key={i}>{inner}</article>
                 )
               })}
             </div>
@@ -277,7 +277,7 @@ export default function TreatmentPage({ data }) {
           </div>
           <div className="tp-benefit-grid">
             {data.benefits.map((b, i) => (
-              <article className="tp-benefit" key={i}>
+              <article className={`tp-benefit ${i % 2 ? 'night' : 'day'}`} key={i}>
                 <span className="bar" />
                 <span className="num">{String(i + 1).padStart(2, '0')}</span>
                 <h3>{b.title}</h3>
@@ -358,7 +358,7 @@ export default function TreatmentPage({ data }) {
             {data.aftercare.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.aftercare.intro}</p>}
             <div className="tp-benefit-grid">
               {data.aftercare.phases.map((ph, i) => (
-                <article className="tp-benefit" key={i}>
+                <article className={`tp-benefit ${i % 2 ? 'night' : 'day'}`} key={i}>
                   <span className="bar" />
                   <h3>{ph.title}</h3>
                   <ul className="tp-concern-list">
@@ -438,7 +438,7 @@ export default function TreatmentPage({ data }) {
           </div>
           <div className="tp-faq-list">
             {data.faqs.map((f, i) => (
-              <details key={i}>
+              <details className={i % 2 ? 'night' : 'day'} key={i}>
                 <summary>{f.q}<span className="icon" /></summary>
                 <p>{f.a}</p>
               </details>
@@ -455,8 +455,8 @@ export default function TreatmentPage({ data }) {
             <h2 className="dn-display">Related <em className="dn-hl-gold">treatments</em></h2>
           </div>
           <div className="tp-related-grid">
-            {data.related.map((r) => (
-              <Link className="tp-related-card" to={`/treatments/${r.slug}/`} key={r.slug}>
+            {data.related.map((r, i) => (
+              <Link className={`tp-related-card ${i % 2 ? 'night' : 'day'}`} to={`/treatments/${r.slug}/`} key={r.slug}>
                 <span className="tag">{r.tag || treatmentTag(r.slug)}</span>
                 <h3>{treatmentTitle(r.slug) || r.title}</h3>
                 <span className="go">View treatment →</span>

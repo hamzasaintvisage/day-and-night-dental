@@ -73,6 +73,7 @@
   margin-top: clamp(2.6rem, 5vw, 4.2rem);
 }
 .dn-why2-card {
+  --dn-why-accent: var(--dn-day);
   position: relative;
   padding: 2rem 1.9rem 2.3rem;
   border-radius: var(--dn-r-card);
@@ -83,21 +84,17 @@
   overflow: hidden;
   transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
-.dn-why2-card:hover { transform: translateY(-4px); }
+.dn-why2-card.night { --dn-why-accent: var(--dn-night); }
 /* per-side hover: gold sections glow gold, blue sections glow blue (even glow) */
-.dn-why2-card.day:hover {
-  border-color: color-mix(in srgb, var(--dn-day) 82%, transparent);
-  box-shadow:
-    0 0 0 1.5px color-mix(in srgb, var(--dn-day) 75%, transparent),
-    0 0 32px -2px color-mix(in srgb, var(--dn-day) 48%, transparent),
-    0 22px 46px -18px color-mix(in srgb, var(--dn-day) 62%, transparent);
-}
-.dn-why2-card.night:hover {
-  border-color: color-mix(in srgb, var(--dn-night) 82%, transparent);
-  box-shadow:
-    0 0 0 1.5px color-mix(in srgb, var(--dn-night) 75%, transparent),
-    0 0 32px -2px color-mix(in srgb, var(--dn-night) 48%, transparent),
-    0 22px 46px -18px color-mix(in srgb, var(--dn-night) 62%, transparent);
+@media (hover: hover) {
+  .dn-why2-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--dn-why-accent) 82%, transparent);
+    box-shadow:
+      0 0 0 1.5px color-mix(in srgb, var(--dn-why-accent) 75%, transparent),
+      0 0 32px -2px color-mix(in srgb, var(--dn-why-accent) 48%, transparent),
+      0 22px 46px -18px color-mix(in srgb, var(--dn-why-accent) 62%, transparent);
+  }
 }
 
 /* icon tile, glowing in its card's accent */

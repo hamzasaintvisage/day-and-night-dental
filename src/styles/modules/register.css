@@ -266,7 +266,7 @@
           margin: 0;
         }
         .dn-radio-card:has(input:focus-visible) {
-          outline: 2px solid var(--dn-day);
+          outline: 2px solid var(--dn-hover-accent, var(--dn-day));
           outline-offset: 2px;
         }
         .dn-radio-card .title {
@@ -420,4 +420,3 @@
           .dn-dob-grid .dn-dropdown-trigger > * { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         }
       
-

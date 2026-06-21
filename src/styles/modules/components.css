@@ -119,7 +119,7 @@
 .dn-cookie-btn.accept { background: var(--dn-day); color: #000; border: 1px solid var(--dn-day); }
 .dn-cookie-btn.ghost { background: transparent; color: var(--dn-bone-dim); border: 1px solid var(--dn-mist); }
 
-/* Mirror the main ghost button's gold|blue gradient-edge hover on the call-bar BOOK + cookie DECLINE */
+/* Mirror the main ghost button's solid night-blue edge on call-bar BOOK + cookie DECLINE. */
 .dn-callbar-btn.book, .dn-cookie-btn.ghost { position: relative; }
 .dn-callbar-btn.book::after, .dn-cookie-btn.ghost::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
@@ -167,7 +167,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 /* ===== Blog ===== */
 .dn-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
 .dn-blog-card { display: flex; flex-direction: column; gap: 0.6rem; padding: 2rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist); transition: border-color 0.4s, transform 0.4s; }
-.dn-blog-card:hover { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); transform: translateY(-4px); }
 .dn-blog-card .meta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dn-bone-faint); }
 .dn-blog-card h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; line-height: 1.25; }
 .dn-blog-card p { font-size: 0.92rem; color: var(--dn-bone-dim); flex: 1; }
@@ -187,10 +186,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-js .dn-section { opacity: 1; transform: none; transition: none; }
 }
 
-/* Desktop hover, ONLY on genuine bounded content cards, NOT on text blocks, pillars, numbered steps,
-   stat strips, hero stat labels or container/form wrappers. A small lift plus a gold->blue gradient
-   border that lights up around the card (the brand's interlinked day/night look). ::after is free on
-   these cards (they use ::before for their own accents). @media (hover: hover) so touch never sticks. */
+/* Shared day/night interaction system. Every repeated group starts gold and alternates blue.
+   Bounded cards use the strong Why-section ring and even glow; touch devices never receive a
+   sticky hover state. Components set their identity with .day/.night. */
+.dn-why-item,
+.dn-concern-card,
+.dn-review,
+.dn-gallery-item,
+.tp-benefit,
+.tp-related-card,
+.dn-blog-card,
+.dn-radio-card,
+.dn-success-card {
+  --dn-hover-accent: var(--dn-day);
+}
+.dn-why-item.night,
+.dn-concern-card.night,
+.dn-review.night,
+.dn-gallery-item.night,
+.tp-benefit.night,
+.tp-related-card.night,
+.dn-blog-card.night,
+.dn-radio-card.night {
+  --dn-hover-accent: var(--dn-night);
+}
 @media (hover: hover) {
   .dn-why-item,
   .dn-concern-card,
@@ -220,23 +239,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
     padding: 1.6px;
     pointer-events: none;
     z-index: 3;
-    background: var(--dn-day);
+    background: var(--dn-hover-accent);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.4s ease;
-  }
-  /* Side-aware solid ring (no gold->blue fade): night-side cards glow BLUE */
-  .dn-why-item.night::after,
-  .dn-concern-card.night::after,
-  .dn-concern-card:nth-child(even)::after,
-  .dn-review.night::after,
-  .dn-gallery-item.night::after,
-  .dn-radio-card.night::after,
-  .tp-related-card::after {
-    background: var(--dn-night);
   }
   .dn-why-item:hover,
   .dn-concern-card:hover,
@@ -246,24 +255,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-blog-card:hover,
   .dn-radio-card:hover,
   .dn-success-card:hover {
-    transform: translateY(-6px);
-    /* SINGLE gold accent, bold + EVEN glow (lit all around, not a faint shadow) */
-    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-day) 72%, transparent),
-                0 0 30px -2px color-mix(in srgb, var(--dn-day) 46%, transparent),
-                0 20px 42px -18px color-mix(in srgb, var(--dn-day) 60%, transparent);
-  }
-  /* night-side cards hover all BLUE (matches their blue ring) */
-  .dn-why-item.night:hover,
-  .dn-concern-card.night:hover,
-  .dn-concern-card:nth-child(even):hover,
-  .dn-review.night:hover,
-  .dn-gallery-item.night:hover,
-  .dn-radio-card.night:hover,
-  .tp-related-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-night) 72%, transparent),
-                0 0 30px -2px color-mix(in srgb, var(--dn-night) 46%, transparent),
-                0 20px 42px -18px color-mix(in srgb, var(--dn-night) 60%, transparent);
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--dn-hover-accent) 82%, transparent);
+    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-hover-accent) 75%, transparent),
+                0 0 32px -2px color-mix(in srgb, var(--dn-hover-accent) 48%, transparent),
+                0 22px 46px -18px color-mix(in srgb, var(--dn-hover-accent) 62%, transparent);
   }
   .dn-why-item:hover::after,
   .dn-concern-card:hover::after,
@@ -279,25 +275,39 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-why-item::before { transition: opacity 0.3s ease; }
   .dn-why-item:hover::before { opacity: 1; }
 
-  /* Area chips and inline link chips: gold accent only, no box */
-  /* Area chips: gold->blue gradient ring on hover (the interlinked day/night look), not flat gold */
+  /* Area chips are compact, but retain the same clear alternating ring. */
+  .dn-area-chip { --dn-hover-accent: var(--dn-day); }
+  .dn-area-chip:nth-child(even) { --dn-hover-accent: var(--dn-night); }
   .dn-area-chip::after {
     content: ''; position: absolute; inset: 0; border-radius: 999px; padding: 1.5px; pointer-events: none;
-    background: var(--dn-day);
+    background: var(--dn-hover-accent);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
     opacity: 0; transition: opacity 0.3s ease;
   }
-  .dn-area-chip:hover { color: var(--dn-bone); }
+  .dn-area-chip:hover {
+    color: var(--dn-bone);
+    border-color: color-mix(in srgb, var(--dn-hover-accent) 82%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-hover-accent) 68%, transparent),
+                0 0 20px -4px color-mix(in srgb, var(--dn-hover-accent) 48%, transparent);
+  }
   .dn-area-chip:hover::after { opacity: 1; }
   /* About pillars: a subtle lift on hover. No box, no colour overlay. */
   .dn-pillar { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   .dn-pillar:hover { transform: translateY(-6px); }
   .dn-register-includes li { transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
   .dn-register-includes li:hover { transform: translateX(5px); }
-  .dn-article-related-links a { display: inline-block; transition: transform 0.3s ease, color 0.3s ease; }
-  .dn-article-related-links a:hover { transform: translateX(3px); color: var(--dn-day); }
+  .dn-article-related-links a { --dn-hover-accent: var(--dn-day); display: inline-block; transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; }
+  .dn-article-related-links a:nth-child(even) { --dn-hover-accent: var(--dn-night); }
+  .dn-article-related-links a:hover { transform: translateX(3px); color: var(--dn-hover-accent); text-shadow: 0 0 14px color-mix(in srgb, var(--dn-hover-accent) 55%, transparent); }
+}
+.tp-benefit-link:focus-visible,
+.tp-related-card:focus-visible,
+.dn-blog-card:focus-visible,
+.dn-area-chip:focus-visible {
+  outline: 2px solid var(--dn-hover-accent, var(--dn-day));
+  outline-offset: 3px;
 }
 .dn-article-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); }
 /* The pill here is followed by .dn-article-related-links (a div), not a heading,

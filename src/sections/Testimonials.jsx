@@ -6,12 +6,12 @@ const promises = [
   {
     statement: "When you are in pain at 2am, you are not left waiting until morning. We aim to see you the same day.",
     label: "Open day and night",
-    side: "night",
+    side: "day",
   },
   {
     statement: "No surprises on cost. You get a written plan with the price of everything set out before any treatment starts.",
     label: "Honest pricing",
-    side: "day",
+    side: "night",
   },
   {
     statement: "Nervous? Take all the time you need. We treat a lot of anxious patients, and we never rush you.",

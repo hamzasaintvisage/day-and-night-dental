@@ -60,17 +60,21 @@
   padding: 2rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist); position: relative;
   transition: border-color 0.4s, transform 0.4s cubic-bezier(0.16,1,0.3,1);
 }
-/* Lift + gold->blue gradient ring come from the shared card-hover block (one source, identical on every
-   .tp-benefit on both treatment and areas-served pages). .bar below adds a unique left-edge accent. */
+/* Lift + side-aware solid ring come from the shared card-hover block. The bar below
+   adds the same alternating accent to treatment and areas-served cards. */
 .tp-benefit .num { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--dn-bone-faint); }
 .tp-benefit h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin: 0.75rem 0 0.6rem; }
 .tp-benefit p { font-size: 0.92rem; color: var(--dn-bone-dim); }
 .tp-benefit .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--dn-day); opacity: 0; transition: opacity 0.4s; }
+.tp-benefit.night .bar { background: var(--dn-night); }
 .tp-benefit:hover .bar { opacity: 1; }
 /* Linked option cards (hub card grids on cosmetic + general dentistry) behave as clickable cards */
 .tp-benefit-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
 .tp-benefit-link .go { display: inline-block; margin-top: 1rem; font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--dn-day); }
-.tp-benefit-link:hover .go { color: var(--dn-night); }
+.tp-benefit-link.night .go { color: var(--dn-night); }
+@media (hover: hover) {
+  .tp-benefit-link:hover .go { text-shadow: 0 0 14px color-mix(in srgb, currentColor 55%, transparent); }
+}
 /* Circular icon badge for option cards (e.g. implant types) */
 .tp-type-ico { width: 54px; height: 54px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 .tp-type-ico svg { width: 28px; height: 28px; }
@@ -95,26 +99,28 @@
 /* FAQ */
 .tp-faq { background: transparent; }
 .tp-faq-list { max-width: 820px; margin: 0 auto; }
-.tp-faq details { border-bottom: 1px solid var(--dn-mist); padding: 1.5rem 0; }
+.tp-faq details { --tp-faq-accent: var(--dn-day); border-bottom: 1px solid var(--dn-mist); padding: 1.5rem 0; }
+.tp-faq details.night { --tp-faq-accent: var(--dn-night); }
 .tp-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 2rem; cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dn-bone); transition: color 0.3s; }
 .tp-faq summary::-webkit-details-marker { display: none; }
-.tp-faq summary:hover {
-  background: none;
-  -webkit-text-fill-color: var(--dn-night); color: var(--dn-night);
+@media (hover: hover) {
+  .tp-faq summary:hover {
+    background: none;
+    -webkit-text-fill-color: var(--tp-faq-accent); color: var(--tp-faq-accent);
+    text-shadow: 0 0 14px color-mix(in srgb, var(--tp-faq-accent) 55%, transparent);
+  }
+  .tp-faq summary:hover .icon::before, .tp-faq summary:hover .icon::after { background: var(--tp-faq-accent); }
 }
 .tp-faq summary .icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; transition: transform 0.3s; }
 .tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: transform 0.3s, background 0.3s; }
 .tp-faq summary .icon::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
 .tp-faq summary .icon::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
-/* Keep the whole summary treatment a single colour: when the text turns blue on hover/open,
-   the plus/minus icon turns blue too (never gold text-fill + gold icon against blue text). */
-.tp-faq summary:hover .icon::before, .tp-faq summary:hover .icon::after { background: var(--dn-night); }
 .tp-faq details[open] summary .icon::after { transform: translateX(-50%) scaleY(0); }
 .tp-faq details[open] summary {
   background: none;
-  -webkit-text-fill-color: var(--dn-night); color: var(--dn-night);
+  -webkit-text-fill-color: var(--tp-faq-accent); color: var(--tp-faq-accent);
 }
-.tp-faq details[open] summary .icon::before, .tp-faq details[open] summary .icon::after { background: var(--dn-night); }
+.tp-faq details[open] summary .icon::before, .tp-faq details[open] summary .icon::after { background: var(--tp-faq-accent); }
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 
 /* Comparison matrix (treatment vs alternatives) */
@@ -140,10 +146,10 @@
 /* Related treatments */
 .tp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .tp-related-card { padding: 2rem; border: 1px solid var(--dn-mist); background: var(--dn-charcoal); transition: border-color 0.4s, transform 0.4s; display: flex; flex-direction: column; gap: 0.5rem; }
-.tp-related-card:hover { border-color: var(--dn-night-deep); transform: translateY(-4px); }
 .tp-related-card .tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dn-bone-faint); font-weight: 600; }
 .tp-related-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
 .tp-related-card .go { margin-top: 0.75rem; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dn-day); display: inline-flex; gap: 0.4rem; }
+.tp-related-card.night .go { color: var(--dn-night); }
 
 /* CTA band */
 .tp-cta { position: relative; overflow: hidden; text-align: center; }
@@ -165,4 +171,3 @@
   .tp-meta { grid-template-columns: 1fr; }
   .tp-steps { grid-template-columns: 1fr; }
 }
-

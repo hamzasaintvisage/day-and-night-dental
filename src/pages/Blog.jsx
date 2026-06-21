@@ -53,8 +53,8 @@ export default function Blog() {
             <h1 className="dn-display">Dental advice from our <em className="dn-hl-gold">Glasgow</em> team</h1>
           </div>
           <div className="dn-blog-grid">
-            {posts.map((p) => (
-              <Link key={p.slug} to={`/blog/${p.slug}/`} className="dn-blog-card">
+            {posts.map((p, i) => (
+              <Link key={p.slug} to={`/blog/${p.slug}/`} className={`dn-blog-card ${i % 2 ? 'night' : 'day'}`}>
                 <span className="meta">{p.date} · {p.readTime}</span>
                 <h2>{p.title}</h2>
                 <p>{p.description}</p>

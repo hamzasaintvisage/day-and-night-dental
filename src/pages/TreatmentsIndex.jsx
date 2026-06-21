@@ -99,8 +99,8 @@ export default function TreatmentsIndex() {
               <h2 className="dn-display">{g.heading}</h2>
             </div>
             <div className="tp-related-grid">
-              {g.slugs.map((slug) => (
-                <Link className="tp-related-card" to={`/treatments/${slug}/`} key={slug}>
+              {g.slugs.map((slug, i) => (
+                <Link className={`tp-related-card ${i % 2 ? 'night' : 'day'}`} to={`/treatments/${slug}/`} key={slug}>
                   <span className="tag">{treatmentTag(slug)}</span>
                   <h3>{treatmentTitle(slug)}</h3>
                   <span className="go">View treatment →</span>

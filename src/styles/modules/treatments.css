@@ -255,6 +255,7 @@
         }
         .dn-faq-nav { display: flex; flex-direction: column; gap: 4px; }
         .dn-faq-q {
+          --dn-faq-accent: var(--dn-day);
           text-align: left;
           background: transparent;
           border: none;
@@ -273,9 +274,12 @@
           align-items: center;
           min-height: 44px;
         }
-        .dn-faq-q:hover { color: var(--dn-bone); border-left-color: color-mix(in srgb, var(--dn-day) 70%, transparent); background: linear-gradient(90deg, rgba(248,199,96,0.06), transparent); }
+        .dn-faq-q:nth-child(even) { --dn-faq-accent: var(--dn-night); }
+        @media (hover: hover) {
+          .dn-faq-q:hover { color: var(--dn-bone); border-left-color: var(--dn-faq-accent); background: color-mix(in srgb, var(--dn-faq-accent) 7%, transparent); box-shadow: -8px 0 18px -12px color-mix(in srgb, var(--dn-faq-accent) 58%, transparent); }
+        }
         .dn-faq-q.on {
-          border-left-color: var(--dn-day);
+          border-left-color: var(--dn-faq-accent);
           color: var(--dn-bone);
           background: linear-gradient(90deg, rgba(248,199,96,0.05), transparent);
         }
@@ -335,7 +339,7 @@
 .txg-root::before{
   content:none;
 }
-@keyframes txg-washFlash{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes txg-wash-flash{0%,100%{opacity:.45}50%{opacity:1}}
 
 .txg-wrap{
   position:relative;

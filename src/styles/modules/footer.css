@@ -43,6 +43,7 @@
           flex-direction: column;
         }
         .dn-footer-col a {
+          --dn-footer-accent: var(--dn-day);
           font-size: 0.9rem;
           color: var(--dn-bone-dim);
           transition: color 0.3s;
@@ -52,8 +53,13 @@
           align-items: center;
           min-height: 44px;
         }
-        .dn-footer-col a:hover {
-          color: var(--dn-bone);
+        .dn-footer-col li:nth-child(even) a { --dn-footer-accent: var(--dn-night); }
+        .dn-footer-col > a:nth-of-type(even) { --dn-footer-accent: var(--dn-night); }
+        @media (hover: hover) {
+          .dn-footer-col a:hover {
+            color: var(--dn-footer-accent);
+            text-shadow: 0 0 14px color-mix(in srgb, var(--dn-footer-accent) 55%, transparent);
+          }
         }
         .dn-footer-col address {
           font-style: normal;
@@ -103,13 +109,18 @@
            so the separators stay put and the visual height barely changes. */
         .dn-footer-legal a,
         .dn-footer-legal .dn-footer-cookie {
+          --dn-footer-accent: var(--dn-day);
           color: var(--dn-bone-dim);
           transition: color 0.3s;
           display: inline-flex;
           align-items: center;
           min-height: 44px;
         }
-        .dn-footer-legal a:hover { color: var(--dn-bone); }
+        .dn-footer-legal a:nth-of-type(even) { --dn-footer-accent: var(--dn-night); }
+        @media (hover: hover) {
+          .dn-footer-legal a:hover,
+          .dn-footer-legal .dn-footer-cookie:hover { color: var(--dn-footer-accent); text-shadow: 0 0 12px color-mix(in srgb, var(--dn-footer-accent) 50%, transparent); }
+        }
         .dn-footer-regulator {
           font-size: 0.78rem;
           color: var(--dn-bone-faint);
@@ -132,4 +143,3 @@
           }
         }
       
-

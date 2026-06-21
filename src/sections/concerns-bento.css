@@ -36,7 +36,7 @@
 .cxg-glow {
   display: none;
 }
-@keyframes cxg-washFlash {
+@keyframes cxg-wash-flash {
   0%, 100% { opacity: 0.45; }
   50% { opacity: 1; }
 }
@@ -133,9 +133,7 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
-/* Section is now uniformly gold — every chip (incl. the data-tagged "night" ones)
-   uses the gold accent for its icon, hover ring + active state. Clean single colour. */
-.cxg-chip.night { --accent: var(--cxg-gold); }
+.cxg-chip.night { --accent: var(--cxg-blue); }
 
 .cxg-chip-label { white-space: nowrap; }
 
@@ -175,21 +173,21 @@
   border-left: 1px solid rgba(248, 199, 96, 0.3);
 }
 
-.cxg-chip:hover {
-  transform: translateY(-3px);
-  /* clearly visible + EVEN hover: SOLID accent border, strong symmetric accent
-     ring, soft accent glow all around (not a one-sided dark shadow). */
-  border-color: var(--accent);
-  box-shadow:
-    0 0 0 1.5px color-mix(in srgb, var(--accent) 75%, transparent),
-    0 0 30px -2px color-mix(in srgb, var(--accent) 48%, transparent),
-    0 18px 38px -16px color-mix(in srgb, var(--accent) 62%, transparent);
-}
-.cxg-chip:hover:not(.is-active) {
-  background: color-mix(in srgb, var(--accent) 13%, var(--cxg-bg-2));
-}
-.cxg-chip:hover .cxg-ic {
-  transform: scale(1.06) rotate(-3deg);
+@media (hover: hover) {
+  .cxg-chip:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--accent) 82%, transparent);
+    box-shadow:
+      0 0 0 1.5px color-mix(in srgb, var(--accent) 75%, transparent),
+      0 0 32px -2px color-mix(in srgb, var(--accent) 48%, transparent),
+      0 22px 46px -18px color-mix(in srgb, var(--accent) 62%, transparent);
+  }
+  .cxg-chip:hover:not(.is-active) {
+    background: color-mix(in srgb, var(--accent) 13%, var(--cxg-bg-2));
+  }
+  .cxg-chip:hover .cxg-ic {
+    transform: scale(1.06) rotate(-3deg);
+  }
 }
 
 /* the active/selected chip */
@@ -199,8 +197,9 @@
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
   background: color-mix(in srgb, var(--accent) 6%, transparent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
-    0 18px 44px -22px color-mix(in srgb, var(--accent) 50%, transparent);
+    0 0 0 1.5px color-mix(in srgb, var(--accent) 65%, transparent),
+    0 0 24px -4px color-mix(in srgb, var(--accent) 42%, transparent),
+    0 18px 44px -22px color-mix(in srgb, var(--accent) 55%, transparent);
   transform: translateY(-3px);
 }
 .cxg-chip.is-active .cxg-ic {
@@ -275,12 +274,11 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--cxg-gold);
 }
-.cxg-result.r-blue .cxg-result-ic { background: rgba(69, 144, 236, 0.14); }
+.cxg-result.r-blue .cxg-result-ic { background: rgba(69, 144, 236, 0.14); color: var(--cxg-blue); }
 .cxg-result-ic svg {
   width: 42px;
   height: 42px;
 }
-.cxg-result.r-blue .cxg-result-ic { color: var(--cxg-blue); }
 
 .cxg-r-kicker {
   font-size: 0.68rem;

@@ -106,6 +106,7 @@
         }
         .dn-strip-track::-webkit-scrollbar { display: none; }
         .dn-strip-card {
+          --dn-gallery-accent: var(--dn-day);
           position: relative;
           flex: 0 0 340px;
           scroll-snap-align: start;
@@ -115,7 +116,9 @@
           border-radius: var(--dn-r-card);
           margin: 0;
           background: var(--dn-near-black);
+          transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
         }
+        .dn-strip-card.night { --dn-gallery-accent: var(--dn-night); }
         .dn-strip-card img {
           position: absolute; inset: 0;
           width: 100%; height: 100%;
@@ -123,7 +126,17 @@
           filter: grayscale(30%) brightness(0.9) contrast(1.1);
           transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .dn-strip-card:hover img { filter: grayscale(0%) brightness(1) contrast(1); transform: scale(1.04); }
+        @media (hover: hover) {
+          .dn-strip-card:hover {
+            transform: translateY(-4px);
+            border-color: color-mix(in srgb, var(--dn-gallery-accent) 82%, transparent);
+            box-shadow:
+              0 0 0 1.5px color-mix(in srgb, var(--dn-gallery-accent) 75%, transparent),
+              0 0 32px -2px color-mix(in srgb, var(--dn-gallery-accent) 48%, transparent),
+              0 22px 46px -18px color-mix(in srgb, var(--dn-gallery-accent) 62%, transparent);
+          }
+          .dn-strip-card:hover img { filter: grayscale(0%) brightness(1) contrast(1); transform: scale(1.04); }
+        }
         .dn-strip-ov {
           position: absolute; inset: 0;
           background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
@@ -174,9 +187,11 @@
           cursor: pointer;
           transition: border-color 0.2s, background 0.2s;
         }
-        .dn-strip-arrow:hover { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 30%, transparent), 0 6px 18px -10px color-mix(in srgb, var(--dn-day) 40%, transparent); }
-        .dn-strip-arrow.prev { left: -8px; }
-        .dn-strip-arrow.next { right: -8px; }
+        .dn-strip-arrow.prev { --dn-control-accent: var(--dn-day); left: -8px; }
+        .dn-strip-arrow.next { --dn-control-accent: var(--dn-night); right: -8px; }
+        @media (hover: hover) {
+          .dn-strip-arrow:hover { border-color: color-mix(in srgb, var(--dn-control-accent) 82%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-control-accent) 68%, transparent), 0 0 20px -4px color-mix(in srgb, var(--dn-control-accent) 48%, transparent); }
+        }
         @media (max-width: 700px) {
           .dn-strip-card { flex: 0 0 78%; }
           .dn-strip-arrow { display: none; }
@@ -226,6 +241,7 @@
         .dn-spot-tag.night { color: var(--dn-night-soft); }
         .dn-spot-rail { display: flex; flex-direction: column; gap: 0.5rem; }
         .dn-spot-thumb {
+          --dn-control-accent: var(--dn-day);
           display: flex;
           gap: 0.75rem;
           align-items: center;
@@ -238,7 +254,11 @@
           font: inherit;
           transition: border-color 0.2s, background 0.2s;
         }
-        .dn-spot-thumb:hover { border-color: rgba(255, 255, 255, 0.32); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 10px 24px -16px rgba(255, 255, 255, 0.22); }
+        .dn-spot-thumb.night { --dn-control-accent: var(--dn-night); }
+        @media (hover: hover) {
+          .dn-spot-thumb:hover { border-color: color-mix(in srgb, var(--dn-control-accent) 82%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-control-accent) 68%, transparent), 0 0 20px -4px color-mix(in srgb, var(--dn-control-accent) 48%, transparent); }
+        }
+        .dn-spot-thumb:focus-visible { outline: 2px solid var(--dn-control-accent); outline-offset: 3px; }
         .dn-spot-thumb.on.day { border-color: var(--dn-day); background: rgba(248, 199, 96, 0.04); }
         .dn-spot-thumb.on.night { border-color: var(--dn-night-soft); background: rgba(69, 144, 236, 0.04); }
         .dn-spot-th-img {
@@ -266,5 +286,3 @@
         @media (max-width: 820px) {
           .dn-spot-grid { grid-template-columns: 1fr; }
         }
-
-

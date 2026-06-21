@@ -29,16 +29,17 @@
         }
         .dn-review.day::before { background: var(--dn-day); }
         .dn-review.night::before { background: var(--dn-night); }
-        .dn-review:hover {
-          background: var(--dn-charcoal);
-        }
-        .dn-review.day:hover {
-          border-color: color-mix(in srgb, var(--dn-day) 45%, transparent);
-          box-shadow: 0 0 28px color-mix(in srgb, var(--dn-day) 22%, transparent);
-        }
-        .dn-review.night:hover {
-          border-color: color-mix(in srgb, var(--dn-night) 45%, transparent);
-          box-shadow: 0 0 28px color-mix(in srgb, var(--dn-night) 22%, transparent);
+        @media (hover: hover) {
+          .dn-review:hover { background: var(--dn-charcoal); }
+          .dn-review.day:hover,
+          .dn-review.night:hover {
+            transform: translateY(-4px);
+            border-color: color-mix(in srgb, var(--dn-hover-accent) 82%, transparent);
+            box-shadow:
+              0 0 0 1.5px color-mix(in srgb, var(--dn-hover-accent) 75%, transparent),
+              0 0 32px -2px color-mix(in srgb, var(--dn-hover-accent) 48%, transparent),
+              0 22px 46px -18px color-mix(in srgb, var(--dn-hover-accent) 62%, transparent);
+          }
         }
         .dn-review-quote-mark {
           position: absolute;
@@ -80,4 +81,3 @@
           .dn-reviews-grid { grid-template-columns: 1fr; }
         }
       
-
