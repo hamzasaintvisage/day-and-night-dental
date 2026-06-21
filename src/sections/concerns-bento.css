@@ -230,21 +230,21 @@
 
 /* the active/selected chip */
 .cxg-chip.is-active {
-  --accent: var(--cxg-gold);
-  border-color: color-mix(in srgb, var(--cxg-gold) 60%, transparent);
-  /* clean dark interior + gold ring/glow — NO gold/blue gradient fill */
-  background: rgba(248, 199, 96, 0.05);
+  /* ring + glow follow THIS chip's own accent — gold for day chips, blue for night
+     chips — NOT forced gold. Clean dark interior, no gold/blue gradient fill. */
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--cxg-gold) 45%, transparent),
-    0 18px 44px -22px rgba(248, 199, 96, 0.5);
+    0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
+    0 18px 44px -22px color-mix(in srgb, var(--accent) 50%, transparent);
   transform: translateY(-3px);
 }
 .cxg-chip.is-active .cxg-ic {
-  /* icon stays gold line-art in a subtle gold-tinted circle — no gradient fill */
-  background: rgba(248, 199, 96, 0.12);
-  border-color: color-mix(in srgb, var(--cxg-gold) 45%, transparent);
-  color: var(--cxg-gold);
-  box-shadow: 0 6px 16px -10px rgba(248, 199, 96, 0.5);
+  /* icon = line-art in this chip's accent (gold or blue), subtle tinted circle */
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+  box-shadow: 0 6px 16px -10px color-mix(in srgb, var(--accent) 55%, transparent);
   transform: scale(1.05);
 }
 .cxg-chip:focus-visible {
