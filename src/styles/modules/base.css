@@ -117,13 +117,33 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
   background: currentColor;
   box-shadow: 0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
 }
+/* SHARED SECTION ACCENT — a short rule welded UNDER the pill eyebrow, echoing the
+   bold rule on the Real Smiles headline across the whole page. Anchored to the pill
+   (the only element identical on every section), so it lands in the same place + size
+   whether the headline is inline or stacked, centred or left, and never touches the
+   headline text or the mid-sentence gold word. currentColor → gold on .day pills,
+   blue on .night. The compact CTA/journey utility bands opt out (below). */
+.dn-eyebrow.dn-pill { position: relative; }
+.dn-eyebrow.dn-pill::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  bottom: -0.7rem;
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.dn-center-head .dn-eyebrow.dn-pill::after { left: 50%; transform: translateX(-50%); }
+.dn-ctaband .dn-eyebrow.dn-pill::after,
+.dn-journey .dn-eyebrow.dn-pill::after { content: none; }
 /* ONE shared gap between EVERY section pill and the heading right after it, so
    no pill ever sits flush against its title — identical on every section + page.
    Higher specificity than per-section heading margins, so it wins consistently. */
 .dn-eyebrow.dn-pill + h1,
 .dn-eyebrow.dn-pill + h2,
 .dn-eyebrow.dn-pill + h3 {
-  margin-top: 1.5rem;
+  margin-top: 1.9rem;
 }
 /* ONE shared SIZE for every section title (the h2 right after a section pill),
    so titles are identical across all sections (was 21px-38px, now uniform).
