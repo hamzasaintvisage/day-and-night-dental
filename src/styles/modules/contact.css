@@ -270,6 +270,9 @@
             gap: 3rem;
           }
           .dn-contact-form-wrap { position: static; }
+          /* centre the stacked contact header like every other section on mobile */
+          .dn-contact-info { text-align: center; }
+          .dn-contact-details { justify-items: center; }
         }
         @media (max-width: 600px) {
           .dn-contact-details { grid-template-columns: 1fr; }

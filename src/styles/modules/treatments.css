@@ -819,8 +819,10 @@
 
 /* ============ responsive ============ */
 @media (max-width:980px){
-  .txg-head{text-align:left;margin-left:0;}
-  .txg-head-trust{justify-content:flex-start;}
+  /* keep the header CENTRED on mobile (matches every other section); the
+     list+detail below still stacks left. */
+  .txg-head{text-align:center;}
+  .txg-head-trust{justify-content:center;}
   .txg-split{grid-template-columns:1fr;gap:30px;}
   /* mobile: drop the separate stage; the detail opens inline under each item */
   .txg-stage-col{display:none;}
