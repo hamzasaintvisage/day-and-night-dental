@@ -1,4 +1,5 @@
 import { Icon } from '../components/ConcernIcon'
+import './why.css'
 
 const points = [
   { icon: 'clock', side: 'night', h: 'Around-the-clock emergency access', p: 'Call anytime for urgent toothache, swelling, broken teeth or dental pain that cannot wait.' },
@@ -9,20 +10,32 @@ const points = [
   { icon: 'pin', side: 'day', h: 'Merchant City, central Glasgow', p: 'A central Glasgow practice for emergency, general and cosmetic dentistry.' },
 ]
 
+// "Why Day Night" — aurora treatment: a soft sunrise-to-night sky glow + faint
+// horizon and stars behind frosted, numbered cards. Day cards glow gold, night
+// cards glow blue — the brand's day/night split, all solid colour.
 export default function WhyChooseUs() {
   return (
-    <section className="dn-section">
+    <section className="dn-section dn-why2">
+      <div className="dn-why2-atmos" aria-hidden="true">
+        <span className="dn-why2-orb" />
+        <span className="dn-why2-horizon" />
+        <span className="dn-why2-stars" />
+      </div>
       <div className="dn-container">
-        <div className="tp-section-head dn-center-head">
+        <div className="dn-why2-head dn-center-head">
           <span className="dn-eyebrow dn-pill night">Why Day Night</span>
           <h2 className="dn-display">Why <em className="dn-hl-blue">Glasgow</em> patients choose Day Night Dental</h2>
+          <p className="dn-why2-sub">
+            From the first urgent call to the calm of a finished treatment &mdash; care that holds the line, day or night.
+          </p>
         </div>
-        <div className="dn-why-grid">
-          {points.map((pt) => (
-            <div className={`dn-why-item ${pt.side}`} key={pt.h}>
-              <span className="dn-why-icon"><Icon type={pt.icon} /></span>
+        <div className="dn-why2-grid">
+          {points.map((pt, i) => (
+            <div className={`dn-why2-card ${pt.side}`} key={pt.h}>
+              <span className="dn-why2-ico"><Icon type={pt.icon} /></span>
               <h3>{pt.h}</h3>
               <p>{pt.p}</p>
+              <span className="dn-why2-num">{String(i + 1).padStart(2, '0')}</span>
             </div>
           ))}
         </div>
