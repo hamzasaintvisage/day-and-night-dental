@@ -34,9 +34,9 @@ export default function Team() {
     <section id="team" className="dn-section dn-team">
       <div className="dn-container">
         <div className="dn-section-head">
-          <span className="dn-eyebrow dn-pill night">The Practitioners</span>
+          <span className="dn-eyebrow dn-pill day">The Practitioners</span>
           <h2 className="dn-display">
-            The people behind your <em className="dn-hl-blue">smile</em>
+            The people behind your <em className="dn-hl-gold">smile</em>
           </h2>
           <p className="dn-section-lead">
             Our dentists are GDC-registered and experienced across emergency, restorative

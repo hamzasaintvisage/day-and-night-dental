@@ -61,8 +61,8 @@ export default function HomeFaq() {
       </Head>
       <div className="dn-container">
         <div className="tp-section-head dn-center-head">
-          <span className="dn-eyebrow dn-pill night">Common Questions</span>
-          <h2 className="dn-display"><em className="dn-hl-blue">Emergency</em> &amp; dental questions, answered</h2>
+          <span className="dn-eyebrow dn-pill day">Common Questions</span>
+          <h2 className="dn-display"><em className="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
         </div>
 
         {/* d3 side-nav: questions left (narrow), answer card right. Reflows on

@@ -16,7 +16,7 @@
   --cxg-line-soft: rgba(255, 255, 255, 0.05);
   --cxg-card: rgba(255, 255, 255, 0.022);
   --cxg-bg-2: #0a0a0c;
-  --cxg-radius: 22px;
+  --cxg-radius: var(--dn-r-card, 16px);
   --cxg-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   position: relative;
@@ -67,7 +67,7 @@
 .cxg-title em {
   font-style: italic;
   font-weight: 500;
-  color: var(--cxg-blue);
+  color: var(--cxg-gold);
   padding-right: 0.04em;
 }
 
@@ -133,7 +133,9 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
-.cxg-chip.night { --accent: var(--cxg-blue); }
+/* Section is now uniformly gold — every chip (incl. the data-tagged "night" ones)
+   uses the gold accent for its icon, hover ring + active state. Clean single colour. */
+.cxg-chip.night { --accent: var(--cxg-gold); }
 
 .cxg-chip-label { white-space: nowrap; }
 
@@ -404,7 +406,7 @@
   background: rgba(255, 255, 255, 0.05);
 }
 .cxg-btn:focus-visible {
-  outline: 2px solid var(--cxg-blue);
+  outline: 2px solid var(--cxg-gold);
   outline-offset: 3px;
 }
 /* the primary button carries a gold glow, so its focus ring is gold too — never a

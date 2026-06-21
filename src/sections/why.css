@@ -75,7 +75,7 @@
 .dn-why2-card {
   position: relative;
   padding: 2rem 1.9rem 2.3rem;
-  border-radius: 18px;
+  border-radius: var(--dn-r-card);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.014));
   border: 1px solid rgba(255, 255, 255, 0.08);
   -webkit-backdrop-filter: blur(10px);
@@ -156,6 +156,27 @@
   .dn-why2-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
-  .dn-why2-grid { grid-template-columns: 1fr; }
+  /* Mobile: the 6-card stack becomes a horizontal swipe carousel — one card in
+     view with a small peek of the next, smooth CSS scroll-snap. Card styling,
+     icons, borders + colours are unchanged; cards stay full-size (not tiny). */
+  .dn-why2-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 0.9rem;
+    margin-top: 2.4rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* room for the cards' hover lift + glow, and clearance from the fixed call bar */
+    padding: 0.5rem 0 calc(0.8rem + env(safe-area-inset-bottom, 0px));
+    scroll-padding-left: 0;
+  }
+  .dn-why2-grid::-webkit-scrollbar { display: none; }
+  .dn-why2-card {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
   .dn-why2-orb { height: 360px; top: 30%; }
 }

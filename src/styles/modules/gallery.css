@@ -112,6 +112,7 @@
           aspect-ratio: 4/5;
           overflow: hidden;
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           margin: 0;
           background: var(--dn-near-black);
         }
@@ -194,6 +195,7 @@
           aspect-ratio: 4/5;
           overflow: hidden;
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           background: var(--dn-near-black);
         }
         .dn-spot-feature img {

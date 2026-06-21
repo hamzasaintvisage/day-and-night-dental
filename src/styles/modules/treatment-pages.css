@@ -87,6 +87,10 @@
 .tp-step h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin: 0.75rem 0 0.5rem; }
 .tp-step p { font-size: 0.9rem; color: var(--dn-bone-dim); }
 .tp-step::before { content: ''; position: absolute; top: 0; left: 0; width: 36px; height: 1px; background: var(--dn-night); }
+/* Process numbers alternate gold/blue down the row (matches the homepage rings):
+   step 1 gold, 2 blue, 3 gold, 4 blue. Even steps keep the default blue. */
+.tp-step:nth-child(odd) .step-n { -webkit-text-fill-color: var(--dn-day); color: var(--dn-day); }
+.tp-step:nth-child(odd)::before { background: var(--dn-day); }
 
 /* FAQ */
 .tp-faq { background: transparent; }

@@ -106,7 +106,7 @@ export default function ConcernsBento() {
 
       <div className="cxg-inner">
         <div className="cxg-head">
-          <p className="dn-eyebrow dn-pill night">What Brings You In</p>
+          <p className="dn-eyebrow dn-pill day">What Brings You In</p>
           <h2 className="cxg-title" id="cxg-title">
             Your <em>concerns</em>, our craft
           </h2>
@@ -141,7 +141,7 @@ export default function ConcernsBento() {
 
           <div className="cxg-result-stage">
             <div
-              className={`cxg-result ${selected.side === 'night' ? 'r-blue' : 'r-gold'}`}
+              className="cxg-result r-gold"
               key={selected.id}
               role="region"
               aria-label="Recommended treatment"

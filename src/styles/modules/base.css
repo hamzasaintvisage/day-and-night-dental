@@ -123,7 +123,27 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .dn-eyebrow.dn-pill + h1,
 .dn-eyebrow.dn-pill + h2,
 .dn-eyebrow.dn-pill + h3 {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
+}
+/* ONE shared SIZE for every section title (the h2 right after a section pill),
+   so titles are identical across all sections (was 21px-38px, now uniform).
+   Higher specificity than the per-section heading sizes, so it wins everywhere.
+   Only h2 → page hero h1s keep their own larger size. */
+.dn-eyebrow.dn-pill + h2 {
+  font-size: clamp(2.2rem, 5.4vw, 3.4rem);
+  line-height: 1.12;
+}
+/* EXCEPTIONS: the small/utility bands keep a compact title (the recurring CTA
+   bands + the "what to expect" journey strip) — more specific, so they win. */
+.dn-ctaband .dn-eyebrow.dn-pill + h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.18;
+  margin-top: 1.75rem;
+}
+.dn-journey .dn-eyebrow.dn-pill + h2 {
+  font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+  line-height: 1.2;
+  margin-top: 1.75rem;
 }
 /* centre a section heading area (eyebrow pill + headline) */
 .dn-center-head { text-align: center; }

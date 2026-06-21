@@ -107,6 +107,7 @@
           padding: 3rem;
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           position: relative;
           overflow: hidden;
         }
@@ -238,6 +239,7 @@
           padding: 4rem 3rem;
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           text-align: center;
         }
         .dn-success-mark {

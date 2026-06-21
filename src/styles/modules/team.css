@@ -17,6 +17,7 @@
           aspect-ratio: 5/7;
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           overflow: hidden;
         }
         .dn-portrait img {

@@ -30,9 +30,9 @@ export default function Testimonials() {
     <section id="testimonials" className="dn-section dn-testimonials">
       <div className="dn-container">
         <div className="dn-section-head">
-          <span className="dn-eyebrow dn-pill night">Our Promise</span>
+          <span className="dn-eyebrow dn-pill day">Our Promise</span>
           <h2 className="dn-display">
-            Care worth <em className="dn-hl-blue">talking about</em>
+            Care worth <em className="dn-hl-gold">talking about</em>
           </h2>
           <p className="dn-testimonials-note">
             We are a new practice in Merchant City, now welcoming patients from across Glasgow.

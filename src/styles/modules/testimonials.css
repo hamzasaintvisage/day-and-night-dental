@@ -16,6 +16,7 @@
           padding: 3rem 2.5rem 2.5rem;
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           margin: 0;
           transition: border-color 0.4s, background 0.4s, transform 0.4s, box-shadow 0.4s;
           overflow: hidden;

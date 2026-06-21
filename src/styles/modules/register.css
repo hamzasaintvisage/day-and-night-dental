@@ -34,6 +34,7 @@
           padding: 3rem 2.5rem;
           background: var(--dn-near-black);
           border: 1px solid var(--dn-mist);
+          border-radius: var(--dn-r-card);
           position: relative;
           overflow: hidden;
         }

@@ -23,8 +23,8 @@ export default function WhyChooseUs() {
       </div>
       <div className="dn-container">
         <div className="dn-why2-head dn-center-head">
-          <span className="dn-eyebrow dn-pill night">Why Day Night</span>
-          <h2 className="dn-display">Why <em className="dn-hl-blue">Glasgow</em> patients choose Day Night Dental</h2>
+          <span className="dn-eyebrow dn-pill day">Why Day Night</span>
+          <h2 className="dn-display">Why <em className="dn-hl-gold">Glasgow</em> patients choose Day Night Dental</h2>
           <p className="dn-why2-sub">
             From the first urgent call to the calm of a finished treatment &mdash; care that holds the line, day or night.
           </p>
