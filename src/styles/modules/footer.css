@@ -41,12 +41,16 @@
           list-style: none;
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
         }
         .dn-footer-col a {
           font-size: 0.9rem;
           color: var(--dn-bone-dim);
           transition: color 0.3s;
+          /* a11y: give each stacked link a full ~44px tap target (WCAG 2.5.8).
+             The min-height replaces the old list gap so column height is unchanged. */
+          display: inline-flex;
+          align-items: center;
+          min-height: 44px;
         }
         .dn-footer-col a:hover {
           color: var(--dn-bone);
@@ -94,9 +98,16 @@
         .dn-footer-legal .sep {
           color: var(--dn-mist);
         }
-        .dn-footer-legal a {
+        /* a11y: ~44px tap target on the inline legal links + cookie button (WCAG 2.5.8).
+           inline-flex keeps them on the same wrapping row; the row is centre-aligned
+           so the separators stay put and the visual height barely changes. */
+        .dn-footer-legal a,
+        .dn-footer-legal .dn-footer-cookie {
           color: var(--dn-bone-dim);
           transition: color 0.3s;
+          display: inline-flex;
+          align-items: center;
+          min-height: 44px;
         }
         .dn-footer-legal a:hover { color: var(--dn-bone); }
         .dn-footer-regulator {

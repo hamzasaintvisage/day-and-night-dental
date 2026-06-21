@@ -21,7 +21,7 @@ export default function ArticleLayout({ post }) {
     dateModified: post.dateModified || post.dateISO,
     author: { '@type': 'Organization', name: PRACTICE.name, url: `${SITE}/` },
     publisher: { '@id': `${SITE}/#dentist` },
-    mainEntityOfPage: url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     image: `${SITE}/og-image.jpg?v=2`,
   }
   const breadcrumbLd = {

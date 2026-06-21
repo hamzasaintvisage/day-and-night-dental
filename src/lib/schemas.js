@@ -15,13 +15,24 @@ const svc = (slug) => ({ '@type': 'MedicalProcedure', name: treatmentTitle(slug)
 // One connected business entity (linked by @id), with full local-business signals.
 export const dentistLd = {
   '@context': 'https://schema.org',
-  '@type': 'Dentist',
+  // Multi-typed: a Dentist that is ALSO an EmergencyService — the core signal for
+  // out-of-hours emergency queries. Both are LocalBusiness subtypes, so all the
+  // local-business properties below still apply.
+  '@type': ['Dentist', 'EmergencyService'],
   '@id': DENTIST_ID,
   name: PRACTICE.name,
   description: '24/7 emergency, cosmetic and general dental practice in Merchant City, Glasgow.',
+  slogan: 'Pain doesn’t wait. Neither do we.',
   url: `${SITE}/`,
   telephone: PRACTICE.phoneE164,
   email: PRACTICE.email,
+  availableLanguage: 'en-GB',
+  // Topical authority signals for emergency + cosmetic dental search.
+  knowsAbout: [
+    'Emergency dentistry', 'Out-of-hours dental care', 'Toothache relief',
+    'Dental abscess treatment', 'Broken tooth repair', 'Knocked-out tooth (avulsion)',
+    'Dental implants', 'Invisalign', 'Teeth whitening', 'Cosmetic dentistry',
+  ],
   image: [OG_IMAGE],
   logo: `${SITE}/logo.png?v=2`,
   priceRange: '££',

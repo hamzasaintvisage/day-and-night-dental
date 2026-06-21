@@ -40,6 +40,8 @@
   padding: 0.85rem 1rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist);
   color: var(--dn-bone); font-family: var(--font-body); font-size: 0.95rem;
   cursor: pointer; transition: border-color 0.3s; text-align: left; border-radius: 2px;
+  /* a11y: ~44px tap target for the dropdown trigger (WCAG 2.5.8) */
+  min-height: 44px;
 }
 .dn-dropdown-trigger:hover { border-color: var(--dn-day); }
 .dn-dropdown[data-open="true"] .dn-dropdown-trigger { border-color: var(--dn-day); }
@@ -61,6 +63,8 @@
   padding: 0.7rem 0.85rem; font-size: 0.9rem; color: var(--dn-bone-dim); cursor: pointer;
   display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
   transition: background 0.15s, color 0.15s; border-radius: 2px;
+  /* a11y: ~44px tap target for each option row in the custom dropdown (WCAG 2.5.8) */
+  min-height: 44px;
 }
 .dn-dropdown-option.active { background: rgba(248, 199, 96, 0.1); color: var(--dn-bone); }
 .dn-dropdown.night .dn-dropdown-option.active { background: rgba(69, 144, 236, 0.12); }
@@ -109,7 +113,9 @@
 .dn-cookie a { color: var(--dn-day); }
 .dn-cookie-actions { display: flex; gap: 0.75rem; }
 .dn-cookie-btn { flex: 1; padding: 0.7rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; cursor: pointer; border-radius: 999px; }
+  text-transform: uppercase; cursor: pointer; border-radius: 999px;
+  /* a11y: ~44px tap target for the consent buttons (WCAG 2.5.8) */
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
 .dn-cookie-btn.accept { background: var(--dn-day); color: #000; border: 1px solid var(--dn-day); }
 .dn-cookie-btn.ghost { background: transparent; color: var(--dn-bone-dim); border: 1px solid var(--dn-mist); }
 

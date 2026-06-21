@@ -5,6 +5,7 @@ export const posts = [
   {
     slug: 'dental-emergency-what-to-do-glasgow',
     title: 'What to do in a dental emergency: a step-by-step Glasgow guide',
+    seoTitle: 'Dental Emergency? What To Do in Glasgow',
     description: 'Knocked-out tooth, dental abscess, broken filling or severe toothache? Here is exactly what to do in the first hour, what can wait, and when to be seen in Glasgow.',
     date: '9 June 2026',
     dateISO: '2026-06-09',
@@ -93,7 +94,7 @@ export const posts = [
       { q: 'How much do veneers cost in Glasgow?', a: 'Cost is per tooth and depends on the material and the number of teeth. We provide a clear quote confirmed in writing at your consultation, and finance options are available to spread it.' },
       { q: 'Will veneers look natural?', a: 'Yes, when they are matched to your face and your other teeth. Porcelain in particular looks very natural, and we can show you a preview of the design before you commit.' },
     ],
-    related: ['cosmetic-dentistry', 'teeth-whitening'],
+    related: ['porcelain-veneers', 'composite-bonding', 'cosmetic-dentistry', 'teeth-whitening'],
     relatedPosts: ['teeth-whitening-professional-vs-home-glasgow', 'invisalign-vs-braces'],
   },
   {
@@ -142,6 +143,7 @@ export const posts = [
   {
     slug: 'emergency-dentist-glasgow-at-night',
     title: 'Where to find an emergency dentist in Glasgow at night',
+    seoTitle: 'Emergency Dentist in Glasgow at Night',
     description: 'In dental pain after hours in Glasgow? Here is what counts as an emergency, what to do while you wait, and how to be seen tonight.',
     date: '8 June 2026',
     dateISO: '2026-06-08',
@@ -167,6 +169,7 @@ export const posts = [
   {
     slug: 'dental-implants-cost-glasgow',
     title: 'How much do dental implants cost in Glasgow?',
+    seoTitle: 'Dental Implant Costs in Glasgow',
     description: 'A plain-English guide to what dental implants cost in Glasgow, what affects the price, and how finance can spread it.',
     date: '8 June 2026',
     dateISO: '2026-06-08',
@@ -189,6 +192,7 @@ export const posts = [
   {
     slug: 'invisalign-vs-braces',
     title: 'Invisalign vs braces in Glasgow: which is right for you?',
+    seoTitle: 'Invisalign vs Braces in Glasgow',
     description: 'Clear aligners or fixed braces? A straightforward comparison to help you choose how to straighten your teeth in Glasgow.',
     date: '8 June 2026',
     dateISO: '2026-06-08',

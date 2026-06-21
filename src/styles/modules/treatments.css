@@ -266,6 +266,12 @@
           line-height: 1.45;
           cursor: pointer;
           transition: color 0.2s, background 0.2s, border-color 0.2s;
+          /* a11y: ~44px tap target for the FAQ tab buttons (WCAG 2.5.8) — matters most
+             on mobile where they reflow into a wrapped row. min-height (not a fixed
+             height) so long, multi-line questions never clip. */
+          display: flex;
+          align-items: center;
+          min-height: 44px;
         }
         .dn-faq-q:hover { color: var(--dn-bone); border-left-color: color-mix(in srgb, var(--dn-night) 70%, transparent); background: linear-gradient(90deg, rgba(69,144,236,0.06), transparent); }
         .dn-faq-q.on {

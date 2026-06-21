@@ -74,6 +74,7 @@ export default function TreatmentPage({ data }) {
     description: data.seo.description,
     url,
     provider: { '@id': DENTIST_ID },
+    areaServed: { '@type': 'City', name: 'Glasgow' },
     ...(data.lastReviewed ? { lastReviewed: data.lastReviewed } : {}),
     ...(data.reviewer ? { reviewedBy: { '@type': 'Person', name: data.reviewer } } : {}),
   }
@@ -92,6 +93,8 @@ export default function TreatmentPage({ data }) {
   const faqLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    inLanguage: 'en-GB',
     mainEntity: data.faqs.map((f) => ({
       '@type': 'Question',
       name: f.q,

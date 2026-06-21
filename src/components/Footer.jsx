@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="dn-container dn-footer-inner">
         <div className="dn-footer-brand">
           <div className="dn-footer-logo">
-            <img src="/logo-mark.webp?v=2" alt="Day Night Dental" className="dn-footer-mark" width="160" height="139" />
+            <img src="/logo-mark.webp?v=2" alt="Day Night Dental logo" className="dn-footer-mark" width="160" height="139" />
             <span className="dn-footer-wordmark">
               <span className="day">Day</span><span className="night">Night</span><span className="dental">Dental</span>
             </span>
