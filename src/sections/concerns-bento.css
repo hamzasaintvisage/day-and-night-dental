@@ -232,17 +232,19 @@
 .cxg-chip.is-active {
   --accent: var(--cxg-gold);
   border-color: color-mix(in srgb, var(--cxg-gold) 60%, transparent);
-  background: linear-gradient(180deg, rgba(248, 199, 96, 0.15), rgba(69, 144, 236, 0.07));
+  /* clean dark interior + gold ring/glow — NO gold/blue gradient fill */
+  background: rgba(248, 199, 96, 0.05);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--cxg-gold) 50%, transparent),
-    0 18px 44px -20px rgba(248, 199, 96, 0.6);
+    0 0 0 1px color-mix(in srgb, var(--cxg-gold) 45%, transparent),
+    0 18px 44px -22px rgba(248, 199, 96, 0.5);
   transform: translateY(-3px);
 }
 .cxg-chip.is-active .cxg-ic {
-  background: linear-gradient(135deg, var(--cxg-gold), var(--cxg-blue));
-  border-color: transparent;
-  color: #0a0a0c;
-  box-shadow: 0 8px 22px -10px rgba(248, 199, 96, 0.7);
+  /* icon stays gold line-art in a subtle gold-tinted circle — no gradient fill */
+  background: rgba(248, 199, 96, 0.12);
+  border-color: color-mix(in srgb, var(--cxg-gold) 45%, transparent);
+  color: var(--cxg-gold);
+  box-shadow: 0 6px 16px -10px rgba(248, 199, 96, 0.5);
   transform: scale(1.05);
 }
 .cxg-chip:focus-visible {
