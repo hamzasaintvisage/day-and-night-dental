@@ -117,6 +117,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
   background: currentColor;
   box-shadow: 0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
 }
+/* ONE shared gap between EVERY section pill and the heading right after it, so
+   no pill ever sits flush against its title — identical on every section + page.
+   Higher specificity than per-section heading margins, so it wins consistently. */
+.dn-eyebrow.dn-pill + h1,
+.dn-eyebrow.dn-pill + h2,
+.dn-eyebrow.dn-pill + h3 {
+  margin-top: 1.25rem;
+}
 /* centre a section heading area (eyebrow pill + headline) */
 .dn-center-head { text-align: center; }
 .dn-center-head .dn-display { margin-inline: auto; }

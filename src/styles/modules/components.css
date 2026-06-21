@@ -300,7 +300,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-article-related-links a:hover { transform: translateX(3px); color: var(--dn-day); }
 }
 .dn-article-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); }
-.dn-article-related-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.75rem; }
+/* The pill here is followed by .dn-article-related-links (a div), not a heading,
+   so the shared `.dn-eyebrow.dn-pill + h*` rule can't reach it — match its 1.25rem gap. */
+.dn-article-related > .dn-eyebrow.dn-pill { display: inline-block; margin-bottom: 1.25rem; }
+.dn-article-related-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 .dn-article-related-links a { color: var(--dn-day); font-size: 0.9rem; }
 .dn-article-cta { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--dn-mist); }
 .dn-article-cta p { color: var(--dn-bone-dim); margin-bottom: 1.25rem; }
