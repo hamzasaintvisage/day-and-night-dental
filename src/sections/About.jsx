@@ -6,7 +6,7 @@ export default function About() {
       <div className="dn-container">
         <div className="dn-arc-grid">
           <div className="dn-arc-lede">
-            <span className="dn-eyebrow">WHY WE&rsquo;RE DIFFERENT</span>
+            <span className="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
             <blockquote className="dn-arc-quote">
               Built for real life, not <span className="dn-arc-gold">office</span> hours.
             </blockquote>

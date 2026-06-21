@@ -154,17 +154,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 .dn-ctaband::before { content: ''; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(ellipse at left, rgba(248, 199, 96,0.1), transparent 55%),
               radial-gradient(ellipse at right, rgba(69, 144, 236,0.1), transparent 55%); }
-.dn-ctaband-inner { position: relative; z-index: 1; display: flex; align-items: center;
-  justify-content: space-between; gap: 2.5rem; flex-wrap: wrap; }
-.dn-ctaband-text h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-top: 0.5rem; max-width: 620px; }
-.dn-ctaband-text p { color: var(--dn-bone-dim); margin-top: 0.6rem; max-width: 540px; }
-.dn-ctaband-actions { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
-@media (max-width: 760px) { .dn-ctaband-inner { flex-direction: column; align-items: flex-start; } .dn-ctaband-actions { width: 100%; } .dn-ctaband-actions .dn-btn { flex: 1; justify-content: center; } }
+.dn-ctaband-inner { position: relative; z-index: 1; display: flex; flex-direction: column;
+  align-items: center; text-align: center; gap: 1.6rem; }
+.dn-ctaband-text h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin: 0.5rem auto 0; max-width: 620px; }
+.dn-ctaband-text p { color: var(--dn-bone-dim); margin: 0.6rem auto 0; max-width: 540px; }
+.dn-ctaband-actions { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; justify-content: center; }
+@media (max-width: 760px) { .dn-ctaband-actions { width: 100%; } .dn-ctaband-actions .dn-btn { flex: 1; justify-content: center; } }
 
 /* ===== Blog ===== */
 .dn-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
 .dn-blog-card { display: flex; flex-direction: column; gap: 0.6rem; padding: 2rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist); transition: border-color 0.4s, transform 0.4s; }
-.dn-blog-card:hover { border-color: var(--dn-day-deep); transform: translateY(-4px); }
+.dn-blog-card:hover { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); transform: translateY(-4px); }
 .dn-blog-card .meta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dn-bone-faint); }
 .dn-blog-card h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; line-height: 1.25; }
 .dn-blog-card p { font-size: 0.92rem; color: var(--dn-bone-dim); flex: 1; }
@@ -235,7 +235,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-radio-card:hover,
   .dn-success-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 42px -18px rgba(69, 144, 236, 0.35), 0 8px 20px -12px rgba(248, 199, 96, 0.30);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 30%, transparent),
+                0 16px 34px -18px color-mix(in srgb, var(--dn-night) 42%, transparent),
+                0 8px 22px -14px color-mix(in srgb, var(--dn-day) 38%, transparent);
   }
   .dn-why-item:hover::after,
   .dn-concern-card:hover::after,

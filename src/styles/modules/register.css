@@ -335,7 +335,8 @@
         .dn-btn-ghost::before { display: none; }
         .dn-btn-ghost:hover {
           color: var(--dn-bone);
-          border-color: var(--dn-bone-dim);
+          border-color: rgba(255, 255, 255, 0.4);
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 12px 26px -16px rgba(255, 255, 255, 0.22);
         }
         .arrow-back {
           transition: transform 0.4s ease;

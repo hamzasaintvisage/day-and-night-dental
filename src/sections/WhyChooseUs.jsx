@@ -13,9 +13,9 @@ export default function WhyChooseUs() {
   return (
     <section className="dn-section">
       <div className="dn-container">
-        <div className="tp-section-head">
-          <span className="dn-eyebrow">Why Day Night</span>
-          <h2 className="dn-display">Why <em>Glasgow</em> patients choose Day Night Dental</h2>
+        <div className="tp-section-head dn-center-head">
+          <span className="dn-eyebrow dn-pill night">Why Day Night</span>
+          <h2 className="dn-display">Why <em className="dn-hl-blue">Glasgow</em> patients choose Day Night Dental</h2>
         </div>
         <div className="dn-why-grid">
           {points.map((pt) => (

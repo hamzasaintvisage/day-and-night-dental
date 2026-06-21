@@ -129,8 +129,8 @@
           align-items: flex-start;
           transition: border-color 0.3s;
         }
-        .dn-wall-card.day:hover  { border-color: rgba(248, 199, 96, 0.4); }
-        .dn-wall-card.night:hover { border-color: rgba(69, 144, 236, 0.4); }
+        .dn-wall-card.day:hover  { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 30%, transparent), 0 14px 30px -16px color-mix(in srgb, var(--dn-day) 40%, transparent); }
+        .dn-wall-card.night:hover { border-color: color-mix(in srgb, var(--dn-night) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 30%, transparent), 0 14px 30px -16px color-mix(in srgb, var(--dn-night) 40%, transparent); }
         .dn-wall-avwrap {
           position: relative;
           width: 76px;
@@ -220,7 +220,7 @@
           font: inherit;
           transition: border-color 0.2s, background 0.2s;
         }
-        .dn-ts-mc:hover { border-color: var(--dn-bone-faint); }
+        .dn-ts-mc:hover { border-color: rgba(255, 255, 255, 0.32); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 10px 24px -16px rgba(255, 255, 255, 0.22); }
         .dn-ts-mc.on.day  { border-color: var(--dn-day);        background: rgba(248, 199, 96, 0.04); }
         .dn-ts-mc.on.night { border-color: var(--dn-night-soft); background: rgba(69, 144, 236, 0.04); }
         .dn-ts-mc .dn-avatar {

@@ -267,7 +267,7 @@
           cursor: pointer;
           transition: color 0.2s, background 0.2s, border-color 0.2s;
         }
-        .dn-faq-q:hover { color: var(--dn-bone); }
+        .dn-faq-q:hover { color: var(--dn-bone); border-left-color: color-mix(in srgb, var(--dn-day) 70%, transparent); background: linear-gradient(90deg, rgba(248, 199, 96, 0.06), transparent); }
         .dn-faq-q.on {
           border-left-color: var(--dn-day);
           color: var(--dn-bone);
@@ -360,14 +360,14 @@
   border-radius:999px;
   background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.12);
-  box-shadow:0 0 20px -6px rgba(248,199,96,0.28), inset 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow:0 0 20px -6px rgba(69,144,236,0.30), inset 0 1px 0 rgba(255,255,255,0.05);
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
   font-size:11px;
   font-weight:600;
   letter-spacing:0.22em;
   text-transform:uppercase;
-  color:var(--txg-gold);
+  color:var(--txg-blue);
   margin:0 auto 26px;
 }
 /* solid-gold pulsing dot */
@@ -375,7 +375,7 @@
   position:relative;
   width:9px;height:9px;
   border-radius:50%;
-  background:var(--txg-gold);
+  background:var(--txg-blue);
   flex:none;
 }
 .txg-eyebrow-dot::after{
@@ -383,7 +383,7 @@
   position:absolute;
   inset:-5px;
   border-radius:50%;
-  background:radial-gradient(circle,rgba(248,199,96,0.5),transparent 70%);
+  background:radial-gradient(circle,rgba(69,144,236,0.5),transparent 70%);
   animation:txg-eyebrow-pulse 2.6s ease-in-out infinite;
 }
 @keyframes txg-eyebrow-pulse{
@@ -526,7 +526,7 @@
 }
 
 /* hover */
-.txg-option:hover{background:rgba(255,255,255,0.022);}
+.txg-option:hover{background:rgba(255,255,255,0.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-gold) 70%, transparent);}
 .txg-option:hover .txg-option-name{color:#fff;}
 .txg-option:hover .txg-option-ico{color:var(--txg-white);}
 

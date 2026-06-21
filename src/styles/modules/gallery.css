@@ -19,8 +19,8 @@
           border: 1px solid var(--dn-mist);
           transition: border-color 0.5s;
         }
-        .dn-gallery-item.day:hover .dn-gallery-image { border-color: rgba(248, 199, 96, 0.4); }
-        .dn-gallery-item.night:hover .dn-gallery-image { border-color: rgba(69, 144, 236, 0.4); }
+        .dn-gallery-item.day:hover .dn-gallery-image { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 30%, transparent), 0 14px 30px -16px color-mix(in srgb, var(--dn-day) 40%, transparent); }
+        .dn-gallery-item.night:hover .dn-gallery-image { border-color: color-mix(in srgb, var(--dn-night) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 30%, transparent), 0 14px 30px -16px color-mix(in srgb, var(--dn-night) 40%, transparent); }
 
         .dn-gallery-image img {
           width: 100%;
@@ -173,7 +173,7 @@
           cursor: pointer;
           transition: border-color 0.2s, background 0.2s;
         }
-        .dn-strip-arrow:hover { border-color: var(--dn-day); }
+        .dn-strip-arrow:hover { border-color: color-mix(in srgb, var(--dn-day) 70%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 30%, transparent), 0 6px 18px -10px color-mix(in srgb, var(--dn-day) 40%, transparent); }
         .dn-strip-arrow.prev { left: -8px; }
         .dn-strip-arrow.next { right: -8px; }
         @media (max-width: 700px) {
@@ -236,7 +236,7 @@
           font: inherit;
           transition: border-color 0.2s, background 0.2s;
         }
-        .dn-spot-thumb:hover { border-color: var(--dn-bone-faint); }
+        .dn-spot-thumb:hover { border-color: rgba(255, 255, 255, 0.32); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 10px 24px -16px rgba(255, 255, 255, 0.22); }
         .dn-spot-thumb.on.day { border-color: var(--dn-day); background: rgba(248, 199, 96, 0.04); }
         .dn-spot-thumb.on.night { border-color: var(--dn-night-soft); background: rgba(69, 144, 236, 0.04); }
         .dn-spot-th-img {

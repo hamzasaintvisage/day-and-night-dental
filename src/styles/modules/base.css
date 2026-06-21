@@ -68,6 +68,37 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .dn-eyebrow.day { color: var(--dn-day); }
 .dn-eyebrow.night { color: var(--dn-night); }
 
+/* Pill variant of the eyebrow: capsule, hairline border, glowing dot, soft glow.
+   Colour follows .day (gold) / .night (blue) via currentColor. */
+.dn-eyebrow.dn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px 7px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 20px -6px color-mix(in srgb, currentColor 55%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+}
+.dn-eyebrow.dn-pill::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex: none;
+  background: currentColor;
+  box-shadow: 0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
+}
+/* centre a section heading area (eyebrow pill + headline) */
+.dn-center-head { text-align: center; }
+.dn-center-head .dn-display { margin-inline: auto; }
+/* solid-colour headline word, overrides the gradient em */
+.dn-display em.dn-hl-gold { background: none; -webkit-text-fill-color: var(--dn-day); color: var(--dn-day); }
+.dn-display em.dn-hl-blue { background: none; -webkit-text-fill-color: var(--dn-night); color: var(--dn-night); }
+
 /* The signature gradient, gold to blue, the entire brand in one line */
 
 /* Inline emphasis treatment, replaces the old italic em styling.

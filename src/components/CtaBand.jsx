@@ -9,7 +9,7 @@ export default function CtaBand({ eyebrow = 'Day or Night', heading, sub, callLa
       <div className="dn-container">
         <div className="dn-ctaband-inner">
           <div className="dn-ctaband-text">
-            <span className="dn-eyebrow night">{eyebrow}</span>
+            <span className="dn-eyebrow dn-pill day">{eyebrow}</span>
             <h2 className="dn-display">{heading}</h2>
             {sub && <p>{sub}</p>}
             <p style={{ marginTop: '0.85rem', fontSize: '0.78rem', color: 'var(--dn-bone-dim)', letterSpacing: '0.02em' }}>

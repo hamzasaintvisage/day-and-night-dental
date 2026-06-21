@@ -153,7 +153,7 @@
         }
         .dn-hero-actions .dn-btn { border-radius: 999px; }
         .dn-hero-actions .dn-btn-emergency { box-shadow: 0 8px 30px -10px rgba(220, 38, 38, 0.5); transition: box-shadow 0.3s ease, transform 0.3s ease; }
-        .dn-hero-actions .dn-btn-emergency:hover { box-shadow: 0 14px 46px -8px rgba(220, 38, 38, 0.72); }
+        .dn-hero-actions .dn-btn-emergency:hover { box-shadow: 0 0 0 1px color-mix(in srgb, #dc2626 32%, transparent), 0 14px 40px -16px color-mix(in srgb, #dc2626 55%, transparent); }
 
         .dn-hero-trust {
           display: flex;

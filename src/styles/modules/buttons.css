@@ -63,7 +63,8 @@
   border-color: transparent;
   color: var(--dn-bone);
   transform: translateY(-2px);
-  box-shadow: 0 9px 24px -16px rgba(69, 144, 236, 0.34);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 30%, transparent),
+              0 14px 30px -16px color-mix(in srgb, var(--dn-night) 42%, transparent);
 }
 .dn-btn:not(.primary):active { transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {

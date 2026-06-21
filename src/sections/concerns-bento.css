@@ -221,8 +221,15 @@
 
 .cxg-chip:hover {
   transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  box-shadow: 0 14px 34px -22px rgba(0, 0, 0, 0.9);
+  /* clearly visible + EVEN hover: bright accent border, symmetric accent ring,
+     soft accent glow all around (not a one-sided dark shadow). */
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 14px 30px -16px color-mix(in srgb, var(--accent) 42%, transparent);
+}
+.cxg-chip:hover:not(.is-active) {
+  background: color-mix(in srgb, var(--accent) 7%, var(--cxg-bg-2));
 }
 .cxg-chip:hover .cxg-ic {
   transform: scale(1.06) rotate(-3deg);

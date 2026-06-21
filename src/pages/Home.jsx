@@ -57,13 +57,13 @@ export default function Home() {
       <WhyChooseUs />
       <CtaBand
         eyebrow="Open When You Need Us"
-        heading={<>A dentist in Glasgow, <em>day or night</em>.</>}
+        heading={<>A dentist in Glasgow, <em className="dn-hl-gold">day or night</em>.</>}
         sub="Routine care by day, emergencies around the clock. Call us now or book an appointment online."
       />
       <Treatments />
       <CtaBand
         eyebrow="Don't Wait Until Morning"
-        heading={<>In pain right now? Help is on hand, <em>every hour</em>.</>}
+        heading={<>In pain right now? Help is on hand, <em className="dn-hl-gold">every hour</em>.</>}
         sub="Whether it's the middle of the night or the middle of the week, you can call us in Glasgow straight away for urgent help."
         callLabel="Call our 24/7 line"
       />
