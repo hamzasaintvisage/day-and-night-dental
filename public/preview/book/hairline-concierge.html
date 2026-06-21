@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Book an appointment — Hairline Concierge · Day Night Dental</title>
+<style>
+/* ===== Hairline Concierge — quiet-luxury, pure hairline grid, no cards ===== */
+.dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
+.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem);}
+
+/* faint brand glows — kept barely-there to honour the restraint of the concept */
+.dn-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.dn-glow.day{width:480px;height:480px;top:6%;left:2%;background:var(--dn-day);opacity:.05;}
+.dn-glow.night{width:480px;height:480px;bottom:6%;right:2%;background:var(--dn-night);opacity:.05;}
+
+.dn-contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start;}
+.dn-contact-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--dn-mist);}
+
+/* ---- Left: identity + NAP as hairline-divided rows ---- */
+.dn-contact-info{min-width:0;}
+.dn-contact-info .dn-eyebrow.dn-pill{margin-bottom:1.6rem;}
+.dn-display{font-family:var(--font-display);font-weight:340;letter-spacing:-.01em;line-height:1.06;margin:0;font-size:clamp(2.3rem,5.2vw,3.5rem);}
+h2.dn-display{margin-bottom:1.4rem;}
+.dn-contact-lead{max-width:34ch;color:var(--dn-bone-dim);font-size:1.02rem;margin:0 0 2.6rem;}
+
+.dn-contact-details{margin-top:.5rem;}
+.dn-contact-detail{display:grid;grid-template-columns:9.5rem 1fr;align-items:baseline;gap:1rem 1.4rem;padding:1.15rem 0;border-top:1px solid var(--dn-mist);}
+.dn-contact-detail:last-child{border-bottom:1px solid var(--dn-mist);}
+.dn-contact-detail .dn-eyebrow{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);align-self:center;}
+.dn-contact-detail .dn-eyebrow.day{color:var(--dn-day);}
+.dn-contact-detail .dn-eyebrow.night{color:var(--dn-night);}
+.dn-contact-detail .value{font-family:var(--font-display);font-size:1.18rem;font-weight:420;color:var(--dn-bone);text-decoration:none;line-height:1.3;}
+a.value{transition:color .18s ease;}
+a.value:hover{color:var(--dn-day);}
+.dn-contact-detail .hint{display:block;grid-column:2;font-family:var(--font-body);font-size:.78rem;color:var(--dn-bone-faint);margin-top:.3rem;letter-spacing:.01em;}
+
+/* the single accent: blue-ruled 24/7 emergency row with a quiet live-dot */
+.dn-contact-detail.is-emergency{position:relative;padding-left:1.15rem;border-left:1px solid var(--dn-night);margin-left:-1.15rem;border-top-color:var(--dn-mist);}
+.dn-contact-detail.is-emergency .dn-eyebrow{color:var(--dn-night);}
+.dn-contact-detail.is-emergency .value{color:var(--dn-night-soft);}
+.dn-contact-detail.is-emergency .value:hover{color:var(--dn-bone);}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);margin-right:.5rem;vertical-align:middle;box-shadow:0 0 0 0 rgba(69,144,236,.55);animation:dn-pulse 2.4s ease-out infinite;}
+@keyframes dn-pulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}70%{box-shadow:0 0 0 8px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
+
+/* tiny hours line — kept as quiet hairline rows, no table chrome */
+.dn-hours{margin-top:2.4rem;display:grid;gap:0;}
+.dn-hours .dn-eyebrow{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:.4rem;}
+.dn-hours-row{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-top:1px solid var(--dn-mist);font-size:.92rem;color:var(--dn-bone-dim);}
+.dn-hours-row span:last-child{color:var(--dn-bone);font-variant-numeric:tabular-nums;}
+.dn-hours-row.is-emergency span:last-child{color:var(--dn-night-soft);}
+
+/* ---- Right: form lives on the bare background, underline-only inputs ---- */
+.dn-contact-form-wrap{min-width:0;}
+.dn-contact-form{padding:0;background:none;border:0;border-top:1px solid var(--dn-day);padding-top:2rem;}
+.dn-contact-form .form-eyebrow{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;}
+.dn-contact-form h3.dn-display{font-size:clamp(1.7rem,3vw,2.1rem);margin:.5rem 0 2rem;}
+
+.dn-form-row{margin-bottom:1.9rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.dn-contact-form label{display:block;}
+.dn-contact-form label > span,.dn-form-label{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);margin-bottom:.55rem;}
+.dn-contact-form input,.dn-contact-form textarea,.dn-select{width:100%;background:none;border:0;border-bottom:1px solid var(--dn-mist);border-radius:0;padding:.7rem 0;min-height:44px;color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;transition:border-color .18s ease,box-shadow .18s ease;}
+.dn-contact-form textarea{resize:vertical;min-height:64px;line-height:1.5;}
+.dn-contact-form input::placeholder,.dn-contact-form textarea::placeholder{color:var(--dn-bone-faint);opacity:.7;}
+.dn-contact-form input:focus,.dn-contact-form textarea:focus,.dn-select:focus{outline:0;border-bottom-color:var(--dn-day);box-shadow:0 1px 0 var(--dn-day);}
+
+/* native select, themed as an underline field */
+.dn-select-wrap{position:relative;}
+.dn-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:1.5rem;}
+.dn-select:invalid{color:var(--dn-bone-faint);}
+.dn-select option{background:var(--dn-charcoal);color:var(--dn-bone);}
+.dn-select-wrap::after{content:"";position:absolute;right:.2rem;top:50%;width:.5rem;height:.5rem;border-right:1.5px solid var(--dn-bone-faint);border-bottom:1.5px solid var(--dn-bone-faint);transform:translateY(-70%) rotate(45deg);pointer-events:none;}
+
+/* preferred-time as underline-row radio chips — text only, single-colour accents */
+.dn-form-radios{display:flex;flex-wrap:wrap;gap:.6rem;}
+.dn-radio{position:relative;display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.35rem 1rem;border:1px solid var(--dn-mist);border-radius:999px;cursor:pointer;font-size:.9rem;color:var(--dn-bone-dim);transition:border-color .18s ease,color .18s ease,background .18s ease;}
+.dn-radio input{position:absolute;opacity:0;width:0;height:0;min-height:0;}
+.dn-radio:hover{color:var(--dn-bone);}
+.dn-radio.day:has(input:checked){border-color:var(--dn-day);color:var(--dn-day);background:rgba(248,199,96,.07);}
+.dn-radio.night:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.08);}
+.dn-radio.urgent{border-color:rgba(69,144,236,.55);}
+.dn-radio.urgent:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.1);}
+.urgent-dot{width:6px;height:6px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px rgba(69,144,236,.7);}
+/* keyboard focus ring without breaking the chrome-less look */
+.dn-radio:focus-within{box-shadow:0 0 0 2px rgba(248,199,96,.4);}
+
+.dn-form-submit{margin-top:.4rem;display:inline-flex;align-items:center;gap:.6rem;min-height:52px;padding:.85rem 1.8rem;background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-weight:700;font-size:.98rem;letter-spacing:.01em;border:1px solid var(--dn-day);border-radius:999px;cursor:pointer;box-shadow:0 0 0 1px transparent;transition:box-shadow .22s ease,transform .12s ease;}
+.dn-form-submit:hover{box-shadow:0 0 24px rgba(248,199,96,.35),0 0 0 1px var(--dn-day);}
+.dn-form-submit:active{transform:translateY(1px);}
+.dn-form-submit .arrow{font-size:1.1rem;line-height:1;}
+/* emergency-mode submit flips to the blue accent only when chosen */
+.dn-form-submit.is-emergency{background:var(--dn-night);border-color:var(--dn-night);color:var(--dn-bone);}
+.dn-form-submit.is-emergency:hover{box-shadow:0 0 24px rgba(69,144,236,.4),0 0 0 1px var(--dn-night);}
+
+.dn-form-disclaimer{margin-top:1.4rem;font-size:.78rem;color:var(--dn-bone-faint);max-width:46ch;}
+.dn-form-disclaimer a{color:var(--dn-bone-dim);text-underline-offset:2px;}
+.dn-form-note{margin-bottom:1.4rem;font-size:.85rem;color:var(--dn-bone-dim);}
+.dn-form-note a{color:var(--dn-night-soft);text-decoration:none;font-weight:600;}
+
+/* ---- Mobile: divider becomes horizontal, emergency floats to top ---- */
+@media(max-width:1000px){
+  .dn-contact-grid{grid-template-columns:1fr;gap:clamp(2.6rem,8vw,3.4rem);}
+  .dn-contact-grid::before{display:none;}
+  .dn-contact-form-wrap{border-top:1px solid var(--dn-mist);padding-top:clamp(2.6rem,8vw,3.4rem);}
+}
+@media(max-width:560px){
+  .dn-contact-detail{grid-template-columns:1fr;gap:.3rem;padding:1rem 0;}
+  .dn-contact-detail .hint{grid-column:1;}
+  .dn-contact-detail .dn-eyebrow{align-self:start;}
+  .dn-form-row-2{grid-template-columns:1fr;gap:1.9rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#5</span> <b>Hairline Concierge</b> <span class="lab-lens">minimal</span></div><span></span></div>
+
+<section id="contact" class="dn-section dn-contact" aria-labelledby="book-heading">
+  <div class="dn-glow day" aria-hidden="true"></div>
+  <div class="dn-glow night" aria-hidden="true"></div>
+
+  <div class="dn-container">
+    <div class="dn-contact-grid">
+
+      <!-- LEFT: identity + NAP hairline rows -->
+      <div class="dn-contact-info">
+        <span class="dn-eyebrow dn-pill day">Book Appointment</span>
+        <h2 class="dn-display" id="book-heading">
+          Book an <em class="dn-hl-gold">appointment</em>.
+        </h2>
+        <p class="dn-contact-lead">
+          For urgent toothache, swelling or a broken tooth, call our 24/7 emergency
+          line. For routine care, leave your details and the team will be in touch.
+        </p>
+
+        <div class="dn-contact-details">
+
+          <!-- The single accent row — emergency, blue-ruled, live-dot -->
+          <div class="dn-contact-detail is-emergency">
+            <span class="dn-eyebrow night">Night &amp; Emergency</span>
+            <a href="tel:+441415486548" class="value">0141 548 6548</a>
+            <span class="hint"><span class="live-dot" aria-hidden="true"></span>24-hour emergency line — answered now</span>
+          </div>
+
+          <div class="dn-contact-detail">
+            <span class="dn-eyebrow day">Day Line</span>
+            <a href="tel:+441415486548" class="value">0141 548 6548</a>
+            <span class="hint">Mon to Sun, 7am to 11pm</span>
+          </div>
+
+          <div class="dn-contact-detail">
+            <span class="dn-eyebrow">Email</span>
+            <a href="mailto:reception@daynightdental.co.uk" class="value">reception@daynightdental.co.uk</a>
+            <span class="hint">We reply within 1 working hour</span>
+          </div>
+
+          <div class="dn-contact-detail">
+            <span class="dn-eyebrow">Visit</span>
+            <p class="value" style="margin:0;">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
+            <span class="hint">Free parking nearby</span>
+          </div>
+        </div>
+
+        <div class="dn-hours">
+          <span class="dn-eyebrow">Opening Hours</span>
+          <div class="dn-hours-row"><span>Monday to Friday</span><span>7am – 11pm</span></div>
+          <div class="dn-hours-row"><span>Saturday</span><span>8am – 10pm</span></div>
+          <div class="dn-hours-row"><span>Sunday</span><span>9am – 9pm</span></div>
+          <div class="dn-hours-row is-emergency"><span>Emergency line</span><span><span class="live-dot" aria-hidden="true"></span>24 hours, 7 days</span></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: chrome-less underline form -->
+      <div class="dn-contact-form-wrap">
+        <form class="dn-contact-form" id="book-form" novalidate>
+          <span class="form-eyebrow">Request an appointment</span>
+          <h3 class="dn-display">Leave your details</h3>
+
+          <p class="dn-form-note">
+            In pain right now? Don’t wait — call
+            <a href="tel:+441415486548">0141 548 6548</a>.
+          </p>
+
+          <div class="dn-form-row">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Full name" required>
+            </label>
+          </div>
+
+          <div class="dn-form-row dn-form-row-2">
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call" required>
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+            </label>
+          </div>
+
+          <div class="dn-form-row">
+            <span class="dn-form-label" id="pref-time-label">Preferred time</span>
+            <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
+              <label class="dn-radio night urgent">
+                <input type="radio" name="preference" value="emergency">
+                <span class="urgent-dot" aria-hidden="true"></span>Emergency, today
+              </label>
+              <label class="dn-radio day">
+                <input type="radio" name="preference" value="day">
+                Day (7am to 5pm)
+              </label>
+              <label class="dn-radio night">
+                <input type="radio" name="preference" value="evening">
+                Evening (5pm to 11pm)
+              </label>
+              <label class="dn-radio night">
+                <input type="radio" name="preference" value="weekend">
+                Weekend
+              </label>
+            </div>
+          </div>
+
+          <div class="dn-form-row">
+            <label>
+              <span>Treatment of interest</span>
+              <span class="dn-select-wrap">
+                <select class="dn-select" name="treatment" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="Emergency / pain">Emergency / pain</option>
+                  <option value="New patient examination">New patient examination</option>
+                  <option value="Hygienist appointment">Hygienist appointment</option>
+                  <option value="Cosmetic consultation">Cosmetic consultation</option>
+                  <option value="Invisalign">Invisalign</option>
+                  <option value="Dental implants">Dental implants</option>
+                  <option value="Teeth whitening">Teeth whitening</option>
+                  <option value="Other / unsure">Other / unsure</option>
+                </select>
+              </span>
+            </label>
+          </div>
+
+          <div class="dn-form-row">
+            <label>
+              <span>Anything we should know?</span>
+              <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="dn-form-submit" id="book-submit">
+            <span class="submit-label">Request Booking</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+
+          <p class="dn-form-disclaimer">
+            We’ll never share your details. By sending this you’re happy for us to
+            contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var form = document.getElementById('book-form');
+  if(!form) return;
+  var submit = document.getElementById('book-submit');
+  var label = submit.querySelector('.submit-label');
+
+  // Flip the submit accent to blue when "Emergency, today" is chosen.
+  form.addEventListener('change', function(e){
+    if(e.target && e.target.name === 'preference'){
+      var emergency = e.target.value === 'emergency';
+      submit.classList.toggle('is-emergency', emergency);
+      label.textContent = emergency ? 'Request Emergency Appointment' : 'Request Booking';
+    }
+  });
+
+  // Preview page: do not actually submit.
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var original = label.textContent;
+    label.textContent = 'Preview only — please call to book';
+    submit.disabled = true;
+    setTimeout(function(){ label.textContent = original; submit.disabled = false; }, 2600);
+  });
+})();
+</script>
+</body>
+</html>
