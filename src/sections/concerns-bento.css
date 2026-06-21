@@ -152,7 +152,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(10px, 1.4vw, 14px);
+  gap: clamp(14px, 1.8vw, 20px);
   max-width: 880px;
   margin: 0 auto;
 }
@@ -203,9 +203,9 @@
 }
 
 /* featured chip carries a soft gold ring + "Most asked" tag */
+/* featured chip ONLY carries the "Most asked" tag — no permanent selected styling,
+   so the active chip is the single highlighted pill (premium + obvious). */
 .cxg-chip.featured {
-  border-color: rgba(248, 199, 96, 0.4);
-  background: linear-gradient(180deg, rgba(248, 199, 96, 0.07), rgba(255, 255, 255, 0.018));
   padding-right: 1.05rem;
 }
 .cxg-tag {
@@ -231,11 +231,11 @@
 /* the active/selected chip */
 .cxg-chip.is-active {
   --accent: var(--cxg-gold);
-  border-color: transparent;
-  background: linear-gradient(180deg, rgba(248, 199, 96, 0.16), rgba(69, 144, 236, 0.08));
+  border-color: color-mix(in srgb, var(--cxg-gold) 60%, transparent);
+  background: linear-gradient(180deg, rgba(248, 199, 96, 0.15), rgba(69, 144, 236, 0.07));
   box-shadow:
-    0 0 0 1.5px color-mix(in srgb, var(--cxg-gold) 70%, transparent),
-    0 22px 48px -26px rgba(248, 199, 96, 0.55);
+    0 0 0 1px color-mix(in srgb, var(--cxg-gold) 50%, transparent),
+    0 18px 44px -20px rgba(248, 199, 96, 0.6);
   transform: translateY(-3px);
 }
 .cxg-chip.is-active .cxg-ic {
