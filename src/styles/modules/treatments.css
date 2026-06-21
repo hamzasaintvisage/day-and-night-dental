@@ -267,11 +267,11 @@
           cursor: pointer;
           transition: color 0.2s, background 0.2s, border-color 0.2s;
         }
-        .dn-faq-q:hover { color: var(--dn-bone); border-left-color: color-mix(in srgb, var(--dn-day) 70%, transparent); background: linear-gradient(90deg, rgba(248, 199, 96, 0.06), transparent); }
+        .dn-faq-q:hover { color: var(--dn-bone); border-left-color: color-mix(in srgb, var(--dn-night) 70%, transparent); background: linear-gradient(90deg, rgba(69,144,236,0.06), transparent); }
         .dn-faq-q.on {
-          border-left-color: var(--dn-day);
+          border-left-color: var(--dn-night);
           color: var(--dn-bone);
-          background: linear-gradient(90deg, rgba(248, 199, 96, 0.05), transparent);
+          background: linear-gradient(90deg, rgba(69,144,236,0.05), transparent);
         }
         .dn-faq-panel {
           border: 1px solid var(--dn-mist);
@@ -351,6 +351,7 @@
   font-size:clamp(32px,4.6vw,56px);
   line-height:1.06;
   letter-spacing:-0.018em;
+  margin-top: 1rem;
 }
 .txg-h2 em{
   font-style:italic;
@@ -638,6 +639,10 @@
 }
 .txg-pdot{width:6px;height:6px;border-radius:50%;background:var(--txg-blue);box-shadow:0 0 10px var(--txg-blue);}
 
+/* day (non-emergency) panel tag flips to gold */
+.txg-panel.day .txg-ptag { color: var(--txg-gold-soft); background: rgba(248,199,96,0.07); }
+.txg-panel.day .txg-ptag .txg-pdot { background: var(--txg-gold); box-shadow: 0 0 10px var(--txg-gold); }
+
 /* emergency tag flips to gold + live pulse */
 .txg-ptag.is-emergency{color:var(--txg-gold-soft);background:rgba(248,199,96,0.07);}
 .txg-ptag.is-emergency .txg-pdot{
@@ -662,6 +667,7 @@
   color:var(--txg-gold);
   margin-bottom:22px;
 }
+.txg-panel.night .txg-psub { color: var(--txg-blue-soft); }
 .txg-pdesc{
   font-size:16.5px;
   line-height:1.6;
@@ -693,6 +699,7 @@
   margin-top:1px;
   stroke:var(--txg-gold);
 }
+.txg-panel.night .txg-check { stroke: var(--txg-blue); }
 
 /* CTAs */
 .txg-cta{
@@ -821,32 +828,6 @@
     box-shadow:0 30px 70px -44px rgba(0,0,0,0.9);
   }
   .txg-acc .txg-pnum{font-size:78px;top:16px;right:18px;}
-  /* stacked: stage sizes to content; panels flow */
-  .txg-stage{
-    position:relative;top:0;
-    border:none;background:none;box-shadow:none;overflow:visible;border-radius:0;
-  }
-  .txg-stage::before,.txg-stage::after{display:none;}
-  .txg-stage-inner{display:block;}
-  .txg-panel{
-    padding:46px 30px 30px;
-    border:1px solid var(--txg-line);
-    border-radius:22px 22px 0 0;
-    border-bottom:none;
-    background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.006)),var(--txg-bg-2);
-    box-shadow:0 40px 90px -50px rgba(0,0,0,0.9);
-    overflow:hidden;
-    height:auto;
-    display:none;
-    transform:none;
-  }
-  .txg-panel.is-active{display:flex;}
-  .txg-stage-foot{
-    border:1px solid var(--txg-line);
-    border-top:none;
-    border-radius:0 0 22px 22px;
-  }
-  .txg-pnum{font-size:96px;top:22px;right:26px;}
   /* mobile: surface the emergency call button right in the list row */
   .txg-option .txg-option-call{display:inline-flex;}
 }
@@ -854,9 +835,8 @@
   .txg-wrap{padding:80px 20px 100px;}
   .txg-points{grid-template-columns:1fr;gap:11px;}
   .txg-ptitle{font-size:32px;}
-  .txg-panel{padding:40px 22px 22px;}
-  .txg-stage-foot{padding:16px 22px;}
-  .txg-pnum{font-size:74px;}
+  .txg-acc .txg-panel{padding:22px 18px 26px;}
+  .txg-acc .txg-pnum{font-size:66px;top:14px;right:16px;}
   .txg-btn{padding:13px 20px;font-size:14px;}
   .txg-btn-call{padding:15px 22px;font-size:15px;flex:1;justify-content:center;}
   .txg-btn-primary{flex:1;justify-content:center;}

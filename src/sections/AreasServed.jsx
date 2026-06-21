@@ -5,7 +5,7 @@ export default function AreasServed() {
   return (
     <section id="areas" className="dn-section dn-areas">
       <div className="dn-container">
-        <div className="tp-section-head">
+        <div className="tp-section-head dn-center-head">
           <span className="dn-eyebrow dn-pill day">Where We Are</span>
           <h2 className="dn-display">
             A 24-hour dentist in the heart of <em className="dn-hl-gold">Merchant City</em>

@@ -56,6 +56,7 @@
 
 /* ---------- header ---------- */
 .dn-why2-head { position: relative; }
+.dn-why2-head .dn-display { margin-top: 1rem; }
 .dn-why2-sub {
   margin: 1.1rem auto 0;
   max-width: 600px;

@@ -407,6 +407,8 @@
           .dn-success-details { grid-template-columns: 1fr; }
           .dn-register-progress { gap: 0.25rem; }
           .dn-progress-label { font-size: 0.6rem; }
+          .dn-register-actions { flex-wrap: wrap; }
+          .dn-register-actions .dn-btn { flex: 1 1 100%; justify-content: center; }
         }
         @media (max-width: 360px) {
           .dn-register-form,

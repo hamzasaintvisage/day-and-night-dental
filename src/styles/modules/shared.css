@@ -14,7 +14,7 @@
 /* transparent so the continuous page glow flows through (was a solid near-black band) */
 .dn-areas { background: transparent; }
 .dn-areas-lead { color: var(--dn-bone-dim); max-width: 680px; font-size: 1.05rem; }
-.dn-areas-map { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; margin-top: 2.5rem; align-items: start; }
+.dn-areas-map { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: start; }
 .dn-areas-panel {
   border: 1px solid var(--dn-mist);
   border-radius: var(--dn-r-card);
@@ -36,7 +36,7 @@
 @media (max-width: 820px) { .dn-areas-map { grid-template-columns: 1fr; gap: 1.75rem; } }
 .dn-areas-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 .dn-area-chip { padding: 0.6rem 1.15rem; border: 1px solid var(--dn-mist); border-radius: 999px; font-size: 0.9rem; color: var(--dn-bone-dim); position: relative; transition: border-color 0.3s, color 0.3s; }
-.dn-area-chip:hover { color: var(--dn-bone); }
+.dn-area-chip:hover { color: var(--dn-day); border-color: var(--dn-day); }
 
 /* Why-choose-us */
 .dn-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }

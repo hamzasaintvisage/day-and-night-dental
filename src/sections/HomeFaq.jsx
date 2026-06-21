@@ -60,7 +60,7 @@ export default function HomeFaq() {
         <script type="application/ld+json">{jsonLd(faqLd)}</script>
       </Head>
       <div className="dn-container">
-        <div className="tp-section-head">
+        <div className="tp-section-head dn-center-head">
           <span className="dn-eyebrow dn-pill night">Common Questions</span>
           <h2 className="dn-display"><em className="dn-hl-blue">Emergency</em> &amp; dental questions, answered</h2>
         </div>

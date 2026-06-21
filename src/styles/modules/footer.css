@@ -34,7 +34,7 @@
           grid-template-columns: 1fr 1fr 1.3fr;
           gap: 2rem;
         }
-        .dn-footer-col h2 {
+        .dn-footer-col .dn-eyebrow {
           margin-bottom: 1.5rem;
         }
         .dn-footer-col ul {

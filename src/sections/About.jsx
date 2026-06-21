@@ -9,9 +9,9 @@ export default function About() {
         </div>
         <div className="dn-arc-grid">
           <div className="dn-arc-lede">
-            <blockquote className="dn-arc-quote">
+            <h2 className="dn-arc-quote">
               Built for real life, not <span className="dn-arc-gold">office</span> hours.
-            </blockquote>
+            </h2>
             <p className="dn-arc-lead">
               <span className="dn-arc-gold">Daytime</span> dentistry.{' '}
               <span className="dn-arc-blue">Night-time</span> emergencies.

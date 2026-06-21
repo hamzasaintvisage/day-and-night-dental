@@ -125,7 +125,7 @@
 .dn-callbar-btn.book:hover::after, .dn-cookie-btn.ghost:hover::after { opacity: 1; }
 .dn-callbar-btn.book:hover, .dn-cookie-btn.ghost:hover { border-color: transparent; color: var(--dn-bone); }
 @media (min-width: 1101px) { .dn-cookie { left: auto; right: 1.5rem; bottom: 1.5rem; } }
-@media (max-width: 1100px) { .dn-cookie { bottom: 5.3rem; } }
+@media (max-width: 1100px) { .dn-cookie { bottom: calc(5.3rem + env(safe-area-inset-bottom, 0px)); } }
 
 /* ===== Accessibility ===== */
 @media (prefers-reduced-motion: reduce) {
@@ -156,7 +156,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 .dn-ctaband-text h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin: 0.5rem auto 0; max-width: 620px; }
 .dn-ctaband-text p { color: var(--dn-bone-dim); margin: 0.6rem auto 0; max-width: 540px; }
 .dn-ctaband-actions { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; justify-content: center; }
-@media (max-width: 760px) { .dn-ctaband-actions { width: 100%; } .dn-ctaband-actions .dn-btn { flex: 1; justify-content: center; } }
+@media (max-width: 760px) { .dn-ctaband-actions { width: 100%; flex-direction: column; } .dn-ctaband-actions .dn-btn { width: 100%; flex: none; justify-content: center; } }
 
 /* ===== Blog ===== */
 .dn-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
@@ -228,6 +228,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-concern-card:nth-child(even)::after,
   .dn-review.night::after,
   .dn-gallery-item.night::after,
+  .dn-radio-card.night::after,
   .tp-related-card::after {
     background: var(--dn-night);
   }
@@ -251,6 +252,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-concern-card:nth-child(even):hover,
   .dn-review.night:hover,
   .dn-gallery-item.night:hover,
+  .dn-radio-card.night:hover,
   .tp-related-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-night) 72%, transparent),

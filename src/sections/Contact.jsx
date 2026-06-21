@@ -33,7 +33,12 @@ export default function Contact() {
   // Don't load the Google map (third-party cookies) until the visitor has consented, or
   // explicitly chooses to show it (PECR: no non-essential cookies before consent).
   const [showMap, setShowMap] = useState(false);
-  useEffect(() => { if (hasConsent()) setShowMap(true); }, []);
+  useEffect(() => {
+    if (hasConsent()) setShowMap(true);
+    const onChange = () => setShowMap(hasConsent());
+    window.addEventListener('dnd-cookie-settings', onChange);
+    return () => window.removeEventListener('dnd-cookie-settings', onChange);
+  }, []);
 
   // Functional updates: multi-field browser autofill fires several change events before a
   // re-render, so a stale-snapshot spread would drop all but the last. Merge from the latest state.
