@@ -2,28 +2,41 @@
 .dn-journey {
   border-top: 1px solid var(--dn-mist);
   background: linear-gradient(90deg, rgba(248, 199, 96, 0.04), rgba(69, 144, 236, 0.04));
-  padding: 4rem 0;
+  padding: 2.5rem 0;
   position: relative;
   overflow: hidden;
 }
-.dn-journey-inner { width: var(--container); margin: 0 auto; }
+.dn-journey-inner { width: var(--container); margin: 0 auto; text-align: center; }
 
+/* centred gold pill */
 .dn-journey-eyebrow {
-  font-family: var(--font-body); font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.24em; text-transform: uppercase; color: var(--dn-night-soft);
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 16px 7px 13px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 20px -6px rgba(248, 199, 96, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--dn-day);
+}
+.dn-journey-eyebrow::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%; flex: none;
+  background: var(--dn-day);
+  box-shadow: 0 0 8px 1px rgba(248, 199, 96, 0.7);
 }
 .dn-journey-head {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(1.45rem, 2.8vw, 2.1rem); line-height: 1.2; margin: 0.6rem 0 0; max-width: 720px;
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem); line-height: 1.2; margin: 0.9rem auto 0; max-width: 720px;
+  color: var(--dn-bone);
 }
 .dn-journey-head .grad {
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  color: var(--dn-bone);
+  -webkit-text-fill-color: var(--dn-bone);
 }
 
 /* timeline */
 .dn-journey-tl {
-  list-style: none; margin: 3rem 0 0; padding: 0;
+  list-style: none; margin: 1.85rem 0 0; padding: 0;
   position: relative;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
 }
@@ -53,7 +66,7 @@
 .dn-journey-st h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 1.2rem 0 0.45rem; color: var(--dn-bone); }
 .dn-journey-st p { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.55; margin: 0 auto; max-width: 30ch; }
 
-.dn-journey-cta { display: flex; align-items: center; gap: 1.25rem; margin-top: 3rem; flex-wrap: wrap; }
+.dn-journey-cta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 1.85rem; flex-wrap: wrap; }
 .dn-journey-num { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--dn-bone); text-decoration: none; transition: color 0.2s; }
 .dn-journey-num:hover { color: var(--dn-day); }
 
