@@ -209,7 +209,9 @@
   transform: scale(1.05);
 }
 .cxg-chip:focus-visible {
-  outline: 2px solid var(--cxg-blue);
+  /* focus ring follows THIS chip's own accent so a gold chip never shows a blue
+     ring on top of its gold hover glow (and vice-versa) — single colour per side */
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -340,8 +342,13 @@
 }
 .cxg-r-cta:hover svg { transform: translateX(3px); }
 .cxg-r-cta:focus-visible {
-  outline: 2px solid var(--cxg-blue);
+  /* gold CTA carries a gold glow, so its focus ring is gold too (single colour);
+     the .r-blue variant overrides to blue below to match its blue glow */
+  outline: 2px solid var(--cxg-gold);
   outline-offset: 3px;
+}
+.cxg-result.r-blue .cxg-r-cta:focus-visible {
+  outline-color: var(--cxg-blue);
 }
 
 /* ---------- footer CTA row ---------- */
@@ -396,6 +403,12 @@
 .cxg-btn:focus-visible {
   outline: 2px solid var(--cxg-blue);
   outline-offset: 3px;
+}
+/* the primary button carries a gold glow, so its focus ring is gold too — never a
+   blue ring on top of a gold glow. The ghost button has no accent glow, so its
+   blue ring above stands alone (single colour). */
+.cxg-btn-primary:focus-visible {
+  outline-color: var(--cxg-gold);
 }
 
 .cxg-footer-note {

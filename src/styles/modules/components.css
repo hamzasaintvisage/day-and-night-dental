@@ -236,14 +236,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-review:hover,
   .dn-gallery-item:hover,
   .tp-benefit:hover,
-  .tp-related-card:hover,
   .dn-blog-card:hover,
   .dn-radio-card:hover,
   .dn-success-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 30%, transparent),
-                0 16px 34px -18px color-mix(in srgb, var(--dn-night) 42%, transparent),
-                0 8px 22px -14px color-mix(in srgb, var(--dn-day) 38%, transparent);
+    /* SINGLE gold accent (matches the gold ring) — never gold+blue together */
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 36%, transparent),
+                0 18px 38px -18px color-mix(in srgb, var(--dn-day) 50%, transparent);
+  }
+  /* night-side cards hover all BLUE (matches their blue ring) */
+  .dn-why-item.night:hover,
+  .dn-concern-card.night:hover,
+  .dn-concern-card:nth-child(even):hover,
+  .dn-review.night:hover,
+  .dn-gallery-item.night:hover,
+  .tp-related-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-night) 36%, transparent),
+                0 18px 38px -18px color-mix(in srgb, var(--dn-night) 50%, transparent);
   }
   .dn-why-item:hover::after,
   .dn-concern-card:hover::after,

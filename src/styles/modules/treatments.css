@@ -481,7 +481,10 @@
 }
 
 /* hover */
-.txg-option:hover{background:rgba(255,255,255,0.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-gold) 70%, transparent);}
+/* hover bar follows the item's side — gold for day, blue for night (never both) */
+.txg-option:hover{background:rgba(255,255,255,0.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14);}
+.txg-option.day:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-gold) 70%, transparent);}
+.txg-option.night:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-blue) 70%, transparent);}
 .txg-option:hover .txg-option-name{color:#fff;}
 .txg-option:hover .txg-option-ico{color:var(--txg-white);}
 
@@ -796,13 +799,28 @@
   border-radius:100px;
 }
 
+/* mobile inline accordion: the open treatment's detail expands inside the list.
+   Hidden on desktop (the stage panel on the right is used instead). */
+.txg-acc{display:none;}
+@keyframes txg-acc-in{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+
 /* ============ responsive ============ */
 @media (max-width:980px){
   .txg-head{text-align:left;margin-left:0;}
   .txg-head-trust{justify-content:flex-start;}
   .txg-split{grid-template-columns:1fr;gap:30px;}
-  .txg-stage-col{order:2;}
+  /* mobile: drop the separate stage; the detail opens inline under each item */
+  .txg-stage-col{display:none;}
   .txg-list-col{order:1;}
+  .txg-acc{display:block;animation:txg-acc-in .38s ease both;}
+  .txg-acc .txg-panel{
+    display:flex;opacity:1;visibility:visible;transform:none;pointer-events:auto;
+    padding:26px 22px 30px;margin:6px 0 4px;
+    border:1px solid var(--txg-line);border-radius:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.008)),var(--txg-bg-2);
+    box-shadow:0 30px 70px -44px rgba(0,0,0,0.9);
+  }
+  .txg-acc .txg-pnum{font-size:78px;top:16px;right:18px;}
   /* stacked: stage sizes to content; panels flow */
   .txg-stage{
     position:relative;top:0;

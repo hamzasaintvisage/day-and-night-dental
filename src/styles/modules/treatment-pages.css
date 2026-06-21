@@ -99,14 +99,18 @@
   -webkit-text-fill-color: var(--dn-night); color: var(--dn-night);
 }
 .tp-faq summary .icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; transition: transform 0.3s; }
-.tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: transform 0.3s; }
+.tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: transform 0.3s, background 0.3s; }
 .tp-faq summary .icon::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
 .tp-faq summary .icon::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
+/* Keep the whole summary treatment a single colour: when the text turns blue on hover/open,
+   the plus/minus icon turns blue too (never gold text-fill + gold icon against blue text). */
+.tp-faq summary:hover .icon::before, .tp-faq summary:hover .icon::after { background: var(--dn-night); }
 .tp-faq details[open] summary .icon::after { transform: translateX(-50%) scaleY(0); }
 .tp-faq details[open] summary {
   background: none;
   -webkit-text-fill-color: var(--dn-night); color: var(--dn-night);
 }
+.tp-faq details[open] summary .icon::before, .tp-faq details[open] summary .icon::after { background: var(--dn-night); }
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 
 /* Comparison matrix (treatment vs alternatives) */

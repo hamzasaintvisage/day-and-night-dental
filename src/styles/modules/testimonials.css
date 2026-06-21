@@ -31,6 +31,12 @@
         .dn-review.night::before { background: var(--dn-night); }
         .dn-review:hover {
           background: var(--dn-charcoal);
+        }
+        .dn-review.day:hover {
+          border-color: color-mix(in srgb, var(--dn-day) 45%, transparent);
+          box-shadow: 0 0 28px color-mix(in srgb, var(--dn-day) 22%, transparent);
+        }
+        .dn-review.night:hover {
           border-color: color-mix(in srgb, var(--dn-night) 45%, transparent);
           box-shadow: 0 0 28px color-mix(in srgb, var(--dn-night) 22%, transparent);
         }

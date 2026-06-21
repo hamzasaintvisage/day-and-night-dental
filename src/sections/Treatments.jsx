@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '../components/ConcernIcon';
 import { PRACTICE } from '../data/practice';
@@ -46,7 +46,7 @@ const treatments = [
     id: 'cosmetic',
     title: 'Cosmetic Dentistry',
     tag: 'Smile Design',
-    side: 'night',
+    side: 'day',
     icon: 'smile',
     sub: 'Planned around your own face',
     teaser: 'Veneers, bonding and makeovers planned around your own face.',
@@ -57,7 +57,7 @@ const treatments = [
     id: 'invisalign',
     title: 'Invisalign®',
     tag: 'Clear Aligners',
-    side: 'day',
+    side: 'night',
     icon: 'align',
     sub: 'Straighten teeth, discreetly',
     teaser: 'A nearly invisible, removable way to straighten your teeth.',
@@ -68,7 +68,7 @@ const treatments = [
     id: 'implants',
     title: 'Dental Implants',
     tag: 'Replacing Missing Teeth',
-    side: 'night',
+    side: 'day',
     icon: 'implant',
     sub: 'Look, feel and work like natural',
     teaser: 'Replacements that look, feel and work like a natural tooth.',
@@ -79,7 +79,7 @@ const treatments = [
     id: 'whitening',
     title: 'Teeth Whitening',
     tag: 'Brighter Smile',
-    side: 'day',
+    side: 'night',
     icon: 'sparkle',
     sub: 'Clinician-led, not high-street',
     teaser: 'Clinician-led whitening, a world away from high-street kits.',
@@ -99,14 +99,21 @@ function Check() {
 
 // The featured card body. Rendered once per treatment so every treatment's
 // copy + links live in the HTML for SEO, even when not the active panel.
-function Panel({ t, num, isActive }) {
+function Panel({ t, num, isActive, inline }) {
+  // The inline (mobile-accordion) copy omits the tab id/role/aria so it never
+  // duplicates the desktop stage panel's ids.
+  const tabProps = inline
+    ? {}
+    : {
+        id: `txg-panel-${t.id}`,
+        role: 'tabpanel',
+        'aria-labelledby': `txg-opt-${t.id}`,
+        'aria-hidden': isActive ? undefined : 'true',
+      };
   return (
     <article
       className={`txg-panel ${t.side} ${isActive ? 'is-active' : ''}`}
-      id={`txg-panel-${t.id}`}
-      role="tabpanel"
-      aria-labelledby={`txg-opt-${t.id}`}
-      aria-hidden={isActive ? undefined : 'true'}
+      {...tabProps}
     >
       <span className="txg-pnum" aria-hidden="true">{num}</span>
 
@@ -217,8 +224,8 @@ export default function Treatments() {
                 const isActive = active === t.id;
                 const num = `0${i + 1}`;
                 return (
+                  <Fragment key={t.id}>
                   <button
-                    key={t.id}
                     type="button"
                     id={`txg-opt-${t.id}`}
                     className={`txg-option ${t.side} ${isActive ? 'is-active' : ''}`}
@@ -261,6 +268,15 @@ export default function Treatments() {
                       </svg>
                     </span>
                   </button>
+                  {/* mobile-only inline accordion: the open treatment's detail
+                      expands right here inside the list (desktop hides this and
+                      uses the stage panel on the right instead). */}
+                  {isActive && (
+                    <div className="txg-acc">
+                      <Panel t={t} num={num} isActive inline />
+                    </div>
+                  )}
+                  </Fragment>
                 );
               })}
             </div>

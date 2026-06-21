@@ -45,13 +45,17 @@
           background: var(--dn-day); opacity: 0.4; transition: opacity 0.4s; z-index: 4;
         }
         .dn-concern-card:hover::before { opacity: 1; }
+        /* Even cards hover all-BLUE: switch the top accent bar to blue too so the
+           whole card reads a single colour (odd stays all-gold). */
+        .dn-concern-card:nth-child(even):hover::before { background: var(--dn-night); }
         .dn-concern-icon { color: var(--dn-bone-dim); transition: color 0.4s; }
         .dn-concern-card:nth-child(odd):hover .dn-concern-icon { color: var(--dn-day); }
         .dn-concern-card:nth-child(even):hover .dn-concern-icon { color: var(--dn-night); }
         .dn-concern-card h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; letter-spacing: 0.01em; }
         .dn-concern-lead { font-size: 0.92rem; line-height: 1.55; color: var(--dn-bone-dim); margin: 0; flex: 1 0 auto; }
         .dn-concern-cta { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dn-bone-faint); transition: color 0.3s; }
-        .dn-concern-card:hover .dn-concern-cta { color: var(--dn-day); }
+        .dn-concern-card:nth-child(odd):hover .dn-concern-cta { color: var(--dn-day); }
+        .dn-concern-card:nth-child(even):hover .dn-concern-cta { color: var(--dn-night); }
         .dn-concern-arrow { transition: transform 0.3s; }
         .dn-concern-card:hover .dn-concern-arrow { transform: translateX(4px); }
       
