@@ -67,7 +67,7 @@
           left: 0;
           right: 0;
           height: 1px;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+          background: var(--dn-day);
           transform: scaleX(0);
           transform-origin: center;
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -215,10 +215,9 @@
           color: var(--dn-day);
         }
         .dn-mm-link.active {
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-mm-chev {
           flex: none;

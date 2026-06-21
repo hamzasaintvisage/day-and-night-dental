@@ -189,7 +189,7 @@ export default function TreatmentPage({ data }) {
           <div className="tp-overview-grid">
             <div className="tp-prose">
               <div className="tp-section-head">
-                <span className="dn-eyebrow">{data.overviewEyebrow || 'The Treatment'}</span>
+                <span className="dn-eyebrow dn-pill day">{data.overviewEyebrow || 'The Treatment'}</span>
                 <h2 className="dn-display">{data.overviewHeading}</h2>
               </div>
               {data.overview.map((p, i) => <p key={i}>{p}</p>)}
@@ -216,7 +216,7 @@ export default function TreatmentPage({ data }) {
             <div className="tp-overview-grid">
               <div className="tp-prose">
                 <div className="tp-section-head">
-                  <span className="dn-eyebrow night">Is This You?</span>
+                  <span className="dn-eyebrow dn-pill night">Is This You?</span>
                   <h2 className="dn-display">{data.concern.heading}</h2>
                 </div>
                 {data.concern.body.map((p, i) => <p key={i}>{p}</p>)}
@@ -239,7 +239,7 @@ export default function TreatmentPage({ data }) {
         <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-section-head">
-              <span className="dn-eyebrow day">{data.types.eyebrow || 'Your Options'}</span>
+              <span className="dn-eyebrow dn-pill day">{data.types.eyebrow || 'Your Options'}</span>
               <h2 className="dn-display">{data.types.heading}</h2>
             </div>
             {data.types.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.types.intro}</p>}
@@ -269,7 +269,7 @@ export default function TreatmentPage({ data }) {
       <section className="dn-section tp-benefits">
         <div className="dn-container">
           <div className="tp-section-head">
-            <span className="dn-eyebrow day">Why Patients Choose It</span>
+            <span className="dn-eyebrow dn-pill day">Why Patients Choose It</span>
             <h2 className="dn-display">{data.benefitsHeading}</h2>
           </div>
           <div className="tp-benefit-grid">
@@ -290,7 +290,7 @@ export default function TreatmentPage({ data }) {
         <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-section-head">
-              <span className="dn-eyebrow night">{data.comparison.eyebrow || 'Your Smile, Your Choice'}</span>
+              <span className="dn-eyebrow dn-pill night">{data.comparison.eyebrow || 'Your Smile, Your Choice'}</span>
               <h2 className="dn-display">{data.comparison.heading}</h2>
             </div>
             {data.comparison.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.comparison.intro}</p>}
@@ -329,7 +329,7 @@ export default function TreatmentPage({ data }) {
       <section className="dn-section">
         <div className="dn-container">
           <div className="tp-section-head">
-            <span className="dn-eyebrow">How It Works</span>
+            <span className="dn-eyebrow dn-pill night">How It Works</span>
             <h2 className="dn-display">{data.stepsHeading}</h2>
           </div>
           <div className="tp-steps">
@@ -349,7 +349,7 @@ export default function TreatmentPage({ data }) {
         <section className="dn-section tp-band">
           <div className="dn-container">
             <div className="tp-section-head">
-              <span className="dn-eyebrow day">{data.aftercare.eyebrow || 'Recovery & Aftercare'}</span>
+              <span className="dn-eyebrow dn-pill day">{data.aftercare.eyebrow || 'Recovery & Aftercare'}</span>
               <h2 className="dn-display">{data.aftercare.heading}</h2>
             </div>
             {data.aftercare.intro && <p style={{ color: 'var(--dn-bone-dim)', maxWidth: '640px', margin: '-0.5rem 0 2rem', fontSize: '1.05rem', lineHeight: 1.6 }}>{data.aftercare.intro}</p>}
@@ -375,7 +375,7 @@ export default function TreatmentPage({ data }) {
             <div className="tp-overview-grid">
               <div className="tp-prose">
                 <div className="tp-section-head">
-                  <span className="dn-eyebrow night">{data.boneLoss.eyebrow || 'Lost Bone?'}</span>
+                  <span className="dn-eyebrow dn-pill night">{data.boneLoss.eyebrow || 'Lost Bone?'}</span>
                   <h2 className="dn-display">{data.boneLoss.heading}</h2>
                 </div>
                 {data.boneLoss.body.map((p, i) => <p key={i}>{p}</p>)}
@@ -402,7 +402,7 @@ export default function TreatmentPage({ data }) {
           <div className="dn-container">
             <div className="tp-prose" style={{ maxWidth: '780px' }}>
               <div className="tp-section-head">
-                <span className="dn-eyebrow">{data.risks.eyebrow || 'Understanding the Risks'}</span>
+                <span className="dn-eyebrow dn-pill night">{data.risks.eyebrow || 'Understanding the Risks'}</span>
                 <h2 className="dn-display">{data.risks.heading}</h2>
               </div>
               {data.risks.body.map((p, i) => <p key={i}>{p}</p>)}
@@ -417,7 +417,7 @@ export default function TreatmentPage({ data }) {
           <div className="dn-container">
             <div className="tp-prose" style={{ maxWidth: '780px' }}>
               <div className="tp-section-head">
-                <span className="dn-eyebrow day">{data.fees.eyebrow || 'Fees & Finance'}</span>
+                <span className="dn-eyebrow dn-pill day">{data.fees.eyebrow || 'Fees & Finance'}</span>
                 <h2 className="dn-display">{data.fees.heading}</h2>
               </div>
               {data.fees.body.map((p, i) => <p key={i}>{p}</p>)}
@@ -430,7 +430,7 @@ export default function TreatmentPage({ data }) {
       <section className="dn-section tp-faq">
         <div className="dn-container">
           <div className="tp-section-head" style={{ textAlign: 'center' }}>
-            <span className="dn-eyebrow night">Common Questions</span>
+            <span className="dn-eyebrow dn-pill night">Common Questions</span>
             <h2 className="dn-display" style={{ marginLeft: 'auto', marginRight: 'auto' }}>{data.faqHeading}</h2>
           </div>
           <div className="tp-faq-list">
@@ -448,8 +448,8 @@ export default function TreatmentPage({ data }) {
       <section className="dn-section">
         <div className="dn-container">
           <div className="tp-section-head">
-            <span className="dn-eyebrow">Explore More</span>
-            <h2 className="dn-display">Related <em>treatments</em></h2>
+            <span className="dn-eyebrow dn-pill day">Explore More</span>
+            <h2 className="dn-display">Related <em className="dn-hl-gold">treatments</em></h2>
           </div>
           <div className="tp-related-grid">
             {data.related.map((r) => (
@@ -468,7 +468,7 @@ export default function TreatmentPage({ data }) {
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-glow night" style={{ width: '480px', height: '480px', bottom: 0, right: '8%', opacity: 0.08 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow">Ready When You Are</span>
+          <span className="dn-eyebrow dn-pill night">Ready When You Are</span>
           <h2 className="dn-display">{data.cta.heading}</h2>
           <p>{data.cta.sub}</p>
           <div className="tp-cta-actions">

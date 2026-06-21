@@ -26,7 +26,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+  background: var(--dn-day);
   transform: translateX(-100%);
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: -1;
@@ -49,8 +49,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1.5px;
-  /* clean gold|blue split that mirrors the wordmark (short blend, no muddy middle) */
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-day) 45%, var(--dn-night) 55%, var(--dn-night));
+  background: var(--dn-night);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;

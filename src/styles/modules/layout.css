@@ -15,10 +15,10 @@
   position: relative;
 }
 
-/* Hairline divider, the gold/blue split that runs through the brand */
+/* Hairline divider, a faint single gold line that runs through the brand */
 .dn-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--dn-day) 30%, var(--dn-day) 50%, var(--dn-night) 50%, var(--dn-night) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--dn-day) 30%, var(--dn-day) 70%, transparent 100%);
   opacity: 0.5;
   width: 100%;
 }

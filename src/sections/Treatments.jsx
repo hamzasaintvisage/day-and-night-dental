@@ -200,10 +200,7 @@ export default function Treatments() {
       <div className="txg-wrap">
 
         <header className="txg-head">
-          <span className="txg-eyebrow">
-            <span className="txg-eyebrow-dot" aria-hidden="true" />
-            Our Treatments
-          </span>
+          <span className="dn-eyebrow dn-pill night">Our Treatments</span>
           <h2 className="txg-h2">
             Every aspect of <em>modern</em> dentistry, under one roof
           </h2>

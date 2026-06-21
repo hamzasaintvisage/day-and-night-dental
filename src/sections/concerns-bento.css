@@ -56,48 +56,6 @@
   margin: 0 auto;
 }
 
-.cxg-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 7px 16px 7px 13px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 20px -6px rgba(69, 144, 236, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cxg-blue);
-  font-weight: 600;
-  margin: 0 0 1.25rem;
-}
-
-/* ACCENT 2 — solid-blue pulsing dot on the eyebrow pill */
-.cxg-dot {
-  position: relative;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--cxg-blue);
-  flex: none;
-}
-.cxg-dot::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(69, 144, 236, 0.5), transparent 70%);
-  animation: cxg-pulse 2.6s ease-in-out infinite;
-}
-@keyframes cxg-pulse {
-  0%, 100% { opacity: 0.4; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.25); }
-}
-
 .cxg-title {
   font-family: var(--font-display, "Fraunces", serif);
   font-weight: 400;
@@ -279,7 +237,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(120deg, rgba(248, 199, 96, 0.45), rgba(69, 144, 236, 0.4));
+  background: rgba(69, 144, 236, 0.45);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -307,7 +265,7 @@
   display: grid;
   place-items: center;
   border-radius: 20px;
-  background: linear-gradient(150deg, rgba(248, 199, 96, 0.16), rgba(69, 144, 236, 0.12));
+  background: rgba(69, 144, 236, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--cxg-gold);
 }

@@ -13,11 +13,9 @@
           margin: 1.4rem auto 0;
         }
         .dn-mani-grad {
-          background: linear-gradient(115deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-mani-mut { color: var(--dn-bone-dim); }
         .dn-mani-by {
@@ -127,10 +125,9 @@
         }
         .dn-about-content h2 em {
           font-style: normal;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-about-lead {
           font-family: var(--font-body);
@@ -159,12 +156,9 @@
           font-size: 2rem;
           font-weight: 700;
           font-style: normal;
-          /* same gold->blue gradient as every other number badge (site-wide consistency) */
-          background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-pillar h3 {
           font-family: var(--font-display);

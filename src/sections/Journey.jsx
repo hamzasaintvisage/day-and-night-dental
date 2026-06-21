@@ -8,7 +8,7 @@ export default function Journey() {
   return (
     <section id="how-it-works" className="dn-section dn-journey">
       <div className="dn-journey-inner">
-        <span className="dn-journey-eyebrow">What to expect when you call</span>
+        <span className="dn-eyebrow dn-pill day">What to expect when you call</span>
         <h2 className="dn-journey-head">
           Call with dental pain.{' '}
           <span className="grad">We&rsquo;ll help you get seen fast.</span>

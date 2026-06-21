@@ -104,7 +104,7 @@ export default function ArticleLayout({ post }) {
 
           {post.related && post.related.length > 0 && (
             <div className="dn-article-related">
-              <span className="dn-eyebrow">Related treatments</span>
+              <span className="dn-eyebrow dn-pill day">Related treatments</span>
               <div className="dn-article-related-links">
                 {post.related.map((slug) => treatmentTitle(slug) && (
                   <Link key={slug} to={`/treatments/${slug}/`}>{treatmentTitle(slug)} →</Link>
@@ -115,7 +115,7 @@ export default function ArticleLayout({ post }) {
 
           {post.relatedPosts && post.relatedPosts.length > 0 && (
             <div className="dn-article-related">
-              <span className="dn-eyebrow">Related reading</span>
+              <span className="dn-eyebrow dn-pill night">Related reading</span>
               <div className="dn-article-related-links">
                 {post.relatedPosts.map((slug) => POST_TITLES[slug] && (
                   <Link key={slug} to={`/blog/${slug}/`}>{POST_TITLES[slug]} →</Link>

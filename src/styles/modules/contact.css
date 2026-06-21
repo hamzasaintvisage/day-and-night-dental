@@ -26,10 +26,14 @@
         }
         .dn-contact-info h2 em {
           font-style: normal;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
+        }
+        .dn-contact-info h2 em.dn-hl-gold {
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-contact-lead {
           color: var(--dn-bone-dim);
@@ -112,7 +116,7 @@
           top: 0; left: 0;
           width: 100%;
           height: 1px;
-          background: linear-gradient(90deg, var(--dn-day) 0%, var(--dn-day) 50%, var(--dn-night) 50%, var(--dn-night) 100%);
+          background: var(--dn-day);
         }
         .dn-contact-form h3 {
           font-size: 1.8rem;

@@ -18,9 +18,9 @@ export default function SmileGallerySpotlight() {
     <section className="dn-section dn-gallery dn-gallery-spot">
       <div className="dn-container">
         <div className="dn-section-head">
-          <span className="dn-eyebrow">The Results</span>
+          <span className="dn-eyebrow dn-pill night">The Results</span>
           <h2 className="dn-display">
-            Real smiles, <em>real results</em>
+            Real smiles, <em className="dn-hl-blue">real results</em>
           </h2>
           <p className="dn-section-lead">
             A look at the difference composite bonding, veneers, Invisalign and dental implants can make.

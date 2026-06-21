@@ -106,6 +106,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
   font-size: 11px;
   letter-spacing: 0.22em;
 }
+@media (min-width: 768px) {
+  .dn-eyebrow.dn-pill { font-size: 12.5px; padding: 8px 18px 8px 15px; }
+}
 .dn-eyebrow.dn-pill::before {
   content: '';
   width: 7px; height: 7px;
@@ -128,10 +131,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .dn-display em {
   font-style: normal;
   font-weight: 800;
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-day) 45%, var(--dn-night) 55%, var(--dn-night));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  background: none;
+  -webkit-text-fill-color: var(--dn-day);
+  color: var(--dn-day);
 }
 

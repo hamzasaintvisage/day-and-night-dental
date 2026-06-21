@@ -67,9 +67,9 @@ export default function AreasServed() {
       <section className="tp-hero">
         <div className="dn-glow night" style={{ width: '520px', height: '520px', top: '-10%', right: '-8%', opacity: 0.1 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow night tag">Glasgow &amp; Merchant City</span>
+          <span className="dn-eyebrow dn-pill night tag">Glasgow &amp; Merchant City</span>
           <h1 className="dn-display" style={{ maxWidth: '900px' }}>
-            A 24-hour dentist for the <em>whole of Glasgow</em>
+            A 24-hour dentist for the <em className="dn-hl-blue">whole of Glasgow</em>
           </h1>
           <p className="lead" style={{ maxWidth: '640px' }}>
             We’re right in the heart of Merchant City, so we’re an easy trip from anywhere in Glasgow. And if
@@ -85,8 +85,8 @@ export default function AreasServed() {
       <section className="dn-section dn-areas">
         <div className="dn-container">
           <div className="tp-section-head">
-            <span className="dn-eyebrow">Across the City</span>
-            <h2 className="dn-display">Patients we welcome from across <em>Glasgow</em></h2>
+            <span className="dn-eyebrow dn-pill day">Across the City</span>
+            <h2 className="dn-display">Patients we welcome from across <em className="dn-hl-gold">Glasgow</em></h2>
           </div>
           <div className="tp-benefit-grid">
             {areas.map((a) => (
@@ -106,8 +106,8 @@ export default function AreasServed() {
       <section className="dn-section tp-cta">
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow">Whenever, Wherever</span>
-          <h2 className="dn-display">In pain in Glasgow <em>right now?</em></h2>
+          <span className="dn-eyebrow dn-pill night">Whenever, Wherever</span>
+          <h2 className="dn-display">In pain in Glasgow <em className="dn-hl-blue">right now?</em></h2>
           <p>Do not wait it out. Our emergency line is open day and night, with same-day appointments held back across the city.</p>
           <div className="tp-cta-actions">
             <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary">Call {PRACTICE.phoneDisplay}</a>

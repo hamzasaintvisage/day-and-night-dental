@@ -20,7 +20,7 @@
           transition: background 0.4s;
         }
         .dn-tx-item.is-active::before {
-          background: linear-gradient(180deg, var(--dn-day), var(--dn-night));
+          background: var(--dn-night);
         }
         .dn-tx-head {
           width: 100%;
@@ -345,45 +345,6 @@
   margin:0 auto 38px;
   text-align:center;
 }
-.txg-eyebrow{
-  display:inline-flex;
-  width:fit-content;
-  align-items:center;
-  gap:9px;
-  padding:7px 16px 7px 13px;
-  border-radius:999px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.12);
-  box-shadow:0 0 20px -6px rgba(69,144,236,0.30), inset 0 1px 0 rgba(255,255,255,0.05);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  color:var(--txg-blue);
-  margin:0 auto 26px;
-}
-/* solid-gold pulsing dot */
-.txg-eyebrow-dot{
-  position:relative;
-  width:9px;height:9px;
-  border-radius:50%;
-  background:var(--txg-blue);
-  flex:none;
-}
-.txg-eyebrow-dot::after{
-  content:"";
-  position:absolute;
-  inset:-5px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(69,144,236,0.5),transparent 70%);
-  animation:txg-eyebrow-pulse 2.6s ease-in-out infinite;
-}
-@keyframes txg-eyebrow-pulse{
-  0%,100%{opacity:.4;transform:scale(.9)}
-  50%{opacity:1;transform:scale(1.25)}
-}
 .txg-h2{
   font-family:var(--font-display);
   font-weight:600;
@@ -394,7 +355,7 @@
 .txg-h2 em{
   font-style:italic;
   font-weight:500;
-  color:var(--txg-gold);
+  color:var(--txg-blue);
 }
 
 /* header trust line */
@@ -838,7 +799,6 @@
 /* ============ responsive ============ */
 @media (max-width:980px){
   .txg-head{text-align:left;margin-left:0;}
-  .txg-eyebrow{margin-left:0;}
   .txg-head-trust{justify-content:flex-start;}
   .txg-split{grid-template-columns:1fr;gap:30px;}
   .txg-stage-col{order:2;}
@@ -887,7 +847,6 @@
 
 @media (prefers-reduced-motion:reduce){
   .txg-root::before,
-  .txg-eyebrow-dot::after,
   .txg-ptag.is-emergency .txg-pdot,
   .txg-live::before,
   .txg-btn-call::after{animation:none;}

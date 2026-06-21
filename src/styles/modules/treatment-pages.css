@@ -45,7 +45,7 @@
 .tp-prose p { color: var(--dn-bone-dim); font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 620px; }
 .tp-prose p strong { color: var(--dn-bone); font-weight: 600; }
 .tp-facts { background: linear-gradient(135deg, var(--dn-near-black), var(--dn-charcoal)); border: 1px solid var(--dn-mist); padding: 2.5rem; position: relative; overflow: hidden; }
-.tp-facts::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, var(--dn-day) 0%, var(--dn-day) 50%, var(--dn-night) 50%, var(--dn-night) 100%); }
+.tp-facts::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: var(--dn-day); }
 .tp-facts h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 700; }
 .tp-facts dl { display: flex; flex-direction: column; gap: 1.1rem; }
 .tp-facts .fact { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--dn-mist); }
@@ -54,7 +54,7 @@
 .tp-facts dd { font-size: 0.98rem; color: var(--dn-bone); }
 
 /* Benefits grid */
-.tp-benefits { background: var(--dn-near-black); }
+.tp-benefits { background: transparent; }
 .tp-benefit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .tp-benefit {
   padding: 2rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist); position: relative;
@@ -65,7 +65,7 @@
 .tp-benefit .num { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--dn-bone-faint); }
 .tp-benefit h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin: 0.75rem 0 0.6rem; }
 .tp-benefit p { font-size: 0.92rem; color: var(--dn-bone-dim); }
-.tp-benefit .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--dn-day), var(--dn-night)); opacity: 0; transition: opacity 0.4s; }
+.tp-benefit .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--dn-day); opacity: 0; transition: opacity 0.4s; }
 .tp-benefit:hover .bar { opacity: 1; }
 /* Linked option cards (hub card grids on cosmetic + general dentistry) behave as clickable cards */
 .tp-benefit-link { display: block; text-decoration: none; color: inherit; cursor: pointer; }
@@ -83,10 +83,10 @@
 /* Process steps */
 .tp-steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 .tp-step { position: relative; padding-top: 2.5rem; }
-.tp-step .step-n { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; line-height: 1; background: linear-gradient(135deg, var(--dn-day), var(--dn-night)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.tp-step .step-n { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; line-height: 1; background: none; -webkit-text-fill-color: var(--dn-night); color: var(--dn-night); }
 .tp-step h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin: 0.75rem 0 0.5rem; }
 .tp-step p { font-size: 0.9rem; color: var(--dn-bone-dim); }
-.tp-step::before { content: ''; position: absolute; top: 0; left: 0; width: 36px; height: 1px; background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); }
+.tp-step::before { content: ''; position: absolute; top: 0; left: 0; width: 36px; height: 1px; background: var(--dn-night); }
 
 /* FAQ */
 .tp-faq { background: transparent; }
@@ -95,9 +95,8 @@
 .tp-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 2rem; cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--dn-bone); transition: color 0.3s; }
 .tp-faq summary::-webkit-details-marker { display: none; }
 .tp-faq summary:hover {
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
+  background: none;
+  -webkit-text-fill-color: var(--dn-night); color: var(--dn-night);
 }
 .tp-faq summary .icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; transition: transform 0.3s; }
 .tp-faq summary .icon::before, .tp-faq summary .icon::after { content: ''; position: absolute; background: var(--dn-day); transition: transform 0.3s; }
@@ -105,9 +104,8 @@
 .tp-faq summary .icon::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
 .tp-faq details[open] summary .icon::after { transform: translateX(-50%) scaleY(0); }
 .tp-faq details[open] summary {
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
+  background: none;
+  -webkit-text-fill-color: var(--dn-night); color: var(--dn-night);
 }
 .tp-faq details p { color: var(--dn-bone-dim); font-size: 1rem; margin-top: 1rem; max-width: 720px; }
 

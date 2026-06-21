@@ -42,7 +42,7 @@
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 1px;
-          background: linear-gradient(90deg, var(--dn-day) 50%, var(--dn-night) 50%);
+          background: var(--dn-night);
         }
         .dn-register-aside h3 {
           font-size: 2rem;
@@ -107,10 +107,9 @@
           font-family: var(--font-display);
           font-size: 2.5rem;
           font-weight: 700;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-register-price .currency {
           font-size: 1.2rem;
@@ -137,7 +136,7 @@
           top: 0; left: 0;
           width: 100%;
           height: 1px;
-          background: linear-gradient(90deg, var(--dn-day) 0%, var(--dn-day) 50%, var(--dn-night) 50%, var(--dn-night) 100%);
+          background: var(--dn-night);
         }
         .dn-register-progress {
           display: grid;
@@ -173,16 +172,14 @@
         }
         .dn-progress-step.active .dn-progress-num { color: var(--dn-bone); }
 
-        /* Consistent number badges site-wide: the gold->blue gradient (matches Journey's
-           step numbers). text-fill-color wins over the per-section solid/active colours. */
+        /* Consistent number badges site-wide: solid gold (matches Journey's step numbers).
+           text-fill-color wins over the per-section solid/active colours. */
         .dn-tx-num,
         .dn-register-includes .num,
         .dn-progress-num {
-          background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-progress-label {
           font-size: 0.7rem;

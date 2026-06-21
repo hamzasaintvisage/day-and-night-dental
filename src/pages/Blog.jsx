@@ -49,8 +49,8 @@ export default function Blog() {
       <section className="dn-section">
         <div className="dn-container">
           <div className="tp-section-head">
-            <span className="dn-eyebrow">Advice &amp; Guides</span>
-            <h1 className="dn-display">Dental advice from our <em>Glasgow</em> team</h1>
+            <span className="dn-eyebrow dn-pill day">Advice &amp; Guides</span>
+            <h1 className="dn-display">Dental advice from our <em className="dn-hl-gold">Glasgow</em> team</h1>
           </div>
           <div className="dn-blog-grid">
             {posts.map((p) => (

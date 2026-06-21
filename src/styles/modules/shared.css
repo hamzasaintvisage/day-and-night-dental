@@ -41,7 +41,7 @@
 /* Why-choose-us */
 .dn-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
 .dn-why-item { padding: 1.85rem; background: var(--dn-charcoal); border: 1px solid var(--dn-mist); position: relative; }
-.dn-why-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--dn-day), var(--dn-night)); opacity: 0.6; }
+.dn-why-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--dn-day); opacity: 0.6; }
 .dn-why-item h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 0.45rem; font-weight: 700; }
 .dn-why-item p { font-size: 0.92rem; color: var(--dn-bone-dim); }
 .dn-why-icon { display: inline-flex; color: var(--dn-bone); margin-bottom: 1.05rem; transition: color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }

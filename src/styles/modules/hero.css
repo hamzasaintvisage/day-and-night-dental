@@ -66,11 +66,11 @@
         .dn-hero-eyebrow .line {
           height: 2px;
           width: 50px;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+          background: var(--dn-day);
         }
         /* mirrored right-hand rule so the centered eyebrow is symmetric */
         .dn-hero-eyebrow .line-r {
-          background: linear-gradient(90deg, var(--dn-night), var(--dn-day));
+          background: var(--dn-night);
         }
 
         .dn-hero-title {
@@ -114,10 +114,10 @@
           height: 2px;
           width: 38px;
           border-radius: 1px;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+          background: var(--dn-day);
         }
         .dn-hero-dental .line-r {
-          background: linear-gradient(90deg, var(--dn-night), var(--dn-day));
+          background: var(--dn-night);
         }
 
         .dn-hero-tagline {
@@ -208,7 +208,7 @@
           flex: none;
           border-radius: 50%;
           padding: 2px;
-          background: linear-gradient(135deg, var(--dn-day), var(--dn-night));
+          background: var(--dn-day);
         }
         .dn-hero-chip .ring span {
           display: flex;

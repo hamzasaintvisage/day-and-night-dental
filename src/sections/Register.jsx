@@ -123,9 +123,9 @@ export default function Register() {
 
       <div className="dn-container">
         <div className="dn-section-head">
-          <span className="dn-eyebrow">New Patients</span>
+          <span className="dn-eyebrow dn-pill day">New Patients</span>
           <h2 className="dn-display">
-            Register in <em>three</em> minutes
+            Register in <em className="dn-hl-gold">three</em> minutes
           </h2>
           <p className="dn-section-lead">
             We’re taking on new patients for every treatment we offer. Fill in the form

@@ -78,7 +78,7 @@ export default function TreatmentsIndex() {
       <section className="tp-hero">
         <div className="dn-glow day" style={{ width: '520px', height: '520px', top: '-10%', left: '-8%', opacity: 0.1 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow day tag">Our Treatments</span>
+          <span className="dn-eyebrow dn-pill day tag">Our Treatments</span>
           <h1 className="dn-display">Dental treatments in Glasgow</h1>
           <p className="lead">
             From a knocked-out tooth at 2am to a wedding smile booked months ahead, here is everything we do under one
@@ -95,7 +95,7 @@ export default function TreatmentsIndex() {
         <section className={`dn-section${gi % 2 ? ' tp-band' : ''}`} key={g.heading}>
           <div className="dn-container">
             <div className="tp-section-head">
-              <span className={`dn-eyebrow ${gi % 2 ? 'night' : 'day'}`}>{g.eyebrow}</span>
+              <span className={`dn-eyebrow dn-pill ${gi % 2 ? 'night' : 'day'}`}>{g.eyebrow}</span>
               <h2 className="dn-display">{g.heading}</h2>
             </div>
             <div className="tp-related-grid">
@@ -115,7 +115,7 @@ export default function TreatmentsIndex() {
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-glow night" style={{ width: '480px', height: '480px', bottom: 0, right: '8%', opacity: 0.08 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow">Ready When You Are</span>
+          <span className="dn-eyebrow dn-pill night">Ready When You Are</span>
           <h2 className="dn-display">Not sure which you need?</h2>
           <p>Tell us what is going on and we will point you to the right treatment, or see you for a consultation in Merchant City, Glasgow.</p>
           <div className="tp-cta-actions">

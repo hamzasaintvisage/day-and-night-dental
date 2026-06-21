@@ -180,7 +180,7 @@
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 3px;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
+          background: var(--dn-night);
         }
         .dn-ts-feature-avatar {
           width: 110px;

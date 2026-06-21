@@ -84,10 +84,10 @@ export default function Contact() {
         <div className="dn-contact-grid">
           {/* Left, info */}
           <div className="dn-contact-info">
-            <span className="dn-eyebrow">Book Appointment</span>
+            <span className="dn-eyebrow dn-pill day">Book Appointment</span>
             <h2 className="dn-display">
               Tooth trouble?<br />
-              Let’s get you <em>seen</em>.
+              Let’s get you <em className="dn-hl-gold">seen</em>.
             </h2>
             <p className="dn-contact-lead">
               For urgent toothache, swelling or a broken tooth, call our 24/7 emergency line.

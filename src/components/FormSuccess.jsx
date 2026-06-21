@@ -12,18 +12,12 @@ export default function FormSuccess({ eyebrow, heading, lead, steps = [], childr
         <div className="dn-success-card">
           <div className="dn-success-mark" aria-hidden="true">
             <svg width="76" height="76" viewBox="0 0 72 72" fill="none">
-              <circle className="dn-check-circle" cx="36" cy="36" r="33" stroke="url(#fs-grad)" strokeWidth="1.5" />
-              <path className="dn-check-path" d="M22 37 L32 47 L51 26" stroke="url(#fs-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              <defs>
-                <linearGradient id="fs-grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="var(--dn-day)" />
-                  <stop offset="1" stopColor="var(--dn-night)" />
-                </linearGradient>
-              </defs>
+              <circle className="dn-check-circle" cx="36" cy="36" r="33" stroke="var(--dn-day)" strokeWidth="1.5" />
+              <path className="dn-check-path" d="M22 37 L32 47 L51 26" stroke="var(--dn-day)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
 
-          {eyebrow && <span className="dn-eyebrow">{eyebrow}</span>}
+          {eyebrow && <span className="dn-eyebrow dn-pill day">{eyebrow}</span>}
           <h1 className="dn-display">{heading}</h1>
           {lead && <p className="dn-success-lead">{lead}</p>}
 

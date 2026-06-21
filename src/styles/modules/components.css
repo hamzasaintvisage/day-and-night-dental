@@ -41,7 +41,7 @@
   color: var(--dn-bone); font-family: var(--font-body); font-size: 0.95rem;
   cursor: pointer; transition: border-color 0.3s; text-align: left; border-radius: 2px;
 }
-.dn-dropdown-trigger:hover { border-color: var(--dn-bone-faint); }
+.dn-dropdown-trigger:hover { border-color: var(--dn-day); }
 .dn-dropdown[data-open="true"] .dn-dropdown-trigger { border-color: var(--dn-day); }
 .dn-dropdown-trigger .placeholder { color: var(--dn-bone-faint); }
 .dn-dropdown-chev {
@@ -84,7 +84,7 @@
 .dn-success-steps { border: 1px solid var(--dn-mist); text-align: left; margin: 0 auto 2.5rem; max-width: 520px; }
 .dn-success-step { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--dn-mist); }
 .dn-success-step:last-child { border-bottom: none; }
-.dn-success-step .n { font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; width: 28px; height: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, var(--dn-day), var(--dn-night)); color: #000; }
+.dn-success-step .n { font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; width: 28px; height: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--dn-day); color: #000; }
 .dn-success-step p { font-size: 0.92rem; color: var(--dn-bone-dim); margin: 0; }
 .dn-success-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem; }
 .dn-success-emergency { margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); color: var(--dn-night-soft); max-width: 520px; }
@@ -117,7 +117,7 @@
 .dn-callbar-btn.book, .dn-cookie-btn.ghost { position: relative; }
 .dn-callbar-btn.book::after, .dn-cookie-btn.ghost::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
-  background: linear-gradient(90deg, var(--dn-day), var(--dn-day) 45%, var(--dn-night) 55%, var(--dn-night));
+  background: var(--dn-night);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   opacity: 0; transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
@@ -214,13 +214,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
     padding: 1.6px;
     pointer-events: none;
     z-index: 3;
-    background: linear-gradient(125deg, var(--dn-day), var(--dn-night) 78%);
+    background: var(--dn-day);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.4s ease;
+  }
+  /* Side-aware solid ring (no gold->blue fade): night-side cards glow BLUE */
+  .dn-why-item.night::after,
+  .dn-concern-card.night::after,
+  .dn-concern-card:nth-child(even)::after,
+  .dn-review.night::after,
+  .dn-gallery-item.night::after,
+  .tp-related-card::after {
+    background: var(--dn-night);
   }
   .dn-why-item:hover,
   .dn-concern-card:hover,
@@ -254,7 +263,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   /* Area chips: gold->blue gradient ring on hover (the interlinked day/night look), not flat gold */
   .dn-area-chip::after {
     content: ''; position: absolute; inset: 0; border-radius: 999px; padding: 1.5px; pointer-events: none;
-    background: linear-gradient(125deg, var(--dn-day), var(--dn-night) 80%);
+    background: var(--dn-day);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;

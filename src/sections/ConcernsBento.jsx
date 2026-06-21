@@ -106,10 +106,7 @@ export default function ConcernsBento() {
 
       <div className="cxg-inner">
         <div className="cxg-head">
-          <p className="cxg-eyebrow">
-            <span className="cxg-dot" aria-hidden="true" />
-            What Brings You In
-          </p>
+          <p className="dn-eyebrow dn-pill night">What Brings You In</p>
           <h2 className="cxg-title" id="cxg-title">
             Your <em>concerns</em>, our craft
           </h2>

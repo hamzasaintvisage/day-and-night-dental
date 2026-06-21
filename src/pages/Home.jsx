@@ -75,7 +75,7 @@ export default function Home() {
       <Testimonials />
       <CtaBand
         eyebrow="Day, Evening, Overnight"
-        heading={<>We're open <em>when you need us</em>, not just office hours.</>}
+        heading={<>We're open <em className="dn-hl-gold">when you need us</em>, not just office hours.</>}
         sub="Register as a new patient, or call us straight away if it can't wait."
       />
       <Team />

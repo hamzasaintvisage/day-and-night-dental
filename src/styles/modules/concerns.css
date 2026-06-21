@@ -23,10 +23,9 @@
         .dn-section-head h2 em {
           font-style: normal;
           font-weight: 800;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night));
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
+          background: none;
+          -webkit-text-fill-color: var(--dn-day);
+          color: var(--dn-day);
         }
         .dn-concerns-grid {
           display: grid;
@@ -43,7 +42,7 @@
         }
         .dn-concern-card::before {
           content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-          background: linear-gradient(90deg, var(--dn-day), var(--dn-night)); opacity: 0.4; transition: opacity 0.4s; z-index: 4;
+          background: var(--dn-day); opacity: 0.4; transition: opacity 0.4s; z-index: 4;
         }
         .dn-concern-card:hover::before { opacity: 1; }
         .dn-concern-icon { color: var(--dn-bone-dim); transition: color 0.4s; }

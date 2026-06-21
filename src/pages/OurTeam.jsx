@@ -64,8 +64,8 @@ export default function OurTeam() {
       <section className="dn-section tp-cta">
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-container">
-          <span className="dn-eyebrow">Become a Patient</span>
-          <h2 className="dn-display">Care from a team that <em>knows you</em></h2>
+          <span className="dn-eyebrow dn-pill day">Become a Patient</span>
+          <h2 className="dn-display">Care from a team that <em className="dn-hl-gold">knows you</em></h2>
           <p>Register today and you'll see the same friendly faces every time you visit.</p>
           <div className="tp-cta-actions">
             <Link to="/register-as-patient/" className="dn-btn primary">Register as a patient<span className="arrow">→</span></Link>

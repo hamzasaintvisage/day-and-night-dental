@@ -6,9 +6,9 @@ export default function AreasServed() {
     <section id="areas" className="dn-section dn-areas">
       <div className="dn-container">
         <div className="tp-section-head">
-          <span className="dn-eyebrow night">Where We Are</span>
+          <span className="dn-eyebrow dn-pill day">Where We Are</span>
           <h2 className="dn-display">
-            A 24-hour dentist in the heart of <span className="dn-mani-grad">Merchant City</span>
+            A 24-hour dentist in the heart of <em className="dn-hl-gold">Merchant City</em>
           </h2>
         </div>
 
