@@ -2,84 +2,190 @@
 <style>
 @font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
 @font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
-:root{--day:#f8c760;--nb:#0a0a0c;--bone:#fff;--dim:rgba(255,255,255,.72);--faint:rgba(255,255,255,.5);--mist:rgba(255,255,255,.1);--disp:'Fraunces',Georgia,serif;--body:'Inter Tight',system-ui,sans-serif;}
-*{box-sizing:border-box;}body{margin:0;background:var(--nb);color:var(--bone);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-.wrap{max-width:1180px;margin:0 auto;padding:clamp(2.5rem,6vw,5rem) clamp(1.1rem,4vw,2.5rem) 6rem;}
+:root{--day:#f8c760;--night:#4590ec;--nb:#0a0a0c;--card:#101015;--bone:#fff;--dim:rgba(255,255,255,.72);--faint:rgba(255,255,255,.48);--mist:rgba(255,255,255,.1);--disp:'Fraunces',Georgia,serif;--body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}html{scroll-behavior:smooth;scroll-padding-top:84px;}
+body{margin:0;background:var(--nb);color:var(--bone);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.nav{position:sticky;top:0;z-index:50;display:flex;gap:.5rem;overflow-x:auto;padding:12px clamp(1rem,4vw,2.5rem);background:rgba(10,10,12,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--mist);scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav a{flex:none;display:inline-flex;align-items:center;gap:.4rem;padding:6px 13px;border-radius:999px;border:1px solid var(--mist);color:var(--dim);text-decoration:none;font-size:.8rem;white-space:nowrap;transition:.2s;}
+.nav a:hover{color:var(--bone);border-color:color-mix(in srgb,var(--day) 60%,transparent);}
+.nav a span{font-size:.66rem;color:var(--faint);}
+.wrap{max-width:1200px;margin:0 auto;padding:clamp(2.5rem,6vw,4.5rem) clamp(1rem,4vw,2.5rem) 7rem;}
 .ey{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--day);}
 .ey::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
-h1{font-family:var(--disp);font-weight:600;font-size:clamp(2.2rem,5.4vw,3.4rem);line-height:1.08;margin:1.2rem 0 .6rem;}h1 em{font-style:normal;color:var(--day);}
-.sub-lead{color:var(--dim);max-width:660px;margin:0 0 3rem;}
-.grp{margin:0 0 3.2rem;}.grp h2{font-family:var(--disp);font-weight:600;font-size:1.5rem;display:flex;align-items:center;gap:.7rem;margin:0 0 1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--mist);}
-.grp h2 .dot{width:8px;height:8px;border-radius:50%;background:var(--day);box-shadow:0 0 12px var(--day);}.grp h2 .cnt{font-family:var(--body);font-size:.8rem;color:var(--faint);border:1px solid var(--mist);border-radius:999px;padding:1px 9px;font-weight:500;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;}
-.card{display:flex;flex-direction:column;gap:.5rem;padding:1.25rem 1.3rem 1.1rem;border:1px solid var(--mist);border-radius:16px;background:rgba(255,255,255,.022);text-decoration:none;color:inherit;transition:border-color .3s,box-shadow .3s,transform .3s;}
-.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--day) 70%,transparent);box-shadow:0 0 0 1.5px color-mix(in srgb,var(--day) 60%,transparent),0 0 28px -4px color-mix(in srgb,var(--day) 40%,transparent);}
-.card.top{border-color:color-mix(in srgb,var(--day) 38%,transparent);}
-.ch{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;min-height:1.2rem;}
-.lens{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);border:1px solid var(--mist);border-radius:999px;padding:2px 8px;}
-.win{font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0a0a0c;background:var(--day);border-radius:999px;padding:2px 8px;}
-.nm{font-family:var(--disp);font-weight:600;font-size:1.2rem;}.go{color:var(--day);font-size:.78rem;font-weight:600;margin-top:.3rem;}
-</style></head><body><div class="wrap">
-<span class="ey">Design Lab</span><h1>60 ways to build the <em>homepage</em></h1>
-<p class="sub-lead">Concepts for each homepage section, generated and verified by a panel of design agents. Tap any card to open that design full-page.</p>
-<section class="grp"><h2><span class="dot"></span>Real Smiles <span class="cnt">6</span></h2><div class="grid"><a class="card top" href="/preview/real-smiles/le-silence.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">le silence</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/real-smiles/proof-wall.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">proof wall</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/real-smiles/the-cinema-reel.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the cinema reel</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/real-smiles/the-gold-standard.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the gold standard</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/real-smiles/the-plate.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the plate</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/real-smiles/the-reveal-wall.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the reveal wall</div><div class="go">Open design →</div></a></div></section>
-<section class="grp"><h2><span class="dot"></span>New Patients <span class="cnt">6</span></h2><div class="grid"><a class="card top" href="/preview/registration/the-front-desk.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the front desk</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/registration/the-gold-standard.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the gold standard</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/registration/the-quiet-ledger.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the quiet ledger</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/registration/the-reception-desk.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the reception desk</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/registration/the-registry-folio.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the registry folio</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/registration/threshold.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">threshold</div><div class="go">Open design →</div></a></div></section>
-<section class="grp"><h2><span class="dot"></span>Where We Are <span class="cnt">18</span></h2><div class="grid"><a class="card" href="/preview/where-we-serve/coordinates.html"><div class="ch"></div><div class="nm">coordinates</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/district-filmstrip.html"><div class="ch"></div><div class="nm">district filmstrip</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/hairline-compass.html"><div class="ch"></div><div class="nm">hairline compass</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/magnetic-north.html"><div class="ch"></div><div class="nm">magnetic north</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/minutes-from-you.html"><div class="ch"></div><div class="nm">minutes from you</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/nightfall-over-merchant-city.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">nightfall over merchant city</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/on-the-map.html"><div class="ch"></div><div class="nm">on the map</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/open-now-round-the-corner.html"><div class="ch"></div><div class="nm">open now round the corner</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/the-approach.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the approach</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/the-arrival.html"><div class="ch"></div><div class="nm">the arrival</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/the-atelier-address.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the atelier address</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/the-dispatch-board.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the dispatch board</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/the-glasgow-index.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the glasgow index</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/the-merchant-plan.html"><div class="ch"></div><div class="nm">the merchant plan</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/the-standard-timetable.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the standard timetable</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/travel-time-dial.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">travel time dial</div><div class="go">Open design →</div></a>
-<a class="card" href="/preview/where-we-serve/two-stations.html"><div class="ch"></div><div class="nm">two stations</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/where-we-serve/youre-nearly-here.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">youre nearly here</div><div class="go">Open design →</div></a></div></section>
-<section class="grp"><h2><span class="dot"></span>The Practitioners <span class="cnt">6</span></h2><div class="grid"><a class="card top" href="/preview/team/day-night-roster.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">day night roster</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/team/gold-masthead.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">gold masthead</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/team/the-masthead.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the masthead</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/team/the-register.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the register</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/team/the-verified-ledger.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the verified ledger</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/team/theatre-of-three.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">theatre of three</div><div class="go">Open design →</div></a></div></section>
-<section class="grp"><h2><span class="dot"></span>Common Questions <span class="cnt">12</span></h2><div class="grid"><a class="card top" href="/preview/faq/aurora-wipe.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">aurora wipe</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/bedside-manner.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">bedside manner</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/decision-rail.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">decision rail</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/midnight-stage.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">midnight stage</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-colonnade.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the colonnade</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-gold-index.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the gold index</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-index.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the index</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-monogram.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the monogram</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-night-desk.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the night desk</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-quiet-index.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the quiet index</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-register-dashboard.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the register dashboard</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/faq/the-register-swiss.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the register swiss</div><div class="go">Open design →</div></a></div></section>
-<section class="grp"><h2><span class="dot"></span>Book Appointment <span class="cnt">12</span></h2><div class="grid"><a class="card top" href="/preview/book/day-night-switchboard.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">day night switchboard</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/hairline-concierge.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">hairline concierge</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/maison-card.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">maison card</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/night-watch.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">night watch</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/specimen-sheet.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">specimen sheet</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/sweep-line.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">sweep line</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/the-60-second-booking.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the 60 second booking</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/the-atrium.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the atrium</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/the-front-desk-console.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the front desk console</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/the-gold-slab.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the gold slab</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/the-ledger.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">the ledger</div><div class="go">Open design →</div></a>
-<a class="card top" href="/preview/book/youre-not-alone-tonight.html"><div class="ch"><span class="win">Panel winner</span></div><div class="nm">youre not alone tonight</div><div class="go">Open design →</div></a></div></section>
+h1{font-family:var(--disp);font-weight:600;font-size:clamp(2.3rem,5.6vw,3.6rem);line-height:1.06;margin:1.2rem 0 .7rem;}h1 em{font-style:normal;color:var(--day);}
+.lead{color:var(--dim);max-width:640px;margin:0 0 3.5rem;}
+.grp{margin:0 0 4.5rem;}
+.ghead{display:flex;align-items:baseline;gap:1rem;padding-bottom:1rem;margin-bottom:1.6rem;border-bottom:1px solid var(--mist);}
+.gnum{font-family:var(--disp);font-weight:700;color:var(--day);font-size:1.1rem;font-variant-numeric:tabular-nums;}
+.ghead h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);margin:0;flex:1;}
+.gcnt{color:var(--faint);font-size:.82rem;}
+.band{display:flex;align-items:center;gap:.6rem;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:2rem 0 1rem;}
+.band i{font-style:normal;font-size:.62rem;border:1px solid var(--mist);border-radius:999px;padding:1px 8px;}
+.band.new{color:var(--day);}.band.new i{border-color:color-mix(in srgb,var(--day) 40%,transparent);}
+.dotg{width:7px;height:7px;border-radius:50%;background:var(--day);box-shadow:0 0 10px var(--day);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px;}
+.card{display:flex;flex-direction:column;gap:.6rem;padding:1.35rem 1.4rem 1.2rem;border:1px solid var(--mist);border-radius:16px;background:var(--card);text-decoration:none;color:inherit;min-height:128px;transition:border-color .25s,box-shadow .25s,transform .25s;}
+.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--day) 65%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--day) 45%,transparent),0 14px 30px -16px color-mix(in srgb,var(--day) 50%,transparent);}
+.card.isnew{border-color:color-mix(in srgb,var(--day) 30%,transparent);}
+.ctop{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;}
+.b{font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:2px 8px;}
+.b.new{color:#0a0a0c;background:var(--day);}
+.b.evo{color:#9cc2f5;border:1px solid color-mix(in srgb,var(--night) 50%,transparent);}
+.b.og{color:var(--faint);border:1px solid var(--mist);}
+.b.win{color:var(--day);border:1px solid color-mix(in srgb,var(--day) 50%,transparent);padding:1px 7px;}
+.lens{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+.nm{font-family:var(--disp);font-weight:600;font-size:1.18rem;line-height:1.15;margin-top:auto;}
+.go{color:var(--day);font-size:.76rem;font-weight:600;}
+</style></head><body>
+<nav class="nav"><a href="#real-smiles">Real Smiles <span>6</span></a><a href="#registration">New Patients <span>12</span></a><a href="#where-we-serve">Where We Are <span>18</span></a><a href="#team">The Practitioners <span>6</span></a><a href="#faq">Common Questions <span>12</span></a><a href="#book">Book Appointment <span>18</span></a></nav>
+<div class="wrap">
+<span class="ey">Design Lab</span>
+<h1>72 ways to build the <em>homepage</em></h1>
+<p class="lead">Jump to any section above. Each one is split into <strong style="color:var(--day)">New this round</strong> and <strong style="color:var(--bone)">Evolved</strong> (the originals, upgraded). Tap a card to open it full-page.</p>
+<section class="grp" id="real-smiles"><div class="ghead"><span class="gnum">01</span><h2>Real Smiles</h2><span class="gcnt">6 designs</span></div><div class="band">Existing <i>6</i></div><div class="grid"><a class="card" href="/preview/real-smiles/the-plate.html">
+    <div class="ctop"><span class="lens">editorial</span></div>
+    <div class="nm">The Plate</div><div class="go">Open →</div></a><a class="card" href="/preview/real-smiles/proof-wall.html">
+    <div class="ctop"><span class="lens">CONVERSION</span></div>
+    <div class="nm">Proof Wall</div><div class="go">Open →</div></a><a class="card" href="/preview/real-smiles/le-silence.html">
+    <div class="ctop"><span class="lens">minimal</span></div>
+    <div class="nm">Le Silence</div><div class="go">Open →</div></a><a class="card" href="/preview/real-smiles/the-gold-standard.html">
+    <div class="ctop"><span class="lens">statement</span></div>
+    <div class="nm">The Gold Standard</div><div class="go">Open →</div></a><a class="card" href="/preview/real-smiles/the-cinema-reel.html">
+    <div class="ctop"><span class="lens">Immersive</span></div>
+    <div class="nm">The Cinema Reel</div><div class="go">Open →</div></a><a class="card" href="/preview/real-smiles/the-reveal-wall.html">
+    <div class="ctop"><span class="lens">Interactive</span></div>
+    <div class="nm">The Reveal Wall</div><div class="go">Open →</div></a></div></section><section class="grp" id="registration"><div class="ghead"><span class="gnum">02</span><h2>New Patients</h2><span class="gcnt">12 designs</span></div><div class="band new"><span class="dotg"></span>New this round <i>6</i></div><div class="grid"><a class="card isnew" href="/preview/registration/reassurance-rail.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">warm</span></div>
+    <div class="nm">Reassurance Rail</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/registration/split-welcome.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">architectural</span></div>
+    <div class="nm">Split Welcome</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/registration/the-clipboard.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">minimal</span></div>
+    <div class="nm">The Clipboard</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/registration/the-waiting-list.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">editorial</span></div>
+    <div class="nm">The Waiting List</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/registration/the-welcome-card.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">couture</span></div>
+    <div class="nm">The Welcome Card</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/registration/thirty-seconds.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">conversion</span></div>
+    <div class="nm">Thirty Seconds</div><div class="go">Open →</div></a></div><div class="band">Evolved <i>6</i></div><div class="grid"><a class="card" href="/preview/registration/the-reception-desk.html">
+    <div class="ctop"><span class="lens">Single sign-in</span></div>
+    <div class="nm">The Reception Desk</div><div class="go">Open →</div></a><a class="card" href="/preview/registration/the-quiet-ledger.html">
+    <div class="ctop"><span class="lens">MINIMAL</span></div>
+    <div class="nm">The Quiet Ledger</div><div class="go">Open →</div></a><a class="card" href="/preview/registration/the-front-desk.html">
+    <div class="ctop"><span class="lens">conversion</span></div>
+    <div class="nm">The Front Desk</div><div class="go">Open →</div></a><a class="card" href="/preview/registration/the-gold-standard.html">
+    <div class="ctop"><span class="lens">statement</span></div>
+    <div class="nm">The Gold Standard</div><div class="go">Open →</div></a><a class="card" href="/preview/registration/the-registry-folio.html">
+    <div class="ctop"><span class="lens">editorial</span></div>
+    <div class="nm">The Registry Folio</div><div class="go">Open →</div></a><a class="card" href="/preview/registration/threshold.html">
+    <div class="ctop"><span class="lens">immersive</span></div>
+    <div class="nm">Threshold</div><div class="go">Open →</div></a></div></section><section class="grp" id="where-we-serve"><div class="ghead"><span class="gnum">03</span><h2>Where We Are</h2><span class="gcnt">18 designs</span></div><div class="band new"><span class="dotg"></span>New this round <i>6</i></div><div class="grid"><a class="card isnew" href="/preview/where-we-serve/coordinates.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">swiss</span></div>
+    <div class="nm">Coordinates</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/where-we-serve/district-filmstrip.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">immersive</span></div>
+    <div class="nm">District Filmstrip</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/where-we-serve/minutes-from-you.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">statement</span></div>
+    <div class="nm">Minutes From You</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/where-we-serve/on-the-map.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">spatial</span></div>
+    <div class="nm">On The Map</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/where-we-serve/the-arrival.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">journey</span></div>
+    <div class="nm">The Arrival</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/where-we-serve/two-stations.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">editorial</span></div>
+    <div class="nm">Two Stations</div><div class="go">Open →</div></a></div><div class="band">Evolved <i>12</i></div><div class="grid"><a class="card" href="/preview/where-we-serve/the-atelier-address.html">
+    <div class="ctop"><span class="lens">couture</span></div>
+    <div class="nm">The Atelier Address</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/the-glasgow-index.html">
+    <div class="ctop"><span class="lens">EDITORIAL</span></div>
+    <div class="nm">The Glasgow Index</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/the-standard-timetable.html">
+    <div class="ctop"><span class="lens">swiss</span></div>
+    <div class="nm">The Standard Timetable</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/the-approach.html">
+    <div class="ctop"><span class="lens">kinetic</span></div>
+    <div class="nm">The Approach</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/the-dispatch-board.html">
+    <div class="ctop"><span class="lens">dashboard</span></div>
+    <div class="nm">The Dispatch Board</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/travel-time-dial.html">
+    <div class="ctop"><span class="lens">interactive</span></div>
+    <div class="nm">Travel Time Dial</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/nightfall-over-merchant-city.html">
+    <div class="ctop"><span class="lens">immersive</span></div>
+    <div class="nm">Nightfall Over Merchant City</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/youre-nearly-here.html">
+    <div class="ctop"><span class="lens">warm</span></div>
+    <div class="nm">You're Nearly Here</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/hairline-compass.html">
+    <div class="ctop"><span class="lens">minimal</span></div>
+    <div class="nm">Hairline Compass</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/magnetic-north.html">
+    <div class="ctop"><span class="lens">statement</span></div>
+    <div class="nm">Magnetic North</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/open-now-round-the-corner.html">
+    <div class="ctop"><span class="lens">conversion</span></div>
+    <div class="nm">Open Now, Round the Corner</div><div class="go">Open →</div></a><a class="card" href="/preview/where-we-serve/the-merchant-plan.html">
+    <div class="ctop"><span class="lens">architectural</span></div>
+    <div class="nm">The Merchant Plan</div><div class="go">Open →</div></a></div></section><section class="grp" id="team"><div class="ghead"><span class="gnum">04</span><h2>The Practitioners</h2><span class="gcnt">6 designs</span></div><div class="band">Existing <i>6</i></div><div class="grid"><a class="card" href="/preview/team/the-masthead.html">
+    <div class="ctop"><span class="lens">editorial</span></div>
+    <div class="nm">The Masthead</div><div class="go">Open →</div></a><a class="card" href="/preview/team/the-register.html">
+    <div class="ctop"><span class="lens">minimal</span></div>
+    <div class="nm">The Register</div><div class="go">Open →</div></a><a class="card" href="/preview/team/day-night-roster.html">
+    <div class="ctop"><span class="lens">Interactive</span></div>
+    <div class="nm">Day &amp;amp; Night Roster</div><div class="go">Open →</div></a><a class="card" href="/preview/team/the-verified-ledger.html">
+    <div class="ctop"><span class="lens">CONVERSION</span></div>
+    <div class="nm">The Verified Ledger</div><div class="go">Open →</div></a><a class="card" href="/preview/team/gold-masthead.html">
+    <div class="ctop"><span class="lens">Statement</span></div>
+    <div class="nm">Gold Masthead</div><div class="go">Open →</div></a><a class="card" href="/preview/team/theatre-of-three.html">
+    <div class="ctop"><span class="lens">Immersive</span></div>
+    <div class="nm">Theatre of Three</div><div class="go">Open →</div></a></div></section><section class="grp" id="faq"><div class="ghead"><span class="gnum">05</span><h2>Common Questions</h2><span class="gcnt">12 designs</span></div><div class="band">Existing <i>12</i></div><div class="grid"><a class="card" href="/preview/faq/the-index.html">
+    <div class="ctop"><span class="lens">editorial</span></div>
+    <div class="nm">The Index</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-monogram.html">
+    <div class="ctop"><span class="lens">couture</span></div>
+    <div class="nm">The Monogram</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-colonnade.html">
+    <div class="ctop"><span class="lens">architectural</span></div>
+    <div class="nm">The Colonnade</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-quiet-index.html">
+    <div class="ctop"><span class="lens">minimal</span></div>
+    <div class="nm">The Quiet Index</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-gold-index.html">
+    <div class="ctop"><span class="lens">statement</span></div>
+    <div class="nm">The Gold Index</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-night-desk.html">
+    <div class="ctop"><span class="lens">warm</span></div>
+    <div class="nm">The Night Desk</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/decision-rail.html">
+    <div class="ctop"><span class="lens">conversion</span></div>
+    <div class="nm">Decision Rail</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/bedside-manner.html">
+    <div class="ctop"><span class="lens">interactive</span></div>
+    <div class="nm">Bedside Manner</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/aurora-wipe.html">
+    <div class="ctop"><span class="lens">kinetic</span></div>
+    <div class="nm">Aurora Wipe</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/midnight-stage.html">
+    <div class="ctop"><span class="lens">Immersive</span></div>
+    <div class="nm">Midnight Stage</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-register-dashboard.html">
+    <div class="ctop"><span class="lens">dashboard</span></div>
+    <div class="nm">The Register</div><div class="go">Open →</div></a><a class="card" href="/preview/faq/the-register-swiss.html">
+    <div class="ctop"><span class="lens">swiss</span></div>
+    <div class="nm">The Register</div><div class="go">Open →</div></a></div></section><section class="grp" id="book"><div class="ghead"><span class="gnum">06</span><h2>Book Appointment</h2><span class="gcnt">18 designs</span></div><div class="band new"><span class="dotg"></span>New this round <i>6</i></div><div class="grid"><a class="card isnew" href="/preview/book/concierge-letter.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">couture</span></div>
+    <div class="nm">Concierge Letter</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/book/first-available.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">interactive</span></div>
+    <div class="nm">First Available</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/book/the-callback.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">minimal</span></div>
+    <div class="nm">The Callback</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/book/the-conversation.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">warm</span></div>
+    <div class="nm">The Conversation</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/book/the-split-stage.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">architectural</span></div>
+    <div class="nm">The Split Stage</div><div class="go">Open →</div></a><a class="card isnew" href="/preview/book/two-tap-triage.html">
+    <div class="ctop"><span class="b new">New</span><span class="lens">conversion</span></div>
+    <div class="nm">Two-Tap Triage</div><div class="go">Open →</div></a></div><div class="band">Evolved <i>12</i></div><div class="grid"><a class="card" href="/preview/book/the-atrium.html">
+    <div class="ctop"><span class="lens">architectural</span></div>
+    <div class="nm">The Atrium</div><div class="go">Open →</div></a><a class="card" href="/preview/book/the-ledger.html">
+    <div class="ctop"><span class="lens">Editorial</span></div>
+    <div class="nm">The Ledger</div><div class="go">Open →</div></a><a class="card" href="/preview/book/day-night-switchboard.html">
+    <div class="ctop"><span class="lens">interactive</span></div>
+    <div class="nm">Day / Night Switchboard</div><div class="go">Open →</div></a><a class="card" href="/preview/book/youre-not-alone-tonight.html">
+    <div class="ctop"><span class="lens">warm</span></div>
+    <div class="nm">You're Not Alone Tonight</div><div class="go">Open →</div></a><a class="card" href="/preview/book/the-60-second-booking.html">
+    <div class="ctop"><span class="lens">CONVERSION</span></div>
+    <div class="nm">The 60-Second Booking</div><div class="go">Open →</div></a><a class="card" href="/preview/book/the-front-desk-console.html">
+    <div class="ctop"><span class="lens">dashboard</span></div>
+    <div class="nm">The Front Desk Console</div><div class="go">Open →</div></a><a class="card" href="/preview/book/maison-card.html">
+    <div class="ctop"><span class="lens">couture</span></div>
+    <div class="nm">Maison Card</div><div class="go">Open →</div></a><a class="card" href="/preview/book/the-gold-slab.html">
+    <div class="ctop"><span class="lens">statement</span></div>
+    <div class="nm">The Gold Slab</div><div class="go">Open →</div></a><a class="card" href="/preview/book/hairline-concierge.html">
+    <div class="ctop"><span class="lens">minimal</span></div>
+    <div class="nm">Hairline Concierge</div><div class="go">Open →</div></a><a class="card" href="/preview/book/sweep-line.html">
+    <div class="ctop"><span class="lens">kinetic</span></div>
+    <div class="nm">Sweep Line</div><div class="go">Open →</div></a><a class="card" href="/preview/book/night-watch.html">
+    <div class="ctop"><span class="lens">Immersive</span></div>
+    <div class="nm">Night Watch</div><div class="go">Open →</div></a><a class="card" href="/preview/book/specimen-sheet.html">
+    <div class="ctop"><span class="lens">swiss</span></div>
+    <div class="nm">Specimen Sheet</div><div class="go">Open →</div></a></div></section>
 </div></body></html>

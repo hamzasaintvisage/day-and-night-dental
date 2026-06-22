@@ -29,7 +29,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>Book an appointment - Hairline Concierge · Day Night Dental</title>
 <style>
-/* ===== Hairline Concierge - quiet-luxury, pure hairline grid, no cards ===== */
+/* ===== Hairline Concierge - quiet-luxury hairline grid, now with a premium concierge intake ===== */
 .dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
 .dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem);}
 
@@ -39,7 +39,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 .dn-glow.night{width:480px;height:480px;bottom:6%;right:2%;background:var(--dn-night);opacity:.05;}
 
 .dn-contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start;}
-.dn-contact-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--dn-mist);}
+.dn-contact-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(to bottom,transparent,var(--dn-mist) 12%,var(--dn-mist) 88%,transparent);}
 
 /* ---- Left: identity + NAP as hairline-divided rows ---- */
 .dn-contact-info{min-width:0;}
@@ -74,55 +74,98 @@ a.value:hover{color:var(--dn-day);}
 .dn-hours-row span:last-child{color:var(--dn-bone);font-variant-numeric:tabular-nums;}
 .dn-hours-row.is-emergency span:last-child{color:var(--dn-night-soft);}
 
-/* ---- Right: form lives on the bare background, underline-only inputs ---- */
+/* ---- Right: a refined concierge intake - filled wells, gold-ruled, still restrained ---- */
 .dn-contact-form-wrap{min-width:0;}
 .dn-contact-form{padding:0;background:none;border:0;border-top:1px solid var(--dn-day);padding-top:2rem;}
 .dn-contact-form .form-eyebrow{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;}
-.dn-contact-form h3.dn-display{font-size:clamp(1.7rem,3vw,2.1rem);margin:.5rem 0 2rem;}
+.dn-contact-form h3.dn-display{font-size:clamp(1.7rem,3vw,2.1rem);margin:.5rem 0 1.6rem;}
 
-.dn-form-row{margin-bottom:1.9rem;}
-.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.dn-form-row{margin-bottom:1.5rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
 .dn-contact-form label{display:block;}
 .dn-contact-form label > span,.dn-form-label{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);margin-bottom:.55rem;}
-.dn-contact-form input,.dn-contact-form textarea,.dn-select{width:100%;background:none;border:0;border-bottom:1px solid var(--dn-mist);border-radius:0;padding:.7rem 0;min-height:44px;color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;transition:border-color .18s ease,box-shadow .18s ease;}
-.dn-contact-form textarea{resize:vertical;min-height:64px;line-height:1.5;}
-.dn-contact-form input::placeholder,.dn-contact-form textarea::placeholder{color:var(--dn-bone-faint);opacity:.7;}
-.dn-contact-form input:focus,.dn-contact-form textarea:focus,.dn-select:focus{outline:0;border-bottom-color:var(--dn-day);box-shadow:0 1px 0 var(--dn-day);}
 
-/* native select, themed as an underline field */
-.dn-select-wrap{position:relative;}
-.dn-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:1.5rem;}
-.dn-select:invalid{color:var(--dn-bone-faint);}
-.dn-select option{background:var(--dn-charcoal);color:var(--dn-bone);}
-.dn-select-wrap::after{content:"";position:absolute;right:.2rem;top:50%;width:.5rem;height:.5rem;border-right:1.5px solid var(--dn-bone-faint);border-bottom:1.5px solid var(--dn-bone-faint);transform:translateY(-70%) rotate(45deg);pointer-events:none;}
+/* PREMIUM FIELD WELLS - filled charcoal, hairline border, even gold glow ring on focus */
+.dn-field{width:100%;background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:12px;padding:.85rem 1rem;min-height:48px;color:var(--dn-bone);font-family:var(--font-body);font-size:16px;line-height:1.4;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;}
+textarea.dn-field{resize:vertical;min-height:96px;line-height:1.55;}
+.dn-field::placeholder{color:var(--dn-bone-faint);opacity:.75;}
+.dn-field:hover{border-color:rgba(255,255,255,.18);}
+.dn-field:focus{outline:0;border-color:var(--dn-day);background:#17171e;box-shadow:0 0 0 3px rgba(248,199,96,.16),0 0 18px rgba(248,199,96,.14);}
+/* refined helper line beneath a field */
+.dn-help{display:block;font-size:.74rem;color:var(--dn-bone-faint);margin-top:.45rem;letter-spacing:.01em;}
 
-/* preferred-time as underline-row radio chips - text only, single-colour accents */
+/* ---- CUSTOM DROPDOWN (native select is BANNED). Built on details/summary so the ----
+   ---- no-JS fallback is genuine: it opens, the radio options select + submit, all ----
+   ---- without a line of JavaScript. JS only layers in click-outside + keyboard. ---- */
+.dn-dropdown{position:relative;}
+.dn-dropdown > summary{list-style:none;display:flex;width:100%;align-items:center;justify-content:space-between;gap:.75rem;background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:12px;padding:.85rem 1rem;min-height:48px;color:var(--dn-bone);font-family:var(--font-body);font-size:16px;text-align:left;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;}
+.dn-dropdown > summary::-webkit-details-marker{display:none;}
+.dn-dropdown > summary:hover{border-color:rgba(255,255,255,.18);}
+.dn-dropdown > summary:focus-visible{outline:0;border-color:var(--dn-day);background:#17171e;box-shadow:0 0 0 3px rgba(248,199,96,.16),0 0 18px rgba(248,199,96,.14);}
+.dn-dropdown[open] > summary{border-color:var(--dn-day);background:#17171e;box-shadow:0 0 0 3px rgba(248,199,96,.16);}
+.dn-dropdown .trigger-text{color:var(--dn-bone-faint);}
+.dn-dropdown.has-value .trigger-text{color:var(--dn-bone);}
+.dn-dropdown-chev{flex:none;width:.62rem;height:.62rem;margin-right:.15rem;border-right:1.6px solid var(--dn-bone-faint);border-bottom:1.6px solid var(--dn-bone-faint);transform:translateY(-2px) rotate(45deg);transition:transform .22s ease,border-color .18s ease;}
+.dn-dropdown[open] .dn-dropdown-chev{transform:translateY(2px) rotate(225deg);border-color:var(--dn-day);}
+
+.dn-dropdown-list{position:absolute;z-index:30;top:calc(100% + .5rem);left:0;right:0;margin:0;padding:.4rem;list-style:none;background:#101016;border:1px solid var(--dn-mist);border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4);max-height:266px;overflow:auto;animation:dn-pop .14s ease;}
+@keyframes dn-pop{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+.dn-dropdown-option{position:relative;display:block;}
+.dn-dropdown-option input{position:absolute;opacity:0;width:0;height:0;}
+.dn-dropdown-option > span.row{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.7rem .75rem .7rem 1rem;min-height:44px;border-radius:10px;color:var(--dn-bone-dim);font-size:.95rem;cursor:pointer;transition:background .14s ease,color .14s ease;}
+.dn-dropdown-option > span.row::before{content:"";position:absolute;left:.3rem;top:50%;transform:translateY(-50%);width:3px;height:0;border-radius:2px;background:var(--dn-day);transition:height .16s ease;}
+.dn-dropdown-option > span.row:hover{background:rgba(248,199,96,.1);color:var(--dn-bone);}
+.dn-dropdown-option > span.row:hover::before{height:1.1rem;}
+.dn-dropdown-option.active > span.row{background:rgba(248,199,96,.1);color:var(--dn-bone);}
+.dn-dropdown-option.active > span.row::before{height:1.1rem;}
+.dn-dropdown-option input:checked + span.row{color:var(--dn-day);}
+.dn-dropdown-option input:checked + span.row::before{height:1.1rem;}
+.dn-dropdown-option input:focus-visible + span.row{box-shadow:0 0 0 2px rgba(248,199,96,.4);}
+.dn-dropdown-option .check{flex:none;color:var(--dn-day);font-size:.9rem;opacity:0;}
+.dn-dropdown-option input:checked + span.row .check{opacity:1;}
+
+/* ---- preferred-time: custom pill-card radios, gold checked state ---- */
 .dn-form-radios{display:flex;flex-wrap:wrap;gap:.6rem;}
-.dn-radio{position:relative;display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.35rem 1rem;border:1px solid var(--dn-mist);border-radius:999px;cursor:pointer;font-size:.9rem;color:var(--dn-bone-dim);transition:border-color .18s ease,color .18s ease,background .18s ease;}
+.dn-radio{position:relative;display:inline-flex;align-items:center;gap:.55rem;min-height:44px;padding:.4rem 1.05rem;border:1px solid var(--dn-mist);border-radius:12px;background:var(--dn-charcoal);cursor:pointer;font-size:.92rem;color:var(--dn-bone-dim);transition:border-color .18s ease,color .18s ease,background .18s ease,box-shadow .18s ease;}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;min-height:0;}
-.dn-radio:hover{color:var(--dn-bone);}
-.dn-radio.day:has(input:checked){border-color:var(--dn-day);color:var(--dn-day);background:rgba(248,199,96,.07);}
-.dn-radio.night:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.08);}
+.dn-radio:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.2);}
+.dn-radio.day:has(input:checked){border-color:var(--dn-day);color:var(--dn-day);background:rgba(248,199,96,.1);box-shadow:0 0 0 1px var(--dn-day);}
+.dn-radio.night:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.12);box-shadow:0 0 0 1px var(--dn-night);}
 .dn-radio.urgent{border-color:rgba(69,144,236,.55);}
-.dn-radio.urgent:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.1);}
+.dn-radio.urgent:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.14);box-shadow:0 0 0 1px var(--dn-night);}
 .urgent-dot{width:6px;height:6px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px rgba(69,144,236,.7);}
-/* keyboard focus ring without breaking the chrome-less look */
-.dn-radio:focus-within{box-shadow:0 0 0 2px rgba(248,199,96,.4);}
+.dn-radio:focus-within{box-shadow:0 0 0 3px rgba(248,199,96,.32);}
+.dn-radio.night:focus-within:has(input:checked){box-shadow:0 0 0 1px var(--dn-night),0 0 0 3px rgba(69,144,236,.3);}
 
-.dn-form-submit{margin-top:.4rem;display:inline-flex;align-items:center;gap:.6rem;min-height:52px;padding:.85rem 1.8rem;background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-weight:700;font-size:.98rem;letter-spacing:.01em;border:1px solid var(--dn-day);border-radius:999px;cursor:pointer;box-shadow:0 0 0 1px transparent;transition:box-shadow .22s ease,transform .12s ease;}
-.dn-form-submit:hover{box-shadow:0 0 24px rgba(248,199,96,.35),0 0 0 1px var(--dn-day);}
+/* ---- custom 22px checkbox, gold fill + tick ---- */
+.dn-check{display:flex;align-items:flex-start;gap:.7rem;cursor:pointer;font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;}
+.dn-check input{position:absolute;opacity:0;width:0;height:0;}
+.dn-check .box{flex:none;width:22px;height:22px;margin-top:1px;border:1px solid var(--dn-mist);border-radius:7px;background:var(--dn-charcoal);position:relative;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease;}
+.dn-check .box::after{content:"";position:absolute;left:7px;top:3px;width:5px;height:10px;border:solid var(--dn-near-black);border-width:0 2px 2px 0;transform:rotate(45deg) scale(.4);opacity:0;transition:opacity .14s ease,transform .14s ease;}
+.dn-check input:checked + .box{background:var(--dn-day);border-color:var(--dn-day);}
+.dn-check input:checked + .box::after{opacity:1;transform:rotate(45deg) scale(1);}
+.dn-check input:focus-visible + .box{box-shadow:0 0 0 3px rgba(248,199,96,.32);}
+.dn-check a{color:var(--dn-bone-dim);text-underline-offset:2px;}
+
+/* ---- submit: confident solid-gold primary + reassurance line ---- */
+.dn-form-submit{margin-top:.4rem;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;width:100%;min-height:54px;padding:.9rem 1.8rem;background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-weight:700;font-size:1rem;letter-spacing:.01em;border:1px solid var(--dn-day);border-radius:12px;cursor:pointer;box-shadow:0 0 0 1px transparent;transition:box-shadow .22s ease,transform .12s ease;}
+.dn-form-submit:hover{box-shadow:0 0 28px rgba(248,199,96,.4),0 0 0 1px var(--dn-day);}
 .dn-form-submit:active{transform:translateY(1px);}
 .dn-form-submit .arrow{font-size:1.1rem;line-height:1;}
 /* emergency-mode submit flips to the blue accent only when chosen */
 .dn-form-submit.is-emergency{background:var(--dn-night);border-color:var(--dn-night);color:var(--dn-bone);}
-.dn-form-submit.is-emergency:hover{box-shadow:0 0 24px rgba(69,144,236,.4),0 0 0 1px var(--dn-night);}
+.dn-form-submit.is-emergency:hover{box-shadow:0 0 28px rgba(69,144,236,.45),0 0 0 1px var(--dn-night);}
 
-.dn-form-disclaimer{margin-top:1.4rem;font-size:.78rem;color:var(--dn-bone-faint);max-width:46ch;}
+.dn-form-reassure{margin:1rem 0 0;display:flex;align-items:center;gap:.5rem;font-size:.84rem;color:var(--dn-bone-dim);}
+.dn-form-reassure .tick{flex:none;width:16px;height:16px;color:var(--dn-day);}
+.dn-form-disclaimer{margin-top:.9rem;font-size:.76rem;color:var(--dn-bone-faint);max-width:46ch;line-height:1.55;}
 .dn-form-disclaimer a{color:var(--dn-bone-dim);text-underline-offset:2px;}
-.dn-form-note{margin-bottom:1.4rem;font-size:.85rem;color:var(--dn-bone-dim);}
-.dn-form-note a{color:var(--dn-night-soft);text-decoration:none;font-weight:600;}
+.dn-form-note{margin-bottom:1.6rem;display:flex;align-items:flex-start;gap:.6rem;padding:.85rem 1rem;border:1px solid rgba(69,144,236,.35);border-left:2px solid var(--dn-night);border-radius:12px;background:rgba(69,144,236,.06);font-size:.86rem;color:var(--dn-bone-dim);}
+.dn-form-note .live-dot{margin-top:.5rem;margin-right:0;}
+.dn-form-note a{color:var(--dn-night-soft);text-decoration:none;font-weight:600;white-space:nowrap;}
+.dn-form-note a:hover{text-decoration:underline;}
 
-/* ---- Mobile: divider becomes horizontal, emergency floats to top ---- */
+/* ---- Mobile: divider becomes horizontal, form stacks under ---- */
 @media(max-width:1000px){
   .dn-contact-grid{grid-template-columns:1fr;gap:clamp(2.6rem,8vw,3.4rem);}
   .dn-contact-grid::before{display:none;}
@@ -132,7 +175,7 @@ a.value:hover{color:var(--dn-day);}
   .dn-contact-detail{grid-template-columns:1fr;gap:.3rem;padding:1rem 0;}
   .dn-contact-detail .hint{grid-column:1;}
   .dn-contact-detail .dn-eyebrow{align-self:start;}
-  .dn-form-row-2{grid-template-columns:1fr;gap:1.9rem;}
+  .dn-form-row-2{grid-template-columns:1fr;gap:1.5rem;}
 }
 </style>
 </head>
@@ -187,39 +230,40 @@ a.value:hover{color:var(--dn-day);}
 
         <div class="dn-hours">
           <span class="dn-eyebrow">Opening Hours</span>
-          <div class="dn-hours-row"><span>Monday to Friday</span><span>7am – 11pm</span></div>
-          <div class="dn-hours-row"><span>Saturday</span><span>8am – 10pm</span></div>
-          <div class="dn-hours-row"><span>Sunday</span><span>9am – 9pm</span></div>
+          <div class="dn-hours-row"><span>Monday to Friday</span><span>7am to 11pm</span></div>
+          <div class="dn-hours-row"><span>Saturday</span><span>8am to 10pm</span></div>
+          <div class="dn-hours-row"><span>Sunday</span><span>9am to 9pm</span></div>
           <div class="dn-hours-row is-emergency"><span>Emergency line</span><span><span class="live-dot" aria-hidden="true"></span>24 hours, 7 days</span></div>
         </div>
       </div>
 
-      <!-- RIGHT: chrome-less underline form -->
+      <!-- RIGHT: refined concierge intake -->
       <div class="dn-contact-form-wrap">
         <form class="dn-contact-form" id="book-form" novalidate>
           <span class="form-eyebrow">Request an appointment</span>
           <h3 class="dn-display">Leave your details</h3>
 
           <p class="dn-form-note">
-            In pain right now? Don’t wait - call
-            <a href="tel:+441415486548">0141 548 6548</a>.
+            <span class="live-dot" aria-hidden="true"></span>
+            <span>In pain right now? Do not wait - our 24/7 line is answered live on
+            <a href="tel:+441415486548">0141 548 6548</a>.</span>
           </p>
 
           <div class="dn-form-row">
             <label>
               <span>Your name</span>
-              <input type="text" name="name" autocomplete="name" placeholder="Full name" required>
+              <input class="dn-field" type="text" name="name" autocomplete="name" placeholder="Full name" required>
             </label>
           </div>
 
           <div class="dn-form-row dn-form-row-2">
             <label>
               <span>Phone</span>
-              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call" required>
+              <input class="dn-field" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call" required>
             </label>
             <label>
               <span>Email</span>
-              <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              <input class="dn-field" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
             </label>
           </div>
 
@@ -246,28 +290,38 @@ a.value:hover{color:var(--dn-day);}
           </div>
 
           <div class="dn-form-row">
-            <label>
-              <span>Treatment of interest</span>
-              <span class="dn-select-wrap">
-                <select class="dn-select" name="treatment" required>
-                  <option value="" disabled selected>Select an option</option>
-                  <option value="Emergency / pain">Emergency / pain</option>
-                  <option value="New patient examination">New patient examination</option>
-                  <option value="Hygienist appointment">Hygienist appointment</option>
-                  <option value="Cosmetic consultation">Cosmetic consultation</option>
-                  <option value="Invisalign">Invisalign</option>
-                  <option value="Dental implants">Dental implants</option>
-                  <option value="Teeth whitening">Teeth whitening</option>
-                  <option value="Other / unsure">Other / unsure</option>
-                </select>
-              </span>
-            </label>
+            <span class="dn-form-label" id="treatment-label">Treatment of interest</span>
+            <details class="dn-dropdown" id="treatment-dropdown">
+              <summary aria-haspopup="listbox" aria-controls="treatment-list">
+                <span class="trigger-text" id="treatment-text">Select an option</span>
+                <span class="dn-dropdown-chev" aria-hidden="true"></span>
+              </summary>
+              <ul class="dn-dropdown-list" id="treatment-list" role="listbox" aria-labelledby="treatment-label">
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-0"><label><input type="radio" name="treatment" value="Emergency / pain"><span class="row"><span class="label">Emergency / pain</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-1"><label><input type="radio" name="treatment" value="New patient examination"><span class="row"><span class="label">New patient examination</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-2"><label><input type="radio" name="treatment" value="Hygienist appointment"><span class="row"><span class="label">Hygienist appointment</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-3"><label><input type="radio" name="treatment" value="Cosmetic consultation"><span class="row"><span class="label">Cosmetic consultation</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-4"><label><input type="radio" name="treatment" value="Invisalign"><span class="row"><span class="label">Invisalign</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-5"><label><input type="radio" name="treatment" value="Dental implants"><span class="row"><span class="label">Dental implants</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-6"><label><input type="radio" name="treatment" value="Teeth whitening"><span class="row"><span class="label">Teeth whitening</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+                <li class="dn-dropdown-option" role="option" id="treatment-opt-7"><label><input type="radio" name="treatment" value="Other / unsure"><span class="row"><span class="label">Other / unsure</span><span class="check" aria-hidden="true">✓</span></span></label></li>
+              </ul>
+            </details>
           </div>
 
           <div class="dn-form-row">
             <label>
               <span>Anything we should know?</span>
-              <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+              <textarea class="dn-field" name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call."></textarea>
+              <span class="dn-help">Please do not include detailed medical information here.</span>
+            </label>
+          </div>
+
+          <div class="dn-form-row">
+            <label class="dn-check">
+              <input type="checkbox" name="consent" value="yes">
+              <span class="box" aria-hidden="true"></span>
+              <span>I am happy for Day Night Dental to contact me about this enquiry.</span>
             </label>
           </div>
 
@@ -276,9 +330,12 @@ a.value:hover{color:var(--dn-day);}
             <span class="arrow" aria-hidden="true">→</span>
           </button>
 
+          <p class="dn-form-reassure">
+            <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            We reply within 1 working hour.
+          </p>
           <p class="dn-form-disclaimer">
-            We’ll never share your details. By sending this you’re happy for us to
-            contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+            We will never share your details. Read our <a href="/privacy/">privacy policy</a>.
           </p>
         </form>
       </div>
@@ -288,13 +345,85 @@ a.value:hover{color:var(--dn-day);}
 </section>
 
 <script>
+document.documentElement.classList.add('js');
 (function(){
+  /* ---- Custom dropdown - layered on a native details/summary so it works without ----
+     ---- JS too. Here we add: aria-expanded sync, selected label, click-outside, ----
+     ---- and full keyboard nav (Enter/Esc/arrows/Home/End). ---- */
+  (function(){
+    var root = document.getElementById('treatment-dropdown');
+    if(!root) return;
+    var summary = root.querySelector('summary');
+    var text = document.getElementById('treatment-text');
+    var options = Array.prototype.slice.call(root.querySelectorAll('.dn-dropdown-option'));
+    var inputs = options.map(function(o){ return o.querySelector('input'); });
+    var active = -1;
+
+    function isOpen(){ return root.hasAttribute('open'); }
+
+    function paintActive(){
+      options.forEach(function(o,i){ o.classList.toggle('active', i === active); });
+      if(active >= 0) options[active].scrollIntoView({block:'nearest'});
+    }
+    function syncExpanded(){ summary.setAttribute('aria-expanded', isOpen() ? 'true' : 'false'); }
+    function close(focus){ root.removeAttribute('open'); active = -1; paintActive(); syncExpanded(); if(focus) summary.focus(); }
+
+    function choose(i){
+      inputs[i].checked = true;
+      inputs[i].dispatchEvent(new Event('change', {bubbles:true}));
+      text.textContent = inputs[i].value;
+      root.classList.add('has-value');
+      close(true);
+    }
+
+    // Keep aria-expanded honest whether opened by click, Space, or Enter.
+    root.addEventListener('toggle', function(){
+      syncExpanded();
+      if(isOpen()){
+        var sel = inputs.findIndex(function(inp){ return inp.checked; });
+        active = sel >= 0 ? sel : 0;
+        paintActive();
+      }
+    });
+    syncExpanded();
+
+    summary.addEventListener('keydown', function(e){
+      if(!isOpen()){
+        if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){ e.preventDefault(); root.setAttribute('open',''); }
+        return;
+      }
+      switch(e.key){
+        case 'ArrowDown': e.preventDefault(); active = (active + 1) % options.length; paintActive(); break;
+        case 'ArrowUp': e.preventDefault(); active = (active - 1 + options.length) % options.length; paintActive(); break;
+        case 'Home': e.preventDefault(); active = 0; paintActive(); break;
+        case 'End': e.preventDefault(); active = options.length - 1; paintActive(); break;
+        case 'Enter':
+        case ' ': e.preventDefault(); if(active >= 0) choose(active); break;
+        case 'Escape': e.preventDefault(); close(true); break;
+      }
+    });
+
+    options.forEach(function(opt,i){
+      opt.addEventListener('mouseenter', function(){ active = i; paintActive(); });
+      // The label/radio already records the value on click; close + sync the trigger text.
+      opt.addEventListener('click', function(){
+        text.textContent = inputs[i].value;
+        root.classList.add('has-value');
+        close(false);
+      });
+    });
+
+    document.addEventListener('mousedown', function(e){
+      if(isOpen() && !root.contains(e.target)) close(false);
+    });
+  })();
+
+  /* ---- Submit accent + preview-only guard ---- */
   var form = document.getElementById('book-form');
   if(!form) return;
   var submit = document.getElementById('book-submit');
   var label = submit.querySelector('.submit-label');
 
-  // Flip the submit accent to blue when "Emergency, today" is chosen.
   form.addEventListener('change', function(e){
     if(e.target && e.target.name === 'preference'){
       var emergency = e.target.value === 'emergency';
@@ -303,7 +432,6 @@ a.value:hover{color:var(--dn-day);}
     }
   });
 
-  // Preview page: do not actually submit.
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var original = label.textContent;

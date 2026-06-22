@@ -28,77 +28,195 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
 em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>Bedside Manner - FAQ concept #5 · Day Night Dental</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there an emergency dentist open now in Glasgow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you taking on new patients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the practice and where can I park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your opening hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."
+      }
+    }
+  ]
+}
+</script>
 <style>
-/* ============ Bedside Manner - interactive triage FAQ ============ */
-.dn-section{padding:clamp(4rem,9vw,8rem) 0;}
-.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(18px,5vw,40px);}
+/* ============================================================
+   BEDSIDE MANNER - interactive triage console FAQ.
+   A two-pane "bedside monitor": a numbered triage rail on the
+   left (filterable by topic), and a live answer readout on the
+   right that takes the colour of the question's department
+   (gold = emergency / day, blue = everything else / night).
+   Default state (no JS) shows every answer for crawlers.
+   ============================================================ */
 
+.dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
+/* a faint, motionless aurora behind the console for depth, no chrome */
+.dn-section::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(110% 55% at 18% 0%, rgba(248,199,96,.05), transparent 58%),
+    radial-gradient(110% 60% at 88% 100%, rgba(69,144,236,.05), transparent 64%);
+}
+.dn-container{position:relative;width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(18px,5vw,40px);}
+
+/* ── masthead ── */
 .tp-section-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;}
-.dn-display{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;line-height:1.08;font-size:clamp(2rem,5.2vw,3.35rem);margin:0;max-width:18ch;}
+.dn-display{font-family:var(--font-display);font-weight:560;letter-spacing:-.012em;line-height:1.07;font-size:clamp(2rem,5.2vw,3.35rem);margin:0;max-width:18ch;}
 
-/* ---- filter chips ---- */
-.dn-faq-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:clamp(2rem,4vw,2.75rem) 0 1.5rem;}
-.dn-faq-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--dn-mist);background:transparent;color:var(--dn-bone-dim);font-family:var(--font-body);font-weight:600;font-size:.82rem;letter-spacing:.01em;cursor:pointer;transition:color .2s,border-color .2s,box-shadow .2s,background .2s;}
-.dn-faq-chip .cdot{width:7px;height:7px;border-radius:50%;background:var(--cdot,var(--dn-bone-faint));transition:box-shadow .2s,background .2s;}
+/* ── triage filter chips (SSR default: All) ── */
+.dn-faq-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:clamp(2rem,4vw,2.75rem) 0 0;}
+.dn-faq-chip{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--dn-mist);background:transparent;color:var(--dn-bone-dim);font-family:var(--font-body);font-weight:600;font-size:.82rem;letter-spacing:.01em;cursor:pointer;transition:color .2s,border-color .2s,box-shadow .2s,background .2s;}
+.dn-faq-chip .cdot{width:7px;height:7px;border-radius:50%;background:var(--cdot,var(--dn-bone-faint));box-shadow:0 0 7px color-mix(in srgb,var(--cdot,var(--dn-bone-faint)) 65%,transparent);transition:box-shadow .2s,background .2s;}
 @media (hover:hover){.dn-faq-chip:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.28);}}
 .dn-faq-chip[aria-pressed="true"]{color:var(--dn-near-black);background:var(--dn-day);border-color:var(--dn-day);box-shadow:0 0 0 1px var(--dn-day),0 0 22px -4px color-mix(in srgb,var(--dn-day) 60%,transparent);}
 .dn-faq-chip[aria-pressed="true"] .cdot{background:rgba(10,10,12,.55);box-shadow:none;}
 .dn-faq-chip:focus-visible{outline:2px solid var(--dn-day);outline-offset:2px;}
 
-/* ---- two-pane shell ---- */
-.dn-faq-side{display:grid;grid-template-columns:0.82fr 1.18fr;gap:clamp(20px,4vw,44px);align-items:start;max-width:1020px;margin:0 auto;}
+/* a hairline scale under the chips, like a triage legend */
+.dn-faq-legend{margin:1.35rem auto 0;max-width:560px;display:flex;align-items:center;justify-content:center;gap:.85rem;color:var(--dn-bone-faint);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;}
+.dn-faq-legend .rule{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--dn-mist) 22%,var(--dn-mist) 78%,transparent);}
 
-/* ---- question rail (left) ---- */
-.dn-faq-nav{display:flex;flex-direction:column;border-top:1px solid var(--dn-mist);}
-.dn-faq-q{--dn-faq-accent:var(--dn-night);display:flex;align-items:center;gap:0;text-align:left;min-height:56px;padding:16px 12px 16px 14px;background:transparent;border:none;border-bottom:1px solid var(--dn-mist);border-left:2px solid transparent;color:var(--dn-bone-dim);font-family:var(--font-body);font-size:.95rem;line-height:1.32;cursor:pointer;transition:color .2s,background .2s,border-color .2s,box-shadow .2s,opacity .25s;}
-.dn-faq-q .dot{width:7px;height:7px;border-radius:50%;margin-right:12px;flex:none;background:var(--dn-faq-accent);box-shadow:0 0 8px color-mix(in srgb,var(--dn-faq-accent) 70%,transparent);}
-@media (hover:hover){.dn-faq-q:hover{color:var(--dn-bone);background:color-mix(in srgb,var(--dn-faq-accent) 6%,transparent);}}
-.dn-faq-q.on{color:var(--dn-bone);border-left-color:var(--dn-faq-accent);background:color-mix(in srgb,var(--dn-faq-accent) 7%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-faq-accent) 20%,transparent),-12px 0 28px -18px color-mix(in srgb,var(--dn-faq-accent) 65%,transparent);}
-.dn-faq-q[data-dim="true"]{opacity:.4;}
+/* ── two-pane console shell ── */
+.dn-faq-side{display:grid;grid-template-columns:0.86fr 1.14fr;gap:clamp(20px,4vw,40px);align-items:start;max-width:1040px;margin:clamp(1.8rem,3.5vw,2.5rem) auto 0;}
+
+/* ── triage rail (left) ── */
+.dn-faq-nav{position:relative;display:flex;flex-direction:column;padding-left:2px;}
+/* continuous spine the rows hang from */
+.dn-faq-nav::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,transparent,var(--dn-mist) 12%,var(--dn-mist) 88%,transparent);}
+
+.dn-faq-q{
+  --dn-faq-accent:var(--dn-night);
+  position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;
+  text-align:left;width:100%;min-height:60px;padding:15px 14px 15px 20px;
+  background:transparent;border:0;border-radius:12px;
+  color:var(--dn-bone-dim);font-family:var(--font-body);font-size:.96rem;line-height:1.34;font-weight:480;
+  cursor:pointer;transition:color .2s,background .2s,box-shadow .25s,opacity .25s;
+}
+/* the node where each row meets the spine */
+.dn-faq-q::before{
+  content:'';position:absolute;left:-4px;top:50%;width:9px;height:9px;border-radius:50%;
+  background:var(--dn-near-black);border:1px solid var(--dn-mist);transform:translateY(-50%);transition:border-color .25s,box-shadow .25s,background .25s;
+}
+/* display-serif tabular numeral badge replaces the flat dot */
+.dn-faq-q .idx{
+  font-family:var(--font-display);font-weight:560;font-size:.92rem;font-variant-numeric:tabular-nums;letter-spacing:.04em;
+  color:var(--dn-bone-faint);min-width:1.9ch;text-align:center;transition:color .25s;
+}
+.dn-faq-q .qtext{padding-right:2px;}
+/* a quiet department dot + chevron on the right */
+.dn-faq-q .meta{display:inline-flex;align-items:center;gap:11px;}
+.dn-faq-q .tag{width:7px;height:7px;border-radius:50%;background:var(--dn-faq-accent);box-shadow:0 0 9px color-mix(in srgb,var(--dn-faq-accent) 70%,transparent);flex:none;}
+.dn-faq-q .chev{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);opacity:.45;transition:opacity .25s,transform .3s cubic-bezier(.2,.7,.2,1);}
+
+@media (hover:hover){
+  .dn-faq-q:hover{color:var(--dn-bone);background:color-mix(in srgb,var(--dn-faq-accent) 6%,transparent);}
+  .dn-faq-q:hover::before{border-color:color-mix(in srgb,var(--dn-faq-accent) 55%,transparent);}
+  .dn-faq-q:hover .idx{color:var(--dn-bone-dim);}
+  .dn-faq-q:hover .chev{opacity:.8;transform:rotate(-45deg) translate(1px,1px);}
+}
 .dn-faq-q:focus-visible{outline:2px solid var(--dn-faq-accent);outline-offset:-2px;}
 
-/* ---- answer panel (right) ---- */
-.dn-faq-panel{position:relative;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);background:var(--dn-charcoal);padding:clamp(22px,3vw,32px);transition:box-shadow .35s;}
-.dn-faq-panel.on-day{box-shadow:0 0 0 1px var(--dn-day),0 0 34px -10px color-mix(in srgb,var(--dn-day) 55%,transparent);}
-.dn-faq-panel.on-night{box-shadow:0 0 0 1px var(--dn-night),0 0 34px -10px color-mix(in srgb,var(--dn-night) 55%,transparent);}
+/* active row */
+.dn-faq-q.on{
+  color:var(--dn-bone);background:color-mix(in srgb,var(--dn-faq-accent) 9%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-faq-accent) 26%,transparent),
+             0 0 30px -14px color-mix(in srgb,var(--dn-faq-accent) 75%,transparent);
+}
+.dn-faq-q.on::before{background:var(--dn-faq-accent);border-color:var(--dn-faq-accent);box-shadow:0 0 12px color-mix(in srgb,var(--dn-faq-accent) 80%,transparent);}
+.dn-faq-q.on .idx{color:var(--dn-faq-accent);}
+.dn-faq-q.on .chev{opacity:.95;color:var(--dn-faq-accent);transform:rotate(45deg);}
+.dn-faq-q[data-dim="true"]{opacity:.34;}
 
-.dn-faq-status{display:flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dn-bone-dim);padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid var(--dn-mist);}
-.dn-faq-status .live{width:9px;height:9px;border-radius:50%;flex:none;background:var(--dn-day);box-shadow:0 0 10px var(--dn-day);animation:dn-faq-pulse 2.4s ease-in-out infinite;}
+/* ── answer readout (right) ── */
+.dn-faq-panel{
+  position:relative;overflow:hidden;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  background:
+    linear-gradient(180deg,color-mix(in srgb,var(--dn-bone) 3%,transparent),transparent 38%),
+    var(--dn-charcoal);
+  padding:clamp(22px,3vw,34px);transition:box-shadow .35s,border-color .35s;
+}
+.dn-faq-panel.on-day{border-color:color-mix(in srgb,var(--dn-day) 35%,var(--dn-mist));box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 45%,transparent),0 0 40px -12px color-mix(in srgb,var(--dn-day) 55%,transparent);}
+.dn-faq-panel.on-night{border-color:color-mix(in srgb,var(--dn-night) 35%,var(--dn-mist));box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-night) 45%,transparent),0 0 40px -12px color-mix(in srgb,var(--dn-night) 55%,transparent);}
+/* a thin signal bar across the very top of the readout */
+.dn-faq-panel::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:var(--dn-day);opacity:.9;transition:background .35s;}
+.dn-faq-panel.on-night::before{background:var(--dn-night);}
+
+/* status / readout header */
+.dn-faq-status{display:flex;align-items:center;gap:11px;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--dn-mist);}
+.dn-faq-status .live{width:9px;height:9px;border-radius:50%;flex:none;background:var(--dn-day);box-shadow:0 0 10px var(--dn-day);animation:dn-faq-pulse 2.4s ease-in-out infinite;transition:background .35s,box-shadow .35s;}
+.dn-faq-panel.on-night .dn-faq-status .live{background:var(--dn-night);box-shadow:0 0 10px var(--dn-night);}
+.dn-faq-status .label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-dim);font-weight:600;}
+.dn-faq-status .dept{margin-left:auto;font-family:var(--font-display);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:3px 11px;}
 @keyframes dn-faq-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.55);opacity:.5}}
 
 .dn-faq-a{display:none;}
 .dn-faq-a.on{display:block;animation:dn-fade-up .32s ease;}
-.dn-faq-a .q{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,2.5vw,1.7rem);line-height:1.18;color:var(--dn-bone);margin:0 0 14px;max-width:24ch;}
-.dn-faq-a .a{font-size:1rem;line-height:1.72;color:var(--dn-bone-dim);margin:0;max-width:52ch;}
+.dn-faq-a .q{font-family:var(--font-display);font-weight:560;font-size:clamp(1.3rem,2.5vw,1.7rem);line-height:1.16;letter-spacing:-.01em;color:var(--dn-bone);margin:0 0 16px;max-width:24ch;}
+.dn-faq-a .a{font-size:1rem;line-height:1.74;color:var(--dn-bone-dim);margin:0;max-width:52ch;}
 @keyframes dn-fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.dn-faq-status .live{animation:none;}.dn-faq-a.on{animation:none;}}
+@media (prefers-reduced-motion:reduce){.dn-faq-status .live{animation:none;}.dn-faq-a.on{animation:none;}.dn-faq-q,.dn-faq-q .chev{transition:none;}}
 
-/* ---- foot CTA ---- */
+/* ── foot CTA ── */
 .dn-faq-foot{text-align:center;color:var(--dn-bone-dim);font-size:1rem;margin:clamp(2.25rem,4vw,3rem) auto 0;max-width:46ch;}
-.dn-faq-foot a{color:var(--dn-night);text-decoration:none;font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--dn-night) 45%,transparent);transition:color .2s,border-color .2s;}
+.dn-faq-foot a{color:var(--dn-night);text-decoration:none;font-weight:600;border-bottom:1px solid color-mix(in srgb,var(--dn-night) 45%,transparent);padding-bottom:1px;transition:color .2s,border-color .2s;}
 .dn-faq-foot a:hover{color:var(--dn-night-soft);border-bottom-color:var(--dn-night-soft);}
 
-/* ---- responsive ---- */
+/* ── responsive ── */
 @media (max-width:768px){
-  .dn-faq-side{grid-template-columns:1fr;gap:18px;}
-  .dn-faq-chips{margin:1.75rem -2px 1.25rem;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+  .dn-faq-side{grid-template-columns:1fr;gap:20px;}
+  .dn-faq-chips{margin:1.75rem -2px 0;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
   .dn-faq-chips::-webkit-scrollbar{display:none;}
   .dn-faq-chip{flex:0 0 auto;scroll-snap-align:start;}
-  .dn-faq-q{min-height:48px;}
+  .dn-faq-legend{display:none;}
+  .dn-faq-q{min-height:54px;padding:13px 12px 13px 18px;}
   .dn-faq-panel{padding:20px 18px;}
   .dn-faq-a .q{max-width:none;}
   .dn-faq-a .a{max-width:none;}
+}
+@media (max-width:380px){
+  .dn-faq-q{gap:11px;font-size:.92rem;}
+  .dn-faq-q .idx{min-width:1.6ch;}
+  .dn-faq-status .dept{display:none;}
 }
 </style>
 </head>
 <body>
 <div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#5</span> <b>Bedside Manner</b> <span class="lab-lens">interactive</span></div><span></span></div>
 
-<section class="dn-section dn-faq">
+<section class="dn-section dn-faq" aria-labelledby="faq-heading">
   <div class="dn-container">
     <div class="tp-section-head">
       <span class="dn-eyebrow dn-pill day">Common Questions</span>
-      <h2 class="dn-display"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+      <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
     </div>
 
     <!-- triage filter chips (SSR default: All) -->
@@ -109,34 +227,48 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
       <button type="button" class="dn-faq-chip" data-filter="visiting" aria-pressed="false"><span class="cdot" style="--cdot:var(--dn-night)" aria-hidden="true"></span>Visiting us</button>
     </div>
 
+    <div class="dn-faq-legend" aria-hidden="true"><span class="rule"></span><span>Select a question</span><span class="rule"></span></div>
+
     <div class="dn-faq-side">
-      <!-- question rail -->
+      <!-- triage rail -->
       <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions">
         <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0"
           class="dn-faq-q on" data-i="0" data-cat="emergency" data-dim="false"
           style="--dn-faq-accent:var(--dn-day)">
-          <span class="dot" aria-hidden="true"></span>Is there an emergency dentist open now in Glasgow?
+          <span class="idx" aria-hidden="true">01</span>
+          <span class="qtext">Is there an emergency dentist open now in Glasgow?</span>
+          <span class="meta" aria-hidden="true"><span class="tag"></span><span class="chev"></span></span>
         </button>
         <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1"
           class="dn-faq-q" data-i="1" data-cat="new" data-dim="false"
           style="--dn-faq-accent:var(--dn-night)">
-          <span class="dot" aria-hidden="true"></span>Are you taking on new patients?
+          <span class="idx" aria-hidden="true">02</span>
+          <span class="qtext">Are you taking on new patients?</span>
+          <span class="meta" aria-hidden="true"><span class="tag"></span><span class="chev"></span></span>
         </button>
         <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1"
           class="dn-faq-q" data-i="2" data-cat="visiting" data-dim="false"
           style="--dn-faq-accent:var(--dn-night)">
-          <span class="dot" aria-hidden="true"></span>Where is the practice and where can I park?
+          <span class="idx" aria-hidden="true">03</span>
+          <span class="qtext">Where is the practice and where can I park?</span>
+          <span class="meta" aria-hidden="true"><span class="tag"></span><span class="chev"></span></span>
         </button>
         <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1"
           class="dn-faq-q" data-i="3" data-cat="visiting" data-dim="false"
           style="--dn-faq-accent:var(--dn-night)">
-          <span class="dot" aria-hidden="true"></span>What are your opening hours?
+          <span class="idx" aria-hidden="true">04</span>
+          <span class="qtext">What are your opening hours?</span>
+          <span class="meta" aria-hidden="true"><span class="tag"></span><span class="chev"></span></span>
         </button>
       </div>
 
-      <!-- answer panel -->
+      <!-- answer readout -->
       <div class="dn-faq-panel on-day" id="dn-faq-panel">
-        <p class="dn-faq-status"><span class="live" aria-hidden="true"></span>Open now · 24/7 emergency line</p>
+        <p class="dn-faq-status">
+          <span class="live" aria-hidden="true"></span>
+          <span class="label" id="dn-faq-status-label">Open now, 24/7 emergency line</span>
+          <span class="dept" id="dn-faq-dept" aria-hidden="true">Emergency</span>
+        </p>
 
         <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
@@ -169,12 +301,20 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <script>
 (function(){
   var nav = document.querySelector('.dn-faq-nav');
+  if(!nav) return;
   var tabs = Array.prototype.slice.call(nav.querySelectorAll('.dn-faq-q'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
   var panel = document.getElementById('dn-faq-panel');
   var chips = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-chip'));
+  var statusLabel = document.getElementById('dn-faq-status-label');
+  var deptEl = document.getElementById('dn-faq-dept');
   var active = 0;
-  var filter = 'all';
+
+  var DEPT = {
+    emergency: { day:true, label:'Open now, 24/7 emergency line', dept:'Emergency' },
+    new:       { day:false, label:'Registration open', dept:'New patients' },
+    visiting:  { day:false, label:'Merchant City, Glasgow', dept:'Visiting us' }
+  };
 
   function select(i){
     active = i;
@@ -186,13 +326,14 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
     });
     panels.forEach(function(p, idx){ p.classList.toggle('on', idx === i); });
     var cat = tabs[i].getAttribute('data-cat');
-    var day = cat === 'emergency';
-    panel.classList.toggle('on-day', day);
-    panel.classList.toggle('on-night', !day);
+    var meta = DEPT[cat] || DEPT.visiting;
+    panel.classList.toggle('on-day', meta.day);
+    panel.classList.toggle('on-night', !meta.day);
+    if(statusLabel) statusLabel.textContent = meta.label;
+    if(deptEl) deptEl.textContent = meta.dept;
   }
 
   function applyFilter(f){
-    filter = f;
     chips.forEach(function(c){ c.setAttribute('aria-pressed', c.getAttribute('data-filter') === f ? 'true' : 'false'); });
     tabs.forEach(function(t){
       var match = f === 'all' || t.getAttribute('data-cat') === f;

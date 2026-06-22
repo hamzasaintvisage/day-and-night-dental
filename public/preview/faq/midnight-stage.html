@@ -31,9 +31,12 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <title>Midnight Stage - Common Questions · Day Night Dental</title>
 <style>
 /* ----------------------------------------------------------------------------
-   MIDNIGHT STAGE - full-bleed cinematic FAQ
-   A near-black band breaks out of the container; questions read as faint stars
-   on the left, the active one ignites a gold radial lightwell on the right.
+   MIDNIGHT STAGE  ·  full-bleed cinematic FAQ  (evolved)
+   A near-black band breaks the container. Questions read as a vertical
+   constellation on the left, threaded by a faint meridian line; selecting one
+   ignites a gold lightwell and raises a lit stage panel on the right where the
+   answer takes the spotlight. Engraved numerals, a travelling beam and a
+   marquee foot replace the flat numerals and cheap separators.
 ---------------------------------------------------------------------------- */
 
 .dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
@@ -41,7 +44,17 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 /* ---- masthead (centred head) ---- */
 .tp-section-head.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;margin-bottom:clamp(2.25rem,5vw,3.5rem);}
-.dn-display{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,5.2vw,3.35rem);line-height:1.08;letter-spacing:-.01em;margin:0;max-width:18ch;text-wrap:balance;}
+.dn-display{font-family:var(--font-display);font-weight:340;font-size:clamp(2.05rem,5.2vw,3.4rem);line-height:1.08;letter-spacing:-.012em;margin:0;max-width:18ch;text-wrap:balance;}
+.dn-mast-kicker{
+  font-family:var(--font-body);font-size:.62rem;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--dn-bone-faint);
+  display:inline-flex;align-items:center;gap:12px;margin:0;
+}
+.dn-mast-kicker::before,.dn-mast-kicker::after{
+  content:"";width:34px;height:1px;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--dn-day) 55%,transparent));
+}
+.dn-mast-kicker::after{transform:scaleX(-1);}
 
 /* ---- the stage: full-bleed band ---- */
 .dn-faq-stage{
@@ -49,34 +62,38 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   width:100vw;
   margin-inline:calc(50% - 50vw);
   background:
-    radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,.018), transparent 60%),
+    radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,.022), transparent 60%),
     linear-gradient(180deg,#0c0c10 0%,var(--dn-near-black) 40%,#08080a 100%);
   border-top:1px solid var(--dn-mist);
   border-bottom:1px solid var(--dn-mist);
   overflow:hidden;
 }
-/* gold lightwell - a single radial glow, NO gradient fill */
+/* a hairline of gold along the very top edge: the proscenium line */
+.dn-faq-stage{
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--dn-day) 16%,transparent);
+}
+/* gold lightwell - a single radial glow that tracks the active answer, NO gradient fill */
 .dn-faq-stage::before{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(58% 64% at 72% 40%,
-    color-mix(in srgb,var(--dn-day) 15%,transparent),
+  background:radial-gradient(54% 60% at 73% var(--well-y,38%),
+    color-mix(in srgb,var(--dn-day) 17%,transparent),
     color-mix(in srgb,var(--dn-day) 5%,transparent) 42%,
     transparent 72%);
-  transition:opacity .5s ease;
+  transition:background .6s cubic-bezier(.2,.7,.2,1);
 }
 /* hairline horizon + low vignette for cinematic depth */
 .dn-faq-stage::after{
   content:"";position:absolute;left:0;right:0;top:50%;height:1px;z-index:0;
   background:linear-gradient(90deg,transparent,var(--dn-mist) 22%,var(--dn-mist) 78%,transparent);
-  opacity:.6;pointer-events:none;
+  opacity:.55;pointer-events:none;
 }
 .dn-faq-vignette{
   position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(130% 120% at 50% 50%,transparent 52%,rgba(0,0,0,.55) 100%);
+  background:radial-gradient(130% 120% at 50% 50%,transparent 50%,rgba(0,0,0,.58) 100%);
 }
-/* faint star specks scattered in the dark */
+/* faint star specks scattered in the dark, with a couple of gold ones */
 .dn-faq-stars{
-  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
   background-image:
     radial-gradient(1.4px 1.4px at 12% 22%, rgba(255,255,255,.35), transparent),
     radial-gradient(1px 1px at 28% 68%, rgba(255,255,255,.28), transparent),
@@ -85,102 +102,171 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
     radial-gradient(1.5px 1.5px at 85% 30%, rgba(248,199,96,.45), transparent),
     radial-gradient(1px 1px at 92% 64%, rgba(255,255,255,.25), transparent),
     radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,.2), transparent),
-    radial-gradient(1.3px 1.3px at 70% 12%, rgba(255,255,255,.28), transparent);
+    radial-gradient(1.3px 1.3px at 70% 12%, rgba(255,255,255,.28), transparent),
+    radial-gradient(1.4px 1.4px at 33% 90%, rgba(248,199,96,.30), transparent),
+    radial-gradient(1px 1px at 57% 40%, rgba(255,255,255,.2), transparent);
 }
 
 /* ---- two-column stage layout ---- */
 .dn-faq-side{
   position:relative;z-index:1;
-  display:grid;grid-template-columns:minmax(230px,.82fr) 1.4fr;
-  gap:clamp(20px,4vw,64px);
-  align-items:start;
+  display:grid;grid-template-columns:minmax(240px,.86fr) 1.4fr;
+  gap:clamp(22px,4vw,70px);
+  align-items:stretch;
   width:min(100% - 2.5rem, var(--container));
   margin-inline:auto;
-  padding:clamp(36px,6vw,84px) 0;
+  padding:clamp(38px,6vw,88px) 0;
 }
 
-/* ---- left rail: questions as stars ---- */
-.dn-faq-nav{display:flex;flex-direction:column;gap:4px;}
+/* ---- left rail: questions as a constellation ---- */
+.dn-faq-nav{position:relative;display:flex;flex-direction:column;gap:2px;padding-left:8px;}
+/* the meridian: a vertical hairline threading the stars */
+.dn-faq-nav::before{
+  content:"";position:absolute;left:23px;top:42px;bottom:14px;width:1px;
+  background:linear-gradient(180deg,transparent,var(--dn-mist) 12%,var(--dn-mist) 88%,transparent);
+  pointer-events:none;
+}
 .dn-faq-rail-label{
-  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--dn-bone-faint);padding:0 16px;margin:0 0 14px;
+  font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--dn-bone-faint);padding:0 16px;margin:0 0 16px;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.dn-faq-rail-label::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,var(--dn-mist),transparent);
 }
 .dn-faq-q{
-  display:flex;align-items:center;gap:13px;min-height:48px;
-  padding:12px 16px;border:0;border-radius:var(--dn-r-card);
+  position:relative;
+  display:grid;grid-template-columns:30px 1fr;align-items:center;gap:14px;
+  min-height:52px;
+  padding:13px 16px;border:0;border-radius:var(--dn-r-card);
   background:transparent;color:var(--dn-bone-dim);
-  font:600 .98rem/1.32 var(--font-body);text-align:left;
+  font:540 .98rem/1.34 var(--font-body);text-align:left;
+  letter-spacing:-.002em;
   cursor:pointer;width:100%;
-  transition:color .25s,background .25s,box-shadow .25s;
+  transition:color .25s,background .25s,box-shadow .3s;
 }
-.dn-faq-q::before{
-  content:"";flex:none;width:7px;height:7px;border-radius:50%;
+/* engraved numeral + star node sit together in the first column */
+.dn-faq-q .node{
+  position:relative;justify-self:center;
+  display:grid;place-items:center;width:30px;height:30px;
+}
+.dn-faq-q .node .num{
+  font-family:var(--font-display);font-weight:600;
+  font-size:.72rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;
+  color:var(--dn-bone-faint);
+  transition:color .25s ease,opacity .25s ease;
+}
+/* the star dot, drawn behind the numeral on the meridian */
+.dn-faq-q .node::before{
+  content:"";position:absolute;width:7px;height:7px;border-radius:50%;
   background:var(--dn-mist);
-  transition:background .25s,box-shadow .25s,transform .25s;
+  box-shadow:0 0 0 4px var(--dn-near-black);
+  opacity:0;transform:scale(.6);
+  transition:background .25s,box-shadow .3s,transform .3s,opacity .25s;
 }
 .dn-faq-q:hover,.dn-faq-q:focus-visible{
   color:var(--dn-bone);outline:none;
-  background:color-mix(in srgb,var(--dn-day) 8%,transparent);
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 45%,transparent),
-             0 0 28px -4px color-mix(in srgb,var(--dn-day) 42%,transparent);
+  background:color-mix(in srgb,var(--dn-day) 7%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 40%,transparent),
+             0 0 30px -6px color-mix(in srgb,var(--dn-day) 40%,transparent);
 }
-.dn-faq-q:hover::before,.dn-faq-q:focus-visible::before{
-  background:color-mix(in srgb,var(--dn-day) 70%,var(--dn-bone));
+.dn-faq-q:hover .num,.dn-faq-q:focus-visible .num{
+  color:color-mix(in srgb,var(--dn-day) 70%,var(--dn-bone));
 }
 .dn-faq-q.on{
   color:var(--dn-bone);
   background:color-mix(in srgb,var(--dn-day) 11%,transparent);
-  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-day) 24%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-day) 26%,transparent);
 }
-.dn-faq-q.on::before{
-  background:var(--dn-day);transform:scale(1.05);
-  box-shadow:0 0 12px 1px color-mix(in srgb,var(--dn-day) 80%,transparent),
+/* active: numeral dims, the star ignites in its place */
+.dn-faq-q.on .num{opacity:0;}
+.dn-faq-q.on .node::before{
+  background:var(--dn-day);opacity:1;transform:scale(1);
+  box-shadow:0 0 0 4px var(--dn-near-black),
+             0 0 12px 1px color-mix(in srgb,var(--dn-day) 80%,transparent),
              0 0 26px 4px color-mix(in srgb,var(--dn-day) 35%,transparent);
 }
+.dn-faq-q .q-text{display:block;}
 
-/* ---- right: the answer well ---- */
-.dn-faq-panel{position:relative;min-height:260px;}
+/* ---- right: the lit stage panel ---- */
+.dn-faq-panel{position:relative;display:flex;}
 .dn-faq-well{
-  position:relative;
+  position:relative;flex:1;
   border:1px solid color-mix(in srgb,var(--dn-day) 22%,var(--dn-mist));
-  border-radius:var(--dn-r-card);
+  border-radius:calc(var(--dn-r-card) + 4px);
   background:
-    radial-gradient(80% 80% at 28% 18%, color-mix(in srgb,var(--dn-day) 7%,transparent), transparent 70%),
+    radial-gradient(82% 78% at 26% 14%, color-mix(in srgb,var(--dn-day) 8%,transparent), transparent 68%),
     var(--dn-charcoal);
   box-shadow:
     0 0 0 1px rgba(255,255,255,.02),
-    0 0 60px -14px color-mix(in srgb,var(--dn-day) 34%,transparent),
-    inset 0 1px 0 rgba(255,255,255,.04);
-  padding:clamp(26px,4vw,46px);
+    0 24px 60px -28px rgba(0,0,0,.9),
+    0 0 70px -16px color-mix(in srgb,var(--dn-day) 34%,transparent),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  padding:clamp(28px,4vw,52px);
+  overflow:hidden;
 }
+/* the beam: a soft gold shaft falling from the top-left corner */
 .dn-faq-well::before{
-  content:"";position:absolute;left:clamp(26px,4vw,46px);top:clamp(22px,3.5vw,40px);
-  width:34px;height:2px;border-radius:2px;background:var(--dn-day);
-  box-shadow:0 0 12px color-mix(in srgb,var(--dn-day) 70%,transparent);
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(150deg,
+    color-mix(in srgb,var(--dn-day) 9%,transparent),
+    transparent 42%);
+}
+/* engraved corner tick: the spotlight aperture */
+.dn-faq-well::after{
+  content:"";position:absolute;left:clamp(28px,4vw,52px);top:clamp(24px,3.5vw,44px);
+  width:38px;height:2px;border-radius:2px;background:var(--dn-day);z-index:1;
+  box-shadow:0 0 14px color-mix(in srgb,var(--dn-day) 70%,transparent);
 }
 .dn-faq-ord{
-  display:block;font-family:var(--font-display);font-weight:600;
-  font-size:.78rem;letter-spacing:.18em;color:var(--dn-day);
-  margin:24px 0 16px;text-transform:uppercase;
+  position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--font-display);font-weight:600;
+  font-size:.74rem;letter-spacing:.16em;color:var(--dn-day);
+  margin:26px 0 18px;text-transform:uppercase;
 }
-.dn-faq-a{display:none;}
-.dn-faq-a.on{display:block;animation:dn-fade-up .42s ease;}
+.dn-faq-ord .dot{
+  width:5px;height:5px;border-radius:50%;background:currentColor;
+  box-shadow:0 0 8px currentColor;flex:none;
+}
+.dn-faq-a{position:relative;z-index:1;display:none;}
+.dn-faq-a.on{display:block;animation:dn-rise .5s cubic-bezier(.2,.7,.2,1);}
 .dn-faq-a .q{
-  font:340 clamp(1.4rem,3vw,2.05rem)/1.16 var(--font-display);
-  color:var(--dn-bone);margin:0 0 18px;max-width:22ch;letter-spacing:-.01em;
+  font:340 clamp(1.45rem,3vw,2.1rem)/1.15 var(--font-display);
+  color:var(--dn-bone);margin:0 0 20px;max-width:22ch;letter-spacing:-.012em;
 }
 .dn-faq-a .a{
-  font:400 clamp(1rem,1.3vw,1.06rem)/1.72 var(--font-body);
+  font:400 clamp(1rem,1.3vw,1.07rem)/1.74 var(--font-body);
   color:var(--dn-bone-dim);margin:0;max-width:48ch;
 }
-@keyframes dn-fade-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+/* progress dots: position within the set, mirroring the stage rhythm */
+.dn-faq-progress{
+  position:relative;z-index:1;display:flex;gap:7px;margin-top:clamp(24px,3.5vw,38px);
+  padding-top:clamp(20px,3vw,30px);
+  border-top:1px solid color-mix(in srgb,var(--dn-day) 14%,var(--dn-mist));
+}
+.dn-faq-progress span{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--dn-mist);transition:background .3s,box-shadow .3s,transform .3s;
+}
+.dn-faq-progress span.on{
+  background:var(--dn-day);transform:scale(1.15);
+  box-shadow:0 0 10px color-mix(in srgb,var(--dn-day) 75%,transparent);
+}
+@keyframes dn-rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 
-/* ---- foot CTA on the same stage ---- */
+/* ---- foot CTA on the same stage: a quiet marquee line ---- */
 .dn-faq-foot{
   position:relative;z-index:1;text-align:center;
   width:min(100% - 2.5rem, var(--container));margin:0 auto;
-  padding:0 0 clamp(36px,6vw,72px);
+  padding:0 0 clamp(38px,6vw,76px);
   color:var(--dn-bone-dim);font-size:1.02rem;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.dn-faq-foot .rule{
+  width:54px;height:1px;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--dn-day) 60%,transparent),transparent);
 }
 .dn-faq-foot a{
   color:var(--dn-day);text-decoration:none;font-weight:600;
@@ -192,10 +278,12 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   text-shadow:0 0 18px color-mix(in srgb,var(--dn-day) 55%,transparent);
 }
 
-/* ---- mobile: star-row of pill tabs above one well ---- */
+/* ---- mobile: star-row of pill tabs above one stage panel ---- */
 @media (max-width:760px){
-  .dn-faq-side{grid-template-columns:1fr;gap:22px;padding-top:clamp(28px,8vw,48px);}
-  .dn-faq-rail-label{padding:0 2px;margin-bottom:10px;}
+  .dn-faq-side{grid-template-columns:1fr;gap:24px;padding-top:clamp(30px,8vw,50px);}
+  .dn-faq-rail-label{padding:0 2px;margin-bottom:12px;}
+  .dn-faq-nav{padding-left:0;}
+  .dn-faq-nav::before{display:none;}
   .dn-faq-nav{
     flex-direction:row;flex-wrap:nowrap;gap:9px;
     overflow-x:auto;scroll-snap-type:x mandatory;
@@ -206,19 +294,23 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   .dn-faq-nav::-webkit-scrollbar{display:none;}
   .dn-faq-q{
     scroll-snap-align:start;flex:0 0 auto;min-height:44px;
+    grid-template-columns:auto 1fr;gap:10px;
     border:1px solid var(--dn-mist);border-radius:999px;
-    padding:10px 16px;font-size:.86rem;max-width:78vw;
+    padding:10px 16px;font-size:.86rem;max-width:80vw;
   }
-  .dn-faq-q .q-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:62vw;}
+  .dn-faq-q .node{width:18px;height:18px;}
+  .dn-faq-q .node::before{box-shadow:0 0 0 3px var(--dn-charcoal);}
+  .dn-faq-q.on .node::before{box-shadow:0 0 0 3px var(--dn-charcoal),0 0 10px 1px color-mix(in srgb,var(--dn-day) 80%,transparent);}
+  .dn-faq-q .q-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw;}
   .dn-faq-q.on{border-color:color-mix(in srgb,var(--dn-day) 55%,transparent);}
   .dn-faq-stage::after{display:none;}
-  .dn-faq-stage::before{background:radial-gradient(75% 45% at 50% 64%,
+  .dn-faq-stage::before{background:radial-gradient(75% 45% at 50% 62%,
       color-mix(in srgb,var(--dn-day) 16%,transparent),transparent 72%);}
-  .dn-faq-well::before{display:none;}
+  .dn-faq-well::after{display:none;}
   .dn-faq-ord{margin-top:0;}
 }
 @media (min-width:761px){
-  .dn-faq-q .q-text{display:inline;}
+  .dn-faq-q .q-text{display:block;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -238,6 +330,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <section class="dn-section dn-faq" aria-labelledby="faq-heading">
   <div class="dn-container">
     <div class="tp-section-head dn-center-head">
+      <p class="dn-mast-kicker">Day or night</p>
       <span class="dn-eyebrow dn-pill day">Common Questions</span>
       <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
     </div>
@@ -252,15 +345,19 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
         <p class="dn-faq-rail-label" aria-hidden="true">Choose a question</p>
 
         <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">
+          <span class="node" aria-hidden="true"><span class="num">01</span></span>
           <span class="q-text">Is there an emergency dentist open now in Glasgow?</span>
         </button>
         <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">
+          <span class="node" aria-hidden="true"><span class="num">02</span></span>
           <span class="q-text">Are you taking on new patients?</span>
         </button>
         <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">
+          <span class="node" aria-hidden="true"><span class="num">03</span></span>
           <span class="q-text">Where is the practice and where can I park?</span>
         </button>
         <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">
+          <span class="node" aria-hidden="true"><span class="num">04</span></span>
           <span class="q-text">What are your opening hours?</span>
         </button>
       </div>
@@ -268,40 +365,94 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
       <div class="dn-faq-panel">
         <div class="dn-faq-well">
           <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
-            <span class="dn-faq-ord" aria-hidden="true">Question 01 · Emergency care</span>
+            <span class="dn-faq-ord" aria-hidden="true"><span class="dot"></span>Question 01 · Emergency care</span>
             <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
             <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
           </div>
           <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a">
-            <span class="dn-faq-ord" aria-hidden="true">Question 02 · New patients</span>
+            <span class="dn-faq-ord" aria-hidden="true"><span class="dot"></span>Question 02 · New patients</span>
             <h3 class="q">Are you taking on new patients?</h3>
             <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
           </div>
           <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a">
-            <span class="dn-faq-ord" aria-hidden="true">Question 03 · Finding us</span>
+            <span class="dn-faq-ord" aria-hidden="true"><span class="dot"></span>Question 03 · Finding us</span>
             <h3 class="q">Where is the practice and where can I park?</h3>
             <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
           </div>
           <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a">
-            <span class="dn-faq-ord" aria-hidden="true">Question 04 · Opening hours</span>
+            <span class="dn-faq-ord" aria-hidden="true"><span class="dot"></span>Question 04 · Opening hours</span>
             <h3 class="q">What are your opening hours?</h3>
             <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+          </div>
+
+          <div class="dn-faq-progress" aria-hidden="true">
+            <span class="on" data-dot="0"></span>
+            <span data-dot="1"></span>
+            <span data-dot="2"></span>
+            <span data-dot="3"></span>
           </div>
         </div>
       </div>
     </div>
 
     <p class="dn-faq-foot">
+      <span class="rule" aria-hidden="true"></span>
       Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.
     </p>
   </div>
 </section>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there an emergency dentist open now in Glasgow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you taking on new patients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the practice and where can I park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your opening hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."
+      }
+    }
+  ]
+}
+</script>
+
 <script>
 (function(){
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-q'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-progress span'));
+  var stage = document.querySelector('.dn-faq-stage');
   if(!tabs.length) return;
+
+  // vertical position of the gold lightwell per question, top to bottom
+  var wellY = ['30%','40%','50%','58%'];
 
   function activate(i, focus){
     tabs.forEach(function(t, n){
@@ -311,6 +462,8 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
       t.tabIndex = on ? 0 : -1;
     });
     panels.forEach(function(p, n){ p.classList.toggle('on', n === i); });
+    dots.forEach(function(d, n){ d.classList.toggle('on', n === i); });
+    if(stage && wellY[i]) stage.style.setProperty('--well-y', wellY[i]);
     if(focus) tabs[i].focus();
   }
 

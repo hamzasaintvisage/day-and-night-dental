@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Reassurance Rail - Day Night Dental booking</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ Reassurance Rail ============ */
+.rr-wrap{max-width:1080px;margin:0 auto;padding:46px 20px 96px;position:relative;}
+.rr-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.rr-glow.day{width:520px;height:520px;background:var(--dn-day);opacity:.07;top:-40px;left:-150px;}
+.rr-glow.night{width:560px;height:560px;background:var(--dn-night);opacity:.06;bottom:60px;right:-180px;}
+.rr-inner{position:relative;z-index:1;}
+
+/* header */
+.rr-head{text-align:center;margin-bottom:40px;}
+.rr-head .pill-line{display:flex;justify-content:center;}
+.rr-head h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,5.4vw,3.1rem);line-height:1.06;letter-spacing:-.012em;margin:18px 0 14px;}
+.rr-sub{color:var(--dn-bone-dim);font-size:1.06rem;max-width:46ch;margin:0 auto;}
+
+/* two column layout: form + rail */
+.rr-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start;}
+
+/* ---- the form card ---- */
+.rr-card{background:linear-gradient(180deg,rgba(20,20,26,.94),rgba(14,14,18,.94));border:1px solid var(--dn-mist);border-radius:24px;padding:30px 28px 30px;box-shadow:0 30px 90px -42px rgba(0,0,0,.9);}
+.rr-card-head{margin-bottom:22px;}
+.rr-card-head h2{font-family:var(--font-display);font-weight:420;font-size:1.5rem;line-height:1.18;margin:0 0 6px;}
+.rr-card-head p{margin:0;font-size:.95rem;color:var(--dn-bone-dim);}
+.rr-card-head .fast{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-size:.78rem;letter-spacing:.04em;color:var(--dn-day);font-weight:600;background:rgba(248,199,96,.08);border:1px solid rgba(248,199,96,.24);padding:6px 12px;border-radius:999px;}
+.rr-card-head .fast svg{width:14px;height:14px;}
+
+/* premium inputs */
+.rr-field{position:relative;}
+.rr-field + .rr-field{margin-top:16px;}
+.rr-label{display:block;font-size:.92rem;color:var(--dn-bone-dim);margin-bottom:8px;font-weight:500;}
+.rr-label .opt{color:var(--dn-bone-faint);font-weight:400;font-size:.84rem;}
+.rr-help{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:8px;}
+.rr-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:52px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+.rr-input::placeholder{color:var(--dn-bone-faint);}
+.rr-input:hover{border-color:rgba(255,255,255,.2);}
+.rr-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+
+/* custom dropdown */
+.rr-dd{position:relative;}
+.rr-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:52px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.rr-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.rr-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.rr-dd.open .rr-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.rr-dd-trigger .ph{color:var(--dn-bone-faint);}
+.rr-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.rr-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.rr-dd.open .rr-chev{transform:rotate(180deg);}
+.rr-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:296px;overflow-y:auto;list-style:none;margin:0;}
+.rr-dd:not(.open) .rr-dd-list{display:none;}
+.rr-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.rr-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.rr-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.rr-opt:hover,.rr-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.rr-opt:hover::before,.rr-opt.active::before{opacity:1;}
+.rr-opt[aria-selected="true"]{color:var(--dn-day);}
+.rr-opt[aria-selected="true"] .check{opacity:1;}
+/* SSR-safe / no-JS fallback for the dropdown */
+.rr-dd-native{margin-top:9px;}
+
+/* checkbox */
+.rr-check-row{display:flex;align-items:flex-start;gap:12px;margin-top:20px;cursor:pointer;}
+.rr-check{position:relative;width:22px;height:22px;flex:0 0 auto;margin-top:1px;}
+.rr-check input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer;}
+.rr-check-box{position:absolute;inset:0;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal);transition:border-color .15s,background .15s;pointer-events:none;}
+.rr-check-box svg{position:absolute;inset:0;margin:auto;width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+.rr-check input:checked + .rr-check-box{background:var(--dn-day);border-color:var(--dn-day);}
+.rr-check input:checked + .rr-check-box svg{opacity:1;transform:scale(1);}
+.rr-check input:focus-visible + .rr-check-box{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.rr-check-label{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;}
+.rr-check-label a{color:var(--dn-day);}
+
+/* submit */
+.rr-send-row{margin-top:22px;}
+.rr-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.04rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);}
+.rr-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.rr-btn:active{transform:scale(.985);}
+.rr-btn svg{width:18px;height:18px;}
+.rr-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.83rem;color:var(--dn-bone-dim);}
+.rr-reassure svg{width:14px;height:14px;color:#5cd98c;flex:0 0 auto;}
+
+/* phone alternative - prominent */
+.rr-phone{margin-top:22px;padding-top:22px;border-top:1px solid var(--dn-mist);text-align:center;}
+.rr-phone .or{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:14px;}
+.rr-phone-call{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--dn-day);border:1px solid rgba(248,199,96,.3);background:rgba(248,199,96,.06);border-radius:14px;padding:13px 22px;min-height:56px;transition:background .18s,border-color .18s;letter-spacing:.01em;}
+.rr-phone-call:hover{background:rgba(248,199,96,.12);border-color:rgba(248,199,96,.5);}
+.rr-phone-call svg{width:20px;height:20px;flex:0 0 auto;}
+.rr-phone-note{margin:12px 0 0;font-size:.82rem;color:var(--dn-bone-dim);}
+
+/* ---- the rail ---- */
+.rr-rail-wrap{position:sticky;top:90px;}
+.rr-rail-card{background:rgba(255,255,255,.02);border:1px solid var(--dn-mist);border-radius:24px;padding:30px 28px;}
+.rr-rail-head{margin-bottom:24px;}
+.rr-rail-head .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;display:inline-flex;align-items:center;gap:8px;}
+.rr-rail-head .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+.rr-rail-head h3{font-family:var(--font-display);font-weight:420;font-size:1.45rem;margin:12px 0 6px;line-height:1.18;}
+.rr-rail-head p{margin:0;font-size:.92rem;color:var(--dn-bone-dim);}
+
+/* the vertical rail with connected nodes */
+.rr-rail{list-style:none;margin:0;padding:0;position:relative;}
+.rr-step{position:relative;padding:0 0 28px 56px;}
+.rr-step:last-child{padding-bottom:0;}
+/* the connecting line between nodes */
+.rr-step::before{content:'';position:absolute;left:20px;top:42px;bottom:-2px;width:2px;background:linear-gradient(180deg,rgba(248,199,96,.5),rgba(248,199,96,.14));}
+.rr-step:last-child::before{display:none;}
+/* the node */
+.rr-node{position:absolute;left:0;top:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:600;font-size:.96rem;color:var(--dn-day);background:rgba(248,199,96,.1);border:1.5px solid rgba(248,199,96,.4);box-shadow:0 0 0 5px rgba(248,199,96,.04);}
+.rr-step-body h4{font-family:var(--font-display);font-weight:600;font-size:1.08rem;margin:6px 0 5px;line-height:1.25;}
+.rr-step-body p{margin:0;font-size:.9rem;color:var(--dn-bone-dim);line-height:1.5;}
+.rr-step-body .tag{display:inline-flex;align-items:center;gap:7px;margin-top:9px;font-size:.76rem;color:var(--dn-day);font-weight:600;}
+.rr-step-body .tag svg{width:13px;height:13px;}
+
+/* trust strip under the rail */
+.rr-rail-foot{margin-top:26px;padding-top:22px;border-top:1px solid var(--dn-mist);display:flex;flex-direction:column;gap:13px;}
+.rr-trust{display:flex;align-items:flex-start;gap:11px;}
+.rr-trust .ic{width:34px;height:34px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;background:rgba(69,144,236,.1);border:1px solid rgba(69,144,236,.26);color:var(--dn-night-soft);}
+.rr-trust .ic svg{width:16px;height:16px;}
+.rr-trust b{font-family:var(--font-display);font-weight:600;font-size:.94rem;display:block;line-height:1.3;}
+.rr-trust span{font-size:.82rem;color:var(--dn-bone-dim);line-height:1.4;}
+
+/* visit / address line */
+.rr-visit{margin:38px auto 0;max-width:680px;text-align:center;font-size:.86rem;color:var(--dn-bone-dim);}
+.rr-visit a{color:var(--dn-day);text-decoration:none;word-break:break-word;}
+
+@media(max-width:860px){
+  .rr-grid{grid-template-columns:1fr;gap:24px;}
+  .rr-rail-wrap{position:static;}
+}
+@media(max-width:520px){
+  .rr-wrap{padding:32px 16px 80px;}
+  .rr-card,.rr-rail-card{padding:24px 18px;}
+  .rr-phone-call{font-size:1.3rem;width:100%;justify-content:center;}
+  .rr-visit a{display:inline-block;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Reassurance Rail</b> <span class="lab-lens">warm</span></div><span></span></div>
+
+<div class="rr-wrap">
+  <div class="rr-glow day"></div>
+  <div class="rr-glow night"></div>
+  <div class="rr-inner">
+
+    <header class="rr-head">
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">New Patients</span></div>
+      <h1>Three details, and we take it from <em class="dn-hl-gold">here</em>.</h1>
+      <p class="rr-sub">No long forms. Tell us how to reach you and we will call within one working hour, no obligation.</p>
+    </header>
+
+    <div class="rr-grid">
+
+      <!-- ============ FORM ============ -->
+      <div class="rr-card">
+        <div class="rr-card-head">
+          <h2>Ask us to call you</h2>
+          <p>Takes about 30 seconds. We do the rest.</p>
+          <span class="fast">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            We call within 1 working hour
+          </span>
+        </div>
+
+        <noscript>
+          <p style="font-size:.86rem;color:var(--dn-bone-dim);background:rgba(69,144,236,.07);border:1px solid rgba(69,144,236,.22);border-radius:12px;padding:12px 14px;margin:0 0 16px;">
+            This form works best with JavaScript on. You can also call us on
+            <a href="tel:+441415486548" style="color:var(--dn-day);">0141 548 6548</a>.
+          </p>
+        </noscript>
+
+        <form class="rr-form" id="rr-form" method="post" action="/api/send-enquiry.php" novalidate>
+          <!-- honeypot -->
+          <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="rr-field">
+            <label class="rr-label" for="rr-firstName">First name</label>
+            <input class="rr-input" type="text" id="rr-firstName" name="firstName" required autocomplete="given-name" placeholder="e.g. Jamie">
+          </div>
+
+          <div class="rr-field">
+            <label class="rr-label" for="rr-phone">Phone</label>
+            <input class="rr-input" type="tel" id="rr-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+          </div>
+
+          <div class="rr-field">
+            <label class="rr-label" for="rr-email">Email</label>
+            <input class="rr-input" type="email" id="rr-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+          </div>
+
+          <!-- triage dropdown -->
+          <div class="rr-field">
+            <label class="rr-label" id="rr-dd-label">What brings you in? <span class="opt">optional</span></label>
+            <div class="rr-dd" id="rr-dd">
+              <button type="button" class="rr-dd-trigger" id="rr-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="rr-dd-label rr-dd-trigger">
+                <span class="ph" id="rr-dd-val">Choose one, or leave it to us</span>
+                <svg class="rr-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="rr-dd-list" id="rr-dd-list" role="listbox" aria-labelledby="rr-dd-label" tabindex="-1">
+                <li class="rr-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="rr-opt" role="option" data-value="New patient check-up">New patient check-up<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="rr-opt" role="option" data-value="Routine appointment">Routine appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="rr-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="rr-opt" role="option" data-value="Something else">Something else<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              </ul>
+            </div>
+            <input type="hidden" name="reason" id="rr-reason" value="">
+            <!-- SSR-safe / no-JS fallback: a real native select, only inside noscript -->
+            <noscript>
+              <div class="rr-dd-native">
+                <select class="rr-input" name="reason" id="rr-reason-native" aria-label="What brings you in?">
+                  <option value="">Choose one, or leave it to us</option>
+                  <option value="Emergency / pain">Emergency / pain</option>
+                  <option value="New patient check-up">New patient check-up</option>
+                  <option value="Routine appointment">Routine appointment</option>
+                  <option value="Cosmetic consultation">Cosmetic consultation</option>
+                  <option value="Something else">Something else</option>
+                </select>
+              </div>
+            </noscript>
+          </div>
+
+          <!-- consent -->
+          <label class="rr-check-row">
+            <span class="rr-check">
+              <input type="checkbox" name="consent" required>
+              <span class="rr-check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+            </span>
+            <span class="rr-check-label">I am happy for Day Night Dental to hold my details and contact me about my registration. Read our <a href="/privacy/">privacy policy</a>.</span>
+          </label>
+
+          <div class="rr-send-row">
+            <button type="submit" class="rr-btn">
+              Request my callback
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="rr-reassure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              We call you within 1 working hour
+            </p>
+          </div>
+
+          <!-- prominent phone alternative -->
+          <div class="rr-phone">
+            <p class="or">Rather just talk?</p>
+            <a class="rr-phone-call" href="tel:+441415486548" aria-label="Call Day Night Dental on 0141 548 6548">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              0141 548 6548
+            </a>
+            <p class="rr-phone-note">A real person answers, day or night. The 24/7 line is best if you are in pain right now.</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- ============ RAIL ============ -->
+      <div class="rr-rail-wrap">
+        <div class="rr-rail-card">
+          <div class="rr-rail-head">
+            <span class="eyebrow">What happens next</span>
+            <h3>No surprises, ever.</h3>
+            <p>Here is exactly how it goes from the moment you press send.</p>
+          </div>
+
+          <ol class="rr-rail">
+            <li class="rr-step">
+              <span class="rr-node" aria-hidden="true">01</span>
+              <div class="rr-step-body">
+                <h4>We call within 1 working hour</h4>
+                <p>A friendly member of our reception team rings you back, no automated queue, no waiting rooms.</p>
+                <span class="tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Usually much sooner
+                </span>
+              </div>
+            </li>
+
+            <li class="rr-step">
+              <span class="rr-node" aria-hidden="true">02</span>
+              <div class="rr-step-body">
+                <h4>We arrange your first visit</h4>
+                <p>We find a time that suits you and talk you through what to expect, so you walk in knowing what comes next.</p>
+                <span class="tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  A time that works for you
+                </span>
+              </div>
+            </li>
+
+            <li class="rr-step">
+              <span class="rr-node" aria-hidden="true">03</span>
+              <div class="rr-step-body">
+                <h4>No obligation</h4>
+                <p>It is just a conversation. If the time is not right, that is completely fine, there is nothing to commit to.</p>
+                <span class="tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  Zero pressure
+                </span>
+              </div>
+            </li>
+          </ol>
+
+          <div class="rr-rail-foot">
+            <div class="rr-trust">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+              <div>
+                <b>Open around the clock</b>
+                <span>Day clinic plus a 24-hour emergency line, every day of the week.</span>
+              </div>
+            </div>
+            <div class="rr-trust">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div>
+                <b>Merchant City, Glasgow</b>
+                <span>80 Hutcheson St, Glasgow G1 1SH, with parking nearby.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="rr-visit">
+      Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH ·
+      <a href="tel:+441415486548">0141 548 6548</a> ·
+      <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('rr-dd');
+  if(!dd) return;
+  var trigger = document.getElementById('rr-dd-trigger');
+  var list = document.getElementById('rr-dd-list');
+  var valEl = document.getElementById('rr-dd-val');
+  var hidden = document.getElementById('rr-reason');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.rr-opt'));
+  var activeIdx = -1;
+
+  function open(){
+    dd.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+    setActive(sel > -1 ? sel : 0);
+    list.focus();
+  }
+  function close(focusTrigger){
+    dd.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    if(focusTrigger) trigger.focus();
+  }
+  function setActive(i){
+    if(i < 0) i = 0;
+    if(i > opts.length-1) i = opts.length-1;
+    opts.forEach(function(o){o.classList.remove('active');});
+    activeIdx = i;
+    opts[i].classList.add('active');
+    opts[i].scrollIntoView({block:'nearest'});
+  }
+  function choose(o){
+    opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+    o.setAttribute('aria-selected','true');
+    var v = o.getAttribute('data-value');
+    valEl.textContent = v;
+    trigger.classList.add('has-val');
+    hidden.value = v;
+    close(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    dd.classList.contains('open') ? close(false) : open();
+  });
+  trigger.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+  });
+  opts.forEach(function(o,i){
+    o.addEventListener('click', function(){ choose(o); });
+    o.addEventListener('mousemove', function(){ setActive(i); });
+  });
+  list.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+    else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+    else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+    else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+    else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+  });
+  document.addEventListener('click', function(e){
+    if(!dd.contains(e.target)) close(false);
+  });
+})();
+</script>
+</body>
+</html>

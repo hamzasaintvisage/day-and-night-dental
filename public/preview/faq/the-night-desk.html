@@ -23,135 +23,237 @@ img{max-width:100%;display:block;} a{color:inherit;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>The Night Desk - Common Questions · Day Night Dental</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there an emergency dentist open now in Glasgow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you taking on new patients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the practice and where can I park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your opening hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."
+      }
+    }
+  ]
+}
+</script>
 <style>
 /* ============================================================
    THE NIGHT DESK (warm)  ·  rank #3
    "Pick a worry; the practice quietly replies, like someone's
-   awake."  A human exchange, not an index: a breathing presence
-   dot + a single calm reply card carry the 24/7 promise.
+   awake."  A human exchange, not an index.  Evolution: the left
+   rail is now a hand-set ledger of asks (engraved index numerals,
+   hairline rules, a wax-seal cursor on the open row); the right
+   is a dispatched reply slip on warm desk paper, headed by a
+   breathing presence line and signed off in the practice hand.
    ============================================================ */
 
-.dn-section{position:relative;padding:96px 0 104px;}
+.dn-section{position:relative;padding:clamp(4.4rem,9vw,6.6rem) 0 clamp(5rem,10vw,7rem);}
 .dn-section::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(120% 80% at 18% -10%, color-mix(in srgb,var(--dn-day) 9%,transparent) 0%, transparent 55%),
-    radial-gradient(120% 80% at 88% 8%, color-mix(in srgb,var(--dn-night) 8%,transparent) 0%, transparent 52%);
+    radial-gradient(120% 78% at 14% -12%, color-mix(in srgb,var(--dn-day) 11%,transparent) 0%, transparent 54%),
+    radial-gradient(120% 80% at 90% 6%, color-mix(in srgb,var(--dn-night) 9%,transparent) 0%, transparent 52%);
 }
-.dn-container{position:relative;z-index:1;width:100%;max-width:920px;margin:0 auto;padding:0 24px;}
+.dn-container{position:relative;z-index:1;width:100%;max-width:1000px;margin:0 auto;padding:0 24px;}
 
 /* ---- section head ---- */
-.tp-section-head{text-align:center;margin-bottom:48px;}
+.tp-section-head{text-align:center;margin-bottom:clamp(2.6rem,5vw,3.4rem);}
 .tp-section-head .dn-eyebrow{margin-bottom:20px;}
 .dn-display{
-  font-family:var(--font-display);font-weight:500;
-  font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.08;letter-spacing:-.012em;
+  font-family:var(--font-display);font-weight:480;
+  font-size:clamp(2rem,4.8vw,3.15rem);line-height:1.07;letter-spacing:-.014em;
   margin:0;color:var(--dn-bone);max-width:18ch;margin-inline:auto;
 }
 
-/* ---- two-column desk ---- */
+/* ---- the desk: ledger rail + reply slip ---- */
 .dn-faq-side{
-  display:grid;grid-template-columns:.62fr 1fr;gap:22px;align-items:start;
+  display:grid;grid-template-columns:.78fr 1fr;gap:clamp(20px,3vw,34px);align-items:start;
 }
 
-/* the asks (question rail) */
-.dn-faq-nav{display:flex;flex-direction:column;gap:8px;}
+/* the ledger of asks */
+.dn-faq-rail{position:relative;}
+.dn-faq-rail-cap{
+  display:flex;align-items:center;gap:10px;
+  margin:0 6px 14px;padding-bottom:2px;
+  font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--dn-bone-faint);font-weight:600;
+}
+.dn-faq-rail-cap::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--dn-mist),transparent);}
+.dn-faq-nav{display:flex;flex-direction:column;}
+
 .dn-faq-q{
   --dn-faq-accent:var(--dn-day);
   appearance:none;-webkit-appearance:none;
+  display:grid;grid-template-columns:2.1rem 1fr;column-gap:14px;align-items:start;
   text-align:left;width:100%;cursor:pointer;
-  font-family:var(--font-body);font-size:1rem;font-weight:500;line-height:1.4;
+  font-family:var(--font-body);font-size:1.02rem;font-weight:480;line-height:1.4;
   color:var(--dn-bone-dim);
-  border:1px solid var(--dn-mist);border-left:2px solid var(--dn-mist);
-  border-radius:var(--dn-r-card);background:transparent;
-  padding:14px 16px;min-height:44px;
-  transition:background .2s,border-color .2s,color .2s,box-shadow .2s;
+  border:0;border-top:1px solid var(--dn-mist);
+  background:transparent;
+  padding:17px 12px 17px 18px;min-height:44px;position:relative;
+  transition:color .22s ease, background .22s ease, padding-left .26s cubic-bezier(.2,.7,.2,1);
 }
-.dn-faq-q:nth-child(even){--dn-faq-accent:var(--dn-night);}
-.dn-faq-q.on{
-  color:var(--dn-bone);
-  border-color:color-mix(in srgb,var(--dn-faq-accent) 42%,var(--dn-mist));
-  border-left-color:var(--dn-faq-accent);
-  background:color-mix(in srgb,var(--dn-faq-accent) 8%,transparent);
+.dn-faq-q:first-of-type{border-top:0;}
+.dn-faq-q:nth-of-type(even){--dn-faq-accent:var(--dn-night);}
+/* wax-seal spine: the cursor that marks which ask is being answered */
+.dn-faq-q::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);
+  transform-origin:center;
+  width:3px;height:calc(100% - 22px);border-radius:3px;
+  background:var(--dn-faq-accent);
+  box-shadow:0 0 14px -2px color-mix(in srgb,var(--dn-faq-accent) 75%,transparent);
+  transition:transform .3s cubic-bezier(.2,.7,.2,1);
 }
+/* engraved index numeral */
+.dn-faq-idx{
+  font-family:var(--font-display);font-weight:500;
+  font-size:.74rem;letter-spacing:.1em;font-variant-numeric:tabular-nums;
+  line-height:1.7;color:color-mix(in srgb,var(--dn-faq-accent) 50%,var(--dn-bone-faint));
+  transition:color .22s ease;
+}
+.dn-faq-q .lbl{display:block;}
 .dn-faq-q:hover,.dn-faq-q:focus-visible{
-  color:var(--dn-bone);
-  border-left-color:var(--dn-faq-accent);
-  background:color-mix(in srgb,var(--dn-faq-accent) 6%,transparent);
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-faq-accent) 30%,transparent);
-  outline:none;
+  color:var(--dn-bone);background:color-mix(in srgb,var(--dn-faq-accent) 5%,transparent);
+  padding-left:22px;outline:none;
 }
+.dn-faq-q:hover .dn-faq-idx,.dn-faq-q:focus-visible .dn-faq-idx{color:var(--dn-faq-accent);}
+.dn-faq-q:focus-visible{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-faq-accent) 36%,transparent);}
+.dn-faq-q.on{
+  color:var(--dn-bone);background:color-mix(in srgb,var(--dn-faq-accent) 7%,transparent);
+  padding-left:22px;
+}
+.dn-faq-q.on::before{transform:translateY(-50%) scaleY(1);}
+.dn-faq-q.on .dn-faq-idx{color:var(--dn-faq-accent);}
 
-/* the reply card */
+/* the reply slip */
 .dn-faq-panel{
   --dn-faq-accent:var(--dn-day);
-  position:relative;
-  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
-  padding:24px 26px 26px;background:var(--dn-charcoal);
-  box-shadow:inset 0 0 60px -28px color-mix(in srgb,var(--dn-faq-accent,var(--dn-day)) 60%,transparent);
-  transition:box-shadow .35s ease;
-  min-height:240px;
+  position:relative;overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--dn-faq-accent) 22%,var(--dn-mist));
+  border-radius:var(--dn-r-card);
+  padding:26px 28px 24px;background:var(--dn-charcoal);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 0 70px -30px color-mix(in srgb,var(--dn-faq-accent) 70%,transparent),
+    0 26px 60px -40px #000;
+  transition:box-shadow .4s ease, border-color .4s ease;
+  min-height:266px;
+}
+/* a warm hairline ruled across the head of the slip */
+.dn-faq-panel::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,
+    var(--dn-faq-accent) 0%,
+    color-mix(in srgb,var(--dn-faq-accent) 30%,transparent) 38%,
+    transparent 72%);
+  opacity:.85;
 }
 
 /* presence line - someone is genuinely awake */
 .dn-faq-presence{
-  display:flex;align-items:center;gap:8px;margin:0 0 16px;
+  display:flex;align-items:center;gap:10px;margin:0 0 18px;
   font-size:.82rem;color:var(--dn-bone-dim);
-  padding-bottom:14px;border-bottom:1px solid var(--dn-mist);
+  padding-bottom:15px;
+  border-bottom:1px solid color-mix(in srgb,var(--dn-faq-accent) 16%,var(--dn-mist));
 }
-.dn-faq-presence b{font-family:var(--font-display);font-weight:700;color:var(--dn-bone);letter-spacing:.01em;}
-.dn-faq-presence .sep{color:var(--dn-bone-faint);}
+.dn-faq-presence .who{font-family:var(--font-display);font-weight:600;color:var(--dn-bone);letter-spacing:.005em;}
+.dn-faq-presence .sep{
+  font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dn-faq-accent);font-weight:600;
+  margin-left:auto;
+  display:inline-flex;align-items:center;gap:7px;
+}
 .dn-faq-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--dn-day);flex:none;
-  box-shadow:0 0 0 0 color-mix(in srgb,var(--dn-day) 70%,transparent);
-  animation:dn-faq-pulse 2.4s ease-out infinite;
+  width:9px;height:9px;border-radius:50%;flex:none;
+  background:var(--dn-faq-accent);
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--dn-faq-accent) 70%,transparent);
+  animation:dn-faq-pulse 2.6s ease-out infinite;
 }
 @keyframes dn-faq-pulse{
-  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--dn-day) 60%,transparent);}
-  70%{box-shadow:0 0 0 7px transparent;}
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--dn-faq-accent) 55%,transparent);}
+  70%{box-shadow:0 0 0 8px transparent;}
   100%{box-shadow:0 0 0 0 transparent;}
 }
 
 /* answers - all rendered for SEO, only active shown */
-.dn-faq-a{display:none;animation:dn-faq-in .32s ease both;}
+.dn-faq-a{display:none;animation:dn-faq-in .34s cubic-bezier(.2,.7,.2,1) both;}
 .dn-faq-a.on{display:block;}
-@keyframes dn-faq-in{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+@keyframes dn-faq-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 .dn-faq-a .q{
   font-family:var(--font-display);font-weight:600;
-  font-size:1.06rem;line-height:1.25;letter-spacing:-.005em;
-  margin:0 0 10px;color:var(--dn-bone);
+  font-size:1.18rem;line-height:1.24;letter-spacing:-.006em;
+  margin:0 0 12px;color:var(--dn-bone);
+  text-wrap:balance;
 }
-.dn-faq-a .a{margin:0;color:var(--dn-bone-dim);font-size:1rem;line-height:1.62;max-width:62ch;}
+.dn-faq-a .a{margin:0;color:var(--dn-bone-dim);font-size:1.01rem;line-height:1.66;max-width:60ch;}
+
+/* sign-off in the practice hand */
+.dn-faq-sign{
+  display:flex;align-items:center;gap:10px;
+  margin:20px 0 0;padding-top:16px;
+  border-top:1px solid var(--dn-mist);
+  font-size:.82rem;color:var(--dn-bone-faint);
+}
+.dn-faq-sign .rule{height:1px;width:26px;background:var(--dn-faq-accent);opacity:.7;}
+.dn-faq-sign .nm{font-family:var(--font-display);font-style:italic;font-weight:500;color:var(--dn-bone-dim);font-size:.92rem;}
 
 /* foot */
 .dn-faq-foot{
-  text-align:center;margin:40px 0 0;color:var(--dn-bone-faint);font-size:.95rem;
+  text-align:center;margin:clamp(2.4rem,5vw,3.2rem) 0 0;color:var(--dn-bone-faint);font-size:.97rem;
 }
 .dn-faq-foot a{
   color:var(--dn-bone);text-decoration:none;font-weight:500;
   border-bottom:2px solid var(--dn-day);padding-bottom:1px;
-  transition:color .2s;
+  transition:color .2s, border-color .2s;
 }
 .dn-faq-foot a:hover{color:var(--dn-day);}
 
-/* ---- mobile: stacked asks, reply drops beneath ---- */
+/* ---- mobile: stacked ledger, reply slip drops beneath ---- */
 @media (max-width:760px){
-  .dn-section{padding:64px 0 76px;}
-  .dn-faq-side{grid-template-columns:1fr;gap:12px;}
-  .dn-faq-nav{gap:10px;}
-  .dn-faq-q{font-size:.98rem;padding:13px 15px;}
-  .dn-faq-panel{padding:20px 18px 22px;min-height:0;}
-  .dn-faq-a .a{font-size:.97rem;}
+  .dn-faq-side{grid-template-columns:1fr;gap:18px;}
+  .dn-faq-q{font-size:1rem;padding:15px 10px 15px 16px;}
+  .dn-faq-q:hover,.dn-faq-q:focus-visible,.dn-faq-q.on{padding-left:19px;}
+  .dn-faq-panel{padding:22px 19px 20px;min-height:0;}
+  .dn-faq-a .q{font-size:1.1rem;}
+  .dn-faq-a .a{font-size:.98rem;}
 }
 @media (max-width:380px){
   .dn-container{padding:0 16px;}
+  .dn-faq-q{grid-template-columns:1.7rem 1fr;column-gap:11px;}
+  .dn-faq-presence .sep{letter-spacing:.1em;}
 }
 
 @media (prefers-reduced-motion:reduce){
   .dn-faq-dot{animation:none;}
   .dn-faq-a{animation:none;}
-  .dn-faq-panel{transition:none;}
+  .dn-faq-panel,.dn-faq-q,.dn-faq-q::before{transition:none;}
 }
 </style>
 </head>
@@ -166,15 +268,18 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
     </div>
 
     <div class="dn-faq-side">
-      <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions">
-        <button role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">Is there an emergency dentist open now in Glasgow?</button>
-        <button role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">Are you taking on new patients?</button>
-        <button role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">Where is the practice and where can I park?</button>
-        <button role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">What are your opening hours?</button>
+      <div class="dn-faq-rail">
+        <p class="dn-faq-rail-cap">On the desk</p>
+        <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions">
+          <button role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0"><span class="dn-faq-idx" aria-hidden="true">01</span><span class="lbl">Is there an emergency dentist open now in Glasgow?</span></button>
+          <button role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1"><span class="dn-faq-idx" aria-hidden="true">02</span><span class="lbl">Are you taking on new patients?</span></button>
+          <button role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2"><span class="dn-faq-idx" aria-hidden="true">03</span><span class="lbl">Where is the practice and where can I park?</span></button>
+          <button role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3"><span class="dn-faq-idx" aria-hidden="true">04</span><span class="lbl">What are your opening hours?</span></button>
+        </div>
       </div>
 
       <div class="dn-faq-panel" id="dn-faq-panel" style="--dn-faq-accent:var(--dn-day)">
-        <p class="dn-faq-presence"><span class="dn-faq-dot" aria-hidden="true"></span><b>Day Night Dental</b> <span class="sep">· here now</span></p>
+        <p class="dn-faq-presence"><span class="dn-faq-dot" aria-hidden="true"></span><span class="who">Day Night Dental</span><span class="sep" aria-hidden="true">Here now</span></p>
 
         <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
@@ -192,6 +297,8 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
           <h3 class="q">What are your opening hours?</h3>
           <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
         </div>
+
+        <p class="dn-faq-sign"><span class="rule" aria-hidden="true"></span> Replied from the night desk, <span class="nm">Day Night Dental</span></p>
       </div>
     </div>
 
@@ -206,6 +313,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-q'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
   var panel = document.getElementById('dn-faq-panel');
+  if(!tabs.length || !panel) return;
   var last = tabs.length - 1;
 
   function select(i, focus){
@@ -216,7 +324,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
       t.tabIndex = on ? 0 : -1;
     });
     panels.forEach(function(p, j){ p.classList.toggle('on', j === i); });
-    // accent: gold for even index, blue for odd (mirrors active%2 in the spec)
+    // accent: gold for even index (01, 03), blue for odd (02, 04) - mirrors the rail
     panel.style.setProperty('--dn-faq-accent', (i % 2) ? 'var(--dn-night)' : 'var(--dn-day)');
     if (focus) tabs[i].focus();
   }

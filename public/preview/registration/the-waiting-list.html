@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The Waiting List - Day Night Dental booking</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ The Waiting List (editorial) ============ */
+.wl-wrap{max-width:880px;margin:0 auto;padding:44px 20px 96px;position:relative;overflow-x:clip;}
+.wl-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.wl-glow.day{width:480px;height:480px;background:var(--dn-day);opacity:.07;top:-40px;left:-150px;}
+.wl-glow.night{width:540px;height:540px;background:var(--dn-night);opacity:.07;bottom:60px;right:-180px;}
+.wl-inner{position:relative;z-index:1;}
+
+/* masthead rule + folio */
+.wl-masthead{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-bottom:14px;border-bottom:1px solid var(--dn-mist);}
+.wl-masthead .left{font-family:var(--font-display);font-weight:600;font-size:.92rem;letter-spacing:.02em;}
+.wl-masthead .left span{color:var(--dn-bone-faint);font-weight:400;}
+.wl-masthead .right{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);}
+
+/* headline block */
+.wl-head{position:relative;padding:34px 0 18px;}
+.wl-folio{position:absolute;top:8px;right:0;font-family:var(--font-display);font-weight:300;font-size:clamp(4.4rem,16vw,8.5rem);line-height:.8;color:rgba(248,199,96,.13);letter-spacing:-.04em;pointer-events:none;user-select:none;z-index:0;}
+.wl-head .pill-line{margin-bottom:20px;position:relative;z-index:1;}
+.wl-kicker{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;margin:0 0 14px;position:relative;z-index:1;}
+.wl-h1{font-family:var(--font-display);font-weight:330;font-size:clamp(2.5rem,9vw,4.6rem);line-height:1.02;letter-spacing:-.018em;margin:0;max-width:13ch;position:relative;z-index:1;}
+.wl-standfirst{font-family:var(--font-display);font-weight:340;font-size:clamp(1.12rem,3.1vw,1.42rem);line-height:1.42;color:var(--dn-bone-dim);max-width:42ch;margin:22px 0 0;position:relative;z-index:1;}
+.wl-byline{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid var(--dn-mist);font-size:.8rem;color:var(--dn-bone-faint);position:relative;z-index:1;}
+.wl-byline .dot{width:4px;height:4px;border-radius:50%;background:var(--dn-bone-faint);}
+.wl-byline b{color:var(--dn-bone-dim);font-weight:600;}
+
+/* two-column editorial body */
+.wl-cols{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;margin-top:46px;align-items:start;}
+
+/* left: the article / phone alternative + what happens next */
+.wl-article{position:relative;}
+.wl-dropcap::first-letter{font-family:var(--font-display);font-weight:400;float:left;font-size:3.5rem;line-height:.74;padding:6px 12px 0 0;color:var(--dn-day);}
+.wl-lede{font-size:1.04rem;line-height:1.62;color:var(--dn-bone-dim);margin:0 0 22px;}
+.wl-lede strong{color:var(--dn-bone);font-weight:600;}
+
+/* the bold phone alternative line */
+.wl-phone{display:block;text-decoration:none;border:1px solid rgba(248,199,96,.28);background:rgba(248,199,96,.05);border-radius:var(--dn-r-card);padding:20px 22px;margin:0 0 26px;transition:border-color .2s,background .2s,transform .12s;}
+.wl-phone:hover{border-color:rgba(248,199,96,.55);background:rgba(248,199,96,.08);}
+.wl-phone:active{transform:scale(.992);}
+.wl-phone-top{display:flex;align-items:center;gap:11px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:8px;}
+.wl-phone-top .pulse{width:8px;height:8px;border-radius:50%;background:#3ad07a;flex:0 0 auto;box-shadow:0 0 0 0 rgba(58,208,122,.6);animation:wl-live 2.4s infinite;}
+@keyframes wl-live{0%{box-shadow:0 0 0 0 rgba(58,208,122,.55);}70%{box-shadow:0 0 0 8px rgba(58,208,122,0);}100%{box-shadow:0 0 0 0 rgba(58,208,122,0);}}
+.wl-phone-num{font-family:var(--font-display);font-weight:500;font-size:clamp(1.7rem,5.5vw,2.3rem);line-height:1.05;color:var(--dn-day);letter-spacing:-.01em;display:flex;align-items:center;gap:13px;}
+.wl-phone-num svg{width:24px;height:24px;flex:0 0 auto;}
+.wl-phone-sub{font-size:.86rem;color:var(--dn-bone-dim);margin-top:8px;}
+
+.wl-or{display:flex;align-items:center;gap:14px;margin:0 0 24px;color:var(--dn-bone-faint);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;}
+.wl-or::before,.wl-or::after{content:'';height:1px;background:var(--dn-mist);flex:1;}
+
+/* what happens next: editorial numbered list */
+.wl-next h3{font-family:var(--font-display);font-weight:600;font-size:1.12rem;margin:0 0 16px;}
+.wl-steps{list-style:none;margin:0;padding:0;}
+.wl-steps li{display:flex;gap:15px;padding:0 0 18px;position:relative;}
+.wl-steps li:not(:last-child)::after{content:'';position:absolute;left:13px;top:30px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(248,199,96,.4),rgba(255,255,255,.06));}
+.wl-step-n{flex:0 0 auto;width:27px;height:27px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:600;font-size:.8rem;color:var(--dn-day);background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.3);position:relative;z-index:1;}
+.wl-step-t{padding-top:2px;}
+.wl-step-t b{font-weight:600;font-size:.97rem;display:block;}
+.wl-step-t span{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.45;}
+
+/* right: the form treated as a pull-out coupon / response card */
+.wl-form-col{position:relative;}
+.wl-card{background:linear-gradient(180deg,rgba(20,20,26,.96),rgba(14,14,18,.96));border:1px solid var(--dn-mist);border-radius:24px;padding:28px 26px 30px;box-shadow:0 34px 90px -42px rgba(0,0,0,.9);position:sticky;top:74px;}
+.wl-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--dn-mist);}
+.wl-card-head h2{font-family:var(--font-display);font-weight:500;font-size:1.42rem;line-height:1.1;margin:0;letter-spacing:-.01em;}
+.wl-card-head .tag{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:4px 10px;white-space:nowrap;flex:0 0 auto;}
+.wl-card-note{font-size:.88rem;color:var(--dn-bone-dim);margin:-8px 0 22px;}
+
+/* premium inputs (filled charcoal wells) */
+.wl-field{position:relative;}
+.wl-field + .wl-field{margin-top:16px;}
+.wl-label{display:block;font-size:.9rem;color:var(--dn-bone-dim);margin-bottom:7px;font-weight:500;}
+.wl-label .opt{color:var(--dn-bone-faint);font-weight:400;font-size:.82rem;}
+.wl-help{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:7px;}
+.wl-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+.wl-input::placeholder{color:var(--dn-bone-faint);}
+.wl-input:hover{border-color:rgba(255,255,255,.2);}
+.wl-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+
+/* custom dropdown (triage) */
+.wl-dd{position:relative;}
+.wl-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.wl-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.wl-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.wl-dd.open .wl-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.wl-dd-trigger .ph{color:var(--dn-bone-faint);}
+.wl-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.wl-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.wl-dd.open .wl-chev{transform:rotate(180deg);}
+.wl-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:296px;overflow-y:auto;list-style:none;margin:0;}
+.wl-dd:not(.open) .wl-dd-list{display:none;}
+.wl-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.wl-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.wl-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.wl-opt:hover,.wl-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.wl-opt:hover::before,.wl-opt.active::before{opacity:1;}
+.wl-opt[aria-selected="true"]{color:var(--dn-day);}
+.wl-opt[aria-selected="true"] .check{opacity:1;}
+/* SSR-safe / no-JS fallback for the dropdown */
+.wl-dd-native{margin-top:9px;}
+
+/* checkbox */
+.wl-check-row{display:flex;align-items:flex-start;gap:12px;margin-top:20px;cursor:pointer;}
+.wl-check{position:relative;width:22px;height:22px;flex:0 0 auto;margin-top:1px;}
+.wl-check input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer;}
+.wl-check-box{position:absolute;inset:0;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal);transition:border-color .15s,background .15s;pointer-events:none;}
+.wl-check-box svg{position:absolute;inset:0;margin:auto;width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+.wl-check input:checked + .wl-check-box{background:var(--dn-day);border-color:var(--dn-day);}
+.wl-check input:checked + .wl-check-box svg{opacity:1;transform:scale(1);}
+.wl-check input:focus-visible + .wl-check-box{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.wl-check-label{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;}
+.wl-check-label a{color:var(--dn-day);}
+
+/* submit */
+.wl-send-row{margin-top:22px;}
+.wl-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.04rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);}
+.wl-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.wl-btn:active{transform:scale(.985);}
+.wl-btn svg{width:18px;height:18px;}
+.wl-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.82rem;color:var(--dn-bone-dim);}
+.wl-reassure svg{width:14px;height:14px;color:#5cd98c;flex:0 0 auto;}
+
+/* colophon footer line */
+.wl-colophon{margin:54px auto 0;text-align:center;font-size:.84rem;color:var(--dn-bone-dim);line-height:1.7;border-top:1px solid var(--dn-mist);padding-top:24px;}
+.wl-colophon a{color:var(--dn-day);text-decoration:none;}
+.wl-colophon .nap{display:block;}
+
+@media(max-width:760px){
+  .wl-cols{grid-template-columns:1fr;gap:38px;}
+  .wl-card{position:static;}
+  .wl-folio{font-size:clamp(4rem,22vw,6rem);top:0;}
+  .wl-h1{max-width:none;}
+}
+@media(max-width:380px){
+  .wl-wrap{padding:36px 14px 80px;}
+  .wl-card{padding:24px 18px 26px;}
+  .wl-phone{padding:18px 16px;}
+  .wl-colophon{word-break:break-word;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Waiting List</b> <span class="lab-lens">editorial</span></div><span></span></div>
+
+<div class="wl-wrap">
+  <div class="wl-glow day"></div>
+  <div class="wl-glow night"></div>
+  <div class="wl-inner">
+
+    <div class="wl-masthead">
+      <div class="left">Day Night Dental <span>/ Merchant City, Glasgow</span></div>
+      <div class="right">New Patients · 2026</div>
+    </div>
+
+    <header class="wl-head">
+      <span class="wl-folio" aria-hidden="true">01</span>
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">New Patients</span></div>
+      <p class="wl-kicker">The Waiting List</p>
+      <h1 class="wl-h1">Put your name <em class="dn-hl-gold">down</em>.</h1>
+      <p class="wl-standfirst">We are taking on new patients across every treatment we offer. Leave three details below and we will do the rest.</p>
+      <div class="wl-byline">
+        <span><b>Takes about 30 seconds</b></span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>No obligation</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>We call within 1 working hour</span>
+      </div>
+    </header>
+
+    <div class="wl-cols">
+
+      <!-- left: the article body -->
+      <article class="wl-article">
+        <p class="wl-lede wl-dropcap">Getting started with a new dentist should not feel like filling in a tax return. So we have kept this short. <strong>Give us your name and a number, and a real person from the practice rings you back</strong> to arrange your first visit at a time that actually suits you.</p>
+
+        <a class="wl-phone" href="tel:+441415486548" aria-label="Call Day Night Dental on 0141 548 6548">
+          <span class="wl-phone-top"><span class="pulse" aria-hidden="true"></span>Or skip the form, call us now</span>
+          <span class="wl-phone-num">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            0141 548 6548
+          </span>
+          <span class="wl-phone-sub">Answered around the clock, including the 24/7 emergency line. In pain right now? Please call, do not wait on the form.</span>
+        </a>
+
+        <div class="wl-or"><span>What happens next</span></div>
+
+        <div class="wl-next">
+          <ol class="wl-steps">
+            <li>
+              <span class="wl-step-n">1</span>
+              <span class="wl-step-t"><b>We call you within 1 working hour</b><span>A friendly check-in from the practice, never a sales pitch.</span></span>
+            </li>
+            <li>
+              <span class="wl-step-n">2</span>
+              <span class="wl-step-t"><b>We arrange your first visit</b><span>We find a time that fits around you and explain everything up front.</span></span>
+            </li>
+            <li>
+              <span class="wl-step-n">3</span>
+              <span class="wl-step-t"><b>No obligation, ever</b><span>Change your mind at any point. There is nothing to pay to put your name down.</span></span>
+            </li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- right: the response card / form -->
+      <div class="wl-form-col">
+        <div class="wl-card">
+          <div class="wl-card-head">
+            <h2>Your details</h2>
+            <span class="tag">Reply coupon</span>
+          </div>
+          <p class="wl-card-note">Three quick things and you are on the list.</p>
+
+          <noscript>
+            <p class="wl-help" style="margin-bottom:16px;">This form needs JavaScript for the dropdown. You can still submit the rest, or call us on <a href="tel:+441415486548" style="color:var(--dn-day);">0141 548 6548</a>.</p>
+          </noscript>
+
+          <form class="wl-form" id="wl-form" method="post" action="/api/send-enquiry.php" novalidate>
+            <!-- honeypot -->
+            <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+            <div class="wl-field">
+              <label class="wl-label" for="wl-firstName">First name</label>
+              <input class="wl-input" type="text" id="wl-firstName" name="firstName" required autocomplete="given-name" placeholder="e.g. Jamie">
+            </div>
+
+            <div class="wl-field">
+              <label class="wl-label" for="wl-phone">Phone</label>
+              <input class="wl-input" type="tel" id="wl-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+            </div>
+
+            <div class="wl-field">
+              <label class="wl-label" for="wl-email">Email</label>
+              <input class="wl-input" type="email" id="wl-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+
+            <div class="wl-field">
+              <label class="wl-label" id="wl-dd-label">What brings you in? <span class="opt">(optional)</span></label>
+              <div class="wl-dd" id="wl-dd">
+                <button type="button" class="wl-dd-trigger" id="wl-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="wl-dd-label wl-dd-trigger">
+                  <span class="ph" id="wl-dd-val">Select an option</span>
+                  <svg class="wl-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="wl-dd-list" id="wl-dd-list" role="listbox" aria-labelledby="wl-dd-label" tabindex="-1">
+                  <li class="wl-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                  <li class="wl-opt" role="option" data-value="New patient check-up">New patient check-up<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                  <li class="wl-opt" role="option" data-value="Routine appointment">Routine appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                  <li class="wl-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                  <li class="wl-opt" role="option" data-value="Something else">Something else<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                </ul>
+              </div>
+              <input type="hidden" name="reason" id="wl-reason" value="">
+              <!-- SSR-safe / no-JS fallback: real native select, only ever visible without JS -->
+              <noscript>
+                <div class="wl-dd-native">
+                  <label class="wl-label" for="wl-reason-native">What brings you in? (optional)</label>
+                  <select class="wl-input" id="wl-reason-native" name="reason">
+                    <option value="">Select an option</option>
+                    <option value="Emergency / pain">Emergency / pain</option>
+                    <option value="New patient check-up">New patient check-up</option>
+                    <option value="Routine appointment">Routine appointment</option>
+                    <option value="Cosmetic consultation">Cosmetic consultation</option>
+                    <option value="Something else">Something else</option>
+                  </select>
+                </div>
+              </noscript>
+            </div>
+
+            <label class="wl-check-row">
+              <span class="wl-check">
+                <input type="checkbox" name="consent" required>
+                <span class="wl-check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+              </span>
+              <span class="wl-check-label">I am happy for Day Night Dental to hold my details and contact me about my registration. Read our <a href="/privacy/">privacy policy</a>.</span>
+            </label>
+
+            <div class="wl-send-row">
+              <button type="submit" class="wl-btn">
+                Put me on the list
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+              <p class="wl-reassure">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                We call you within 1 working hour
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="wl-colophon">
+      <span class="nap">Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH</span>
+      <a href="tel:+441415486548">0141 548 6548</a> ·
+      <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('wl-dd');
+  if(!dd) return;
+  var trigger = document.getElementById('wl-dd-trigger');
+  var list = document.getElementById('wl-dd-list');
+  var valEl = document.getElementById('wl-dd-val');
+  var hidden = document.getElementById('wl-reason');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.wl-opt'));
+  var activeIdx = -1;
+
+  function open(){
+    dd.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+    setActive(sel > -1 ? sel : 0);
+    list.focus();
+  }
+  function close(focusTrigger){
+    dd.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    if(focusTrigger) trigger.focus();
+  }
+  function setActive(i){
+    if(i < 0) i = 0;
+    if(i > opts.length-1) i = opts.length-1;
+    opts.forEach(function(o){o.classList.remove('active');});
+    activeIdx = i;
+    opts[i].classList.add('active');
+    opts[i].scrollIntoView({block:'nearest'});
+  }
+  function choose(o){
+    opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+    o.setAttribute('aria-selected','true');
+    var v = o.getAttribute('data-value');
+    valEl.textContent = v;
+    trigger.classList.add('has-val');
+    hidden.value = v;
+    close(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    dd.classList.contains('open') ? close(false) : open();
+  });
+  trigger.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+  });
+  opts.forEach(function(o,i){
+    o.addEventListener('click', function(){ choose(o); });
+    o.addEventListener('mousemove', function(){ setActive(i); });
+  });
+  list.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+    else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+    else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+    else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+    else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+  });
+  document.addEventListener('click', function(e){
+    if(!dd.contains(e.target)) close(false);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The Welcome Card - Day Night Dental registration</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ The Welcome Card ============ */
+.wc-wrap{max-width:640px;margin:0 auto;padding:46px 18px 96px;position:relative;}
+.wc-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.wc-glow.day{width:480px;height:480px;background:var(--dn-day);opacity:.08;top:-40px;left:-150px;}
+.wc-glow.night{width:520px;height:520px;background:var(--dn-night);opacity:.07;bottom:60px;right:-170px;}
+.wc-inner{position:relative;z-index:1;}
+
+/* page intro above the card */
+.wc-intro{text-align:center;margin-bottom:26px;}
+.wc-intro .pill-line{display:flex;justify-content:center;margin-bottom:18px;}
+.wc-intro h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,6.4vw,3rem);line-height:1.06;letter-spacing:-.012em;margin:0 0 12px;}
+.wc-intro p{color:var(--dn-bone-dim);font-size:1.04rem;max-width:34ch;margin:0 auto;}
+
+/* THE CARD - one elevated luxe object */
+.wc-card{position:relative;background:linear-gradient(180deg,rgba(22,22,28,.96),rgba(14,14,18,.97));border:1px solid var(--dn-mist);border-radius:26px;box-shadow:0 40px 110px -50px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.02) inset;overflow:hidden;}
+/* a hairline of gold riding the very top edge of the card */
+.wc-card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:rgba(248,199,96,.55);}
+
+/* card head: monogram + welcome line */
+.wc-card-head{padding:30px 28px 22px;text-align:center;}
+.wc-crest{width:54px;height:54px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.34);color:var(--dn-day);}
+.wc-crest svg{width:25px;height:25px;}
+.wc-welcome{font-family:var(--font-display);font-weight:360;font-size:1.46rem;line-height:1.18;letter-spacing:-.01em;margin:0 0 8px;}
+.wc-welcome em{font-style:normal;color:var(--dn-day);}
+.wc-welcome-sub{color:var(--dn-bone-dim);font-size:.96rem;max-width:40ch;margin:0 auto;}
+
+/* fine inner rule */
+.wc-rule{display:flex;align-items:center;gap:14px;padding:0 28px;margin:6px 0 22px;color:var(--dn-bone-faint);}
+.wc-rule::before,.wc-rule::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);}
+.wc-rule span{font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);white-space:nowrap;}
+
+/* the form body */
+.wc-form{padding:0 28px 6px;}
+
+/* premium inputs - FILLED charcoal wells */
+.wc-field{position:relative;}
+.wc-field + .wc-field{margin-top:15px;}
+.wc-label{display:block;font-size:.92rem;color:var(--dn-bone);margin-bottom:8px;font-weight:500;}
+.wc-label .opt{color:var(--dn-bone-faint);font-weight:400;font-size:.84rem;margin-left:5px;}
+.wc-hint{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:7px;}
+.wc-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+.wc-input::placeholder{color:var(--dn-bone-faint);}
+.wc-input:hover{border-color:rgba(255,255,255,.2);}
+.wc-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.wc-grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.wc-grid2 .wc-field + .wc-field{margin-top:0;}
+
+/* custom dropdown - styled trigger + floating dark listbox */
+.wc-dd{position:relative;}
+.wc-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.wc-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.wc-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.wc-dd.open .wc-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.wc-dd-trigger .ph{color:var(--dn-bone-faint);}
+.wc-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.wc-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.wc-dd.open .wc-chev{transform:rotate(180deg);}
+.wc-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:300px;overflow-y:auto;list-style:none;margin:0;}
+.wc-dd:not(.open) .wc-dd-list{display:none;}
+.wc-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.wc-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.wc-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.wc-opt:hover,.wc-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.wc-opt:hover::before,.wc-opt.active::before{opacity:1;}
+.wc-opt[aria-selected="true"]{color:var(--dn-day);}
+.wc-opt[aria-selected="true"] .check{opacity:1;}
+/* SSR-safe / no-JS fallback for the dropdown */
+.wc-dd-native{margin-top:9px;}
+
+/* free address autocomplete - a suggestions helper layered over a normal text field
+   (no API, no key, no cost; you can still type any address by hand) */
+.wc-ac{position:relative;}
+.wc-ac-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:264px;overflow-y:auto;list-style:none;margin:0;}
+.wc-ac:not(.open) .wc-ac-list{display:none;}
+.wc-ac-opt{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;font-size:.95rem;cursor:pointer;color:var(--dn-bone-dim);min-height:44px;}
+.wc-ac-opt .pin{width:15px;height:15px;flex:0 0 auto;color:var(--dn-bone-faint);}
+.wc-ac-opt:hover,.wc-ac-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.wc-ac-opt:hover .pin,.wc-ac-opt.active .pin{color:var(--dn-day);}
+.wc-ac-opt mark{background:none;color:var(--dn-day);font-weight:600;}
+.wc-ac-note{padding:12px 13px;font-size:.86rem;color:var(--dn-bone-faint);list-style:none;}
+.wc-ac-attr{padding:8px 13px 4px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);list-style:none;}
+
+/* custom checkbox - 22px gold-fill + tick */
+.wc-check-row{display:flex;align-items:flex-start;gap:12px;margin-top:18px;cursor:pointer;}
+.wc-check{position:relative;width:22px;height:22px;flex:0 0 auto;margin-top:1px;}
+.wc-check input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer;}
+.wc-check-box{position:absolute;inset:0;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal);transition:border-color .15s,background .15s;pointer-events:none;}
+.wc-check-box svg{position:absolute;inset:0;margin:auto;width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+.wc-check input:checked + .wc-check-box{background:var(--dn-day);border-color:var(--dn-day);}
+.wc-check input:checked + .wc-check-box svg{opacity:1;transform:scale(1);}
+.wc-check input:focus-visible + .wc-check-box{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.wc-check-label{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;}
+.wc-check-label a{color:var(--dn-day);}
+
+/* submit - solid gold primary */
+.wc-send-row{margin-top:20px;}
+.wc-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.05rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);}
+.wc-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.wc-btn:active{transform:scale(.985);}
+.wc-btn svg{width:18px;height:18px;}
+.wc-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.84rem;color:var(--dn-bone-dim);}
+.wc-reassure svg{width:15px;height:15px;color:#5cd98c;flex:0 0 auto;}
+
+/* "what happens next" - three quiet steps */
+.wc-steps{margin-top:24px;padding:20px 28px 0;border-top:1px solid var(--dn-mist);}
+.wc-steps-title{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);text-align:center;margin:0 0 16px;}
+.wc-steps-list{list-style:none;margin:0;padding:0;display:grid;gap:13px;}
+.wc-step{display:flex;align-items:flex-start;gap:13px;}
+.wc-step .n{width:26px;height:26px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.3);color:var(--dn-day);font-family:var(--font-display);font-weight:600;font-size:.82rem;}
+.wc-step .t{font-size:.92rem;line-height:1.4;}
+.wc-step .t b{font-weight:600;}
+.wc-step .t small{display:block;font-size:.8rem;color:var(--dn-bone-faint);}
+
+/* card footer - the phone, prominent alternative */
+.wc-card-foot{margin-top:24px;padding:20px 28px 26px;border-top:1px solid var(--dn-mist);background:rgba(255,255,255,.015);}
+.wc-call{display:flex;align-items:center;gap:15px;text-decoration:none;}
+.wc-call-ic{width:48px;height:48px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:rgba(69,144,236,.13);border:1px solid rgba(69,144,236,.36);color:var(--dn-night-soft);position:relative;}
+.wc-call-ic svg{width:21px;height:21px;}
+.wc-call-ic::after{content:'';position:absolute;right:-1px;bottom:-1px;width:11px;height:11px;border-radius:50%;background:#3ad07a;border:2px solid var(--dn-charcoal);}
+.wc-call-txt{flex:1;min-width:0;}
+.wc-call-txt .k{font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.wc-call-txt .num{font-family:var(--font-display);font-weight:600;font-size:1.5rem;line-height:1.15;color:var(--dn-bone);letter-spacing:-.01em;}
+.wc-call-txt .sub{font-size:.82rem;color:var(--dn-bone-dim);}
+.wc-call-go{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:600;color:var(--dn-night-soft);padding:10px 15px;border-radius:999px;border:1px solid rgba(69,144,236,.36);background:rgba(69,144,236,.08);min-height:44px;transition:background .18s,border-color .18s;}
+.wc-call:hover .wc-call-go{background:rgba(69,144,236,.16);border-color:rgba(69,144,236,.55);}
+.wc-call-go svg{width:14px;height:14px;}
+
+/* below-card visit line */
+.wc-visit{margin:26px auto 0;max-width:520px;text-align:center;font-size:.84rem;color:var(--dn-bone-dim);line-height:1.7;}
+.wc-visit a{color:var(--dn-day);text-decoration:none;word-break:break-word;}
+
+@media(max-width:480px){
+  .wc-card-head,.wc-rule,.wc-form,.wc-steps,.wc-card-foot{padding-left:20px;padding-right:20px;}
+  .wc-grid2{grid-template-columns:1fr;gap:15px;}
+  .wc-grid2 .wc-field + .wc-field{margin-top:15px;}
+  .wc-call{flex-wrap:wrap;}
+  .wc-call-go{width:100%;justify-content:center;}
+  .wc-call-txt .num{font-size:1.38rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Welcome Card</b> <span class="lab-lens">couture</span></div><span></span></div>
+
+<div class="wc-wrap">
+  <div class="wc-glow day"></div>
+  <div class="wc-glow night"></div>
+  <div class="wc-inner">
+
+    <header class="wc-intro">
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">New Patients</span></div>
+      <h1>Welcome to a calmer kind of <em class="dn-hl-gold">dentist</em>.</h1>
+      <p>One short form, about thirty seconds. We take it from there.</p>
+    </header>
+
+    <!-- THE WELCOME CARD: a single luxe object holding the whole form -->
+    <div class="wc-card">
+
+      <div class="wc-card-head">
+        <span class="wc-crest" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.5C.6 8 2.3 4.5 5.6 4.5c2 0 3.4 1.2 4.4 2.6C11 5.7 12.4 4.5 14.4 4.5c3.3 0 5 3.5 3.6 7C21 16.4 12 21 12 21z"/></svg>
+        </span>
+        <p class="wc-welcome">We are glad you found us. <em>Let us get you booked in.</em></p>
+        <p class="wc-welcome-sub">Tell us a little about you and we will arrange your first visit. No obligation, no pressure.</p>
+      </div>
+
+      <div class="wc-rule"><span>Your details</span></div>
+
+      <noscript>
+        <p style="margin:0 28px 18px;padding:13px 15px;border-radius:13px;background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.28);font-size:.9rem;color:var(--dn-bone-dim);">
+          This form works best with JavaScript. You can also call us on
+          <a href="tel:+441415486548" style="color:var(--dn-day);">0141 548 6548</a> or email
+          <a href="mailto:reception@daynightdental.co.uk" style="color:var(--dn-day);">reception@daynightdental.co.uk</a>.
+        </p>
+      </noscript>
+
+      <form class="wc-form" id="wc-form" method="post" action="/api/send-enquiry.php" novalidate>
+        <!-- honeypot -->
+        <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="wc-grid2">
+          <div class="wc-field">
+            <label class="wc-label" for="wc-firstName">First name</label>
+            <input class="wc-input" type="text" id="wc-firstName" name="firstName" required autocomplete="given-name" placeholder="e.g. Jamie">
+          </div>
+          <div class="wc-field">
+            <label class="wc-label" for="wc-lastName">Last name</label>
+            <input class="wc-input" type="text" id="wc-lastName" name="lastName" required autocomplete="family-name" placeholder="e.g. Stewart">
+          </div>
+        </div>
+
+        <div class="wc-grid2" style="margin-top:15px;">
+          <div class="wc-field">
+            <label class="wc-label" for="wc-phone">Phone</label>
+            <input class="wc-input" type="tel" id="wc-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+          </div>
+          <div class="wc-field">
+            <label class="wc-label" for="wc-email">Email</label>
+            <input class="wc-input" type="email" id="wc-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+          </div>
+        </div>
+
+        <div class="wc-field" style="margin-top:15px;">
+          <label class="wc-label" for="wc-address">Your address <span class="opt">optional</span></label>
+          <div class="wc-ac" id="wc-ac">
+            <input class="wc-input" type="text" id="wc-address" name="address" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="wc-ac-list" placeholder="Start typing your street or postcode">
+            <ul class="wc-ac-list" id="wc-ac-list" role="listbox" aria-label="Address suggestions"></ul>
+          </div>
+          <span class="wc-hint">Start typing and pick yours, or just type it in.</span>
+        </div>
+
+        <div class="wc-field" style="margin-top:15px;">
+          <label class="wc-label" id="wc-dd-label">What brings you in? <span class="opt">optional</span></label>
+          <div class="wc-dd" id="wc-dd">
+            <button type="button" class="wc-dd-trigger" id="wc-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="wc-dd-label wc-dd-trigger">
+              <span class="ph" id="wc-dd-val">Choose one, or leave it to the call</span>
+              <svg class="wc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="wc-dd-list" id="wc-dd-list" role="listbox" aria-labelledby="wc-dd-label" tabindex="-1">
+              <li class="wc-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="wc-opt" role="option" data-value="New patient check-up">New patient check-up<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="wc-opt" role="option" data-value="Routine appointment">Routine appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="wc-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="wc-opt" role="option" data-value="Something else">Something else<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+            </ul>
+          </div>
+          <input type="hidden" name="reason" id="wc-reason" value="">
+          <!-- SSR-safe / no-JS fallback: native select only inside noscript -->
+          <noscript>
+            <div class="wc-dd-native">
+              <select name="reason" aria-label="What brings you in?" style="width:100%;font-size:16px;color:#fff;background:#14141a;border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:14px 15px;min-height:50px;">
+                <option value="">Choose one (optional)</option>
+                <option value="Emergency / pain">Emergency / pain</option>
+                <option value="New patient check-up">New patient check-up</option>
+                <option value="Routine appointment">Routine appointment</option>
+                <option value="Cosmetic consultation">Cosmetic consultation</option>
+                <option value="Something else">Something else</option>
+              </select>
+            </div>
+          </noscript>
+        </div>
+
+        <label class="wc-check-row">
+          <span class="wc-check">
+            <input type="checkbox" name="consent" required>
+            <span class="wc-check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </span>
+          <span class="wc-check-label">I am happy for Day Night Dental to hold my details and contact me about my registration, in line with the <a href="/privacy/">privacy policy</a>.</span>
+        </label>
+
+        <div class="wc-send-row">
+          <button type="submit" class="wc-btn">
+            Register my place
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <p class="wc-reassure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            We call you within 1 working hour
+          </p>
+        </div>
+      </form>
+
+      <!-- what happens next -->
+      <div class="wc-steps">
+        <p class="wc-steps-title">What happens next</p>
+        <ul class="wc-steps-list">
+          <li class="wc-step">
+            <span class="n">1</span>
+            <span class="t"><b>We call within 1 working hour</b><small>A real person, never a queue or a chatbot.</small></span>
+          </li>
+          <li class="wc-step">
+            <span class="n">2</span>
+            <span class="t"><b>We arrange your first visit</b><small>A time that suits you, day or night.</small></span>
+          </li>
+          <li class="wc-step">
+            <span class="n">3</span>
+            <span class="t"><b>No obligation</b><small>Decide once you have met us. Nothing is locked in.</small></span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- card footer: the phone as a prominent alternative -->
+      <div class="wc-card-foot">
+        <a class="wc-call" href="tel:+441415486548" aria-label="Call Day Night Dental on 0141 548 6548">
+          <span class="wc-call-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="wc-call-txt">
+            <span class="k">Rather just talk? Call us, 24/7</span>
+            <span class="num">0141 548 6548</span>
+            <span class="sub">In pain right now? We answer around the clock.</span>
+          </span>
+          <span class="wc-call-go">Call now
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+      </div>
+
+    </div>
+
+    <p class="wc-visit">
+      Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH<br>
+      <a href="tel:+441415486548">0141 548 6548</a> ·
+      <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('wc-dd');
+  if(!dd) return;
+  var trigger = document.getElementById('wc-dd-trigger');
+  var list = document.getElementById('wc-dd-list');
+  var valEl = document.getElementById('wc-dd-val');
+  var hidden = document.getElementById('wc-reason');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.wc-opt'));
+  var activeIdx = -1;
+
+  function open(){
+    dd.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+    setActive(sel > -1 ? sel : 0);
+    list.focus();
+  }
+  function close(focusTrigger){
+    dd.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    if(focusTrigger) trigger.focus();
+  }
+  function setActive(i){
+    if(i < 0) i = 0;
+    if(i > opts.length-1) i = opts.length-1;
+    opts.forEach(function(o){o.classList.remove('active');});
+    activeIdx = i;
+    opts[i].classList.add('active');
+    opts[i].scrollIntoView({block:'nearest'});
+  }
+  function choose(o){
+    opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+    o.setAttribute('aria-selected','true');
+    var v = o.getAttribute('data-value');
+    valEl.textContent = v;
+    trigger.classList.add('has-val');
+    hidden.value = v;
+    close(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    dd.classList.contains('open') ? close(false) : open();
+  });
+  trigger.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+  });
+  opts.forEach(function(o,i){
+    o.addEventListener('click', function(){ choose(o); });
+    o.addEventListener('mousemove', function(){ setActive(i); });
+  });
+  list.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+    else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+    else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+    else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+    else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+  });
+  document.addEventListener('click', function(e){
+    if(!dd.contains(e.target)) close(false);
+  });
+
+  /* ---- live address autocomplete via OpenStreetMap Photon (free, no key); free-text always allowed ---- */
+  var ac = document.getElementById('wc-ac');
+  if(ac){
+    var input = document.getElementById('wc-address');
+    var aclist = document.getElementById('wc-ac-list');
+    /* offline fallback only, used if the lookup service can't be reached */
+    var FALLBACK = [
+      '80 Hutcheson Street, Merchant City, Glasgow G1 1SH',
+      'Ingram Street, Glasgow G1 1DN', 'Wilson Street, Glasgow G1 1SS',
+      'Candleriggs, Glasgow G1 1NP', 'Argyle Street, Glasgow G2 8AH',
+      'Buchanan Street, Glasgow G1 2FF', 'Sauchiehall Street, Glasgow G2 3JD',
+      'Byres Road, Glasgow G12 8TS', 'Great Western Road, Glasgow G12 0XE',
+      'Duke Street, Glasgow G31 1DX', 'London Road, Glasgow G40 1NS'
+    ];
+    var acIdx = -1, current = [], t = null;
+    function escHtml(s){ return String(s).replace(/[&<>]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;'})[c]; }); }
+    /* turn a Photon feature's properties into one readable address line */
+    function labelOf(p){
+      var line1 = [p.housenumber, p.street || p.name].filter(Boolean).join(' ');
+      if(!line1) line1 = p.name || '';
+      var place = p.city || p.town || p.village || p.district || p.county || p.state;
+      var loc = [p.postcode, place].filter(Boolean).join(' ');
+      return [line1, loc, p.country].filter(Boolean).join(', ');
+    }
+    function renderAc(items, q, loading){
+      if(loading){
+        aclist.innerHTML = '<li class="wc-ac-note">Searching addresses...</li>';
+        ac.classList.add('open'); input.setAttribute('aria-expanded','true'); current = []; acIdx = -1; return;
+      }
+      current = items || [];
+      if(!current.length){
+        if(q && q.trim().length >= 3){
+          aclist.innerHTML = '<li class="wc-ac-note">No exact match. You can just type your address in.</li>';
+          ac.classList.add('open'); input.setAttribute('aria-expanded','true');
+        } else { ac.classList.remove('open'); input.setAttribute('aria-expanded','false'); aclist.innerHTML = ''; }
+        acIdx = -1; return;
+      }
+      var rx = q ? new RegExp('('+ q.trim().replace(/[.*+?^${}()|[\]\\]/g,'\\$&') +')','ig') : null;
+      var html = current.map(function(it,i){
+        var label = escHtml(it);
+        if(rx) label = label.replace(rx, '<mark>$1</mark>');
+        return '<li class="wc-ac-opt" role="option" data-i="'+i+'"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>'+label+'</span></li>';
+      }).join('');
+      html += '<li class="wc-ac-attr">Address search by OpenStreetMap</li>';
+      aclist.innerHTML = html;
+      ac.classList.add('open'); input.setAttribute('aria-expanded','true'); acIdx = -1;
+    }
+    function query(q){
+      q = q.trim();
+      if(q.length < 3){ renderAc([], q, false); return; }
+      renderAc(null, q, true);
+      /* lat/lon bias the results toward Glasgow so local addresses surface first */
+      var url = 'https://photon.komoot.io/api/?q=' + encodeURIComponent(q) + '&limit=6&lang=en&lat=55.8617&lon=-4.2583';
+      fetch(url).then(function(r){ return r.json(); }).then(function(data){
+        if(input.value.trim() !== q) return; /* a newer keystroke already fired */
+        var seen = {}, items = [];
+        (data.features || []).forEach(function(f){ var l = labelOf(f.properties || {}); if(l && !seen[l]){ seen[l] = 1; items.push(l); } });
+        renderAc(items, q, false);
+      }).catch(function(){
+        if(input.value.trim() !== q) return;
+        var ql = q.toLowerCase();
+        renderAc(FALLBACK.filter(function(d){ return d.toLowerCase().indexOf(ql) > -1; }).slice(0, 6), q, false);
+      });
+    }
+    function setAcActive(i){
+      var els = aclist.querySelectorAll('.wc-ac-opt');
+      if(!els.length) return;
+      if(i < 0) i = els.length - 1; if(i > els.length - 1) i = 0;
+      els.forEach(function(e){ e.classList.remove('active'); });
+      acIdx = i; els[i].classList.add('active'); els[i].scrollIntoView({block:'nearest'});
+    }
+    function pickAc(i){ input.value = current[i]; ac.classList.remove('open'); input.setAttribute('aria-expanded','false'); aclist.innerHTML = ''; input.focus(); }
+    input.addEventListener('input', function(){ var q = input.value; if(t) clearTimeout(t); t = setTimeout(function(){ query(q); }, 200); });
+    input.addEventListener('keydown', function(e){
+      if(!ac.classList.contains('open')) return;
+      if(e.key==='ArrowDown'){ e.preventDefault(); setAcActive(acIdx+1); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); setAcActive(acIdx-1); }
+      else if(e.key==='Enter' && acIdx > -1){ e.preventDefault(); pickAc(acIdx); }
+      else if(e.key==='Escape'){ ac.classList.remove('open'); input.setAttribute('aria-expanded','false'); }
+    });
+    aclist.addEventListener('click', function(e){ var li = e.target.closest('.wc-ac-opt'); if(li) pickAc(+li.getAttribute('data-i')); });
+    aclist.addEventListener('mousemove', function(e){ var li = e.target.closest('.wc-ac-opt'); if(li) setAcActive(+li.getAttribute('data-i')); });
+    document.addEventListener('click', function(e){ if(!ac.contains(e.target)){ ac.classList.remove('open'); input.setAttribute('aria-expanded','false'); } });
+  }
+
+  /* static preview: never actually submit */
+  var form = document.getElementById('wc-form');
+  if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); }); }
+})();
+</script>
+</body>
+</html>

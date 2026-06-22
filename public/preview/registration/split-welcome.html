@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Split Welcome - Day Night Dental registration</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ Split Welcome ============ */
+.sw-wrap{max-width:var(--container);margin:0 auto;padding:34px 18px 90px;position:relative;}
+.sw-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.sw-glow.day{width:520px;height:520px;background:var(--dn-day);opacity:.07;top:-40px;left:-160px;}
+.sw-glow.night{width:560px;height:560px;background:var(--dn-night);opacity:.08;bottom:40px;right:-180px;}
+
+/* the architectural split shell */
+.sw-split{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;background:linear-gradient(180deg,rgba(20,20,26,.6),rgba(14,14,18,.6));border:1px solid var(--dn-mist);border-radius:26px;overflow:hidden;box-shadow:0 40px 110px -50px rgba(0,0,0,.92);}
+
+/* ---- LEFT zone: welcome ---- */
+.sw-left{padding:40px 38px 42px;position:relative;border-right:1px solid var(--dn-mist);background:rgba(255,255,255,.012);}
+.sw-left::after{content:'';position:absolute;top:0;bottom:0;right:-1px;width:1px;background:linear-gradient(180deg,transparent,rgba(248,199,96,.4),transparent);}
+.sw-eyebrow-line{display:flex;}
+.sw-left h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,4.4vw,2.85rem);line-height:1.08;letter-spacing:-.01em;margin:18px 0 14px;}
+.sw-intro{color:var(--dn-bone-dim);font-size:1.04rem;max-width:38ch;margin:0 0 26px;}
+
+/* prominent phone block */
+.sw-phone{display:block;text-decoration:none;border:1px solid rgba(248,199,96,.34);background:rgba(248,199,96,.06);border-radius:var(--dn-r-card);padding:18px 20px;transition:border-color .18s,background .18s,box-shadow .18s;}
+.sw-phone:hover{border-color:rgba(248,199,96,.6);background:rgba(248,199,96,.1);box-shadow:0 18px 48px -22px rgba(248,199,96,.5);}
+.sw-phone-top{display:flex;align-items:center;gap:9px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:8px;}
+.sw-phone-dot{width:8px;height:8px;border-radius:50%;background:#3ad07a;box-shadow:0 0 0 0 rgba(58,208,122,.6);animation:sw-live 2.4s infinite;flex:0 0 auto;}
+@keyframes sw-live{0%{box-shadow:0 0 0 0 rgba(58,208,122,.55);}70%{box-shadow:0 0 0 8px rgba(58,208,122,0);}100%{box-shadow:0 0 0 0 rgba(58,208,122,0);}}
+.sw-phone-num{display:flex;align-items:center;gap:13px;}
+.sw-phone-ico{width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;background:rgba(248,199,96,.14);border:1px solid rgba(248,199,96,.3);color:var(--dn-day);}
+.sw-phone-ico svg{width:22px;height:22px;}
+.sw-phone-num b{font-family:var(--font-display);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.15rem);line-height:1;letter-spacing:-.01em;color:var(--dn-bone);}
+.sw-phone-sub{font-size:.86rem;color:var(--dn-bone-dim);margin-top:3px;}
+
+.sw-or{display:flex;align-items:center;gap:14px;margin:24px 0;color:var(--dn-bone-faint);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;}
+.sw-or::before,.sw-or::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
+
+/* what happens next - 3 steps */
+.sw-next-title{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;margin:0 0 16px;}
+.sw-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;position:relative;}
+.sw-step{display:flex;gap:15px;position:relative;padding-bottom:20px;}
+.sw-step:last-child{padding-bottom:0;}
+.sw-step-num{position:relative;z-index:1;width:34px;height:34px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:600;font-size:.94rem;background:var(--dn-charcoal);border:1px solid rgba(248,199,96,.4);color:var(--dn-day);}
+.sw-step:not(:last-child) .sw-step-num::after{content:'';position:absolute;top:36px;left:50%;transform:translateX(-50%);width:1px;height:calc(100% + 4px);background:linear-gradient(180deg,rgba(248,199,96,.4),rgba(255,255,255,.08));}
+.sw-step-txt b{font-family:var(--font-display);font-weight:600;font-size:1.02rem;display:block;line-height:1.25;}
+.sw-step-txt span{font-size:.88rem;color:var(--dn-bone-dim);}
+
+/* ---- RIGHT zone: form ---- */
+.sw-right{padding:40px 38px 42px;background:rgba(10,10,12,.4);}
+.sw-form-head{margin-bottom:22px;}
+.sw-form-head h2{font-family:var(--font-display);font-weight:400;font-size:1.5rem;line-height:1.2;margin:0 0 6px;}
+.sw-form-head p{font-size:.92rem;color:var(--dn-bone-dim);margin:0;}
+
+/* premium inputs */
+.sw-field{position:relative;}
+.sw-field + .sw-field{margin-top:15px;}
+.sw-label{display:block;font-size:.9rem;color:var(--dn-bone-dim);margin-bottom:7px;font-weight:500;}
+.sw-label .opt{color:var(--dn-bone-faint);font-weight:400;}
+.sw-help{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:7px;}
+.sw-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+.sw-input::placeholder{color:var(--dn-bone-faint);}
+.sw-input:hover{border-color:rgba(255,255,255,.2);}
+.sw-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.sw-grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.sw-grid2 .sw-field + .sw-field{margin-top:0;}
+
+/* custom dropdown */
+.sw-dd{position:relative;}
+.sw-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.sw-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.sw-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.sw-dd.open .sw-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.sw-dd-trigger .ph{color:var(--dn-bone-faint);}
+.sw-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.sw-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.sw-dd.open .sw-chev{transform:rotate(180deg);}
+.sw-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:296px;overflow-y:auto;list-style:none;margin:0;}
+.sw-dd:not(.open) .sw-dd-list{display:none;}
+.sw-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.sw-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.sw-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.sw-opt:hover,.sw-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.sw-opt:hover::before,.sw-opt.active::before{opacity:1;}
+.sw-opt[aria-selected="true"]{color:var(--dn-day);}
+.sw-opt[aria-selected="true"] .check{opacity:1;}
+/* SSR-safe / no-JS fallback for the dropdown */
+.sw-dd-native{margin-top:9px;}
+
+/* checkbox */
+.sw-check-row{display:flex;align-items:flex-start;gap:12px;margin-top:18px;cursor:pointer;}
+.sw-check{position:relative;width:22px;height:22px;flex:0 0 auto;margin-top:1px;}
+.sw-check input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer;}
+.sw-check-box{position:absolute;inset:0;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal);transition:border-color .15s,background .15s;pointer-events:none;}
+.sw-check-box svg{position:absolute;inset:0;margin:auto;width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+.sw-check input:checked + .sw-check-box{background:var(--dn-day);border-color:var(--dn-day);}
+.sw-check input:checked + .sw-check-box svg{opacity:1;transform:scale(1);}
+.sw-check input:focus-visible + .sw-check-box{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.sw-check-label{font-size:.88rem;color:var(--dn-bone-dim);line-height:1.5;}
+.sw-check-label a{color:var(--dn-day);}
+
+/* submit */
+.sw-send-row{margin-top:20px;}
+.sw-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.04rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);}
+.sw-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.sw-btn:active{transform:scale(.985);}
+.sw-btn svg{width:18px;height:18px;}
+.sw-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.84rem;color:var(--dn-bone-dim);}
+.sw-reassure svg{width:15px;height:15px;color:#5cd98c;flex:0 0 auto;}
+
+/* visit / address line */
+.sw-visit{position:relative;z-index:1;margin:26px auto 0;max-width:680px;text-align:center;font-size:.86rem;color:var(--dn-bone-dim);}
+.sw-visit a{color:var(--dn-day);text-decoration:none;word-break:break-word;}
+
+@media(max-width:860px){
+  .sw-split{grid-template-columns:1fr;}
+  .sw-left{border-right:none;border-bottom:1px solid var(--dn-mist);}
+  .sw-left::after{top:auto;bottom:-1px;left:0;right:0;width:auto;height:1px;background:linear-gradient(90deg,transparent,rgba(248,199,96,.4),transparent);}
+}
+@media(max-width:520px){
+  .sw-left,.sw-right{padding:30px 22px 32px;}
+  .sw-grid2{grid-template-columns:1fr;}
+  .sw-grid2 .sw-field + .sw-field{margin-top:15px;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Split Welcome</b> <span class="lab-lens">architectural</span></div><span></span></div>
+
+<div class="sw-wrap">
+  <div class="sw-glow day"></div>
+  <div class="sw-glow night"></div>
+
+  <div class="sw-split">
+
+    <!-- ===== LEFT: welcome zone ===== -->
+    <section class="sw-left" aria-labelledby="sw-welcome-h">
+      <div class="sw-eyebrow-line"><span class="dn-eyebrow dn-pill day">New Patients</span></div>
+      <h1 id="sw-welcome-h">New here? Let us get you <em class="dn-hl-gold">booked</em>.</h1>
+      <p class="sw-intro">Welcome to Day Night Dental in Merchant City. Two ways in, both quick: pick up the phone, or leave us your details and we will do the calling.</p>
+
+      <a class="sw-phone" href="tel:+441415486548" aria-label="Call Day Night Dental on 0141 548 6548">
+        <span class="sw-phone-top"><span class="sw-phone-dot" aria-hidden="true"></span>Call us, answered 24/7</span>
+        <span class="sw-phone-num">
+          <span class="sw-phone-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span>
+            <b>0141 548 6548</b>
+            <span class="sw-phone-sub">In pain right now? A real person picks up, day or night.</span>
+          </span>
+        </span>
+      </a>
+
+      <div class="sw-or" aria-hidden="true">or leave it with us</div>
+
+      <p class="sw-next-title">What happens next</p>
+      <ol class="sw-steps">
+        <li class="sw-step">
+          <span class="sw-step-num" aria-hidden="true">1</span>
+          <span class="sw-step-txt">
+            <b>We call you back</b>
+            <span>Within 1 working hour of your message, never an automated queue.</span>
+          </span>
+        </li>
+        <li class="sw-step">
+          <span class="sw-step-num" aria-hidden="true">2</span>
+          <span class="sw-step-txt">
+            <b>We arrange your first visit</b>
+            <span>A time that suits you, with the right dentist for what you need.</span>
+          </span>
+        </li>
+        <li class="sw-step">
+          <span class="sw-step-num" aria-hidden="true">3</span>
+          <span class="sw-step-txt">
+            <b>No obligation</b>
+            <span>Just a friendly chat. You decide if and when to go ahead.</span>
+          </span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== RIGHT: form zone ===== -->
+    <section class="sw-right" aria-labelledby="sw-form-h">
+      <div class="sw-form-head">
+        <h2 id="sw-form-h">Leave your details</h2>
+        <p>Takes about 30 seconds. We will take it from there.</p>
+      </div>
+
+      <noscript>
+        <p style="background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.3);border-radius:13px;padding:13px 15px;font-size:.9rem;color:var(--dn-bone-dim);">
+          This form needs JavaScript for the dropdown. Please call us on
+          <a href="tel:+441415486548" style="color:var(--dn-day);">0141 548 6548</a> or email
+          <a href="mailto:reception@daynightdental.co.uk" style="color:var(--dn-day);word-break:break-word;">reception@daynightdental.co.uk</a>.
+        </p>
+      </noscript>
+
+      <form class="sw-form" id="sw-form" method="post" action="/api/send-enquiry.php" novalidate>
+        <!-- honeypot -->
+        <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="sw-grid2">
+          <div class="sw-field">
+            <label class="sw-label" for="sw-first">First name</label>
+            <input class="sw-input" type="text" id="sw-first" name="firstName" required autocomplete="given-name" placeholder="e.g. Jamie">
+          </div>
+          <div class="sw-field">
+            <label class="sw-label" for="sw-phone-in">Phone</label>
+            <input class="sw-input" type="tel" id="sw-phone-in" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+          </div>
+        </div>
+
+        <div class="sw-field">
+          <label class="sw-label" for="sw-email">Email</label>
+          <input class="sw-input" type="email" id="sw-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+        </div>
+
+        <div class="sw-field">
+          <label class="sw-label" id="sw-dd-label">What brings you in? <span class="opt">(optional)</span></label>
+          <div class="sw-dd" id="sw-dd">
+            <button type="button" class="sw-dd-trigger" id="sw-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sw-dd-label sw-dd-trigger">
+              <span class="ph" id="sw-dd-val">Select an option</span>
+              <svg class="sw-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="sw-dd-list" id="sw-dd-list" role="listbox" aria-labelledby="sw-dd-label" tabindex="-1">
+              <li class="sw-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="sw-opt" role="option" data-value="New patient check-up">New patient check-up<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="sw-opt" role="option" data-value="Routine appointment">Routine appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="sw-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="sw-opt" role="option" data-value="Something else">Something else<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+            </ul>
+          </div>
+          <input type="hidden" name="reason" id="sw-reason" value="">
+          <span class="sw-help">Helps us point you to the right dentist. Skip it if you are not sure.</span>
+          <!-- SSR-safe / no-JS fallback: a real native select, only visible without JS -->
+          <noscript>
+            <div class="sw-dd-native">
+              <label class="sw-label" for="sw-reason-native">What brings you in?</label>
+              <select class="sw-input" id="sw-reason-native" name="reason">
+                <option value="">Select an option</option>
+                <option value="Emergency / pain">Emergency / pain</option>
+                <option value="New patient check-up">New patient check-up</option>
+                <option value="Routine appointment">Routine appointment</option>
+                <option value="Cosmetic consultation">Cosmetic consultation</option>
+                <option value="Something else">Something else</option>
+              </select>
+            </div>
+          </noscript>
+        </div>
+
+        <label class="sw-check-row">
+          <span class="sw-check">
+            <input type="checkbox" name="consent" required>
+            <span class="sw-check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </span>
+          <span class="sw-check-label">I am happy for Day Night Dental to contact me about registering. We will never share your details. Read our <a href="/privacy/">privacy policy</a>.</span>
+        </label>
+
+        <div class="sw-send-row">
+          <button type="submit" class="sw-btn">
+            Get my call back
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <p class="sw-reassure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            We call you within 1 working hour
+          </p>
+        </div>
+      </form>
+    </section>
+
+  </div>
+
+  <p class="sw-visit">
+    Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH ·
+    <a href="tel:+441415486548">0141 548 6548</a> ·
+    <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+  </p>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('sw-dd');
+  if(!dd) return;
+  var trigger = document.getElementById('sw-dd-trigger');
+  var list = document.getElementById('sw-dd-list');
+  var valEl = document.getElementById('sw-dd-val');
+  var hidden = document.getElementById('sw-reason');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.sw-opt'));
+  var activeIdx = -1;
+
+  function open(){
+    dd.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+    setActive(sel > -1 ? sel : 0);
+    list.focus();
+  }
+  function close(focusTrigger){
+    dd.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    if(focusTrigger) trigger.focus();
+  }
+  function setActive(i){
+    if(i < 0) i = 0;
+    if(i > opts.length-1) i = opts.length-1;
+    opts.forEach(function(o){o.classList.remove('active');});
+    activeIdx = i;
+    opts[i].classList.add('active');
+    opts[i].scrollIntoView({block:'nearest'});
+  }
+  function choose(o){
+    opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+    o.setAttribute('aria-selected','true');
+    var v = o.getAttribute('data-value');
+    valEl.textContent = v;
+    trigger.classList.add('has-val');
+    hidden.value = v;
+    close(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    dd.classList.contains('open') ? close(false) : open();
+  });
+  trigger.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+  });
+  opts.forEach(function(o,i){
+    o.addEventListener('click', function(){ choose(o); });
+    o.addEventListener('mousemove', function(){ setActive(i); });
+  });
+  list.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+    else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+    else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+    else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+    else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+  });
+  document.addEventListener('click', function(e){
+    if(!dd.contains(e.target)) close(false);
+  });
+
+  /* static preview: never actually submit */
+  var form = document.getElementById('sw-form');
+  if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); }); }
+})();
+</script>
+</body>
+</html>

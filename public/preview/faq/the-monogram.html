@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,115 +10,177 @@
 :root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
 *{box-sizing:border-box;}
 body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-img{max-width:100%;display:block;} a{color:inherit;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
 .lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
-.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
-.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
 .lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
 .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
 .lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
 .dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
-.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
-em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>The Monogram · couture · Common Questions - Day Night Dental</title>
 <style>
 /* ============================================================
    THE MONOGRAM - couture lens (rank #1, panel winner)
-   "Questions as an engraved monogram index; answer reads as
-   letterhead correspondence."
-   One centred sheet, hairline divisions, gold/blue used only
-   twice per state (active numeral + letterhead rule). No
-   gradients on the brand colours; solid gold/blue throughout.
+   "Questions engraved as a monogram index; the answer reads as
+   letterhead correspondence on a single sheet of stock."
+   Evolved: a true stationery sheet with embossed corner marks
+   and a wax-seal counter, an engraved vertical rule of Roman
+   numerals, a foil watermark numeral behind the open letter,
+   and a signed-off correspondence flourish. Solid gold #f8c760
+   + blue #4590ec only, never a gold-to-blue gradient; each
+   colour appears at most twice per state (active numeral seal +
+   the letterhead rule). No em dashes anywhere.
    ============================================================ */
 
 .dn-section{padding:clamp(4rem,9vw,8rem) 0 clamp(4.5rem,9vw,8.5rem);position:relative;}
-.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);position:relative;}
 
-/* faint ambient wash behind the sheet (neutral + day/night glow, no brand gradient) */
+/* faint ambient wash behind the sheet (neutral plus day/night glow, no brand gradient) */
 .dn-section::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(248,199,96,.05), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(69,144,236,.04), transparent 60%);}
+    radial-gradient(ellipse 64% 52% at 50% -4%, rgba(248,199,96,.055), transparent 60%),
+    radial-gradient(ellipse 58% 50% at 50% 104%, rgba(69,144,236,.042), transparent 62%);}
 
 /* ---- section head ---------------------------------------- */
-.tp-section-head.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.1rem;position:relative;}
-.dn-display{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.015em;
-  font-size:clamp(1.85rem,4.6vw,3rem);margin:0;max-width:18ch;}
-.tp-section-head.dn-center-head::after{content:"";width:54px;height:1px;margin-top:.4rem;
-  background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);}
+.tp-section-head.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.05rem;position:relative;}
+.dn-display{font-family:var(--font-display);font-weight:340;line-height:1.07;letter-spacing:-.014em;
+  font-size:clamp(2rem,4.8vw,3.15rem);margin:0;max-width:17ch;color:var(--dn-bone);}
+.dn-display em.dn-hl-gold{position:relative;}
+.dn-display em.dn-hl-gold::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:2px;
+  background:var(--dn-day);border-radius:2px;opacity:.85;}
+/* an engraved couture monogram cipher under the head: interlocked D N */
+.dn-cipher{display:flex;align-items:center;gap:.85rem;margin-top:.2rem;color:var(--dn-bone-faint);}
+.dn-cipher span{height:1px;width:clamp(34px,7vw,58px);background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);}
+.dn-cipher b{font-family:var(--font-display);font-weight:600;font-style:italic;font-size:.92rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--dn-bone-faint);padding-left:.32em;}
 
 /* ---- THE SHEET (single stationery sheet, two columns) ---- */
-.dn-faq-side{max-width:920px;margin:clamp(3rem,6vw,4.5rem) auto 0;display:grid;gap:0;
-  grid-template-columns:0.62fr 1fr;position:relative;}
+.dn-faq-side{max-width:920px;margin:clamp(3.2rem,6vw,4.8rem) auto 0;display:grid;gap:0;
+  grid-template-columns:0.64fr 1fr;position:relative;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,0) 42%),
+    var(--dn-charcoal);
+  border-radius:8px;padding:clamp(26px,3vw,40px) clamp(24px,3vw,42px);
+  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 40px 90px -50px rgba(0,0,0,.9);}
 
-/* hairline frame - the "card of stock" */
-.dn-faq-side::before{content:"";position:absolute;inset:clamp(-22px,-2.4vw,-34px);
-  border:1px solid var(--dn-mist);border-radius:6px;pointer-events:none;}
-.dn-faq-side::after{content:"";position:absolute;inset:clamp(-16px,-1.8vw,-26px);
-  border:1px solid rgba(255,255,255,.045);border-radius:4px;pointer-events:none;}
+/* hairline frame plus a fainter inner rule: the embossed plate edge of the stock */
+.dn-faq-side::before{content:"";position:absolute;inset:7px;
+  border:1px solid var(--dn-mist);border-radius:5px;pointer-events:none;}
+.dn-faq-side::after{content:"";position:absolute;inset:13px;
+  border:1px solid rgba(255,255,255,.04);border-radius:3px;pointer-events:none;}
+
+/* engraved corner marks at the four corners of the sheet */
+.dn-corner{position:absolute;width:14px;height:14px;pointer-events:none;opacity:.55;z-index:2;}
+.dn-corner::before,.dn-corner::after{content:"";position:absolute;background:var(--dn-bone-faint);}
+.dn-corner::before{width:14px;height:1px;}
+.dn-corner::after{width:1px;height:14px;}
+.dn-corner.tl{top:14px;left:14px;}
+.dn-corner.tr{top:14px;right:14px;}.dn-corner.tr::after{right:0;}.dn-corner.tr::before{right:0;}
+.dn-corner.bl{bottom:14px;left:14px;}.dn-corner.bl::after{bottom:0;}.dn-corner.bl::before{bottom:0;}
+.dn-corner.br{bottom:14px;right:14px;}.dn-corner.br::after{bottom:0;right:0;}.dn-corner.br::before{bottom:0;right:0;}
 
 /* ---- left rail: monogram index --------------------------- */
-.dn-faq-nav{counter-reset:mono;border-right:1px solid var(--dn-mist);padding-right:clamp(20px,2.6vw,30px);
+.dn-faq-nav{border-right:1px solid var(--dn-mist);padding-right:clamp(20px,2.6vw,32px);
   display:flex;flex-direction:column;}
-.dn-faq-q{--ink:var(--dn-day);min-height:48px;display:grid;grid-template-columns:30px 1fr;gap:12px;
-  align-items:center;border:none;border-bottom:1px solid var(--dn-mist);background:transparent;
-  color:var(--dn-bone-dim);font-family:var(--font-body);font-size:.92rem;line-height:1.35;
-  text-align:left;cursor:pointer;padding:14px 4px 14px 0;transition:color .25s ease;width:100%;}
-.dn-faq-q:nth-child(even){--ink:var(--dn-night);}
-.dn-faq-q::before{counter-increment:mono;content:counter(mono,upper-roman);
-  font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:var(--dn-mist);
-  letter-spacing:.04em;transition:color .25s ease;line-height:1;}
-.dn-faq-q.on,.dn-faq-q:hover{color:var(--dn-bone);}
-.dn-faq-q.on::before,.dn-faq-q:hover::before{color:var(--ink);}              /* gold/blue numeral, no hover gate */
-.dn-faq-q.on{border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink);} /* the letterhead hairline */
+.dn-faq-rail-label{font-family:var(--font-display);font-weight:600;font-style:italic;font-size:.66rem;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 .9rem;padding-left:46px;}
+
+.dn-faq-q{--ink:var(--dn-day);position:relative;min-height:52px;display:grid;
+  grid-template-columns:34px 1fr;gap:12px;align-items:center;
+  border:none;border-bottom:1px solid var(--dn-mist);background:transparent;
+  color:var(--dn-bone-dim);font-family:var(--font-body);font-size:.93rem;line-height:1.34;font-weight:440;
+  letter-spacing:-.002em;text-align:left;cursor:pointer;padding:15px 4px 15px 0;
+  transition:color .25s ease,padding-left .3s cubic-bezier(.2,.7,.2,1);width:100%;}
+.dn-faq-q:first-of-type{border-top:1px solid var(--dn-mist);}
+.dn-faq-q:nth-of-type(even){--ink:var(--dn-night);}
+
+/* the Roman numeral, set in a hairline seal counter */
+.dn-faq-q .num{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--dn-mist);font-family:var(--font-display);font-weight:600;font-size:.9rem;
+  color:var(--dn-bone-faint);letter-spacing:.02em;line-height:1;
+  transition:color .25s ease,border-color .25s ease,box-shadow .3s ease,background .25s ease;}
+
+.dn-faq-q .qt{display:block;}
+
+@media (hover:hover){
+  .dn-faq-q:hover{color:var(--dn-bone);}
+  .dn-faq-q:hover .num{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 40%,transparent);}
+}
 .dn-faq-q:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px;}
 
-/* ---- right column: letterhead panel ---------------------- */
-.dn-faq-panel{border:none;background:transparent;padding:4px 0 0 clamp(22px,3.4vw,40px);position:relative;min-height:230px;}
-.dn-faq-a{--ink:var(--dn-day);display:none;}
-.dn-faq-a:nth-child(even){--ink:var(--dn-night);}
-.dn-faq-a.on{display:block;animation:dn-fade-up .4s ease;}
+/* active row: the wax-seal numeral + a solid letterhead hairline */
+.dn-faq-q.on{color:var(--dn-bone);border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink);}
+.dn-faq-q.on .num{color:var(--ink);border-color:var(--ink);
+  background:color-mix(in srgb,var(--ink) 12%,transparent);
+  box-shadow:0 0 22px -8px color-mix(in srgb,var(--ink) 75%,transparent);}
 
-/* giant ghosted foil numeral - watermark of the open answer */
-.dn-faq-a.on::before{content:attr(data-mono);position:absolute;top:clamp(-34px,-3vw,-22px);right:0;
-  font-family:var(--font-display);font-weight:700;font-size:clamp(6rem,13vw,9rem);line-height:1;
+/* ---- right column: letterhead panel ---------------------- */
+.dn-faq-panel{border:none;background:transparent;padding:2px 0 0 clamp(22px,3.4vw,42px);position:relative;min-height:248px;}
+.dn-faq-a{--ink:var(--dn-day);display:none;}
+.dn-faq-a:nth-of-type(even){--ink:var(--dn-night);}
+.dn-faq-a.on{display:block;animation:dn-fade-up .42s ease;}
+
+/* giant ghosted foil numeral: watermark of the open answer */
+.dn-faq-a.on::before{content:attr(data-mono);position:absolute;top:clamp(-30px,-3vw,-18px);right:0;
+  font-family:var(--font-display);font-weight:700;font-size:clamp(5.5rem,12vw,8.5rem);line-height:1;
   color:color-mix(in srgb,var(--ink) 9%,transparent);pointer-events:none;z-index:0;letter-spacing:-.02em;}
 
-.dn-faq-a .q{position:relative;z-index:1;font-family:var(--font-display);font-weight:800;
-  font-size:clamp(1.25rem,2.6vw,1.55rem);line-height:1.18;color:var(--dn-bone);margin:0;
-  padding-top:18px;border-top:1px solid var(--ink);}                          /* solid gold/blue letterhead rule */
+.dn-faq-a .q{position:relative;z-index:1;font-family:var(--font-display);font-weight:520;
+  font-size:clamp(1.3rem,2.7vw,1.62rem);line-height:1.16;letter-spacing:-.01em;color:var(--dn-bone);margin:0;
+  padding-top:18px;border-top:1px solid var(--ink);}
 .dn-faq-a .a{position:relative;z-index:1;font-family:var(--font-body);font-weight:400;
-  font-size:clamp(.95rem,1.6vw,1.02rem);line-height:1.75;color:var(--dn-bone-dim);margin:1.1rem 0 0;
-  max-width:46ch;}
+  font-size:clamp(.96rem,1.6vw,1.04rem);line-height:1.78;color:var(--dn-bone-dim);margin:1.1rem 0 0;
+  max-width:48ch;}
 
-/* a small correspondence flourish - the "from" line of the letter */
-.dn-faq-a .seal{display:flex;align-items:center;gap:.7rem;margin:1.6rem 0 0;
-  font-family:var(--font-display);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+/* a small correspondence sign-off: the "from" line of the letter */
+.dn-faq-a .seal{display:flex;align-items:center;gap:.7rem;margin:1.7rem 0 0;
+  font-family:var(--font-display);font-style:italic;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--dn-bone-faint);}
-.dn-faq-a .seal::before{content:"";width:26px;height:1px;background:var(--ink);}
+.dn-faq-a .seal::before{content:"";width:28px;height:1px;background:var(--ink);}
 
-@keyframes dn-fade-up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+@keyframes dn-fade-up{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:none;}}
 
 /* ---- the signature / foot -------------------------------- */
 .dn-faq-foot{max-width:920px;margin:clamp(3.4rem,6vw,5rem) auto 0;text-align:center;
   font-family:var(--font-display);font-weight:400;font-style:italic;
   font-size:clamp(1rem,2vw,1.18rem);color:var(--dn-bone-dim);letter-spacing:.005em;}
+.dn-faq-foot .flourish{display:block;margin:0 auto .9rem;width:42px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);position:relative;}
+.dn-faq-foot .flourish::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:5px;height:5px;border-radius:50%;border:1px solid var(--dn-bone-faint);}
 .dn-faq-foot a{color:var(--dn-day);text-decoration:none;font-style:normal;font-weight:600;
   font-family:var(--font-body);border-bottom:1px solid color-mix(in srgb,var(--dn-day) 45%,transparent);
   padding-bottom:1px;transition:border-color .2s ease;}
 .dn-faq-foot a:hover{border-bottom-color:var(--dn-day);}
 
+@media (prefers-reduced-motion:reduce){
+  .dn-faq-a.on{animation:none;}
+  .dn-faq-q,.dn-faq-q .num{transition:none;}
+}
+
 /* ---- mobile: collapse to one column ---------------------- */
 @media (max-width:768px){
-  .dn-faq-side{grid-template-columns:1fr;}
-  .dn-faq-side::before{inset:-16px;}
-  .dn-faq-side::after{inset:-11px;}
+  .dn-faq-side{grid-template-columns:1fr;padding:clamp(22px,5vw,30px) clamp(20px,5vw,26px);}
   .dn-faq-nav{border-right:none;padding-right:0;}
-  .dn-faq-panel{padding-left:0;padding-top:1.4rem;min-height:0;}
-  .dn-faq-a.on::before{font-size:clamp(5rem,22vw,7rem);top:-18px;}
+  .dn-faq-rail-label{padding-left:46px;}
+  .dn-faq-panel{padding-left:0;padding-top:1.5rem;min-height:0;}
+  .dn-faq-a.on::before{font-size:clamp(4.5rem,22vw,6.5rem);top:-14px;}
   .dn-faq-a .a{max-width:none;}
+}
+@media (max-width:380px){
+  .dn-faq-q{grid-template-columns:30px 1fr;gap:10px;font-size:.9rem;}
+  .dn-faq-q .num{width:28px;height:28px;font-size:.82rem;}
+  .dn-faq-rail-label{padding-left:40px;}
 }
 </style>
 </head>
@@ -130,43 +192,54 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
     <div class="tp-section-head dn-center-head">
       <span class="dn-eyebrow dn-pill day">Common Questions</span>
       <h2 id="faq-heading" class="dn-display"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+      <div class="dn-cipher" aria-hidden="true"><span></span><b>DN</b><span></span></div>
     </div>
 
     <div class="dn-faq-side">
+      <span class="dn-corner tl" aria-hidden="true"></span>
+      <span class="dn-corner tr" aria-hidden="true"></span>
+      <span class="dn-corner bl" aria-hidden="true"></span>
+      <span class="dn-corner br" aria-hidden="true"></span>
+
       <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions">
-        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on">Is there an emergency dentist open now in Glasgow?</button>
-        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q">Are you taking on new patients?</button>
-        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q">Where is the practice and where can I park?</button>
-        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q">What are your opening hours?</button>
+        <p class="dn-faq-rail-label" aria-hidden="true">Index</p>
+        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on"><span class="num" aria-hidden="true">I</span><span class="qt">Is there an emergency dentist open now in Glasgow?</span></button>
+        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q"><span class="num" aria-hidden="true">II</span><span class="qt">Are you taking on new patients?</span></button>
+        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q"><span class="num" aria-hidden="true">III</span><span class="qt">Where is the practice and where can I park?</span></button>
+        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q"><span class="num" aria-hidden="true">IV</span><span class="qt">What are your opening hours?</span></button>
       </div>
 
       <div class="dn-faq-panel">
         <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" data-mono="I" class="dn-faq-a on">
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
           <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
-          <p class="seal">Day Night Dental · Merchant City</p>
+          <p class="seal">Day Night Dental, Merchant City</p>
         </div>
         <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" data-mono="II" class="dn-faq-a">
           <h3 class="q">Are you taking on new patients?</h3>
           <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
-          <p class="seal">Day Night Dental · Merchant City</p>
+          <p class="seal">Day Night Dental, Merchant City</p>
         </div>
         <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" data-mono="III" class="dn-faq-a">
           <h3 class="q">Where is the practice and where can I park?</h3>
           <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
-          <p class="seal">Day Night Dental · Merchant City</p>
+          <p class="seal">Day Night Dental, Merchant City</p>
         </div>
         <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" data-mono="IV" class="dn-faq-a">
           <h3 class="q">What are your opening hours?</h3>
           <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
-          <p class="seal">Day Night Dental · Merchant City</p>
+          <p class="seal">Day Night Dental, Merchant City</p>
         </div>
       </div>
     </div>
 
-    <p class="dn-faq-foot">Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.</p>
+    <p class="dn-faq-foot"><span class="flourish" aria-hidden="true"></span>Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.</p>
   </div>
 </section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an emergency dentist open now in Glasgow?","acceptedAnswer":{"@type":"Answer","text":"Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."}},{"@type":"Question","name":"Are you taking on new patients?","acceptedAnswer":{"@type":"Answer","text":"Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."}},{"@type":"Question","name":"Where is the practice and where can I park?","acceptedAnswer":{"@type":"Answer","text":"You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."}},{"@type":"Question","name":"What are your opening hours?","acceptedAnswer":{"@type":"Answer","text":"We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."}}]}
+</script>
 
 <script>
 (function(){

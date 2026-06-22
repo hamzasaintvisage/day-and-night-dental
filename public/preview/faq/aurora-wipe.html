@@ -10,109 +10,183 @@
 :root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
 *{box-sizing:border-box;}
 body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-img{max-width:100%;display:block;} a{color:inherit;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
 .lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
-.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
-.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
 .lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
 .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
 .lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
 .dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
-.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
-em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>Aurora Wipe · kinetic · Common Questions - Day Night Dental</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an emergency dentist open now in Glasgow?","acceptedAnswer":{"@type":"Answer","text":"Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."}},{"@type":"Question","name":"Are you taking on new patients?","acceptedAnswer":{"@type":"Answer","text":"Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."}},{"@type":"Question","name":"Where is the practice and where can I park?","acceptedAnswer":{"@type":"Answer","text":"You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."}},{"@type":"Question","name":"What are your opening hours?","acceptedAnswer":{"@type":"Answer","text":"We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."}}]}
+</script>
 <style>
 /* ============================================================
    AURORA WIPE - kinetic lens (rank #6)
-   "A solid accent bar wipes each answer in; a marker glides
-   the rail." A single solid-colour marker travels the question
-   rail (position via inline --dn-faq-i, zero JS measurement on
-   desktop), and a flat accent panel sweeps left-to-right across
-   the answer card to physically reveal the new answer. Solid
-   gold/blue only (index 0 gold, 1 blue ...), never a gradient.
-   SSR-safe: every answer renders; reduced-motion snaps.
+   The identity is preserved and pushed further: a single solid
+   accent marker travels a numbered question rail, and a solid
+   aurora band sweeps left-to-right across the answer stage to
+   physically reveal each answer. New for this build:
+   - the rail is a numbered "frequency" ledger (tabular index +
+     micro question, each row owns a tone: 0 gold, 1 blue ...)
+   - the answer stage carries a layered aurora curtain (a soft
+     wash band + a crisp leading edge line) so the wipe reads as
+     a deliberate light sweep, not a flat block
+   - flat numerals become Fraunces tabular index chips; plain
+     ticks become a travelling chevron caret on the active row
+   - a kicker "frequency" meter sits under the panel echoing the
+     active tone, tying the two columns together
+   Solid gold/blue only, never a gradient. SSR-safe: every answer
+   is in the DOM; default state shows answer 0 with JS disabled;
+   reduced-motion snaps with no sweep.
    ============================================================ */
 
 .dn-section{padding:clamp(4rem,9vw,8rem) 0 clamp(4.5rem,9vw,8.5rem);position:relative;}
-.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+.dn-container{position:relative;width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
 
 /* faint ambient wash (neutral + day/night glow, no brand gradient) */
 .dn-section::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 55% at 12% 0%, rgba(248,199,96,.05), transparent 60%),
-    radial-gradient(ellipse 65% 55% at 92% 100%, rgba(69,144,236,.045), transparent 60%);}
+    radial-gradient(ellipse 70% 55% at 10% -4%, rgba(248,199,96,.06), transparent 60%),
+    radial-gradient(ellipse 64% 55% at 94% 104%, rgba(69,144,236,.05), transparent 62%);}
 
 /* ---- section head ---------------------------------------- */
-.tp-section-head.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.1rem;position:relative;}
-.dn-display{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.015em;
-  font-size:clamp(1.85rem,4.6vw,3rem);margin:0;max-width:18ch;}
-.tp-section-head.dn-center-head::after{content:"";width:54px;height:1px;margin-top:.4rem;
-  background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);}
+.tp-section-head.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.15rem;position:relative;}
+.dn-display{font-family:var(--font-display);font-weight:380;line-height:1.06;letter-spacing:-.018em;
+  font-size:clamp(2rem,5vw,3.4rem);margin:0;max-width:17ch;}
+.dn-lede{margin:.15rem auto 0;max-width:46ch;color:var(--dn-bone-faint);font-size:.98rem;line-height:1.7;}
+.tp-section-head.dn-center-head::after{content:"";width:58px;height:1px;margin-top:.35rem;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--dn-day) 55%,transparent),transparent);}
 
 /* ---- the two-column stage -------------------------------- */
-.dn-faq-side{max-width:980px;margin:clamp(3rem,6vw,4.5rem) auto 0;display:grid;
-  grid-template-columns:0.5fr 1fr;gap:clamp(26px,3.4vw,46px);align-items:start;position:relative;}
+.dn-faq-side{max-width:1000px;margin:clamp(3rem,6vw,4.6rem) auto 0;display:grid;
+  grid-template-columns:minmax(0,0.92fr) minmax(0,1.35fr);gap:clamp(26px,3.6vw,52px);align-items:start;position:relative;}
 
-/* ---- left: the live rail --------------------------------- */
-.dn-faq-nav{position:relative;padding-left:18px;display:flex;flex-direction:column;}
-.dn-faq-nav::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
-  background:var(--dn-mist);border-radius:2px;}
+/* ---- left: the live frequency rail ----------------------- */
+.dn-faq-nav{position:relative;padding-left:22px;display:flex;flex-direction:column;
+  counter-reset:dn-faq;}
+/* the rail track */
+.dn-faq-nav::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:2px;
+  background:linear-gradient(180deg,transparent,var(--dn-mist) 12%,var(--dn-mist) 88%,transparent);border-radius:2px;}
 
 /* the single travelling marker, solid colour, glides on --dn-faq-i.
-   row height 44px + 6px gap = 50px stride. index 0 gold, 1 blue ... */
-.dn-faq-rail-marker{position:absolute;left:-1px;top:0;width:4px;height:44px;border-radius:2px;
+   row stride is set in JS via --dn-faq-stride (measured), default 64px.
+   index 0 gold, 1 blue ... */
+.dn-faq-rail-marker{position:absolute;left:-1px;top:2px;width:4px;height:var(--dn-faq-mh,52px);border-radius:3px;
   background:var(--dn-day);
-  transform:translateY(calc(var(--dn-faq-i,0) * 50px));
-  transition:transform .45s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .25s ease;
-  box-shadow:0 0 16px -2px color-mix(in srgb,var(--dn-day) 70%,transparent);}
+  transform:translateY(calc(var(--dn-faq-i,0) * var(--dn-faq-stride,64px)));
+  transition:transform .5s cubic-bezier(.16,1,.3,1), height .5s cubic-bezier(.16,1,.3,1), background .3s ease, box-shadow .3s ease;
+  box-shadow:0 0 18px -2px color-mix(in srgb,var(--dn-day) 72%,transparent);}
 .dn-faq-nav[data-even="1"] .dn-faq-rail-marker{background:var(--dn-night);
-  box-shadow:0 0 16px -2px color-mix(in srgb,var(--dn-night) 70%,transparent);}
+  box-shadow:0 0 18px -2px color-mix(in srgb,var(--dn-night) 72%,transparent);}
 
-.dn-faq-q{--ink:var(--dn-day);min-height:44px;margin-bottom:6px;display:flex;align-items:center;
+.dn-faq-q{--ink:var(--dn-day);position:relative;display:grid;
+  grid-template-columns:2.1rem 1fr auto;column-gap:.85rem;align-items:center;
+  min-height:52px;margin-bottom:12px;
   border:none;background:transparent;color:var(--dn-bone-dim);font-family:var(--font-body);
-  font-size:.92rem;line-height:1.3;text-align:left;cursor:pointer;padding:6px 4px;width:100%;
-  transition:color .25s ease;}
-.dn-faq-q:nth-of-type(even){--ink:var(--dn-night);} /* alternate the focus ring + active pill accent */
+  font-size:.95rem;line-height:1.32;text-align:left;cursor:pointer;padding:9px 6px 9px 8px;width:100%;
+  border-radius:11px;
+  transition:color .25s ease, background .25s ease, box-shadow .25s ease;}
+.dn-faq-q:nth-of-type(even){--ink:var(--dn-night);} /* alternate the tone: 0 gold, 1 blue ... */
 .dn-faq-q:last-child{margin-bottom:0;}
-.dn-faq-q.on,.dn-faq-q:hover{color:var(--dn-bone);}
-.dn-faq-q:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px;}
 
-/* ---- right: the answer card the wipe plays across -------- */
+/* Fraunces tabular index chip replaces the flat numeral */
+.dn-faq-q .idx{counter-increment:dn-faq;font-family:var(--font-display);font-weight:600;
+  font-size:.82rem;letter-spacing:.04em;font-variant-numeric:tabular-nums;
+  color:color-mix(in srgb,var(--ink) 60%,var(--dn-bone-faint));align-self:start;margin-top:.06rem;
+  transition:color .25s ease;}
+.dn-faq-q .idx::before{content:counter(dn-faq,decimal-leading-zero);}
+.dn-faq-q .lbl{min-width:0;}
+/* travelling chevron caret replaces the plain tick */
+.dn-faq-q .caret{justify-self:end;align-self:center;width:9px;height:9px;flex:0 0 auto;
+  border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
+  transform:rotate(-45deg);opacity:.35;
+  transition:opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1), color .25s ease;color:var(--dn-bone-faint);}
+
+@media (hover:hover){
+  .dn-faq-q:hover{color:var(--dn-bone);background:rgba(255,255,255,.025);}
+  .dn-faq-q:hover .idx{color:var(--ink);}
+  .dn-faq-q:hover .caret{opacity:.7;color:var(--ink);}
+}
+.dn-faq-q.on{color:var(--dn-bone);}
+.dn-faq-q.on .idx{color:var(--ink);}
+.dn-faq-q.on .caret{opacity:1;color:var(--ink);transform:rotate(45deg);}
+.dn-faq-q:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:11px;}
+
+/* ---- right: the answer stage the aurora plays across ----- */
 .dn-faq-panel{position:relative;overflow:hidden;border:1px solid var(--dn-mist);
-  border-radius:var(--dn-r-card);background:var(--dn-near-black);
-  padding:clamp(22px,3vw,34px);min-height:248px;}
+  border-radius:var(--dn-r-card);background:
+    linear-gradient(180deg,rgba(255,255,255,.018),transparent 38%),var(--dn-near-black);
+  padding:clamp(24px,3.2vw,38px);min-height:268px;
+  box-shadow:0 24px 60px -40px rgba(0,0,0,.9);}
+/* a hairline corner index echoing the active tone */
+.dn-faq-panel::after{content:"";position:absolute;left:0;top:0;width:46px;height:46px;pointer-events:none;
+  border-top:2px solid var(--dn-faq-tone,var(--dn-day));border-left:2px solid var(--dn-faq-tone,var(--dn-day));
+  border-top-left-radius:var(--dn-r-card);opacity:.55;
+  transition:border-color .3s ease;}
+.dn-faq-panel[data-tone="night"]{--dn-faq-tone:var(--dn-night);}
+
 .dn-faq-a{--dn-faq-accent:var(--dn-day);display:none;}
 .dn-faq-a:nth-of-type(even){--dn-faq-accent:var(--dn-night);}
 .dn-faq-a.on{display:block;}
 
-/* the solid accent panel sweeps across, then clears, revealing the text */
-.dn-faq-a.on::before{content:"";position:absolute;inset:0;transform-origin:left;z-index:2;
-  pointer-events:none;background:color-mix(in srgb,var(--dn-faq-accent) 16%,transparent);
-  animation:dn-faq-wipe .55s cubic-bezier(.16,1,.3,1) forwards;}
+/* the aurora curtain: a soft wash band + a crisp leading edge that
+   sweep across, then clear, revealing the text underneath. */
+.dn-faq-a.on::before{content:"";position:absolute;inset:0;transform-origin:left;z-index:3;
+  pointer-events:none;background:color-mix(in srgb,var(--dn-faq-accent) 15%,transparent);
+  animation:dn-faq-wash .6s cubic-bezier(.16,1,.3,1) forwards;}
+.dn-faq-a.on::after{content:"";position:absolute;top:0;bottom:0;left:0;width:2px;z-index:4;
+  pointer-events:none;background:var(--dn-faq-accent);
+  box-shadow:0 0 22px 2px color-mix(in srgb,var(--dn-faq-accent) 70%,transparent);
+  animation:dn-faq-edge .6s cubic-bezier(.16,1,.3,1) forwards;}
 
 .dn-faq-a.on .q,.dn-faq-a.on .a,.dn-faq-a.on .seal{position:relative;z-index:1;
-  animation:dn-fade-up .45s ease .14s backwards;}
+  animation:dn-fade-up .46s ease .16s backwards;}
 
-.dn-faq-a .q{font-family:var(--font-display);font-weight:800;
-  font-size:clamp(1.25rem,2.6vw,1.55rem);line-height:1.18;color:var(--dn-bone);margin:0;
-  padding-bottom:14px;border-bottom:1px solid var(--dn-faq-accent);} /* solid gold/blue rule */
+.dn-faq-a .q{font-family:var(--font-display);font-weight:560;
+  font-size:clamp(1.3rem,2.7vw,1.6rem);line-height:1.16;letter-spacing:-.01em;color:var(--dn-bone);margin:0;
+  padding-bottom:16px;position:relative;}
+/* solid gold/blue rule under the question, with a brighter leading dash */
+.dn-faq-a .q::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:color-mix(in srgb,var(--dn-faq-accent) 32%,transparent);}
+.dn-faq-a .q .qmark{position:absolute;left:0;bottom:0;height:2px;width:38px;border-radius:2px;
+  background:var(--dn-faq-accent);box-shadow:0 0 12px -2px color-mix(in srgb,var(--dn-faq-accent) 75%,transparent);}
 .dn-faq-a .a{font-family:var(--font-body);font-weight:400;
-  font-size:clamp(.95rem,1.6vw,1.02rem);line-height:1.75;color:var(--dn-bone-dim);
-  margin:1.15rem 0 0;max-width:52ch;}
-.dn-faq-a .seal{display:flex;align-items:center;gap:.7rem;margin:1.6rem 0 0;
-  font-family:var(--font-display);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  font-size:clamp(.97rem,1.6vw,1.04rem);line-height:1.78;color:var(--dn-bone-dim);
+  margin:1.2rem 0 0;max-width:54ch;}
+.dn-faq-a .seal{display:flex;align-items:center;gap:.7rem;margin:1.7rem 0 0;
+  font-family:var(--font-display);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
   color:var(--dn-bone-faint);}
-.dn-faq-a .seal::before{content:"";width:26px;height:2px;border-radius:2px;
-  background:var(--dn-faq-accent);}
+.dn-faq-a .seal::before{content:"";width:28px;height:2px;border-radius:2px;
+  background:var(--dn-faq-accent);box-shadow:0 0 10px -2px color-mix(in srgb,var(--dn-faq-accent) 70%,transparent);}
 
-@keyframes dn-faq-wipe{0%{transform:scaleX(0);opacity:1;}60%{transform:scaleX(1);opacity:1;}
+@keyframes dn-faq-wash{0%{transform:scaleX(0);opacity:1;}58%{transform:scaleX(1);opacity:1;}
   100%{transform:scaleX(1);opacity:0;}}
-@keyframes dn-fade-up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+@keyframes dn-faq-edge{0%{left:0;opacity:0;}10%{opacity:1;}88%{left:100%;opacity:1;}100%{left:100%;opacity:0;}}
+@keyframes dn-fade-up{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:none;}}
+
+/* ---- frequency meter under the panel: 4 segments, active lit -- */
+.dn-faq-meter{display:flex;gap:8px;margin:18px 2px 0;align-items:center;}
+.dn-faq-meter .seg{flex:1;height:3px;border-radius:3px;background:var(--dn-mist);
+  transition:background .3s ease, box-shadow .3s ease;}
+.dn-faq-meter .seg[data-tone="day"].lit{background:var(--dn-day);
+  box-shadow:0 0 14px -3px color-mix(in srgb,var(--dn-day) 75%,transparent);}
+.dn-faq-meter .seg[data-tone="night"].lit{background:var(--dn-night);
+  box-shadow:0 0 14px -3px color-mix(in srgb,var(--dn-night) 75%,transparent);}
 
 /* ---- foot CTA -------------------------------------------- */
-.dn-faq-foot{max-width:980px;margin:clamp(3rem,6vw,4.5rem) auto 0;text-align:center;
+.dn-faq-foot{max-width:1000px;margin:clamp(3rem,6vw,4.5rem) auto 0;text-align:center;
   font-family:var(--font-display);font-weight:400;font-style:italic;
   font-size:clamp(1rem,2vw,1.18rem);color:var(--dn-bone-dim);letter-spacing:.005em;}
 .dn-faq-foot a{color:var(--dn-day);text-decoration:none;font-style:normal;font-weight:600;
@@ -122,26 +196,31 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 
 /* ---- mobile: rail collapses to a wrapped pill row -------- */
 @media (max-width:768px){
-  .dn-faq-side{grid-template-columns:1fr;gap:1.6rem;}
-  .dn-faq-nav{flex-direction:row;flex-wrap:wrap;gap:8px;padding-left:0;padding-bottom:12px;}
-  .dn-faq-nav::before{left:0;right:0;top:auto;bottom:0;width:auto;height:2px;} /* horizontal track */
+  .dn-faq-side{grid-template-columns:1fr;gap:1.7rem;}
+  .dn-faq-nav{flex-direction:row;flex-wrap:wrap;gap:9px;padding-left:0;padding-bottom:14px;counter-reset:dn-faq;}
+  .dn-faq-nav::before{left:0;right:0;top:auto;bottom:0;width:auto;height:2px;
+    background:linear-gradient(90deg,transparent,var(--dn-mist) 12%,var(--dn-mist) 88%,transparent);} /* horizontal track */
   /* travelling marker becomes a 2px underline sliding under the active pill */
   .dn-faq-rail-marker{left:0;top:auto;bottom:0;width:var(--dn-faq-w,120px);height:2px;
     transform:translateX(var(--dn-faq-x,0));border-radius:2px;
-    transition:transform .4s cubic-bezier(.16,1,.3,1), width .4s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .25s ease;}
-  .dn-faq-q{flex:0 0 auto;min-height:44px;margin-bottom:0;padding:8px 14px;border-radius:999px;
-    border:1px solid var(--dn-mist);background:rgba(255,255,255,.03);font-size:.85rem;line-height:1.25;}
+    transition:transform .42s cubic-bezier(.16,1,.3,1), width .42s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .25s ease;}
+  .dn-faq-q{flex:0 0 auto;display:inline-flex;align-items:center;gap:.5rem;min-height:44px;margin-bottom:0;
+    padding:9px 15px;border-radius:999px;
+    border:1px solid var(--dn-mist);background:rgba(255,255,255,.03);font-size:.84rem;line-height:1.25;}
+  .dn-faq-q .idx{margin-top:0;align-self:center;font-size:.74rem;}
+  .dn-faq-q .lbl{min-width:0;}
+  .dn-faq-q .caret{display:none;}
   .dn-faq-q.on{border-color:var(--ink);color:var(--dn-bone);
-    box-shadow:0 0 18px -6px color-mix(in srgb,var(--ink) 70%,transparent);} /* even glow on active pill */
+    box-shadow:0 0 18px -6px color-mix(in srgb,var(--ink) 70%,transparent);} /* tone glow on active pill */
   .dn-faq-q:last-child{margin-bottom:0;}
-  .dn-faq-panel{min-height:0;padding:20px;}
+  .dn-faq-panel{min-height:0;padding:22px;}
   .dn-faq-a .a{max-width:none;}
 }
 
-/* ---- honour reduced motion: snap, no wipe ---------------- */
+/* ---- honour reduced motion: snap, no sweep --------------- */
 @media (prefers-reduced-motion:reduce){
   .dn-faq-rail-marker{transition:none;}
-  .dn-faq-a.on::before{animation:none;display:none;}
+  .dn-faq-a.on::before,.dn-faq-a.on::after{animation:none;display:none;}
   .dn-faq-a.on .q,.dn-faq-a.on .a,.dn-faq-a.on .seal{animation:none;}
 }
 </style>
@@ -154,37 +233,46 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
     <div class="tp-section-head dn-center-head">
       <span class="dn-eyebrow dn-pill day">Common Questions</span>
       <h2 id="faq-heading" class="dn-display"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+      <p class="dn-lede">Pick a question on the rail. The aurora sweeps the answer in.</p>
     </div>
 
     <div class="dn-faq-side">
       <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions" data-even="0" style="--dn-faq-i:0;">
         <span class="dn-faq-rail-marker" aria-hidden="true"></span>
-        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on">Is there an emergency dentist open now in Glasgow?</button>
-        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q">Are you taking on new patients?</button>
-        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q">Where is the practice and where can I park?</button>
-        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q">What are your opening hours?</button>
+        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on"><span class="idx" aria-hidden="true"></span><span class="lbl">Is there an emergency dentist open now in Glasgow?</span><span class="caret" aria-hidden="true"></span></button>
+        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q"><span class="idx" aria-hidden="true"></span><span class="lbl">Are you taking on new patients?</span><span class="caret" aria-hidden="true"></span></button>
+        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q"><span class="idx" aria-hidden="true"></span><span class="lbl">Where is the practice and where can I park?</span><span class="caret" aria-hidden="true"></span></button>
+        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q"><span class="idx" aria-hidden="true"></span><span class="lbl">What are your opening hours?</span><span class="caret" aria-hidden="true"></span></button>
       </div>
 
-      <div class="dn-faq-panel">
-        <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
-          <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
-          <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there is no need to sit in pain until Monday.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
+      <div>
+        <div class="dn-faq-panel" data-tone="day">
+          <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
+            <h3 class="q">Is there an emergency dentist open now in Glasgow?<span class="qmark" aria-hidden="true"></span></h3>
+            <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+            <p class="seal">Day Night Dental, Merchant City</p>
+          </div>
+          <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a">
+            <h3 class="q">Are you taking on new patients?<span class="qmark" aria-hidden="true"></span></h3>
+            <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+            <p class="seal">Day Night Dental, Merchant City</p>
+          </div>
+          <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a">
+            <h3 class="q">Where is the practice and where can I park?<span class="qmark" aria-hidden="true"></span></h3>
+            <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+            <p class="seal">Day Night Dental, Merchant City</p>
+          </div>
+          <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a">
+            <h3 class="q">What are your opening hours?<span class="qmark" aria-hidden="true"></span></h3>
+            <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+            <p class="seal">Day Night Dental, Merchant City</p>
+          </div>
         </div>
-        <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a">
-          <h3 class="q">Are you taking on new patients?</h3>
-          <p class="a">Yes, we are welcoming new patients. The quickest way to start is to put your name down through our registration form, and we will be in touch to arrange your first visit. If we are especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
-        </div>
-        <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a">
-          <h3 class="q">Where is the practice and where can I park?</h3>
-          <p class="a">You will find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
-        </div>
-        <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a">
-          <h3 class="q">What are your opening hours?</h3>
-          <p class="a">We are open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
+        <div class="dn-faq-meter" aria-hidden="true">
+          <span class="seg lit" data-tone="day"></span>
+          <span class="seg" data-tone="night"></span>
+          <span class="seg" data-tone="day"></span>
+          <span class="seg" data-tone="night"></span>
         </div>
       </div>
     </div>
@@ -196,19 +284,28 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 <script>
 (function(){
   var nav = document.querySelector('.dn-faq-nav');
+  if(!nav) return;
+  var marker = nav.querySelector('.dn-faq-rail-marker');
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-q'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
+  var panel = document.querySelector('.dn-faq-panel');
+  var segs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-meter .seg'));
   var mq = window.matchMedia('(max-width:768px)');
 
   function placeMarker(i){
-    // desktop drives the marker via --dn-faq-i (CSS translateY); mobile needs
-    // pixel x/width because pills wrap, so measure the active pill.
+    // desktop drives the marker via --dn-faq-i (CSS translateY); the per-row
+    // stride and marker height are measured so the marker matches its row exactly.
+    // mobile needs pixel x/width because pills wrap, so measure the active pill.
     nav.style.setProperty('--dn-faq-i', i);
     nav.setAttribute('data-even', (i % 2 === 0) ? '0' : '1'); // index 0 = gold, 1 = blue ...
     if(mq.matches){
       var pill = tabs[i];
       nav.style.setProperty('--dn-faq-x', pill.offsetLeft + 'px');
       nav.style.setProperty('--dn-faq-w', pill.offsetWidth + 'px');
+    } else if(tabs.length > 1){
+      var stride = tabs[1].offsetTop - tabs[0].offsetTop;
+      nav.style.setProperty('--dn-faq-stride', stride + 'px');
+      nav.style.setProperty('--dn-faq-mh', tabs[i].offsetHeight + 'px');
     }
   }
 
@@ -220,10 +317,12 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
       t.tabIndex = on ? 0 : -1;
     });
     panels.forEach(function(p,j){
-      // retrigger the wipe by removing then re-adding the class on the new panel
+      // retrigger the sweep by removing then re-adding the class on the new panel
       p.classList.remove('on');
       if(j === i){ void p.offsetWidth; p.classList.add('on'); }
     });
+    if(panel) panel.setAttribute('data-tone', (i % 2 === 0) ? 'day' : 'night');
+    segs.forEach(function(s,j){ s.classList.toggle('lit', j === i); });
     placeMarker(i);
   }
 

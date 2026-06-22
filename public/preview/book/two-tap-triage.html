@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+</style>
+<title>Two-Tap Triage - Day Night Dental Booking</title>
+<style>
+/* ---- Layout shell ---- */
+.tt-section{position:relative;overflow:hidden;padding:clamp(40px,7vw,84px) 18px clamp(64px,9vw,120px);}
+.tt-section::before,.tt-section::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+.tt-section::before{width:460px;height:460px;top:-60px;left:-120px;background:var(--dn-day);opacity:.07;}
+.tt-section::after{width:520px;height:520px;bottom:-80px;right:-140px;background:var(--dn-night);opacity:.08;}
+.tt-wrap{position:relative;z-index:1;max-width:var(--container);margin:0 auto;}
+.tt-head{max-width:660px;}
+.tt-head h1{font-family:var(--font-display);font-weight:600;line-height:1.04;letter-spacing:-.01em;font-size:clamp(2rem,6.4vw,3.4rem);margin:18px 0 14px;}
+.tt-lead{color:var(--dn-bone-dim);font-size:clamp(1rem,2.4vw,1.12rem);margin:0 0 6px;max-width:54ch;}
+
+/* ---- Emergency call-out ribbon ---- */
+.tt-callbar{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:24px;padding:14px 16px;border-radius:var(--dn-r-card);background:var(--dn-charcoal);border:1px solid var(--dn-mist);}
+.tt-callbar .pulse{position:relative;flex:0 0 auto;width:11px;height:11px;border-radius:50%;background:var(--dn-night-soft);}
+.tt-callbar .pulse::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--dn-night-soft);opacity:.6;animation:tt-ring 2s ease-out infinite;}
+@keyframes tt-ring{0%{transform:scale(.6);opacity:.7;}100%{transform:scale(1.5);opacity:0;}}
+.tt-callbar-txt{font-size:.92rem;color:var(--dn-bone-dim);}
+.tt-callbar-txt b{color:var(--dn-bone);font-weight:600;}
+.tt-callbar a.tt-call{margin-left:auto;display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-family:var(--font-display);font-weight:600;font-size:1.18rem;color:var(--dn-day);border:1px solid rgba(248,199,96,.4);background:rgba(248,199,96,.06);padding:10px 18px;border-radius:999px;min-height:44px;transition:background .18s ease,border-color .18s ease;}
+.tt-callbar a.tt-call:hover{background:rgba(248,199,96,.13);border-color:var(--dn-day);}
+.tt-callbar a.tt-call svg{width:18px;height:18px;}
+
+/* ---- Two-tap triage grid ---- */
+.tt-grid{display:grid;gap:clamp(20px,3vw,38px);margin-top:clamp(30px,5vw,52px);grid-template-columns:1fr;}
+@media(min-width:900px){.tt-grid{grid-template-columns:0.92fr 1.08fr;align-items:start;}}
+
+/* Step 1 - the big choice */
+.tt-step-label{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:16px;}
+.tt-step-num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px solid var(--dn-mist);font-family:var(--font-display);font-size:.78rem;color:var(--dn-day);}
+.tt-choices{display:grid;gap:12px;}
+.tt-choice{position:relative;display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;cursor:pointer;background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:18px;color:inherit;font-family:inherit;transition:border-color .2s ease,background .2s ease,transform .12s ease;}
+.tt-choice:hover{transform:translateY(-2px);}
+.tt-choice:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(248,199,96,.35);}
+.tt-choice .tt-ico{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--dn-mist);background:rgba(255,255,255,.03);}
+.tt-choice .tt-ico svg{width:21px;height:21px;}
+.tt-choice .tt-c-body{flex:1 1 auto;min-width:0;}
+.tt-choice .tt-c-title{font-family:var(--font-display);font-weight:600;font-size:1.16rem;line-height:1.15;display:flex;align-items:center;gap:9px;}
+.tt-choice .tt-c-sub{font-size:.9rem;color:var(--dn-bone-dim);margin-top:3px;}
+.tt-choice .tt-check{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--dn-mist);display:grid;place-items:center;margin-top:2px;transition:border-color .2s ease,background .2s ease;}
+.tt-choice .tt-check svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:opacity .18s ease,transform .18s ease;}
+/* Emergency choice = blue/night accent (24/7 line) */
+.tt-choice.is-emergency .tt-ico{color:var(--dn-night-soft);border-color:rgba(69,144,236,.4);background:rgba(69,144,236,.08);}
+.tt-choice.is-emergency[aria-pressed="true"]{border-color:var(--dn-night);background:rgba(69,144,236,.1);}
+.tt-choice.is-emergency[aria-pressed="true"] .tt-check{border-color:var(--dn-night);background:var(--dn-night);}
+.tt-choice.is-emergency[aria-pressed="true"] .tt-check svg{opacity:1;transform:scale(1);color:#fff;}
+.tt-choice.is-emergency .tt-c-title .tt-flag{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-night-soft);border:1px solid rgba(69,144,236,.4);border-radius:999px;padding:2px 8px;font-family:var(--font-body);font-weight:600;}
+/* Week / explore choices = gold/day accent */
+.tt-choice.is-day .tt-ico{color:var(--dn-day);}
+.tt-choice.is-day[aria-pressed="true"]{border-color:var(--dn-day);background:rgba(248,199,96,.07);}
+.tt-choice.is-day[aria-pressed="true"] .tt-ico{border-color:rgba(248,199,96,.4);background:rgba(248,199,96,.08);}
+.tt-choice.is-day[aria-pressed="true"] .tt-check{border-color:var(--dn-day);background:var(--dn-day);}
+.tt-choice.is-day[aria-pressed="true"] .tt-check svg{opacity:1;transform:scale(1);color:var(--dn-near-black);}
+.tt-choice-hint{font-size:.82rem;color:var(--dn-bone-faint);margin-top:16px;display:flex;align-items:center;gap:8px;}
+.tt-choice-hint svg{width:14px;height:14px;flex:0 0 auto;color:var(--dn-bone-faint);}
+
+/* ---- Step 2 - the adaptive form ---- */
+.tt-form-card{background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:clamp(20px,4vw,30px);}
+.tt-form-banner{display:flex;align-items:center;gap:12px;border-radius:13px;padding:13px 15px;margin-bottom:20px;font-size:.92rem;border:1px solid var(--dn-mist);background:rgba(255,255,255,.02);color:var(--dn-bone-dim);transition:border-color .25s ease,background .25s ease;}
+.tt-form-banner .b-ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);}
+.tt-form-banner .b-ico svg{width:17px;height:17px;}
+.tt-form-banner b{color:var(--dn-bone);font-weight:600;font-family:var(--font-display);}
+.tt-form-banner.tone-emergency{border-color:rgba(69,144,236,.4);background:rgba(69,144,236,.08);}
+.tt-form-banner.tone-emergency .b-ico{color:var(--dn-night-soft);border-color:rgba(69,144,236,.4);background:rgba(69,144,236,.1);}
+.tt-form-banner.tone-day{border-color:rgba(248,199,96,.35);background:rgba(248,199,96,.06);}
+.tt-form-banner.tone-day .b-ico{color:var(--dn-day);border-color:rgba(248,199,96,.35);background:rgba(248,199,96,.08);}
+
+.tt-form-row{margin-bottom:18px;}
+.tt-form-row:last-of-type{margin-bottom:0;}
+@media(min-width:560px){.tt-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}}
+.tt-label{display:block;font-size:.92rem;font-weight:600;margin-bottom:7px;color:var(--dn-bone);}
+.tt-label .req{color:var(--dn-day);margin-left:2px;}
+.tt-helper{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:6px;}
+
+/* Filled field wells */
+.tt-field{width:100%;font-family:inherit;font-size:16px;color:var(--dn-bone);background:#0e0e13;border:1px solid var(--dn-mist);border-radius:12px;padding:13px 14px;min-height:48px;line-height:1.4;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;}
+.tt-field::placeholder{color:var(--dn-bone-faint);}
+.tt-field:hover{border-color:rgba(255,255,255,.18);}
+.tt-field:focus{outline:none;border-color:rgba(248,199,96,.55);background:#101018;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+textarea.tt-field{resize:vertical;min-height:92px;}
+
+/* Custom dropdown */
+.tt-select{position:relative;}
+.tt-select-trigger{width:100%;display:flex;align-items:center;gap:10px;font-family:inherit;font-size:16px;text-align:left;color:var(--dn-bone);background:#0e0e13;border:1px solid var(--dn-mist);border-radius:12px;padding:13px 14px;min-height:48px;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;}
+.tt-select-trigger:hover{border-color:rgba(255,255,255,.18);}
+.tt-select-trigger:focus-visible{outline:none;border-color:rgba(248,199,96,.55);background:#101018;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.tt-select-trigger .tt-val{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tt-select-trigger.is-placeholder .tt-val{color:var(--dn-bone-faint);}
+.tt-select-chev{flex:0 0 auto;width:18px;height:18px;color:var(--dn-bone-dim);transition:transform .2s ease;}
+.tt-select.open .tt-select-chev{transform:rotate(180deg);}
+.tt-select-list{position:absolute;z-index:30;top:calc(100% + 8px);left:0;right:0;background:#101017;border:1px solid var(--dn-mist);border-radius:16px;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);padding:6px;max-height:300px;overflow:auto;display:none;}
+.tt-select.open .tt-select-list{display:block;}
+.tt-opt{position:relative;display:flex;align-items:center;gap:10px;padding:11px 12px 11px 22px;border-radius:10px;font-size:.96rem;color:var(--dn-bone-dim);cursor:pointer;min-height:44px;}
+.tt-opt::before{content:'';position:absolute;left:8px;top:50%;transform:translateY(-50%) scaleY(0);width:3px;height:60%;border-radius:3px;background:var(--dn-day);transition:transform .15s ease;}
+.tt-opt:hover,.tt-opt.active{background:rgba(248,199,96,.08);color:var(--dn-bone);}
+.tt-opt:hover::before,.tt-opt.active::before,.tt-opt[aria-selected="true"]::before{transform:translateY(-50%) scaleY(1);}
+.tt-opt[aria-selected="true"]{color:var(--dn-day);}
+.tt-opt .tt-opt-check{margin-left:auto;width:15px;height:15px;color:var(--dn-day);opacity:0;}
+.tt-opt[aria-selected="true"] .tt-opt-check{opacity:1;}
+
+/* Pill-card radios (preferred time) */
+.tt-radios{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media(min-width:560px){.tt-radios{grid-template-columns:repeat(2,1fr);}}
+.tt-radio{position:relative;display:flex;align-items:center;gap:9px;background:#0e0e13;border:1px solid var(--dn-mist);border-radius:12px;padding:12px 13px;cursor:pointer;font-size:.93rem;min-height:48px;transition:border-color .18s ease,background .18s ease;}
+.tt-radio:hover{border-color:rgba(255,255,255,.18);}
+.tt-radio input{position:absolute;opacity:0;pointer-events:none;}
+.tt-radio .tt-dot{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--dn-mist);display:grid;place-items:center;transition:border-color .18s ease;}
+.tt-radio .tt-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--dn-day);transform:scale(0);transition:transform .16s ease;}
+.tt-radio input:checked~.tt-dot{border-color:var(--dn-day);}
+.tt-radio input:checked~.tt-dot::after{transform:scale(1);}
+.tt-radio input:checked~.tt-rlabel{color:var(--dn-bone);}
+.tt-radio:has(input:checked){border-color:var(--dn-day);background:rgba(248,199,96,.06);}
+.tt-radio input:focus-visible~.tt-dot{box-shadow:0 0 0 3px rgba(248,199,96,.3);}
+.tt-rlabel{color:var(--dn-bone-dim);display:flex;align-items:center;gap:7px;}
+/* Emergency radio glows blue */
+.tt-radio.urgent .tt-dot::after{background:var(--dn-night-soft);}
+.tt-radio.urgent input:checked~.tt-dot{border-color:var(--dn-night);}
+.tt-radio.urgent:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.08);}
+.tt-radio.urgent .tt-udot{width:7px;height:7px;border-radius:50%;background:var(--dn-night-soft);box-shadow:0 0 0 3px rgba(69,144,236,.18);}
+
+/* Adaptive emphasis - notes field becomes prominent for emergencies */
+.tt-collapse{overflow:hidden;transition:max-height .35s ease,opacity .3s ease,margin .3s ease;}
+.tt-emergency-only{max-height:0;opacity:0;margin:0;}
+body[data-triage="now"] .tt-emergency-only{max-height:240px;opacity:1;margin-top:18px;}
+
+/* Custom checkbox */
+.tt-check-row{display:flex;align-items:flex-start;gap:11px;margin-top:18px;cursor:pointer;font-size:.86rem;color:var(--dn-bone-dim);line-height:1.45;}
+.tt-check-row input{position:absolute;opacity:0;pointer-events:none;}
+.tt-cbox{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--dn-mist);background:#0e0e13;display:grid;place-items:center;margin-top:1px;transition:background .16s ease,border-color .16s ease;}
+.tt-cbox svg{width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.5);transition:opacity .16s ease,transform .16s ease;}
+.tt-check-row input:checked~.tt-cbox{background:var(--dn-day);border-color:var(--dn-day);}
+.tt-check-row input:checked~.tt-cbox svg{opacity:1;transform:scale(1);}
+.tt-check-row input:focus-visible~.tt-cbox{box-shadow:0 0 0 3px rgba(248,199,96,.3);}
+.tt-check-row a{color:var(--dn-day);text-decoration:underline;text-underline-offset:2px;}
+
+/* Submit */
+.tt-submit{margin-top:22px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:1.06rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:999px;padding:16px 22px;min-height:54px;cursor:pointer;transition:transform .12s ease,box-shadow .18s ease,background .18s ease;}
+.tt-submit:hover{transform:translateY(-1px);box-shadow:0 14px 34px -14px rgba(248,199,96,.6);}
+.tt-submit:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(248,199,96,.4);}
+.tt-submit .arrow{transition:transform .18s ease;}
+.tt-submit:hover .arrow{transform:translateX(4px);}
+.tt-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.84rem;color:var(--dn-bone-faint);}
+.tt-reassure svg{width:14px;height:14px;flex:0 0 auto;color:var(--dn-day);}
+.tt-disclaimer{font-size:.76rem;color:var(--dn-bone-faint);margin:16px 0 0;line-height:1.5;}
+.tt-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
+
+.tt-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+</style>
+</head>
+<body data-triage="">
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Two-Tap Triage</b> <span class="lab-lens">conversion</span></div><span></span></div>
+
+<section class="tt-section">
+  <div class="tt-wrap">
+    <header class="tt-head">
+      <span class="dn-eyebrow dn-pill day">Book Appointment</span>
+      <h1>Two taps and you are <em class="dn-hl-gold">seen</em>.</h1>
+      <p class="tt-lead">Tell us how soon you need us. We shape the rest of the form around your answer, so a booking takes seconds, not minutes.</p>
+    </header>
+
+    <!-- 24/7 emergency line ribbon -->
+    <div class="tt-callbar">
+      <span class="pulse" aria-hidden="true"></span>
+      <span class="tt-callbar-txt">In pain right now? Our <b>24/7 emergency line</b> answers day and night.</span>
+      <a class="tt-call" href="tel:+441415486548">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0141 548 6548
+      </a>
+    </div>
+
+    <div class="tt-grid">
+      <!-- STEP 1 : the one big choice -->
+      <div class="tt-step">
+        <div class="tt-step-label"><span class="tt-step-num">1</span> How soon do you need us?</div>
+        <div class="tt-choices" role="group" aria-label="How soon do you need us?">
+
+          <button type="button" class="tt-choice is-emergency" data-triage="now" aria-pressed="false">
+            <span class="tt-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </span>
+            <span class="tt-c-body">
+              <span class="tt-c-title">Emergency now <span class="tt-flag">24/7 line</span></span>
+              <span class="tt-c-sub">Severe pain, swelling, bleeding or a knocked-out tooth. We will get you seen today.</span>
+            </span>
+            <span class="tt-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </button>
+
+          <button type="button" class="tt-choice is-day" data-triage="week" aria-pressed="false">
+            <span class="tt-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <span class="tt-c-body">
+              <span class="tt-c-title">This week</span>
+              <span class="tt-c-sub">A check-up, hygienist visit or a niggle that can wait a few days. Pick a time that suits.</span>
+            </span>
+            <span class="tt-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </button>
+
+          <button type="button" class="tt-choice is-day" data-triage="explore" aria-pressed="false">
+            <span class="tt-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <span class="tt-c-body">
+              <span class="tt-c-title">Just exploring</span>
+              <span class="tt-c-sub">Curious about implants, Invisalign or whitening. We will send the right information first.</span>
+            </span>
+            <span class="tt-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </button>
+
+        </div>
+        <p class="tt-choice-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Not sure? Pick the closest. You can always tell us more below.
+        </p>
+      </div>
+
+      <!-- STEP 2 : the adaptive form -->
+      <div class="tt-form-card">
+        <div class="tt-step-label"><span class="tt-step-num">2</span> Your details</div>
+
+        <!-- adaptive banner -->
+        <div class="tt-form-banner" id="tt-banner" role="status">
+          <span class="b-ico" aria-hidden="true" id="tt-banner-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <span id="tt-banner-txt">Choose an option above and we will tailor this form to you. Or just fill it in.</span>
+        </div>
+
+        <form class="tt-form" action="/api/send-enquiry.php" method="post" novalidate>
+          <!-- honeypot -->
+          <p hidden aria-hidden="true"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <!-- triage choice travels with the submission -->
+          <input type="hidden" name="triage" id="tt-triage-field" value="">
+
+          <div class="tt-form-row">
+            <label class="tt-label" for="tt-name">Your name <span class="req" aria-hidden="true">*</span></label>
+            <input class="tt-field" type="text" id="tt-name" name="name" required autocomplete="name" placeholder="Full name">
+          </div>
+
+          <div class="tt-form-row tt-form-row-2">
+            <div>
+              <label class="tt-label" for="tt-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+              <input class="tt-field" type="tel" id="tt-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+            </div>
+            <div>
+              <label class="tt-label" for="tt-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input class="tt-field" type="email" id="tt-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+          </div>
+
+          <!-- Preferred time : pill radios -->
+          <div class="tt-form-row">
+            <span class="tt-label" id="tt-pref-label">Preferred time</span>
+            <div class="tt-radios" role="radiogroup" aria-labelledby="tt-pref-label" id="tt-radios">
+              <label class="tt-radio urgent">
+                <input type="radio" name="preference" value="emergency">
+                <span class="tt-dot" aria-hidden="true"></span>
+                <span class="tt-rlabel"><span class="tt-udot" aria-hidden="true"></span>Emergency, today</span>
+              </label>
+              <label class="tt-radio">
+                <input type="radio" name="preference" value="day">
+                <span class="tt-dot" aria-hidden="true"></span>
+                <span class="tt-rlabel">Day (7am to 5pm)</span>
+              </label>
+              <label class="tt-radio">
+                <input type="radio" name="preference" value="evening">
+                <span class="tt-dot" aria-hidden="true"></span>
+                <span class="tt-rlabel">Evening (5pm to 11pm)</span>
+              </label>
+              <label class="tt-radio">
+                <input type="radio" name="preference" value="weekend">
+                <span class="tt-dot" aria-hidden="true"></span>
+                <span class="tt-rlabel">Weekend</span>
+              </label>
+            </div>
+            <span class="tt-helper" id="tt-pref-helper">When works best for a call back or visit?</span>
+          </div>
+
+          <!-- Treatment : custom dropdown -->
+          <div class="tt-form-row">
+            <span class="tt-label" id="tt-treat-label">Treatment of interest</span>
+            <div class="tt-select" id="tt-select" data-value="">
+              <button type="button" class="tt-select-trigger is-placeholder" id="tt-select-trigger"
+                      aria-haspopup="listbox" aria-expanded="false" aria-labelledby="tt-treat-label tt-select-trigger">
+                <span class="tt-val" id="tt-select-val">Select an option</span>
+                <svg class="tt-select-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="tt-select-list" id="tt-select-list" role="listbox" aria-labelledby="tt-treat-label" tabindex="-1">
+                <li class="tt-opt" role="option" data-value="Emergency / pain" aria-selected="false">Emergency / pain<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="New patient examination" aria-selected="false">New patient examination<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="Hygienist appointment" aria-selected="false">Hygienist appointment<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="Cosmetic consultation" aria-selected="false">Cosmetic consultation<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="Invisalign" aria-selected="false">Invisalign<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="Dental implants" aria-selected="false">Dental implants<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="Teeth whitening" aria-selected="false">Teeth whitening<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="tt-opt" role="option" data-value="Other / unsure" aria-selected="false">Other / unsure<svg class="tt-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              </ul>
+              <!-- SSR-safe / no-JS fallback: a real focusable text well so the value can still be sent -->
+              <noscript>
+                <input class="tt-field" type="text" name="treatment" placeholder="Type a treatment, e.g. Dental implants" style="margin-top:8px;">
+              </noscript>
+            </div>
+            <!-- hidden field carries the selected value to the endpoint -->
+            <input type="hidden" name="treatment" id="tt-treatment-field" value="">
+          </div>
+
+          <!-- Notes : becomes prominent for emergencies -->
+          <div class="tt-form-row">
+            <label class="tt-label" for="tt-notes" id="tt-notes-label">Anything we should know?</label>
+            <textarea class="tt-field" id="tt-notes" name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please do not include detailed medical information here."></textarea>
+            <span class="tt-helper" id="tt-notes-helper">Optional - a sentence is plenty.</span>
+          </div>
+
+          <!-- Emergency-only nudge (revealed when 'Emergency now' is chosen) -->
+          <div class="tt-collapse tt-emergency-only" id="tt-emergency-note" aria-hidden="true">
+            <div class="tt-form-banner tone-emergency" style="margin:0;">
+              <span class="b-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              </span>
+              <span>For severe pain or bleeding right now, do not wait for a reply - <b>call 0141 548 6548</b>. The form is here for everything else.</span>
+            </div>
+          </div>
+
+          <label class="tt-check-row">
+            <input type="checkbox" name="consent" required>
+            <span class="tt-cbox" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>I am happy for Day Night Dental to contact me about my enquiry. We will never share your details. Read our <a href="/privacy/">privacy policy</a>.</span>
+          </label>
+
+          <button type="submit" class="tt-submit" id="tt-submit">
+            <span id="tt-submit-label">Request booking</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+
+          <p class="tt-reassure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            We reply within 1 working hour. The 24/7 line is always answered live.
+          </p>
+
+          <p class="tt-disclaimer">
+            Day Night Dental, 80 Hutcheson St, Merchant City, Glasgow G1 1SH ·
+            <a href="tel:+441415486548">0141 548 6548</a> ·
+            <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- STEP 1 : the two-tap triage choice ---------- */
+  var body = document.body;
+  var choices = Array.prototype.slice.call(document.querySelectorAll('.tt-choice'));
+  var triageField = document.getElementById('tt-triage-field');
+  var banner = document.getElementById('tt-banner');
+  var bannerTxt = document.getElementById('tt-banner-txt');
+  var submitLabel = document.getElementById('tt-submit-label');
+  var prefHelper = document.getElementById('tt-pref-helper');
+  var notesLabel = document.getElementById('tt-notes-label');
+  var notesHelper = document.getElementById('tt-notes-helper');
+  var emergencyNote = document.getElementById('tt-emergency-note');
+
+  /* per-triage copy + emphasis */
+  var profiles = {
+    now: {
+      tone: 'tone-emergency',
+      banner: '<b>Emergency.</b> Phone is fastest - or send this and we will call you straight back.',
+      submit: 'Request emergency appointment',
+      prefHelper: 'We have flagged this as urgent. Tap "Emergency, today" if you can be seen now.',
+      notesLabel: 'What is happening? (helps us prioritise)',
+      notesHelper: 'A short note - e.g. "swelling since last night", "broken front tooth". No detailed medical history.'
+    },
+    week: {
+      tone: 'tone-day',
+      banner: '<b>This week.</b> Tell us a time that suits and we will confirm your slot.',
+      submit: 'Request this week',
+      prefHelper: 'Pick a window that suits your week.',
+      notesLabel: 'Anything we should know?',
+      notesHelper: 'Optional - a sentence is plenty.'
+    },
+    explore: {
+      tone: 'tone-day',
+      banner: '<b>Just exploring.</b> No pressure - we will send the right information and answer your questions.',
+      submit: 'Send my enquiry',
+      prefHelper: 'When is a good time for a relaxed chat?',
+      notesLabel: 'What are you curious about?',
+      notesHelper: 'Optional - tell us the treatment or question on your mind.'
+    }
+  };
+
+  function applyTriage(key){
+    var p = profiles[key];
+    if(!p) return;
+
+    /* pressed state on the cards */
+    choices.forEach(function(btn){
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-triage') === key ? 'true' : 'false');
+    });
+
+    /* body flag drives the emergency-only reveal (CSS) */
+    body.setAttribute('data-triage', key);
+    if(triageField) triageField.value = key;
+    if(emergencyNote) emergencyNote.setAttribute('aria-hidden', key === 'now' ? 'false' : 'true');
+
+    /* banner */
+    banner.classList.remove('tone-emergency','tone-day');
+    banner.classList.add(p.tone);
+    bannerTxt.innerHTML = p.banner;
+
+    /* adaptive copy */
+    submitLabel.textContent = p.submit;
+    prefHelper.textContent = p.prefHelper;
+    notesLabel.textContent = p.notesLabel;
+    notesHelper.textContent = p.notesHelper;
+
+    /* emergency choice pre-selects the matching preferred-time radio */
+    if(key === 'now'){
+      var emr = document.querySelector('.tt-radio.urgent input');
+      if(emr && !document.querySelector('input[name="preference"]:checked')) emr.checked = true;
+    }
+  }
+
+  choices.forEach(function(btn){
+    btn.addEventListener('click', function(){ applyTriage(btn.getAttribute('data-triage')); });
+  });
+
+  /* ---------- Custom dropdown (treatment) ---------- */
+  var sel = document.getElementById('tt-select');
+  var trigger = document.getElementById('tt-select-trigger');
+  var list = document.getElementById('tt-select-list');
+  var valEl = document.getElementById('tt-select-val');
+  var hidden = document.getElementById('tt-treatment-field');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.tt-opt'));
+  var activeIndex = -1;
+
+  function openList(){
+    sel.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    var cur = opts.findIndex(function(o){ return o.getAttribute('aria-selected') === 'true'; });
+    setActive(cur > -1 ? cur : 0);
+    list.focus();
+  }
+  function closeList(focusTrigger){
+    sel.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    setActive(-1);
+    if(focusTrigger) trigger.focus();
+  }
+  function setActive(i){
+    opts.forEach(function(o){ o.classList.remove('active'); });
+    activeIndex = i;
+    if(i > -1 && opts[i]){ opts[i].classList.add('active'); opts[i].scrollIntoView({block:'nearest'}); }
+  }
+  function choose(opt){
+    var v = opt.getAttribute('data-value');
+    opts.forEach(function(o){ o.setAttribute('aria-selected', o === opt ? 'true' : 'false'); });
+    valEl.textContent = v;
+    trigger.classList.remove('is-placeholder');
+    hidden.value = v;
+    sel.setAttribute('data-value', v);
+    closeList(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    sel.classList.contains('open') ? closeList(false) : openList();
+  });
+  trigger.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openList(); }
+  });
+  opts.forEach(function(opt, i){
+    opt.addEventListener('click', function(){ choose(opt); });
+    opt.addEventListener('mouseenter', function(){ setActive(i); });
+  });
+  list.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ e.preventDefault(); closeList(true); }
+    else if(e.key === 'ArrowDown'){ e.preventDefault(); setActive(Math.min(activeIndex + 1, opts.length - 1)); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); setActive(Math.max(activeIndex - 1, 0)); }
+    else if(e.key === 'Home'){ e.preventDefault(); setActive(0); }
+    else if(e.key === 'End'){ e.preventDefault(); setActive(opts.length - 1); }
+    else if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); if(activeIndex > -1) choose(opts[activeIndex]); }
+  });
+  document.addEventListener('click', function(e){
+    if(!sel.contains(e.target)) closeList(false);
+  });
+})();
+</script>
+</body>
+</html>

@@ -30,102 +30,210 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <title>The 60-Second Booking · Day Night Dental</title>
 <style>
 /* ---------- Section shell ---------- */
-.dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;overflow:hidden;}
+.dn-section{position:relative;padding:clamp(3.4rem,8vw,7rem) 0;overflow:hidden;}
 .dn-contact{background:
-  radial-gradient(620px 520px at 8% 8%, rgba(248,199,96,.07), transparent 62%),
-  radial-gradient(620px 520px at 94% 96%, rgba(69,144,236,.08), transparent 62%),
+  radial-gradient(620px 520px at 8% 6%, rgba(248,199,96,.08), transparent 60%),
+  radial-gradient(620px 520px at 96% 98%, rgba(69,144,236,.08), transparent 60%),
   var(--dn-near-black);}
 .dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem);}
 
-.dn-head{max-width:640px;margin:0 0 clamp(2.4rem,5vw,3.6rem);}
+/* ---------- Head ---------- */
+.dn-head{max-width:660px;margin:0 0 clamp(2.2rem,5vw,3.2rem);}
 .dn-head .dn-display{font-family:var(--font-display);font-weight:500;letter-spacing:-.015em;
   font-size:clamp(2.2rem,5.6vw,3.5rem);line-height:1.04;margin:1.1rem 0 .9rem;}
 .dn-head .dn-sub{color:var(--dn-bone-dim);font-size:clamp(1rem,1.6vw,1.12rem);max-width:54ch;margin:0;}
 
 /* ---------- Grid ---------- */
-.dn-contact-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(2rem,4vw,4rem);align-items:start;}
+.dn-contact-grid{display:grid;grid-template-columns:1.12fr 0.88fr;gap:clamp(2rem,4vw,3.4rem);align-items:start;}
 
-/* ---------- Form card ---------- */
+/* ======================================================================
+   FORM CARD - the 60-second well
+   ====================================================================== */
 .dn-contact-form-wrap{position:relative;}
-.dn-contact-form{position:relative;background:var(--dn-charcoal);border:1px solid var(--dn-mist);
-  border-top:2px solid var(--dn-day);border-radius:var(--dn-r-card);
-  padding:clamp(1.5rem,3vw,2.4rem);box-shadow:0 30px 80px -40px rgba(0,0,0,.9);}
-.dn-form-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;}
-.dn-form-head h3{font-family:var(--font-display);font-weight:500;font-size:clamp(1.45rem,2.6vw,1.85rem);
+.dn-contact-form{position:relative;background:
+  linear-gradient(180deg,rgba(255,255,255,.022),transparent 220px),
+  var(--dn-charcoal);
+  border:1px solid var(--dn-mist);border-top:2px solid var(--dn-day);border-radius:var(--dn-r-card);
+  padding:clamp(1.5rem,3vw,2.4rem);box-shadow:0 34px 90px -44px rgba(0,0,0,.92);}
+
+.dn-form-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  margin-bottom:1.4rem;padding-bottom:1.3rem;border-bottom:1px solid var(--dn-mist);}
+.dn-form-head h3{font-family:var(--font-display);font-weight:500;font-size:clamp(1.45rem,2.6vw,1.8rem);
   letter-spacing:-.01em;margin:0;line-height:1.1;}
-.dn-form-step{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);
-  border:1px solid var(--dn-mist);border-radius:999px;padding:4px 11px;white-space:nowrap;}
 
-.dn-form-row{margin-bottom:1.15rem;}
+/* The 60-second meter - the signature lab lens, a thin filling timer pill */
+.dn-form-clock{display:inline-flex;align-items:center;gap:.55rem;white-space:nowrap;
+  font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-day);font-weight:700;
+  border:1px solid rgba(248,199,96,.32);border-radius:999px;padding:5px 12px 5px 9px;
+  background:rgba(248,199,96,.06);}
+.dn-form-clock .meter{position:relative;width:34px;height:5px;border-radius:999px;
+  background:rgba(248,199,96,.18);overflow:hidden;flex:none;}
+.dn-form-clock .meter::after{content:'';position:absolute;inset:0;width:60%;border-radius:999px;
+  background:var(--dn-day);box-shadow:0 0 10px -1px rgba(248,199,96,.7);
+  animation:meter-fill 2.6s cubic-bezier(.16,1,.3,1) infinite;}
+@keyframes meter-fill{0%{width:8%;opacity:.5;}55%{width:62%;opacity:1;}100%{width:8%;opacity:.5;}}
+
+/* ---------- Field rows ---------- */
+.dn-form-row{margin-bottom:1.1rem;}
 .dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.dn-form-row label{display:block;}
-.dn-form-label,.dn-form-row label>span{display:block;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--dn-bone-dim);font-weight:600;margin-bottom:.5rem;}
+.dn-form-row>label{display:block;}
+.dn-form-label,.dn-form-row label>span.lbl{display:flex;align-items:baseline;gap:.5rem;
+  font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dn-bone-dim);
+  font-weight:600;margin-bottom:.5rem;}
+.dn-form-label .opt,.dn-form-row label>span.lbl .opt{letter-spacing:.04em;text-transform:none;
+  font-weight:500;font-size:.72rem;color:var(--dn-bone-faint);}
 
-.dn-input,.dn-select,textarea.dn-input{width:100%;font-family:var(--font-body);font-size:1rem;color:var(--dn-bone);
-  background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:11px;
-  padding:.85rem 1rem;min-height:48px;transition:border-color .25s,box-shadow .25s;-webkit-appearance:none;appearance:none;}
-textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
+/* ---------- PREMIUM FILLED WELLS ---------- */
+.dn-field{position:relative;}
+.dn-input,textarea.dn-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);
+  background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:12px;
+  padding:.9rem 1rem;min-height:50px;line-height:1.4;
+  transition:border-color .25s,box-shadow .25s,background .25s;-webkit-appearance:none;appearance:none;}
+.dn-input.has-ico{padding-left:2.85rem;}
+textarea.dn-input{min-height:104px;resize:vertical;line-height:1.55;}
 .dn-input::placeholder,textarea.dn-input::placeholder{color:var(--dn-bone-faint);}
-.dn-input:focus,.dn-select:focus,textarea.dn-input:focus{outline:none;border-color:var(--dn-day);
-  box-shadow:0 0 0 3px rgba(248,199,96,.18);}
-.dn-select-wrap{position:relative;}
-.dn-select{padding-right:2.6rem;color:var(--dn-bone-dim);cursor:pointer;}
-.dn-select-wrap::after{content:'';position:absolute;right:1.05rem;top:50%;width:.5rem;height:.5rem;
-  border-right:2px solid var(--dn-bone-faint);border-bottom:2px solid var(--dn-bone-faint);
-  transform:translateY(-70%) rotate(45deg);pointer-events:none;}
+.dn-input:hover,textarea.dn-input:hover{border-color:rgba(255,255,255,.2);}
+.dn-input:focus,textarea.dn-input:focus{outline:none;border-color:var(--dn-day);
+  background:#08080a;box-shadow:0 0 0 4px rgba(248,199,96,.16),0 0 26px -8px rgba(248,199,96,.45);}
+/* leading icon inside the well */
+.dn-field-ico{position:absolute;left:1rem;top:25px;transform:translateY(-50%);width:18px;height:18px;
+  color:var(--dn-bone-faint);pointer-events:none;transition:color .25s;}
+.dn-field-ico svg{width:18px;height:18px;display:block;}
+.dn-field:focus-within .dn-field-ico{color:var(--dn-day);}
 
-/* ---------- Preference radios (2x2) ---------- */
+/* ======================================================================
+   CUSTOM DROPDOWN - no native <select> anywhere
+   default CLOSED, SSR-safe (JS only enhances open/close)
+   ====================================================================== */
+.dn-dropdown{position:relative;}
+.dn-dropdown-trigger{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;
+  font-family:var(--font-body);font-size:16px;color:var(--dn-bone);cursor:pointer;
+  background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:12px;
+  padding:.9rem 1rem;min-height:50px;
+  transition:border-color .25s,box-shadow .25s,background .25s;}
+.dn-dropdown-trigger:hover{border-color:rgba(255,255,255,.2);}
+.dn-dropdown-trigger .dd-ico{width:18px;height:18px;flex:none;color:var(--dn-bone-faint);transition:color .25s;}
+.dn-dropdown-trigger .dd-ico svg{width:18px;height:18px;display:block;}
+.dn-dropdown-trigger .val{color:var(--dn-bone);}
+.dn-dropdown-trigger .placeholder{color:var(--dn-bone-faint);}
+.dn-dropdown-trigger .dd-text{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.dn-dropdown-chev{width:.6rem;height:.6rem;flex:none;margin-left:auto;
+  border-right:2px solid var(--dn-bone-faint);border-bottom:2px solid var(--dn-bone-faint);
+  transform:translateY(-2px) rotate(45deg);
+  transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .25s;}
+.dn-dropdown[data-open="true"] .dn-dropdown-trigger{border-color:var(--dn-day);background:#08080a;
+  box-shadow:0 0 0 4px rgba(248,199,96,.16),0 0 26px -8px rgba(248,199,96,.45);}
+.dn-dropdown[data-open="true"] .dn-dropdown-trigger .dd-ico,
+.dn-dropdown-trigger:focus-visible .dd-ico{color:var(--dn-day);}
+.dn-dropdown[data-open="true"] .dn-dropdown-chev{transform:translateY(2px) rotate(225deg);border-color:var(--dn-day);}
+.dn-dropdown-trigger:focus-visible{outline:none;border-color:var(--dn-day);
+  box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+
+/* floating listbox */
+.dn-dropdown-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + .5rem);margin:0;padding:.4rem;
+  list-style:none;max-height:288px;overflow:auto;
+  background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  box-shadow:0 26px 60px -22px rgba(0,0,0,.92),0 0 0 1px rgba(0,0,0,.4);
+  animation:dd-pop .18s cubic-bezier(.16,1,.3,1);}
+@keyframes dd-pop{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+.dn-dropdown-option{position:relative;display:flex;align-items:center;gap:.6rem;
+  padding:.7rem .8rem .7rem 1.1rem;min-height:44px;border-radius:10px;cursor:pointer;
+  color:var(--dn-bone-dim);font-size:.96rem;transition:background .18s,color .18s;}
+.dn-dropdown-option::before{content:'';position:absolute;left:.45rem;top:50%;transform:translateY(-50%) scaleY(0);
+  width:3px;height:18px;border-radius:999px;background:var(--dn-day);transition:transform .18s;}
+.dn-dropdown-option .label{flex:1 1 auto;min-width:0;}
+.dn-dropdown-option .check{color:var(--dn-day);font-size:.95rem;opacity:0;transition:opacity .18s;}
+.dn-dropdown-option.active,.dn-dropdown-option:hover{background:rgba(248,199,96,.1);color:var(--dn-bone);}
+.dn-dropdown-option.active::before,.dn-dropdown-option:hover::before{transform:translateY(-50%) scaleY(1);}
+.dn-dropdown-option.selected{color:var(--dn-bone);}
+.dn-dropdown-option.selected::before{transform:translateY(-50%) scaleY(1);}
+.dn-dropdown-option.selected .check{opacity:1;}
+/* SSR / no-JS fallback: a real native control is rendered only inside <noscript> below */
+
+/* ======================================================================
+   PREFERRED TIME - pill-card radios (2x2)
+   ====================================================================== */
 .dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;}
-.dn-radio{position:relative;display:flex;align-items:center;gap:.6rem;cursor:pointer;
-  min-height:48px;padding:.7rem .9rem;border:1px solid var(--dn-mist);border-radius:11px;
+.dn-radio{position:relative;display:flex;align-items:center;gap:.65rem;cursor:pointer;
+  min-height:50px;padding:.7rem .95rem;border:1px solid var(--dn-mist);border-radius:12px;
   background:var(--dn-near-black);font-size:.92rem;color:var(--dn-bone-dim);
-  transition:border-color .25s,background .25s,color .25s;}
+  transition:border-color .25s,background .25s,color .25s,box-shadow .25s;}
 .dn-radio input{position:absolute;opacity:0;pointer-events:none;}
-.dn-radio .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--dn-bone-faint);
-  flex:none;transition:border-color .25s,box-shadow .25s,background .25s;}
+.dn-radio .dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--dn-bone-faint);
+  flex:none;display:grid;place-items:center;transition:border-color .25s,background .25s;}
+.dn-radio .dot::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--dn-near-black);
+  transform:scale(0);transition:transform .2s cubic-bezier(.16,1,.3,1);}
+.dn-radio .txt{line-height:1.2;}
 .dn-radio.day:hover{border-color:rgba(248,199,96,.5);color:var(--dn-bone);}
 .dn-radio.night:hover{border-color:rgba(69,144,236,.5);color:var(--dn-bone);}
 .dn-radio.urgent:hover{border-color:rgba(220,38,38,.6);color:var(--dn-bone);}
-.dn-radio.day.checked{border-color:var(--dn-day);color:var(--dn-bone);background:rgba(248,199,96,.08);}
-.dn-radio.day.checked .dot{border-color:var(--dn-day);background:var(--dn-day);box-shadow:inset 0 0 0 3px var(--dn-charcoal);}
-.dn-radio.night.checked{border-color:var(--dn-night);color:var(--dn-bone);background:rgba(69,144,236,.08);}
-.dn-radio.night.checked .dot{border-color:var(--dn-night);background:var(--dn-night);box-shadow:inset 0 0 0 3px var(--dn-charcoal);}
+.dn-radio.day.checked{border-color:var(--dn-day);color:var(--dn-bone);background:rgba(248,199,96,.09);box-shadow:0 0 22px -10px rgba(248,199,96,.6);}
+.dn-radio.day.checked .dot{border-color:var(--dn-day);background:var(--dn-day);}
+.dn-radio.night.checked{border-color:var(--dn-night);color:var(--dn-bone);background:rgba(69,144,236,.09);box-shadow:0 0 22px -10px rgba(69,144,236,.6);}
+.dn-radio.night.checked .dot{border-color:var(--dn-night);background:var(--dn-night);}
+.dn-radio.checked .dot::after{transform:scale(1);}
 .dn-radio.urgent{border-color:rgba(220,38,38,.45);color:#f1b3b3;}
-.dn-radio.urgent.checked{border-color:#dc2626;color:#fff;background:rgba(220,38,38,.14);}
-.dn-radio.urgent.checked .dot{border-color:#dc2626;background:#dc2626;box-shadow:inset 0 0 0 3px var(--dn-charcoal);}
-.dn-radio .urgent-dot{width:8px;height:8px;border-radius:50%;background:#dc2626;flex:none;
-  box-shadow:0 0 0 0 rgba(220,38,38,.7);animation:emergency-pulse 1.8s infinite;}
-.dn-radio:focus-within{outline:2px solid var(--dn-day);outline-offset:2px;}
+.dn-radio.urgent.checked{border-color:#dc2626;color:#fff;background:rgba(220,38,38,.15);box-shadow:0 0 24px -10px rgba(220,38,38,.7);}
+.dn-radio.urgent.checked .dot{border-color:#dc2626;background:#dc2626;}
+.dn-radio .urgent-dot{width:9px;height:9px;border-radius:50%;background:#dc2626;flex:none;
+  box-shadow:0 0 0 0 rgba(220,38,38,.7);animation:pulse-red 1.8s infinite;}
+.dn-radio:focus-within{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.dn-radio.urgent:focus-within{border-color:#dc2626;box-shadow:0 0 0 4px rgba(220,38,38,.22);}
+
+/* ======================================================================
+   CONSENT CHECKBOX - 22px gold fill + tick
+   ====================================================================== */
+.dn-check{display:flex;align-items:flex-start;gap:.7rem;cursor:pointer;
+  font-size:.82rem;color:var(--dn-bone-dim);line-height:1.5;margin-top:.2rem;}
+.dn-check input{position:absolute;opacity:0;width:0;height:0;}
+.dn-check .box{position:relative;width:22px;height:22px;flex:none;margin-top:1px;border-radius:7px;
+  border:1.5px solid var(--dn-bone-faint);background:var(--dn-near-black);
+  transition:border-color .2s,background .2s,box-shadow .2s;}
+.dn-check .box svg{position:absolute;inset:0;margin:auto;width:13px;height:13px;color:var(--dn-near-black);
+  opacity:0;transform:scale(.5);transition:opacity .18s,transform .18s cubic-bezier(.16,1,.3,1);}
+.dn-check:hover .box{border-color:rgba(248,199,96,.6);}
+.dn-check input:checked+.box{background:var(--dn-day);border-color:var(--dn-day);box-shadow:0 0 18px -8px rgba(248,199,96,.7);}
+.dn-check input:checked+.box svg{opacity:1;transform:scale(1);}
+.dn-check input:focus-visible+.box{box-shadow:0 0 0 4px rgba(248,199,96,.2);}
+.dn-check a{color:var(--dn-bone);text-decoration:underline;text-underline-offset:2px;}
 
 /* ---------- Submit ---------- */
 .dn-form-submit{position:relative;display:flex;align-items:center;justify-content:center;gap:.6rem;
-  width:100%;min-height:54px;margin-top:1.4rem;border:none;border-radius:12px;cursor:pointer;
-  font-family:var(--font-body);font-weight:700;font-size:1.02rem;letter-spacing:.01em;
+  width:100%;min-height:56px;margin-top:1.4rem;border:none;border-radius:13px;cursor:pointer;
+  font-family:var(--font-body);font-weight:700;font-size:1.04rem;letter-spacing:.01em;
   background:var(--dn-day);color:#0a0a0c;
-  box-shadow:0 0 30px -8px rgba(248,199,96,.5);
+  box-shadow:0 0 30px -8px rgba(248,199,96,.55);
   transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,background .35s,color .35s;}
 .dn-form-submit:hover,.dn-form-submit:focus-visible{transform:translateY(-2px);
-  box-shadow:0 0 44px -4px rgba(248,199,96,.7);outline:none;}
+  box-shadow:0 0 46px -4px rgba(248,199,96,.72);outline:none;}
 .dn-form-submit .arrow{transition:transform .3s;}
 .dn-form-submit:hover .arrow{transform:translateX(4px);}
 .dn-form-submit.dn-btn-emergency{background:#dc2626;color:#fff;
   box-shadow:0 0 0 1px rgba(220,38,38,.6),0 0 36px -6px rgba(220,38,38,.6);}
 .dn-form-submit.dn-btn-emergency:hover,.dn-form-submit.dn-btn-emergency:focus-visible{
   box-shadow:0 0 0 2px #fff,0 0 48px -2px rgba(220,38,38,.75);}
-.dn-btn-pulse{width:9px;height:9px;border-radius:50%;background:#fff;
+.dn-btn-pulse{width:9px;height:9px;border-radius:50%;background:#fff;flex:none;
   box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:emergency-pulse 1.8s infinite;}
 
-.dn-reassure{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin:.85rem 0 0;
-  font-size:.72rem;letter-spacing:.06em;color:var(--dn-bone-faint);text-align:center;}
-.dn-reassure b{color:var(--dn-day);font-weight:600;}
-.dn-form-disclaimer{margin:1.1rem 0 0;font-size:.74rem;color:var(--dn-bone-faint);line-height:1.5;}
-.dn-form-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
+.dn-reassure{display:flex;align-items:center;gap:.55rem;justify-content:center;margin:.95rem 0 0;
+  font-size:.78rem;color:var(--dn-bone-dim);text-align:center;}
+.dn-reassure .tick{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;flex:none;
+  background:rgba(248,199,96,.14);color:var(--dn-day);}
+.dn-reassure .tick svg{width:11px;height:11px;}
+.dn-reassure b{color:var(--dn-day);font-weight:700;}
+.dn-trust-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin:.8rem 0 0;}
+.dn-trust-row span{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dn-bone-faint);
+  border:1px solid var(--dn-mist);border-radius:999px;padding:4px 10px;}
+.dn-form-error{margin:1rem 0 0;padding:.85rem 1rem;border-radius:11px;border:1px solid rgba(220,38,38,.4);
+  background:rgba(220,38,38,.1);color:#f1b3b3;font-size:.86rem;}
+.dn-form-error a{color:#fff;font-weight:600;}
 
-/* ---------- Rail ---------- */
+/* ======================================================================
+   RIGHT RAIL - jumps above the form on mobile
+   ====================================================================== */
 .dn-contact-rail{display:flex;flex-direction:column;gap:0;}
 
-.dn-call-bar{display:flex;align-items:center;gap:.9rem;width:100%;min-height:64px;
+.dn-call-bar{display:flex;align-items:center;gap:.9rem;width:100%;min-height:66px;
   padding:1rem 1.4rem;border-radius:var(--dn-r-card);background:#dc2626;color:#fff;text-decoration:none;
   font-family:var(--font-body);font-weight:600;letter-spacing:.04em;
   box-shadow:0 0 0 1px rgba(220,38,38,.6),0 0 34px -6px rgba(220,38,38,.55);
@@ -134,8 +242,8 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
   box-shadow:0 0 0 2px #fff,0 0 46px -2px rgba(220,38,38,.7);outline:none;}
 .dn-call-bar .pulse{width:9px;height:9px;border-radius:50%;background:#fff;flex:none;
   box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:emergency-pulse 1.8s infinite;}
-.dn-call-bar .label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;opacity:.92;display:block;}
-.dn-call-bar .num{font-family:var(--font-display);font-size:1.4rem;line-height:1.05;letter-spacing:.01em;}
+.dn-call-bar .label{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.92;display:block;}
+.dn-call-bar .num{font-family:var(--font-display);font-size:1.42rem;line-height:1.05;letter-spacing:.01em;}
 .dn-call-bar .cta-tap{margin-left:auto;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
   border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:5px 11px;white-space:nowrap;}
 
@@ -144,28 +252,26 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
   70%{box-shadow:0 0 0 9px rgba(255,255,255,0);}
   100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}
 }
-.dn-radio .urgent-dot,.dn-btn-pulse{background:#dc2626;}
-.dn-radio .urgent-dot{animation-name:emergency-pulse;}
 @keyframes pulse-red{
   0%{box-shadow:0 0 0 0 rgba(220,38,38,.7);}
   70%{box-shadow:0 0 0 8px rgba(220,38,38,0);}
   100%{box-shadow:0 0 0 0 rgba(220,38,38,0);}
 }
-.dn-radio .urgent-dot{animation:pulse-red 1.8s infinite;}
 
 /* ---------- Day / trust block ---------- */
-.dn-day-block{margin-top:1.25rem;padding:1.35rem;border:1px solid var(--dn-mist);
+.dn-day-block{margin-top:1.25rem;padding:1.4rem;border:1px solid var(--dn-mist);
   border-radius:var(--dn-r-card);border-top:2px solid var(--dn-day);background:var(--dn-near-black);}
-.dn-day-block .blk-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;}
-.dn-day-block .blk-head .ico{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;
+.dn-day-block .blk-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1.05rem;}
+.dn-day-block .blk-head .ico{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;
   background:rgba(248,199,96,.12);color:var(--dn-day);}
 .dn-day-block .blk-head .ico svg{width:18px;height:18px;}
 .dn-day-block .blk-head .meta{display:flex;flex-direction:column;}
 .dn-day-block .blk-head .eyebrow{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-day);font-weight:600;}
 .dn-day-block .blk-head .val{font-family:var(--font-display);font-size:1.15rem;line-height:1.1;color:var(--dn-bone);}
+.dn-day-block .blk-head .val a{text-decoration:none;}
 
 .dn-hours{width:100%;border-collapse:collapse;font-size:.92rem;}
-.dn-hours td{padding:.5rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-hours td{padding:.52rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
 .dn-hours tr:last-child td{border-bottom:none;}
 .dn-hours td:last-child{text-align:right;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
 .dn-hours .emergency-row td{color:#f1b3b3;font-weight:600;}
@@ -174,12 +280,14 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
   box-shadow:0 0 0 0 rgba(220,38,38,.7);animation:pulse-red 1.8s infinite;}
 
 .dn-addr-row{display:flex;gap:.7rem;align-items:flex-start;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--dn-mist);}
-.dn-addr-row .ico{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;
+.dn-addr-row .ico{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;
   background:rgba(69,144,236,.12);color:var(--dn-night);}
 .dn-addr-row .ico svg{width:18px;height:18px;}
 .dn-addr-row .eyebrow{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;display:block;margin-bottom:.2rem;}
 .dn-addr-row .addr{color:var(--dn-bone);font-size:.95rem;line-height:1.45;}
 .dn-addr-row .hint{display:block;color:var(--dn-bone-faint);font-size:.78rem;margin-top:.2rem;}
+.dn-addr-row a.email{color:var(--dn-bone);text-decoration:none;border-bottom:1px solid var(--dn-mist);}
+.dn-addr-row a.email:hover{border-color:var(--dn-day);}
 
 /* ---------- Map facade ---------- */
 .dn-contact-map{margin-top:1.25rem;border-radius:var(--dn-r-card);overflow:hidden;border:1px solid var(--dn-mist);}
@@ -190,7 +298,7 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
   display:flex;align-items:flex-end;}
 .dn-map-img::after{content:'';position:absolute;inset:0;background:rgba(20,20,26,.55);}
 .dn-map-pin{position:relative;z-index:2;display:flex;align-items:center;gap:.7rem;padding:1rem 1.2rem;width:100%;}
-.dn-map-pin .ico{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;background:rgba(248,199,96,.18);color:var(--dn-day);}
+.dn-map-pin .ico{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;background:rgba(248,199,96,.18);color:var(--dn-day);}
 .dn-map-pin .ico svg{width:18px;height:18px;}
 .dn-map-pin strong{display:block;font-family:var(--font-display);font-size:1rem;color:#fff;font-weight:500;}
 .dn-map-pin .show{font-size:.78rem;color:var(--dn-bone-dim);}
@@ -220,8 +328,8 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
   <div class="dn-container">
     <header class="dn-head">
       <span class="dn-eyebrow dn-pill day">Book Appointment</span>
-      <h2 class="dn-display">Book an <em class="dn-hl-gold">appointment</em></h2>
-      <p class="dn-sub">In pain right now? Tap the 24/7 emergency line and we'll pick up. Booking ahead? The form takes about a minute, and the team replies within one working hour.</p>
+      <h2 class="dn-display">A booking that takes about <em class="dn-hl-gold">sixty</em> seconds.</h2>
+      <p class="dn-sub">In pain right now? Tap the 24/7 emergency line and a real person picks up. Booking ahead? Five quick fields, and the team replies within one working hour.</p>
     </header>
 
     <div class="dn-contact-grid">
@@ -236,24 +344,33 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
 
           <div class="dn-form-head">
             <h3>Request an appointment</h3>
-            <span class="dn-form-step">~60 seconds</span>
+            <span class="dn-form-clock"><span class="meter" aria-hidden="true"></span>About 60 sec</span>
           </div>
 
           <div class="dn-form-row">
             <label>
-              <span>Your name</span>
-              <input class="dn-input" type="text" name="name" autocomplete="name" placeholder="Full name" required>
+              <span class="lbl">Your name</span>
+              <span class="dn-field">
+                <span class="dn-field-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                <input class="dn-input has-ico" type="text" name="name" autocomplete="name" placeholder="Full name" required>
+              </span>
             </label>
           </div>
 
           <div class="dn-form-row dn-form-row-2">
             <label>
-              <span>Phone</span>
-              <input class="dn-input" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call" required>
+              <span class="lbl">Phone</span>
+              <span class="dn-field">
+                <span class="dn-field-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <input class="dn-input has-ico" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call" required>
+              </span>
             </label>
             <label>
-              <span>Email</span>
-              <input class="dn-input" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              <span class="lbl">Email</span>
+              <span class="dn-field">
+                <span class="dn-field-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+                <input class="dn-input has-ico" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              </span>
             </label>
           </div>
 
@@ -263,30 +380,54 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
               <label class="dn-radio urgent" data-pref="emergency">
                 <input type="radio" name="preference" value="emergency">
                 <span class="urgent-dot" aria-hidden="true"></span>
-                <span>Emergency, today</span>
+                <span class="txt">Emergency, today</span>
               </label>
               <label class="dn-radio day" data-pref="day">
                 <input type="radio" name="preference" value="day">
                 <span class="dot" aria-hidden="true"></span>
-                <span>Day (7am to 5pm)</span>
+                <span class="txt">Day (7am to 5pm)</span>
               </label>
               <label class="dn-radio night" data-pref="evening">
                 <input type="radio" name="preference" value="evening">
                 <span class="dot" aria-hidden="true"></span>
-                <span>Evening (5pm to 11pm)</span>
+                <span class="txt">Evening (5pm to 11pm)</span>
               </label>
               <label class="dn-radio night" data-pref="weekend">
                 <input type="radio" name="preference" value="weekend">
                 <span class="dot" aria-hidden="true"></span>
-                <span>Weekend</span>
+                <span class="txt">Weekend</span>
               </label>
             </div>
           </div>
 
           <div class="dn-form-row">
-            <span class="dn-form-label">Treatment of interest</span>
-            <div class="dn-select-wrap">
-              <select class="dn-select" name="treatment" aria-label="Treatment of interest">
+            <span class="dn-form-label" id="treatment-label">Treatment of interest <span class="opt">· optional</span></span>
+            <!-- CUSTOM DROPDOWN - default CLOSED, no native <select> -->
+            <div class="dn-dropdown" id="treatmentDD" data-open="false">
+              <button type="button" class="dn-dropdown-trigger" id="treatmentTrigger"
+                aria-haspopup="listbox" aria-controls="treatment-list" aria-expanded="false"
+                aria-labelledby="treatment-label treatmentValue">
+                <span class="dd-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.8-2-4.6-2-6.3-.3-1.7 1.7-1.8 4.5-.2 6.4C4 14 5 17 6.5 20c.6 1.2 2 .9 2.3-.4l.7-3.2c.3-1.2 1.7-1.2 2 0l.7 3.2c.3 1.3 1.7 1.6 2.3.4 1.5-3 2.5-6 1-8.4 1.6-1.9 1.5-4.7-.2-6.4-1.7-1.7-4.5-1.7-6.3.3z"/></svg></span>
+                <span class="dd-text placeholder" id="treatmentValue">Select an option</span>
+                <span class="dn-dropdown-chev" aria-hidden="true"></span>
+              </button>
+              <!-- hidden field so the value is submitted, mirrors the live field name -->
+              <input type="hidden" name="treatment" id="treatmentInput" value="">
+              <!-- listbox is injected/toggled by JS; rendered closed by default -->
+              <ul class="dn-dropdown-list" id="treatment-list" role="listbox" aria-label="Treatment of interest" tabindex="-1" hidden>
+                <li class="dn-dropdown-option" role="option" data-value="Emergency / pain"><span class="label">Emergency / pain</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="New patient examination"><span class="label">New patient examination</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Hygienist appointment"><span class="label">Hygienist appointment</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Cosmetic consultation"><span class="label">Cosmetic consultation</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Invisalign"><span class="label">Invisalign</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Dental implants"><span class="label">Dental implants</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Teeth whitening"><span class="label">Teeth whitening</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Other / unsure"><span class="label">Other / unsure</span><span class="check" aria-hidden="true">✓</span></li>
+              </ul>
+            </div>
+            <!-- SSR / no-JS fallback: a real native control so the field still works without JS -->
+            <noscript>
+              <select name="treatment" aria-label="Treatment of interest" style="width:100%;margin-top:.5rem;min-height:50px;font-size:16px;color:#fff;background:#0a0a0c;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.9rem 1rem;">
                 <option value="" selected>Select an option</option>
                 <option>Emergency / pain</option>
                 <option>New patient examination</option>
@@ -297,15 +438,23 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
                 <option>Teeth whitening</option>
                 <option>Other / unsure</option>
               </select>
-            </div>
+            </noscript>
           </div>
 
           <div class="dn-form-row">
             <label>
-              <span>Anything we should know?</span>
-              <textarea class="dn-input" name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+              <span class="lbl">Anything we should know? <span class="opt">· optional</span></span>
+              <span class="dn-field">
+                <textarea class="dn-input" name="notes" rows="3" placeholder="Best times to call, the tooth that's bothering you, anything that helps. Please don't include detailed medical information here."></textarea>
+              </span>
             </label>
           </div>
+
+          <label class="dn-check">
+            <input type="checkbox" name="consent" required>
+            <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>I'm happy for Day Night Dental to contact me about this enquiry. We'll never share your details. Read our <a href="/privacy/">privacy policy</a>.</span>
+          </label>
 
           <button type="submit" class="dn-form-submit" id="submitBtn">
             <span class="dn-btn-pulse" id="submitPulse" hidden aria-hidden="true"></span>
@@ -314,13 +463,13 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
           </button>
 
           <p class="dn-reassure">
-            <span><b>1 working hour</b> reply</span>
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            We reply within <b>1 working hour</b>
+          </p>
+          <p class="dn-trust-row">
             <span>GDC-regulated</span>
             <span>No obligation</span>
-          </p>
-
-          <p class="dn-form-disclaimer">
-            We'll never share your details. By sending this you're happy for us to contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+            <span>Real person, not a bot</span>
           </p>
         </form>
       </div>
@@ -343,7 +492,7 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
             </span>
             <span class="meta">
               <span class="eyebrow">Day Line</span>
-              <span class="val"><a href="tel:+441415486548" style="text-decoration:none">0141 548 6548</a></span>
+              <span class="val"><a href="tel:+441415486548">0141 548 6548</a></span>
             </span>
           </div>
 
@@ -363,7 +512,7 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
             <span>
               <span class="eyebrow">Visit</span>
               <span class="addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</span>
-              <span class="hint">Free parking nearby</span>
+              <span class="hint">Free parking nearby · <a class="email" href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a></span>
             </span>
           </div>
         </div>
@@ -393,15 +542,14 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
 
 <script>
 (function(){
-  // Radio selection: visual checked state + recolour CTA red when Emergency is chosen.
+  /* ---------- Preferred-time radios: visual checked state + recolour CTA red for Emergency ---------- */
   var radios = document.querySelectorAll('.dn-radio input[name="preference"]');
   var btn = document.getElementById('submitBtn');
   var label = document.getElementById('submitLabel');
   var pulse = document.getElementById('submitPulse');
   function refresh(){
     document.querySelectorAll('.dn-radio').forEach(function(l){
-      var input = l.querySelector('input');
-      l.classList.toggle('checked', input.checked);
+      l.classList.toggle('checked', l.querySelector('input').checked);
     });
     var emergency = document.querySelector('.dn-radio input[value="emergency"]').checked;
     btn.classList.toggle('dn-btn-emergency', emergency);
@@ -410,7 +558,87 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
   }
   radios.forEach(function(r){ r.addEventListener('change', refresh); });
 
-  // Map facade -> swap to the live embed only on click (PECR-safe, cookie-gated).
+  /* ---------- Custom dropdown: open/close/select, click-outside, keyboard (Enter/Esc/arrows) ---------- */
+  var dd = document.getElementById('treatmentDD');
+  var trigger = document.getElementById('treatmentTrigger');
+  var list = document.getElementById('treatment-list');
+  var valueEl = document.getElementById('treatmentValue');
+  var hidden = document.getElementById('treatmentInput');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.dn-dropdown-option'));
+  var activeIndex = -1;
+
+  opts.forEach(function(o,i){ o.id = 'treatment-opt-' + i; });
+
+  function setActive(i){
+    activeIndex = i;
+    opts.forEach(function(o,k){ o.classList.toggle('active', k === i); });
+    if(i >= 0){
+      trigger.setAttribute('aria-activedescendant', opts[i].id);
+      opts[i].scrollIntoView({block:'nearest'});
+    } else {
+      trigger.removeAttribute('aria-activedescendant');
+    }
+  }
+  function openMenu(){
+    list.hidden = false;
+    dd.setAttribute('data-open','true');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = opts.findIndex(function(o){ return o.classList.contains('selected'); });
+    setActive(sel >= 0 ? sel : 0);
+  }
+  function closeMenu(focusTrigger){
+    list.hidden = true;
+    dd.setAttribute('data-open','false');
+    trigger.setAttribute('aria-expanded','false');
+    setActive(-1);
+    if(focusTrigger) trigger.focus();
+  }
+  function selectOption(o){
+    var v = o.getAttribute('data-value');
+    hidden.value = v;
+    valueEl.textContent = v;
+    valueEl.classList.remove('placeholder');
+    valueEl.classList.add('val');
+    opts.forEach(function(x){
+      var on = x === o;
+      x.classList.toggle('selected', on);
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    closeMenu(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    (dd.getAttribute('data-open') === 'true') ? closeMenu(false) : openMenu();
+  });
+  trigger.addEventListener('keydown', function(e){
+    var isOpen = dd.getAttribute('data-open') === 'true';
+    if(!isOpen){
+      if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+        e.preventDefault(); openMenu();
+      }
+      return;
+    }
+    switch(e.key){
+      case 'ArrowDown': e.preventDefault(); setActive((activeIndex + 1) % opts.length); break;
+      case 'ArrowUp':   e.preventDefault(); setActive((activeIndex - 1 + opts.length) % opts.length); break;
+      case 'Home':      e.preventDefault(); setActive(0); break;
+      case 'End':       e.preventDefault(); setActive(opts.length - 1); break;
+      case 'Enter':
+      case ' ':         e.preventDefault(); if(activeIndex >= 0) selectOption(opts[activeIndex]); break;
+      case 'Escape':    e.preventDefault(); closeMenu(true); break;
+      case 'Tab':       closeMenu(false); break;
+      default: break;
+    }
+  });
+  opts.forEach(function(o,i){
+    o.addEventListener('mouseenter', function(){ setActive(i); });
+    o.addEventListener('click', function(){ selectOption(o); });
+  });
+  document.addEventListener('mousedown', function(e){
+    if(dd.getAttribute('data-open') === 'true' && !dd.contains(e.target)) closeMenu(false);
+  });
+
+  /* ---------- Map facade -> swap to the live embed only on click (PECR-safe, cookie-gated) ---------- */
   var facade = document.getElementById('mapFacade');
   if(facade){
     facade.addEventListener('click', function(){
@@ -426,7 +654,7 @@ textarea.dn-input{min-height:96px;resize:vertical;line-height:1.5;}
     });
   }
 
-  // Demo only: never submit.
+  /* ---------- Demo only: never submit ---------- */
   document.querySelector('.dn-contact-form').addEventListener('submit', function(e){ e.preventDefault(); });
 })();
 </script>

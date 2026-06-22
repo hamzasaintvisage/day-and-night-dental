@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Concierge Letter - Day Night Dental</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============================================================
+   CONCIERGE LETTER - couture
+   A written enquiry: the form reads like composing a short note
+   to the practice, with fill-in-the-blank inline fields woven
+   into flowing letter prose. Editorial, bespoke.
+   ============================================================ */
+
+.cl-wrap{position:relative;max-width:var(--container);margin:0 auto;padding:clamp(40px,8vw,96px) 18px clamp(72px,10vw,128px);}
+.cl-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.cl-glow.day{width:520px;height:520px;background:var(--dn-day);opacity:.06;top:-60px;left:-120px;}
+.cl-glow.night{width:520px;height:520px;background:var(--dn-night);opacity:.07;bottom:-80px;right:-120px;}
+
+.cl-head{position:relative;z-index:1;text-align:center;max-width:720px;margin:0 auto clamp(34px,5vw,54px);}
+.cl-head h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.06;letter-spacing:-.01em;margin:20px 0 0;}
+.cl-head .cl-kicker{margin-top:18px;color:var(--dn-bone-dim);font-size:clamp(1rem,2.4vw,1.12rem);max-width:560px;margin-left:auto;margin-right:auto;}
+
+/* The letter itself - a sheet of stationery */
+.cl-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:clamp(22px,3vw,34px);max-width:880px;margin:0 auto;}
+
+.cl-letter{position:relative;background:linear-gradient(180deg,#15151c,#101015);border:1px solid var(--dn-mist);border-radius:22px;padding:clamp(26px,5vw,52px) clamp(22px,5vw,56px);box-shadow:0 40px 120px -50px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.04);}
+/* gold ruled left margin like a letterhead - a hairline, never a gradient */
+.cl-letter::before{content:'';position:absolute;left:clamp(13px,3vw,30px);top:clamp(22px,4vw,42px);bottom:clamp(22px,4vw,42px);width:2px;background:var(--dn-day);opacity:.28;border-radius:2px;}
+
+.cl-letterhead{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-bottom:22px;margin-bottom:8px;border-bottom:1px solid var(--dn-mist);}
+.cl-mark{font-family:var(--font-display);font-weight:600;font-size:1.18rem;letter-spacing:.01em;}
+.cl-mark small{display:block;font-family:var(--font-body);font-weight:500;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);margin-top:5px;}
+.cl-letterhead-addr{text-align:right;font-size:.78rem;color:var(--dn-bone-faint);line-height:1.5;}
+.cl-letterhead-addr a{color:var(--dn-bone-dim);text-decoration:none;}
+.cl-letterhead-addr a:hover{color:var(--dn-day);}
+
+/* flowing prose - the body of the letter */
+.cl-prose{font-size:clamp(1.08rem,2.7vw,1.32rem);line-height:2.05;color:var(--dn-bone);margin-top:26px;}
+.cl-prose p{margin:0 0 6px;}
+.cl-salut{font-family:var(--font-display);font-weight:400;font-size:clamp(1.3rem,3.6vw,1.7rem);margin:0 0 18px;}
+.cl-section-note{display:block;font-family:var(--font-body);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);margin:30px 0 12px;}
+
+/* inline fill-in-the-blank fields - look like a ruled blank in the prose, become a charcoal well on focus */
+.cl-blank{display:inline-flex;position:relative;vertical-align:baseline;}
+.cl-blank input{font-family:var(--font-display);font-size:inherit;color:var(--dn-day);background:rgba(248,199,96,.045);border:none;border-bottom:2px solid var(--dn-day);box-shadow:0 1px 0 0 rgba(248,199,96,.28);padding:5px 14px 6px;min-height:40px;line-height:1.4;outline:none;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;border-radius:9px 9px 3px 3px;}
+.cl-blank input::placeholder{color:var(--dn-bone-faint);font-style:italic;font-family:var(--font-body);font-size:.84em;}
+.cl-blank input:hover{background:rgba(248,199,96,.07);box-shadow:0 4px 16px -10px rgba(248,199,96,.4);}
+.cl-blank input:focus{border-bottom-color:var(--dn-day);background:rgba(248,199,96,.12);box-shadow:0 0 0 1px rgba(248,199,96,.4),0 10px 30px -10px rgba(248,199,96,.65);}
+.cl-blank.name input{width:min(260px,62vw);}
+.cl-blank.phone input{width:min(210px,52vw);}
+.cl-blank.email input{width:min(280px,68vw);}
+
+/* the more "structured" controls live in their own ruled paragraphs */
+.cl-fieldset{border:none;margin:0;padding:0;}
+.cl-fieldset legend{padding:0;}
+
+/* PILL-CARD RADIOS - preferred time, woven as "the best time to reach me is ..." */
+.cl-radios{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.cl-radio{position:relative;}
+.cl-radio input{position:absolute;opacity:0;width:0;height:0;}
+.cl-radio span{display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:0 18px;border:1px solid var(--dn-mist);border-radius:999px;background:var(--dn-charcoal);font-family:var(--font-body);font-size:.96rem;font-weight:500;color:var(--dn-bone-dim);cursor:pointer;transition:all .18s ease;}
+.cl-radio span::before{content:'';width:16px;height:16px;border-radius:50%;border:1.5px solid var(--dn-bone-faint);flex:none;transition:all .18s ease;}
+.cl-radio:hover span{border-color:rgba(248,199,96,.4);color:var(--dn-bone);}
+.cl-radio input:focus-visible+span{box-shadow:0 0 0 3px rgba(248,199,96,.4);}
+.cl-radio input:checked+span{border-color:var(--dn-day);color:var(--dn-near-black);background:var(--dn-day);font-weight:600;}
+.cl-radio input:checked+span::before{border-color:var(--dn-near-black);background:var(--dn-near-black);box-shadow:inset 0 0 0 3px var(--dn-day);}
+/* the emergency option carries the 24/7 blue accent until chosen */
+.cl-radio.urgent span{border-color:rgba(69,144,236,.5);color:var(--dn-night-soft);}
+.cl-radio.urgent span .cl-dot{width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 0 0 rgba(69,144,236,.55);animation:clPulse 1.8s infinite;}
+.cl-radio.urgent:hover span{border-color:var(--dn-night);color:var(--dn-bone);}
+.cl-radio.urgent input:checked+span{background:var(--dn-night);border-color:var(--dn-night);color:#fff;}
+.cl-radio.urgent input:checked+span::before{border-color:#fff;background:#fff;box-shadow:inset 0 0 0 3px var(--dn-night);}
+.cl-radio.urgent input:checked+span .cl-dot{background:#fff;}
+@keyframes clPulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.55);}70%{box-shadow:0 0 0 7px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
+
+/* CUSTOM DROPDOWN - treatment of interest, woven as "I am writing about ..." */
+.cl-select{position:relative;display:inline-block;margin-top:4px;}
+.cl-select-trigger{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;min-height:48px;width:min(340px,82vw);padding:0 16px;background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:14px;color:var(--dn-bone);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer;text-align:left;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;}
+.cl-select-trigger[data-placeholder="true"]{color:var(--dn-bone-faint);}
+.cl-select-trigger:hover{border-color:rgba(248,199,96,.4);}
+.cl-select-trigger:focus-visible,.cl-select.open .cl-select-trigger{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.18),0 10px 30px -14px rgba(248,199,96,.5);}
+.cl-chevron{flex:none;width:18px;height:18px;transition:transform .25s ease;color:var(--dn-day);}
+.cl-select.open .cl-chevron{transform:rotate(180deg);}
+.cl-listbox{position:absolute;left:0;top:calc(100% + 8px);z-index:30;width:min(340px,82vw);max-height:288px;overflow-y:auto;padding:7px;background:#16161d;border:1px solid var(--dn-mist);border-radius:16px;box-shadow:0 26px 60px -22px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.04);list-style:none;margin:6px 0 0;display:none;}
+.cl-select.open .cl-listbox{display:block;animation:clFade .16s ease;}
+@keyframes clFade{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+.cl-option{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:0 12px 0 16px;border-radius:11px;font-size:.98rem;color:var(--dn-bone-dim);cursor:pointer;transition:background .15s ease,color .15s ease;}
+.cl-option::before{content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);width:3px;height:0;border-radius:3px;background:var(--dn-day);transition:height .18s ease;}
+.cl-option:hover,.cl-option.active{background:rgba(248,199,96,.1);color:var(--dn-bone);}
+.cl-option:hover::before,.cl-option.active::before,.cl-option[aria-selected="true"]::before{height:20px;}
+.cl-option[aria-selected="true"]{color:var(--dn-day);font-weight:600;}
+.cl-option .cl-check{flex:none;width:17px;height:17px;opacity:0;color:var(--dn-day);transition:opacity .15s ease;}
+.cl-option[aria-selected="true"] .cl-check{opacity:1;}
+
+/* SSR-safe fallback: when JS is off, expose real radio pills (no native select anywhere) */
+.cl-select-fallback{display:none;}
+.no-js .cl-select-trigger,.no-js .cl-listbox{display:none;}
+.no-js .cl-select-fallback{display:flex;flex-wrap:wrap;gap:9px;}
+.cl-select-fallback label{position:relative;}
+.cl-select-fallback input{position:absolute;opacity:0;width:0;height:0;}
+.cl-select-fallback span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--dn-mist);border-radius:999px;background:var(--dn-charcoal);font-size:.94rem;color:var(--dn-bone-dim);cursor:pointer;}
+.cl-select-fallback input:checked+span{border-color:var(--dn-day);background:var(--dn-day);color:var(--dn-near-black);font-weight:600;}
+.cl-select-fallback input:focus-visible+span{box-shadow:0 0 0 3px rgba(248,199,96,.4);}
+
+/* notes - a "P.S." postscript paragraph well */
+.cl-ps-label{display:block;font-family:var(--font-display);font-weight:500;font-size:1.05rem;margin:30px 0 10px;}
+.cl-ps-label .cl-ps-tag{font-family:var(--font-body);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:500;margin-left:8px;}
+.cl-textarea{width:100%;min-height:104px;padding:14px 16px;background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:14px;color:var(--dn-bone);font-family:var(--font-body);font-size:16px;line-height:1.6;resize:vertical;outline:none;transition:border-color .2s ease,box-shadow .2s ease;}
+.cl-textarea::placeholder{color:var(--dn-bone-faint);}
+.cl-textarea:focus{border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+
+/* consent checkbox */
+.cl-consent{display:flex;align-items:flex-start;gap:13px;margin-top:26px;font-size:.92rem;color:var(--dn-bone-dim);line-height:1.55;cursor:pointer;}
+.cl-consent input{position:absolute;opacity:0;width:0;height:0;}
+.cl-box{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal);display:inline-flex;align-items:center;justify-content:center;margin-top:1px;transition:all .18s ease;}
+.cl-box svg{width:13px;height:13px;opacity:0;transform:scale(.5);transition:all .18s ease;color:var(--dn-near-black);}
+.cl-consent input:focus-visible+.cl-box{box-shadow:0 0 0 3px rgba(248,199,96,.4);}
+.cl-consent input:checked+.cl-box{background:var(--dn-day);border-color:var(--dn-day);}
+.cl-consent input:checked+.cl-box svg{opacity:1;transform:scale(1);}
+.cl-consent a{color:var(--dn-day);text-decoration:underline;text-underline-offset:2px;}
+
+/* sign-off + submit */
+.cl-signoff{margin-top:30px;font-family:var(--font-display);font-size:1.06rem;color:var(--dn-bone-dim);}
+.cl-actions{margin-top:22px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;}
+.cl-submit{display:inline-flex;align-items:center;gap:11px;min-height:54px;padding:0 30px;border:none;border-radius:999px;background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-size:1.02rem;font-weight:700;letter-spacing:.01em;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,filter .2s ease;box-shadow:0 16px 36px -14px rgba(248,199,96,.6);}
+.cl-submit:hover{transform:translateY(-2px);box-shadow:0 22px 44px -14px rgba(248,199,96,.75);}
+.cl-submit:active{transform:translateY(0);}
+.cl-submit:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(248,199,96,.4),0 16px 36px -14px rgba(248,199,96,.6);}
+.cl-submit .cl-arrow{transition:transform .18s ease;}
+.cl-submit:hover .cl-arrow{transform:translateX(4px);}
+.cl-reassure{display:inline-flex;align-items:center;gap:9px;font-size:.9rem;color:var(--dn-bone-faint);}
+.cl-reassure .cl-live{width:8px;height:8px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 0 0 rgba(248,199,96,.5);animation:clPulse2 2s infinite;}
+@keyframes clPulse2{0%{box-shadow:0 0 0 0 rgba(248,199,96,.5);}70%{box-shadow:0 0 0 6px rgba(248,199,96,0);}100%{box-shadow:0 0 0 0 rgba(248,199,96,0);}}
+
+/* the courier's note - 24/7 emergency aside, set apart in blue */
+.cl-aside{position:relative;z-index:1;max-width:880px;margin:clamp(22px,3vw,30px) auto 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;padding:20px clamp(20px,4vw,30px);background:rgba(69,144,236,.07);border:1px solid rgba(69,144,236,.32);border-radius:18px;}
+.cl-aside-text{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.cl-aside-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;}
+.cl-aside-eyebrow .cl-dot{width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 0 0 rgba(69,144,236,.55);animation:clPulse 1.8s infinite;}
+.cl-aside-text strong{font-family:var(--font-display);font-weight:500;font-size:1.04rem;}
+.cl-aside-text span.sub{font-size:.86rem;color:var(--dn-bone-dim);}
+.cl-aside-call{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 24px;border:1px solid var(--dn-night);border-radius:999px;background:rgba(69,144,236,.12);color:var(--dn-night-soft);font-weight:600;font-size:1rem;text-decoration:none;white-space:nowrap;transition:all .18s ease;}
+.cl-aside-call:hover{background:var(--dn-night);color:#fff;}
+.cl-aside-call svg{width:17px;height:17px;}
+
+@media (max-width:560px){
+  .cl-letterhead-addr{text-align:left;}
+  .cl-prose{line-height:2.2;}
+  .cl-aside{flex-direction:column;align-items:stretch;}
+  .cl-aside-call{justify-content:center;}
+}
+</style>
+</head>
+<body class="no-js">
+<div class="lab-top"><a href="/preview/">&larr; all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Concierge Letter</b> <span class="lab-lens">couture</span></div><span></span></div>
+
+<main class="cl-wrap">
+  <div class="cl-glow day" aria-hidden="true"></div>
+  <div class="cl-glow night" aria-hidden="true"></div>
+
+  <header class="cl-head">
+    <span class="dn-eyebrow dn-pill day">Book Appointment</span>
+    <h1>Write us a <em class="dn-hl-gold">note</em>.<br>We will write straight back.</h1>
+    <p class="cl-kicker">No forms that feel like forms. Just tell us, in your own words, who you are and the best way to reach you. We reply within one working hour.</p>
+  </header>
+
+  <div class="cl-grid">
+    <form class="cl-letter" action="/api/send-enquiry.php" method="post" id="cl-form" novalidate>
+      <!-- honeypot: hidden from people, password managers and keyboard -->
+      <p hidden aria-hidden="true"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+      <div class="cl-letterhead">
+        <div class="cl-mark">Day Night Dental<small>Merchant City &middot; Glasgow</small></div>
+        <div class="cl-letterhead-addr">
+          80 Hutcheson St, Merchant City<br>
+          Glasgow G1 1SH<br>
+          <a href="tel:+441415486548">0141 548 6548</a> &middot; <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+        </div>
+      </div>
+
+      <div class="cl-prose">
+        <p class="cl-salut">Dear Day Night Dental,</p>
+
+        <p>
+          My name is
+          <span class="cl-blank name">
+            <input type="text" name="name" required autocomplete="name" placeholder="your name" aria-label="Your name">
+          </span>,
+          and the best number to reach me on is
+          <span class="cl-blank phone">
+            <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="phone number" aria-label="Your phone number">
+          </span>.
+          You can also email me at
+          <span class="cl-blank email">
+            <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com" aria-label="Your email address">
+          </span>.
+        </p>
+
+        <fieldset class="cl-fieldset">
+          <legend class="cl-section-note">The best time to reach me</legend>
+          <div class="cl-radios" role="radiogroup" aria-label="Preferred time">
+            <label class="cl-radio urgent">
+              <input type="radio" name="preference" value="emergency">
+              <span><span class="cl-dot" aria-hidden="true"></span>Emergency, today</span>
+            </label>
+            <label class="cl-radio">
+              <input type="radio" name="preference" value="day">
+              <span>Day &middot; 7am to 5pm</span>
+            </label>
+            <label class="cl-radio">
+              <input type="radio" name="preference" value="evening">
+              <span>Evening &middot; 5pm to 11pm</span>
+            </label>
+            <label class="cl-radio">
+              <input type="radio" name="preference" value="weekend">
+              <span>Weekend</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div>
+          <span class="cl-section-note">I am writing about</span>
+          <div class="cl-select" id="cl-treatment">
+            <button type="button" class="cl-select-trigger" id="cl-trigger" data-placeholder="true"
+                    role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="cl-listbox"
+                    aria-label="Treatment of interest">
+              <span class="cl-trigger-label">Choose a treatment</span>
+              <svg class="cl-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <ul class="cl-listbox" id="cl-listbox" role="listbox" aria-label="Treatment of interest" tabindex="-1"></ul>
+            <!-- SSR-safe / no-JS fallback: real radio pills, no native select -->
+            <span class="cl-select-fallback" role="radiogroup" aria-label="Treatment of interest">
+              <label><input type="radio" name="treatment" value="Emergency / pain"><span>Emergency / pain</span></label>
+              <label><input type="radio" name="treatment" value="New patient examination"><span>New patient examination</span></label>
+              <label><input type="radio" name="treatment" value="Hygienist appointment"><span>Hygienist appointment</span></label>
+              <label><input type="radio" name="treatment" value="Cosmetic consultation"><span>Cosmetic consultation</span></label>
+              <label><input type="radio" name="treatment" value="Invisalign"><span>Invisalign</span></label>
+              <label><input type="radio" name="treatment" value="Dental implants"><span>Dental implants</span></label>
+              <label><input type="radio" name="treatment" value="Teeth whitening"><span>Teeth whitening</span></label>
+              <label><input type="radio" name="treatment" value="Other / unsure"><span>Other / unsure</span></label>
+            </span>
+          </div>
+          <input type="hidden" name="treatment" id="cl-treatment-value" value="" disabled>
+        </div>
+
+        <label class="cl-ps-label" for="cl-notes">P.S. <span class="cl-ps-tag">Optional</span></label>
+        <textarea class="cl-textarea" id="cl-notes" name="notes" rows="3"
+          placeholder="Anything that helps us handle your enquiry, e.g. best times to call. Please do not include detailed medical information here."></textarea>
+
+        <label class="cl-consent">
+          <input type="checkbox" name="consent" required>
+          <span class="cl-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5L20 7"/></svg></span>
+          <span>I am happy for Day Night Dental to contact me about this enquiry. We never share your details. Read our <a href="/privacy/">privacy policy</a>.</span>
+        </label>
+
+        <p class="cl-signoff">Yours, with thanks.</p>
+
+        <div class="cl-actions">
+          <button type="submit" class="cl-submit">
+            Send my note
+            <span class="cl-arrow" aria-hidden="true">&rarr;</span>
+          </button>
+          <span class="cl-reassure"><span class="cl-live" aria-hidden="true"></span> We reply within 1 working hour.</span>
+        </div>
+      </div>
+    </form>
+
+    <aside class="cl-aside">
+      <div class="cl-aside-text">
+        <span class="cl-aside-eyebrow"><span class="cl-dot" aria-hidden="true"></span>Night &amp; Emergency</span>
+        <strong>In pain right now? Do not write. Call.</strong>
+        <span class="sub">Our 24-hour emergency line answers any time, day or night, 7 days a week.</span>
+      </div>
+      <a class="cl-aside-call" href="tel:+441415486548">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0141 548 6548
+      </a>
+    </aside>
+  </div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  document.body.classList.remove('no-js');
+
+  /* ---- the aside line uses an em dash glyph in the rendered text only via entity above;
+     keep all source punctuation as hyphen / middot ---- */
+
+  /* ===== Custom dropdown ===== */
+  var OPTIONS = [
+    'Emergency / pain',
+    'New patient examination',
+    'Hygienist appointment',
+    'Cosmetic consultation',
+    'Invisalign',
+    'Dental implants',
+    'Teeth whitening',
+    'Other / unsure'
+  ];
+
+  var root = document.getElementById('cl-treatment');
+  var trigger = document.getElementById('cl-trigger');
+  var listbox = document.getElementById('cl-listbox');
+  var triggerLabel = trigger.querySelector('.cl-trigger-label');
+  var hidden = document.getElementById('cl-treatment-value');
+  var fallback = root.querySelector('.cl-select-fallback');
+  var fallbackRadios = Array.prototype.slice.call(fallback.querySelectorAll('input[type="radio"]'));
+
+  /* JS path: drop the no-JS radio fallback from submission, enable the hidden field */
+  fallbackRadios.forEach(function(r){ r.disabled = true; });
+  hidden.disabled = false;
+
+  var activeIndex = -1;
+  var selectedIndex = -1;
+
+  var checkSvg = '<svg class="cl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>';
+
+  OPTIONS.forEach(function(opt, i){
+    var li = document.createElement('li');
+    li.className = 'cl-option';
+    li.setAttribute('role','option');
+    li.setAttribute('id','cl-opt-' + i);
+    li.setAttribute('aria-selected','false');
+    li.dataset.index = String(i);
+    li.innerHTML = '<span class="cl-option-label"></span>' + checkSvg;
+    li.querySelector('.cl-option-label').textContent = opt;
+    listbox.appendChild(li);
+  });
+  var optionEls = Array.prototype.slice.call(listbox.querySelectorAll('.cl-option'));
+
+  function isOpen(){ return root.classList.contains('open'); }
+
+  function open(){
+    root.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    setActive(selectedIndex >= 0 ? selectedIndex : 0);
+  }
+  function close(){
+    root.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    trigger.removeAttribute('aria-activedescendant');
+    activeIndex = -1;
+  }
+  function toggle(){ isOpen() ? close() : open(); }
+
+  function setActive(i){
+    if (i < 0 || i >= optionEls.length) return;
+    optionEls.forEach(function(el){ el.classList.remove('active'); });
+    activeIndex = i;
+    var el = optionEls[i];
+    el.classList.add('active');
+    trigger.setAttribute('aria-activedescendant', el.id);
+    el.scrollIntoView({ block:'nearest' });
+  }
+
+  function select(i){
+    selectedIndex = i;
+    optionEls.forEach(function(el, idx){
+      el.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+    });
+    var val = OPTIONS[i];
+    triggerLabel.textContent = val;
+    trigger.removeAttribute('data-placeholder');
+    hidden.value = val;
+    close();
+    trigger.focus();
+  }
+
+  trigger.addEventListener('click', function(e){ e.preventDefault(); toggle(); });
+
+  optionEls.forEach(function(el){
+    el.addEventListener('mouseenter', function(){ setActive(parseInt(el.dataset.index,10)); });
+    el.addEventListener('click', function(){ select(parseInt(el.dataset.index,10)); });
+  });
+
+  trigger.addEventListener('keydown', function(e){
+    switch(e.key){
+      case 'ArrowDown': e.preventDefault(); if(!isOpen()){open();} else {setActive(Math.min(activeIndex+1, optionEls.length-1));} break;
+      case 'ArrowUp': e.preventDefault(); if(!isOpen()){open();} else {setActive(Math.max(activeIndex-1, 0));} break;
+      case 'Enter':
+      case ' ': e.preventDefault(); if(!isOpen()){open();} else if(activeIndex>=0){select(activeIndex);} break;
+      case 'Escape': if(isOpen()){e.preventDefault(); close();} break;
+      case 'Home': if(isOpen()){e.preventDefault(); setActive(0);} break;
+      case 'End': if(isOpen()){e.preventDefault(); setActive(optionEls.length-1);} break;
+    }
+  });
+
+  document.addEventListener('click', function(e){
+    if (!root.contains(e.target) && isOpen()) close();
+  });
+
+  /* ===== Emergency option toggles the submit / aside emphasis (light touch) ===== */
+  var form = document.getElementById('cl-form');
+  var submitBtn = form.querySelector('.cl-submit');
+  form.addEventListener('change', function(e){
+    if (e.target.name === 'preference'){
+      var emergency = e.target.value === 'emergency' && e.target.checked;
+      submitBtn.firstChild.nodeValue = emergency ? 'Send urgent note ' : 'Send my note ';
+    }
+  });
+})();
+</script>
+</body>
+</html>

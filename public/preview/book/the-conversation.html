@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The Conversation - Day Night Dental booking</title>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;} body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);} .lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.day::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ The Conversation ============ */
+.cv-wrap{max-width:760px;margin:0 auto;padding:30px 18px 90px;position:relative;}
+.cv-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.cv-glow.day{width:460px;height:460px;background:var(--dn-day);opacity:.07;top:-30px;left:-120px;}
+.cv-glow.night{width:520px;height:520px;background:var(--dn-night);opacity:.08;bottom:120px;right:-160px;}
+.cv-inner{position:relative;z-index:1;}
+
+/* header */
+.cv-head{text-align:center;margin-bottom:26px;}
+.cv-head h1{font-family:var(--font-display);font-weight:340;font-size:clamp(1.9rem,6vw,2.9rem);line-height:1.08;letter-spacing:-.01em;margin:18px 0 12px;}
+.cv-head .pill-line{display:flex;justify-content:center;}
+.cv-sub{color:var(--dn-bone-dim);font-size:1.02rem;max-width:30ch;margin:0 auto;}
+
+/* the messaging app frame */
+.cv-thread{background:linear-gradient(180deg,rgba(20,20,26,.94),rgba(14,14,18,.94));border:1px solid var(--dn-mist);border-radius:24px;overflow:hidden;box-shadow:0 30px 90px -40px rgba(0,0,0,.9);}
+.cv-bar{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--dn-mist);background:rgba(255,255,255,.02);}
+.cv-avatar{width:42px;height:42px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:rgba(248,199,96,.12);border:1px solid rgba(248,199,96,.3);color:var(--dn-day);position:relative;}
+.cv-avatar svg{width:20px;height:20px;}
+.cv-avatar::after{content:'';position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;background:#3ad07a;border:2px solid var(--dn-charcoal);box-shadow:0 0 0 0 rgba(58,208,122,.6);animation:cv-live 2.4s infinite;}
+@keyframes cv-live{0%{box-shadow:0 0 0 0 rgba(58,208,122,.55);}70%{box-shadow:0 0 0 7px rgba(58,208,122,0);}100%{box-shadow:0 0 0 0 rgba(58,208,122,0);}}
+.cv-bar-name{font-family:var(--font-display);font-weight:600;font-size:1.02rem;line-height:1.2;}
+.cv-bar-status{font-size:.78rem;color:var(--dn-bone-dim);display:flex;align-items:center;gap:6px;}
+.cv-bar-status b{color:#5cd98c;font-weight:500;}
+.cv-bar-call{margin-left:auto;display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--dn-night-soft);font-size:.82rem;font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid rgba(69,144,236,.34);background:rgba(69,144,236,.08);min-height:40px;}
+.cv-bar-call svg{width:15px;height:15px;}
+.cv-bar-call:hover{background:rgba(69,144,236,.16);border-color:rgba(69,144,236,.55);}
+
+/* scroll body */
+.cv-body{padding:24px 18px 20px;display:flex;flex-direction:column;gap:14px;}
+
+/* bubbles */
+.cv-row{display:flex;gap:10px;align-items:flex-end;animation:cv-in .5s cubic-bezier(.2,.7,.3,1) both;}
+@keyframes cv-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.cv-row.them{justify-content:flex-start;}
+.cv-row.me{justify-content:flex-end;}
+.cv-tick{width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.26);color:var(--dn-day);align-self:flex-end;margin-bottom:2px;}
+.cv-tick svg{width:15px;height:15px;}
+.cv-bubble{max-width:84%;padding:13px 16px;font-size:1rem;line-height:1.5;border-radius:18px;position:relative;}
+.cv-row.them .cv-bubble{background:rgba(255,255,255,.05);border:1px solid var(--dn-mist);border-bottom-left-radius:5px;color:var(--dn-bone);}
+.cv-row.them .cv-bubble strong{color:var(--dn-day);font-weight:600;}
+.cv-time{display:block;font-size:.68rem;color:var(--dn-bone-faint);margin-top:6px;letter-spacing:.02em;}
+
+/* typing indicator */
+.cv-typing{display:inline-flex;gap:5px;align-items:center;padding:14px 17px;}
+.cv-typing span{width:7px;height:7px;border-radius:50%;background:var(--dn-bone-faint);animation:cv-bounce 1.3s infinite;}
+.cv-typing span:nth-child(2){animation-delay:.18s;} .cv-typing span:nth-child(3){animation-delay:.36s;}
+@keyframes cv-bounce{0%,60%,100%{transform:translateY(0);opacity:.5;}30%{transform:translateY(-5px);opacity:1;}}
+
+/* the visitor's "reply" cards (form, in the thread) */
+.cv-reply{align-self:flex-end;width:100%;max-width:560px;margin-left:auto;}
+.cv-reply-card{background:rgba(69,144,236,.07);border:1px solid rgba(69,144,236,.22);border-radius:18px;border-bottom-right-radius:5px;padding:16px 16px 18px;}
+.cv-reply-card.solo{margin-bottom:2px;}
+.cv-q{font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;margin:0 0 11px;display:flex;align-items:center;gap:8px;}
+.cv-q .num{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(69,144,236,.18);font-size:.7rem;color:var(--dn-night-soft);}
+
+/* premium inputs */
+.cv-field{position:relative;}
+.cv-field + .cv-field{margin-top:13px;}
+.cv-label{display:block;font-size:.9rem;color:var(--dn-bone-dim);margin-bottom:7px;font-weight:500;}
+.cv-help{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:7px;}
+.cv-input,.cv-textarea{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+.cv-textarea{resize:vertical;min-height:84px;}
+.cv-input::placeholder,.cv-textarea::placeholder{color:var(--dn-bone-faint);}
+.cv-input:hover,.cv-textarea:hover{border-color:rgba(255,255,255,.2);}
+.cv-input:focus,.cv-textarea:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.cv-grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.cv-grid2 .cv-field + .cv-field{margin-top:0;}
+
+/* pill-card radios */
+.cv-radios{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.cv-radio{position:relative;cursor:pointer;}
+.cv-radio input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
+.cv-radio-face{display:flex;align-items:center;gap:11px;padding:13px 14px;min-height:54px;border-radius:13px;background:var(--dn-charcoal);border:1px solid var(--dn-mist);transition:border-color .18s,background .18s,box-shadow .18s;}
+.cv-radio-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--dn-bone-faint);flex:0 0 auto;display:grid;place-items:center;transition:border-color .18s;}
+.cv-radio-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--dn-day);transform:scale(0);transition:transform .18s;}
+.cv-radio-text{font-size:.95rem;line-height:1.25;}
+.cv-radio-text small{display:block;font-size:.76rem;color:var(--dn-bone-faint);font-weight:400;}
+.cv-radio:hover .cv-radio-face{border-color:rgba(255,255,255,.22);}
+.cv-radio input:focus-visible + .cv-radio-face{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.cv-radio input:checked + .cv-radio-face{border-color:var(--dn-day);background:rgba(248,199,96,.08);}
+.cv-radio input:checked + .cv-radio-face .cv-radio-dot{border-color:var(--dn-day);}
+.cv-radio input:checked + .cv-radio-face .cv-radio-dot::after{transform:scale(1);}
+/* emergency radio - night accent + pulse */
+.cv-radio.urgent .cv-radio-face{border-color:rgba(69,144,236,.3);}
+.cv-radio.urgent .cv-radio-dot{border-color:var(--dn-night-soft);}
+.cv-radio.urgent .cv-radio-dot::after{background:var(--dn-night);}
+.cv-radio.urgent input:checked + .cv-radio-face{border-color:var(--dn-night);background:rgba(69,144,236,.12);box-shadow:0 0 0 4px rgba(69,144,236,.14);}
+.cv-radio.urgent input:checked + .cv-radio-face .cv-radio-dot{border-color:var(--dn-night);}
+.cv-urgent-dot{width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 0 0 rgba(69,144,236,.6);animation:cv-live 2s infinite;flex:0 0 auto;}
+
+/* custom dropdown */
+.cv-dd{position:relative;}
+.cv-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:14px 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.cv-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.cv-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.cv-dd.open .cv-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.cv-dd-trigger .ph{color:var(--dn-bone-faint);}
+.cv-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.cv-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.cv-dd.open .cv-chev{transform:rotate(180deg);}
+.cv-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:296px;overflow-y:auto;list-style:none;margin:0;}
+.cv-dd:not(.open) .cv-dd-list{display:none;}
+.cv-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.cv-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.cv-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.cv-opt:hover,.cv-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.cv-opt:hover::before,.cv-opt.active::before{opacity:1;}
+.cv-opt[aria-selected="true"]{color:var(--dn-day);}
+.cv-opt[aria-selected="true"] .check{opacity:1;}
+/* SSR-safe / no-JS fallback for the dropdown */
+.cv-dd-native{margin-top:9px;}
+.cv-dd-native summary{list-style:none;cursor:pointer;}
+.cv-dd-native summary::-webkit-details-marker{display:none;}
+
+/* checkbox */
+.cv-check-row{display:flex;align-items:flex-start;gap:12px;margin-top:15px;cursor:pointer;}
+.cv-check{position:relative;width:22px;height:22px;flex:0 0 auto;margin-top:1px;}
+.cv-check input{position:absolute;opacity:0;width:22px;height:22px;margin:0;cursor:pointer;}
+.cv-check-box{position:absolute;inset:0;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal);transition:border-color .15s,background .15s;pointer-events:none;}
+.cv-check-box svg{position:absolute;inset:0;margin:auto;width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.5);transition:opacity .15s,transform .15s;}
+.cv-check input:checked + .cv-check-box{background:var(--dn-day);border-color:var(--dn-day);}
+.cv-check input:checked + .cv-check-box svg{opacity:1;transform:scale(1);}
+.cv-check input:focus-visible + .cv-check-box{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.cv-check-label{font-size:.88rem;color:var(--dn-bone-dim);line-height:1.5;}
+.cv-check-label a{color:var(--dn-day);}
+
+/* send / submit */
+.cv-send-row{margin-top:18px;}
+.cv-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.04rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);}
+.cv-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.cv-btn:active{transform:scale(.985);}
+.cv-btn svg{width:18px;height:18px;}
+.cv-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:.82rem;color:var(--dn-bone-dim);}
+.cv-reassure svg{width:14px;height:14px;color:#5cd98c;flex:0 0 auto;}
+
+/* emergency banner bubble */
+.cv-sos{margin-top:6px;border:1px solid rgba(69,144,236,.3);background:rgba(69,144,236,.07);border-radius:16px;padding:15px 16px;display:flex;gap:13px;align-items:center;}
+.cv-sos-ico{width:40px;height:40px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:rgba(69,144,236,.16);color:var(--dn-night-soft);}
+.cv-sos-ico svg{width:19px;height:19px;}
+.cv-sos-txt{flex:1;min-width:0;}
+.cv-sos-txt b{font-family:var(--font-display);font-weight:600;display:block;font-size:.98rem;}
+.cv-sos-txt span{font-size:.84rem;color:var(--dn-bone-dim);}
+.cv-sos-call{flex:0 0 auto;text-decoration:none;font-weight:700;font-size:.94rem;color:var(--dn-night-soft);white-space:nowrap;padding:11px 15px;border-radius:11px;border:1px solid rgba(69,144,236,.4);background:rgba(69,144,236,.1);min-height:44px;display:inline-flex;align-items:center;gap:7px;}
+.cv-sos-call:hover{background:rgba(69,144,236,.2);}
+.cv-sos-call svg{width:14px;height:14px;}
+
+/* footer reassurance strip */
+.cv-foot{margin:30px auto 0;max-width:560px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.cv-foot-item{text-align:center;padding:16px 10px;border:1px solid var(--dn-mist);border-radius:14px;background:rgba(255,255,255,.02);}
+.cv-foot-item .ic{color:var(--dn-day);margin-bottom:7px;display:inline-flex;}
+.cv-foot-item .ic svg{width:20px;height:20px;}
+.cv-foot-item b{font-family:var(--font-display);font-weight:600;font-size:.95rem;display:block;}
+.cv-foot-item span{font-size:.76rem;color:var(--dn-bone-dim);line-height:1.4;}
+
+/* visit / address line */
+.cv-visit{margin:22px auto 0;max-width:560px;text-align:center;font-size:.86rem;color:var(--dn-bone-dim);}
+.cv-visit a{color:var(--dn-day);text-decoration:none;}
+
+@media(max-width:520px){
+  .cv-grid2{grid-template-columns:1fr;}
+  .cv-radios{grid-template-columns:1fr;}
+  .cv-foot{grid-template-columns:1fr;}
+  .cv-sos{flex-wrap:wrap;}
+  .cv-sos-call{width:100%;justify-content:center;}
+  .cv-bubble{max-width:90%;}
+  .cv-bar-call span.lbl{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Conversation</b> <span class="lab-lens">warm</span></div><span></span></div>
+
+<div class="cv-wrap">
+  <div class="cv-glow day"></div>
+  <div class="cv-glow night"></div>
+  <div class="cv-inner">
+
+    <header class="cv-head">
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">Book Appointment</span></div>
+      <h1>Tell us what is wrong.<br>We will get you <em class="dn-hl-gold">seen</em>.</h1>
+      <p class="cv-sub">No forms that feel like paperwork. Just a quick chat, like texting the practice at 2am.</p>
+    </header>
+
+    <div class="cv-thread">
+      <div class="cv-bar">
+        <span class="cv-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <div>
+          <div class="cv-bar-name">Day Night Dental</div>
+          <div class="cv-bar-status"><b>● Online now</b> · replies fast</div>
+        </div>
+        <a class="cv-bar-call" href="tel:+441415486548" aria-label="Call Day Night Dental on 0141 548 6548">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="lbl">Call now</span>
+        </a>
+      </div>
+
+      <div class="cv-body">
+
+        <!-- practice greeting -->
+        <div class="cv-row them">
+          <span class="cv-tick" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </span>
+          <div class="cv-bubble">
+            Hi, you have reached <strong>Day Night Dental</strong> in Merchant City. We are awake and here for you, day or night.
+            <span class="cv-time">Just now</span>
+          </div>
+        </div>
+
+        <div class="cv-row them">
+          <span class="cv-tick" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </span>
+          <div class="cv-bubble">
+            In pain right now? Do not wait on a message <strong>- call our 24/7 emergency line</strong> and a real person will pick up.
+            <span class="cv-time">Just now</span>
+          </div>
+        </div>
+
+        <!-- emergency line -->
+        <div class="cv-row me">
+          <div class="cv-reply">
+            <div class="cv-sos">
+              <span class="cv-sos-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </span>
+              <span class="cv-sos-txt">
+                <b>24/7 emergency line</b>
+                <span>Toothache, swelling or a knocked-out tooth - we answer around the clock.</span>
+              </span>
+              <a class="cv-sos-call" href="tel:+441415486548">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                0141 548 6548
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ask name -->
+        <div class="cv-row them">
+          <span class="cv-tick" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </span>
+          <div class="cv-bubble">
+            Rather book in? Lovely. First up <strong>- what should we call you, and how do we reach you?</strong>
+            <span class="cv-time">Just now</span>
+          </div>
+        </div>
+
+        <form class="cv-form" id="cv-form" method="post" action="/api/send-enquiry.php" novalidate>
+          <!-- honeypot -->
+          <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+          <!-- reply 1: name + contact -->
+          <div class="cv-row me">
+            <div class="cv-reply">
+              <div class="cv-reply-card">
+                <p class="cv-q"><span class="num">1</span> Who are we chatting to?</p>
+                <div class="cv-field">
+                  <label class="cv-label" for="cv-name">Your name</label>
+                  <input class="cv-input" type="text" id="cv-name" name="name" required autocomplete="name" placeholder="e.g. Jamie Robertson">
+                </div>
+                <div class="cv-grid2" style="margin-top:13px;">
+                  <div class="cv-field">
+                    <label class="cv-label" for="cv-phone">Phone</label>
+                    <input class="cv-input" type="tel" id="cv-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+                  </div>
+                  <div class="cv-field">
+                    <label class="cv-label" for="cv-email">Email</label>
+                    <input class="cv-input" type="email" id="cv-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ask timing -->
+          <div class="cv-row them">
+            <span class="cv-tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <div class="cv-bubble">
+              When suits you best? <strong>If it is an emergency, say the word</strong> and we will fast-track you today.
+              <span class="cv-time">Just now</span>
+            </div>
+          </div>
+
+          <!-- reply 2: preferred time -->
+          <div class="cv-row me">
+            <div class="cv-reply">
+              <div class="cv-reply-card">
+                <p class="cv-q"><span class="num">2</span> Preferred time</p>
+                <div class="cv-radios" role="radiogroup" aria-label="Preferred time">
+                  <label class="cv-radio urgent">
+                    <input type="radio" name="preference" value="emergency">
+                    <span class="cv-radio-face">
+                      <span class="cv-radio-dot"></span>
+                      <span class="cv-radio-text"><span style="display:inline-flex;align-items:center;gap:7px;"><span class="cv-urgent-dot"></span>Emergency, today</span><small>We will call you back fast</small></span>
+                    </span>
+                  </label>
+                  <label class="cv-radio">
+                    <input type="radio" name="preference" value="day">
+                    <span class="cv-radio-face">
+                      <span class="cv-radio-dot"></span>
+                      <span class="cv-radio-text">Day<small>7am to 5pm</small></span>
+                    </span>
+                  </label>
+                  <label class="cv-radio">
+                    <input type="radio" name="preference" value="evening">
+                    <span class="cv-radio-face">
+                      <span class="cv-radio-dot"></span>
+                      <span class="cv-radio-text">Evening<small>5pm to 11pm</small></span>
+                    </span>
+                  </label>
+                  <label class="cv-radio">
+                    <input type="radio" name="preference" value="weekend">
+                    <span class="cv-radio-face">
+                      <span class="cv-radio-dot"></span>
+                      <span class="cv-radio-text">Weekend<small>Sat and Sun</small></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ask treatment -->
+          <div class="cv-row them">
+            <span class="cv-tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </span>
+            <div class="cv-bubble">
+              And what brings you in? Pick whatever feels closest <strong>- no need to be sure.</strong>
+              <span class="cv-time">Just now</span>
+            </div>
+          </div>
+
+          <!-- reply 3: treatment dropdown -->
+          <div class="cv-row me">
+            <div class="cv-reply">
+              <div class="cv-reply-card">
+                <p class="cv-q"><span class="num">3</span> What it is about</p>
+                <div class="cv-field">
+                  <label class="cv-label" id="cv-dd-label">Treatment of interest</label>
+                  <div class="cv-dd" id="cv-dd">
+                    <button type="button" class="cv-dd-trigger" id="cv-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cv-dd-label cv-dd-trigger">
+                      <span class="ph" id="cv-dd-val">Select an option</span>
+                      <svg class="cv-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <ul class="cv-dd-list" id="cv-dd-list" role="listbox" aria-labelledby="cv-dd-label" tabindex="-1">
+                      <li class="cv-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="New patient examination">New patient examination<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="Hygienist appointment">Hygienist appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="Invisalign">Invisalign<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="Dental implants">Dental implants<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="Teeth whitening">Teeth whitening<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                      <li class="cv-opt" role="option" data-value="Other / unsure">Other / unsure<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                    </ul>
+                  </div>
+                  <input type="hidden" name="treatment" id="cv-treatment" value="">
+                  <!-- SSR-safe / no-JS fallback: a real disclosure with radios, hidden once JS upgrades -->
+                  <noscript>
+                    <div class="cv-dd-native">
+                      <label class="cv-label" for="cv-treatment-native">Treatment of interest</label>
+                      <div class="cv-radios" style="grid-template-columns:1fr;">
+                        <label class="cv-radio"><input type="radio" name="treatment" value="Emergency / pain"><span class="cv-radio-face"><span class="cv-radio-dot"></span><span class="cv-radio-text">Emergency / pain</span></span></label>
+                        <label class="cv-radio"><input type="radio" name="treatment" value="New patient examination"><span class="cv-radio-face"><span class="cv-radio-dot"></span><span class="cv-radio-text">New patient examination</span></span></label>
+                        <label class="cv-radio"><input type="radio" name="treatment" value="Other / unsure"><span class="cv-radio-face"><span class="cv-radio-dot"></span><span class="cv-radio-text">Other / unsure</span></span></label>
+                      </div>
+                    </div>
+                  </noscript>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ask notes -->
+          <div class="cv-row them">
+            <span class="cv-tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </span>
+            <div class="cv-bubble">
+              Anything else we should know before we call? Totally optional <strong>- and please keep medical details for the phone.</strong>
+              <span class="cv-time">Just now</span>
+            </div>
+          </div>
+
+          <!-- reply 4: notes + consent + send -->
+          <div class="cv-row me">
+            <div class="cv-reply">
+              <div class="cv-reply-card">
+                <p class="cv-q"><span class="num">4</span> In your words</p>
+                <div class="cv-field">
+                  <label class="cv-label" for="cv-notes">Anything we should know?</label>
+                  <textarea class="cv-textarea" id="cv-notes" name="notes" rows="3" placeholder="e.g. broken filling on the top right, best to call after 6pm"></textarea>
+                  <span class="cv-help">Optional. A line or two helps us handle your enquiry, no detailed medical info please.</span>
+                </div>
+
+                <label class="cv-check-row">
+                  <span class="cv-check">
+                    <input type="checkbox" name="consent" required>
+                    <span class="cv-check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  </span>
+                  <span class="cv-check-label">I am happy for Day Night Dental to contact me about this enquiry. We will never share your details. Read our <a href="/privacy/">privacy policy</a>.</span>
+                </label>
+
+                <div class="cv-send-row">
+                  <button type="submit" class="cv-btn">
+                    Send to the practice
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </button>
+                  <p class="cv-reassure">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    We reply within 1 working hour
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="cv-foot">
+      <div class="cv-foot-item">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        <b>Open around the clock</b>
+        <span>Mon to Sun, day clinic plus a 24-hour emergency line</span>
+      </div>
+      <div class="cv-foot-item">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <b>Merchant City</b>
+        <span>80 Hutcheson St, Glasgow G1 1SH, free parking nearby</span>
+      </div>
+      <div class="cv-foot-item">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        <b>Prefer email?</b>
+        <span>reception@daynightdental.co.uk</span>
+      </div>
+    </div>
+
+    <p class="cv-visit">
+      Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH ·
+      <a href="tel:+441415486548">0141 548 6548</a> ·
+      <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('cv-dd');
+  if(!dd) return;
+  var trigger = document.getElementById('cv-dd-trigger');
+  var list = document.getElementById('cv-dd-list');
+  var valEl = document.getElementById('cv-dd-val');
+  var hidden = document.getElementById('cv-treatment');
+  var opts = Array.prototype.slice.call(list.querySelectorAll('.cv-opt'));
+  var activeIdx = -1;
+
+  function open(){
+    dd.classList.add('open');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+    setActive(sel > -1 ? sel : 0);
+    list.focus();
+  }
+  function close(focusTrigger){
+    dd.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+    if(focusTrigger) trigger.focus();
+  }
+  function setActive(i){
+    if(i < 0) i = 0;
+    if(i > opts.length-1) i = opts.length-1;
+    opts.forEach(function(o){o.classList.remove('active');});
+    activeIdx = i;
+    opts[i].classList.add('active');
+    opts[i].scrollIntoView({block:'nearest'});
+  }
+  function choose(o){
+    opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+    o.setAttribute('aria-selected','true');
+    var v = o.getAttribute('data-value');
+    valEl.textContent = v;
+    trigger.classList.add('has-val');
+    hidden.value = v;
+    close(true);
+  }
+
+  trigger.addEventListener('click', function(){
+    dd.classList.contains('open') ? close(false) : open();
+  });
+  trigger.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+  });
+  opts.forEach(function(o,i){
+    o.addEventListener('click', function(){ choose(o); });
+    o.addEventListener('mousemove', function(){ setActive(i); });
+  });
+  list.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+    else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+    else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+    else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+    else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+  });
+  document.addEventListener('click', function(e){
+    if(!dd.contains(e.target)) close(false);
+  });
+})();
+</script>
+</body>
+</html>

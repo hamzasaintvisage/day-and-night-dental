@@ -28,18 +28,62 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
 em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>The Gold Index - Common Questions · Day Night Dental</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there an emergency dentist open now in Glasgow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you taking on new patients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the practice and where can I park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your opening hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."
+      }
+    }
+  ]
+}
+</script>
 <style>
 /* ============================================================
-   THE GOLD INDEX - #3 / statement lens
-   Editorial table-of-contents: oversized gold-numbered questions
-   on the left, one dramatic glowing gold answer plate on the right.
+   THE GOLD INDEX - #3 / statement lens   (evolved)
+   Editorial table-of-contents: an indexed gold ledger of
+   questions on the left, one engraved glowing gold answer
+   plate on the right. The plate is the statement object:
+   it carries a struck ordinal, a hairline ledger rule, a
+   gold corner-bracket frame and a quiet "filed under" caption.
    ============================================================ */
 
 .dn-section{
   position:relative;
   padding:clamp(4rem,9vw,8rem) 0;
   background:
-    radial-gradient(120% 80% at 84% 8%, color-mix(in srgb, var(--dn-day) 7%, transparent) 0%, transparent 55%),
+    radial-gradient(120% 80% at 84% 6%, color-mix(in srgb, var(--dn-day) 8%, transparent) 0%, transparent 54%),
+    radial-gradient(80% 60% at 6% 100%, color-mix(in srgb, var(--dn-night) 5%, transparent) 0%, transparent 60%),
     var(--dn-near-black);
 }
 .dn-container{
@@ -50,29 +94,51 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 /* ---- masthead ---- */
 .tp-section-head.dn-center-head{
   text-align:center;
-  max-width:760px;
-  margin:0 auto clamp(2.4rem,5vw,3.6rem);
+  max-width:780px;
+  margin:0 auto clamp(2.6rem,5vw,3.8rem);
 }
-.tp-section-head .dn-eyebrow{margin-bottom:1.1rem;}
+.tp-section-head .dn-eyebrow{margin-bottom:1.15rem;}
 .dn-display{
   font-family:var(--font-display);
   font-weight:340;
   font-size:clamp(2.1rem,5.4vw,3.6rem);
   line-height:1.04;
-  letter-spacing:-.01em;
+  letter-spacing:-.012em;
   margin:0;
   color:var(--dn-bone);
+}
+/* a single short gold ledger rule centred beneath the headline */
+.dn-head-rule{
+  width:56px;height:2px;margin:1.5rem auto 0;
+  background:var(--dn-day);
+  border-radius:2px;
+  box-shadow:0 0 18px -2px color-mix(in srgb, var(--dn-day) 70%, transparent);
 }
 
 /* ---- two-column split ---- */
 .dn-faq-side{
   display:grid;
-  grid-template-columns:0.9fr 1.1fr;
-  gap:clamp(28px,4vw,52px);
+  grid-template-columns:0.86fr 1.14fr;
+  gap:clamp(28px,4vw,56px);
   align-items:start;
 }
 
-/* ---- left: numbered index ---- */
+/* ---- left: numbered index ledger ---- */
+.dn-index-label{
+  display:flex;align-items:baseline;gap:.6rem;
+  margin:0 6px .35rem;
+  font-size:.66rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-weight:600;
+}
+.dn-index-label .ix-count{
+  font-family:var(--font-display);
+  font-weight:600;
+  color:var(--dn-day);
+  letter-spacing:.08em;
+}
 .dn-faq-nav{
   counter-reset:faq;
   display:flex;
@@ -80,8 +146,9 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   gap:0;
 }
 .dn-faq-q{
+  position:relative;
   display:grid;
-  grid-template-columns:auto 1fr;
+  grid-template-columns:auto 1fr auto;
   gap:clamp(14px,2vw,22px);
   align-items:baseline;
   width:100%;
@@ -95,35 +162,60 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   font-size:clamp(1.05rem,2.4vw,1.42rem);
   font-weight:560;
   line-height:1.18;
-  letter-spacing:-.005em;
+  letter-spacing:-.006em;
   color:var(--dn-bone-dim);
   counter-increment:faq;
   cursor:pointer;
-  transition:color .22s ease, background .22s ease, padding-left .22s ease;
+  transition:color .22s ease, background .22s ease, padding-left .26s cubic-bezier(.2,.7,.2,1);
 }
 .dn-faq-nav .dn-faq-q:last-child{border-bottom:1px solid var(--dn-mist);}
+/* struck ledger numeral */
 .dn-faq-q::before{
   content:counter(faq, decimal-leading-zero);
   font-family:var(--font-display);
   font-weight:600;
-  font-size:clamp(1.5rem,3.4vw,2.4rem);
+  font-size:clamp(1.35rem,3vw,2rem);
   line-height:.9;
   color:var(--dn-bone-faint);
+  font-variant-numeric:tabular-nums;
   letter-spacing:.01em;
   transition:color .22s ease;
+}
+/* an active-marker rail that grows from the left edge of the live row */
+.dn-faq-q::after{
+  content:'';
+  position:absolute;
+  left:-1px;top:50%;
+  width:2px;height:0;
+  background:var(--dn-day);
+  border-radius:2px;
+  transform:translateY(-50%);
+  box-shadow:0 0 14px -2px color-mix(in srgb, var(--dn-day) 80%, transparent);
+  transition:height .26s cubic-bezier(.2,.7,.2,1);
+}
+/* the open caret glyph on the far right of each row */
+.q-caret{
+  align-self:center;
+  width:9px;height:9px;
+  border-right:1.6px solid currentColor;
+  border-bottom:1.6px solid currentColor;
+  transform:rotate(-45deg);
+  opacity:.4;
+  color:var(--dn-bone-faint);
+  transition:opacity .22s ease, transform .3s cubic-bezier(.2,.7,.2,1), color .22s ease;
 }
 @media (hover:hover){
   .dn-faq-q:hover{
     color:var(--dn-day);
-    background:color-mix(in srgb, var(--dn-day) 6%, transparent);
+    padding-left:14px;
   }
   .dn-faq-q:hover::before{color:color-mix(in srgb, var(--dn-day) 70%, var(--dn-bone-faint));}
+  .dn-faq-q:hover .q-caret{opacity:.7;color:var(--dn-day);}
 }
-.dn-faq-q.on,
+.dn-faq-q.on{color:var(--dn-day);padding-left:14px;}
 .dn-faq-q.on::before{color:var(--dn-day);}
-.dn-faq-q.on{
-  background:color-mix(in srgb, var(--dn-day) 8%, transparent);
-}
+.dn-faq-q.on::after{height:calc(100% - 14px);}
+.dn-faq-q.on .q-caret{opacity:1;color:var(--dn-day);transform:rotate(45deg);}
 .dn-faq-q:focus-visible{
   outline:2px solid var(--dn-day);
   outline-offset:-2px;
@@ -132,24 +224,37 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 /* index footnote under the list (kept editorial) */
 .dn-index-note{
-  margin:1.4rem 0 0;
-  font-size:.78rem;
-  letter-spacing:.16em;
+  margin:1.5rem 6px 0;
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.72rem;
+  letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--dn-bone-faint);
 }
+.dn-index-note::before{
+  content:'';
+  width:5px;height:5px;border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:0 0 10px 0 color-mix(in srgb, var(--dn-day) 75%, transparent);
+  flex:none;
+}
 
-/* ---- right: single glowing answer plate ---- */
+/* ---- right: single engraved glowing answer plate ---- */
 .dn-faq-panel{
   position:relative;
-  border:1px solid color-mix(in srgb, var(--dn-day) 50%, transparent);
+  border:1px solid color-mix(in srgb, var(--dn-day) 46%, transparent);
   border-radius:var(--dn-r-card);
-  padding:clamp(26px,3.4vw,40px);
-  background:var(--dn-near-black);
-  box-shadow:0 0 34px -6px color-mix(in srgb, var(--dn-day) 30%, transparent);
+  padding:clamp(28px,3.6vw,44px);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--dn-day) 3%, transparent), transparent 38%),
+    var(--dn-near-black);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--dn-day) 8%, transparent),
+    0 26px 60px -28px color-mix(in srgb, var(--dn-day) 40%, transparent),
+    0 0 38px -8px color-mix(in srgb, var(--dn-day) 26%, transparent);
   overflow:hidden;
 }
-/* faint inner gold wash to feel like a "plate" without a gradient ramp */
+/* faint inner gold wash to feel like an engraved "plate" without a gradient ramp */
 .dn-faq-panel::after{
   content:'';
   position:absolute;
@@ -158,41 +263,80 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   background:radial-gradient(140% 120% at 88% -10%, color-mix(in srgb, var(--dn-day) 9%, transparent) 0%, transparent 60%);
   pointer-events:none;
 }
+/* engraved gold corner brackets, top-left + bottom-right, like a certificate */
+.dn-faq-panel .corner{
+  position:absolute;
+  width:20px;height:20px;
+  border-color:color-mix(in srgb, var(--dn-day) 64%, transparent);
+  z-index:2;
+  pointer-events:none;
+}
+.dn-faq-panel .corner.tl{top:14px;left:14px;border-top:1.5px solid;border-left:1.5px solid;border-top-left-radius:6px;}
+.dn-faq-panel .corner.br{bottom:14px;right:14px;border-bottom:1.5px solid;border-right:1.5px solid;border-bottom-right-radius:6px;}
+
 .dn-faq-a{
   display:none;
   position:relative;
   z-index:1;
-  animation:platefade .32s ease both;
+  animation:platefade .34s ease both;
 }
 .dn-faq-a.on{display:block;}
 @keyframes platefade{
   from{opacity:0;transform:translateY(8px);}
   to{opacity:1;transform:none;}
 }
+/* struck plate header: oversized ordinal + caption + hairline rule */
+.dn-faq-a .plate-head{
+  display:flex;
+  align-items:flex-end;
+  gap:1rem;
+  margin-bottom:1.05rem;
+}
 .dn-faq-a .ord{
   font-family:var(--font-display);
-  font-size:clamp(2.8rem,7vw,3.6rem);
+  font-size:clamp(2.8rem,7vw,3.7rem);
   font-weight:600;
-  line-height:1;
+  line-height:.82;
   color:var(--dn-day);
-  display:block;
-  margin-bottom:.5rem;
+  font-variant-numeric:tabular-nums;
+  text-shadow:0 0 26px color-mix(in srgb, var(--dn-day) 32%, transparent);
+}
+.dn-faq-a .plate-cap{
+  font-size:.62rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-weight:600;
+  padding-bottom:.32rem;
+}
+/* hairline rule that bridges the header into the body */
+.dn-faq-a .plate-rule{
+  height:1px;
+  margin:0 0 1.1rem;
+  background:linear-gradient(90deg,
+    color-mix(in srgb, var(--dn-day) 55%, transparent),
+    var(--dn-mist) 70%, transparent);
 }
 .dn-faq-a .q{
   font-family:var(--font-display);
   font-weight:440;
-  font-size:clamp(1.25rem,3vw,1.6rem);
+  font-size:clamp(1.26rem,3vw,1.62rem);
   line-height:1.16;
-  letter-spacing:-.01em;
-  margin:0 0 1rem;
+  letter-spacing:-.012em;
+  margin:0 0 .95rem;
   color:var(--dn-bone);
 }
 .dn-faq-a .a{
   margin:0;
-  font-size:1.02rem;
-  line-height:1.66;
+  font-size:1.04rem;
+  line-height:1.68;
   color:var(--dn-bone-dim);
-  max-width:48ch;
+  max-width:50ch;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-faq-a{animation:none;}
+  .dn-faq-q,.dn-faq-q::after,.q-caret{transition:none;}
 }
 
 /* ---- footer call line ---- */
@@ -216,10 +360,17 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 /* ---- responsive ---- */
 @media (max-width:768px){
-  .dn-faq-side{grid-template-columns:1fr;gap:26px;}
+  .dn-faq-side{grid-template-columns:1fr;gap:24px;}
   .dn-faq-nav{flex-direction:column;}
   .dn-index-note{display:none;}
   .dn-faq-a .a{max-width:none;}
+  .dn-faq-q{font-size:clamp(1.02rem,4.6vw,1.2rem);}
+  .dn-faq-q::before{font-size:clamp(1.2rem,5.6vw,1.55rem);}
+}
+@media (max-width:400px){
+  .dn-faq-q{gap:12px;padding:15px 4px;}
+  .dn-faq-panel{padding:24px 18px;}
+  .dn-faq-a .plate-head{gap:.7rem;}
 }
 </style>
 </head>
@@ -231,37 +382,60 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
     <div class="tp-section-head dn-center-head">
       <span class="dn-eyebrow dn-pill day">Common Questions</span>
       <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+      <div class="dn-head-rule" aria-hidden="true"></div>
     </div>
 
     <div class="dn-faq-side">
-      <!-- LEFT: numbered editorial index -->
-      <div class="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical">
-        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">Is there an emergency dentist open now in Glasgow?</button>
-        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">Are you taking on new patients?</button>
-        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">Where is the practice and where can I park?</button>
-        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">What are your opening hours?</button>
+      <!-- LEFT: numbered editorial index ledger -->
+      <div>
+        <p class="dn-index-label"><span>The Index</span><span class="ix-count">01&ndash;04</span></p>
+        <div class="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical">
+          <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">Is there an emergency dentist open now in Glasgow?<span class="q-caret" aria-hidden="true"></span></button>
+          <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">Are you taking on new patients?<span class="q-caret" aria-hidden="true"></span></button>
+          <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">Where is the practice and where can I park?<span class="q-caret" aria-hidden="true"></span></button>
+          <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">What are your opening hours?<span class="q-caret" aria-hidden="true"></span></button>
+        </div>
         <p class="dn-index-note">Day &amp; Night · Merchant City, Glasgow</p>
       </div>
 
-      <!-- RIGHT: single glowing gold answer plate (swaps) -->
+      <!-- RIGHT: single engraved glowing gold answer plate (swaps) -->
       <div class="dn-faq-panel">
+        <span class="corner tl" aria-hidden="true"></span>
+        <span class="corner br" aria-hidden="true"></span>
+
         <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
-          <span class="ord" aria-hidden="true">01</span>
+          <div class="plate-head">
+            <span class="ord" aria-hidden="true">01</span>
+            <span class="plate-cap" aria-hidden="true">Filed under: Emergency</span>
+          </div>
+          <div class="plate-rule" aria-hidden="true"></div>
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
           <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
         </div>
         <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a" hidden>
-          <span class="ord" aria-hidden="true">02</span>
+          <div class="plate-head">
+            <span class="ord" aria-hidden="true">02</span>
+            <span class="plate-cap" aria-hidden="true">Filed under: New patients</span>
+          </div>
+          <div class="plate-rule" aria-hidden="true"></div>
           <h3 class="q">Are you taking on new patients?</h3>
           <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
         </div>
         <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a" hidden>
-          <span class="ord" aria-hidden="true">03</span>
+          <div class="plate-head">
+            <span class="ord" aria-hidden="true">03</span>
+            <span class="plate-cap" aria-hidden="true">Filed under: Finding us</span>
+          </div>
+          <div class="plate-rule" aria-hidden="true"></div>
           <h3 class="q">Where is the practice and where can I park?</h3>
           <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
         </div>
         <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a" hidden>
-          <span class="ord" aria-hidden="true">04</span>
+          <div class="plate-head">
+            <span class="ord" aria-hidden="true">04</span>
+            <span class="plate-cap" aria-hidden="true">Filed under: Opening hours</span>
+          </div>
+          <div class="plate-rule" aria-hidden="true"></div>
           <h3 class="q">What are your opening hours?</h3>
           <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
         </div>

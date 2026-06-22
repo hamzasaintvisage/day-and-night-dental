@@ -26,261 +26,375 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 <style>
 /* ============================================================
    MAISON CARD · couture (rank #4)
-   A bespoke atelier commission card: engraved seal, ruled
-   fields, wax-seal send. --dn-day owns the inset frame / rules /
-   seal; --dn-night reserved SOLELY for the 24/7 emergency
-   plaque + live-dot (the crown jewel). Solid colours only.
+   SILHOUETTE: ONE centred, elevated commission card holding the
+   ENTIRE booking - monogram crown, engraved title, a 24/7 service
+   plate, a fine inner rule, then the form flowing down a single
+   narrow column. A single framed object on the stage - NOT a left
+   info column beside a right form-card.
+   --dn-day owns the card frame / inner rule / seal / focus glow;
+   --dn-night reserved SOLELY for the 24/7 plate, the urgent radio
+   + live dots (the crown jewel). Solid colours only - NEVER a gold
+   to blue blend.
    ============================================================ */
-:root{--dn-r-inset:10px;}
+:root{
+  --dn-r-inset:10px;
+  /* premium form kit tokens - couture charcoal wells + gold focus ring */
+  --dn-well:#16161d;
+  --dn-well-hi:#191921;
+  --dn-well-line:rgba(255,255,255,.12);
+  --dn-gold-ring:rgba(248,199,96,.55);
+  --dn-gold-glow:rgba(248,199,96,.22);
+}
 
-.dn-section{position:relative;padding:clamp(3.5rem,7vw,7rem) 0 clamp(4rem,8vw,8rem);overflow:hidden;}
-.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem);position:relative;z-index:2;}
+.dn-section{position:relative;padding:clamp(3rem,6vw,6rem) 0 clamp(4rem,8vw,8rem);overflow:hidden;}
+/* the stage is a centring frame - the card is the single object on it */
+.dn-stage{
+  width:100%;max-width:720px;margin:0 auto;
+  padding:0 clamp(1.1rem,4vw,2rem);position:relative;z-index:2;
+}
 
-/* atmospheric glows - pure CSS, single colour per side, even & static */
+/* atmospheric glows - pure CSS, single colour per side, even & static.
+   Bracketed top-left / bottom-right so the card floats lit between them. */
 .dn-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
-.dn-glow.day{width:500px;height:500px;top:6%;left:-4%;background:var(--dn-day);opacity:.07;}
-.dn-glow.night{width:520px;height:520px;bottom:4%;right:-6%;background:var(--dn-night);opacity:.08;}
+.dn-glow.day{width:480px;height:480px;top:2%;left:50%;margin-left:-340px;background:var(--dn-day);opacity:.07;}
+.dn-glow.night{width:500px;height:500px;bottom:2%;left:50%;margin-left:-160px;background:var(--dn-night);opacity:.08;}
 
-/* -------- the commission card: a card-within-a-card -------- */
+/* -------- the commission card: a single framed maison object -------- */
 .dn-maison{
   position:relative;
-  background:var(--dn-near-black);
+  background:linear-gradient(180deg,#0c0c10,var(--dn-near-black));
   border:1px solid var(--dn-mist);
   border-radius:var(--dn-r-card);
-  padding:clamp(1.5rem,4vw,3rem);
-  box-shadow:0 40px 90px -50px #000, inset 0 1px 0 rgba(255,255,255,.03);
+  padding:clamp(1.6rem,4.5vw,3.4rem) clamp(1.4rem,4vw,3rem) clamp(1.8rem,4vw,3rem);
+  box-shadow:0 50px 110px -50px #000, inset 0 1px 0 rgba(255,255,255,.04);
+  text-align:center;
 }
 /* the engraved double-rule - a 1px gold inset stroke 14px in from the edge */
 .dn-maison::before{
   content:"";position:absolute;inset:14px;
-  border:1px solid color-mix(in srgb,var(--dn-day) 38%,transparent);
-  border-radius:8px;pointer-events:none;
+  border:1px solid color-mix(in srgb,var(--dn-day) 32%,transparent);
+  border-radius:8px;pointer-events:none;z-index:0;
 }
-.dn-maison-grid{
-  position:relative;z-index:1;
-  display:grid;grid-template-columns:1fr 1.12fr;
-  gap:clamp(2rem,4vw,4rem);
-  padding:clamp(1rem,2.5vw,2rem);
-}
+/* everything sits inside the engraved frame */
+.dn-maison-inner{position:relative;z-index:1;padding:clamp(.4rem,2vw,1.4rem);}
 
-/* ===================== LEFT · the calling card ===================== */
-.dn-contact-info{min-width:0;}
-.dn-contact-info .dn-eyebrow.dn-pill{margin-bottom:1.4rem;}
+/* ---------- the crown: monogram seal + maison line ---------- */
+.dn-crown{display:flex;flex-direction:column;align-items:center;gap:1rem;margin:0 0 1.6rem;}
+.dn-seal{
+  width:62px;height:62px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid color-mix(in srgb,var(--dn-day) 50%,transparent);
+  box-shadow:inset 0 0 0 4px rgba(248,199,96,.07), 0 0 26px -6px rgba(248,199,96,.3);
+  font-family:var(--font-display);font-weight:600;font-size:1.02rem;
+  letter-spacing:.04em;color:var(--dn-day);
+}
+.dn-maison-line{
+  font:600 .62rem/1.5 var(--font-body);letter-spacing:.34em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+}
+.dn-maison-line b{color:var(--dn-bone-dim);font-weight:600;}
+
+/* eyebrow centred on the stage */
+.dn-eyebrow-wrap{margin:0 0 1.2rem;}
+
 .dn-display{
   font-family:var(--font-display);font-weight:340;
-  font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.04;letter-spacing:-.015em;
-  margin:0 0 1.1rem;
+  font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.05;letter-spacing:-.015em;
+  margin:0 0 1rem;
 }
 .dn-contact-lead{
-  color:var(--dn-bone-dim);max-width:34ch;
-  font-size:1.02rem;margin:0 0 2.1rem;
+  color:var(--dn-bone-dim);max-width:46ch;margin:0 auto;
+  font-size:1.02rem;
 }
 
-/* monogram seal - engraved DND mark with a fine ring (couture stationery) */
-.dn-monogram{
-  display:flex;align-items:center;gap:.9rem;margin:0 0 2rem;
-  color:var(--dn-bone-faint);font-size:.66rem;letter-spacing:.28em;
-  text-transform:uppercase;line-height:1.4;
+/* ---------- centring divider rules ---------- */
+/* a hairline with a centred gold lozenge - the couture section break */
+.dn-rule{
+  display:flex;align-items:center;justify-content:center;gap:.9rem;
+  margin:clamp(1.8rem,4vw,2.6rem) auto;max-width:420px;
 }
-.dn-monogram .seal{
-  flex:0 0 auto;width:46px;height:46px;border-radius:50%;
-  display:grid;place-items:center;
-  border:1px solid color-mix(in srgb,var(--dn-day) 45%,transparent);
-  box-shadow:inset 0 0 0 3px rgba(248,199,96,.08);
-  font-family:var(--font-display);font-weight:600;font-size:.8rem;
-  letter-spacing:.06em;color:var(--dn-day);
+.dn-rule::before,.dn-rule::after{
+  content:"";height:1px;flex:1;
+  background:linear-gradient(90deg,transparent,var(--dn-mist));
 }
-
-/* ----- engraved NAP lines ----- */
-.dn-contact-details{display:flex;flex-direction:column;gap:1.15rem;margin:0 0 2.2rem;}
-.dn-contact-detail{position:relative;min-width:0;}
-.dn-detail-label{
-  display:block;font:600 .62rem/1 var(--font-body);
-  letter-spacing:.32em;text-transform:uppercase;color:var(--dn-bone-faint);
-  margin-bottom:.5rem;
-}
-/* thin gold tick rule beneath each engraved line */
-.dn-detail-value{
-  position:relative;display:inline-flex;align-items:center;gap:.6rem;
-  max-width:100%;
-  font-family:var(--font-display);font-weight:380;font-size:1.3rem;
-  color:var(--dn-bone);text-decoration:none;letter-spacing:.005em;
-  padding-bottom:.45rem;word-break:break-word;
-}
-.dn-detail-value::after{
-  content:"";position:absolute;left:0;bottom:0;width:34px;height:1px;
-  background:var(--dn-day);
-}
-a.dn-detail-value{transition:color .3s;}
-a.dn-detail-value:hover,a.dn-detail-value:focus-visible{color:var(--dn-day);outline:none;}
-.dn-detail-hint{
-  display:block;margin-top:.5rem;color:var(--dn-bone-faint);
-  font-size:.82rem;letter-spacing:.01em;
-}
-.dn-detail-addr{
-  font-family:var(--font-display);font-weight:380;font-size:1.16rem;
-  line-height:1.4;color:var(--dn-bone);margin:0;
+.dn-rule::after{transform:scaleX(-1);}
+.dn-rule .diamond{
+  flex:0 0 auto;width:7px;height:7px;transform:rotate(45deg);
+  background:var(--dn-day);box-shadow:0 0 10px -1px rgba(248,199,96,.6);
 }
 
-/* ----- the crown jewel: recessed Night & Emergency plaque ----- */
-.dn-detail--night{
-  position:relative;padding:1.15rem 1.25rem;margin-bottom:.35rem;
+/* ===================== the 24/7 service plate (crown jewel) ===================== */
+/* a single recessed bar - the only Night-coloured element. Holds the 24/7
+   emergency line front and centre. Sits inside the card, not in a column. */
+.dn-plate{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:.5rem 1.4rem;text-align:left;
+  margin:0 auto;max-width:460px;padding:1rem 1.35rem;
   border-radius:var(--dn-r-inset);
-  background:rgba(69,144,236,.06);
-  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-night) 30%,transparent);
+  background:rgba(69,144,236,.07);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-night) 32%,transparent);
 }
-.dn-detail--night .dn-detail-label{color:var(--dn-night-soft);}
-.dn-detail--night .dn-detail-value{color:var(--dn-bone);}
-.dn-detail--night .dn-detail-value::after{background:var(--dn-night);}
-.dn-detail--night a.dn-detail-value:hover,
-.dn-detail--night a.dn-detail-value:focus-visible{color:var(--dn-night-soft);}
-.dn-detail--night .dn-detail-hint{color:rgba(106,168,242,.8);}
+.dn-plate-tag{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font:600 .6rem/1 var(--font-body);letter-spacing:.26em;text-transform:uppercase;
+  color:var(--dn-night-soft);
+}
 .live-dot{
   flex:0 0 auto;width:9px;height:9px;border-radius:50%;
   background:var(--dn-night);
   box-shadow:0 0 10px color-mix(in srgb,var(--dn-night) 60%,transparent);
   animation:dn-pulse-night 2.4s ease-in-out infinite;
 }
+.dn-plate-num{
+  font-family:var(--font-display);font-weight:420;font-size:1.4rem;letter-spacing:.01em;
+  color:var(--dn-bone);text-decoration:none;white-space:nowrap;transition:color .3s;
+}
+.dn-plate-num:hover,.dn-plate-num:focus-visible{color:var(--dn-night-soft);outline:none;}
+.dn-plate-sub{
+  flex-basis:100%;text-align:center;
+  font-size:.78rem;color:rgba(106,168,242,.82);letter-spacing:.02em;margin-top:.1rem;
+}
 @keyframes dn-pulse-night{0%,100%{opacity:.45;box-shadow:0 0 6px rgba(69,144,236,.4);}50%{opacity:1;box-shadow:0 0 16px rgba(69,144,236,.85);}}
 @media (prefers-reduced-motion:reduce){.live-dot,.urgent-dot,.hours-live,.dn-btn-pulse{animation:none!important;opacity:1!important;}}
 
-/* ----- hours, set as an engraved plinth ----- */
-.dn-contact-hours{margin-top:.3rem;}
-.dn-hours-head{margin-bottom:.7rem;}
-.dn-hours-head .dn-eyebrow{
-  font:600 .62rem/1 var(--font-body);letter-spacing:.32em;
-  text-transform:uppercase;color:var(--dn-bone-faint);
+/* ---------- compact NAP rail beneath the plate (still centred, single object) ---------- */
+.dn-nap{
+  display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;
+  gap:1.1rem 2.2rem;margin:1.5rem auto 0;max-width:520px;
 }
-.dn-contact-hours table{width:100%;border-collapse:collapse;}
-.dn-contact-hours td{
-  padding:.55rem 0;font-size:.92rem;color:var(--dn-bone-dim);
-  border-bottom:1px solid var(--dn-mist);
-  font-variant-numeric:tabular-nums;
+.dn-nap-item{min-width:0;text-align:center;}
+.dn-nap-label{
+  display:block;font:600 .58rem/1 var(--font-body);letter-spacing:.3em;
+  text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:.45rem;
 }
-.dn-contact-hours td:last-child{text-align:right;color:var(--dn-bone);}
-.dn-contact-hours tr:last-child td{border-bottom:0;}
-.dn-contact-hours .emergency-row td,
-.dn-contact-hours .emergency-row td:first-child{color:var(--dn-night-soft);}
-.dn-contact-hours .emergency-row .hours-live{
-  display:inline-block;width:7px;height:7px;border-radius:50%;
-  background:var(--dn-night);margin-right:.5rem;vertical-align:middle;
-  box-shadow:0 0 8px color-mix(in srgb,var(--dn-night) 60%,transparent);
-  animation:dn-pulse-night 2.4s ease-in-out infinite;
+.dn-nap-value{
+  display:inline-block;max-width:100%;
+  font-family:var(--font-display);font-weight:380;font-size:1.02rem;line-height:1.4;
+  color:var(--dn-bone);text-decoration:none;letter-spacing:.005em;
+  word-break:break-word;transition:color .3s;
 }
+a.dn-nap-value:hover,a.dn-nap-value:focus-visible{color:var(--dn-day);outline:none;}
 
-/* ===================== RIGHT · the commission form ===================== */
-.dn-contact-form-wrap{min-width:0;}
-.dn-contact-form{position:relative;}
+/* ===================== the commission form (single column within the card) ===================== */
+.dn-contact-form{position:relative;text-align:left;max-width:520px;margin:0 auto;}
 .dn-form-h3{
+  text-align:center;
   font-family:var(--font-display);font-weight:360;
-  font-size:clamp(1.4rem,2.4vw,1.85rem);line-height:1.1;margin:0 0 .35rem;
+  font-size:clamp(1.35rem,2.6vw,1.75rem);line-height:1.1;margin:0 0 .35rem;
 }
 .dn-form-sub{
+  text-align:center;
   font-family:var(--font-display);font-style:italic;font-weight:340;
   color:var(--dn-bone-faint);font-size:.96rem;margin:0 0 2rem;
 }
 
-/* ----- ruled fill-in lines: NO boxed inputs ----- */
-.dn-form-row{margin-bottom:1.6rem;}
-.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
-.dn-contact-form label{position:relative;display:flex;flex-direction:column;gap:.55rem;}
-.dn-form-label,.dn-contact-form label>span{
-  font:600 .62rem/1 var(--font-body);letter-spacing:.32em;
-  text-transform:uppercase;color:var(--dn-bone-faint);
-  transition:color .3s;
-}
-.dn-contact-form input,
-.dn-contact-form textarea{
-  width:100%;padding:.6rem 0;min-height:44px;
-  background:transparent;border:0;border-bottom:1px solid var(--dn-mist);
-  color:var(--dn-bone);font:1.05rem var(--font-display);
-  transition:border-color .35s;
-}
-.dn-contact-form textarea{resize:vertical;line-height:1.55;min-height:72px;}
-.dn-contact-form input::placeholder,
-.dn-contact-form textarea::placeholder{
-  color:rgba(255,255,255,.3);font-family:var(--font-display);font-style:italic;
-}
-/* a gold underline wipes in left-to-right on focus */
-.dn-contact-form label::after{
-  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
-  background:var(--dn-day);box-shadow:0 0 10px rgba(248,199,96,.35);
-  transition:width .4s ease;
-}
-.dn-contact-form label:focus-within::after{width:100%;}
-.dn-contact-form label:focus-within>span{color:var(--dn-day);}
-.dn-contact-form input:focus,
-.dn-contact-form textarea:focus{outline:none;}
+/* ===================== PREMIUM FORM KIT ===================== */
+/* Couture field wells - inset charcoal cards, hairline frame, gold focus glow.
+   Every control >=44px tall, 16px text. */
+.dn-form-row{margin-bottom:1.4rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
 
-/* ----- preferred-time radios: slim ruled tabs separated by hairlines ----- */
+/* shared label + helper line */
+.dn-field-label,
+.dn-form-label,
+.dn-contact-form label>.dn-field-label{
+  display:block;font:600 .62rem/1 var(--font-body);letter-spacing:.32em;
+  text-transform:uppercase;color:var(--dn-bone-faint);
+  margin-bottom:.6rem;transition:color .3s;
+}
+.dn-field-help{
+  display:block;margin-top:.5rem;font-size:.76rem;line-height:1.45;
+  color:var(--dn-bone-faint);letter-spacing:.01em;
+}
+
+/* the well wrapper carries the focus glow so inputs + the custom select match */
+.dn-well{
+  position:relative;display:block;border-radius:var(--dn-r-inset);
+  background:var(--dn-well);
+  box-shadow:inset 0 0 0 1px var(--dn-well-line), inset 0 2px 6px rgba(0,0,0,.35);
+  transition:box-shadow .3s, background .3s;
+}
+/* a faint gold edge-tick on the left, the couture maker's mark on every field */
+.dn-well::before{
+  content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;
+  border-radius:2px;background:color-mix(in srgb,var(--dn-day) 28%,transparent);
+  opacity:0;transform:scaleY(.4);transform-origin:center;
+  transition:opacity .3s, transform .3s;
+}
+.dn-well:focus-within{
+  background:var(--dn-well-hi);
+  box-shadow:inset 0 0 0 1px var(--dn-gold-ring), 0 0 0 4px var(--dn-gold-glow);
+}
+.dn-well:focus-within::before{opacity:1;transform:scaleY(1);}
+
+.dn-input,
+.dn-contact-form textarea{
+  width:100%;display:block;border:0;background:transparent;outline:none;
+  padding:.9rem 1.05rem;min-height:48px;
+  color:var(--dn-bone);
+  font:400 16px/1.5 var(--font-body);letter-spacing:.005em;
+  border-radius:var(--dn-r-inset);
+}
+.dn-contact-form textarea{resize:vertical;min-height:96px;line-height:1.55;}
+.dn-input::placeholder,
+.dn-contact-form textarea::placeholder{color:rgba(255,255,255,.34);}
+.dn-contact-form label:focus-within>.dn-field-label{color:var(--dn-day);}
+
+/* ----- CUSTOM DROPDOWN - the commission catalogue ----- */
+/* No native select anywhere. A styled trigger well that toggles a floating
+   dark listbox; SSR-safe, works as a fallback if JS never runs. */
+.dn-select{position:relative;}
+.dn-select-trigger{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  padding:.9rem 1.05rem;min-height:48px;cursor:pointer;
+  border:0;background:transparent;border-radius:var(--dn-r-inset);
+  color:var(--dn-bone);text-align:left;
+  font:400 16px/1.5 var(--font-body);letter-spacing:.005em;
+}
+.dn-select-trigger:focus-visible{outline:none;}
+.dn-select-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.dn-select-value[data-empty="true"]{color:rgba(255,255,255,.34);}
+/* animated chevron - rotates 180 deg when open */
+.dn-select-chevron{
+  flex:0 0 auto;width:11px;height:11px;margin-left:auto;
+  border-right:1.6px solid var(--dn-bone-faint);
+  border-bottom:1.6px solid var(--dn-bone-faint);
+  transform:translateY(-2px) rotate(45deg);
+  transition:transform .3s ease, border-color .3s;
+}
+.dn-select.is-open .dn-select-chevron{transform:translateY(1px) rotate(225deg);border-color:var(--dn-day);}
+.dn-select .dn-well:focus-within .dn-select-chevron{border-color:var(--dn-day);}
+
+/* floating listbox - rounded 16px, hairline mist border, soft shadow */
+.dn-select-list{
+  position:absolute;left:0;right:0;top:calc(100% + .55rem);z-index:40;
+  margin:0;padding:.4rem;list-style:none;
+  background:var(--dn-charcoal);
+  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  box-shadow:0 26px 60px -28px #000, inset 0 1px 0 rgba(255,255,255,.04);
+  max-height:288px;overflow:auto;
+  opacity:0;transform:translateY(-6px) scale(.99);transform-origin:top center;
+  pointer-events:none;visibility:hidden;
+  transition:opacity .22s ease, transform .22s ease, visibility .22s;
+}
+.dn-select.is-open .dn-select-list{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;visibility:visible;}
+.dn-select-option{
+  position:relative;display:flex;align-items:center;gap:.55rem;
+  padding:.7rem 1.65rem .7rem 1.5rem;min-height:44px;cursor:pointer;
+  border-radius:8px;color:var(--dn-bone-dim);
+  font:400 .95rem/1.3 var(--font-body);
+  transition:background .18s, color .18s, padding-left .18s;
+}
+/* left gold accent bar appears on hover / active / selected */
+.dn-select-option::before{
+  content:"";position:absolute;left:.55rem;top:50%;transform:translateY(-50%) scaleY(0);
+  width:3px;height:18px;border-radius:3px;background:var(--dn-day);
+  transition:transform .18s ease;
+}
+.dn-select-option:hover,
+.dn-select-option.is-active{
+  background:rgba(248,199,96,.09);color:var(--dn-bone);padding-left:1.65rem;
+}
+.dn-select-option:hover::before,
+.dn-select-option.is-active::before{transform:translateY(-50%) scaleY(1);}
+.dn-select-option[aria-selected="true"]{color:var(--dn-day);}
+.dn-select-option[aria-selected="true"]::before{transform:translateY(-50%) scaleY(1);}
+/* check on the chosen one */
+.dn-select-check{
+  flex:0 0 auto;margin-left:auto;width:15px;height:9px;
+  border-left:1.8px solid var(--dn-day);border-bottom:1.8px solid var(--dn-day);
+  transform:rotate(-45deg) scale(0);transform-origin:center;
+  transition:transform .2s ease;
+}
+.dn-select-option[aria-selected="true"] .dn-select-check{transform:rotate(-45deg) scale(1);}
+
+/* SSR safe: the trigger renders closed and readable with no JS at all - JS only
+   upgrades it into a live listbox. No native form control is used here. */
+
+/* ----- preferred-time radios: custom pill-cards ----- */
 .dn-form-radios{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);
-  overflow:hidden;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;
 }
 .dn-radio{
   position:relative;display:flex;align-items:center;
-  min-height:48px;padding:.7rem 1rem;cursor:pointer;
-  font-size:.9rem;color:var(--dn-bone-dim);
-  border-right:1px solid var(--dn-mist);border-bottom:1px solid var(--dn-mist);
-  transition:background .25s,color .25s;
+  min-height:52px;padding:.7rem .95rem;cursor:pointer;
+  font:500 .92rem/1.25 var(--font-body);color:var(--dn-bone-dim);
+  border-radius:var(--dn-r-inset);background:var(--dn-well);
+  box-shadow:inset 0 0 0 1px var(--dn-well-line);
+  transition:background .25s,color .25s,box-shadow .25s,transform .15s;
 }
-.dn-radio:nth-child(2n){border-right:0;}
-.dn-radio:nth-child(n+3){border-bottom:0;}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;}
-.dn-radio>span{display:inline-flex;align-items:center;gap:.55rem;min-width:0;}
+.dn-radio>span{display:inline-flex;align-items:center;gap:.6rem;min-width:0;}
 .dn-radio::before{
-  content:"";flex:0 0 auto;width:14px;height:14px;border-radius:50%;margin-right:.6rem;
-  border:1px solid var(--dn-mist);transition:border-color .25s,box-shadow .25s,background .25s;
+  content:"";flex:0 0 auto;width:18px;height:18px;border-radius:50%;margin-right:.65rem;
+  background:var(--dn-near-black);
+  box-shadow:inset 0 0 0 1.5px var(--dn-well-line);
+  transition:box-shadow .25s,background .25s;
 }
-.dn-radio:hover{color:var(--dn-bone);}
-.dn-radio.day:hover::before,.dn-radio.day.checked::before{
-  border-color:var(--dn-day);background:var(--dn-day);
-  box-shadow:0 0 0 3px rgba(248,199,96,.16),0 0 10px rgba(248,199,96,.4);
+.dn-radio:hover{color:var(--dn-bone);transform:translateY(-1px);}
+.dn-radio:focus-within{box-shadow:inset 0 0 0 1px var(--dn-gold-ring),0 0 0 4px var(--dn-gold-glow);}
+/* day side - gold dot, gold tinted card when checked */
+.dn-radio.day:hover::before{box-shadow:inset 0 0 0 1.5px var(--dn-day);}
+.dn-radio.day.checked::before{
+  background:var(--dn-day);
+  box-shadow:inset 0 0 0 1.5px var(--dn-day),0 0 0 4px rgba(248,199,96,.16),0 0 12px rgba(248,199,96,.4);
 }
-.dn-radio.night:hover::before,.dn-radio.night.checked::before{
-  border-color:var(--dn-night);background:var(--dn-night);
-  box-shadow:0 0 0 3px rgba(69,144,236,.16),0 0 10px rgba(69,144,236,.45);
+.dn-radio.day.checked{
+  color:var(--dn-bone);background:rgba(248,199,96,.07);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-day) 55%,transparent);
 }
-.dn-radio.day.checked{color:var(--dn-bone);background:rgba(248,199,96,.05);}
-.dn-radio.night.checked{color:var(--dn-bone);background:rgba(69,144,236,.06);}
+/* night side - blue dot, blue tinted card when checked */
+.dn-radio.night:hover::before{box-shadow:inset 0 0 0 1.5px var(--dn-night);}
+.dn-radio.night.checked::before{
+  background:var(--dn-night);
+  box-shadow:inset 0 0 0 1.5px var(--dn-night),0 0 0 4px rgba(69,144,236,.16),0 0 12px rgba(69,144,236,.45);
+}
+.dn-radio.night.checked{
+  color:var(--dn-bone);background:rgba(69,144,236,.08);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dn-night) 55%,transparent);
+}
+.dn-radio.night:focus-within{box-shadow:inset 0 0 0 1px var(--dn-night),0 0 0 4px rgba(69,144,236,.16);}
 .dn-radio.urgent .urgent-dot{
   width:7px;height:7px;border-radius:50%;background:var(--dn-night);
   box-shadow:0 0 8px var(--dn-night);
   animation:dn-pulse-night 2.4s ease-in-out infinite;
 }
 
-/* ----- treatment dropdown matches the ruled line ----- */
-.dn-select-wrap{position:relative;}
-.dn-select-wrap::after{
-  content:"";position:absolute;right:.2rem;top:50%;
-  width:8px;height:8px;border-right:1.5px solid var(--dn-bone-faint);
-  border-bottom:1.5px solid var(--dn-bone-faint);
-  transform:translateY(-65%) rotate(45deg);pointer-events:none;transition:border-color .3s;
+/* ----- 22px custom checkbox - gold fill + tick ----- */
+.dn-check{
+  display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;
+  font:400 .9rem/1.45 var(--font-body);color:var(--dn-bone-dim);
+  margin-top:.2rem;
 }
-.dn-select-wrap::before{
-  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
-  background:var(--dn-day);box-shadow:0 0 10px rgba(248,199,96,.35);
-  transition:width .4s ease;pointer-events:none;
+.dn-check input{position:absolute;opacity:0;width:0;height:0;}
+.dn-check .box{
+  flex:0 0 auto;width:22px;height:22px;border-radius:7px;margin-top:1px;
+  background:var(--dn-well);
+  box-shadow:inset 0 0 0 1.5px var(--dn-well-line);
+  display:grid;place-items:center;
+  transition:background .2s,box-shadow .2s;
 }
-.dn-select-wrap:focus-within::before{width:100%;}
-.dn-select-wrap:focus-within::after{border-color:var(--dn-day);}
-.dn-select{
-  width:100%;padding:.6rem 1.6rem .6rem 0;min-height:44px;
-  background:transparent;border:0;border-bottom:1px solid var(--dn-mist);
-  color:var(--dn-bone);font:1.05rem var(--font-display);
-  appearance:none;-webkit-appearance:none;cursor:pointer;
-  transition:border-color .35s;
+.dn-check .box::after{
+  content:"";width:11px;height:6px;
+  border-left:2px solid var(--dn-near-black);border-bottom:2px solid var(--dn-near-black);
+  transform:rotate(-45deg) scale(0) translateY(-1px);transform-origin:center;
+  transition:transform .2s ease;
 }
-.dn-select:focus{outline:none;}
-.dn-select option{background:var(--dn-charcoal);color:var(--dn-bone);font-family:var(--font-body);}
-.dn-select[data-empty="true"]{color:rgba(255,255,255,.32);font-style:italic;}
+.dn-check:hover .box{box-shadow:inset 0 0 0 1.5px var(--dn-day);}
+.dn-check:focus-within .box{box-shadow:inset 0 0 0 1.5px var(--dn-gold-ring),0 0 0 4px var(--dn-gold-glow);}
+.dn-check input:checked + .box{
+  background:var(--dn-day);
+  box-shadow:inset 0 0 0 1.5px var(--dn-day),0 0 12px rgba(248,199,96,.35);
+}
+.dn-check input:checked + .box::after{transform:rotate(-45deg) scale(1) translateY(-1px);}
+.dn-check a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
+.dn-check a:hover{color:var(--dn-day);}
 
 /* ----- the wax-seal CTA ----- */
 .dn-form-submit{
-  position:relative;margin:2.2rem 0 0;display:flex;
+  position:relative;margin:2rem 0 0;display:flex;
   justify-content:center;align-items:center;gap:.55rem;
-  min-height:56px;width:100%;padding:0 2.4rem;
+  min-height:58px;width:100%;padding:0 2.4rem;
   border:0;border-radius:999px;cursor:pointer;
   background:var(--dn-day);color:var(--dn-near-black);
   font:600 1.05rem var(--font-display);letter-spacing:.01em;
@@ -314,29 +428,38 @@ a.dn-detail-value:hover,a.dn-detail-value:focus-visible{color:var(--dn-day);outl
   background:#fff;box-shadow:0 0 10px rgba(255,255,255,.9);
   animation:dn-pulse-night 1.8s ease-in-out infinite;
 }
+/* calm reassurance line beneath the seal */
+.dn-form-reassure{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  margin:.95rem 0 0;font-size:.82rem;color:var(--dn-bone-dim);text-align:center;
+}
+.dn-form-reassure .tick{
+  flex:0 0 auto;width:13px;height:8px;
+  border-left:1.6px solid var(--dn-day);border-bottom:1.6px solid var(--dn-day);
+  transform:rotate(-45deg);
+}
 
 .dn-form-disclaimer{
-  margin:1.4rem 0 0;font-size:.78rem;color:var(--dn-bone-faint);
+  margin:1.2rem 0 0;font-size:.78rem;color:var(--dn-bone-faint);
   line-height:1.55;text-align:center;
 }
 .dn-form-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
 .dn-form-disclaimer a:hover{color:var(--dn-day);}
 
 /* ----- responsive ----- */
-@media (max-width:920px){
-  .dn-maison-grid{grid-template-columns:1fr;gap:2.6rem;}
-  /* the Emergency plaque already leads the details stack on mobile */
-}
 @media (max-width:560px){
-  .dn-maison{padding:1.1rem;}
-  .dn-maison::before{inset:8px;}
-  .dn-maison-grid{padding:.75rem;}
-  .dn-form-row-2{grid-template-columns:1fr;gap:1.6rem;}
+  .dn-maison{padding:1.4rem 1rem 1.5rem;}
+  .dn-maison::before{inset:9px;}
+  .dn-maison-inner{padding:.5rem;}
+  .dn-form-row-2{grid-template-columns:1fr;gap:1.4rem;}
   .dn-form-radios{grid-template-columns:1fr;}
-  .dn-radio{border-right:0;border-bottom:1px solid var(--dn-mist);}
-  .dn-radio:last-child{border-bottom:0;}
-  .dn-display{font-size:2rem;}
-  .dn-detail-value{font-size:1.18rem;}
+  .dn-display{font-size:1.85rem;}
+  .dn-plate{flex-direction:column;gap:.55rem;text-align:center;padding:1rem;}
+  .dn-nap{gap:1.2rem;}
+}
+/* never overflow at 375px - the plate number + emails wrap cleanly */
+@media (max-width:400px){
+  .dn-plate-num{font-size:1.25rem;}
 }
 </style>
 </head>
@@ -347,154 +470,164 @@ a.dn-detail-value:hover,a.dn-detail-value:focus-visible{color:var(--dn-day);outl
   <div class="dn-glow day" aria-hidden="true"></div>
   <div class="dn-glow night" aria-hidden="true"></div>
 
-  <div class="dn-container">
+  <div class="dn-stage">
+    <!-- ONE centred commission card holds the ENTIRE booking -->
     <div class="dn-maison">
-      <div class="dn-maison-grid">
+      <div class="dn-maison-inner">
 
-        <!-- ===================== LEFT · the calling card ===================== -->
-        <div class="dn-contact-info">
+        <!-- ---------- the crown ---------- -->
+        <div class="dn-crown">
+          <span class="dn-seal" aria-hidden="true">DND</span>
+          <span class="dn-maison-line"><b>Day Night Dental</b> &middot; Merchant City, Glasgow</span>
+        </div>
+
+        <div class="dn-eyebrow-wrap">
           <span class="dn-eyebrow dn-pill day">Book Appointment</span>
-          <h2 class="dn-display">Tooth trouble?<br>Let&rsquo;s get you <em class="dn-hl-gold">seen</em>.</h2>
-          <p class="dn-contact-lead">
-            For urgent toothache, swelling or a broken tooth, call our 24/7 emergency line.
-            For routine appointments, send us your details and the team will get back to you.
+        </div>
+
+        <h1 class="dn-display">Tooth trouble?<br>Let&rsquo;s get you <em class="dn-hl-gold">seen</em>.</h1>
+        <p class="dn-contact-lead">
+          For urgent toothache, swelling or a broken tooth, call our 24/7 emergency line.
+          For routine appointments, send your details below and the team will be in touch.
+        </p>
+
+        <!-- ---------- the 24/7 service plate: the crown jewel ---------- -->
+        <div class="dn-plate">
+          <span class="dn-plate-tag"><span class="live-dot" aria-hidden="true"></span>24/7 Emergency</span>
+          <a href="tel:+441415486548" class="dn-plate-num">0141 548 6548</a>
+          <span class="dn-plate-sub">Open around the clock &middot; always answered, day or night</span>
+        </div>
+
+        <!-- ---------- compact NAP rail (still one centred object) ---------- -->
+        <div class="dn-nap">
+          <div class="dn-nap-item">
+            <span class="dn-nap-label">Email</span>
+            <a href="mailto:reception@daynightdental.co.uk" class="dn-nap-value">reception@daynightdental.co.uk</a>
+          </div>
+          <div class="dn-nap-item">
+            <span class="dn-nap-label">Visit</span>
+            <a href="https://www.google.com/maps/place/Day+Night+Dental" target="_blank" rel="noopener" class="dn-nap-value">80 Hutcheson St, Merchant City, Glasgow G1 1SH</a>
+          </div>
+        </div>
+
+        <!-- ---------- couture section break ---------- -->
+        <div class="dn-rule" aria-hidden="true"><span class="diamond"></span></div>
+
+        <!-- ---------- the commission form: a single column within the card ---------- -->
+        <form class="dn-contact-form" onsubmit="return false">
+          <p hidden aria-hidden="true">
+            <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
           </p>
 
-          <div class="dn-monogram">
-            <span class="seal" aria-hidden="true">DND</span>
-            <span>Day Night Dental<br>Merchant City &middot; Glasgow</span>
+          <h2 class="dn-form-h3">Request an appointment</h2>
+          <p class="dn-form-sub">A handwritten commission &middot; tell us what you need.</p>
+
+          <div class="dn-form-row">
+            <label>
+              <span class="dn-field-label">Your name</span>
+              <span class="dn-well">
+                <input class="dn-input" type="text" name="name" autocomplete="name" placeholder="Full name">
+              </span>
+            </label>
           </div>
 
-          <div class="dn-contact-details">
-            <!-- crown jewel: Night & Emergency, the 24/7 line, pinned first -->
-            <div class="dn-contact-detail dn-detail--night">
-              <span class="dn-detail-label">Night &amp; Emergency</span>
-              <a href="tel:+441415486548" class="dn-detail-value">
-                <span class="live-dot" aria-hidden="true"></span>0141 548 6548
-              </a>
-              <span class="dn-detail-hint">24-hour emergency line</span>
-            </div>
+          <div class="dn-form-row dn-form-row-2">
+            <label>
+              <span class="dn-field-label">Phone</span>
+              <span class="dn-well">
+                <input class="dn-input" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+              </span>
+            </label>
+            <label>
+              <span class="dn-field-label">Email</span>
+              <span class="dn-well">
+                <input class="dn-input" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+              </span>
+            </label>
+          </div>
 
-            <div class="dn-contact-detail">
-              <span class="dn-detail-label">Day Line</span>
-              <a href="tel:+441415486548" class="dn-detail-value">0141 548 6548</a>
-              <span class="dn-detail-hint">Mon to Sun, 7am to 11pm</span>
-            </div>
-
-            <div class="dn-contact-detail">
-              <span class="dn-detail-label">Email</span>
-              <a href="mailto:reception@daynightdental.co.uk" class="dn-detail-value">reception@daynightdental.co.uk</a>
-              <span class="dn-detail-hint">We reply within 1 working hour</span>
-            </div>
-
-            <div class="dn-contact-detail">
-              <span class="dn-detail-label">Visit</span>
-              <p class="dn-detail-addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
-              <span class="dn-detail-hint">Free parking nearby</span>
+          <div class="dn-form-row">
+            <span class="dn-form-label" id="pref-time-label">Preferred time</span>
+            <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
+              <label class="dn-radio night urgent">
+                <input type="radio" name="preference" value="emergency">
+                <span><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</span>
+              </label>
+              <label class="dn-radio day">
+                <input type="radio" name="preference" value="day">
+                <span>Day (7am to 5pm)</span>
+              </label>
+              <label class="dn-radio night">
+                <input type="radio" name="preference" value="evening">
+                <span>Evening (5pm to 11pm)</span>
+              </label>
+              <label class="dn-radio night">
+                <input type="radio" name="preference" value="weekend">
+                <span>Weekend</span>
+              </label>
             </div>
           </div>
 
-          <div class="dn-contact-hours">
-            <div class="dn-hours-head"><span class="dn-eyebrow">Opening Hours</span></div>
-            <table>
-              <tbody>
-                <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
-                <tr><td>Saturday</td><td>8am to 10pm</td></tr>
-                <tr><td>Sunday</td><td>9am to 9pm</td></tr>
-                <tr class="emergency-row">
-                  <td>Emergency line</td>
-                  <td><span class="hours-live" aria-hidden="true"></span>24 hours, 7 days</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="dn-form-row">
+            <span class="dn-form-label" id="treatment-label">Treatment of interest</span>
+            <!-- CUSTOM DROPDOWN - no native select. SSR-safe: closed by default,
+                 keyboard + ARIA, click-outside, upgraded by the inline script. -->
+            <div class="dn-select" data-select>
+              <span class="dn-well">
+                <button type="button" class="dn-select-trigger"
+                        aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="treatment-label" data-select-trigger>
+                  <span class="dn-select-value" data-empty="true" data-select-value>Select an option</span>
+                  <span class="dn-select-chevron" aria-hidden="true"></span>
+                </button>
+              </span>
+              <input type="hidden" name="treatment" value="" data-select-input>
+              <ul class="dn-select-list" role="listbox" aria-labelledby="treatment-label"
+                  tabindex="-1" data-select-list>
+                <li class="dn-select-option" role="option" data-value="Emergency / pain" aria-selected="false">Emergency / pain<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="New patient examination" aria-selected="false">New patient examination<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="Hygienist appointment" aria-selected="false">Hygienist appointment<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="Cosmetic consultation" aria-selected="false">Cosmetic consultation<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="Invisalign" aria-selected="false">Invisalign<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="Dental implants" aria-selected="false">Dental implants<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="Teeth whitening" aria-selected="false">Teeth whitening<span class="dn-select-check" aria-hidden="true"></span></li>
+                <li class="dn-select-option" role="option" data-value="Other / unsure" aria-selected="false">Other / unsure<span class="dn-select-check" aria-hidden="true"></span></li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <!-- ===================== RIGHT · the commission form ===================== -->
-        <div class="dn-contact-form-wrap">
-          <form class="dn-contact-form" onsubmit="return false">
-            <p hidden aria-hidden="true">
-              <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-            </p>
+          <div class="dn-form-row">
+            <label>
+              <span class="dn-field-label">Anything we should know?</span>
+              <span class="dn-well">
+                <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call."></textarea>
+              </span>
+              <span class="dn-field-help">Please don&rsquo;t include detailed medical information here.</span>
+            </label>
+          </div>
 
-            <h3 class="dn-form-h3">Request an appointment</h3>
-            <p class="dn-form-sub">A handwritten commission - tell us what you need.</p>
+          <div class="dn-form-row">
+            <label class="dn-check">
+              <input type="checkbox" name="consent">
+              <span class="box" aria-hidden="true"></span>
+              <span>I&rsquo;m happy for Day Night Dental to contact me about this enquiry. Read our <a href="/privacy/">privacy policy</a>.</span>
+            </label>
+          </div>
 
-            <div class="dn-form-row">
-              <label>
-                <span>Your name</span>
-                <input type="text" name="name" autocomplete="name" placeholder="Full name">
-              </label>
-            </div>
+          <button type="submit" class="dn-form-submit">
+            <span class="dn-submit-label">Request Booking</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
 
-            <div class="dn-form-row dn-form-row-2">
-              <label>
-                <span>Phone</span>
-                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call">
-              </label>
-              <label>
-                <span>Email</span>
-                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
-              </label>
-            </div>
+          <p class="dn-form-reassure">
+            <span class="tick" aria-hidden="true"></span>
+            We reply within 1 working hour &middot; urgent cases call the 24/7 line
+          </p>
 
-            <div class="dn-form-row">
-              <span class="dn-form-label" id="pref-time-label">Preferred time</span>
-              <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
-                <label class="dn-radio night urgent">
-                  <input type="radio" name="preference" value="emergency">
-                  <span><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</span>
-                </label>
-                <label class="dn-radio day">
-                  <input type="radio" name="preference" value="day">
-                  <span>Day (7am to 5pm)</span>
-                </label>
-                <label class="dn-radio night">
-                  <input type="radio" name="preference" value="evening">
-                  <span>Evening (5pm to 11pm)</span>
-                </label>
-                <label class="dn-radio night">
-                  <input type="radio" name="preference" value="weekend">
-                  <span>Weekend</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="dn-form-row">
-              <span class="dn-form-label">Treatment of interest</span>
-              <div class="dn-select-wrap">
-                <select class="dn-select" name="treatment" data-empty="true" aria-label="Treatment of interest">
-                  <option value="" disabled selected hidden>Select an option</option>
-                  <option value="Emergency / pain">Emergency / pain</option>
-                  <option value="New patient examination">New patient examination</option>
-                  <option value="Hygienist appointment">Hygienist appointment</option>
-                  <option value="Cosmetic consultation">Cosmetic consultation</option>
-                  <option value="Invisalign">Invisalign</option>
-                  <option value="Dental implants">Dental implants</option>
-                  <option value="Teeth whitening">Teeth whitening</option>
-                  <option value="Other / unsure">Other / unsure</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="dn-form-row">
-              <label>
-                <span>Anything we should know?</span>
-                <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
-              </label>
-            </div>
-
-            <button type="submit" class="dn-form-submit">
-              <span class="dn-submit-label">Request Booking</span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </button>
-
-            <p class="dn-form-disclaimer">
-              We&rsquo;ll never share your details. By sending this you&rsquo;re happy for us to
-              contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
-            </p>
-          </form>
-        </div>
+          <p class="dn-form-disclaimer">
+            We&rsquo;ll never share your details. Calls to our emergency line are answered around the clock.
+          </p>
+        </form>
 
       </div>
     </div>
@@ -503,9 +636,12 @@ a.dn-detail-value:hover,a.dn-detail-value:focus-visible{color:var(--dn-day);outl
 
 <script>
 /* Minimal vanilla polish - default state is fully visible & usable without JS.
-   Couture touches: checked-tab state, ruled-select label colour, and the
-   wax-seal flips to the night jewel when "Emergency, today" is chosen. */
+   Couture touches: the custom listbox (open / close / select / click-outside +
+   keyboard), checked pill-card state, and the wax-seal flips to the night jewel
+   when "Emergency, today" is chosen. */
 (function(){
+
+  /* ---------- preferred-time radios + emergency seal ---------- */
   var radios = document.querySelectorAll('.dn-radio input[name="preference"]');
   var submit = document.querySelector('.dn-form-submit');
   var submitLabel = submit && submit.querySelector('.dn-submit-label');
@@ -533,10 +669,64 @@ a.dn-detail-value:hover,a.dn-detail-value:focus-visible{color:var(--dn-day);outl
   }
   radios.forEach(function(input){ input.addEventListener('change', syncRadios); });
 
-  var select = document.querySelector('.dn-select');
-  if(select){
-    select.addEventListener('change', function(){
-      select.setAttribute('data-empty', select.value ? 'false' : 'true');
+  /* ---------- custom dropdown (listbox) ---------- */
+  var root = document.querySelector('[data-select]');
+  if(root){
+    var trigger = root.querySelector('[data-select-trigger]');
+    var list    = root.querySelector('[data-select-list]');
+    var valueEl = root.querySelector('[data-select-value]');
+    var hidden  = root.querySelector('[data-select-input]');
+    var options = Array.prototype.slice.call(root.querySelectorAll('.dn-select-option'));
+    var activeIndex = -1;
+
+    function setActive(i){
+      if(i < 0) i = options.length - 1;
+      if(i > options.length - 1) i = 0;
+      activeIndex = i;
+      options.forEach(function(o, idx){ o.classList.toggle('is-active', idx === activeIndex); });
+      var el = options[activeIndex];
+      if(el) el.scrollIntoView({block:'nearest'});
+    }
+    function open(){
+      root.classList.add('is-open');
+      trigger.setAttribute('aria-expanded','true');
+      var sel = options.findIndex(function(o){ return o.getAttribute('aria-selected') === 'true'; });
+      setActive(sel > -1 ? sel : 0);
+      document.addEventListener('click', onDocClick, true);
+    }
+    function close(){
+      root.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded','false');
+      options.forEach(function(o){ o.classList.remove('is-active'); });
+      activeIndex = -1;
+      document.removeEventListener('click', onDocClick, true);
+    }
+    function isOpen(){ return root.classList.contains('is-open'); }
+    function choose(opt){
+      options.forEach(function(o){ o.setAttribute('aria-selected', o === opt ? 'true' : 'false'); });
+      valueEl.textContent = opt.getAttribute('data-value');
+      valueEl.setAttribute('data-empty','false');
+      hidden.value = opt.getAttribute('data-value');
+      close();
+      trigger.focus();
+    }
+    function onDocClick(e){ if(!root.contains(e.target)) close(); }
+
+    trigger.addEventListener('click', function(){ isOpen() ? close() : open(); });
+    trigger.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' '){ e.preventDefault(); if(!isOpen()) open(); else setActive(activeIndex + 1); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); if(!isOpen()) open(); else setActive(activeIndex - 1); }
+      else if(e.key === 'Escape'){ if(isOpen()){ e.preventDefault(); close(); } }
+    });
+    list.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowDown'){ e.preventDefault(); setActive(activeIndex + 1); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); setActive(activeIndex - 1); }
+      else if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); if(options[activeIndex]) choose(options[activeIndex]); }
+      else if(e.key === 'Escape'){ e.preventDefault(); close(); trigger.focus(); }
+    });
+    options.forEach(function(opt, idx){
+      opt.addEventListener('mouseenter', function(){ setActive(idx); });
+      opt.addEventListener('click', function(){ choose(opt); });
     });
   }
 })();

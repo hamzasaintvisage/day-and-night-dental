@@ -29,37 +29,57 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>The Ledger - Book an appointment · Day Night Dental</title>
 <style>
-/* ── tokens not in the shared block ── */
-:root{--dn-online:#4ade80;--dn-day-soft:#fbe0a3;}
+/* ============================================================
+   THE LEDGER - Editorial.  Evolved to a world-class bar.
+   Concept kept: a numbered ledger of contact lines (01 .. 04)
+   set in big Fraunces numerals, a ruled hours register, and a
+   charcoal request card.  Upgrades: a premium custom dropdown
+   (no native select), filled charcoal field wells with a gold
+   focus glow, pill-card radios, a 22px gold checkbox, and an
+   impeccable masthead with refined dividers + labels.
+   Palette: SOLID gold + blue only, never a gold->blue gradient.
+   ============================================================ */
+:root{--dn-online:#4ade80;--dn-day-soft:#fbe0a3;--dn-well:#191920;--dn-well-line:rgba(255,255,255,.09);--dn-day-glow:rgba(248,199,96,.16);}
 
-/* ── section shell ── */
+/* ---- section shell ---- */
 .dn-section{position:relative;isolation:isolate;}
 .dn-contact{padding:clamp(4rem,9vw,8rem) 0;overflow:hidden;}
 .dn-container{width:min(var(--container),100% - 2.5rem);margin-inline:auto;}
-/* soft brand glows, calm & static */
+/* soft brand glows, calm and static */
 .dn-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:-1;}
 .dn-glow.day{width:520px;height:520px;top:6%;left:-4%;background:var(--dn-day);opacity:.06;}
 .dn-glow.night{width:520px;height:520px;bottom:4%;right:-6%;background:var(--dn-night);opacity:.07;}
 
-/* ── asymmetric editorial grid ── */
+/* ---- asymmetric editorial grid ---- */
 .dn-contact-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2.5rem,6vw,6rem);align-items:start;}
 
-/* ── masthead column ── */
+/* ---- masthead column ---- */
 .dn-eyebrow.dn-pill{margin-bottom:1.6rem;}
 .dn-display{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;line-height:.98;margin:0;}
 .dn-contact-info h2.dn-display{font-size:clamp(2.6rem,5.6vw,4.4rem);}
 .dn-contact-lead{color:var(--dn-bone-dim);max-width:34ch;margin:1.5rem 0 0;font-size:1.02rem;}
 
-/* ── the ledger / contents list ── */
-.dn-nap{list-style:none;margin:2.5rem 0 0;padding:0;}
+/* a thin editorial register caption above the ledger - a small typographic flourish */
+.dn-register-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin:2.5rem 0 .2rem;}
+.dn-register-head .dn-register-title{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--dn-bone-dim);font-weight:600;}
+.dn-register-head .dn-register-foli{font-family:var(--font-display);font-size:.86rem;color:var(--dn-bone-faint);
+  font-feature-settings:"lnum","tnum";}
+
+/* ---- the ledger / contents list ---- */
+.dn-nap{list-style:none;margin:.4rem 0 0;padding:0;}
 .dn-nap-row{display:grid;grid-template-columns:3.6rem 1fr;column-gap:1.25rem;align-items:baseline;
-  padding:1.5rem 0;border-top:1px solid var(--dn-mist);}
+  padding:1.5rem 0;border-top:1px solid var(--dn-mist);position:relative;}
 .dn-nap-row:first-child{padding-top:1.7rem;}
 .dn-nap-no{font-family:var(--font-display);font-size:2.5rem;line-height:1;color:var(--dn-bone-faint);
-  font-feature-settings:"lnum","tnum";font-weight:500;}
-.dn-nap-cap{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-dim);font-weight:600;}
+  font-feature-settings:"lnum","tnum";font-weight:500;transition:color .3s;}
+.dn-nap-row:hover .dn-nap-no{color:var(--dn-day);}
+.dn-nap-cap{display:flex;align-items:center;gap:.55rem;font-size:.7rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dn-bone-dim);font-weight:600;}
+.dn-nap-cap .dn-ico{width:13px;height:13px;color:var(--dn-bone-faint);flex:0 0 auto;}
 .dn-nap-val{display:block;font-family:var(--font-display);font-size:1.32rem;color:var(--dn-bone);
-  margin-top:.32rem;text-decoration:none;transition:color .25s;}
+  margin-top:.36rem;text-decoration:none;transition:color .25s;}
 a.dn-nap-val:hover{color:var(--dn-day);}
 .dn-nap-hint{display:block;font-size:.82rem;color:var(--dn-bone-faint);margin-top:.4rem;letter-spacing:.01em;}
 
@@ -67,7 +87,9 @@ a.dn-nap-val:hover{color:var(--dn-day);}
 .dn-nap-row.emergency{border-top-color:var(--dn-night);padding-left:1.25rem;border-left:1px solid var(--dn-night);
   margin-left:-1.25rem;}
 .dn-nap-row.emergency .dn-nap-no{color:var(--dn-night);}
+.dn-nap-row.emergency:hover .dn-nap-no{color:var(--dn-night-soft);}
 .dn-nap-row.emergency .dn-nap-cap{color:var(--dn-night-soft);}
+.dn-nap-row.emergency .dn-nap-cap .dn-ico{color:var(--dn-night);}
 .dn-nap-row.emergency a.dn-nap-val{font-size:1.7rem;color:var(--dn-bone);}
 .dn-nap-row.emergency a.dn-nap-val:hover{color:var(--dn-night-soft);}
 .dn-nap-live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dn-online);
@@ -76,7 +98,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
 @keyframes dn-pulse{0%,100%{box-shadow:0 0 0 4px rgba(74,222,128,.12),0 0 10px var(--dn-online);}
   50%{box-shadow:0 0 0 7px rgba(74,222,128,0),0 0 14px var(--dn-online);}}
 
-/* ── compact ruled hours table at the foot ── */
+/* ---- compact ruled hours register at the foot ---- */
 .dn-hours{margin-top:2.6rem;border-top:1px solid var(--dn-mist);padding-top:1.5rem;}
 .dn-hours-cap{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-dim);
   font-weight:600;display:block;margin-bottom:.9rem;}
@@ -90,53 +112,123 @@ a.dn-nap-val:hover{color:var(--dn-day);}
 .dn-hours .row-live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-online);
   margin-right:.45rem;box-shadow:0 0 8px var(--dn-online);}
 
-/* ── form card: charcoal face, gold top keyline, hairline-separated fields ── */
+/* ============================================================
+   FORM CARD - charcoal face, gold top keyline, premium kit
+   ============================================================ */
 .dn-contact-form{position:relative;border-radius:var(--dn-r-card);background:var(--dn-charcoal);
   border:1px solid var(--dn-mist);padding:clamp(1.75rem,3vw,2.75rem);overflow:hidden;}
 .dn-contact-form::before{content:'';position:absolute;inset:0 0 auto;height:2px;background:var(--dn-day);}
 .dn-form-head{font-family:var(--font-display);font-weight:600;font-size:1.7rem;margin:0 0 .35rem;letter-spacing:-.01em;}
 .dn-form-sub{color:var(--dn-bone-faint);font-size:.92rem;margin:0 0 1.9rem;}
 
-.dn-form-row{margin-bottom:1.55rem;}
-.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.dn-form-row{margin-bottom:1.45rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
 .dn-form-row label{display:block;}
 .dn-form-row label > span,.dn-form-label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--dn-bone-dim);font-weight:600;margin-bottom:.55rem;}
-.dn-contact-form input,.dn-contact-form textarea{width:100%;background:transparent;border:0;
-  border-bottom:1px solid var(--dn-mist);border-radius:0;padding:.85rem .2rem;color:var(--dn-bone);
-  font-family:var(--font-display);font-size:1.08rem;min-height:44px;transition:border-color .25s,box-shadow .25s;}
-.dn-contact-form textarea{font-family:var(--font-body);font-size:1rem;resize:vertical;min-height:90px;line-height:1.5;}
-.dn-contact-form input::placeholder,.dn-contact-form textarea::placeholder{color:var(--dn-bone-faint);font-family:var(--font-body);font-size:.95rem;}
-.dn-contact-form input:focus,.dn-contact-form textarea:focus{border-bottom-color:var(--dn-day);
-  outline:none;box-shadow:0 1px 0 0 var(--dn-day);}
 
-/* radios as ledger ticks */
+/* ---- FILLED field wells (premium): charcoal fill, hairline, gold focus glow ---- */
+.dn-contact-form input[type=text],
+.dn-contact-form input[type=tel],
+.dn-contact-form input[type=email],
+.dn-contact-form textarea{
+  width:100%;background:var(--dn-well);border:1px solid var(--dn-well-line);border-radius:12px;
+  padding:.95rem 1rem;color:var(--dn-bone);font-family:var(--font-body);font-size:16px;min-height:48px;
+  transition:border-color .25s,box-shadow .25s,background .25s;-webkit-appearance:none;appearance:none;}
+.dn-contact-form textarea{resize:vertical;min-height:104px;line-height:1.55;}
+.dn-contact-form input::placeholder,.dn-contact-form textarea::placeholder{color:var(--dn-bone-faint);}
+.dn-contact-form input:hover,.dn-contact-form textarea:hover{border-color:rgba(255,255,255,.18);}
+.dn-contact-form input:focus,.dn-contact-form textarea:focus{outline:none;border-color:var(--dn-day);
+  background:#1c1c24;box-shadow:0 0 0 4px var(--dn-day-glow),0 0 22px rgba(248,199,96,.12);}
+.dn-field-help{display:block;font-size:.78rem;color:var(--dn-bone-faint);margin-top:.5rem;letter-spacing:.01em;}
+
+/* ---- pill-card radios (gold checked) ---- */
 .dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
-.dn-radio{position:relative;display:flex;align-items:center;gap:.6rem;min-height:44px;padding:.65rem .9rem;
-  border:1px solid var(--dn-mist);border-radius:12px;cursor:pointer;font-size:.92rem;color:var(--dn-bone-dim);
-  transition:border-color .2s,color .2s,background .2s;background:rgba(255,255,255,.015);}
+.dn-radio{position:relative;display:flex;align-items:center;gap:.6rem;min-height:48px;padding:.7rem .95rem;
+  border:1px solid var(--dn-well-line);border-radius:12px;cursor:pointer;font-size:.94rem;color:var(--dn-bone-dim);
+  transition:border-color .2s,color .2s,background .2s,box-shadow .2s;background:var(--dn-well);}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;}
+/* a small ring mark on each pill that fills when chosen */
+.dn-radio .dn-radio-mark{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--dn-bone-faint);
+  position:relative;transition:border-color .2s;}
+.dn-radio .dn-radio-mark::after{content:'';position:absolute;inset:3px;border-radius:50%;background:transparent;
+  transform:scale(.2);transition:transform .2s,background .2s;}
 .dn-radio:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.2);}
-.dn-radio.day.checked{border-color:var(--dn-day);color:var(--dn-day);background:rgba(248,199,96,.06);}
-.dn-radio.night.checked{border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.06);}
-.dn-radio.urgent.checked{border-color:var(--dn-night);color:var(--dn-night-soft);box-shadow:0 0 18px rgba(69,144,236,.25);}
-.urgent-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);flex:0 0 auto;}
+.dn-radio input:focus-visible + .dn-radio-mark{box-shadow:0 0 0 4px var(--dn-day-glow);}
+.dn-radio.day.checked{border-color:var(--dn-day);color:var(--dn-day);background:rgba(248,199,96,.07);}
+.dn-radio.day.checked .dn-radio-mark{border-color:var(--dn-day);}
+.dn-radio.day.checked .dn-radio-mark::after{background:var(--dn-day);transform:scale(1);}
+.dn-radio.night.checked{border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.07);}
+.dn-radio.night.checked .dn-radio-mark{border-color:var(--dn-night);}
+.dn-radio.night.checked .dn-radio-mark::after{background:var(--dn-night);transform:scale(1);}
+.dn-radio.urgent.checked{box-shadow:0 0 18px rgba(69,144,236,.25);}
+.dn-radio .urgent-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);
+  box-shadow:0 0 8px var(--dn-night);flex:0 0 auto;margin-left:-.1rem;}
 
-/* native select restyled to match hairline fields */
-.dn-select{position:relative;}
-.dn-select select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--dn-mist);
-  border-radius:0;padding:.85rem 2rem .85rem .2rem;color:var(--dn-bone);font-family:var(--font-display);
-  font-size:1.08rem;min-height:44px;appearance:none;-webkit-appearance:none;cursor:pointer;
-  transition:border-color .25s,box-shadow .25s;}
-.dn-select select:focus{outline:none;border-bottom-color:var(--dn-day);box-shadow:0 1px 0 0 var(--dn-day);}
-.dn-select select option{background:var(--dn-charcoal);color:var(--dn-bone);}
-.dn-select::after{content:'';position:absolute;right:.4rem;top:50%;width:8px;height:8px;
-  border-right:1.5px solid var(--dn-bone-faint);border-bottom:1.5px solid var(--dn-bone-faint);
-  transform:translateY(-65%) rotate(45deg);pointer-events:none;}
+/* ============================================================
+   CUSTOM DROPDOWN - replaces the banned native picker control.
+   Trigger = a charcoal well that matches the inputs; floating
+   dark listbox with hairline border + soft shadow; gold tint
+   and a left accent + check on the chosen row.  Default closed,
+   SSR-safe (works as a styled box even without JS).
+   ============================================================ */
+.dn-dropdown{position:relative;}
+.dn-dropdown-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  background:var(--dn-well);border:1px solid var(--dn-well-line);border-radius:12px;padding:.95rem 1rem;
+  min-height:48px;color:var(--dn-bone);font-family:var(--font-body);font-size:16px;text-align:left;cursor:pointer;
+  transition:border-color .25s,box-shadow .25s,background .25s;}
+.dn-dropdown-trigger:hover{border-color:rgba(255,255,255,.18);}
+.dn-dropdown-trigger:focus-visible{outline:none;border-color:var(--dn-day);background:#1c1c24;
+  box-shadow:0 0 0 4px var(--dn-day-glow),0 0 22px rgba(248,199,96,.12);}
+.dn-dropdown[data-open="true"] .dn-dropdown-trigger{border-color:var(--dn-day);background:#1c1c24;
+  box-shadow:0 0 0 4px var(--dn-day-glow);}
+.dn-dropdown-trigger .placeholder{color:var(--dn-bone-faint);}
+.dn-dropdown-trigger .val{color:var(--dn-bone);}
+.dn-dropdown-chev{flex:0 0 auto;width:10px;height:10px;border-right:1.6px solid var(--dn-bone-faint);
+  border-bottom:1.6px solid var(--dn-bone-faint);transform:translateY(-2px) rotate(45deg);
+  transition:transform .25s,border-color .25s;}
+.dn-dropdown-trigger:hover .dn-dropdown-chev{border-color:var(--dn-bone-dim);}
+.dn-dropdown[data-open="true"] .dn-dropdown-chev{transform:translateY(2px) rotate(225deg);border-color:var(--dn-day);}
+/* floating listbox */
+.dn-dropdown-list{list-style:none;margin:.5rem 0 0;padding:.4rem;position:absolute;left:0;right:0;top:100%;z-index:30;
+  background:#101016;border:1px solid var(--dn-mist);border-radius:16px;
+  box-shadow:0 18px 48px rgba(0,0,0,.55),0 2px 0 rgba(255,255,255,.02) inset;
+  max-height:288px;overflow:auto;
+  transform-origin:top center;animation:dn-dd-in .16s ease;}
+@keyframes dn-dd-in{from{opacity:0;transform:translateY(-6px) scale(.985);}to{opacity:1;transform:none;}}
+.dn-dropdown-list[hidden]{display:none;}
+.dn-dropdown-option{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  padding:.75rem .85rem .75rem 1rem;border-radius:11px;cursor:pointer;color:var(--dn-bone-dim);font-size:.97rem;
+  transition:background .15s,color .15s;}
+.dn-dropdown-option .label{display:block;}
+/* left accent rail revealed on hover/active/selected */
+.dn-dropdown-option::before{content:'';position:absolute;left:.32rem;top:50%;transform:translateY(-50%) scaleY(0);
+  width:3px;height:60%;border-radius:3px;background:var(--dn-day);transition:transform .18s;}
+.dn-dropdown-option.active,.dn-dropdown-option:hover{background:rgba(248,199,96,.08);color:var(--dn-bone);}
+.dn-dropdown-option.active::before,.dn-dropdown-option:hover::before{transform:translateY(-50%) scaleY(1);}
+.dn-dropdown-option.selected{color:var(--dn-day);}
+.dn-dropdown-option.selected::before{transform:translateY(-50%) scaleY(1);}
+.dn-dropdown-option .check{flex:0 0 auto;color:var(--dn-day);font-size:.95rem;opacity:0;transition:opacity .15s;}
+.dn-dropdown-option.selected .check{opacity:1;}
 
-/* submit */
+/* ---- consent checkbox (22px gold fill + tick) ---- */
+.dn-check{display:flex;align-items:flex-start;gap:.7rem;cursor:pointer;margin-top:.2rem;}
+.dn-check input{position:absolute;opacity:0;width:0;height:0;}
+.dn-check .dn-check-box{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--dn-bone-faint);
+  background:var(--dn-well);position:relative;transition:background .2s,border-color .2s,box-shadow .2s;margin-top:1px;}
+.dn-check .dn-check-box::after{content:'';position:absolute;left:7px;top:3px;width:5px;height:10px;
+  border:solid var(--dn-near-black);border-width:0 2px 2px 0;transform:rotate(45deg) scale(.4);opacity:0;
+  transition:opacity .15s,transform .15s;}
+.dn-check input:focus-visible + .dn-check-box{box-shadow:0 0 0 4px var(--dn-day-glow);}
+.dn-check input:checked + .dn-check-box{background:var(--dn-day);border-color:var(--dn-day);}
+.dn-check input:checked + .dn-check-box::after{opacity:1;transform:rotate(45deg) scale(1);}
+.dn-check .dn-check-text{font-size:.82rem;color:var(--dn-bone-faint);line-height:1.5;}
+.dn-check .dn-check-text a{color:var(--dn-bone-dim);text-underline-offset:2px;}
+.dn-check .dn-check-text a:hover{color:var(--dn-day);}
+
+/* ---- submit ---- */
 .dn-form-submit{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
-  width:100%;min-height:52px;margin-top:.4rem;border:0;border-radius:999px;cursor:pointer;
+  width:100%;min-height:54px;margin-top:.4rem;border:0;border-radius:999px;cursor:pointer;
   background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-weight:700;
   font-size:1rem;letter-spacing:.01em;transition:box-shadow .3s,transform .3s,background .3s;}
 .dn-form-submit:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--dn-day-soft),0 0 38px rgba(248,199,96,.4);}
@@ -146,14 +238,21 @@ a.dn-nap-val:hover{color:var(--dn-day);}
 .dn-form-submit.is-emergency:hover{box-shadow:0 0 0 1px var(--dn-night-soft),0 0 38px rgba(69,144,236,.45);}
 .dn-btn-pulse{width:9px;height:9px;border-radius:50%;background:#fff;animation:dn-pulse 1.8s infinite;}
 
-.dn-form-disclaimer{font-size:.78rem;color:var(--dn-bone-faint);margin:1.4rem 0 0;line-height:1.5;}
+/* reassurance line under the button */
+.dn-reassure{display:flex;align-items:center;justify-content:center;gap:.5rem;margin:1rem 0 0;
+  font-size:.85rem;color:var(--dn-bone-dim);}
+.dn-reassure .dn-reassure-dot{width:7px;height:7px;border-radius:50%;background:var(--dn-online);
+  box-shadow:0 0 8px var(--dn-online);flex:0 0 auto;}
+.dn-reassure b{color:var(--dn-bone);font-weight:600;}
+
+.dn-form-disclaimer{font-size:.78rem;color:var(--dn-bone-faint);margin:1rem 0 0;line-height:1.5;}
 .dn-form-disclaimer a{color:var(--dn-bone-dim);text-underline-offset:2px;}
 .dn-form-disclaimer a:hover{color:var(--dn-day);}
 .dn-noscript{margin:0 0 1.5rem;padding:.9rem 1.1rem;border:1px solid var(--dn-mist);border-radius:12px;
   font-size:.88rem;color:var(--dn-bone-dim);}
 .dn-noscript a{color:var(--dn-day);}
 
-/* ── responsive ── */
+/* ---- responsive ---- */
 @media (max-width:1000px){
   .dn-contact-grid{grid-template-columns:1fr;}
 }
@@ -161,8 +260,11 @@ a.dn-nap-val:hover{color:var(--dn-day);}
   .dn-nap-row{grid-template-columns:2.6rem 1fr;column-gap:1rem;}
   .dn-nap-no{font-size:2rem;}
   .dn-nap-row.emergency a.dn-nap-val{font-size:1.45rem;}
-  .dn-form-row-2{grid-template-columns:1fr;gap:1.55rem;}
+  .dn-form-row-2{grid-template-columns:1fr;gap:1.45rem;}
   .dn-form-radios{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
 }
 </style>
 </head>
@@ -176,7 +278,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
   <div class="dn-container">
     <div class="dn-contact-grid">
 
-      <!-- ── Masthead column ── -->
+      <!-- ---- Masthead column ---- -->
       <div class="dn-contact-info">
         <span class="dn-eyebrow dn-pill day">Book Appointment</span>
         <h2 class="dn-display">
@@ -188,20 +290,31 @@ a.dn-nap-val:hover{color:var(--dn-day);}
           For routine appointments, send us your details and the team will get back to you.
         </p>
 
+        <div class="dn-register-head">
+          <span class="dn-register-title">The Ledger</span>
+          <span class="dn-register-foli">Ways to reach us · 01 to 04</span>
+        </div>
+
         <ol class="dn-nap">
           <li class="dn-nap-row emergency">
             <span class="dn-nap-no">01</span>
             <span>
-              <span class="dn-nap-cap">Night &amp; Emergency</span>
+              <span class="dn-nap-cap">
+                <svg class="dn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Night &amp; Emergency
+              </span>
               <a href="tel:+441415486548" class="dn-nap-val">0141 548 6548<span class="dn-nap-live" aria-hidden="true"></span></a>
-              <span class="dn-nap-hint">24-hour emergency line - answered now</span>
+              <span class="dn-nap-hint">24-hour emergency line · answered now</span>
             </span>
           </li>
 
           <li class="dn-nap-row">
             <span class="dn-nap-no">02</span>
             <span>
-              <span class="dn-nap-cap">Day Line</span>
+              <span class="dn-nap-cap">
+                <svg class="dn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                Day Line
+              </span>
               <a href="tel:+441415486548" class="dn-nap-val">0141 548 6548</a>
               <span class="dn-nap-hint">Mon to Sun, 7am to 11pm</span>
             </span>
@@ -210,7 +323,10 @@ a.dn-nap-val:hover{color:var(--dn-day);}
           <li class="dn-nap-row">
             <span class="dn-nap-no">03</span>
             <span>
-              <span class="dn-nap-cap">Email</span>
+              <span class="dn-nap-cap">
+                <svg class="dn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                Email
+              </span>
               <a href="mailto:reception@daynightdental.co.uk" class="dn-nap-val">reception@daynightdental.co.uk</a>
               <span class="dn-nap-hint">We reply within 1 working hour</span>
             </span>
@@ -219,7 +335,10 @@ a.dn-nap-val:hover{color:var(--dn-day);}
           <li class="dn-nap-row">
             <span class="dn-nap-no">04</span>
             <span>
-              <span class="dn-nap-cap">Visit</span>
+              <span class="dn-nap-cap">
+                <svg class="dn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Visit
+              </span>
               <span class="dn-nap-val">80 Hutcheson St</span>
               <span class="dn-nap-hint">Merchant City, Glasgow G1 1SH · Free parking nearby</span>
             </span>
@@ -242,7 +361,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
         </div>
       </div>
 
-      <!-- ── Form card ── -->
+      <!-- ---- Form card ---- -->
       <div class="dn-contact-form-wrap">
         <noscript>
           <p class="dn-noscript">
@@ -259,7 +378,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
           </p>
 
           <h3 class="dn-form-head">Request an appointment</h3>
-          <p class="dn-form-sub">No obligation - the team confirms a time that suits you.</p>
+          <p class="dn-form-sub">No obligation · the team confirms a time that suits you.</p>
 
           <div class="dn-form-row">
             <label>
@@ -284,44 +403,67 @@ a.dn-nap-val:hover{color:var(--dn-day);}
             <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
               <label class="dn-radio night urgent" data-pref="emergency">
                 <input type="radio" name="preference" value="emergency">
+                <span class="dn-radio-mark" aria-hidden="true"></span>
                 <span class="urgent-dot" aria-hidden="true"></span>Emergency, today
               </label>
               <label class="dn-radio day" data-pref="day">
                 <input type="radio" name="preference" value="day">
+                <span class="dn-radio-mark" aria-hidden="true"></span>
                 Day (7am to 5pm)
               </label>
               <label class="dn-radio night" data-pref="evening">
                 <input type="radio" name="preference" value="evening">
+                <span class="dn-radio-mark" aria-hidden="true"></span>
                 Evening (5pm to 11pm)
               </label>
               <label class="dn-radio night" data-pref="weekend">
                 <input type="radio" name="preference" value="weekend">
+                <span class="dn-radio-mark" aria-hidden="true"></span>
                 Weekend
               </label>
             </div>
           </div>
 
           <div class="dn-form-row">
-            <span class="dn-form-label">Treatment of interest</span>
-            <div class="dn-select">
-              <select name="treatment" aria-label="Treatment of interest">
-                <option value="" disabled selected>Select an option</option>
-                <option value="Emergency / pain">Emergency / pain</option>
-                <option value="New patient examination">New patient examination</option>
-                <option value="Hygienist appointment">Hygienist appointment</option>
-                <option value="Cosmetic consultation">Cosmetic consultation</option>
-                <option value="Invisalign">Invisalign</option>
-                <option value="Dental implants">Dental implants</option>
-                <option value="Teeth whitening">Teeth whitening</option>
-                <option value="Other / unsure">Other / unsure</option>
-              </select>
+            <span class="dn-form-label" id="treatment-label">Treatment of interest</span>
+            <!-- CUSTOM DROPDOWN (no native select).  Default closed; SSR-safe styled box. -->
+            <div class="dn-dropdown" id="treatmentDropdown" data-open="false">
+              <input type="hidden" name="treatment" id="treatmentValue" value="">
+              <button type="button" class="dn-dropdown-trigger" id="treatmentTrigger"
+                      aria-haspopup="listbox" aria-controls="treatmentList" aria-expanded="false"
+                      aria-labelledby="treatment-label treatmentTrigger">
+                <span class="placeholder" id="treatmentText">Select an option</span>
+                <span class="dn-dropdown-chev" aria-hidden="true"></span>
+              </button>
+              <ul class="dn-dropdown-list" id="treatmentList" role="listbox" aria-labelledby="treatment-label" tabindex="-1" hidden>
+                <li class="dn-dropdown-option" role="option" data-value="Emergency / pain" aria-selected="false"><span class="label">Emergency / pain</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="New patient examination" aria-selected="false"><span class="label">New patient examination</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Hygienist appointment" aria-selected="false"><span class="label">Hygienist appointment</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Cosmetic consultation" aria-selected="false"><span class="label">Cosmetic consultation</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Invisalign" aria-selected="false"><span class="label">Invisalign</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Dental implants" aria-selected="false"><span class="label">Dental implants</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Teeth whitening" aria-selected="false"><span class="label">Teeth whitening</span><span class="check" aria-hidden="true">✓</span></li>
+                <li class="dn-dropdown-option" role="option" data-value="Other / unsure" aria-selected="false"><span class="label">Other / unsure</span><span class="check" aria-hidden="true">✓</span></li>
+              </ul>
             </div>
           </div>
 
           <div class="dn-form-row">
             <label>
               <span>Anything we should know?</span>
-              <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+              <textarea name="notes" rows="3" placeholder="Anything that helps us handle your enquiry, e.g. best times to call."></textarea>
+              <span class="dn-field-help">Optional. Please don&rsquo;t include detailed medical information here.</span>
+            </label>
+          </div>
+
+          <div class="dn-form-row">
+            <label class="dn-check">
+              <input type="checkbox" name="consent" value="yes" required>
+              <span class="dn-check-box" aria-hidden="true"></span>
+              <span class="dn-check-text">
+                I&rsquo;m happy for Day Night Dental to contact me about this enquiry.
+                We&rsquo;ll never share your details. Read our <a href="/privacy/">privacy policy</a>.
+              </span>
             </label>
           </div>
 
@@ -331,9 +473,9 @@ a.dn-nap-val:hover{color:var(--dn-day);}
             <span class="arrow" aria-hidden="true">→</span>
           </button>
 
-          <p class="dn-form-disclaimer">
-            We&rsquo;ll never share your details. By sending this you&rsquo;re happy for us to
-            contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+          <p class="dn-reassure">
+            <span class="dn-reassure-dot" aria-hidden="true"></span>
+            We reply within <b>1 working hour</b> · or call the 24/7 line any time.
           </p>
         </form>
       </div>
@@ -346,6 +488,8 @@ a.dn-nap-val:hover{color:var(--dn-day);}
 (function(){
   var form = document.getElementById('bookForm');
   if(!form) return;
+
+  /* ---- preferred-time pill radios + emergency button state ---- */
   var radios = form.querySelectorAll('.dn-radio');
   var btnLabel = document.getElementById('btnLabel');
   var btnPulse = document.getElementById('btnPulse');
@@ -354,8 +498,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
   form.addEventListener('change', function(e){
     if(e.target.name !== 'preference') return;
     radios.forEach(function(r){
-      var checked = r.querySelector('input').checked;
-      r.classList.toggle('checked', checked);
+      r.classList.toggle('checked', r.querySelector('input').checked);
     });
     var isEmergency = e.target.value === 'emergency';
     submitBtn.classList.toggle('is-emergency', isEmergency);
@@ -363,10 +506,95 @@ a.dn-nap-val:hover{color:var(--dn-day);}
     btnPulse.hidden = !isEmergency;
   });
 
-  // Non-submitting preview: never actually post.
+  /* ---- custom dropdown: open/close/select, click-outside, keyboard ---- */
+  var dd = document.getElementById('treatmentDropdown');
+  var trigger = document.getElementById('treatmentTrigger');
+  var list = document.getElementById('treatmentList');
+  var label = document.getElementById('treatmentText');
+  var valueField = document.getElementById('treatmentValue');
+  var options = Array.prototype.slice.call(list.querySelectorAll('.dn-dropdown-option'));
+  var activeIndex = -1;
+
+  function isOpen(){ return dd.getAttribute('data-open') === 'true'; }
+
+  function setActive(i){
+    activeIndex = i;
+    options.forEach(function(o, idx){ o.classList.toggle('active', idx === i); });
+    if(i >= 0){
+      trigger.setAttribute('aria-activedescendant', options[i].id || '');
+      options[i].scrollIntoView({ block:'nearest' });
+    }
+  }
+
+  function openMenu(){
+    dd.setAttribute('data-open','true');
+    trigger.setAttribute('aria-expanded','true');
+    list.hidden = false;
+    var sel = options.findIndex(function(o){ return o.getAttribute('aria-selected') === 'true'; });
+    setActive(sel >= 0 ? sel : 0);
+  }
+
+  function closeMenu(focusTrigger){
+    dd.setAttribute('data-open','false');
+    trigger.setAttribute('aria-expanded','false');
+    list.hidden = true;
+    trigger.removeAttribute('aria-activedescendant');
+    activeIndex = -1;
+    options.forEach(function(o){ o.classList.remove('active'); });
+    if(focusTrigger) trigger.focus();
+  }
+
+  function selectOption(opt){
+    var v = opt.getAttribute('data-value');
+    valueField.value = v;
+    label.textContent = v;
+    label.classList.remove('placeholder');
+    label.classList.add('val');
+    options.forEach(function(o){
+      var on = o === opt;
+      o.classList.toggle('selected', on);
+      o.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    closeMenu(true);
+  }
+
+  /* give each option a stable id for aria-activedescendant */
+  options.forEach(function(o, i){
+    o.id = 'treatment-opt-' + i;
+    o.addEventListener('mouseenter', function(){ setActive(i); });
+    o.addEventListener('click', function(){ selectOption(o); });
+  });
+
+  trigger.addEventListener('click', function(){ isOpen() ? closeMenu(false) : openMenu(); });
+
+  trigger.addEventListener('keydown', function(e){
+    if(!isOpen()){
+      if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+        e.preventDefault(); openMenu();
+      }
+      return;
+    }
+    switch(e.key){
+      case 'ArrowDown': e.preventDefault(); setActive((activeIndex + 1) % options.length); break;
+      case 'ArrowUp':   e.preventDefault(); setActive((activeIndex - 1 + options.length) % options.length); break;
+      case 'Home':      e.preventDefault(); setActive(0); break;
+      case 'End':       e.preventDefault(); setActive(options.length - 1); break;
+      case 'Enter':
+      case ' ':         e.preventDefault(); if(activeIndex >= 0) selectOption(options[activeIndex]); break;
+      case 'Escape':    e.preventDefault(); closeMenu(true); break;
+      case 'Tab':       closeMenu(false); break;
+      default: break;
+    }
+  });
+
+  document.addEventListener('mousedown', function(e){
+    if(isOpen() && !dd.contains(e.target)) closeMenu(false);
+  });
+
+  /* ---- non-submitting preview: never actually post ---- */
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    btnLabel.textContent = 'Preview only - call 0141 548 6548';
+    btnLabel.textContent = 'Preview only · call 0141 548 6548';
     setTimeout(function(){
       var emer = form.querySelector('input[name=preference]:checked');
       btnLabel.textContent = (emer && emer.value === 'emergency') ? 'Request Emergency Appointment' : 'Request Booking';

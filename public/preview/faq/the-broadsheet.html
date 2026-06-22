@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Broadsheet - Common Questions · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE BROADSHEET - a printed newspaper spread.
+   A masthead rule, then the four Q&As set as numbered broadsheet
+   items (01 to 04) flowing across a hairline-ruled column grid,
+   each opening with a drop-cap. All answers are PRINTED COPY and
+   always present in the DOM. The optional JS adds a quiet
+   disclosure toggle per item (default = open) so the page reads
+   fully with JS disabled.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.4rem,7vw,6rem) 0 clamp(3.6rem,7vw,6rem);
+}
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(120% 50% at 18% 0%, rgba(248,199,96,.06), transparent 60%),
+    radial-gradient(90% 55% at 88% 100%, rgba(69,144,236,.05), transparent 70%);
+  pointer-events:none;
+}
+.dn-container{
+  position:relative;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(18px,5vw,40px);
+}
+
+/* the printed page sheet */
+.bs-paper{
+  position:relative;
+  border:1px solid var(--dn-mist);
+  border-radius:4px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,0) 240px),
+    var(--dn-black);
+  padding:clamp(1.4rem,3.5vw,2.8rem) clamp(1.2rem,3.5vw,2.8rem) clamp(2rem,4vw,3rem);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 40px 90px -50px #000;
+}
+
+/* ── masthead ── */
+.bs-masthead{
+  text-align:center;
+}
+.bs-folio{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.7rem;
+  font-size:.6rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin-bottom:1.1rem;
+  flex-wrap:wrap;
+}
+.bs-folio .dot{width:4px;height:4px;border-radius:50%;background:var(--dn-day);display:inline-block;}
+.bs-masthead .dn-eyebrow{margin-bottom:1rem;}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(2rem,5.6vw,3.7rem);
+  line-height:1.05;
+  letter-spacing:-.014em;
+  margin:0;
+  color:var(--dn-bone);
+}
+.bs-dateline{
+  margin:1rem auto 0;
+  max-width:60ch;
+  font-family:var(--font-display);
+  font-style:italic;
+  font-weight:340;
+  color:var(--dn-bone-faint);
+  font-size:.98rem;
+  line-height:1.6;
+}
+
+/* double masthead rule under the title block */
+.bs-rule{
+  margin:clamp(1.4rem,3vw,2.2rem) 0 0;
+  border:0;
+  height:0;
+  border-top:2px solid color-mix(in srgb, var(--dn-day) 60%, transparent);
+  border-bottom:1px solid var(--dn-mist);
+  padding-bottom:3px;
+}
+
+/* ── the column grid ── */
+.bs-grid{
+  margin-top:clamp(1.6rem,3vw,2.4rem);
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:0;
+}
+
+/* each printed item */
+.bs-item{
+  position:relative;
+  padding:clamp(1.3rem,2.4vw,1.9rem) clamp(1.1rem,2.4vw,1.9rem) clamp(1.4rem,2.4vw,2rem);
+  min-width:0;
+}
+/* hairline column rules between items (newspaper gutters) */
+.bs-item:nth-child(odd){border-right:1px solid var(--dn-mist);}
+.bs-item:nth-child(n+3){border-top:1px solid var(--dn-mist);}
+
+/* per-item accent: gold / blue / gold / blue rhythm */
+.bs-item{--bs-accent:var(--dn-day);}
+.bs-item:nth-child(2),
+.bs-item:nth-child(3){--bs-accent:var(--dn-night);}
+
+/* the big numeral + headline row (the toggle when JS is on) */
+.bs-head{
+  appearance:none;
+  -webkit-appearance:none;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:.85rem;
+  align-items:start;
+  width:100%;
+  text-align:left;
+  background:transparent;
+  border:0;
+  padding:0;
+  margin:0;
+  color:var(--dn-bone);
+  font-family:inherit;
+  cursor:default;
+}
+.bs-num{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1.7rem,3.4vw,2.6rem);
+  line-height:.9;
+  letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;
+  color:var(--bs-accent);
+  padding-top:.08em;
+}
+.bs-q{
+  font-family:var(--font-display);
+  font-weight:440;
+  font-size:clamp(1.12rem,1.7vw,1.42rem);
+  line-height:1.16;
+  letter-spacing:-.012em;
+  margin:0;
+  color:var(--dn-bone);
+}
+/* kicker line above the headline, like a section label */
+.bs-kicker{
+  display:block;
+  font-family:var(--font-body);
+  font-size:.58rem;
+  font-weight:700;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:color-mix(in srgb, var(--bs-accent) 70%, var(--dn-bone-faint));
+  margin-bottom:.5rem;
+}
+/* quiet toggle glyph appears only when JS marks the page interactive */
+.bs-toggle{
+  display:none;
+  justify-self:end;
+  width:14px;height:14px;
+  position:relative;
+  opacity:.6;
+  color:var(--bs-accent);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .2s ease;
+}
+.bs-toggle::before,.bs-toggle::after{
+  content:'';position:absolute;left:50%;top:50%;
+  width:13px;height:1.6px;background:currentColor;border-radius:2px;
+  transform:translate(-50%,-50%);
+}
+.bs-toggle::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s cubic-bezier(.2,.7,.2,1);}
+
+/* ── the printed answer (body copy) ── */
+.bs-answer{
+  margin:.95rem 0 0;
+  font-size:clamp(.95rem,1vw,1rem);
+  line-height:1.72;
+  color:var(--dn-bone-dim);
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+}
+/* drop-cap on the first letter of each answer */
+.bs-answer::first-letter{
+  float:left;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:3.05em;
+  line-height:.78;
+  padding:.06em .12em 0 0;
+  margin-top:.02em;
+  color:var(--bs-accent);
+}
+/* visually-hidden duplicate question heading for screen readers / SEO */
+.bs-q-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
+
+/* JS-on: rows become real disclosure buttons */
+.bs-js .bs-head{cursor:pointer;border-radius:6px;transition:box-shadow .25s ease;}
+.bs-js .bs-toggle{display:block;}
+.bs-js .bs-head:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--bs-accent) 45%, transparent),
+             0 0 26px -10px color-mix(in srgb, var(--bs-accent) 70%, transparent);
+}
+@media (hover:hover){
+  .bs-js .bs-head:hover .bs-toggle{opacity:.95;}
+  .bs-js .bs-head:hover .bs-q{color:var(--dn-bone);}
+}
+/* collapsed state (JS only) */
+.bs-js .bs-region[hidden]{display:none;}
+.bs-js .bs-head[aria-expanded="false"] .bs-toggle{transform:rotate(135deg);}
+.bs-js .bs-region{animation:bs-fade .32s ease;}
+
+@keyframes bs-fade{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){
+  .bs-region{animation:none !important;}
+  .bs-toggle{transition:none;}
+}
+
+/* ── colophon / footer call line ── */
+.bs-foot{
+  margin:clamp(1.8rem,3.4vw,2.6rem) auto 0;
+  padding-top:clamp(1.2rem,2.4vw,1.6rem);
+  border-top:1px solid var(--dn-mist);
+  text-align:center;
+  color:var(--dn-bone-faint);
+  font-size:1rem;
+}
+.bs-foot .em{
+  display:block;
+  font-family:var(--font-display);
+  font-size:.6rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin-bottom:.7rem;
+}
+.bs-foot a{
+  color:var(--dn-night);
+  text-decoration:none;
+  font-weight:560;
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  padding-bottom:1px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.bs-foot a:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);}
+
+/* ── tablet / mobile: collapse to one printed column ── */
+@media (max-width:760px){
+  .bs-grid{grid-template-columns:1fr;}
+  .bs-item:nth-child(odd){border-right:0;}
+  .bs-item{border-top:1px solid var(--dn-mist);}
+  .bs-item:first-child{border-top:0;}
+}
+@media (max-width:560px){
+  .bs-item{padding-left:.2rem;padding-right:.2rem;}
+  .bs-head{grid-template-columns:auto 1fr auto;gap:.7rem;}
+  .bs-answer{text-align:left;}
+  .bs-answer::first-letter{font-size:2.7em;}
+}
+@media (max-width:380px){
+  .bs-num{font-size:1.55rem;}
+  .bs-q{font-size:1.06rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Broadsheet</b> <span class="lab-lens">broadsheet</span></div><span></span></div>
+
+<section class="dn-section tp-faq dn-faq" aria-labelledby="faq-heading">
+  <div class="dn-container">
+    <div class="bs-paper">
+
+      <div class="bs-masthead">
+        <div class="bs-folio"><span>Day Night Dental</span><span class="dot" aria-hidden="true"></span><span>Merchant City, Glasgow</span><span class="dot" aria-hidden="true"></span><span>The Patients' Page</span></div>
+        <span class="dn-eyebrow dn-pill day">Common Questions</span>
+        <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+        <p class="bs-dateline">Four questions we hear most, set in full across the page. Every answer is printed in plain sight, day or night.</p>
+        <hr class="bs-rule" aria-hidden="true">
+      </div>
+
+      <div class="bs-grid">
+
+        <!-- 01 -->
+        <article class="bs-item">
+          <button type="button" class="bs-head" id="bs-head-0" aria-expanded="true" aria-controls="bs-region-0">
+            <span class="bs-num" aria-hidden="true">01</span>
+            <span>
+              <span class="bs-kicker">Emergency care</span>
+              <span class="bs-q">Is there an emergency dentist open now in Glasgow?</span>
+            </span>
+            <span class="bs-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="bs-region" id="bs-region-0" role="region" aria-labelledby="bs-head-0">
+            <h3 class="bs-q-sr">Is there an emergency dentist open now in Glasgow?</h3>
+            <p class="bs-answer">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="bs-item">
+          <button type="button" class="bs-head" id="bs-head-1" aria-expanded="true" aria-controls="bs-region-1">
+            <span class="bs-num" aria-hidden="true">02</span>
+            <span>
+              <span class="bs-kicker">New patients</span>
+              <span class="bs-q">Are you taking on new patients?</span>
+            </span>
+            <span class="bs-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="bs-region" id="bs-region-1" role="region" aria-labelledby="bs-head-1">
+            <h3 class="bs-q-sr">Are you taking on new patients?</h3>
+            <p class="bs-answer">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="bs-item">
+          <button type="button" class="bs-head" id="bs-head-2" aria-expanded="true" aria-controls="bs-region-2">
+            <span class="bs-num" aria-hidden="true">03</span>
+            <span>
+              <span class="bs-kicker">Finding us</span>
+              <span class="bs-q">Where is the practice and where can I park?</span>
+            </span>
+            <span class="bs-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="bs-region" id="bs-region-2" role="region" aria-labelledby="bs-head-2">
+            <h3 class="bs-q-sr">Where is the practice and where can I park?</h3>
+            <p class="bs-answer">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+          </div>
+        </article>
+
+        <!-- 04 -->
+        <article class="bs-item">
+          <button type="button" class="bs-head" id="bs-head-3" aria-expanded="true" aria-controls="bs-region-3">
+            <span class="bs-num" aria-hidden="true">04</span>
+            <span>
+              <span class="bs-kicker">Opening hours</span>
+              <span class="bs-q">What are your opening hours?</span>
+            </span>
+            <span class="bs-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="bs-region" id="bs-region-3" role="region" aria-labelledby="bs-head-3">
+            <h3 class="bs-q-sr">What are your opening hours?</h3>
+            <p class="bs-answer">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="bs-foot">
+        <span class="em">Late edition</span>
+        Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there an emergency dentist open now in Glasgow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you taking on new patients?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the practice and where can I park?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your opening hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+  var section = document.querySelector('.dn-faq');
+  if(!section) return;
+  // Mark the page as JS-enhanced so disclosure toggles become active.
+  // Default (no-JS) DOM has every region open and visible to crawlers.
+  section.classList.add('bs-js');
+
+  var heads = Array.prototype.slice.call(section.querySelectorAll('.bs-head'));
+
+  heads.forEach(function(head){
+    var region = document.getElementById(head.getAttribute('aria-controls'));
+    if(!region) return;
+
+    function setOpen(open){
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open){ region.hidden = false; }
+      else { region.hidden = true; }
+    }
+
+    head.addEventListener('click', function(){
+      setOpen(head.getAttribute('aria-expanded') !== 'true');
+    });
+
+    head.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){
+        e.preventDefault();
+        setOpen(head.getAttribute('aria-expanded') !== 'true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

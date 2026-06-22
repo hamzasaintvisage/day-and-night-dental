@@ -30,6 +30,12 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
    plates, an always-lit night pilaster. Two structural bays
    under one engraved architrave. Solid gold + solid blue only,
    NEVER a gold-to-blue gradient.
+
+   EVOLVED build: the recessed reception desk now carries the
+   premium form kit - filled charcoal field wells with an even
+   gold focus glow (no bare underlines), a fully custom carved
+   dropdown plate (no native select), pill-card radios, a 22px
+   carved checkbox and a confident solid-gold call-button.
    ============================================================ */
 
 :root{--dn-r-inset:14px;}
@@ -68,16 +74,17 @@ h2.dn-display{font-size:clamp(2.3rem,5.2vw,3.5rem);margin:1.15rem 0 0;}
    LEFT BAY - the building directory: engraved wall-plates
    =========================================================== */
 .dn-bay-eyebrow{display:flex;align-items:center;gap:.6rem;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);margin:0 0 1.4rem;}
+.dn-bay-eyebrow::before{content:'';width:14px;height:1px;background:var(--dn-day);opacity:.7;}
 .dn-bay-eyebrow::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
 
 .dn-contact-details{display:flex;flex-direction:column;gap:1rem;margin:0 0 1.6rem;}
 
 /* contact rows = recessed engraved wall-plates carved into the wall */
-.dn-contact-detail{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:1rem;row-gap:.12rem;padding:1.1rem 1.25rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);align-items:center;transition:border-color .3s,box-shadow .3s;}
-.dn-contact-detail:hover{border-color:rgba(248,199,96,.4);}
+.dn-contact-detail{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:1rem;row-gap:.12rem;padding:1.1rem 1.25rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);align-items:center;transition:border-color .3s,box-shadow .3s,transform .3s;}
+.dn-contact-detail:hover{border-color:rgba(248,199,96,.4);transform:translateX(2px);}
 /* the always-lit night pilaster - the one thing lit after hours. Even glow, touch-safe, never hover-gated. */
 .dn-contact-detail.is-emergency{border-left:3px solid var(--dn-night);box-shadow:inset 14px 0 22px -16px var(--dn-night),inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);}
-.dn-contact-detail.is-emergency:hover{border-color:var(--dn-mist);border-left-color:var(--dn-night);}
+.dn-contact-detail.is-emergency:hover{border-color:var(--dn-mist);border-left-color:var(--dn-night);transform:none;}
 
 .dn-contact-ico{grid-row:1 / span 2;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);color:var(--dn-bone-dim);box-shadow:inset 0 1px 4px rgba(0,0,0,.4);}
 .dn-contact-ico.day{color:var(--dn-day);border-color:rgba(248,199,96,.32);background:rgba(248,199,96,.07);}
@@ -95,10 +102,11 @@ a.value:hover{color:var(--dn-day);}
 
 /* hours table + map facade = the engraved plinth that closes the left bay */
 .dn-plinth{padding:1.4rem 1.5rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);margin:0 0 1rem;}
-.dn-plinth-head{margin-bottom:.7rem;}
+.dn-plinth-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem;}
 .dn-plinth-head .plate-label{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);}
+.dn-plinth-head::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
 .dn-contact-hours table{width:100%;border-collapse:collapse;font-size:.95rem;}
-.dn-contact-hours td{padding:.5rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-contact-hours td{padding:.55rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
 .dn-contact-hours tr:last-child td{border-bottom:0;}
 .dn-contact-hours td:last-child{text-align:right;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
 .dn-contact-hours .emergency-row td{color:var(--dn-bone);font-weight:500;padding-top:.85rem;}
@@ -124,44 +132,98 @@ a.value:hover{color:var(--dn-day);}
 h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
 .dn-form-intro{font-size:.96rem;color:var(--dn-bone-dim);margin:0 0 2rem;line-height:1.5;}
 
-.dn-form-row{margin-bottom:1.1rem;}
-.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.1rem;}
+.dn-form-row{margin-bottom:1.3rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.3rem;}
 
-/* fields carved into stone - recessed plates with chiseled gold focus */
+/* ---- PREMIUM FIELD KIT - filled charcoal wells, refined label + helper, even gold focus glow ---- */
 .dn-field{display:block;}
-.dn-field > span{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-dim);font-weight:600;margin:0 0 .5rem;}
-.dn-field .dn-help{display:block;font-family:var(--font-display);font-style:italic;font-size:.82rem;color:var(--dn-bone-faint);margin:0 0 .55rem;line-height:1.4;}
-.dn-field input,.dn-field textarea{width:100%;padding:.85rem 1rem;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px var(--font-body);box-shadow:inset 0 2px 5px rgba(0,0,0,.5);transition:border-color .25s,box-shadow .25s;}
-.dn-field input::placeholder,.dn-field textarea::placeholder{color:rgba(255,255,255,.32);}
-.dn-field input:focus,.dn-field textarea:focus{outline:none;border-color:var(--dn-day);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 2px 5px rgba(0,0,0,.5),0 0 0 4px rgba(248,199,96,.12);}
-.dn-field textarea{resize:vertical;min-height:84px;line-height:1.55;}
+.dn-field > span,.dn-field-label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-dim);font-weight:600;margin:0 0 .5rem;}
+.dn-field .dn-help{display:block;font-family:var(--font-display);font-style:italic;font-size:.82rem;color:var(--dn-bone-faint);margin:0 0 .6rem;line-height:1.4;}
 
-/* preferred-time = a row of structural bays */
-.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.2rem;}
-.dn-radio{position:relative;display:flex;align-items:center;gap:.55rem;min-height:46px;padding:.6rem .9rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 4px rgba(0,0,0,.4);cursor:pointer;color:var(--dn-bone-dim);font-size:.92rem;transition:border-color .2s,background .2s,color .2s,box-shadow .2s;}
+/* filled field wells - a recessed plate, NOT a bare underline */
+.dn-field input,.dn-field textarea{width:100%;padding:.95rem 1.05rem;min-height:48px;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px/1.4 var(--font-body);box-shadow:inset 0 2px 6px rgba(0,0,0,.5);transition:border-color .25s,box-shadow .25s;}
+.dn-field input::placeholder,.dn-field textarea::placeholder{color:rgba(255,255,255,.32);}
+/* focus = an EVEN gold glow ring, no harsh outline */
+.dn-field input:focus,.dn-field textarea:focus{outline:none;border-color:var(--dn-day);box-shadow:inset 0 2px 6px rgba(0,0,0,.5),0 0 0 3px rgba(248,199,96,.18),0 0 22px -2px rgba(248,199,96,.28);}
+.dn-field textarea{resize:vertical;min-height:96px;line-height:1.55;}
+
+/* ---- PREFERRED TIME - pill-card radios (a row of structural bays) ---- */
+.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.2rem;}
+.dn-radio{position:relative;display:flex;align-items:center;gap:.6rem;min-height:48px;padding:.65rem .95rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 4px rgba(0,0,0,.4);cursor:pointer;color:var(--dn-bone-dim);font-size:.92rem;transition:border-color .2s,background .2s,color .2s,box-shadow .2s;}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;}
+/* a carved bezel marker that fills gold/blue when chosen */
+.dn-radio .mark{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1.6px solid rgba(255,255,255,.28);box-shadow:inset 0 1px 3px rgba(0,0,0,.5);position:relative;transition:border-color .2s,background .2s,box-shadow .2s;}
+.dn-radio .mark::after{content:'';position:absolute;inset:0;margin:auto;width:8px;height:8px;border-radius:50%;background:transparent;transition:background .2s,box-shadow .2s;}
+.dn-radio .label-text{display:inline-flex;align-items:center;gap:.5rem;}
 .dn-radio:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.24);}
-.dn-radio.day:has(input:checked){border-color:var(--dn-day);background:rgba(248,199,96,.1);color:var(--dn-bone);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 1px 4px rgba(0,0,0,.4);}
-.dn-radio.night:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.12);color:var(--dn-bone);box-shadow:inset 0 0 0 1px var(--dn-night),inset 0 1px 4px rgba(0,0,0,.4);}
+.dn-radio.day:has(input:checked){border-color:var(--dn-day);background:rgba(248,199,96,.1);color:var(--dn-bone);box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 0 1px var(--dn-day);}
+.dn-radio.day:has(input:checked) .mark{border-color:var(--dn-day);}
+.dn-radio.day:has(input:checked) .mark::after{background:var(--dn-day);box-shadow:0 0 8px rgba(248,199,96,.6);}
+.dn-radio.night:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.12);color:var(--dn-bone);box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 0 1px var(--dn-night);}
+.dn-radio.night:has(input:checked) .mark{border-color:var(--dn-night);}
+.dn-radio.night:has(input:checked) .mark::after{background:var(--dn-night);box-shadow:0 0 8px rgba(69,144,236,.7);}
 .dn-radio.urgent{grid-column:1 / -1;}
-.dn-radio.urgent:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.14);box-shadow:inset 0 0 0 1px var(--dn-night),inset 0 1px 4px rgba(0,0,0,.4),0 0 22px rgba(69,144,236,.18);}
-.dn-radio:focus-within{box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 1px 4px rgba(0,0,0,.4);}
+.dn-radio.urgent:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.14);box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 0 1px var(--dn-night),0 0 22px rgba(69,144,236,.18);}
+.dn-radio:focus-within{box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 0 3px rgba(248,199,96,.2);}
+.dn-radio.night:focus-within,.dn-radio.urgent:focus-within{box-shadow:inset 0 1px 4px rgba(0,0,0,.4),0 0 0 3px rgba(69,144,236,.22);}
 .urgent-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);}
 
-/* select styled as a carved plate to match the fields */
+/* ---- CUSTOM DROPDOWN - a carved plate that opens a floating dark listbox ---- */
+/* No native select. Default CLOSED. Tiny inline JS drives open/close/select + keys. */
 .dn-select{position:relative;}
-.dn-select select{-webkit-appearance:none;appearance:none;width:100%;padding:.85rem 2.4rem .85rem 1rem;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px var(--font-body);box-shadow:inset 0 2px 5px rgba(0,0,0,.5);cursor:pointer;transition:border-color .25s,box-shadow .25s;}
-.dn-select select:focus{outline:none;border-color:var(--dn-day);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 2px 5px rgba(0,0,0,.5),0 0 0 4px rgba(248,199,96,.12);}
-.dn-select select option{background:var(--dn-charcoal);color:var(--dn-bone);}
-.dn-select::after{content:'';position:absolute;right:1rem;top:50%;width:9px;height:9px;border-right:1.6px solid var(--dn-bone-dim);border-bottom:1.6px solid var(--dn-bone-dim);transform:translateY(-70%) rotate(45deg);pointer-events:none;}
-.dn-select select.placeholder{color:rgba(255,255,255,.32);}
+.dn-select-trigger{display:flex;align-items:center;justify-content:space-between;gap:.75rem;width:100%;min-height:48px;padding:.95rem 1.05rem;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px/1.4 var(--font-body);text-align:left;box-shadow:inset 0 2px 6px rgba(0,0,0,.5);cursor:pointer;transition:border-color .25s,box-shadow .25s;}
+.dn-select-trigger .val.placeholder{color:rgba(255,255,255,.32);}
+.dn-select-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:inset 0 2px 6px rgba(0,0,0,.5),0 0 0 3px rgba(248,199,96,.18),0 0 22px -2px rgba(248,199,96,.28);}
+.dn-select[data-open="true"] .dn-select-trigger{border-color:var(--dn-day);box-shadow:inset 0 2px 6px rgba(0,0,0,.5),0 0 0 3px rgba(248,199,96,.18),0 0 22px -2px rgba(248,199,96,.28);}
+/* animated chevron */
+.dn-select-chev{flex:0 0 auto;width:9px;height:9px;border-right:1.7px solid var(--dn-bone-dim);border-bottom:1.7px solid var(--dn-bone-dim);transform:translateY(-2px) rotate(45deg);transition:transform .25s;}
+.dn-select[data-open="true"] .dn-select-chev{transform:translateY(1px) rotate(225deg);border-color:var(--dn-day);}
+/* floating dark listbox */
+.dn-select-list{position:absolute;z-index:20;top:calc(100% + 8px);left:0;right:0;list-style:none;margin:0;padding:.4rem;max-height:264px;overflow:auto;background:#101016;border:1px solid var(--dn-mist);border-radius:16px;box-shadow:0 24px 48px -18px #000,inset 0 1px 0 rgba(255,255,255,.05);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;}
+.dn-select[data-open="true"] .dn-select-list{opacity:1;visibility:visible;transform:translateY(0);}
+.dn-select-option{position:relative;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.7rem .85rem .7rem 1rem;border-radius:11px;color:var(--dn-bone-dim);font-size:.95rem;cursor:pointer;transition:background .15s,color .15s;}
+/* left accent rule that lights gold on hover/active/selected */
+.dn-select-option::before{content:'';position:absolute;left:.35rem;top:50%;transform:translateY(-50%);width:3px;height:0;border-radius:3px;background:var(--dn-day);box-shadow:0 0 8px rgba(248,199,96,.6);transition:height .18s;}
+.dn-select-option:hover,.dn-select-option.active{background:rgba(248,199,96,.08);color:var(--dn-bone);}
+.dn-select-option:hover::before,.dn-select-option.active::before{height:18px;}
+.dn-select-option[aria-selected="true"]{color:var(--dn-bone);background:rgba(248,199,96,.06);}
+.dn-select-option[aria-selected="true"]::before{height:18px;}
+.dn-select-option .check{color:var(--dn-day);font-size:.95rem;opacity:0;transition:opacity .15s;}
+.dn-select-option[aria-selected="true"] .check{opacity:1;}
+/* SSR-safe / no-JS fallback: by default the custom control is hidden and a styled native
+   select (carved to match) is shown, so the field works with no JS. When the inline script
+   runs it adds .js to <html>, which flips this - showing the custom control, hiding the native one. */
+.dn-select-trigger,.dn-select-list{display:none;}
+.dn-select-fallback{display:block;}
+.js .dn-select-trigger{display:flex;}
+.js .dn-select-list{display:block;}
+.js .dn-select-fallback{display:none;}
+.dn-select-fallback select{-webkit-appearance:none;appearance:none;width:100%;min-height:48px;padding:.95rem 2.6rem .95rem 1.05rem;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px var(--font-body);box-shadow:inset 0 2px 6px rgba(0,0,0,.5);cursor:pointer;}
+.dn-select-fallback select option{background:var(--dn-charcoal);color:var(--dn-bone);}
 
-/* submit = the desk's brass call-button */
-.dn-form-submit{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;width:100%;min-height:54px;margin-top:.5rem;padding:0 1.5rem;border:0;border-radius:999px;background:var(--dn-day);color:#0a0a0c;font-family:var(--font-body);font-size:1.02rem;font-weight:650;letter-spacing:.005em;cursor:pointer;transition:transform .2s,box-shadow .25s,background .2s;box-shadow:0 6px 18px -8px rgba(248,199,96,.5);}
+/* ---- CONSENT - a 22px carved checkbox (gold fill + tick) ---- */
+.dn-consent{display:flex;align-items:flex-start;gap:.8rem;margin-top:1.4rem;cursor:pointer;font-size:.85rem;color:var(--dn-bone-dim);line-height:1.5;}
+.dn-consent input{position:absolute;opacity:0;width:0;height:0;}
+.dn-consent .box{flex:0 0 auto;width:22px;height:22px;margin-top:1px;border:1.6px solid rgba(255,255,255,.28);border-radius:7px;background:var(--dn-near-black);box-shadow:inset 0 1px 3px rgba(0,0,0,.5);position:relative;transition:border-color .2s,background .2s,box-shadow .2s;}
+.dn-consent .box::after{content:'';position:absolute;left:7px;top:3px;width:5px;height:9px;border:solid #0a0a0c;border-width:0 2.4px 2.4px 0;transform:rotate(45deg) scale(0);transform-origin:center;transition:transform .18s;}
+.dn-consent:hover .box{border-color:rgba(255,255,255,.45);}
+.dn-consent input:checked + .box{background:var(--dn-day);border-color:var(--dn-day);box-shadow:0 0 16px -2px rgba(248,199,96,.5);}
+.dn-consent input:checked + .box::after{transform:rotate(45deg) scale(1);}
+.dn-consent input:focus-visible + .box{box-shadow:0 0 0 3px rgba(248,199,96,.25);}
+.dn-consent a{color:var(--dn-bone);text-decoration:underline;text-underline-offset:2px;}
+.dn-consent a:hover{color:var(--dn-day);}
+
+/* submit = the desk's brass call-button (confident solid gold) */
+.dn-form-submit{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;width:100%;min-height:54px;margin-top:1.5rem;padding:0 1.5rem;border:0;border-radius:999px;background:var(--dn-day);color:#0a0a0c;font-family:var(--font-body);font-size:1.02rem;font-weight:650;letter-spacing:.005em;cursor:pointer;transition:transform .2s,box-shadow .25s,background .2s;box-shadow:0 6px 18px -8px rgba(248,199,96,.5);}
 .dn-form-submit:hover{transform:translateY(-1px);background:#ffd277;box-shadow:0 0 32px rgba(248,199,96,.34);}
 .dn-form-submit:active{transform:translateY(0);}
 .dn-form-submit .arrow{font-size:1.15rem;transition:transform .2s;}
 .dn-form-submit:hover .arrow{transform:translateX(3px);}
+
+/* reassurance line tied to the reply promise */
+.dn-form-reply{display:flex;align-items:center;justify-content:center;gap:.5rem;margin:.85rem 0 0;font-size:.85rem;color:var(--dn-bone-dim);}
+.dn-form-reply .tick{display:inline-flex;color:var(--dn-day);}
+.dn-form-reply .tick svg{width:15px;height:15px;}
 
 .dn-form-disclaimer{margin:1.15rem 0 0;font-size:.82rem;color:var(--dn-bone-faint);line-height:1.55;}
 .dn-form-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
@@ -197,6 +259,9 @@ h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
 @media (max-width:380px){
   .dn-contact-detail{padding:1rem 1rem;}
   .dn-contact-form{padding:1.75rem 1.25rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;}
 }
 </style>
 </head>
@@ -319,22 +384,27 @@ h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
             <div class="dn-form-row">
               <div class="dn-field">
                 <span id="pref-time-label">Preferred time</span>
+                <em class="dn-help">Tell us when suits, or flag it as an emergency for today.</em>
                 <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
                   <label class="dn-radio night urgent">
                     <input type="radio" name="preference" value="emergency">
-                    <span><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</span>
+                    <span class="mark" aria-hidden="true"></span>
+                    <span class="label-text"><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</span>
                   </label>
                   <label class="dn-radio day">
                     <input type="radio" name="preference" value="day">
-                    <span>Day (7am to 5pm)</span>
+                    <span class="mark" aria-hidden="true"></span>
+                    <span class="label-text">Day (7am to 5pm)</span>
                   </label>
                   <label class="dn-radio night">
                     <input type="radio" name="preference" value="evening">
-                    <span>Evening (5pm to 11pm)</span>
+                    <span class="mark" aria-hidden="true"></span>
+                    <span class="label-text">Evening (5pm to 11pm)</span>
                   </label>
                   <label class="dn-radio night">
                     <input type="radio" name="preference" value="weekend">
-                    <span>Weekend</span>
+                    <span class="mark" aria-hidden="true"></span>
+                    <span class="label-text">Weekend</span>
                   </label>
                 </div>
               </div>
@@ -342,19 +412,48 @@ h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
 
             <div class="dn-form-row">
               <div class="dn-field">
-                <span>Treatment of interest</span>
-                <div class="dn-select">
-                  <select name="treatment" aria-label="Treatment of interest" class="placeholder" onchange="this.classList.toggle('placeholder', this.value==='')">
-                    <option value="" selected>Select an option</option>
-                    <option>Emergency / pain</option>
-                    <option>New patient examination</option>
-                    <option>Hygienist appointment</option>
-                    <option>Cosmetic consultation</option>
-                    <option>Invisalign</option>
-                    <option>Dental implants</option>
-                    <option>Teeth whitening</option>
-                    <option>Other / unsure</option>
-                  </select>
+                <span class="dn-field-label" id="treatment-label">Treatment of interest</span>
+                <!-- CUSTOM DROPDOWN: carved trigger + floating dark listbox. Default closed, SSR-safe. -->
+                <div class="dn-select" id="treatment-select" data-open="false">
+                  <button type="button" class="dn-select-trigger" id="treatment-trigger"
+                          aria-haspopup="listbox" aria-controls="treatment-list" aria-expanded="false"
+                          aria-labelledby="treatment-label treatment-trigger">
+                    <span class="val placeholder" id="treatment-value">Select an option</span>
+                    <span class="dn-select-chev" aria-hidden="true"></span>
+                  </button>
+                  <ul class="dn-select-list" id="treatment-list" role="listbox" aria-labelledby="treatment-label" tabindex="-1">
+                    <li class="dn-select-option" role="option" data-value="Emergency / pain" aria-selected="false">
+                      <span class="label">Emergency / pain</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="New patient examination" aria-selected="false">
+                      <span class="label">New patient examination</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="Hygienist appointment" aria-selected="false">
+                      <span class="label">Hygienist appointment</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="Cosmetic consultation" aria-selected="false">
+                      <span class="label">Cosmetic consultation</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="Invisalign" aria-selected="false">
+                      <span class="label">Invisalign</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="Dental implants" aria-selected="false">
+                      <span class="label">Dental implants</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="Teeth whitening" aria-selected="false">
+                      <span class="label">Teeth whitening</span><span class="check" aria-hidden="true">✓</span></li>
+                    <li class="dn-select-option" role="option" data-value="Other / unsure" aria-selected="false">
+                      <span class="label">Other / unsure</span><span class="check" aria-hidden="true">✓</span></li>
+                  </ul>
+                  <input type="hidden" name="treatment" id="treatment-input" value="">
+                  <!-- no-JS fallback: native control present ONLY without JS (never renders with JS on) -->
+                  <noscript>
+                    <select name="treatment" aria-label="Treatment of interest" style="width:100%;margin-top:.5rem;background:var(--dn-charcoal);color:var(--dn-bone);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:.85rem 1rem;font-size:16px;font-family:var(--font-body);min-height:48px;">
+                      <option value="" selected>Select an option</option>
+                      <option>Emergency / pain</option>
+                      <option>New patient examination</option>
+                      <option>Hygienist appointment</option>
+                      <option>Cosmetic consultation</option>
+                      <option>Invisalign</option>
+                      <option>Dental implants</option>
+                      <option>Teeth whitening</option>
+                      <option>Other / unsure</option>
+                    </select>
+                  </noscript>
                 </div>
               </div>
             </div>
@@ -367,9 +466,16 @@ h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
               </label>
             </div>
 
+            <!-- 22px carved checkbox (gold fill + tick) -->
+            <label class="dn-consent">
+              <input type="checkbox" name="consent" required>
+              <span class="box" aria-hidden="true"></span>
+              <span>I am happy for Day Night Dental to contact me about this enquiry. Read our <a href="/privacy/">privacy policy</a>.</span>
+            </label>
+
             <button type="submit" class="dn-form-submit">Request Booking <span class="arrow" aria-hidden="true">→</span></button>
 
-            <p class="dn-form-disclaimer">We will never share your details. By sending this you are happy for us to contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.</p>
+            <p class="dn-form-reply"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> We reply within 1 working hour.</p>
 
             <p class="dn-form-reassure"><span class="dn-reassure-dot" aria-hidden="true"></span> Cannot wait for a reply? Call <a href="tel:+441415486548">0141 548 6548</a> - the emergency line is always lit.</p>
           </form>
@@ -378,5 +484,93 @@ h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
     </div>
   </div>
 </section>
+
+<script>
+/* The Atrium - custom dropdown wiring. Progressive enhancement only:
+   the markup is a usable native-select fallback until this runs. */
+(function(){
+  document.documentElement.classList.add('js'); /* hides the native fallback, shows the custom control */
+
+  var wrap = document.getElementById('treatment-select');
+  if(!wrap) return;
+  var trigger = document.getElementById('treatment-trigger');
+  var list = document.getElementById('treatment-list');
+  var valueEl = document.getElementById('treatment-value');
+  var hidden = document.getElementById('treatment-input');
+  var options = Array.prototype.slice.call(list.querySelectorAll('.dn-select-option'));
+  var activeIndex = -1;
+  var placeholder = valueEl.textContent;
+
+  function isOpen(){ return wrap.getAttribute('data-open') === 'true'; }
+
+  function setActive(i){
+    activeIndex = i;
+    options.forEach(function(o, idx){ o.classList.toggle('active', idx === i); });
+    if(i >= 0){
+      trigger.setAttribute('aria-activedescendant', options[i].id || '');
+      options[i].scrollIntoView({block:'nearest'});
+    }
+  }
+
+  function open(){
+    wrap.setAttribute('data-open','true');
+    trigger.setAttribute('aria-expanded','true');
+    var sel = options.findIndex(function(o){ return o.getAttribute('aria-selected') === 'true'; });
+    setActive(sel >= 0 ? sel : 0);
+  }
+  function close(focusTrigger){
+    wrap.setAttribute('data-open','false');
+    trigger.setAttribute('aria-expanded','false');
+    options.forEach(function(o){ o.classList.remove('active'); });
+    trigger.removeAttribute('aria-activedescendant');
+    activeIndex = -1;
+    if(focusTrigger) trigger.focus();
+  }
+  function selectOption(i){
+    var opt = options[i];
+    if(!opt) return;
+    options.forEach(function(o){ o.setAttribute('aria-selected','false'); });
+    opt.setAttribute('aria-selected','true');
+    var val = opt.getAttribute('data-value');
+    valueEl.textContent = val;
+    valueEl.classList.remove('placeholder');
+    hidden.value = val;
+    close(true);
+  }
+
+  /* give each option a stable id for aria-activedescendant */
+  options.forEach(function(o, i){ if(!o.id) o.id = 'treatment-opt-' + i; });
+
+  trigger.addEventListener('click', function(){ isOpen() ? close(false) : open(); });
+
+  trigger.addEventListener('keydown', function(e){
+    if(!isOpen()){
+      if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+        e.preventDefault(); open();
+      }
+      return;
+    }
+    switch(e.key){
+      case 'ArrowDown': e.preventDefault(); setActive((activeIndex + 1) % options.length); break;
+      case 'ArrowUp': e.preventDefault(); setActive((activeIndex - 1 + options.length) % options.length); break;
+      case 'Home': e.preventDefault(); setActive(0); break;
+      case 'End': e.preventDefault(); setActive(options.length - 1); break;
+      case 'Enter': case ' ': e.preventDefault(); if(activeIndex >= 0) selectOption(activeIndex); break;
+      case 'Escape': e.preventDefault(); close(true); break;
+      case 'Tab': close(false); break;
+    }
+  });
+
+  options.forEach(function(opt, i){
+    opt.addEventListener('mouseenter', function(){ setActive(i); });
+    opt.addEventListener('click', function(){ selectOption(i); });
+  });
+
+  /* click outside closes */
+  document.addEventListener('mousedown', function(e){
+    if(isOpen() && !wrap.contains(e.target)) close(false);
+  });
+})();
+</script>
 </body>
 </html>

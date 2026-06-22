@@ -20,7 +20,7 @@
   # Analytics domains (GA4 + Meta Pixel) are pre-allowed so enabling the IDs in config.js
   # "just works" instead of being silently blocked by CSP. They load nothing until the owner
   # sets the IDs and the visitor grants consent.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://photon.komoot.io https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 
   # Don't disclose the PHP version (X-Powered-By) on any response.
   Header always unset X-Powered-By

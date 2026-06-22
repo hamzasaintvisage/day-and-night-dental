@@ -30,6 +30,9 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
    One continuous gold spine threads the info-timeline (left)
    and the form fill-rail (right). Motion is purpose-driven:
    a focus-following sweep + a completion-driven rising fill.
+   This evolution keeps the kinetic rail but upgrades every
+   control to a premium filled well, and swaps the native
+   select for a fully custom dark listbox.
    ============================================================ */
 
 /* ---- shared micro-type --------------------------------- */
@@ -54,7 +57,6 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
    LEFT - the live-line timeline (info rows hang off a gold rail)
    ============================================================ */
 .dn-rail{position:relative;}
-.dn-rail-head{margin-bottom:2.2rem;}
 .dn-rail-head h2{font-size:clamp(2rem,4.6vw,3.1rem);margin-top:1.1rem;}
 .dn-rail-lead{color:var(--dn-bone-dim);max-width:30rem;margin:1.1rem 0 0;font-size:1.02rem;}
 
@@ -89,16 +91,29 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   animation:sweep-scan 2.2s ease-in-out infinite;}
 @keyframes sweep-scan{0%,100%{opacity:.15;box-shadow:none;}50%{opacity:.95;box-shadow:0 0 16px var(--dn-night);}}
 
-.dn-rail-node .live-tag{display:inline-flex;align-items:center;gap:.45rem;font-size:.84rem;color:var(--dn-night-soft);margin-top:.28rem;}
+/* emergency node gets a real well treatment so the 24/7 line reads as the hero row */
+.dn-emergency-well{display:flex;align-items:center;gap:1rem;margin-top:.55rem;padding:.95rem 1.1rem;
+  background:linear-gradient(180deg,rgba(69,144,236,.08),rgba(69,144,236,.02));
+  border:1px solid rgba(69,144,236,.32);border-radius:var(--dn-r-card);
+  box-shadow:0 0 28px rgba(69,144,236,.12) inset;text-decoration:none;transition:border-color .25s,box-shadow .25s;}
+.dn-emergency-well:hover,.dn-emergency-well:focus-visible{outline:none;border-color:rgba(69,144,236,.6);box-shadow:0 0 32px rgba(69,144,236,.2) inset,0 10px 34px rgba(69,144,236,.12);}
+.dn-emergency-well .ew-ico{width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;
+  background:rgba(69,144,236,.14);color:var(--dn-night-soft);}
+.dn-emergency-well .ew-ico svg{width:19px;height:19px;}
+.dn-emergency-well .ew-text{display:flex;flex-direction:column;line-height:1.2;}
+.dn-emergency-well .ew-num{font-family:var(--font-display);font-weight:600;font-size:1.42rem;color:var(--dn-bone);letter-spacing:-.01em;}
+.dn-emergency-well .ew-num:hover{color:var(--dn-night-soft);}
+
+.dn-rail-node .live-tag{display:inline-flex;align-items:center;gap:.45rem;font-size:.84rem;color:var(--dn-night-soft);margin-top:.55rem;}
 .dn-rail-node .live-dot{width:7px;height:7px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);animation:live-blink 2.2s ease-in-out infinite;}
 @keyframes live-blink{0%,100%{opacity:.4;}50%{opacity:1;}}
 
 /* hours + map facade sit below the same rail (also nodes) */
 .dn-hours{margin-top:.2rem;}
 .dn-hours table{width:100%;border-collapse:collapse;margin-top:.7rem;font-size:.94rem;max-width:24rem;}
-.dn-hours td{padding:.5rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-hours td{padding:.55rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
 .dn-hours tr:last-child td{border-bottom:none;}
-.dn-hours td:last-child{text-align:right;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
+.dn-hours td:last-child{text-align:right;color:var(--dn-bone);font-variant-numeric:tabular-nums;letter-spacing:.01em;}
 .dn-hours tr.emergency-row td:last-child{color:var(--dn-night-soft);}
 .dn-hours tr.emergency-row .erow{display:inline-flex;align-items:center;gap:.45rem;justify-content:flex-end;}
 
@@ -116,7 +131,8 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
    RIGHT - the form card whose LEFT EDGE is a rising fill-rail
    ============================================================ */
 .dn-form-card{background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
-  padding:clamp(1.5rem,3vw,2.4rem);position:relative;}
+  padding:clamp(1.5rem,3vw,2.4rem);position:relative;
+  box-shadow:0 24px 70px rgba(0,0,0,.35);}
 
 .dn-sweep-form{--fill:0;position:relative;padding-left:2.25rem;}
 /* recessed rail (track) */
@@ -128,58 +144,108 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 
 .dn-form-title{font-size:1.55rem;margin:0 0 .35rem;}
 .dn-form-sub{color:var(--dn-bone-dim);font-size:.92rem;margin:0 0 1.5rem;}
-.dn-progress-read{display:flex;align-items:center;gap:.55rem;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 1.6rem;}
+.dn-progress-read{display:flex;align-items:center;gap:.55rem;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 1.7rem;}
 .dn-progress-read b{font-family:var(--font-display);color:var(--dn-day);font-weight:600;letter-spacing:0;font-size:.9rem;}
 
 /* each input/label flush to the rail, lit when active */
-.dn-sweep-field{position:relative;margin-bottom:1.15rem;}
+.dn-sweep-field{position:relative;margin-bottom:1.25rem;}
 .dn-sweep-field > label{display:block;}
-.dn-sweep-field .f-label,.dn-form-label{display:block;font-size:.82rem;letter-spacing:.04em;color:var(--dn-bone-dim);
-  margin-bottom:.45rem;transition:color .3s;font-weight:500;}
-.dn-sweep-field input,.dn-sweep-field textarea,.dn-sweep-select{width:100%;background:var(--dn-near-black);
-  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:.85rem 1rem;font-size:1rem;
-  color:var(--dn-bone);font-family:var(--font-body);transition:border-color .3s,box-shadow .3s;min-height:48px;}
-.dn-sweep-field textarea{resize:vertical;min-height:84px;line-height:1.5;}
+/* refined label row: title + optional helper, baseline-aligned */
+.dn-sweep-field .f-label,.dn-form-label{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;
+  font-size:.84rem;letter-spacing:.02em;color:var(--dn-bone-dim);margin-bottom:.5rem;transition:color .3s;font-weight:500;}
+.dn-sweep-field .f-help{color:var(--dn-bone-faint);font-size:.74rem;font-weight:400;letter-spacing:.01em;}
+
+/* INPUTS - filled charcoal wells, 16px text, even gold glow ring on focus */
+.dn-sweep-field input,.dn-sweep-field textarea{width:100%;background:var(--dn-near-black);
+  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:.9rem 1.05rem;font-size:16px;
+  color:var(--dn-bone);font-family:var(--font-body);transition:border-color .3s,box-shadow .3s,background .3s;min-height:50px;
+  box-shadow:0 1px 0 rgba(0,0,0,.25) inset;}
+.dn-sweep-field textarea{resize:vertical;min-height:96px;line-height:1.55;padding-top:.8rem;}
 .dn-sweep-field input::placeholder,.dn-sweep-field textarea::placeholder{color:var(--dn-bone-faint);}
-.dn-sweep-field input:focus,.dn-sweep-field textarea:focus,.dn-sweep-select:focus-within{outline:none;border-color:var(--dn-day);
+.dn-sweep-field input:focus,.dn-sweep-field textarea:focus{outline:none;border-color:var(--dn-day);background:#0d0d10;
   box-shadow:0 0 0 1.5px var(--dn-day),0 0 28px rgba(248,199,96,.18);}
-/* gold leading-edge underline that sweeps left→right on focus */
-.dn-sweep-field::after{content:'';position:absolute;left:1px;right:1px;bottom:1px;height:2px;background:var(--dn-day);
+.dn-sweep-field input:hover:not(:focus),.dn-sweep-field textarea:hover:not(:focus){border-color:rgba(255,255,255,.2);}
+/* gold leading-edge underline that sweeps left to right on focus (kept from the kinetic concept) */
+.dn-sweep-field.has-sweep::after{content:'';position:absolute;left:1px;right:1px;bottom:1px;height:2px;background:var(--dn-day);
   border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1);pointer-events:none;}
-.dn-sweep-field:focus-within::after{transform:scaleX(1);}
-.dn-sweep-field:focus-within .f-label,.dn-sweep-field:focus-within .dn-form-label{color:var(--dn-day);}
+.dn-sweep-field.has-sweep:focus-within::after{transform:scaleX(1);}
+.dn-sweep-field:focus-within .f-label,.dn-sweep-field:focus-within .dn-form-label,
+.dn-sweep-field.is-open .dn-form-label{color:var(--dn-day);}
 /* node beside the field lights when active / filled */
-.dn-sweep-field::before{content:'';position:absolute;left:-2.25rem;top:.1rem;width:8px;height:8px;border-radius:50%;
+.dn-sweep-field::before{content:'';position:absolute;left:-2.25rem;top:2.05rem;width:8px;height:8px;border-radius:50%;
   background:var(--dn-mist);transform:translateX(-3px);transition:background .3s,box-shadow .3s;}
-.dn-sweep-field:focus-within::before,.dn-sweep-field.is-filled::before{background:var(--dn-day);box-shadow:0 0 10px var(--dn-day);}
+.dn-sweep-field:focus-within::before,.dn-sweep-field.is-open::before,.dn-sweep-field.is-filled::before{background:var(--dn-day);box-shadow:0 0 10px var(--dn-day);}
 
-.dn-form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem;}
-.dn-form-grid-2 .dn-sweep-field{margin-bottom:1.15rem;}
+.dn-form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.dn-form-grid-2 .dn-sweep-field{margin-bottom:1.25rem;}
 
-/* preferred-time radio rail */
+/* preferred-time radio rail - premium pill-cards */
 .dn-radios{display:flex;flex-wrap:wrap;gap:.6rem;}
-.dn-radio{position:relative;display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.55rem 1rem;
-  border:1px solid var(--dn-mist);border-radius:999px;cursor:pointer;font-size:.9rem;color:var(--dn-bone-dim);
-  background:var(--dn-near-black);transition:border-color .25s,color .25s,box-shadow .25s;}
+.dn-radio{position:relative;display:inline-flex;align-items:center;gap:.55rem;min-height:46px;padding:.6rem 1.05rem;
+  border:1px solid var(--dn-mist);border-radius:999px;cursor:pointer;font-size:.92rem;color:var(--dn-bone-dim);
+  background:var(--dn-near-black);transition:border-color .25s,color .25s,box-shadow .25s,background .25s;font-weight:500;}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;}
-.dn-radio:hover{color:var(--dn-bone);}
-.dn-radio.day.checked,.dn-radio.day:has(input:checked){border-color:var(--dn-day);color:var(--dn-day);box-shadow:0 0 0 1px var(--dn-day),0 0 22px rgba(248,199,96,.16);}
-.dn-radio.night.checked,.dn-radio.night:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);box-shadow:0 0 0 1px var(--dn-night),0 0 22px rgba(69,144,236,.18);}
+.dn-radio:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.22);}
+.dn-radio.day.checked,.dn-radio.day:has(input:checked){border-color:var(--dn-day);color:var(--dn-day);background:rgba(248,199,96,.06);box-shadow:0 0 0 1px var(--dn-day),0 0 22px rgba(248,199,96,.16);}
+.dn-radio.night.checked,.dn-radio.night:has(input:checked){border-color:var(--dn-night);color:var(--dn-night-soft);background:rgba(69,144,236,.06);box-shadow:0 0 0 1px var(--dn-night),0 0 22px rgba(69,144,236,.18);}
 .dn-radio:focus-within{outline:2px solid var(--dn-bone-faint);outline-offset:2px;}
 .dn-radio .urgent-dot{width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);animation:live-blink 1.8s ease-in-out infinite;}
 
-/* native select styled as a field */
-.dn-sweep-select{position:relative;display:flex;align-items:center;}
-.dn-sweep-select select{appearance:none;-webkit-appearance:none;background:transparent;border:none;outline:none;
-  width:100%;color:var(--dn-bone);font-family:var(--font-body);font-size:1rem;cursor:pointer;padding-right:1.5rem;}
-.dn-sweep-select select:invalid{color:var(--dn-bone-faint);}
-.dn-sweep-select select option{background:var(--dn-charcoal);color:var(--dn-bone);}
-.dn-sweep-select .chev{position:absolute;right:1rem;pointer-events:none;color:var(--dn-bone-faint);width:14px;height:14px;}
+/* ---- PREMIUM CUSTOM DROPDOWN (no native select) -------- */
+/* trigger reads like a sibling of the input wells; a floating dark listbox tints gold on hover/selected */
+.sweep-select{position:relative;}
+.sweep-select-trigger{display:flex;align-items:center;gap:.75rem;width:100%;text-align:left;cursor:pointer;
+  background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  padding:.9rem 1.05rem;min-height:50px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);
+  transition:border-color .3s,box-shadow .3s,background .3s;box-shadow:0 1px 0 rgba(0,0,0,.25) inset;}
+.sweep-select-trigger:hover{border-color:rgba(255,255,255,.2);}
+.sweep-select-trigger:focus-visible{outline:none;border-color:var(--dn-day);background:#0d0d10;
+  box-shadow:0 0 0 1.5px var(--dn-day),0 0 28px rgba(248,199,96,.18);}
+.sweep-select[data-open="true"] .sweep-select-trigger{border-color:var(--dn-day);background:#0d0d10;
+  box-shadow:0 0 0 1.5px var(--dn-day),0 0 28px rgba(248,199,96,.18);}
+.sweep-select-trigger .sst-val{flex:1 1 auto;}
+.sweep-select-trigger.is-placeholder .sst-val{color:var(--dn-bone-faint);}
+/* animated chevron */
+.sweep-select-trigger .sst-chev{flex:0 0 auto;width:16px;height:16px;color:var(--dn-bone-faint);transition:transform .3s cubic-bezier(.16,1,.3,1),color .3s;}
+.sweep-select-trigger .sst-chev svg{width:16px;height:16px;display:block;}
+.sweep-select[data-open="true"] .sst-chev{transform:rotate(180deg);color:var(--dn-day);}
+
+/* floating listbox */
+.sweep-select-list{position:absolute;left:0;right:0;top:calc(100% + .5rem);z-index:30;margin:0;padding:.4rem;
+  list-style:none;background:#101015;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4);max-height:288px;overflow:auto;
+  transform-origin:top;animation:sweep-pop .18s cubic-bezier(.16,1,.3,1);}
+@keyframes sweep-pop{from{opacity:0;transform:translateY(-6px) scale(.98);}to{opacity:1;transform:none;}}
+.sweep-select-list[hidden]{display:none;}
+.sweep-select-option{position:relative;display:flex;align-items:center;gap:.6rem;padding:.7rem .75rem .7rem 1rem;
+  border-radius:12px;cursor:pointer;color:var(--dn-bone-dim);font-size:.96rem;transition:background .18s,color .18s;}
+/* left accent rail on hover/active/selected */
+.sweep-select-option::before{content:'';position:absolute;left:.35rem;top:50%;transform:translateY(-50%) scaleY(0);
+  width:3px;height:1.15rem;border-radius:3px;background:var(--dn-day);transition:transform .18s cubic-bezier(.16,1,.3,1);}
+.sweep-select-option:hover,.sweep-select-option.is-active{background:rgba(248,199,96,.1);color:var(--dn-bone);}
+.sweep-select-option:hover::before,.sweep-select-option.is-active::before,.sweep-select-option[aria-selected="true"]::before{transform:translateY(-50%) scaleY(1);}
+.sweep-select-option[aria-selected="true"]{color:var(--dn-day);}
+.sweep-select-option .sso-label{flex:1 1 auto;}
+.sweep-select-option .sso-check{flex:0 0 auto;width:16px;height:16px;color:var(--dn-day);opacity:0;transition:opacity .18s;}
+.sweep-select-option .sso-check svg{width:16px;height:16px;display:block;}
+.sweep-select-option[aria-selected="true"] .sso-check{opacity:1;}
+
+/* CHECKBOX - 22px, gold fill + tick (consent) */
+.dn-check{display:flex;align-items:flex-start;gap:.7rem;cursor:pointer;font-size:.86rem;color:var(--dn-bone-dim);line-height:1.45;margin-top:.2rem;}
+.dn-check input{position:absolute;opacity:0;width:0;height:0;}
+.dn-check .box{flex:0 0 auto;width:22px;height:22px;margin-top:.05rem;border:1px solid var(--dn-mist);border-radius:7px;
+  background:var(--dn-near-black);display:grid;place-items:center;transition:border-color .2s,background .2s,box-shadow .2s;}
+.dn-check .box svg{width:13px;height:13px;color:var(--dn-near-black);opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s;}
+.dn-check:hover .box{border-color:rgba(255,255,255,.24);}
+.dn-check input:focus-visible + .box{outline:2px solid var(--dn-bone-faint);outline-offset:2px;}
+.dn-check input:checked + .box{background:var(--dn-day);border-color:var(--dn-day);box-shadow:0 0 18px rgba(248,199,96,.25);}
+.dn-check input:checked + .box svg{opacity:1;transform:none;}
+.dn-check a{color:var(--dn-bone);text-decoration:underline;text-underline-offset:2px;}
 
 /* submit anchors the rail's top */
 .dn-form-submit{position:relative;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
-  margin-top:.6rem;min-height:54px;padding:1rem 1.4rem;border:none;border-radius:999px;cursor:pointer;
-  background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-weight:700;font-size:1.02rem;
+  margin-top:1.4rem;min-height:56px;padding:1rem 1.4rem;border:none;border-radius:999px;cursor:pointer;
+  background:var(--dn-day);color:var(--dn-near-black);font-family:var(--font-body);font-weight:700;font-size:1.04rem;
   letter-spacing:.01em;transition:transform .2s,box-shadow .25s,background .25s;box-shadow:0 0 0 1px rgba(248,199,96,.4),0 14px 40px rgba(248,199,96,.16);}
 .dn-form-submit:hover{transform:translateY(-1px);box-shadow:0 0 0 1px var(--dn-day),0 18px 50px rgba(248,199,96,.26);}
 .dn-form-submit .arrow{transition:transform .25s;}
@@ -190,9 +256,16 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-form-submit .btn-pulse{position:absolute;inset:0;border-radius:999px;box-shadow:0 0 0 0 rgba(69,144,236,.6);animation:btn-pulse 1.8s ease-out infinite;pointer-events:none;}
 @keyframes btn-pulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}70%{box-shadow:0 0 0 12px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
 
+/* calm reassurance line under the button */
+.dn-reassure{display:flex;align-items:center;justify-content:center;gap:.5rem;margin:.9rem 0 0;
+  color:var(--dn-bone-dim);font-size:.86rem;}
+.dn-reassure .r-dot{width:6px;height:6px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 8px var(--dn-day);flex:0 0 auto;}
+
 .dn-form-disclaimer{color:var(--dn-bone-faint);font-size:.78rem;line-height:1.5;margin:1.1rem 0 0;}
 .dn-form-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
-.dn-note{color:var(--dn-bone-faint);font-size:.84rem;margin:.3rem 0 1.4rem;display:flex;align-items:center;gap:.5rem;}
+
+/* hairline divider before the consent block */
+.dn-form-hr{height:1px;background:var(--dn-mist);border:0;margin:1.5rem 0 1.2rem;}
 
 /* ---- responsive ---------------------------------------- */
 @media (max-width:900px){
@@ -215,11 +288,13 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   .dn-map-facade{flex-wrap:wrap;}
   .dn-map-facade .mf-note{margin-left:0;text-align:left;max-width:none;width:100%;}
   .dn-rail-node .value{font-size:1.32rem;}
+  .dn-radio{flex:1 1 100%;justify-content:flex-start;}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;}
-  .dn-sweep-field::after{transition:none;}
+  .dn-sweep-field.has-sweep::after{transition:none;}
   .dn-sweep-form::after{transition:none;}
+  .sweep-select-list{animation:none;}
 }
 </style>
 </head>
@@ -245,7 +320,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
         </div>
 
         <div class="dn-timeline">
-          <!-- Night & Emergency - perpetual blue scan-pulse -->
+          <!-- Night & Emergency - perpetual blue scan-pulse, given the hero well -->
           <div class="dn-rail-node emergency night">
             <span class="dn-tick"></span>
             <div class="row-top">
@@ -254,8 +329,15 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
               </span>
               <span class="dn-eyebrow night">Night &amp; Emergency</span>
             </div>
-            <a href="tel:+441415486548" class="value">0141 548 6548</a>
-            <span class="live-tag"><span class="live-dot"></span> 24-hour emergency line</span>
+            <a href="tel:+441415486548" class="dn-emergency-well">
+              <span class="ew-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+              </span>
+              <span class="ew-text">
+                <span class="ew-num">0141 548 6548</span>
+                <span class="live-tag"><span class="live-dot"></span> 24-hour emergency line, always answered</span>
+              </span>
+            </a>
           </div>
 
           <!-- Day Line -->
@@ -351,7 +433,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
           <p class="dn-form-sub">No obligation. The team will confirm a time that suits you.</p>
           <p class="dn-progress-read"><span>Booking progress</span> <b id="progressPct">0%</b></p>
 
-          <div class="dn-sweep-field" data-field>
+          <div class="dn-sweep-field has-sweep" data-field>
             <label>
               <span class="f-label">Your name</span>
               <input type="text" name="name" required autocomplete="name" placeholder="Full name">
@@ -359,13 +441,13 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
           </div>
 
           <div class="dn-form-grid-2">
-            <div class="dn-sweep-field" data-field>
+            <div class="dn-sweep-field has-sweep" data-field>
               <label>
                 <span class="f-label">Phone</span>
                 <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
               </label>
             </div>
-            <div class="dn-sweep-field" data-field>
+            <div class="dn-sweep-field has-sweep" data-field>
               <label>
                 <span class="f-label">Email</span>
                 <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
@@ -374,7 +456,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
           </div>
 
           <div class="dn-sweep-field" data-field data-group="preference">
-            <span class="dn-form-label" id="prefLabel">Preferred time</span>
+            <span class="dn-form-label" id="prefLabel">Preferred time <span class="f-help">Pick the slot that suits you</span></span>
             <div class="dn-radios" role="radiogroup" aria-labelledby="prefLabel">
               <label class="dn-radio night urgent"><input type="radio" name="preference" value="emergency"><span class="urgent-dot"></span> Emergency, today</label>
               <label class="dn-radio day"><input type="radio" name="preference" value="day"> Day (7am to 5pm)</label>
@@ -383,10 +465,58 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
             </div>
           </div>
 
-          <div class="dn-sweep-field" data-field>
-            <span class="dn-form-label" id="trtLabel">Treatment of interest</span>
-            <div class="dn-sweep-select">
-              <select name="treatment" required aria-labelledby="trtLabel">
+          <!-- PREMIUM CUSTOM DROPDOWN (replaces the native select).
+               Default CLOSED. SSR-safe fallback: a real <select> sits in a
+               <noscript> so the field is usable + submittable without JS. -->
+          <div class="dn-sweep-field" data-field data-group="treatment">
+            <span class="dn-form-label" id="trtLabel">Treatment of interest <span class="f-help">Optional, helps us prepare</span></span>
+            <div class="sweep-select" id="treatmentSelect" data-open="false">
+              <input type="hidden" name="treatment" id="treatmentValue" value="">
+              <button type="button" class="sweep-select-trigger is-placeholder" id="treatmentTrigger"
+                role="combobox" aria-haspopup="listbox" aria-expanded="false"
+                aria-controls="treatmentList" aria-labelledby="trtLabel treatmentTrigger">
+                <span class="sst-val" id="treatmentDisplay">Select an option</span>
+                <span class="sst-chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <ul class="sweep-select-list" id="treatmentList" role="listbox" aria-labelledby="trtLabel" tabindex="-1" hidden>
+                <li class="sweep-select-option" role="option" data-value="Emergency / pain" id="trt-opt-0">
+                  <span class="sso-label">Emergency / pain</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="New patient examination" id="trt-opt-1">
+                  <span class="sso-label">New patient examination</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="Hygienist appointment" id="trt-opt-2">
+                  <span class="sso-label">Hygienist appointment</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="Cosmetic consultation" id="trt-opt-3">
+                  <span class="sso-label">Cosmetic consultation</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="Invisalign" id="trt-opt-4">
+                  <span class="sso-label">Invisalign</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="Dental implants" id="trt-opt-5">
+                  <span class="sso-label">Dental implants</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="Teeth whitening" id="trt-opt-6">
+                  <span class="sso-label">Teeth whitening</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+                <li class="sweep-select-option" role="option" data-value="Other / unsure" id="trt-opt-7">
+                  <span class="sso-label">Other / unsure</span>
+                  <span class="sso-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                </li>
+              </ul>
+            </div>
+            <noscript>
+              <select name="treatment" style="width:100%;margin-top:.5rem;background:var(--dn-near-black);color:var(--dn-bone);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:.9rem 1.05rem;font-size:16px;font-family:var(--font-body);min-height:50px;">
                 <option value="" disabled selected>Select an option</option>
                 <option value="Emergency / pain">Emergency / pain</option>
                 <option value="New patient examination">New patient examination</option>
@@ -397,18 +527,23 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
                 <option value="Teeth whitening">Teeth whitening</option>
                 <option value="Other / unsure">Other / unsure</option>
               </select>
-              <span class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              </span>
-            </div>
+            </noscript>
           </div>
 
-          <div class="dn-sweep-field">
+          <div class="dn-sweep-field has-sweep">
             <label>
-              <span class="f-label">Anything we should know?</span>
-              <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+              <span class="f-label">Anything we should know? <span class="f-help">Optional</span></span>
+              <textarea name="notes" rows="3" placeholder="Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
             </label>
           </div>
+
+          <hr class="dn-form-hr">
+
+          <label class="dn-check">
+            <input type="checkbox" name="consent" required>
+            <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <span>I'm happy for Day Night Dental to contact me about this enquiry. We'll never share your details. Read our <a href="/privacy/">privacy policy</a>.</span>
+          </label>
 
           <button type="submit" class="dn-form-submit" id="submitBtn">
             <span class="btn-pulse" id="btnPulse" hidden></span>
@@ -416,10 +551,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
             <span class="arrow" aria-hidden="true">→</span>
           </button>
 
-          <p class="dn-form-disclaimer">
-            We'll never share your details. By sending this you're happy for us to contact you about your enquiry.
-            Read our <a href="/privacy/">privacy policy</a>.
-          </p>
+          <p class="dn-reassure"><span class="r-dot" aria-hidden="true"></span> We reply within 1 working hour, 7 days a week.</p>
         </form>
       </div>
 
@@ -428,23 +560,109 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 </section>
 
 <script>
-/* Sweep Line - purpose-driven kinetics.
-   Fill-rail height = (completed required fields / 5) * 100, driven by form state.
-   Default state is fully visible without JS (fill:0, rail track shown). */
+/* Sweep Line - purpose-driven kinetics + premium custom dropdown.
+   Fill-rail height = (completed required fields / 6) * 100, driven by form state.
+   Default state is fully visible without JS (fill:0, rail track shown; noscript select). */
 (function () {
   var form = document.getElementById('sweepForm');
   if (!form) return;
-  var keys = ['name', 'phone', 'email', 'preference', 'treatment'];
+  var keys = ['name', 'phone', 'email', 'preference', 'treatment', 'consent'];
   var pctEl = document.getElementById('progressPct');
   var submitBtn = document.getElementById('submitBtn');
   var submitLabel = document.getElementById('submitLabel');
   var btnPulse = document.getElementById('btnPulse');
 
+  /* ---- custom dropdown ---- */
+  var dd = document.getElementById('treatmentSelect');
+  var trigger = document.getElementById('treatmentTrigger');
+  var list = document.getElementById('treatmentList');
+  var display = document.getElementById('treatmentDisplay');
+  var hidden = document.getElementById('treatmentValue');
+  var ddField = dd ? dd.closest('[data-field]') : null;
+  var options = list ? Array.prototype.slice.call(list.querySelectorAll('[role="option"]')) : [];
+  var activeIndex = -1;
+  var placeholder = 'Select an option';
+
+  function ddOpen() {
+    if (!list) return;
+    list.hidden = false;
+    dd.setAttribute('data-open', 'true');
+    trigger.setAttribute('aria-expanded', 'true');
+    if (ddField) ddField.classList.add('is-open');
+    var selIdx = options.findIndex(function (o) { return o.getAttribute('aria-selected') === 'true'; });
+    setActive(selIdx >= 0 ? selIdx : 0);
+  }
+  function ddClose(refocus) {
+    if (!list) return;
+    list.hidden = true;
+    dd.setAttribute('data-open', 'false');
+    trigger.setAttribute('aria-expanded', 'false');
+    if (ddField) ddField.classList.remove('is-open');
+    setActive(-1);
+    if (refocus) trigger.focus();
+  }
+  function isOpen() { return dd && dd.getAttribute('data-open') === 'true'; }
+  function setActive(i) {
+    options.forEach(function (o, idx) { o.classList.toggle('is-active', idx === i); });
+    activeIndex = i;
+    if (i >= 0 && options[i]) {
+      trigger.setAttribute('aria-activedescendant', options[i].id);
+      options[i].scrollIntoView({ block: 'nearest' });
+    } else {
+      trigger.removeAttribute('aria-activedescendant');
+    }
+  }
+  function selectOption(opt) {
+    var v = opt.getAttribute('data-value');
+    options.forEach(function (o) { o.setAttribute('aria-selected', o === opt ? 'true' : 'false'); });
+    hidden.value = v;
+    display.textContent = v;
+    trigger.classList.remove('is-placeholder');
+    ddClose(true);
+    recompute();
+  }
+
+  if (trigger) {
+    trigger.addEventListener('click', function () { isOpen() ? ddClose(false) : ddOpen(); });
+    trigger.addEventListener('keydown', function (e) {
+      if (!isOpen()) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault(); ddOpen();
+        }
+        return;
+      }
+      switch (e.key) {
+        case 'ArrowDown': e.preventDefault(); setActive((activeIndex + 1) % options.length); break;
+        case 'ArrowUp': e.preventDefault(); setActive((activeIndex - 1 + options.length) % options.length); break;
+        case 'Home': e.preventDefault(); setActive(0); break;
+        case 'End': e.preventDefault(); setActive(options.length - 1); break;
+        case 'Enter':
+        case ' ': e.preventDefault(); if (activeIndex >= 0) selectOption(options[activeIndex]); break;
+        case 'Escape': e.preventDefault(); ddClose(true); break;
+        case 'Tab': ddClose(false); break;
+        default: break;
+      }
+    });
+    options.forEach(function (opt, i) {
+      opt.addEventListener('mouseenter', function () { setActive(i); });
+      opt.addEventListener('click', function () { selectOption(opt); });
+    });
+    document.addEventListener('mousedown', function (e) {
+      if (isOpen() && dd && !dd.contains(e.target)) ddClose(false);
+    });
+  }
+
+  /* ---- progress + kinetic state ---- */
   function valueFor(k) {
     if (k === 'preference') {
       var r = form.querySelector('input[name="preference"]:checked');
       return r ? r.value : '';
     }
+    if (k === 'consent') {
+      var c = form.querySelector('input[name="consent"]');
+      return c && c.checked ? 'yes' : '';
+    }
+    if (k === 'treatment') return hidden ? (hidden.value || '').trim() : '';
     var el = form.elements[k];
     return el ? (el.value || '').trim() : '';
   }
@@ -456,11 +674,16 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
     form.style.setProperty('--fill', fill);
     if (pctEl) pctEl.textContent = fill + '%';
 
-    // light the node next to each completed text field
+    // light the node next to each completed field
     form.querySelectorAll('[data-field]').forEach(function (field) {
-      var input = field.querySelector('input[type="text"],input[type="tel"],input[type="email"],select');
       var group = field.getAttribute('data-group');
-      var done = group ? !!valueFor(group) : (input && (input.value || '').trim());
+      var done;
+      if (group) {
+        done = !!valueFor(group);
+      } else {
+        var input = field.querySelector('input[type="text"],input[type="tel"],input[type="email"]');
+        done = input && (input.value || '').trim();
+      }
       field.classList.toggle('is-filled', !!done);
     });
 
