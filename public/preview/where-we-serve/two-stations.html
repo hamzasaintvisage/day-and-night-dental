@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ Two Stations ============ */
+.ts-wrap{max-width:var(--container);margin:0 auto;padding:clamp(2.5rem,6vw,5.5rem) clamp(1.1rem,4vw,2.2rem) clamp(3rem,7vw,6rem);}
+
+/* masthead row - editorial kicker */
+.ts-mast{display:flex;flex-wrap:wrap;align-items:baseline;gap:.9rem 1.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--dn-mist);}
+.ts-folio{font-family:var(--font-display);font-weight:600;font-size:.78rem;letter-spacing:.05em;color:var(--dn-bone-faint);margin-left:auto;}
+.ts-folio b{color:var(--dn-day);font-weight:700;}
+
+/* headline */
+.ts-head{font-family:var(--font-display);font-weight:300;letter-spacing:-.018em;line-height:1.02;font-size:clamp(2.35rem,7.2vw,4.6rem);margin:clamp(1.6rem,4vw,2.4rem) 0 0;max-width:14ch;}
+.ts-sub{margin:1.1rem 0 0;max-width:46ch;color:var(--dn-bone-dim);font-size:clamp(1rem,2.4vw,1.12rem);}
+
+/* the editorial split: pull-quote spread on the left, station ledger on the right */
+.ts-split{display:grid;grid-template-columns:1fr;gap:clamp(1.6rem,4vw,2.6rem);margin-top:clamp(2.4rem,5vw,4rem);}
+@media(min-width:880px){.ts-split{grid-template-columns:1.18fr .82fr;align-items:start;}}
+
+/* LEFT - the confident pull-quote */
+.ts-quote-block{position:relative;}
+.ts-quote-tag{font-family:var(--font-body);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);display:flex;align-items:center;gap:.6rem;margin-bottom:1.3rem;}
+.ts-quote-tag::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
+.ts-quote{font-family:var(--font-display);font-weight:300;font-style:italic;line-height:1.16;letter-spacing:-.01em;font-size:clamp(1.7rem,5vw,2.85rem);margin:0;text-wrap:balance;}
+.ts-quote .mark{font-style:normal;color:var(--dn-day);}
+.ts-quote-attr{margin-top:1.6rem;display:flex;align-items:center;gap:.85rem;color:var(--dn-bone-dim);font-size:.9rem;}
+.ts-quote-attr .rule{width:34px;height:2px;background:var(--dn-day);flex:none;}
+.ts-quote-attr b{font-family:var(--font-display);font-weight:600;color:var(--dn-bone);}
+
+/* the two big stations under the quote - the structural centrepiece */
+.ts-stations{margin-top:clamp(2.2rem,5vw,3.2rem);display:grid;grid-template-columns:1fr;gap:1px;background:var(--dn-mist);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);overflow:hidden;}
+@media(min-width:560px){.ts-stations{grid-template-columns:1fr 1fr;}}
+.ts-stn{background:var(--dn-near-black);padding:clamp(1.3rem,3.5vw,1.9rem);position:relative;display:flex;flex-direction:column;min-height:178px;}
+.ts-stn .idx{font-family:var(--font-display);font-weight:700;font-size:.8rem;letter-spacing:.06em;}
+.ts-stn.is-day .idx{color:var(--dn-day);}
+.ts-stn.is-night .idx{color:var(--dn-night);}
+.ts-stn .nm{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,3.6vw,1.7rem);line-height:1.04;margin:.7rem 0 .15rem;}
+.ts-stn .sub{color:var(--dn-bone-faint);font-size:.82rem;}
+.ts-stn .walk{margin-top:auto;padding-top:1.2rem;display:flex;align-items:flex-end;gap:.5rem;line-height:1;}
+.ts-stn .min{font-family:var(--font-display);font-weight:300;font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.03em;}
+.ts-stn.is-day .min{color:var(--dn-day);}
+.ts-stn.is-night .min{color:var(--dn-night-soft);}
+.ts-stn .unit{padding-bottom:.55rem;color:var(--dn-bone-dim);font-size:.82rem;letter-spacing:.04em;}
+/* a thin track motif top-edge */
+.ts-stn::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;}
+.ts-stn.is-day::before{background:var(--dn-day);}
+.ts-stn.is-night::before{background:var(--dn-night);}
+
+/* RIGHT - tidy aside: address + parking, like a magazine sidebar */
+.ts-aside{border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:clamp(1.4rem,3.5vw,1.9rem);background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,0));position:relative;}
+@media(min-width:880px){.ts-aside{position:sticky;top:84px;}}
+.ts-aside-h{font-family:var(--font-body);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 1.1rem;}
+.ts-pin{display:flex;align-items:center;gap:.6rem;}
+.ts-pin .dot{width:9px;height:9px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);flex:none;}
+.ts-pin .nm{font-family:var(--font-display);font-weight:600;font-size:1.05rem;}
+.ts-addr{margin:.85rem 0 0;font-style:normal;color:var(--dn-bone-dim);font-size:1rem;line-height:1.55;}
+.ts-addr b{color:var(--dn-bone);font-weight:500;}
+.ts-aside-rule{height:1px;background:var(--dn-mist);margin:1.4rem 0;}
+.ts-park{list-style:none;margin:0;padding:0;display:grid;gap:.7rem;}
+.ts-park li{display:flex;gap:.7rem;align-items:flex-start;font-size:.92rem;color:var(--dn-bone-dim);}
+.ts-park li .b{width:6px;height:6px;border-radius:50%;background:var(--dn-night-soft);margin-top:.55rem;flex:none;}
+.ts-park li b{color:var(--dn-bone);font-weight:500;}
+.ts-call{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.6rem;min-height:46px;padding:.55rem 1.15rem;border-radius:999px;border:1px solid var(--dn-day);color:var(--dn-day);text-decoration:none;font-weight:600;font-size:.95rem;transition:background .18s,color .18s;}
+.ts-call:hover{background:var(--dn-day);color:var(--dn-near-black);}
+.ts-call .lab{font-family:var(--font-body);}
+.ts-call .num{font-family:var(--font-display);font-weight:600;}
+
+/* footer districts band - runs full width as an editorial caption, NOT a centred card */
+.ts-districts{margin-top:clamp(2.6rem,5.5vw,4rem);padding-top:1.5rem;border-top:1px solid var(--dn-mist);}
+.ts-districts-lab{font-family:var(--font-body);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 1rem;}
+.ts-districts-flow{font-family:var(--font-display);font-weight:300;font-size:clamp(1.05rem,3.2vw,1.45rem);line-height:1.7;color:var(--dn-bone-dim);display:flex;flex-wrap:wrap;align-items:baseline;column-gap:0;row-gap:.25rem;}
+.ts-districts-flow span{white-space:nowrap;}
+.ts-districts-flow .sep{color:var(--dn-mist);padding:0 .55rem;font-style:normal;}
+.ts-districts-flow .here{color:var(--dn-bone);border-bottom:2px solid var(--dn-day);}
+
+@media(max-width:560px){
+  .ts-stn{min-height:160px;}
+}
+</style>
+<title>Two Stations · Where We Are · Day Night Dental</title>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Two Stations</b> <span class="lab-lens">editorial</span></div><span></span></div>
+
+<main class="ts-wrap">
+
+  <div class="ts-mast">
+    <span class="dn-eyebrow dn-pill day">Where We Are</span>
+    <span class="ts-folio">Merchant City, Glasgow <b>/ G1</b></span>
+  </div>
+
+  <h1 class="ts-head">Two stations. One <em class="dn-hl-gold">short walk</em>.</h1>
+  <p class="ts-sub">We sit in the centre of Merchant City, a few minutes on foot from the city's busiest rail platforms. Step off the train, and you are nearly here.</p>
+
+  <div class="ts-split">
+
+    <section class="ts-quote-block" aria-label="A note on getting here">
+      <p class="ts-quote-tag">From the platform</p>
+      <blockquote class="ts-quote">
+        &ldquo;If you can read the departures board at <span class="mark">Queen Street</span>, you are closer to your dentist than the next train is to leaving.&rdquo;
+      </blockquote>
+      <p class="ts-quote-attr"><span class="rule" aria-hidden="true"></span> <span>The walk in, <b>Day Night Dental</b></span></p>
+
+      <div class="ts-stations">
+        <article class="ts-stn is-day">
+          <span class="idx">01 / RAIL</span>
+          <h2 class="nm">Queen Street</h2>
+          <span class="sub">North &amp; east lines, the Subway</span>
+          <span class="walk"><span class="min">3</span><span class="unit">min walk</span></span>
+        </article>
+        <article class="ts-stn is-night">
+          <span class="idx">02 / RAIL</span>
+          <h2 class="nm">Buchanan Street</h2>
+          <span class="sub">Subway &amp; the Buchanan galleries</span>
+          <span class="walk"><span class="min">5</span><span class="unit">min walk</span></span>
+        </article>
+      </div>
+    </section>
+
+    <aside class="ts-aside" aria-label="Address and parking">
+      <p class="ts-aside-h">The practice</p>
+      <div class="ts-pin"><span class="dot" aria-hidden="true"></span><span class="nm">Day Night Dental</span></div>
+      <address class="ts-addr">
+        <b>80 Hutcheson St</b><br>
+        Merchant City, Glasgow G1 1SH
+      </address>
+
+      <div class="ts-aside-rule" aria-hidden="true"></div>
+
+      <ul class="ts-park">
+        <li><span class="b" aria-hidden="true"></span><span>Driving in? <b>Parking on Hutcheson St &amp; Albion St</b>, right at the door.</span></li>
+        <li><span class="b" aria-hidden="true"></span><span>Open <b>around the clock</b>, the walk in is the same at 3pm or 3am.</span></li>
+      </ul>
+
+      <a class="ts-call" href="tel:+441415486548"><span class="lab">Call</span> <span class="num">0141 548 6548</span></a>
+    </aside>
+
+  </div>
+
+  <div class="ts-districts">
+    <p class="ts-districts-lab">And from across the city</p>
+    <p class="ts-districts-flow">
+      <span class="here">Glasgow City Centre</span><span class="sep">/</span><span>Merchant City</span><span class="sep">/</span><span>Trongate</span><span class="sep">/</span><span>West End</span><span class="sep">/</span><span>Finnieston</span><span class="sep">/</span><span>Dennistoun</span><span class="sep">/</span><span>East End</span><span class="sep">/</span><span>Southside</span><span class="sep">/</span><span>Partick</span><span class="sep">/</span><span>Hillhead</span><span class="sep">/</span><span>Govanhill</span><span class="sep">/</span><span>Shawlands</span>
+    </p>
+  </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ---- concept: On The Map ---- */
+.map-wrap{position:relative;max-width:var(--container);margin:0 auto;padding:clamp(2.4rem,6vw,5rem) clamp(1.1rem,4vw,2rem) clamp(3rem,7vw,6rem);}
+.map-head{max-width:640px;margin:0 0 clamp(1.6rem,4vw,2.6rem);}
+.map-head h1{font-family:var(--font-display);font-weight:300;letter-spacing:-.02em;line-height:1.04;margin:1.1rem 0 .9rem;font-size:clamp(2.1rem,6.4vw,4rem);}
+.map-head p{color:var(--dn-bone-dim);font-size:clamp(1rem,2.4vw,1.12rem);max-width:46ch;margin:0;}
+
+/* the map canvas */
+.map-stage{position:relative;border:1px solid var(--dn-mist);border-radius:24px;background:
+  radial-gradient(120% 90% at 38% 30%, rgba(69,144,236,.10), transparent 60%),
+  radial-gradient(90% 80% at 70% 80%, rgba(248,199,96,.06), transparent 55%),
+  #0c0c10;
+  overflow:hidden;box-shadow:0 40px 90px -50px rgba(0,0,0,.9);}
+.map-stage svg{display:block;width:100%;height:auto;}
+
+/* grid + river styling done in svg, but pin glow via css filter on element */
+.grid-line{stroke:rgba(255,255,255,.055);stroke-width:1;}
+.grid-line.major{stroke:rgba(255,255,255,.085);}
+.river{fill:rgba(69,144,236,.13);stroke:rgba(106,168,242,.30);stroke-width:1.2;}
+.river-label{fill:var(--dn-night-soft);font-family:var(--font-body);font-size:11px;letter-spacing:.32em;text-transform:uppercase;opacity:.6;}
+
+/* district markers (svg groups) */
+.dist{cursor:default;}
+.dist .dot{fill:#0c0c10;stroke:var(--dn-bone-faint);stroke-width:1.4;transition:stroke .25s,fill .25s,r .25s;}
+.dist .ring{fill:none;stroke:rgba(255,255,255,.18);stroke-width:1;opacity:0;transition:opacity .25s;}
+.dist .lbl{fill:var(--dn-bone-dim);font-family:var(--font-body);font-size:13px;font-weight:600;transition:fill .25s;}
+.dist:hover .dot,.dist:focus-visible .dot{stroke:var(--dn-day);fill:var(--dn-day);r:5.5;}
+.dist:hover .ring,.dist:focus-visible .ring{opacity:1;stroke:rgba(248,199,96,.5);}
+.dist:hover .lbl,.dist:focus-visible .lbl{fill:var(--dn-bone);}
+.dist:focus-visible{outline:none;}
+.dist:focus-visible .dot{stroke-width:2.4;}
+
+/* station markers */
+.stn .sq{fill:rgba(69,144,236,.16);stroke:var(--dn-night-soft);stroke-width:1.3;transition:fill .25s;}
+.stn .ico{stroke:var(--dn-night-soft);stroke-width:1.5;fill:none;}
+.stn .lbl{fill:var(--dn-night-soft);font-family:var(--font-body);font-size:12px;font-weight:600;}
+.stn:hover .sq,.stn:focus-visible .sq{fill:rgba(69,144,236,.32);}
+.stn:focus-visible{outline:none;}
+
+/* the practice pin */
+.pin-glow{fill:var(--dn-day);opacity:.16;}
+.pin-glow2{fill:var(--dn-day);opacity:.10;}
+.pin-core{fill:var(--dn-day);}
+.pin-core-in{fill:#0c0c10;}
+.pin-pulse{fill:none;stroke:var(--dn-day);stroke-width:1.4;transform-origin:center;animation:pinpulse 3.4s ease-out infinite;}
+@keyframes pinpulse{0%{r:9;opacity:.85;}70%{opacity:0;}100%{r:34;opacity:0;}}
+@media (prefers-reduced-motion:reduce){.pin-pulse{animation:none;opacity:0;}}
+.pin-flag{fill:#0c0c10;stroke:var(--dn-mist);stroke-width:1;}
+.pin-flag-name{fill:var(--dn-day);font-family:var(--font-display);font-weight:600;font-size:14px;}
+.pin-flag-sub{fill:var(--dn-bone-dim);font-family:var(--font-body);font-size:11px;letter-spacing:.02em;}
+
+/* live readout panel, replaces the "card listing districts" with a status console */
+.map-readout{position:absolute;left:clamp(.8rem,2.5vw,1.4rem);bottom:clamp(.8rem,2.5vw,1.4rem);z-index:5;
+  width:min(290px,calc(100% - 1.6rem));background:rgba(10,10,12,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:1rem 1.05rem;}
+.map-readout .ro-tag{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);display:flex;align-items:center;gap:7px;}
+.map-readout .ro-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 10px var(--dn-day);}
+.map-readout .ro-name{font-family:var(--font-display);font-weight:600;font-size:1.15rem;margin:.5rem 0 .15rem;line-height:1.15;}
+.map-readout .ro-addr{color:var(--dn-bone-dim);font-size:.86rem;line-height:1.45;}
+.map-readout .ro-meta{margin-top:.7rem;font-size:.82rem;color:var(--dn-bone-dim);min-height:1.3em;}
+.map-readout .ro-meta b{color:var(--dn-bone);font-weight:600;}
+
+/* legend strip below map */
+.map-foot{display:flex;flex-wrap:wrap;gap:1.4rem 2rem;align-items:center;margin-top:1.4rem;}
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;}
+.legend span{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--dn-bone-dim);}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
+.legend i.k-pin{background:var(--dn-day);box-shadow:0 0 9px rgba(248,199,96,.7);}
+.legend i.k-dist{background:transparent;border:1.5px solid var(--dn-bone-faint);}
+.legend i.k-stn{border-radius:2px;background:rgba(69,144,236,.4);border:1.3px solid var(--dn-night-soft);}
+
+/* travel cues + cta, a transit strip, not a bullet card */
+.transit{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:clamp(1.6rem,4vw,2.4rem);}
+.transit .leg{border:1px solid var(--dn-mist);border-radius:14px;padding:.95rem 1rem;background:rgba(255,255,255,.02);}
+.transit .leg .t{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--dn-night-soft);line-height:1;}
+.transit .leg .t small{font-family:var(--font-body);font-size:.7rem;color:var(--dn-bone-faint);font-weight:600;letter-spacing:.04em;vertical-align:.2em;margin-left:.2rem;}
+.transit .leg .d{font-size:.88rem;color:var(--dn-bone-dim);margin-top:.35rem;}
+
+.map-cta{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:clamp(1.7rem,4vw,2.4rem);}
+.btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:0 1.5rem;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;transition:transform .2s,background .2s,border-color .2s,color .2s;}
+.btn-gold{background:var(--dn-day);color:#1a1407;}
+.btn-gold:hover{transform:translateY(-2px);background:#ffd170;}
+.btn-ghost{border:1px solid rgba(255,255,255,.2);color:var(--dn-bone);}
+.btn-ghost:hover{border-color:var(--dn-day);color:var(--dn-day);}
+.map-cta .ph{margin-left:auto;font-size:.9rem;color:var(--dn-bone-dim);}
+.map-cta .ph a{color:var(--dn-day);text-decoration:none;font-weight:600;font-family:var(--font-display);letter-spacing:.01em;}
+
+@media (max-width:760px){
+  .transit{grid-template-columns:1fr;}
+  .map-readout{position:static;width:auto;margin:1rem;backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .map-cta .ph{margin-left:0;width:100%;}
+}
+</style>
+<title>On The Map · Where We Are · Day Night Dental</title>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>On The Map</b> <span class="lab-lens">spatial</span></div><span></span></div>
+
+<main class="map-wrap">
+  <header class="map-head">
+    <span class="dn-eyebrow dn-pill day">Where We Are</span>
+    <h1>Find us at the centre of <em class="dn-hl-gold">Merchant City</em>.</h1>
+    <p>One pin. Glasgow all around it. We sit minutes from the stations, and patients reach us from right across the city.</p>
+  </header>
+
+  <div class="map-stage">
+    <!-- viewBox: 0..1000 wide, 0..680 tall. Merchant City pin sits at the true centre.
+         Districts placed by real compass bearing from Merchant City. -->
+    <svg viewBox="0 0 1000 680" role="img" aria-labelledby="maptitle mapdesc" preserveAspectRatio="xMidYMid meet">
+      <title id="maptitle">Stylised map of central Glasgow showing Day Night Dental in Merchant City</title>
+      <desc id="mapdesc">A spatial map: Day Night Dental glows gold at the centre in Merchant City, with surrounding Glasgow districts and the two nearest rail stations marked around it.</desc>
+
+      <!-- faint street grid -->
+      <g aria-hidden="true">
+        <line class="grid-line" x1="0" y1="85" x2="1000" y2="60"/>
+        <line class="grid-line major" x1="0" y1="190" x2="1000" y2="165"/>
+        <line class="grid-line" x1="0" y1="300" x2="1000" y2="275"/>
+        <line class="grid-line major" x1="0" y1="410" x2="1000" y2="385"/>
+        <line class="grid-line" x1="0" y1="520" x2="1000" y2="495"/>
+        <line class="grid-line" x1="0" y1="625" x2="1000" y2="600"/>
+        <line class="grid-line" x1="130" y1="0" x2="105" y2="680"/>
+        <line class="grid-line major" x1="290" y1="0" x2="265" y2="680"/>
+        <line class="grid-line" x1="450" y1="0" x2="425" y2="680"/>
+        <line class="grid-line major" x1="610" y1="0" x2="585" y2="680"/>
+        <line class="grid-line" x1="770" y1="0" x2="745" y2="680"/>
+        <line class="grid-line" x1="910" y1="0" x2="885" y2="680"/>
+      </g>
+
+      <!-- River Clyde (south of centre, flowing W-E) -->
+      <path class="river" aria-hidden="true" d="M -20 590 C 180 560, 330 612, 500 600 C 690 586, 820 626, 1020 600 L 1020 700 L -20 700 Z"/>
+      <text class="river-label" x="500" y="652" text-anchor="middle" aria-hidden="true">River Clyde</text>
+
+      <!-- ====== STATIONS (blue) ====== -->
+      <!-- Queen Street: just NW of Merchant City -->
+      <g class="stn" tabindex="0" role="button"
+         data-name="Queen Street Station" data-meta="A 3 minute walk to the practice.">
+        <rect class="sq" x="392" y="232" width="20" height="20" rx="4"/>
+        <path class="ico" d="M398 248 v-9 a4 4 0 0 1 8 0 v9 M396 251 h12 M399 251 l-2 4 M405 251 l2 4"/>
+        <text class="lbl" x="386" y="245" text-anchor="end">Queen Street</text>
+      </g>
+      <!-- Buchanan Street: W of centre -->
+      <g class="stn" tabindex="0" role="button"
+         data-name="Buchanan Street Station" data-meta="A 5 minute walk to the practice.">
+        <rect class="sq" x="300" y="318" width="20" height="20" rx="4"/>
+        <path class="ico" d="M306 334 v-9 a4 4 0 0 1 8 0 v9 M304 337 h12 M307 337 l-2 4 M313 337 l2 4"/>
+        <text class="lbl" x="294" y="331" text-anchor="end">Buchanan Street</text>
+      </g>
+
+      <!-- ====== DISTRICTS (placed by real bearing from Merchant City centre) ====== -->
+      <!-- N / NE -->
+      <g class="dist" tabindex="0" role="button" data-name="Glasgow City Centre" data-meta="The doorstep. We are in it.">
+        <circle class="ring" cx="430" cy="150" r="13"/><circle class="dot" cx="430" cy="150" r="4"/>
+        <text class="lbl" x="446" y="154">Glasgow City Centre</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Dennistoun" data-meta="North east, a short hop along Duke Street.">
+        <circle class="ring" cx="760" cy="195" r="13"/><circle class="dot" cx="760" cy="195" r="4"/>
+        <text class="lbl" x="776" y="199">Dennistoun</text>
+      </g>
+      <!-- W -->
+      <g class="dist" tabindex="0" role="button" data-name="West End" data-meta="West along the river and the M8.">
+        <circle class="ring" cx="150" cy="270" r="13"/><circle class="dot" cx="150" cy="270" r="4"/>
+        <text class="lbl" x="166" y="274">West End</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Hillhead" data-meta="West End, by the university and the subway.">
+        <circle class="ring" cx="95" cy="205" r="13"/><circle class="dot" cx="95" cy="205" r="4"/>
+        <text class="lbl" x="111" y="209">Hillhead</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Finnieston" data-meta="West, between the city and the river.">
+        <circle class="ring" cx="190" cy="345" r="13"/><circle class="dot" cx="190" cy="345" r="4"/>
+        <text class="lbl" x="206" y="349">Finnieston</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Partick" data-meta="Far west, off the Clydeside Expressway.">
+        <circle class="ring" cx="70" cy="345" r="13"/><circle class="dot" cx="70" cy="345" r="4"/>
+        <text class="lbl" x="86" y="349">Partick</text>
+      </g>
+      <!-- central / E -->
+      <g class="dist" tabindex="0" role="button" data-name="Merchant City" data-meta="Home. 80 Hutcheson St, G1 1SH.">
+        <circle class="ring" cx="560" cy="360" r="13"/><circle class="dot" cx="560" cy="360" r="4"/>
+        <text class="lbl" x="576" y="364">Merchant City</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Trongate" data-meta="Two minutes south, the old heart of the city.">
+        <circle class="ring" cx="505" cy="430" r="13"/><circle class="dot" cx="505" cy="430" r="4"/>
+        <text class="lbl" x="521" y="434">Trongate</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="East End" data-meta="East past the Barras and Glasgow Green.">
+        <circle class="ring" cx="800" cy="385" r="13"/><circle class="dot" cx="800" cy="385" r="4"/>
+        <text class="lbl" x="816" y="389">East End</text>
+      </g>
+      <!-- S / SW -->
+      <g class="dist" tabindex="0" role="button" data-name="Southside" data-meta="South over the Clyde.">
+        <circle class="ring" cx="520" cy="540" r="13"/><circle class="dot" cx="520" cy="540" r="4"/>
+        <text class="lbl" x="536" y="544">Southside</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Govanhill" data-meta="South of the river, off Victoria Road.">
+        <circle class="ring" cx="430" cy="610" r="13"/><circle class="dot" cx="430" cy="610" r="4"/>
+        <text class="lbl" x="446" y="614">Govanhill</text>
+      </g>
+      <g class="dist" tabindex="0" role="button" data-name="Shawlands" data-meta="Southside, down Pollokshaws Road.">
+        <circle class="ring" cx="300" cy="615" r="13"/><circle class="dot" cx="300" cy="615" r="4"/>
+        <text class="lbl" x="316" y="619">Shawlands</text>
+      </g>
+
+      <!-- ====== THE PRACTICE PIN (gold, centre, Merchant City) ====== -->
+      <g aria-hidden="true">
+        <circle class="pin-glow2" cx="500" cy="340" r="46"/>
+        <circle class="pin-glow" cx="500" cy="340" r="28"/>
+        <circle class="pin-pulse" cx="500" cy="340" r="9"/>
+        <circle class="pin-core" cx="500" cy="340" r="9"/>
+        <circle class="pin-core-in" cx="500" cy="340" r="3.4"/>
+      </g>
+      <!-- flag label for the practice -->
+      <g aria-hidden="true">
+        <line x1="500" y1="331" x2="500" y2="295" stroke="rgba(248,199,96,.5)" stroke-width="1.2"/>
+        <rect class="pin-flag" x="512" y="270" width="206" height="48" rx="10"/>
+        <text class="pin-flag-name" x="526" y="291">Day Night Dental</text>
+        <text class="pin-flag-sub" x="526" y="308">80 Hutcheson St · Merchant City</text>
+      </g>
+    </svg>
+
+    <!-- live readout: reflects the focused/hovered marker, but is fully populated by default -->
+    <aside class="map-readout" aria-live="polite">
+      <div class="ro-tag">You are looking at</div>
+      <div class="ro-name" id="roName">Day Night Dental</div>
+      <div class="ro-addr" id="roAddr">80 Hutcheson St, Merchant City,<br>Glasgow G1 1SH</div>
+      <div class="ro-meta" id="roMeta">Hover a marker to see how near it is.</div>
+    </aside>
+  </div>
+
+  <div class="map-foot">
+    <div class="legend">
+      <span><i class="k-pin"></i> The practice</span>
+      <span><i class="k-dist"></i> Areas we serve</span>
+      <span><i class="k-stn"></i> Rail stations</span>
+    </div>
+  </div>
+
+  <!-- travel cues as a transit strip (real cues from the code) -->
+  <section class="transit" aria-label="Getting here">
+    <div class="leg">
+      <div class="t">3<small>MIN</small></div>
+      <div class="d">walk from Queen Street station</div>
+    </div>
+    <div class="leg">
+      <div class="t">5<small>MIN</small></div>
+      <div class="d">walk from Buchanan Street</div>
+    </div>
+    <div class="leg">
+      <div class="t">P</div>
+      <div class="d">parking on Hutcheson St &amp; Albion St</div>
+    </div>
+  </section>
+
+  <div class="map-cta">
+    <a class="btn btn-gold" href="/areas-served/">See the areas we serve <span aria-hidden="true">→</span></a>
+    <a class="btn btn-ghost" href="https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z">Open in Google Maps</a>
+    <span class="ph">Day or night, call <a href="tel:+441415486548">0141 548 6548</a></span>
+  </div>
+</main>
+
+<script>
+(function(){
+  var name=document.getElementById('roName');
+  var addr=document.getElementById('roAddr');
+  var meta=document.getElementById('roMeta');
+  if(!name||!addr||!meta) return;
+  var DEFAULT_NAME='Day Night Dental';
+  var DEFAULT_ADDR='80 Hutcheson St, Merchant City,<br>Glasgow G1 1SH';
+  var DEFAULT_META='Hover a marker to see how near it is.';
+
+  function show(el){
+    var n=el.getAttribute('data-name'); var m=el.getAttribute('data-meta')||'';
+    name.textContent=n;
+    if(n==='Day Night Dental'||n==='Merchant City'){
+      addr.innerHTML=DEFAULT_ADDR;
+    } else {
+      addr.textContent='An area we serve across Glasgow';
+    }
+    meta.innerHTML=m;
+  }
+  function reset(){ name.textContent=DEFAULT_NAME; addr.innerHTML=DEFAULT_ADDR; meta.innerHTML=DEFAULT_META; }
+
+  var markers=document.querySelectorAll('.dist,.stn');
+  markers.forEach(function(el){
+    el.addEventListener('mouseenter',function(){show(el);});
+    el.addEventListener('focus',function(){show(el);});
+    el.addEventListener('mouseleave',reset);
+    el.addEventListener('blur',reset);
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); show(el);} });
+  });
+})();
+</script>
+</body>
+</html>

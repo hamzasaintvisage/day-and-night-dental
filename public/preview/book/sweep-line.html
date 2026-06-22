@@ -22,7 +22,7 @@ img{max-width:100%;display:block;} a{color:inherit;}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>Sweep Line — Book an appointment · Day Night Dental</title>
+<title>Sweep Line - Book an appointment · Day Night Dental</title>
 <style>
 /* ============================================================
    SWEEP LINE  (lens: kinetic)
@@ -51,7 +51,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start;}
 
 /* ============================================================
-   LEFT — the live-line timeline (info rows hang off a gold rail)
+   LEFT - the live-line timeline (info rows hang off a gold rail)
    ============================================================ */
 .dn-rail{position:relative;}
 .dn-rail-head{margin-bottom:2.2rem;}
@@ -82,7 +82,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-rail-node .value.addr{font-size:1.18rem;line-height:1.35;margin:0;}
 .dn-rail-node .hint{display:block;color:var(--dn-bone-faint);font-size:.84rem;margin-top:.28rem;}
 
-/* emergency node — perpetual blue scan-pulse travels ITS segment so it always reads awake */
+/* emergency node - perpetual blue scan-pulse travels ITS segment so it always reads awake */
 .dn-rail-node.emergency::before{background:var(--dn-night);box-shadow:0 0 12px var(--dn-night);}
 .dn-rail-node.emergency::after{content:'';position:absolute;left:-2.25rem;top:.4rem;width:2px;height:calc(100% - .4rem);
   transform:translateX(-.5px);background:var(--dn-night);opacity:.5;border-radius:2px;
@@ -113,7 +113,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-map-facade .mf-note{margin-left:auto;color:var(--dn-bone-faint);font-size:.7rem;max-width:9rem;text-align:right;line-height:1.3;}
 
 /* ============================================================
-   RIGHT — the form card whose LEFT EDGE is a rising fill-rail
+   RIGHT - the form card whose LEFT EDGE is a rising fill-rail
    ============================================================ */
 .dn-form-card{background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
   padding:clamp(1.5rem,3vw,2.4rem);position:relative;}
@@ -184,7 +184,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-form-submit:hover{transform:translateY(-1px);box-shadow:0 0 0 1px var(--dn-day),0 18px 50px rgba(248,199,96,.26);}
 .dn-form-submit .arrow{transition:transform .25s;}
 .dn-form-submit:hover .arrow{transform:translateX(4px);}
-/* emergency state — button turns blue & pulses */
+/* emergency state - button turns blue & pulses */
 .dn-form-submit.emergency{background:var(--dn-night);color:var(--dn-bone);box-shadow:0 0 0 1px rgba(69,144,236,.5),0 14px 40px rgba(69,144,236,.22);}
 .dn-form-submit.emergency:hover{box-shadow:0 0 0 1px var(--dn-night),0 18px 50px rgba(69,144,236,.32);}
 .dn-form-submit .btn-pulse{position:absolute;inset:0;border-radius:999px;box-shadow:0 0 0 0 rgba(69,144,236,.6);animation:btn-pulse 1.8s ease-out infinite;pointer-events:none;}
@@ -245,7 +245,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
         </div>
 
         <div class="dn-timeline">
-          <!-- Night & Emergency — perpetual blue scan-pulse -->
+          <!-- Night & Emergency - perpetual blue scan-pulse -->
           <div class="dn-rail-node emergency night">
             <span class="dn-tick"></span>
             <div class="row-top">
@@ -428,7 +428,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 </section>
 
 <script>
-/* Sweep Line — purpose-driven kinetics.
+/* Sweep Line - purpose-driven kinetics.
    Fill-rail height = (completed required fields / 5) * 100, driven by form state.
    Default state is fully visible without JS (fill:0, rail track shown). */
 (function () {
@@ -475,7 +475,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   form.addEventListener('change', recompute);
   form.addEventListener('submit', function (e) {
     e.preventDefault(); // non-submitting preview
-    submitLabel.textContent = 'This is a preview — not sent';
+    submitLabel.textContent = 'This is a preview - not sent';
     submitBtn.style.opacity = '.7';
     setTimeout(recompute, 1600);
   });

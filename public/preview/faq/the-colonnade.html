@@ -25,7 +25,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 <title>The Colonnade · Common Questions · Day Night Dental</title>
 <style>
 /* ============================================================
-   THE COLONNADE — architectural FAQ
+   THE COLONNADE - architectural FAQ
    Questions stand as lit stone pillars on a shared plinth;
    the active answer reads through a deep recessed portico bay.
    ============================================================ */
@@ -33,7 +33,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-section{padding:96px 0 110px;position:relative;}
 .dn-container{max-width:var(--container);margin:0 auto;padding:0 24px;}
 
-/* Faint architectural ground — a horizon line beneath the elevation */
+/* Faint architectural ground - a horizon line beneath the elevation */
 .dn-section.dn-faq::before{
   content:'';position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;
   background:
@@ -53,14 +53,14 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   max-width:980px;margin:3.4rem auto 0;position:relative;
 }
 
-/* capital line — a 1px gold hairline that caps the pillars */
+/* capital line - a 1px gold hairline that caps the pillars */
 .dn-faq-colonnade::before{
   content:'';display:block;height:1px;width:100%;
   background:linear-gradient(90deg,transparent,var(--dn-day) 18%,var(--dn-day) 82%,transparent);
   opacity:.55;margin-bottom:18px;
 }
 
-/* the pillar row — four columns on a shared plinth rail */
+/* the pillar row - four columns on a shared plinth rail */
 .dn-faq-nav{
   display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
   padding-bottom:14px;border-bottom:1px solid var(--dn-mist); /* plinth */
@@ -80,7 +80,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 }
 .dn-faq-q:nth-child(even){--dn-faq-accent:var(--dn-night);}
 
-/* fluting — a subtle vertical groove on each pillar shaft */
+/* fluting - a subtle vertical groove on each pillar shaft */
 .dn-faq-q::before{
   content:'';position:absolute;left:50%;top:14px;bottom:14px;width:1px;
   transform:translateX(-50%);
@@ -94,7 +94,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   background:var(--dn-mist);opacity:.8;transition:background .22s,opacity .22s;
 }
 
-/* lit pillar — even glow, no gate, single colour per side */
+/* lit pillar - even glow, no gate, single colour per side */
 .dn-faq-q.on,.dn-faq-q:hover,.dn-faq-q:focus-visible{
   color:var(--dn-bone);border-color:var(--dn-faq-accent);border-top-color:var(--dn-faq-accent);
   background:color-mix(in srgb,var(--dn-faq-accent) 8%,transparent);
@@ -109,7 +109,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   opacity:.9;
 }
 
-/* the recessed portico bay — a doorway you look into */
+/* the recessed portico bay - a doorway you look into */
 .dn-faq-panel{
   border:1px solid var(--dn-mist);border-top:none;
   border-radius:0 0 var(--dn-r-card) var(--dn-r-card);
@@ -125,13 +125,13 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .dn-faq-panel::before{left:18px;}
 .dn-faq-panel::after{right:18px;}
 
-/* base line caps the plinth — bottom framing */
+/* base line caps the plinth - bottom framing */
 .dn-faq-colonnade::after{
   content:'';display:block;height:1px;width:100%;margin-top:18px;
   background:linear-gradient(90deg,transparent,var(--dn-mist) 10%,var(--dn-mist) 90%,transparent);
 }
 
-/* answers — all rendered for SEO, only the active shown */
+/* answers - all rendered for SEO, only the active shown */
 .dn-faq-a{display:none;animation:bayIn .42s ease both;}
 .dn-faq-a.on{display:block;}
 @keyframes bayIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
@@ -213,7 +213,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
         <button role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q"    data-i="3">What are your opening hours?</button>
       </div>
 
-      <!-- the recessed portico bay (desktop) — all answers rendered for SEO -->
+      <!-- the recessed portico bay (desktop) - all answers rendered for SEO -->
       <div class="dn-faq-panel" id="dn-faq-bay">
         <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on" style="--dn-active-accent:var(--dn-day);">
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>

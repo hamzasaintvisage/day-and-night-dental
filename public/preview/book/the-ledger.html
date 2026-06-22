@@ -27,7 +27,7 @@ a{color:inherit;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
 em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>The Ledger — Book an appointment · Day Night Dental</title>
+<title>The Ledger - Book an appointment · Day Night Dental</title>
 <style>
 /* ── tokens not in the shared block ── */
 :root{--dn-online:#4ade80;--dn-day-soft:#fbe0a3;}
@@ -63,7 +63,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 a.dn-nap-val:hover{color:var(--dn-day);}
 .dn-nap-hint{display:block;font-size:.82rem;color:var(--dn-bone-faint);margin-top:.4rem;letter-spacing:.01em;}
 
-/* emergency pull-out — the loudest contact element */
+/* emergency pull-out - the loudest contact element */
 .dn-nap-row.emergency{border-top-color:var(--dn-night);padding-left:1.25rem;border-left:1px solid var(--dn-night);
   margin-left:-1.25rem;}
 .dn-nap-row.emergency .dn-nap-no{color:var(--dn-night);}
@@ -194,7 +194,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
             <span>
               <span class="dn-nap-cap">Night &amp; Emergency</span>
               <a href="tel:+441415486548" class="dn-nap-val">0141 548 6548<span class="dn-nap-live" aria-hidden="true"></span></a>
-              <span class="dn-nap-hint">24-hour emergency line — answered now</span>
+              <span class="dn-nap-hint">24-hour emergency line - answered now</span>
             </span>
           </li>
 
@@ -259,7 +259,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
           </p>
 
           <h3 class="dn-form-head">Request an appointment</h3>
-          <p class="dn-form-sub">No obligation — the team confirms a time that suits you.</p>
+          <p class="dn-form-sub">No obligation - the team confirms a time that suits you.</p>
 
           <div class="dn-form-row">
             <label>
@@ -366,7 +366,7 @@ a.dn-nap-val:hover{color:var(--dn-day);}
   // Non-submitting preview: never actually post.
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    btnLabel.textContent = 'Preview only — call 0141 548 6548';
+    btnLabel.textContent = 'Preview only - call 0141 548 6548';
     setTimeout(function(){
       var emer = form.querySelector('input[name=preference]:checked');
       btnLabel.textContent = (emer && emer.value === 'emergency') ? 'Request Emergency Appointment' : 'Request Booking';

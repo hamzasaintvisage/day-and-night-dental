@@ -27,13 +27,13 @@ a{color:inherit;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
 em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>Book an appointment — Hairline Concierge · Day Night Dental</title>
+<title>Book an appointment - Hairline Concierge · Day Night Dental</title>
 <style>
-/* ===== Hairline Concierge — quiet-luxury, pure hairline grid, no cards ===== */
+/* ===== Hairline Concierge - quiet-luxury, pure hairline grid, no cards ===== */
 .dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
 .dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem);}
 
-/* faint brand glows — kept barely-there to honour the restraint of the concept */
+/* faint brand glows - kept barely-there to honour the restraint of the concept */
 .dn-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
 .dn-glow.day{width:480px;height:480px;top:6%;left:2%;background:var(--dn-day);opacity:.05;}
 .dn-glow.night{width:480px;height:480px;bottom:6%;right:2%;background:var(--dn-night);opacity:.05;}
@@ -67,7 +67,7 @@ a.value:hover{color:var(--dn-day);}
 .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);margin-right:.5rem;vertical-align:middle;box-shadow:0 0 0 0 rgba(69,144,236,.55);animation:dn-pulse 2.4s ease-out infinite;}
 @keyframes dn-pulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}70%{box-shadow:0 0 0 8px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
 
-/* tiny hours line — kept as quiet hairline rows, no table chrome */
+/* tiny hours line - kept as quiet hairline rows, no table chrome */
 .dn-hours{margin-top:2.4rem;display:grid;gap:0;}
 .dn-hours .dn-eyebrow{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:.4rem;}
 .dn-hours-row{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-top:1px solid var(--dn-mist);font-size:.92rem;color:var(--dn-bone-dim);}
@@ -96,7 +96,7 @@ a.value:hover{color:var(--dn-day);}
 .dn-select option{background:var(--dn-charcoal);color:var(--dn-bone);}
 .dn-select-wrap::after{content:"";position:absolute;right:.2rem;top:50%;width:.5rem;height:.5rem;border-right:1.5px solid var(--dn-bone-faint);border-bottom:1.5px solid var(--dn-bone-faint);transform:translateY(-70%) rotate(45deg);pointer-events:none;}
 
-/* preferred-time as underline-row radio chips — text only, single-colour accents */
+/* preferred-time as underline-row radio chips - text only, single-colour accents */
 .dn-form-radios{display:flex;flex-wrap:wrap;gap:.6rem;}
 .dn-radio{position:relative;display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.35rem 1rem;border:1px solid var(--dn-mist);border-radius:999px;cursor:pointer;font-size:.9rem;color:var(--dn-bone-dim);transition:border-color .18s ease,color .18s ease,background .18s ease;}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;min-height:0;}
@@ -159,11 +159,11 @@ a.value:hover{color:var(--dn-day);}
 
         <div class="dn-contact-details">
 
-          <!-- The single accent row — emergency, blue-ruled, live-dot -->
+          <!-- The single accent row - emergency, blue-ruled, live-dot -->
           <div class="dn-contact-detail is-emergency">
             <span class="dn-eyebrow night">Night &amp; Emergency</span>
             <a href="tel:+441415486548" class="value">0141 548 6548</a>
-            <span class="hint"><span class="live-dot" aria-hidden="true"></span>24-hour emergency line — answered now</span>
+            <span class="hint"><span class="live-dot" aria-hidden="true"></span>24-hour emergency line - answered now</span>
           </div>
 
           <div class="dn-contact-detail">
@@ -201,7 +201,7 @@ a.value:hover{color:var(--dn-day);}
           <h3 class="dn-display">Leave your details</h3>
 
           <p class="dn-form-note">
-            In pain right now? Don’t wait — call
+            In pain right now? Don’t wait - call
             <a href="tel:+441415486548">0141 548 6548</a>.
           </p>
 
@@ -307,7 +307,7 @@ a.value:hover{color:var(--dn-day);}
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var original = label.textContent;
-    label.textContent = 'Preview only — please call to book';
+    label.textContent = 'Preview only - please call to book';
     submit.disabled = true;
     setTimeout(function(){ label.textContent = original; submit.disabled = false; }, 2600);
   });

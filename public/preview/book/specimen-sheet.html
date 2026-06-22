@@ -22,15 +22,15 @@ img{max-width:100%;display:block;} a{color:inherit;}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>Specimen Sheet — Book Appointment · Day Night Dental</title>
+<title>Specimen Sheet - Book Appointment · Day Night Dental</title>
 <style>
-/* ============ SPECIMEN SHEET — swiss clinical datasheet ============ */
+/* ============ SPECIMEN SHEET - swiss clinical datasheet ============ */
 :root{--mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;}
 
 .dn-section{position:relative;padding:clamp(2.5rem,6vw,6rem) 0 clamp(3.5rem,8vw,7rem);}
 .dn-container{max-width:var(--container);margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem);}
 
-/* faint atmosphere — kept subtle so the sheet reads as the instrument */
+/* faint atmosphere - kept subtle so the sheet reads as the instrument */
 .dn-amb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
 .dn-amb.day{width:480px;height:480px;background:var(--dn-day);opacity:.05;top:-4%;left:-6%;}
 .dn-amb.night{width:480px;height:480px;background:var(--dn-night);opacity:.05;bottom:-6%;right:-6%;}
@@ -68,7 +68,7 @@ a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
 .dn-reg-lead{align-self:center;height:0;border-bottom:1px dotted var(--dn-mist);}
 .dn-reg-tick{justify-self:end;align-self:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--dn-bone-faint);white-space:nowrap;}
 
-/* night & emergency — the single lit row */
+/* night & emergency - the single lit row */
 .dn-reg-row.night{background:linear-gradient(90deg,rgba(69,144,236,.07),transparent 70%);margin:0 calc(-1 * clamp(1.4rem,3.5vw,2.6rem));padding-left:clamp(1.4rem,3.5vw,2.6rem);padding-right:clamp(1.4rem,3.5vw,2.6rem);border-left:2px solid var(--dn-night);}
 .dn-reg-row.night .dn-reg-idx{color:var(--dn-night-soft);}
 .dn-reg-row.night .dn-reg-val{color:var(--dn-night-soft);font-weight:500;}
@@ -123,7 +123,7 @@ a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
 .dn-chip.urgent:has(input:checked){color:#0a0a0c;background:var(--dn-night);border-color:var(--dn-night);}
 .dn-chip.urgent:has(input:checked) .urgent-dot{background:#0a0a0c;box-shadow:none;}
 
-/* submit — bottom-rule "sign the sheet" bar */
+/* submit - bottom-rule "sign the sheet" bar */
 .dn-form-foot{margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--dn-mist);}
 .dn-form-submit{position:relative;display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;min-height:54px;padding:.95rem 1.4rem;border:0;border-radius:12px;background:var(--dn-day);color:#0a0a0c;font-family:var(--font-body);font-size:1rem;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:filter .2s,transform .12s;}
 .dn-form-submit .arrow{font-size:1.1rem;transition:transform .2s;}
@@ -186,7 +186,7 @@ a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
 
       <div class="dn-sheet-grid">
 
-        <!-- LEFT — numbered register -->
+        <!-- LEFT - numbered register -->
         <div class="dn-sheet-col dn-sheet-register">
           <div class="dn-col-tag"><span>Register / Practice</span><span class="n">01–06</span></div>
 
@@ -205,7 +205,7 @@ a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
             <span class="dn-reg-main">
               <span class="dn-reg-label">Night &amp; Emergency</span>
               <a class="dn-reg-val" href="tel:+441415486548">0141 548 6548</a>
-              <span class="dn-reg-hint">24-hour emergency line — toothache, swelling, trauma</span>
+              <span class="dn-reg-hint">24-hour emergency line - toothache, swelling, trauma</span>
             </span>
             <span class="dn-reg-tick"><span class="dn-live" aria-hidden="true"></span> LIVE · 24/7</span>
           </div>
@@ -232,7 +232,7 @@ a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
 
           <!-- ruled hours table -->
           <div class="dn-reg-hours">
-            <div class="dn-reg-hours-tag">05 — Opening Hours</div>
+            <div class="dn-reg-hours-tag">05 - Opening Hours</div>
             <table>
               <tbody>
                 <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
@@ -244,7 +244,7 @@ a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
           </div>
         </div>
 
-        <!-- RIGHT — form as datasheet entries -->
+        <!-- RIGHT - form as datasheet entries -->
         <div class="dn-sheet-col">
           <div class="dn-col-tag"><span>Request / Appointment</span><span class="n">FORM-01</span></div>
 

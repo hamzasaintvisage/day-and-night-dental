@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+
+/* ============ CONCEPT: MINUTES FROM YOU ============ */
+.mfy{position:relative;max-width:var(--container);margin:0 auto;padding:64px 20px 96px;}
+.mfy::before{content:'';position:absolute;top:-120px;left:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(248,199,96,.10),transparent 68%);filter:blur(8px);pointer-events:none;z-index:0;}
+.mfy::after{content:'';position:absolute;bottom:-80px;right:-180px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(69,144,236,.09),transparent 70%);filter:blur(8px);pointer-events:none;z-index:0;}
+.mfy-inner{position:relative;z-index:1;}
+
+/* header band */
+.mfy-head{margin-bottom:40px;}
+.mfy-head h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,7vw,3.4rem);line-height:1.04;letter-spacing:-.01em;margin:18px 0 0;max-width:18ch;}
+.mfy-sub{color:var(--dn-bone-dim);max-width:46ch;margin:16px 0 0;font-size:1.02rem;}
+
+/* DEPARTURE BOARD - the distinctive layout. Each row: giant numeral + UNIT + destination */
+.mfy-board{margin-top:44px;border-top:1px solid var(--dn-mist);}
+.mfy-row{display:grid;grid-template-columns:minmax(0,auto) 1fr;align-items:center;gap:clamp(14px,4vw,40px);padding:clamp(22px,4.5vw,40px) 4px;border-bottom:1px solid var(--dn-mist);position:relative;transition:background .35s ease;}
+.mfy-row:hover{background:rgba(255,255,255,.018);}
+/* the giant Fraunces numeral cluster */
+.mfy-num{display:flex;align-items:baseline;gap:.18em;font-family:var(--font-display);line-height:.82;letter-spacing:-.04em;color:var(--dn-bone);}
+.mfy-fig{font-weight:330;font-size:clamp(4.6rem,21vw,11rem);font-variant-numeric:lining-nums tabular-nums;display:block;text-shadow:0 0 60px rgba(248,199,96,.12);}
+.mfy-row.night .mfy-fig{text-shadow:0 0 60px rgba(69,144,236,.13);}
+.mfy-unit{font-family:var(--font-body);font-weight:600;font-size:clamp(.7rem,2.4vw,1rem);letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);align-self:center;writing-mode:vertical-rl;transform:rotate(180deg);padding-bottom:.4em;}
+/* destination block */
+.mfy-dest{min-width:0;}
+.mfy-from{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-day);font-weight:600;margin:0 0 6px;display:inline-flex;align-items:center;gap:8px;}
+.mfy-row.night .mfy-from{color:var(--dn-night-soft);}
+.mfy-from::before{content:'';width:18px;height:1px;background:currentColor;display:inline-block;}
+.mfy-place{font-family:var(--font-display);font-weight:380;font-size:clamp(1.5rem,5vw,2.5rem);line-height:1.02;margin:0;letter-spacing:-.01em;}
+.mfy-mode{margin:10px 0 0;color:var(--dn-bone-dim);font-size:.95rem;}
+
+/* foot strip: address + districts + actions, as a single wide bar, NOT a centred card */
+.mfy-foot{margin-top:56px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;}
+.mfy-pin{border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:26px 26px 28px;background:rgba(255,255,255,.022);}
+.mfy-pin .lbl{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 14px;display:flex;align-items:center;gap:9px;}
+.mfy-pin .lbl .dot{width:8px;height:8px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.mfy-addr{font-family:var(--font-display);font-weight:400;font-size:1.35rem;line-height:1.35;margin:0;}
+.mfy-park{color:var(--dn-bone-dim);margin:14px 0 0;font-size:.95rem;}
+.mfy-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
+.mfy-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;transition:transform .2s ease,background .2s ease,border-color .2s ease;}
+.mfy-btn.gold{background:var(--dn-day);color:#1a1206;}
+.mfy-btn.gold:hover{transform:translateY(-2px);background:#ffd476;}
+.mfy-btn.ghost{border:1px solid var(--dn-mist);color:var(--dn-bone);}
+.mfy-btn.ghost:hover{border-color:var(--dn-day);color:var(--dn-day);}
+
+/* districts rendered as a quiet running line, NOT a grid of equal chips */
+.mfy-near{border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);padding:26px;background:rgba(255,255,255,.022);}
+.mfy-near .lbl{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 14px;}
+.mfy-near .lbl b{color:var(--dn-night-soft);font-family:var(--font-body);font-weight:600;}
+.mfy-flow{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 0;line-height:1.5;}
+.mfy-flow .pl{font-family:var(--font-display);font-weight:380;font-size:1.18rem;color:var(--dn-bone);white-space:nowrap;}
+.mfy-flow .sep{color:var(--dn-bone-faint);padding:0 .55em;}
+.mfy-near .tag{display:block;margin-top:16px;color:var(--dn-bone-dim);font-size:.92rem;}
+
+@media (max-width:760px){
+  .mfy{padding:40px 18px 72px;}
+  .mfy-row{grid-template-columns:1fr;gap:6px;padding:28px 2px;}
+  .mfy-num{order:1;}
+  .mfy-unit{writing-mode:horizontal-tb;transform:none;align-self:flex-end;padding:0 0 .9em .6em;letter-spacing:.18em;}
+  .mfy-fig{text-shadow:0 0 44px rgba(248,199,96,.14);}
+  .mfy-dest{order:2;margin-top:2px;}
+  .mfy-foot{grid-template-columns:1fr;gap:18px;margin-top:42px;}
+}
+@media (max-width:380px){
+  .mfy-flow .sep{padding:0 .4em;}
+}
+@media (prefers-reduced-motion:reduce){
+  .mfy-btn,.mfy-row{transition:none;}
+}
+</style>
+<title>Minutes From You · Day Night Dental - Merchant City, Glasgow</title>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Minutes From You</b> <span class="lab-lens">statement</span></div><span></span></div>
+
+<main class="mfy">
+  <div class="mfy-inner">
+    <header class="mfy-head">
+      <span class="dn-eyebrow dn-pill day">Where We Are</span>
+      <h1>Closer than you think. <em class="dn-hl-gold">Minutes</em> from where you already are.</h1>
+      <p class="mfy-sub">Right in Merchant City, walking distance from the city centre and the stations. A genuine emergency or a brand new smile, you are never far from the chair.</p>
+    </header>
+
+    <section class="mfy-board" aria-label="Travel times to Day Night Dental">
+      <div class="mfy-row day">
+        <div class="mfy-num"><span class="mfy-fig">3</span><span class="mfy-unit">min walk</span></div>
+        <div class="mfy-dest">
+          <p class="mfy-from">From</p>
+          <h2 class="mfy-place">Queen Street station</h2>
+          <p class="mfy-mode">Off the train and at the door in three minutes flat.</p>
+        </div>
+      </div>
+
+      <div class="mfy-row night">
+        <div class="mfy-num"><span class="mfy-fig">5</span><span class="mfy-unit">min walk</span></div>
+        <div class="mfy-dest">
+          <p class="mfy-from">From</p>
+          <h2 class="mfy-place">Buchanan Street</h2>
+          <p class="mfy-mode">A short stroll east from the heart of the shopping district.</p>
+        </div>
+      </div>
+
+      <div class="mfy-row day">
+        <div class="mfy-num"><span class="mfy-fig">0</span><span class="mfy-unit">on the street</span></div>
+        <div class="mfy-dest">
+          <p class="mfy-from">Park</p>
+          <h2 class="mfy-place">Hutcheson St &amp; Albion St</h2>
+          <p class="mfy-mode">Arriving by car? Parking sits right on our own street and the next one over.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mfy-foot">
+      <div class="mfy-pin">
+        <p class="lbl"><span class="dot"></span> The address</p>
+        <p class="mfy-addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
+        <p class="mfy-park">Open day and night. When it matters, every minute saved counts.</p>
+        <div class="mfy-actions">
+          <a class="mfy-btn gold" href="tel:+441415486548">Call 0141 548 6548</a>
+          <a class="mfy-btn ghost" href="https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+
+      <div class="mfy-near">
+        <p class="lbl">Patients reach us from <b>right across Glasgow</b></p>
+        <p class="mfy-flow">
+          <span class="pl">Glasgow City Centre</span><span class="sep">·</span>
+          <span class="pl">Merchant City</span><span class="sep">·</span>
+          <span class="pl">Trongate</span><span class="sep">·</span>
+          <span class="pl">West End</span><span class="sep">·</span>
+          <span class="pl">Finnieston</span><span class="sep">·</span>
+          <span class="pl">Dennistoun</span><span class="sep">·</span>
+          <span class="pl">East End</span><span class="sep">·</span>
+          <span class="pl">Southside</span><span class="sep">·</span>
+          <span class="pl">Partick</span><span class="sep">·</span>
+          <span class="pl">Hillhead</span><span class="sep">·</span>
+          <span class="pl">Govanhill</span><span class="sep">·</span>
+          <span class="pl">Shawlands</span>
+        </p>
+        <span class="tag">Minutes from the stations, easy to reach by car from every side of the city.</span>
+      </div>
+    </section>
+  </div>
+</main>
+</body>
+</html>

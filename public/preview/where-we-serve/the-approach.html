@@ -22,101 +22,183 @@ img{max-width:100%;display:block;} a{color:inherit;}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>The Approach — Where We Are · Day Night Dental</title>
+<title>The Approach - Where We Are · Day Night Dental</title>
 <style>
-/* ============ Section shell ============ */
-.dn-section{padding:clamp(3.5rem,8vw,7rem) 0;}
+/* ============================================================
+   THE APPROACH - kinetic last-mile  ·  rev. III
+   The original concept, elevated: a charted journey on the
+   left, a drawn arrival rail on the right. Districts become
+   surveyed "approaches" with bearing slugs and a travel line
+   that draws on hover. Foot/car toggle now reads out real
+   distance. Solid gold/blue only. No gold/blue gradient.
+   No em dashes. No 375px overflow.
+   ============================================================ */
+
+.dn-section{padding:clamp(3.75rem,8vw,7rem) 0;}
 .dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,4vw,2rem);}
 .dn-areas{position:relative;}
 .dn-areas::before{content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 60% 50% at 78% 30%,rgba(69,144,236,.10),transparent 60%),
-             radial-gradient(ellipse 55% 45% at 12% 80%,rgba(248,199,96,.06),transparent 60%);}
+  background:radial-gradient(ellipse 58% 48% at 80% 26%,rgba(69,144,236,.10),transparent 60%),
+             radial-gradient(ellipse 54% 44% at 10% 82%,rgba(248,199,96,.055),transparent 60%);}
 .dn-container,.tp-section-head,.dn-areas-map{position:relative;z-index:1;}
 
-.tp-section-head.dn-center-head{text-align:center;max-width:760px;margin:0 auto clamp(2.5rem,5vw,3.5rem);}
-.tp-section-head .dn-eyebrow{margin-bottom:1.25rem;}
-.dn-display{font-family:var(--font-display);font-weight:340;letter-spacing:-.02em;line-height:1.07;
-  font-size:clamp(2.1rem,5.4vw,3.5rem);margin:0;}
+/* ---------------- masthead ---------------- */
+.tp-section-head.dn-center-head{text-align:center;max-width:780px;margin:0 auto clamp(2.75rem,5vw,3.75rem);}
+.tp-section-head .dn-eyebrow{margin-bottom:1.2rem;}
+.dn-display{font-family:var(--font-display);font-weight:340;letter-spacing:-.022em;line-height:1.05;
+  font-size:clamp(2.15rem,5.6vw,3.6rem);margin:0;text-wrap:balance;}
 
-/* ============ Two-column map grid ============ */
-.dn-areas-map{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.75rem,4vw,3rem);align-items:stretch;}
-.dn-areas-col{min-width:0;}
-.dn-areas-lead{color:var(--dn-bone-dim);font-size:clamp(1.02rem,1.5vw,1.18rem);max-width:46ch;margin:0 0 1.9rem;}
+/* ---------------- two-column charted grid ---------------- */
+.dn-areas-map{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(1.9rem,4vw,3.25rem);align-items:stretch;}
+.dn-areas-col{min-width:0;display:flex;flex-direction:column;}
+.dn-areas-lead{color:var(--dn-bone-dim);font-size:clamp(1.02rem,1.5vw,1.16rem);max-width:46ch;margin:0 0 2rem;}
 
-.dn-areas-grid{display:flex;flex-wrap:wrap;gap:.6rem;}
-.dn-area-chip{display:inline-flex;align-items:center;padding:.5rem .95rem;border-radius:999px;
-  border:1px solid var(--dn-mist);background:rgba(255,255,255,.03);color:var(--dn-bone-dim);
-  font-size:.92rem;font-weight:500;transition:color .25s ease,border-color .25s ease,background .25s ease,transform .25s ease;}
-.dn-area-chip:hover{color:var(--dn-day);border-color:rgba(248,199,96,.5);background:rgba(248,199,96,.06);transform:translateY(-1px);}
+/* index caption: tabular count + thin rule, sets the surveyor tone */
+.tp-index-cap{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin:0 0 .35rem;padding-bottom:.65rem;border-bottom:1px solid var(--dn-mist);}
+.tp-index-cap .t{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.tp-index-cap .c{font-family:var(--font-display);font-weight:600;font-size:.92rem;color:var(--dn-day);
+  font-variant-numeric:tabular-nums;letter-spacing:.02em;}
 
-.tp-hero-ghost{display:inline-flex;align-items:center;gap:.1rem;margin-top:1.9rem;
-  color:var(--dn-bone);text-decoration:none;font-weight:600;font-size:1rem;
-  border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:3px;transition:color .25s ease,border-color .25s ease,gap .25s ease;}
-.tp-hero-ghost:hover{color:var(--dn-day);border-color:var(--dn-day);gap:.45rem;}
-.tp-hero-ghost span{transition:transform .25s ease;}
+/* surveyed approaches: not chips, ruled "from" rows with a bearing slug */
+.dn-areas-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(1.75rem,3.5vw,2.75rem);}
+.dn-area-chip{position:relative;display:flex;align-items:center;gap:.8rem;min-height:46px;
+  padding:.62rem .55rem .62rem .15rem;border:0;border-bottom:1px solid var(--dn-mist);
+  color:var(--dn-bone);text-decoration:none;cursor:default;
+  transition:color .3s,border-color .3s,padding-left .3s;}
+/* bearing slug: a surveyor's compass letter set in the display face */
+.dn-area-chip .bear{font-family:var(--font-display);font-weight:600;font-size:.78rem;line-height:1;
+  color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:7px;
+  width:2.5em;height:2.5em;display:grid;place-items:center;flex:none;letter-spacing:.02em;
+  transition:color .3s,border-color .3s,box-shadow .3s,background-color .3s;}
+.dn-area-chip .nm{flex:1;min-width:0;font-size:1.02rem;letter-spacing:-.005em;}
+/* the approach line: a tiny gold vector that draws toward the practice on hover */
+.dn-area-chip .line{flex:none;width:22px;height:10px;}
+.dn-area-chip .line path{fill:none;stroke:var(--dn-mist);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:26;stroke-dashoffset:0;transition:stroke .3s,stroke-dashoffset .55s cubic-bezier(.16,1,.3,1);}
+.dn-area-chip .line circle{fill:var(--dn-bone-faint);transition:fill .3s;}
+.dn-area-chip:hover,.dn-area-chip:focus-visible{color:var(--dn-day);border-color:rgba(248,199,96,.45);
+  padding-left:.5rem;outline:none;}
+.dn-area-chip:hover .bear,.dn-area-chip:focus-visible .bear{color:var(--dn-day);border-color:var(--dn-day);
+  background:rgba(248,199,96,.06);box-shadow:0 0 14px -4px var(--dn-day);}
+.dn-area-chip:hover .line path,.dn-area-chip:focus-visible .line path{stroke:var(--dn-day);stroke-dashoffset:26;}
+.dn-area-chip:hover .line circle,.dn-area-chip:focus-visible .line circle{fill:var(--dn-day);}
+
+/* read-more ghost */
+.tp-hero-ghost{display:inline-flex;align-items:center;gap:.4rem;margin-top:2rem;min-height:44px;
+  color:var(--dn-bone);text-decoration:none;font-family:var(--font-display);font-weight:500;font-size:1.04rem;
+  border-bottom:1px solid var(--dn-day);padding-bottom:3px;align-self:flex-start;
+  transition:color .3s,gap .3s;}
+.tp-hero-ghost:hover{color:var(--dn-day);gap:.8rem;}
+.tp-hero-ghost span{color:var(--dn-day);transition:transform .3s;display:inline-block;}
 .tp-hero-ghost:hover span{transform:translateX(3px);}
 
 /* ============ The Approach panel (kinetic) ============ */
 .dn-appr-panel{position:relative;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
-  padding:clamp(1.75rem,3vw,2.4rem);padding-left:clamp(3.75rem,6vw,5rem);
-  background:linear-gradient(160deg,var(--dn-charcoal),var(--dn-near-black));overflow:hidden;
-  display:flex;flex-direction:column;}
+  padding:clamp(1.8rem,3vw,2.5rem);padding-left:clamp(3.85rem,6vw,5.1rem);
+  background:var(--dn-charcoal);overflow:hidden;display:flex;flex-direction:column;}
+/* faint surveyed grid inside the panel, in mono blue, no gradient toward gold */
+.dn-appr-panel::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(69,144,236,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(69,144,236,.05) 1px,transparent 1px);
+  background-size:34px 34px;mask-image:radial-gradient(ellipse 80% 70% at 70% 35%,#000,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 35%,#000,transparent 78%);}
+.dn-appr-panel>*{position:relative;z-index:1;}
 
-/* the drawn last-mile rail, anchored to the panel's left edge */
-.dn-appr-rail{position:absolute;left:clamp(1.5rem,3vw,2.2rem);top:0;bottom:0;width:24px;pointer-events:none;}
+/* the drawn last-mile rail, anchored to the panel's left edge, now with waypoints */
+.dn-appr-rail{position:absolute;left:clamp(1.5rem,3vw,2.25rem);top:0;bottom:0;width:24px;pointer-events:none;z-index:1;}
 .dn-appr-rail svg{width:24px;height:100%;display:block;}
 .dn-appr-line{fill:none;stroke:var(--dn-day);stroke-width:2;stroke-linecap:round;
-  stroke-dasharray:240;stroke-dashoffset:240;animation:dn-draw 1.6s cubic-bezier(.16,1,.3,1) forwards;}
+  stroke-dasharray:240;stroke-dashoffset:240;animation:dn-draw 1.7s cubic-bezier(.16,1,.3,1) forwards;}
 @keyframes dn-draw{to{stroke-dashoffset:0;}}
 .dn-appr-start{fill:var(--dn-day);}
+.dn-appr-way{fill:var(--dn-near-black);stroke:var(--dn-day);stroke-width:1.6;opacity:0;animation:dn-way .4s ease forwards;}
+.dn-appr-way.w1{animation-delay:.7s;} .dn-appr-way.w2{animation-delay:1.05s;}
+@keyframes dn-way{to{opacity:1;}}
 .dn-appr-mode-ic{fill:none;stroke:var(--dn-day);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
 
-.dn-appr-eyebrow{display:flex;align-items:center;gap:.55rem;font-size:.72rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:1.25rem;}
-.dn-appr-eyebrow .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--dn-mist),transparent);}
+.dn-appr-eyebrow{display:flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:1.35rem;}
+.dn-appr-eyebrow .num{font-family:var(--font-display);color:var(--dn-day);letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;}
+.dn-appr-eyebrow .ln{flex:1;height:1px;background:var(--dn-mist);}
 
-/* segmented foot/car toggle */
+/* segmented foot/car toggle, with a live distance readout */
 .dn-appr-seg{display:inline-flex;border:1px solid var(--dn-mist);border-radius:999px;padding:3px;gap:3px;
-  background:rgba(0,0,0,.25);width:100%;}
-.dn-appr-seg button{flex:1;min-height:44px;padding:.5rem 1.1rem;border:0;border-radius:999px;background:transparent;
+  background:rgba(0,0,0,.28);width:100%;}
+.dn-appr-seg button{flex:1;min-height:46px;padding:.5rem .9rem;border:0;border-radius:999px;background:transparent;
   color:var(--dn-bone-dim);font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;
   display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
   transition:color .3s,background .3s,box-shadow .3s;}
 .dn-appr-seg button svg{width:18px;height:18px;flex:none;}
-.dn-appr-seg button[aria-pressed=true]{color:var(--dn-near-black);background:var(--dn-day);box-shadow:0 0 30px rgba(248,199,96,.45);}
+.dn-appr-seg button[aria-pressed=true]{color:var(--dn-near-black);background:var(--dn-day);box-shadow:0 0 30px rgba(248,199,96,.42);}
 .dn-appr-seg button[aria-pressed=true] .dn-appr-mode-ic{stroke:var(--dn-near-black);}
 .dn-appr-seg button[aria-pressed=false]:hover{color:var(--dn-bone);}
 
+/* the headline distance readout that changes with the mode */
+.dn-appr-read{display:flex;align-items:baseline;gap:.6rem;margin:1.4rem 0 .25rem;
+  animation:dn-fade .45s ease both;}
+.dn-appr-read .big{font-family:var(--font-display);font-weight:560;font-size:clamp(2rem,4.5vw,2.55rem);
+  line-height:1;letter-spacing:-.02em;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
+.dn-appr-read .unit{font-family:var(--font-display);font-weight:500;font-size:1.05rem;color:var(--dn-day);}
+.dn-appr-readsub{margin:0;color:var(--dn-bone-faint);font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;animation:dn-fade .45s ease both;}
+
+/* the cue list: a typeset transit table, not plain bullets */
+.dn-appr-cues{list-style:none;margin:1.5rem 0 0;padding:1.4rem 0 0;border-top:1px solid var(--dn-mist);
+  display:flex;flex-direction:column;animation:dn-fade .5s ease both;}
+@keyframes dn-fade{from{opacity:0;transform:translateY(6px);}}
+.dn-appr-cues li{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:.8rem;
+  padding:.62rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);font-size:.97rem;}
+.dn-appr-cues li:last-child{border-bottom:0;padding-bottom:0;}
+/* characterful mode badge instead of a plain dot */
+.dn-appr-cues .tag{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-night-soft);
+  border:1px solid rgba(106,168,242,.4);border-radius:999px;padding:.22rem .55rem;white-space:nowrap;
+  align-self:center;}
+.dn-appr-cues .cue{min-width:0;}
+.dn-appr-cues .cue b{color:var(--dn-bone);font-weight:600;font-variant-numeric:tabular-nums;}
+
 /* arrival block: pulsing blue pin + NAP */
 .dn-appr-arrival{margin-top:auto;padding-top:2rem;}
-.dn-appr-pinrow{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;}
+.dn-appr-pinrow{display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem;}
 .dn-appr-pin{width:14px;height:14px;border-radius:50%;background:var(--dn-night);flex:none;
   box-shadow:0 0 0 4px rgba(69,144,236,.2),0 0 14px var(--dn-night);animation:dn-pulse 2.4s ease-in-out infinite;}
 @keyframes dn-pulse{50%{box-shadow:0 0 0 7px rgba(69,144,236,.12),0 0 22px var(--dn-night);}}
-.dn-appr-name{font-family:var(--font-display);font-weight:560;font-size:1.18rem;letter-spacing:-.01em;}
-.dn-appr-addr{margin:.15rem 0 0;color:var(--dn-bone-dim);font-size:1rem;}
-
-.dn-appr-cues{list-style:none;margin:1.25rem 0 0;padding:0;display:flex;flex-direction:column;gap:.85rem;
-  animation:dn-fade .5s ease both;}
-@keyframes dn-fade{from{opacity:0;transform:translateY(6px);}}
-.dn-appr-cues li{display:flex;align-items:flex-start;gap:.7rem;color:var(--dn-bone-dim);font-size:1rem;}
-.dn-appr-cues li .b{width:7px;height:7px;border-radius:50%;background:var(--dn-night);margin-top:.55rem;flex:none;
-  box-shadow:0 0 8px rgba(69,144,236,.5);}
+.dn-appr-name{font-family:var(--font-display);font-weight:560;font-size:1.2rem;letter-spacing:-.012em;}
+.dn-appr-addr{margin:.15rem 0 0;padding-left:calc(14px + .7rem);color:var(--dn-bone-dim);font-size:1rem;line-height:1.66;}
+.dn-appr-addr .pc{color:var(--dn-bone);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+/* contact line, 24/7 live dot, mirrors the practice tone */
+.dn-appr-call{margin:1.15rem 0 0;padding-left:calc(14px + .7rem);}
+.dn-appr-call a{display:inline-flex;flex-direction:column;gap:.18rem;text-decoration:none;
+  color:var(--dn-bone-dim);transition:color .3s;}
+.dn-appr-call a:hover{color:var(--dn-day);}
+.dn-appr-call .lbl{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--font-body);
+  font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-appr-call .lbl .live{width:6px;height:6px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 8px var(--dn-day);}
+.dn-appr-call .tel{font-family:var(--font-display);font-weight:600;font-size:1.18rem;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;}
 
 /* ============ Responsive ============ */
 @media(max-width:860px){
   .dn-areas-map{grid-template-columns:1fr;}
   .dn-appr-panel{padding-left:clamp(3.5rem,12vw,4.25rem);}
 }
+@media(max-width:560px){
+  .dn-areas-grid{grid-template-columns:1fr;}
+}
 @media(max-width:480px){
   .dn-areas-col .dn-areas-lead{font-size:1.02rem;}
-  .dn-appr-name{font-size:1.08rem;}
-  .dn-appr-seg button{padding:.5rem .6rem;font-size:.9rem;}
+  .dn-appr-name{font-size:1.1rem;}
+  .dn-appr-seg button{padding:.5rem .55rem;font-size:.88rem;gap:.4rem;}
+  .dn-appr-cues li{grid-template-columns:1fr;row-gap:.3rem;}
+  .dn-appr-cues .tag{justify-self:start;}
 }
 
 @media(prefers-reduced-motion:reduce){
   .dn-appr-line{stroke-dashoffset:0;animation:none;}
-  .dn-appr-pin,.dn-appr-cues,.dn-area-chip{animation:none;}
+  .dn-appr-way{opacity:1;animation:none;}
+  .dn-appr-pin,.dn-appr-cues,.dn-appr-read,.dn-appr-readsub,.dn-area-chip{animation:none;}
+  .dn-area-chip .line path{transition:stroke .3s;}
 }
 </style>
 </head>
@@ -134,35 +216,44 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
       <div class="dn-areas-col">
         <p class="dn-areas-lead">
           Patients come to us from right across Glasgow. The practice sits in Merchant City,
-          minutes from the stations and easy to reach by car — day or night.
+          minutes from the stations and easy to reach by car, day or night.
         </p>
-        <div class="dn-areas-grid">
-          <span class="dn-area-chip">Glasgow City Centre</span>
-          <span class="dn-area-chip">Merchant City</span>
-          <span class="dn-area-chip">Trongate</span>
-          <span class="dn-area-chip">West End</span>
-          <span class="dn-area-chip">Finnieston</span>
-          <span class="dn-area-chip">Dennistoun</span>
-          <span class="dn-area-chip">East End</span>
-          <span class="dn-area-chip">Southside</span>
-          <span class="dn-area-chip">Partick</span>
-          <span class="dn-area-chip">Hillhead</span>
-          <span class="dn-area-chip">Govanhill</span>
-          <span class="dn-area-chip">Shawlands</span>
+
+        <div class="tp-index-cap">
+          <span class="t">Approaches we serve</span>
+          <span class="c">12 districts</span>
         </div>
-        <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true"> →</span></a>
+
+        <div class="dn-areas-grid" role="list" aria-label="Glasgow areas we serve">
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G1</span><span class="nm">Glasgow City Centre</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G1</span><span class="nm">Merchant City</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G1</span><span class="nm">Trongate</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G3</span><span class="nm">West End</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G3</span><span class="nm">Finnieston</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G31</span><span class="nm">Dennistoun</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G40</span><span class="nm">East End</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G41</span><span class="nm">Southside</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G11</span><span class="nm">Partick</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G12</span><span class="nm">Hillhead</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G42</span><span class="nm">Govanhill</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+          <span class="dn-area-chip" role="listitem"><span class="bear" aria-hidden="true">G41</span><span class="nm">Shawlands</span><svg class="line" viewBox="0 0 22 10" aria-hidden="true"><path d="M2 8 L20 2"/><circle cx="20" cy="2" r="2"/></svg></span>
+        </div>
+
+        <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true">&nbsp;→</span></a>
       </div>
 
-      <aside class="dn-appr-panel">
-        <!-- last-mile rail: gold line draws from the top edge down to the pin -->
+      <aside class="dn-appr-panel" aria-label="The last mile to the practice">
+        <!-- last-mile rail: gold line draws from the top edge down to the pin, with two waypoints -->
         <div class="dn-appr-rail" aria-hidden="true">
           <svg viewBox="0 0 24 200" preserveAspectRatio="none">
             <circle class="dn-appr-start" cx="12" cy="6" r="3.2"></circle>
             <path id="apprLine" class="dn-appr-line" d="M12 6 V152"></path>
+            <circle class="dn-appr-way w1" cx="12" cy="58" r="3"></circle>
+            <circle class="dn-appr-way w2" cx="12" cy="106" r="3"></circle>
           </svg>
         </div>
 
-        <p class="dn-appr-eyebrow"><span>The last mile</span><span class="ln"></span></p>
+        <p class="dn-appr-eyebrow"><span class="num">01</span><span>The last mile</span><span class="ln"></span></p>
 
         <div class="dn-appr-seg" role="group" aria-label="Travel mode">
           <button type="button" id="modeFoot" aria-pressed="true" data-mode="foot">
@@ -175,18 +266,32 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
           </button>
         </div>
 
+        <!-- live distance readout, swaps with the mode -->
+        <div class="dn-appr-read" id="apprRead">
+          <span class="big" id="apprBig">3 min</span>
+          <span class="unit" id="apprUnit">on foot</span>
+        </div>
+        <p class="dn-appr-readsub" id="apprSub">From Queen Street station</p>
+
+        <ul class="dn-appr-cues" id="apprCues">
+          <li><span class="tag">Rail</span><span class="cue"><b>3 min</b> walk from Queen Street station</span></li>
+          <li><span class="tag">Rail</span><span class="cue"><b>5 min</b> walk from Buchanan Street</span></li>
+          <li><span class="tag">Door</span><span class="cue">Step-free entrance right on Hutcheson St</span></li>
+        </ul>
+
         <div class="dn-appr-arrival">
           <div class="dn-appr-pinrow">
             <span class="dn-appr-pin" aria-hidden="true"></span>
             <span class="dn-appr-name">Day Night Dental</span>
           </div>
-          <p class="dn-appr-addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
+          <p class="dn-appr-addr">80 Hutcheson St<br>Merchant City, Glasgow <span class="pc">G1 1SH</span></p>
 
-          <ul class="dn-appr-cues" id="apprCues">
-            <li><span class="b"></span>3 min walk from Queen Street station</li>
-            <li><span class="b"></span>5 min walk from Buchanan Street</li>
-            <li><span class="b"></span>Step-free door right on Hutcheson St</li>
-          </ul>
+          <p class="dn-appr-call">
+            <a href="tel:+441415486548">
+              <span class="lbl"><span class="live" aria-hidden="true"></span>Call, open 24/7</span>
+              <span class="tel">0141 548 6548</span>
+            </a>
+          </p>
         </div>
       </aside>
     </div>
@@ -195,41 +300,66 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 
 <script>
 (function(){
-  var FOOT_CUES = [
-    '3 min walk from Queen Street station',
-    '5 min walk from Buchanan Street',
-    'Step-free door right on Hutcheson St'
-  ];
-  var CAR_CUES = [
-    'Parking on Hutcheson St & Albion St',
-    '2 min from the M8 (Junction 15)',
-    'Drop-off bay at the door, day or night'
-  ];
-  var cues = { foot: FOOT_CUES, car: CAR_CUES };
+  var DATA = {
+    foot: {
+      big: '3 min', unit: 'on foot', sub: 'From Queen Street station',
+      cues: [
+        ['Rail', '<b>3 min</b> walk from Queen Street station'],
+        ['Rail', '<b>5 min</b> walk from Buchanan Street'],
+        ['Door', 'Step-free entrance right on Hutcheson St']
+      ]
+    },
+    car: {
+      big: '2 min', unit: 'off the M8', sub: 'From Junction 15',
+      cues: [
+        ['Park', 'On-street parking on Hutcheson St &amp; Albion St'],
+        ['Road', '<b>2 min</b> from the M8 at Junction 15'],
+        ['Door', 'Drop-off at the door, day or night']
+      ]
+    }
+  };
 
   var btns = Array.prototype.slice.call(document.querySelectorAll('.dn-appr-seg button'));
   var list = document.getElementById('apprCues');
   var line = document.getElementById('apprLine');
+  var big  = document.getElementById('apprBig');
+  var unit = document.getElementById('apprUnit');
+  var sub  = document.getElementById('apprSub');
+  var read = document.getElementById('apprRead');
+
+  function replay(el){
+    if(!el) return;
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = '';
+  }
 
   function setMode(mode){
+    var d = DATA[mode];
     btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.mode === mode)); });
 
-    // cross-fade + rebuild the cue list
+    big.textContent = d.big;
+    unit.textContent = d.unit;
+    sub.textContent = d.sub;
+
     list.innerHTML = '';
-    cues[mode].forEach(function(text){
+    d.cues.forEach(function(c){
       var li = document.createElement('li');
-      var dot = document.createElement('span');
-      dot.className = 'b';
-      li.appendChild(dot);
-      li.appendChild(document.createTextNode(text));
+      var tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = c[0];
+      var cue = document.createElement('span');
+      cue.className = 'cue';
+      cue.innerHTML = c[1];
+      li.appendChild(tag);
+      li.appendChild(cue);
       list.appendChild(li);
     });
-    // replay the fade
-    list.style.animation = 'none';
-    void list.offsetWidth;
-    list.style.animation = '';
 
-    // replay the line draw
+    replay(read);
+    replay(sub);
+    replay(list);
+
     if (line){
       line.style.animation = 'none';
       void line.getBoundingClientRect();

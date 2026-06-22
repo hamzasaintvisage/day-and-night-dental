@@ -27,124 +27,231 @@ a{color:inherit;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
 em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>The Glasgow Index — Where We Are · Day Night Dental</title>
+<title>The Glasgow Index - Where We Are · Day Night Dental</title>
 <style>
 /* ============================================================
-   THE GLASGOW INDEX — editorial gazetteer
-   A typeset masthead + indexed list of every Glasgow district.
-   Pure typography: ordinal numerals, hairline rules, a colophon.
+   THE GLASGOW INDEX - editorial gazetteer  ·  rev. II
+   A typeset masthead and an indexed list of every Glasgow
+   district. Pure typography: a folio line, ordinal numerals,
+   running leaders, hairline rules and an engraved colophon.
+   Solid gold/blue only. No gradients. No em dashes.
    ============================================================ */
 
 .dn-section{padding-block:clamp(4rem,8vw,8rem);}
 .dn-container{width:min(var(--container),100% - 2.5rem);margin-inline:auto;}
 
-/* --- masthead head --- */
-.tp-section-head{max-width:62%;}
+/* ---------------- masthead ---------------- */
+.gi-masthead{position:relative;}
+
+/* folio / edition line that runs the full measure above the title */
+.gi-folio{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin:0 0 1.5rem;
+  font-size:.6rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-variant-numeric:tabular-nums;
+}
+.gi-folio .rule{flex:1;height:1px;background:var(--dn-mist);}
+.gi-folio .vol{color:var(--dn-bone-dim);}
+.gi-folio .vol b{color:var(--dn-day);font-weight:600;font-family:var(--font-display);letter-spacing:.04em;}
+
+.tp-section-head{max-width:64%;}
 .dn-display{
   font-family:var(--font-display);
   font-weight:600;
-  font-size:clamp(2.3rem,5.6vw,4.4rem);
-  line-height:1.02;
-  letter-spacing:-0.015em;
-  margin:1.4rem 0 0;
+  font-size:clamp(2.3rem,5.6vw,4.45rem);
+  line-height:1.0;
+  letter-spacing:-0.02em;
+  margin:1.1rem 0 0;
   text-wrap:balance;
 }
 .dn-display em.dn-hl-gold{font-weight:600;}
 
-/* --- the spread --- */
+/* the spread */
 .dn-areas-map{
   display:grid;
   grid-template-columns:1.62fr 1fr;
-  gap:clamp(2.5rem,6vw,5rem);
+  gap:clamp(2.5rem,6vw,5.25rem);
   align-items:start;
-  margin-top:clamp(2.5rem,5vw,3.75rem);
+  margin-top:clamp(2.75rem,5vw,4rem);
 }
 
-/* --- standfirst / lead --- */
+/* standfirst / lead, set as a drop-cap editorial standfirst */
 .dn-areas-lead{
-  max-width:46ch;
-  padding-top:1.5rem;
-  border-top:1px solid var(--dn-day);
+  max-width:48ch;
+  padding-top:1.4rem;
+  border-top:2px solid var(--dn-day);
   color:var(--dn-bone-dim);
-  font-size:1.05rem;
+  font-size:1.08rem;
+  line-height:1.66;
   margin:0;
 }
+.dn-areas-lead::first-letter{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:3.05rem;
+  line-height:.82;
+  float:left;
+  margin:.32rem .55rem 0 0;
+  color:var(--dn-day);
+}
 
-/* --- indexed gazetteer --- */
+/* index caption above the gazetteer */
+.gi-index-cap{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:1rem;
+  margin:2.5rem 0 .5rem;
+  padding-bottom:.6rem;
+  border-bottom:1px solid var(--dn-mist);
+}
+.gi-index-cap .t{
+  font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dn-bone-faint);
+}
+.gi-index-cap .c{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.95rem;
+  color:var(--dn-day);
+  font-variant-numeric:tabular-nums;
+}
+
+/* indexed gazetteer */
 .dn-areas-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  column-gap:2.5rem;
-  margin-top:2.25rem;
+  column-gap:clamp(2rem,4vw,3.25rem);
+  margin-top:.25rem;
   counter-reset:dn-idx;
 }
 .dn-area-chip{
+  position:relative;
   display:flex;
   align-items:baseline;
-  gap:1rem;
-  min-height:44px;
-  padding:0.55rem 0;
+  gap:.9rem;
+  min-height:46px;
+  padding:.6rem .65rem .6rem .25rem;
+  margin-inline:-.25rem;
   border:0;
   border-bottom:1px solid var(--dn-mist);
-  font-size:1.05rem;
+  border-radius:6px;
+  font-size:1.06rem;
   color:var(--dn-bone);
   text-decoration:none;
-  transition:color .3s,border-color .3s,box-shadow .3s,padding-left .3s;
+  transition:color .3s,border-color .3s,background-color .3s,padding-left .3s;
 }
+/* ordinal leading-zero numeral, set in display face */
 .dn-area-chip::before{
   counter-increment:dn-idx;
   content:counter(dn-idx,decimal-leading-zero);
   font-family:var(--font-display);
-  font-size:1.5rem;
+  font-size:1.3rem;
   font-weight:500;
   color:var(--dn-bone-faint);
   font-feature-settings:"tnum";
-  min-width:2.2ch;
+  min-width:2.4ch;
+  transition:color .3s,transform .3s;
+}
+.dn-area-chip .nm{flex:none;letter-spacing:-.005em;}
+/* running leader dots that bridge name to the gold ward letter */
+.dn-area-chip .lead{
+  flex:1;
+  align-self:center;
+  height:1px;
+  margin-bottom:.18em;
+  background-image:radial-gradient(currentColor 1px,transparent 1.4px);
+  background-size:6px 2px;
+  background-repeat:repeat-x;
+  background-position:left center;
+  color:var(--dn-mist);
   transition:color .3s;
 }
-.dn-area-chip .nm{flex:1;}
+/* characterful ward mark instead of a plain tick/chip */
+.dn-area-chip .ward{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.92rem;
+  line-height:1;
+  color:var(--dn-bone-faint);
+  border:1px solid var(--dn-mist);
+  border-radius:50%;
+  width:1.9em;height:1.9em;
+  display:grid;place-items:center;
+  flex:none;
+  font-variant-numeric:tabular-nums;
+  transition:color .3s,border-color .3s,box-shadow .3s;
+}
 .dn-area-chip:hover,
 .dn-area-chip:focus-visible{
   color:var(--dn-day);
   border-color:var(--dn-day);
-  box-shadow:0 0 0 1px var(--dn-day),0 0 22px -6px var(--dn-day);
+  background:rgba(248,199,96,.05);
+  padding-left:.55rem;
   outline:none;
 }
 .dn-area-chip:hover::before,
-.dn-area-chip:focus-visible::before{color:var(--dn-day);}
+.dn-area-chip:focus-visible::before{color:var(--dn-day);transform:translateX(-1px);}
+.dn-area-chip:hover .lead,
+.dn-area-chip:focus-visible .lead{color:rgba(248,199,96,.5);}
+.dn-area-chip:hover .ward,
+.dn-area-chip:focus-visible .ward{
+  color:var(--dn-day);
+  border-color:var(--dn-day);
+  box-shadow:0 0 14px -4px var(--dn-day);
+}
 
 /* read-more ghost link */
-.dn-areas-more{margin-top:2.5rem;}
+.dn-areas-more{margin-top:2.75rem;}
 .tp-hero-ghost{
   display:inline-flex;
   align-items:center;
-  gap:.5rem;
+  gap:.55rem;
   min-height:44px;
   padding:.4rem 0;
   font-family:var(--font-display);
-  font-size:1.05rem;
+  font-size:1.06rem;
   color:var(--dn-bone);
   text-decoration:none;
   border-bottom:1px solid var(--dn-day);
   transition:color .3s,gap .3s;
 }
 .tp-hero-ghost span{color:var(--dn-day);transition:transform .3s;display:inline-block;}
-.tp-hero-ghost:hover{color:var(--dn-day);gap:.85rem;}
+.tp-hero-ghost:hover{color:var(--dn-day);gap:.9rem;}
+.tp-hero-ghost:hover span{transform:translateX(3px);}
 
-/* --- colophon / location card --- */
+/* ---------------- colophon / location card ---------------- */
 .dn-areas-panel{
-  padding:0 0 0 clamp(2rem,3vw,2.75rem);
-  border-left:1px solid var(--dn-day);
+  position:relative;
+  padding:0 0 0 clamp(2rem,3vw,2.85rem);
+  border-left:1px solid var(--dn-mist);
   border-radius:0;
   background:transparent;
 }
+/* a gold tab marks the head of the colophon, echoing the masthead rule */
+.dn-areas-panel::before{
+  content:'';
+  position:absolute;
+  left:-1px;top:0;
+  width:2px;height:3.4rem;
+  background:var(--dn-day);
+}
 .dn-areas-kicker{
-  font-size:.62rem;
-  letter-spacing:.22em;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-size:.6rem;
+  letter-spacing:.28em;
   text-transform:uppercase;
   color:var(--dn-bone-faint);
-  margin:0 0 1.25rem;
+  margin:0 0 1.35rem;
+  font-variant-numeric:tabular-nums;
 }
+.dn-areas-kicker .ref{color:var(--dn-day);font-family:var(--font-display);font-weight:600;letter-spacing:.04em;}
 .dn-areas-pin{
   display:flex;
   align-items:center;
@@ -158,49 +265,64 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 .dn-areas-pin .nm{
   font-family:var(--font-display);
   font-weight:600;
-  font-size:1.5rem;
-  line-height:1.1;
+  font-size:1.55rem;
+  line-height:1.08;
+  letter-spacing:-.015em;
 }
+/* engraved address with a leading typeset slug */
 .dn-areas-addr{
-  margin:.85rem 0 0;
+  margin:.95rem 0 0;
+  padding-left:calc(9px + .7rem);
   color:var(--dn-bone-dim);
-  font-size:1.02rem;
-  line-height:1.7;
+  font-size:1.04rem;
+  line-height:1.72;
 }
+.dn-areas-addr .pc{color:var(--dn-bone);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+
 .dn-areas-contact{
-  margin:1.25rem 0 0;
+  margin:1.5rem 0 0;
+  padding-left:calc(9px + .7rem);
   display:flex;
   flex-direction:column;
-  gap:.35rem;
-  font-size:.95rem;
+  gap:.55rem;
+  font-size:.96rem;
 }
 .dn-areas-contact a{
   color:var(--dn-bone-dim);
   text-decoration:none;
   display:block;
   min-height:24px;
+  font-family:var(--font-display);
+  font-size:1.06rem;
   transition:color .3s;
 }
 .dn-areas-contact a:hover{color:var(--dn-day);}
 .dn-areas-contact .lbl{
-  display:block;
-  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--dn-bone-faint);margin-bottom:.15rem;
+  display:flex;
+  align-items:center;
+  gap:.45rem;
+  font-family:var(--font-body);
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dn-bone-faint);margin-bottom:.2rem;
+}
+.dn-areas-contact .lbl .live{
+  width:6px;height:6px;border-radius:50%;background:var(--dn-day);
+  box-shadow:0 0 8px var(--dn-day);
 }
 
-/* travel cues as captioned list with tabular numerals */
+/* travel cues as a typeset transit table */
 .dn-areas-land{
   list-style:none;
-  margin:1.75rem 0 0;
-  padding:1.5rem 0 0;
+  margin:1.85rem 0 0;
+  padding:1.6rem 0 0;
   border-top:1px solid var(--dn-mist);
 }
 .dn-areas-land li{
   display:grid;
-  grid-template-columns:auto 1fr;
+  grid-template-columns:auto auto 1fr;
   align-items:baseline;
-  gap:1rem;
-  padding:.7rem 0;
+  gap:.85rem;
+  padding:.72rem 0;
   border-bottom:1px solid var(--dn-mist);
   font-variant-numeric:tabular-nums;
 }
@@ -208,9 +330,22 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 .dn-areas-land .dur{
   font-family:var(--font-display);
   font-weight:600;
-  font-size:1.15rem;
+  font-size:1.18rem;
   color:var(--dn-day);
   font-feature-settings:"tnum";
+  white-space:nowrap;
+  min-width:3.4ch;
+}
+/* characterful mode glyph: walk / park, not a generic bullet */
+.dn-areas-land .mode{
+  font-size:.56rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  border:1px solid var(--dn-mist);
+  border-radius:999px;
+  padding:.18rem .5rem;
+  align-self:center;
   white-space:nowrap;
 }
 .dn-areas-land .cue{color:var(--dn-bone-dim);font-size:.98rem;}
@@ -218,16 +353,21 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 /* ---------------- mobile ---------------- */
 @media(max-width:820px){
   .tp-section-head{max-width:100%;}
-  .dn-areas-map{grid-template-columns:1fr;gap:2.25rem;}
+  .dn-areas-map{grid-template-columns:1fr;gap:2.5rem;}
   .dn-areas-grid{grid-template-columns:1fr;}
   .dn-areas-panel{
-    padding:1.75rem 0 0;
+    padding:1.85rem 0 0;
     border-left:0;
-    border-top:1px solid var(--dn-day);
+    border-top:1px solid var(--dn-mist);
   }
+  .dn-areas-panel::before{left:0;top:-1px;width:3.4rem;height:2px;}
 }
 @media(max-width:420px){
-  .dn-areas-pin .nm{font-size:1.3rem;}
+  .gi-folio{font-size:.55rem;letter-spacing:.24em;gap:.7rem;}
+  .dn-area-chip{font-size:1rem;gap:.7rem;}
+  .dn-areas-pin .nm{font-size:1.32rem;}
+  .dn-areas-land li{grid-template-columns:auto 1fr;}
+  .dn-areas-land .mode{grid-column:1 / -1;justify-self:start;margin-top:.1rem;}
 }
 </style>
 </head>
@@ -237,7 +377,12 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <main>
   <section id="areas" class="dn-section dn-areas">
     <div class="dn-container">
-      <div class="tp-section-head">
+      <div class="gi-masthead tp-section-head">
+        <p class="gi-folio">
+          <span class="vol">The Glasgow Index <b>·</b> Vol. G1</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span>Open 24 Hours</span>
+        </p>
         <span class="dn-eyebrow dn-pill day">Where We Are</span>
         <h2 class="dn-display">A 24-hour dentist in the heart of <em class="dn-hl-gold">Merchant City</em></h2>
       </div>
@@ -246,22 +391,27 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
         <div class="dn-areas-col">
           <p class="dn-areas-lead">
             Patients come to us from right across Glasgow. The practice sits in Merchant City,
-            minutes from the stations and easy to reach by car &mdash; day or night.
+            minutes from the stations and easy to reach by car, day or night.
           </p>
 
+          <div class="gi-index-cap">
+            <span class="t">Index of districts served</span>
+            <span class="c">12 entries</span>
+          </div>
+
           <div class="dn-areas-grid" role="list" aria-label="Glasgow areas we serve">
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Glasgow City Centre</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Merchant City</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Trongate</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">West End</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Finnieston</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Dennistoun</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">East End</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Southside</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Partick</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Hillhead</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Govanhill</span></a>
-            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Shawlands</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Glasgow City Centre</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G1</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Merchant City</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G1</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Trongate</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G1</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">West End</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G3</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Finnieston</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G3</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Dennistoun</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G31</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">East End</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G40</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Southside</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G41</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Partick</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G11</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Hillhead</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G12</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Govanhill</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G42</span></a>
+            <a class="dn-area-chip" role="listitem" href="/areas-served/"><span class="nm">Shawlands</span><span class="lead" aria-hidden="true"></span><span class="ward" aria-hidden="true">G41</span></a>
           </div>
 
           <p class="dn-areas-more">
@@ -270,25 +420,25 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
         </div>
 
         <aside class="dn-areas-panel" aria-label="Find us">
-          <p class="dn-areas-kicker">Find us</p>
+          <p class="dn-areas-kicker"><span>Colophon</span><span class="ref">No. 80</span></p>
           <div class="dn-areas-pin">
             <span class="dot" aria-hidden="true"></span>
             <span class="nm">Day Night Dental</span>
           </div>
           <p class="dn-areas-addr">
             80 Hutcheson St<br>
-            Merchant City, Glasgow G1 1SH
+            Merchant City, Glasgow <span class="pc">G1 1SH</span>
           </p>
 
           <div class="dn-areas-contact">
-            <a href="tel:+441415486548"><span class="lbl">Call &mdash; open 24/7</span>0141 548 6548</a>
+            <a href="tel:+441415486548"><span class="lbl"><span class="live" aria-hidden="true"></span>Call, open 24/7</span>0141 548 6548</a>
             <a href="mailto:reception@daynightdental.co.uk"><span class="lbl">Email</span>reception@daynightdental.co.uk</a>
           </div>
 
           <ul class="dn-areas-land">
-            <li><span class="dur">3 min</span><span class="cue">walk from Queen Street station</span></li>
-            <li><span class="dur">5 min</span><span class="cue">walk from Buchanan Street</span></li>
-            <li><span class="dur">Parking</span><span class="cue">on Hutcheson St &amp; Albion St</span></li>
+            <li><span class="dur">3 min</span><span class="mode">Walk</span><span class="cue">from Queen Street station</span></li>
+            <li><span class="dur">5 min</span><span class="mode">Walk</span><span class="cue">from Buchanan Street</span></li>
+            <li><span class="dur">Car</span><span class="mode">Park</span><span class="cue">on Hutcheson St &amp; Albion St</span></li>
           </ul>
         </aside>
       </div>

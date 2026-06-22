@@ -22,7 +22,7 @@ img{max-width:100%;display:block;} a{color:inherit;}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>Where We Are — The Atelier Address · Day Night Dental</title>
+<title>Where We Are - The Atelier Address · Day Night Dental</title>
 <style>
 /* ===== Section scaffolding ===== */
 .dn-section{padding:clamp(3.5rem,8vw,7rem) 0;}
@@ -33,44 +33,82 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 /* ===== The engraved maison plaque ===== */
 .dn-plaque{
   position:relative;overflow:hidden;
-  background:var(--dn-charcoal);
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(248,199,96,.05), transparent 52%),
+    var(--dn-charcoal);
   border:1px solid var(--dn-mist);
   border-radius:var(--dn-r-card);
-  padding:clamp(2rem,5vw,3.5rem);
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);
-  box-shadow:0 40px 90px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.03);
+  padding:clamp(2.1rem,5vw,3.75rem);
+  display:grid;grid-template-columns:1.02fr .98fr;gap:0;
+  box-shadow:0 40px 90px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.04);
 }
-/* a letterpress baseline hairline framing the card's lower edge */
-.dn-plaque::after{
-  content:'';position:absolute;left:clamp(2rem,5vw,3.5rem);right:clamp(2rem,5vw,3.5rem);
-  bottom:clamp(1.2rem,3vw,2rem);height:1px;background:var(--dn-mist);pointer-events:none;
+/* a fine gold filet just inside the maison frame */
+.dn-plaque::before{
+  content:'';position:absolute;inset:clamp(.85rem,2.2vw,1.35rem);
+  border:1px solid rgba(248,199,96,.16);border-radius:calc(var(--dn-r-card) - 6px);
+  pointer-events:none;
 }
 .dn-plaque__initial{
-  position:absolute;right:-2%;top:-8%;
+  position:absolute;right:-2.5%;top:-9%;
   font-family:var(--font-display);font-weight:700;
   font-size:min(34vw,420px);line-height:1;
   color:rgba(255,255,255,0.035);pointer-events:none;user-select:none;
 }
 
-/* LEFT — the address plate */
-.dn-plaque__plate{position:relative;align-self:start;}
-.dn-plaque__kicker{
-  position:relative;display:block;
-  font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--dn-bone-faint);margin-bottom:1rem;font-weight:600;
+/* the spine that divides plate from registry, like a fold in heavy stock */
+.dn-plaque__col{position:relative;z-index:1;padding:clamp(.4rem,1.6vw,1.1rem) clamp(1.4rem,3.4vw,2.6rem);}
+.dn-plaque__col + .dn-plaque__col{
+  border-left:1px solid var(--dn-mist);
+}
+
+/* engraved section label, shared */
+.dn-engraved{
+  position:relative;display:flex;align-items:center;gap:.65rem;
+  font-size:.6rem;letter-spacing:.36em;text-transform:uppercase;
+  color:var(--dn-bone-faint);font-weight:700;margin:0 0 1.15rem;
+}
+.dn-engraved::before{
+  content:'';width:16px;height:1px;background:var(--dn-day);flex:none;
+  box-shadow:0 0 8px -1px var(--dn-day);
+}
+.dn-engraved::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg, var(--dn-mist), transparent);
+}
+
+/* LEFT: the address plate */
+.dn-plaque__plate{align-self:start;}
+.dn-plaque__provenance{
+  display:block;font-family:var(--font-display);font-style:italic;
+  font-weight:400;font-size:.78rem;letter-spacing:.02em;
+  color:var(--dn-day);margin:0 0 .4rem;
 }
 .dn-plaque__name{
-  position:relative;margin:0;
-  font-family:var(--font-display);font-weight:700;
-  font-size:clamp(1.6rem,3vw,2.3rem);color:var(--dn-bone);line-height:1.1;
+  margin:0;font-family:var(--font-display);font-weight:700;
+  font-size:clamp(1.7rem,3.1vw,2.45rem);color:var(--dn-bone);
+  line-height:1.06;letter-spacing:-.012em;
 }
 .dn-plaque__addr{
-  position:relative;margin:.9rem 0 0;font-style:normal;
-  color:var(--dn-bone-dim);font:.82rem/1.9 var(--font-body);
-  letter-spacing:.18em;text-transform:uppercase;
+  margin:1.05rem 0 0;font-style:normal;
+  color:var(--dn-bone-dim);font:.8rem/2 var(--font-body);
+  letter-spacing:.2em;text-transform:uppercase;
 }
-.dn-plaque__seal{display:block;width:54px;height:2px;margin-top:1.4rem;background:var(--dn-day);}
-.dn-plaque__foot{position:relative;margin-top:2rem;}
+.dn-plaque__addr b{color:var(--dn-bone);font-weight:600;}
+/* the couture seal: a hairline gold lozenge with a centred point */
+.dn-plaque__seal{
+  display:flex;align-items:center;gap:.7rem;margin-top:1.5rem;
+}
+.dn-plaque__seal .rule{height:1px;width:46px;background:var(--dn-day);}
+.dn-plaque__seal .mark{
+  font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--dn-day);font-weight:700;
+}
+.dn-plaque__seal .rule.short{width:14px;opacity:.5;}
+.dn-plaque__note{
+  margin:1.35rem 0 0;color:var(--dn-bone-faint);
+  font-size:.82rem;line-height:1.7;max-width:30ch;
+}
+.dn-plaque__foot{margin-top:1.7rem;}
 .tp-hero-ghost{
   display:inline-flex;align-items:center;gap:.4em;
   color:var(--dn-bone);text-decoration:none;font-size:.84rem;
@@ -82,48 +120,84 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 .tp-hero-ghost:hover{color:var(--dn-day);border-color:var(--dn-day);gap:.7em;}
 .tp-hero-ghost:hover span{transform:translateX(3px);}
 
-/* RIGHT — Districts Served registry */
-.dn-registry-head{
-  position:relative;display:block;
-  font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--dn-bone-faint);margin-bottom:1.1rem;font-weight:600;
-}
+/* RIGHT: Districts Served registry, set like a couture index */
 .dn-registry{
-  position:relative;list-style:none;margin:0;padding:0;
-  columns:2;column-gap:2.2rem;
+  list-style:none;margin:0;padding:0;
+  columns:2;column-gap:clamp(1.4rem,3vw,2.4rem);
 }
 .dn-registry li{break-inside:avoid;}
 .dn-registry a{
-  display:flex;align-items:center;min-height:44px;
+  display:flex;align-items:baseline;gap:.6rem;min-height:42px;
   border-bottom:1px solid var(--dn-mist);
   color:var(--dn-bone-dim);text-decoration:none;
-  font:.78rem/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;
-  padding:0 .35rem;border-radius:4px;
-  transition:color .3s,box-shadow .3s,border-color .3s;
+  font:.76rem/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;
+  padding:0 .15rem;
+  transition:color .3s,border-color .3s;
+}
+/* engraved catalogue index: two-digit counter in gold */
+.dn-registry{counter-reset:reg;}
+.dn-registry li{counter-increment:reg;}
+.dn-registry a::before{
+  content:counter(reg,decimal-leading-zero);
+  font-family:var(--font-display);font-weight:600;font-style:italic;
+  font-size:.66rem;letter-spacing:0;color:var(--dn-bone-faint);
+  flex:none;width:1.5em;text-align:right;
+  transition:color .3s,text-shadow .3s;
+}
+.dn-registry a .nm{flex:1;}
+/* a leader dot-line that fills the gap, like a fine catalogue */
+.dn-registry a .lead{
+  flex:1;align-self:center;height:1px;margin:0 .15rem;
+  background:repeating-linear-gradient(90deg,var(--dn-mist) 0 2px,transparent 2px 6px);
+  opacity:0;transition:opacity .3s;
 }
 .dn-registry a:hover,.dn-registry a:focus-visible{
-  color:var(--dn-bone);border-color:var(--dn-day);
-  box-shadow:0 0 18px -4px var(--dn-day);outline:none;
+  color:var(--dn-bone);border-color:rgba(248,199,96,.5);outline:none;
 }
-.dn-plaque__cues{
+.dn-registry a:hover::before,.dn-registry a:focus-visible::before{
+  color:var(--dn-day);text-shadow:0 0 12px rgba(248,199,96,.6);
+}
+.dn-registry a:hover .lead,.dn-registry a:focus-visible .lead{opacity:.7;}
+
+/* arrival cues: engraved gold tick markers, not plain dots */
+.dn-cues{
   list-style:none;margin:1.9rem 0 0;padding:0;
-  display:flex;flex-direction:column;gap:.95rem;
-  color:var(--dn-bone-dim);font-size:.92rem;
+  display:flex;flex-direction:column;gap:0;
+  border-top:1px solid var(--dn-mist);
 }
-.dn-plaque__cues li{display:flex;align-items:center;gap:.7rem;}
-.dn-plaque__cues .b{width:5px;height:5px;border-radius:50%;background:var(--dn-day);flex:none;box-shadow:0 0 10px -1px var(--dn-day);}
+.dn-cues li{
+  display:flex;align-items:center;gap:.85rem;
+  color:var(--dn-bone-dim);font-size:.84rem;letter-spacing:.01em;
+  padding:.85rem .1rem;border-bottom:1px solid var(--dn-mist);
+}
+.dn-cues .k{
+  flex:none;font-family:var(--font-display);font-weight:700;font-style:italic;
+  color:var(--dn-day);font-size:.86rem;min-width:2.1em;
+}
+.dn-cues .k .u{font-style:normal;font-size:.6rem;letter-spacing:.12em;color:var(--dn-bone-faint);font-family:var(--font-body);font-weight:600;}
+.dn-cues .tick{
+  flex:none;width:6px;height:6px;border-radius:50%;
+  border:1px solid var(--dn-day);background:transparent;
+  box-shadow:0 0 9px -2px var(--dn-day);
+}
+.dn-cues li:last-child .k{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-style:normal;min-width:0;}
 
 /* ===== Mobile ===== */
 @media(max-width:820px){
-  .dn-plaque{grid-template-columns:1fr;gap:2.5rem;}
+  .dn-plaque{grid-template-columns:1fr;gap:0;}
+  .dn-plaque__col + .dn-plaque__col{border-left:0;border-top:1px solid var(--dn-mist);margin-top:.4rem;padding-top:clamp(1.8rem,5vw,2.4rem);}
   .dn-registry{columns:1;}
   .dn-plaque__plate{text-align:center;}
-  .dn-plaque__seal{margin-inline:auto;}
+  .dn-engraved{justify-content:center;}
+  .dn-engraved::after{display:none;}
+  .dn-plaque__seal{justify-content:center;}
+  .dn-plaque__note{margin-inline:auto;}
   .dn-plaque__foot{text-align:center;}
   .dn-plaque__initial{font-size:min(58vw,300px);right:-6%;top:-4%;}
 }
 @media(max-width:480px){
-  .dn-registry a{letter-spacing:.1em;}
+  .dn-registry a{letter-spacing:.06em;}
+  .dn-plaque__addr{letter-spacing:.14em;}
 }
 </style>
 </head>
@@ -140,39 +214,48 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
     <div class="dn-plaque">
       <span class="dn-plaque__initial" aria-hidden="true">D</span>
 
-      <div class="dn-plaque__plate">
-        <span class="dn-plaque__kicker">The Address</span>
+      <div class="dn-plaque__col dn-plaque__plate">
+        <p class="dn-engraved">The Address</p>
+        <span class="dn-plaque__provenance">The maison on Hutcheson St</span>
         <p class="dn-plaque__name">Day Night Dental</p>
         <address class="dn-plaque__addr">
-          80 Hutcheson St<br>
-          Merchant City · Glasgow G1 1SH
+          <b>80 Hutcheson St</b><br>
+          Merchant City<br>
+          Glasgow G1 1SH
         </address>
-        <span class="dn-plaque__seal" aria-hidden="true"></span>
+        <div class="dn-plaque__seal" aria-hidden="true">
+          <span class="rule"></span>
+          <span class="mark">Open 24 hours</span>
+          <span class="rule short"></span>
+        </div>
+        <p class="dn-plaque__note">
+          A single Glasgow address, open through the night. Walk-ins for emergencies, by appointment for everything else.
+        </p>
         <div class="dn-plaque__foot">
           <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true"> →</span></a>
         </div>
       </div>
 
-      <div class="dn-plaque__registry-col">
-        <span class="dn-registry-head">Districts Served</span>
+      <div class="dn-plaque__col">
+        <p class="dn-engraved">Districts Served</p>
         <ul class="dn-registry">
-          <li><a href="/areas-served/">Glasgow City Centre</a></li>
-          <li><a href="/areas-served/">Merchant City</a></li>
-          <li><a href="/areas-served/">Trongate</a></li>
-          <li><a href="/areas-served/">West End</a></li>
-          <li><a href="/areas-served/">Finnieston</a></li>
-          <li><a href="/areas-served/">Dennistoun</a></li>
-          <li><a href="/areas-served/">East End</a></li>
-          <li><a href="/areas-served/">Southside</a></li>
-          <li><a href="/areas-served/">Partick</a></li>
-          <li><a href="/areas-served/">Hillhead</a></li>
-          <li><a href="/areas-served/">Govanhill</a></li>
-          <li><a href="/areas-served/">Shawlands</a></li>
+          <li><a href="/areas-served/"><span class="nm">Glasgow City Centre</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Merchant City</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Trongate</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">West End</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Finnieston</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Dennistoun</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">East End</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Southside</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Partick</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Hillhead</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Govanhill</span><span class="lead"></span></a></li>
+          <li><a href="/areas-served/"><span class="nm">Shawlands</span><span class="lead"></span></a></li>
         </ul>
-        <ul class="dn-plaque__cues">
-          <li><span class="b"></span>3 min from Queen Street station</li>
-          <li><span class="b"></span>5 min from Buchanan Street</li>
-          <li><span class="b"></span>Parking on Hutcheson St &amp; Albion St</li>
+        <ul class="dn-cues">
+          <li><span class="k">3<span class="u">min</span></span><span class="tick" aria-hidden="true"></span>From Queen Street station</li>
+          <li><span class="k">5<span class="u">min</span></span><span class="tick" aria-hidden="true"></span>From Buchanan Street</li>
+          <li><span class="k">P</span><span class="tick" aria-hidden="true"></span>Parking on Hutcheson St &amp; Albion St</li>
         </ul>
       </div>
     </div>

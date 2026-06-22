@@ -28,11 +28,11 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
 em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 
-<title>Night Watch — Book an appointment · Day Night Dental</title>
+<title>Night Watch - Book an appointment · Day Night Dental</title>
 
 <style>
 /* ============================================================
-   NIGHT WATCH — immersive full-bleed nocturne
+   NIGHT WATCH - immersive full-bleed nocturne
    The photograph IS the section: a CSS-built Merchant City night
    bleeds full-width behind everything, dimmed by a near-black scrim.
    Content levitates on frosted glass; the 24/7 line is a glowing beacon.
@@ -54,7 +54,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
     linear-gradient(180deg,#06060a 0%,#0a0a12 42%,#0c0d16 72%,#0a0a0e 100%),
     var(--dn-near-black);
 }
-/* distant city windows — tiny warm + cool flecks layered as gradients */
+/* distant city windows - tiny warm + cool flecks layered as gradients */
 .dn-contact-scene::before{content:'';position:absolute;inset:0;z-index:-1;
   background-repeat:repeat;
   background-image:
@@ -274,7 +274,7 @@ svg{width:1.1em;height:1.1em;}
           <span class="dn-beacon-text">
             <span class="dn-eyebrow">24/7 Emergency Line</span>
             <span class="value">0141 548 6548</span>
-            <span class="hint">Day or night &mdash; a dentist is always on watch</span>
+            <span class="hint">Day or night - a dentist is always on watch</span>
           </span>
           <span class="dn-beacon-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
@@ -434,7 +434,7 @@ svg{width:1.1em;height:1.1em;}
 
           <div class="dn-form-note">
             <span class="live-dot" aria-hidden="true"></span>
-            In pain right now? Don&rsquo;t wait for a reply &mdash; call the 24/7 line on
+            In pain right now? Don&rsquo;t wait for a reply - call the 24/7 line on
             <a href="tel:+441415486548">&nbsp;0141 548 6548</a>.
           </div>
 
@@ -491,7 +491,7 @@ svg{width:1.1em;height:1.1em;}
     // Non-submitting: this is a static preview
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      if (label) label.textContent = 'Preview only — not sent';
+      if (label) label.textContent = 'Preview only - not sent';
       submitBtn.style.opacity = '.75';
       setTimeout(function(){
         if (label) label.textContent = form.querySelector('input[name="preference"]:checked')?.value === 'emergency' ? 'Request Emergency Appointment' : 'Request Booking';

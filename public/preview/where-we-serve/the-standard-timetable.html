@@ -22,90 +22,130 @@ img{max-width:100%;display:block;} a{color:inherit;}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>Where we are — The Standard Timetable · Day Night Dental</title>
+<title>Where we are - The Standard Timetable · Day Night Dental</title>
 <style>
-/* ===== The Standard Timetable — Swiss departure-board fact sheet ===== */
+/* ===== The Standard Timetable - an engraved railway fare-table / official schedule ===== */
 .dn-section{padding:clamp(3.5rem,8vw,7rem) 0;}
 .dn-areas{position:relative;}
+/* faint vertical "page edge" rules behind the document for a printed-leaf feel */
+.dn-areas::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,transparent calc(50% - .5px),rgba(255,255,255,.025) 50%,transparent calc(50% + .5px));
+  pointer-events:none;opacity:0;}
 .dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem);}
 
-/* ---- Centred head ---- */
-.tp-section-head.dn-center-head{text-align:center;max-width:46rem;margin:0 auto clamp(2.5rem,5vw,3.75rem);display:flex;flex-direction:column;align-items:center;gap:1.1rem;}
-.dn-display{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,4.6vw,3.35rem);line-height:1.08;letter-spacing:-.012em;margin:0;text-wrap:balance;}
+/* ---- Centred masthead ---- */
+.tp-section-head.dn-center-head{text-align:center;max-width:48rem;margin:0 auto clamp(2.75rem,5vw,4rem);display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
+.dn-display{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.07;letter-spacing:-.014em;margin:0;text-wrap:balance;}
 
-/* A thin "schedule" rule under the head — pure Swiss masthead detail */
-.dn-masthead-rule{display:flex;align-items:center;gap:1rem;justify-content:center;width:100%;max-width:42rem;margin:0 auto;}
-.dn-masthead-rule .ln{flex:1;height:1px;background:var(--dn-mist);}
-.dn-masthead-rule .lbl{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--dn-bone-faint);white-space:nowrap;}
+/* The schedule masthead rule - a centre cartouche with twin engraver hairlines */
+.dn-masthead-rule{display:flex;align-items:center;gap:1.1rem;justify-content:center;width:100%;max-width:44rem;margin:.1rem auto 0;}
+.dn-masthead-rule .ln{flex:1;height:0;border-top:1px solid var(--dn-mist);position:relative;}
+.dn-masthead-rule .ln::after{content:"";position:absolute;left:0;right:0;top:3px;border-top:1px solid rgba(255,255,255,.05);}
+.dn-masthead-rule .ln.r::after{left:0;right:0;}
+.dn-cartouche{display:inline-flex;align-items:center;gap:.6rem;font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dn-bone-faint);white-space:nowrap;}
+.dn-cartouche .star{color:var(--dn-day);font-size:.7rem;letter-spacing:0;transform:translateY(-.02em);}
 
-/* ---- 12-col Swiss grid 7/5 ---- */
-.dn-areas-map{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(2rem,5vw,4.5rem);align-items:start;}
-.dn-areas-col{grid-column:1/8;}
-.dn-areas-panel{grid-column:8/13;position:sticky;top:5.5rem;background:none;border:0;border-block:2px solid var(--dn-mist);border-radius:0;padding:1.6rem 0;}
+/* ---- Editorial 12-col grid 7/5 ---- */
+.dn-areas-map{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(2rem,5vw,4.25rem);align-items:start;}
+.dn-areas-col{grid-column:1/8;min-width:0;}
+.dn-areas-panel{grid-column:8/13;position:sticky;top:5.5rem;min-width:0;}
 
-.dn-areas-lead{margin:0;color:var(--dn-bone-dim);font-size:clamp(1rem,1.6vw,1.12rem);max-width:34rem;}
+.dn-areas-lead{margin:0;color:var(--dn-bone-dim);font-size:clamp(1rem,1.55vw,1.1rem);max-width:34rem;}
+.dn-areas-lead .drop{float:left;font-family:var(--font-display);font-weight:380;font-size:3.1rem;line-height:.78;color:var(--dn-day);margin:.12em .42rem 0 0;letter-spacing:-.02em;}
 
-/* ---- Departure board ---- */
-.dn-board-cap{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-top:2.25rem;padding-bottom:.6rem;}
-.dn-board-cap .ttl{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:var(--dn-bone-faint);}
-.dn-board-cap .unit{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);}
+/* ---- Service table caption (a ruled table header) ---- */
+.dn-board-cap{display:grid;grid-template-columns:auto 1fr auto auto;align-items:end;gap:.7rem 1rem;margin-top:2.4rem;padding-bottom:.55rem;border-bottom:2px solid var(--dn-mist);}
+.dn-board-cap .no{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-board-cap .ttl{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dn-bone-dim);}
+.dn-board-cap .colh{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);text-align:right;justify-self:end;white-space:nowrap;}
 
-.dn-board{display:flex;flex-direction:column;border-top:1px solid var(--dn-mist);}
-.dn-board-row{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:1rem;min-height:44px;padding:.8rem 0;border-bottom:1px solid var(--dn-mist);position:relative;--dn-hover-accent:var(--dn-day);transition:padding-left .35s cubic-bezier(.16,1,.3,1);outline:none;}
-.dn-board-row:nth-child(even){--dn-hover-accent:var(--dn-night);}
-.dn-board-row .code{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.72rem;letter-spacing:.12em;color:var(--dn-bone-faint);min-width:1.7em;}
-.dn-board-row .stop{font-family:var(--font-display);font-weight:380;color:var(--dn-bone);font-size:clamp(1rem,1.7vw,1.12rem);line-height:1.2;}
-.dn-board-row .stop small{display:block;font-family:var(--font-body);font-weight:400;font-size:.72rem;letter-spacing:.02em;color:var(--dn-bone-faint);margin-top:.1rem;}
-.dn-board-row .min{font-family:var(--font-display);font-variant-numeric:tabular-nums;font-weight:680;font-size:clamp(1.4rem,2.6vw,1.85rem);line-height:1;color:var(--dn-bone-dim);transition:color .3s ease;white-space:nowrap;}
-.dn-board-row .min small{font-family:var(--font-body);font-weight:500;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dn-bone-faint);margin-left:.18em;}
-.dn-board-row::before{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--dn-hover-accent);transition:width .35s cubic-bezier(.16,1,.3,1);}
+/* ---- The service table (engraved fare table) ---- */
+.dn-board{display:flex;flex-direction:column;}
+.dn-board-row{display:grid;grid-template-columns:2.4rem 1fr auto;align-items:center;gap:1rem;min-height:46px;padding:.78rem 0 .78rem .1rem;border-bottom:1px solid var(--dn-mist);position:relative;--acc:var(--dn-day);transition:padding-left .4s cubic-bezier(.16,1,.3,1);outline:none;}
+.dn-board-row:nth-child(even){--acc:var(--dn-night);}
+
+/* the index column - a characterful engraved numeral inside a ruled cell */
+.dn-board-row .code{position:relative;font-family:var(--font-display);font-weight:600;font-variant-numeric:tabular-nums;font-size:1.02rem;line-height:1;color:var(--dn-bone-faint);text-align:center;align-self:center;transition:color .3s ease;}
+.dn-board-row .code::before{content:"";position:absolute;left:-.1rem;top:50%;transform:translateY(-50%);width:1.9rem;height:1.9rem;border:1px solid var(--dn-mist);border-radius:50%;z-index:-1;transition:border-color .35s ease,box-shadow .35s ease;}
+
+.dn-board-row .stop{font-family:var(--font-display);font-weight:400;color:var(--dn-bone);font-size:clamp(1.02rem,1.65vw,1.16rem);line-height:1.18;letter-spacing:-.005em;min-width:0;}
+.dn-board-row .stop small{display:flex;align-items:center;gap:.4rem;font-family:var(--font-body);font-weight:400;font-size:.7rem;letter-spacing:.02em;color:var(--dn-bone-faint);margin-top:.18rem;}
+/* a small mode glyph before each sub-label, not a generic tick */
+.dn-board-row .stop small .gl{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.56rem;letter-spacing:.06em;color:var(--acc);border:1px solid color-mix(in srgb,var(--acc) 38%,transparent);border-radius:4px;padding:.5px 4px;line-height:1;transition:background .3s ease,color .3s ease;}
+
+/* the time cell - engraved figure with hairline rule + dotted leader between name and figure */
+.dn-board-row .min{position:relative;font-family:var(--font-display);font-variant-numeric:tabular-nums;font-weight:680;font-size:clamp(1.45rem,2.6vw,1.9rem);line-height:1;color:var(--dn-bone-dim);transition:color .3s ease;white-space:nowrap;padding-left:1.1rem;}
+.dn-board-row .min::before{content:"";position:absolute;left:-.6rem;top:50%;width:.6rem;border-top:1px dotted var(--dn-mist);transform:translateY(-50%);}
+.dn-board-row .min small{font-family:var(--font-body);font-weight:500;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dn-bone-faint);margin-left:.2em;}
+
+/* hover/focus - a solid accent baseline + index seal lights + figure glow */
+.dn-board-row::before{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--acc);transition:width .4s cubic-bezier(.16,1,.3,1);}
 .dn-board-row:hover::before,.dn-board-row:focus-within::before{width:100%;}
-.dn-board-row:hover .min,.dn-board-row:focus-within .min{color:var(--dn-hover-accent);text-shadow:0 0 18px color-mix(in srgb,var(--dn-hover-accent) 55%,transparent);}
-.dn-board-row:hover,.dn-board-row:focus-within{padding-left:.85rem;}
-/* a left tick that appears on the active row */
-.dn-board-row::after{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);transform-origin:center;width:3px;height:60%;background:var(--dn-hover-accent);transition:transform .35s cubic-bezier(.16,1,.3,1);}
-.dn-board-row:hover::after,.dn-board-row:focus-within::after{transform:translateY(-50%) scaleY(1);}
+.dn-board-row:hover,.dn-board-row:focus-within{padding-left:.7rem;}
+.dn-board-row:hover .min,.dn-board-row:focus-within .min{color:var(--acc);text-shadow:0 0 20px color-mix(in srgb,var(--acc) 55%,transparent);}
+.dn-board-row:hover .code,.dn-board-row:focus-within .code{color:var(--acc);}
+.dn-board-row:hover .code::before,.dn-board-row:focus-within .code::before{border-color:var(--acc);box-shadow:0 0 16px color-mix(in srgb,var(--acc) 45%,transparent),inset 0 0 10px color-mix(in srgb,var(--acc) 14%,transparent);}
+.dn-board-row:hover .stop small .gl,.dn-board-row:focus-within .stop small .gl{background:var(--acc);color:#0a0a0c;border-color:var(--acc);}
+
+/* foot of the table - a printer's colophon line */
+.dn-board-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1rem;padding-top:.1rem;font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-board-foot .dots{flex:1;border-top:1px dotted var(--dn-mist);height:0;margin-top:.4rem;}
 
 /* ---- Ghost link ---- */
 .tp-hero-ghost{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.9rem;font-family:var(--font-body);font-weight:600;font-size:.95rem;letter-spacing:.01em;color:var(--dn-bone);text-decoration:none;border-bottom:1px solid var(--dn-mist);padding-bottom:.25rem;transition:color .25s,border-color .25s;}
 .tp-hero-ghost:hover{color:var(--dn-day);border-color:var(--dn-day);}
 
-/* ---- Fact sheet panel ---- */
-.dn-panel-tag{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 1.1rem;}
-.dn-areas-pin{display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem;}
-.dn-areas-pin .dot{width:9px;height:9px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 14px color-mix(in srgb,var(--dn-day) 60%,transparent);flex:none;}
-.dn-areas-pin .nm{font-family:var(--font-display);font-weight:520;font-size:1.18rem;letter-spacing:-.01em;}
-.dn-areas-addr{margin:0 0 1.4rem;color:var(--dn-bone-dim);font-size:.96rem;line-height:1.55;}
+/* ---- The fact sheet - an engraved certificate panel ---- */
+.dn-areas-panel{background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,0));border:1px solid var(--dn-mist);border-radius:4px;padding:0;overflow:hidden;}
+/* twin top rule like a ledger header */
+.dn-panel-band{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem 1.25rem;border-bottom:1px solid var(--dn-mist);background:rgba(255,255,255,.018);}
+.dn-panel-band .tag{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-panel-band .seal{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-day);border:1px solid color-mix(in srgb,var(--dn-day) 40%,transparent);border-radius:999px;padding:2px 9px;}
+.dn-panel-body{padding:1.4rem 1.25rem 1.45rem;}
 
-/* NAP micro-rows: leader-dot ruled lines */
+.dn-areas-pin{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;}
+.dn-areas-pin .dot{position:relative;width:10px;height:10px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 14px color-mix(in srgb,var(--dn-day) 65%,transparent);flex:none;}
+.dn-areas-pin .nm{font-family:var(--font-display);font-weight:540;font-size:1.24rem;letter-spacing:-.012em;}
+.dn-areas-addr{margin:0 0 1.3rem;color:var(--dn-bone-dim);font-size:.96rem;line-height:1.55;}
+
+/* NAP - engraved ledger rows with dotted leaders + monospace keys */
 .dn-nap{list-style:none;margin:0 0 1.5rem;padding:0;border-top:1px solid var(--dn-mist);}
-.dn-nap li{display:flex;align-items:baseline;gap:.5rem;padding:.6rem 0;border-bottom:1px solid var(--dn-mist);font-size:.9rem;}
-.dn-nap .k{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);flex:none;width:5.2em;}
+.dn-nap li{display:flex;align-items:baseline;gap:.5rem;padding:.62rem 0;border-bottom:1px solid var(--dn-mist);font-size:.9rem;}
+.dn-nap .k{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);flex:none;width:5em;}
 .dn-nap .lead{flex:1;border-bottom:1px dotted var(--dn-mist);transform:translateY(-.28em);min-width:.75rem;}
 .dn-nap .v{color:var(--dn-bone);font-weight:500;white-space:nowrap;}
 .dn-nap .v.mono{font-family:ui-monospace,"SF Mono","Menlo",monospace;letter-spacing:.06em;color:var(--dn-day);}
-.dn-nap a.v{text-decoration:none;}
+.dn-nap a.v{text-decoration:none;transition:color .25s;}
 .dn-nap a.v:hover{color:var(--dn-day);}
 
-.dn-roster-tag{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 .55rem;}
+/* Areas served - a numbered index column, alternating accent leader caps */
+.dn-roster-tag{display:flex;align-items:baseline;gap:.6rem;font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 .65rem;}
+.dn-roster-tag .ct{margin-left:auto;color:var(--dn-day);}
 .dn-areas-roster{list-style:none;margin:0;padding:0;border-top:1px solid var(--dn-mist);}
-.dn-areas-roster li{display:flex;align-items:baseline;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--dn-mist);font-family:var(--font-display);font-weight:360;font-size:.98rem;color:var(--dn-bone);}
-.dn-areas-roster li .n{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.58rem;letter-spacing:.1em;color:var(--dn-bone-faint);min-width:1.6em;flex:none;transform:translateY(-.05em);}
-.dn-areas-roster li .gr{margin-left:auto;font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.56rem;letter-spacing:.1em;color:var(--dn-bone-faint);}
+.dn-areas-roster li{display:flex;align-items:baseline;gap:.55rem;padding:.46rem 0;border-bottom:1px solid var(--dn-mist);font-family:var(--font-display);font-weight:380;font-size:.99rem;color:var(--dn-bone);transition:color .25s;}
+.dn-areas-roster li:hover{color:var(--dn-day);}
+.dn-areas-roster li:nth-child(even):hover{color:var(--dn-night-soft);}
+.dn-areas-roster li .n{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.56rem;letter-spacing:.08em;color:var(--dn-day);min-width:1.7em;flex:none;transform:translateY(-.06em);}
+.dn-areas-roster li:nth-child(even) .n{color:var(--dn-night);}
+.dn-areas-roster li .ldr{flex:1;border-bottom:1px dotted var(--dn-mist);transform:translateY(-.28em);min-width:.5rem;}
+.dn-areas-roster li .gr{font-family:ui-monospace,"SF Mono","Menlo",monospace;font-size:.55rem;letter-spacing:.08em;color:var(--dn-bone-faint);flex:none;}
 
 @media(max-width:820px){
-  .dn-areas-map{grid-template-columns:1fr;gap:2.75rem;}
+  .dn-areas-map{grid-template-columns:1fr;gap:2.5rem;}
   .dn-areas-col,.dn-areas-panel{grid-column:1;}
   .dn-areas-panel{position:static;}
-  .dn-areas-roster{display:grid;grid-template-columns:1fr 1fr;column-gap:1.25rem;border-top:1px solid var(--dn-mist);}
+  .dn-areas-roster{display:grid;grid-template-columns:1fr 1fr;column-gap:1.4rem;border-top:1px solid var(--dn-mist);}
   .dn-areas-roster li{border-bottom:1px solid var(--dn-mist);}
 }
 @media(max-width:420px){
-  .dn-board-row{gap:.7rem;}
+  .dn-board-cap{grid-template-columns:auto 1fr auto;gap:.5rem .8rem;}
+  .dn-board-cap .colh.crow{display:none;}
+  .dn-board-row{grid-template-columns:2rem 1fr auto;gap:.7rem;}
   .dn-board-row .min{font-size:1.4rem;}
+  .dn-areas-lead .drop{font-size:2.6rem;}
 }
 @media(prefers-reduced-motion:reduce){
-  .dn-board-row,.dn-board-row::before,.dn-board-row::after,.dn-board-row .min{transition:none;}
+  .dn-board-row,.dn-board-row *,.dn-board-row::before{transition:none;}
 }
 </style>
 </head>
@@ -119,109 +159,122 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
       <h2 class="dn-display">A 24-hour dentist in the heart of <em class="dn-hl-gold">Merchant City</em></h2>
       <div class="dn-masthead-rule">
         <span class="ln"></span>
-        <span class="lbl">Glasgow · G1 · Open 24 / 7</span>
-        <span class="ln"></span>
+        <span class="dn-cartouche"><span class="star">✦</span> Glasgow · G1 · Open 24 / 7 <span class="star">✦</span></span>
+        <span class="ln r"></span>
       </div>
     </div>
 
     <div class="dn-areas-map">
-      <!-- LEFT: lead + departure board -->
+      <!-- LEFT: lead + the engraved service table -->
       <div class="dn-areas-col">
         <p class="dn-areas-lead">
-          Patients reach us from right across Glasgow. The practice sits in Merchant City,
-          minutes from the stations and easy to reach by car. Here is how long it takes from
-          the places you already know.
+          <span class="drop">P</span>atients reach us from right across Glasgow. The practice sits in
+          Merchant City, minutes from the stations and easy by car. Below is the standing schedule:
+          how long it takes from the places you already know.
         </p>
 
         <div class="dn-board-cap">
-          <span class="ttl">Departure board · time to our door</span>
-          <span class="unit">min</span>
+          <span class="no">No.</span>
+          <span class="ttl">Service · to our door</span>
+          <span class="colh crow">By road</span>
+          <span class="colh">Mins</span>
         </div>
 
         <div class="dn-board" role="list" aria-label="Travel times to Day Night Dental">
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">01</span>
-            <span class="stop">Queen Street station<small>Rail · George Square</small></span>
+            <span class="stop">Queen Street station<small><span class="gl">RAIL</span>George Square</small></span>
             <span class="min">3<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">02</span>
-            <span class="stop">Buchanan Street<small>Subway · retail core</small></span>
+            <span class="stop">Buchanan Street<small><span class="gl">SUB</span>Subway · retail core</small></span>
             <span class="min">5<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">03</span>
-            <span class="stop">Glasgow City Centre<small>Buchanan / St Enoch</small></span>
+            <span class="stop">Glasgow City Centre<small><span class="gl">HUB</span>Buchanan / St Enoch</small></span>
             <span class="min">5<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">04</span>
-            <span class="stop">Trongate<small>Saltmarket &amp; the Cross</small></span>
+            <span class="stop">Trongate<small><span class="gl">FOOT</span>Saltmarket &amp; the Cross</small></span>
             <span class="min">4<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">05</span>
-            <span class="stop">Glasgow Central station<small>Rail · Gordon Street</small></span>
+            <span class="stop">Glasgow Central station<small><span class="gl">RAIL</span>Gordon Street</small></span>
             <span class="min">8<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">06</span>
-            <span class="stop">Dennistoun<small>Duke Street · East</small></span>
+            <span class="stop">Dennistoun<small><span class="gl">CAR</span>Duke Street · East</small></span>
             <span class="min">9<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">07</span>
-            <span class="stop">Finnieston<small>Argyle Street strip</small></span>
+            <span class="stop">Finnieston<small><span class="gl">CAR</span>Argyle Street strip</small></span>
             <span class="min">12<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">08</span>
-            <span class="stop">West End<small>Byres Road · Hillhead</small></span>
+            <span class="stop">West End<small><span class="gl">CAR</span>Byres Road · Hillhead</small></span>
             <span class="min">14<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">09</span>
-            <span class="stop">Southside<small>via Albert Bridge</small></span>
+            <span class="stop">Southside<small><span class="gl">CAR</span>via Albert Bridge</small></span>
             <span class="min">12<small>min</small></span>
           </div>
           <div class="dn-board-row" role="listitem" tabindex="0">
             <span class="code">10</span>
-            <span class="stop">Hutcheson St &amp; Albion St<small>On-street parking</small></span>
+            <span class="stop">Hutcheson St &amp; Albion St<small><span class="gl">PARK</span>On-street parking</small></span>
             <span class="min">0<small>min</small></span>
           </div>
+        </div>
+
+        <div class="dn-board-foot">
+          <span>Indicative drive times</span>
+          <span class="dots"></span>
+          <span>Edition · G1 · 24 / 7</span>
         </div>
 
         <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true"> →</span></a>
       </div>
 
-      <!-- RIGHT: sticky fact sheet -->
+      <!-- RIGHT: sticky engraved fact sheet -->
       <aside class="dn-areas-panel" aria-label="Practice fact sheet">
-        <p class="dn-panel-tag">Fact sheet</p>
-        <div class="dn-areas-pin"><span class="dot"></span><span class="nm">Day Night Dental</span></div>
-        <p class="dn-areas-addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
+        <div class="dn-panel-band">
+          <span class="tag">Fact sheet</span>
+          <span class="seal">Open 24 / 7</span>
+        </div>
+        <div class="dn-panel-body">
+          <div class="dn-areas-pin"><span class="dot"></span><span class="nm">Day Night Dental</span></div>
+          <p class="dn-areas-addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
 
-        <ul class="dn-nap">
-          <li><span class="k">Tel</span><span class="lead"></span><a class="v" href="tel:+441415486548">0141 548 6548</a></li>
-          <li><span class="k">Email</span><span class="lead"></span><a class="v" href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a></li>
-          <li><span class="k">Hours</span><span class="lead"></span><span class="v">24 / 7</span></li>
-          <li><span class="k">Grid ref</span><span class="lead"></span><span class="v mono">G1·1SH</span></li>
-        </ul>
+          <ul class="dn-nap">
+            <li><span class="k">Tel</span><span class="lead"></span><a class="v" href="tel:+441415486548">0141 548 6548</a></li>
+            <li><span class="k">Email</span><span class="lead"></span><a class="v" href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a></li>
+            <li><span class="k">Hours</span><span class="lead"></span><span class="v">24 / 7</span></li>
+            <li><span class="k">Grid ref</span><span class="lead"></span><span class="v mono">G1·1SH</span></li>
+          </ul>
 
-        <p class="dn-roster-tag">Areas served</p>
-        <ul class="dn-areas-roster">
-          <li><span class="n">01</span>Glasgow City Centre<span class="gr">G1</span></li>
-          <li><span class="n">02</span>Merchant City<span class="gr">G1</span></li>
-          <li><span class="n">03</span>Trongate<span class="gr">G1</span></li>
-          <li><span class="n">04</span>West End<span class="gr">G12</span></li>
-          <li><span class="n">05</span>Finnieston<span class="gr">G3</span></li>
-          <li><span class="n">06</span>Dennistoun<span class="gr">G31</span></li>
-          <li><span class="n">07</span>East End<span class="gr">G40</span></li>
-          <li><span class="n">08</span>Southside<span class="gr">G41</span></li>
-          <li><span class="n">09</span>Partick<span class="gr">G11</span></li>
-          <li><span class="n">10</span>Hillhead<span class="gr">G12</span></li>
-          <li><span class="n">11</span>Govanhill<span class="gr">G42</span></li>
-          <li><span class="n">12</span>Shawlands<span class="gr">G41</span></li>
-        </ul>
+          <p class="dn-roster-tag">Areas served <span class="ct">12 zones</span></p>
+          <ul class="dn-areas-roster">
+            <li><span class="n">01</span>Glasgow City Centre<span class="ldr"></span><span class="gr">G1</span></li>
+            <li><span class="n">02</span>Merchant City<span class="ldr"></span><span class="gr">G1</span></li>
+            <li><span class="n">03</span>Trongate<span class="ldr"></span><span class="gr">G1</span></li>
+            <li><span class="n">04</span>West End<span class="ldr"></span><span class="gr">G12</span></li>
+            <li><span class="n">05</span>Finnieston<span class="ldr"></span><span class="gr">G3</span></li>
+            <li><span class="n">06</span>Dennistoun<span class="ldr"></span><span class="gr">G31</span></li>
+            <li><span class="n">07</span>East End<span class="ldr"></span><span class="gr">G40</span></li>
+            <li><span class="n">08</span>Southside<span class="ldr"></span><span class="gr">G41</span></li>
+            <li><span class="n">09</span>Partick<span class="ldr"></span><span class="gr">G11</span></li>
+            <li><span class="n">10</span>Hillhead<span class="ldr"></span><span class="gr">G12</span></li>
+            <li><span class="n">11</span>Govanhill<span class="ldr"></span><span class="gr">G42</span></li>
+            <li><span class="n">12</span>Shawlands<span class="ldr"></span><span class="gr">G41</span></li>
+          </ul>
+        </div>
       </aside>
     </div>
   </div>
