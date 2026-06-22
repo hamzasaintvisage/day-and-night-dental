@@ -22,453 +22,248 @@ img{max-width:100%;display:block;} a{color:inherit;}
 .dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
 em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
-<title>The Atrium — Book Appointment · Day Night Dental</title>
+<title>The Atrium - Book an appointment · Day Night Dental</title>
 <style>
 /* ============================================================
-   THE ATRIUM — architectural lens (rank #1, panel winner)
-   "A reception hall in CSS: load-bearing columns, recessed
-   plates, an always-lit night pilaster."
-   Solid colours only. Gold column rule = gold->soft-gold.
-   Blue pilaster = solid --dn-night, even static glow.
-   NEVER a gold->blue gradient. SSR-safe / pure CSS depth.
+   "The Atrium" (architectural) - rank #1, PANEL WINNER
+   A reception hall in CSS: load-bearing columns, recessed
+   plates, an always-lit night pilaster. Two structural bays
+   under one engraved architrave. Solid gold + solid blue only,
+   NEVER a gold-to-blue gradient.
    ============================================================ */
-:root{
-  --dn-day-soft:#fbe0a3;          /* soft gold for the column-rule terminus */
-  --dn-r-inset:12px;              /* recessed-plate radius */
-}
 
-/* ---------- section shell ---------- */
-.dn-section{position:relative;overflow:hidden;}
-.dn-contact{
-  padding:clamp(3.5rem,8vw,7rem) 0 clamp(4rem,9vw,8rem);
-  background:
-    radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.03), transparent 60%),
-    var(--dn-near-black);
-}
-.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.25rem);}
+:root{--dn-r-inset:14px;}
 
-/* atmosphere — static glows (no JS, no time) */
-.dn-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
-.dn-glow.day{background:var(--dn-day);width:520px;height:520px;top:6%;left:-6%;opacity:.07;}
-.dn-glow.night{background:var(--dn-night);width:560px;height:560px;bottom:4%;right:-7%;opacity:.08;}
+.dn-section{position:relative;padding:7rem 0 8rem;overflow:hidden;}
+.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px;position:relative;z-index:2;}
 
-/* ============================================================
-   ARCHITRAVE + LOAD-BEARING GRID
-   Full-width engraved header band on a hairline architrave rule,
-   spanning both bays. One bright column rule divides them.
-   ============================================================ */
-.dn-contact-grid{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns:1fr 1.15fr;
-  gap:clamp(2rem,4vw,4rem);
-  padding-top:clamp(2rem,4vw,3rem);
-  border-top:1px solid var(--dn-mist);
-}
-/* engraved highlight just under the architrave rule */
-.dn-contact-grid::before{
-  content:"";position:absolute;left:0;right:0;top:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-}
-/* the single load-bearing column rule (gold -> soft gold, never blue) */
-@media(min-width:1001px){
-  .dn-contact-grid::after{
-    content:"";position:absolute;top:.4rem;bottom:.4rem;
-    left:calc((100% - clamp(2rem,4vw,4rem)) * (1 / 2.15) + (clamp(2rem,4vw,4rem) * .5));
-    width:1px;
-    background:linear-gradient(var(--dn-day),var(--dn-day-soft));
-    opacity:.5;
-    box-shadow:0 0 18px rgba(248,199,96,.25);
-  }
-}
+/* ambient hall light - gold leading, faint blue resting far off, never mixed */
+.dn-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.dn-glow.day{background:var(--dn-day);}
+.dn-glow.night{background:var(--dn-night);}
 
-/* ---------- the engraved header band (spans full width) ---------- */
-.dn-atrium-architrave{
-  grid-column:1 / -1;
-  max-width:760px;
-  margin-bottom:.5rem;
-}
-.dn-atrium-architrave .dn-eyebrow.dn-pill{margin-bottom:1.15rem;}
-.dn-display{
-  font-family:var(--font-display);
-  font-weight:340;
-  line-height:1.02;
-  letter-spacing:-.015em;
-  margin:0;
-  font-size:clamp(2.2rem,5.4vw,3.55rem);
-}
-.dn-contact-lead{
-  margin:1.15rem 0 0;
-  max-width:54ch;
-  color:var(--dn-bone-dim);
-  font-size:clamp(1rem,1.4vw,1.08rem);
-}
+/* ===========================================================
+   THE ARCHITRAVE - full-width engraved header band over both bays
+   =========================================================== */
+.dn-architrave{max-width:760px;margin:0;padding:0 0 2.6rem;}
+.dn-display{font-family:var(--font-display);font-weight:340;letter-spacing:-.018em;line-height:1.04;margin:0;}
+h2.dn-display{font-size:clamp(2.3rem,5.2vw,3.5rem);margin:1.15rem 0 0;}
+.dn-architrave-lead{font-size:clamp(1.02rem,2.2vw,1.18rem);color:var(--dn-bone-dim);margin:1.2rem 0 0;line-height:1.55;max-width:60ch;}
 
-/* ============================================================
-   LEFT BAY — the building's directory
-   Contact rows as engraved wall-plates: recessed inset panels
-   with an icon niche, label, NAP value, hint.
-   ============================================================ */
-.dn-contact-info{position:relative;z-index:1;display:flex;flex-direction:column;}
-.dn-contact-details{display:grid;gap:.85rem;margin-top:.25rem;}
+/* ===========================================================
+   THE TWO BAYS - strict grid divided by ONE load-bearing column rule
+   =========================================================== */
+.dn-contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:0;align-items:start;position:relative;padding-top:2.6rem;border-top:1px solid var(--dn-mist);}
+/* the engraved architrave seam over the bays */
+.dn-contact-grid::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);}
 
-/* recessed engraved wall-plate */
-.dn-contact-detail{
-  position:relative;
-  display:grid;
-  grid-template-columns:auto 1fr;
-  grid-template-rows:auto auto auto;
-  column-gap:1rem;row-gap:.1rem;
-  align-items:start;
-  padding:1.05rem 1.25rem;
-  border:1px solid var(--dn-mist);
-  border-radius:var(--dn-r-inset);
-  background:var(--dn-near-black);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.045),
-    inset 0 -8px 14px rgba(0,0,0,.45);
-}
-/* icon niche */
-.dn-contact-ico{
-  grid-row:1 / 4;
-  align-self:center;
-  display:grid;place-items:center;
-  width:46px;height:46px;
-  border-radius:11px;
-  border:1px solid var(--dn-mist);
-  background:rgba(255,255,255,.025);
-  box-shadow:inset 0 2px 6px rgba(0,0,0,.5);
-  color:var(--dn-bone-dim);
-}
-.dn-contact-ico svg{width:21px;height:21px;}
-.dn-contact-ico.day{color:var(--dn-day);border-color:rgba(248,199,96,.28);}
-.dn-contact-ico.night{color:var(--dn-night);border-color:rgba(69,144,236,.34);}
+.dn-bay-left{padding-right:3rem;}
+.dn-bay-right{padding-left:3rem;position:relative;}
+/* the single column rule: solid gold -> soft gold, NEVER blue. Sits on the bay divide. */
+.dn-bay-right::before{content:'';position:absolute;top:0;bottom:0;left:0;width:1px;background:linear-gradient(180deg,var(--dn-day),#caa14d);opacity:.55;}
+/* a small lit capital where the column meets the architrave */
+.dn-bay-right::after{content:'';position:absolute;top:-3px;left:-2px;width:5px;height:5px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 8px var(--dn-day);}
 
-.dn-contact-detail .dn-eyebrow{
-  grid-column:2;grid-row:1;
-  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
-  font-weight:600;color:var(--dn-bone-faint);
-}
-.dn-contact-detail .dn-eyebrow.day{color:var(--dn-day);}
-.dn-contact-detail .dn-eyebrow.night{color:var(--dn-night-soft);}
-.dn-contact-detail .value{
-  grid-column:2;grid-row:2;
-  margin:.18rem 0 0;
-  font-family:var(--font-display);
-  font-weight:420;
-  font-size:1.18rem;
-  letter-spacing:-.01em;
-  color:var(--dn-bone);
-  text-decoration:none;
-  line-height:1.25;
-  word-break:break-word;
-}
+/* ===========================================================
+   LEFT BAY - the building directory: engraved wall-plates
+   =========================================================== */
+.dn-bay-eyebrow{display:flex;align-items:center;gap:.6rem;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);margin:0 0 1.4rem;}
+.dn-bay-eyebrow::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
+
+.dn-contact-details{display:flex;flex-direction:column;gap:1rem;margin:0 0 1.6rem;}
+
+/* contact rows = recessed engraved wall-plates carved into the wall */
+.dn-contact-detail{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:1rem;row-gap:.12rem;padding:1.1rem 1.25rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);align-items:center;transition:border-color .3s,box-shadow .3s;}
+.dn-contact-detail:hover{border-color:rgba(248,199,96,.4);}
+/* the always-lit night pilaster - the one thing lit after hours. Even glow, touch-safe, never hover-gated. */
+.dn-contact-detail.is-emergency{border-left:3px solid var(--dn-night);box-shadow:inset 14px 0 22px -16px var(--dn-night),inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);}
+.dn-contact-detail.is-emergency:hover{border-color:var(--dn-mist);border-left-color:var(--dn-night);}
+
+.dn-contact-ico{grid-row:1 / span 2;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);color:var(--dn-bone-dim);box-shadow:inset 0 1px 4px rgba(0,0,0,.4);}
+.dn-contact-ico.day{color:var(--dn-day);border-color:rgba(248,199,96,.32);background:rgba(248,199,96,.07);}
+.dn-contact-ico.night{color:var(--dn-night);border-color:rgba(69,144,236,.32);background:rgba(69,144,236,.08);}
+.dn-contact-ico svg{width:20px;height:20px;}
+
+.dn-contact-detail .plate-label{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);grid-column:2;align-self:end;}
+.dn-contact-detail .plate-label.day{color:var(--dn-day);}
+.dn-contact-detail .plate-label.night{color:var(--dn-night);}
+.dn-contact-detail .value{grid-column:2;align-self:start;font-family:var(--font-display);font-size:1.28rem;font-weight:400;line-height:1.25;color:var(--dn-bone);text-decoration:none;margin:0;word-break:break-word;}
+a.value{transition:color .2s;}
 a.value:hover{color:var(--dn-day);}
 .dn-contact-detail.is-emergency a.value:hover{color:var(--dn-night-soft);}
-.dn-contact-detail .hint{
-  grid-column:2;grid-row:3;
-  font-size:.82rem;color:var(--dn-bone-faint);margin-top:.18rem;
-}
+.dn-contact-detail .hint{grid-column:2;font-family:var(--font-display);font-style:italic;font-size:.84rem;color:var(--dn-bone-faint);margin-top:.18rem;line-height:1.4;}
 
-/* always-lit night pilaster on the emergency plate
-   (even static glow, touch-safe — never hover-gated) */
-.dn-contact-detail.is-emergency{
-  border-left:3px solid var(--dn-night);
-  box-shadow:
-    inset 14px 0 22px -16px var(--dn-night),
-    inset 0 1px 0 rgba(255,255,255,.045),
-    inset 0 -8px 14px rgba(0,0,0,.45);
-}
-.dn-contact-detail.is-emergency .live-pip{
-  display:inline-block;width:7px;height:7px;border-radius:50%;
-  background:var(--dn-night);margin-right:.45rem;vertical-align:middle;
-  box-shadow:0 0 0 3px rgba(69,144,236,.22);
-}
+/* hours table + map facade = the engraved plinth that closes the left bay */
+.dn-plinth{padding:1.4rem 1.5rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);margin:0 0 1rem;}
+.dn-plinth-head{margin-bottom:.7rem;}
+.dn-plinth-head .plate-label{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);}
+.dn-contact-hours table{width:100%;border-collapse:collapse;font-size:.95rem;}
+.dn-contact-hours td{padding:.5rem 0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-contact-hours tr:last-child td{border-bottom:0;}
+.dn-contact-hours td:last-child{text-align:right;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
+.dn-contact-hours .emergency-row td{color:var(--dn-bone);font-weight:500;padding-top:.85rem;}
+.dn-contact-hours .emergency-row td:last-child{color:var(--dn-night);display:flex;align-items:center;justify-content:flex-end;gap:.45rem;}
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);}
 
-/* ---------- engraved plinth: hours ---------- */
-.dn-contact-hours{
-  margin-top:1.15rem;
-  border:1px solid var(--dn-mist);
-  border-radius:var(--dn-r-inset);
-  background:var(--dn-near-black);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),inset 0 -8px 14px rgba(0,0,0,.45);
-  padding:1.05rem 1.25rem 1.15rem;
-}
-.dn-hours-head .dn-eyebrow{
-  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
-  font-weight:600;color:var(--dn-bone-faint);
-}
-.dn-contact-hours table{width:100%;border-collapse:collapse;margin-top:.65rem;font-size:.94rem;}
-.dn-contact-hours td{padding:.42rem 0;border-bottom:1px solid rgba(255,255,255,.06);color:var(--dn-bone-dim);}
-.dn-contact-hours td:last-child{text-align:right;color:var(--dn-bone);font-family:var(--font-display);font-weight:420;}
-.dn-contact-hours tr:last-child td{border-bottom:none;}
-.dn-contact-hours .emergency-row td{color:var(--dn-night-soft);font-weight:600;}
-.dn-contact-hours .emergency-row td:last-child{color:var(--dn-night-soft);}
-.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);margin-right:.4rem;box-shadow:0 0 0 3px rgba(69,144,236,.2);vertical-align:middle;}
+/* map facade = a recessed engraved stone face */
+.dn-map-facade{display:flex;align-items:center;gap:.9rem;width:100%;text-align:left;padding:1.05rem 1.2rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 -8px 14px rgba(0,0,0,.45);color:var(--dn-bone-dim);cursor:pointer;font:inherit;transition:border-color .3s;}
+.dn-map-facade:hover{border-color:rgba(248,199,96,.4);}
+.dn-map-facade-ico{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.dn-map-facade-ico svg{width:18px;height:18px;}
+.dn-map-facade-text{display:flex;flex-direction:column;gap:.1rem;line-height:1.35;}
+.dn-map-facade-text strong{color:var(--dn-bone);font-weight:500;}
+.dn-map-facade-text .map-cta{font-size:.82rem;color:var(--dn-day);}
+.dn-map-facade-text .map-note{font-size:.72rem;color:var(--dn-bone-faint);}
 
-/* ---------- map facade (consent-gated; static, no JS load here) ---------- */
-.dn-contact-map{margin-top:1.15rem;}
-.dn-contact-map-facade{
-  width:100%;display:flex;align-items:center;gap:.9rem;text-align:left;
-  padding:1rem 1.15rem;cursor:pointer;
-  border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);
-  background:var(--dn-near-black);color:inherit;font:inherit;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),inset 0 -8px 14px rgba(0,0,0,.45);
-}
-.dn-contact-map-facade:hover{border-color:rgba(248,199,96,.3);}
-.dn-contact-map-facade-ico{
-  display:grid;place-items:center;width:40px;height:40px;border-radius:10px;
-  border:1px solid var(--dn-mist);color:var(--dn-bone-dim);background:rgba(255,255,255,.025);flex:none;
-}
-.dn-contact-map-facade-ico svg{width:19px;height:19px;}
-.dn-contact-map-facade-text{display:flex;flex-direction:column;line-height:1.35;}
-.dn-contact-map-facade-text strong{font-family:var(--font-display);font-weight:420;font-size:1rem;}
-.dn-contact-map-facade-text span:not(.dn-contact-map-facade-note){color:var(--dn-day);font-size:.85rem;}
-.dn-contact-map-facade-note{margin-left:auto;font-size:.72rem;color:var(--dn-bone-faint);max-width:11ch;text-align:right;}
+/* ===========================================================
+   RIGHT BAY - the recessed reception desk (form carved into the wall)
+   =========================================================== */
+.dn-contact-form-wrap{position:relative;}
+.dn-contact-form{position:relative;padding:2.6rem 2.6rem 2.8rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);background:var(--dn-charcoal);box-shadow:inset 0 2px 0 var(--dn-day),inset 0 0 60px rgba(0,0,0,.55),0 24px 60px -30px #000;overflow:hidden;}
+.dn-contact-form > *{position:relative;z-index:1;}
+h3.dn-display{font-size:clamp(1.55rem,3vw,2rem);margin:0 0 .35rem;}
+.dn-form-intro{font-size:.96rem;color:var(--dn-bone-dim);margin:0 0 2rem;line-height:1.5;}
 
-/* ============================================================
-   RIGHT BAY — the recessed reception desk
-   Form sits in a deeper plane (inset shadow + darker face) so it
-   reads as carved into the wall.
-   ============================================================ */
-.dn-contact-form-wrap{position:relative;z-index:1;}
-.dn-contact-form{
-  position:relative;
-  padding:clamp(1.5rem,3vw,2.25rem);
-  border-radius:var(--dn-r-card);
-  border:1px solid var(--dn-mist);
-  background:var(--dn-charcoal);
-  /* brass lintel at top + carved recess + lifted base */
-  box-shadow:
-    inset 0 2px 0 var(--dn-day),
-    inset 0 0 60px rgba(0,0,0,.55),
-    0 24px 60px -30px #000;
-}
-.dn-contact-form h3.dn-display{
-  font-size:clamp(1.4rem,2.6vw,1.7rem);
-  font-weight:400;margin:0 0 1.35rem;
-}
+.dn-form-row{margin-bottom:1.1rem;}
+.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.1rem;}
 
-.dn-form-row{margin-bottom:1.05rem;}
-.dn-form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-.dn-contact-form label{display:flex;flex-direction:column;gap:.4rem;}
-.dn-contact-form label > span,
-.dn-form-label{
-  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  font-weight:600;color:var(--dn-bone-faint);
-  display:block;margin-bottom:.4rem;
-}
-.dn-contact-form label > span{margin-bottom:0;}
+/* fields carved into stone - recessed plates with chiseled gold focus */
+.dn-field{display:block;}
+.dn-field > span{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-dim);font-weight:600;margin:0 0 .5rem;}
+.dn-field .dn-help{display:block;font-family:var(--font-display);font-style:italic;font-size:.82rem;color:var(--dn-bone-faint);margin:0 0 .55rem;line-height:1.4;}
+.dn-field input,.dn-field textarea{width:100%;padding:.85rem 1rem;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px var(--font-body);box-shadow:inset 0 2px 5px rgba(0,0,0,.5);transition:border-color .25s,box-shadow .25s;}
+.dn-field input::placeholder,.dn-field textarea::placeholder{color:rgba(255,255,255,.32);}
+.dn-field input:focus,.dn-field textarea:focus{outline:none;border-color:var(--dn-day);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 2px 5px rgba(0,0,0,.5),0 0 0 4px rgba(248,199,96,.12);}
+.dn-field textarea{resize:vertical;min-height:84px;line-height:1.55;}
 
-/* fields carved into stone + chiseled gold focus */
-.dn-contact-form input,
-.dn-contact-form textarea,
-.dn-select-trigger{
-  width:100%;font:inherit;font-size:16px;color:var(--dn-bone);
-  padding:.78rem .95rem;
-  background:var(--dn-near-black);
-  border:1px solid var(--dn-mist);
-  border-radius:var(--dn-r-inset);
-  box-shadow:inset 0 2px 5px rgba(0,0,0,.5);
-  transition:border-color .18s ease,box-shadow .18s ease;
-}
-.dn-contact-form textarea{resize:vertical;min-height:84px;line-height:1.55;}
-.dn-contact-form input::placeholder,
-.dn-contact-form textarea::placeholder{color:rgba(255,255,255,.32);}
-.dn-contact-form input:focus,
-.dn-contact-form textarea:focus,
-.dn-select-trigger:focus,
-.dn-select-trigger.is-open{
-  outline:none;border-color:var(--dn-day);
-  box-shadow:
-    inset 0 0 0 1px var(--dn-day),
-    inset 0 2px 5px rgba(0,0,0,.5),
-    0 0 0 4px rgba(248,199,96,.12);
-}
-
-/* custom select (mirrors the React Dropdown contract) */
-.dn-select{position:relative;}
-.dn-select-trigger{
-  display:flex;align-items:center;justify-content:space-between;
-  cursor:pointer;text-align:left;color:rgba(255,255,255,.32);min-height:48px;
-}
-.dn-select-trigger.has-value{color:var(--dn-bone);}
-.dn-select-trigger .chev{transition:transform .2s ease;color:var(--dn-bone-faint);flex:none;display:flex;}
-.dn-select-trigger.is-open .chev{transform:rotate(180deg);}
-.dn-select-menu{
-  position:absolute;top:calc(100% + .4rem);left:0;right:0;z-index:20;
-  background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);
-  box-shadow:0 18px 40px -18px #000,inset 0 1px 0 rgba(255,255,255,.05);
-  padding:.35rem;display:none;max-height:260px;overflow:auto;
-}
-.dn-select.open .dn-select-menu{display:block;}
-.dn-select-opt{
-  padding:.6rem .7rem;border-radius:8px;cursor:pointer;font-size:.95rem;color:var(--dn-bone-dim);
-}
-.dn-select-opt:hover,.dn-select-opt:focus{background:rgba(248,199,96,.1);color:var(--dn-bone);outline:none;}
-
-/* preferred-time = a row of structural "bays" */
-.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
-.dn-radio{
-  position:relative;display:flex;align-items:center;cursor:pointer;
-  padding:.7rem .85rem;min-height:48px;
-  border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);
-  background:var(--dn-near-black);
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.4);
-  font-size:.9rem;color:var(--dn-bone-dim);
-  transition:border-color .18s ease,color .18s ease,box-shadow .18s ease;
-}
+/* preferred-time = a row of structural bays */
+.dn-form-radios{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.2rem;}
+.dn-radio{position:relative;display:flex;align-items:center;gap:.55rem;min-height:46px;padding:.6rem .9rem;border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);background:var(--dn-near-black);box-shadow:inset 0 1px 4px rgba(0,0,0,.4);cursor:pointer;color:var(--dn-bone-dim);font-size:.92rem;transition:border-color .2s,background .2s,color .2s,box-shadow .2s;}
 .dn-radio input{position:absolute;opacity:0;width:0;height:0;}
-.dn-radio > span{display:flex;align-items:center;}
-.dn-radio.day.checked{border-color:var(--dn-day);color:var(--dn-bone);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 1px 4px rgba(0,0,0,.4);}
-.dn-radio.night.checked{border-color:var(--dn-night);color:var(--dn-bone);box-shadow:inset 0 0 0 1px var(--dn-night),inset 0 1px 4px rgba(0,0,0,.4);}
-.dn-radio.urgent{border-left:3px solid var(--dn-night);}
-.dn-radio.urgent.checked{border-color:var(--dn-night);}
-.dn-radio:focus-within{outline:2px solid rgba(248,199,96,.4);outline-offset:2px;}
-.urgent-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);margin-right:.5rem;flex:none;box-shadow:0 0 0 3px rgba(69,144,236,.22);}
+.dn-radio:hover{color:var(--dn-bone);border-color:rgba(255,255,255,.24);}
+.dn-radio.day:has(input:checked){border-color:var(--dn-day);background:rgba(248,199,96,.1);color:var(--dn-bone);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 1px 4px rgba(0,0,0,.4);}
+.dn-radio.night:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.12);color:var(--dn-bone);box-shadow:inset 0 0 0 1px var(--dn-night),inset 0 1px 4px rgba(0,0,0,.4);}
+.dn-radio.urgent{grid-column:1 / -1;}
+.dn-radio.urgent:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.14);box-shadow:inset 0 0 0 1px var(--dn-night),inset 0 1px 4px rgba(0,0,0,.4),0 0 22px rgba(69,144,236,.18);}
+.dn-radio:focus-within{box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 1px 4px rgba(0,0,0,.4);}
+.urgent-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);}
 
-/* the desk's brass call-button */
-.dn-form-submit{
-  width:100%;margin-top:.4rem;cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
-  padding:1rem 1.25rem;font:inherit;font-weight:650;font-size:1rem;min-height:48px;
-  color:var(--dn-black);background:var(--dn-day);
-  border:none;border-radius:var(--dn-r-inset);
-  letter-spacing:.01em;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.5),
-    inset 0 -2px 0 rgba(0,0,0,.18),
-    0 10px 26px -12px rgba(248,199,96,.55);
-  transition:transform .12s ease,box-shadow .18s ease,background .18s ease;
-}
-.dn-form-submit:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 0 rgba(0,0,0,.18),0 14px 30px -12px rgba(248,199,96,.65);}
+/* select styled as a carved plate to match the fields */
+.dn-select{position:relative;}
+.dn-select select{-webkit-appearance:none;appearance:none;width:100%;padding:.85rem 2.4rem .85rem 1rem;background:var(--dn-near-black);border:1px solid var(--dn-mist);border-radius:var(--dn-r-inset);color:var(--dn-bone);font:16px var(--font-body);box-shadow:inset 0 2px 5px rgba(0,0,0,.5);cursor:pointer;transition:border-color .25s,box-shadow .25s;}
+.dn-select select:focus{outline:none;border-color:var(--dn-day);box-shadow:inset 0 0 0 1px var(--dn-day),inset 0 2px 5px rgba(0,0,0,.5),0 0 0 4px rgba(248,199,96,.12);}
+.dn-select select option{background:var(--dn-charcoal);color:var(--dn-bone);}
+.dn-select::after{content:'';position:absolute;right:1rem;top:50%;width:9px;height:9px;border-right:1.6px solid var(--dn-bone-dim);border-bottom:1.6px solid var(--dn-bone-dim);transform:translateY(-70%) rotate(45deg);pointer-events:none;}
+.dn-select select.placeholder{color:rgba(255,255,255,.32);}
+
+/* submit = the desk's brass call-button */
+.dn-form-submit{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;width:100%;min-height:54px;margin-top:.5rem;padding:0 1.5rem;border:0;border-radius:999px;background:var(--dn-day);color:#0a0a0c;font-family:var(--font-body);font-size:1.02rem;font-weight:650;letter-spacing:.005em;cursor:pointer;transition:transform .2s,box-shadow .25s,background .2s;box-shadow:0 6px 18px -8px rgba(248,199,96,.5);}
+.dn-form-submit:hover{transform:translateY(-1px);background:#ffd277;box-shadow:0 0 32px rgba(248,199,96,.34);}
 .dn-form-submit:active{transform:translateY(0);}
-.dn-form-submit .arrow{font-family:var(--font-display);}
-/* emergency state flips the call-button to the night/red vigil */
-.dn-form-submit.is-emergency{
-  background:#e8503f;color:#fff;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.22),0 12px 30px -12px rgba(232,80,63,.6);
-}
-.dn-form-submit.is-emergency:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.22),0 16px 34px -12px rgba(232,80,63,.7);}
-.dn-btn-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.6);animation:dn-pulse 1.6s infinite;}
-@keyframes dn-pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55);}70%{box-shadow:0 0 0 7px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
+.dn-form-submit .arrow{font-size:1.15rem;transition:transform .2s;}
+.dn-form-submit:hover .arrow{transform:translateX(3px);}
 
-.dn-form-disclaimer{margin:1rem 0 0;font-size:.78rem;color:var(--dn-bone-faint);line-height:1.5;}
-.dn-form-disclaimer a{color:var(--dn-bone-dim);text-underline-offset:2px;}
+.dn-form-disclaimer{margin:1.15rem 0 0;font-size:.82rem;color:var(--dn-bone-faint);line-height:1.55;}
+.dn-form-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
+.dn-form-disclaimer a:hover{color:var(--dn-day);}
 
-/* ============================================================
-   MOBILE — bays stack into a single vertical shaft.
-   Column rule rotates to a horizontal engraved seam.
-   Emergency pilaster stays as a left light-strip (touch-visible).
-   ============================================================ */
-@media(max-width:1000px){
-  .dn-contact-grid{grid-template-columns:1fr;gap:2.25rem;}
-  /* horizontal engraved seam between the directory and the desk */
-  .dn-contact-form-wrap::before{
-    content:"";position:absolute;left:0;right:0;top:-1.15rem;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(248,199,96,.45),transparent);
-  }
+/* a reassurance ledge tied to the 24/7 line, set into the desk's lower face */
+.dn-form-reassure{display:flex;align-items:center;gap:.6rem;margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--dn-mist);font-family:var(--font-display);font-style:italic;font-size:.92rem;color:var(--dn-bone-dim);line-height:1.45;}
+.dn-form-reassure a{color:var(--dn-night);text-decoration:none;font-style:normal;font-family:var(--font-body);white-space:nowrap;}
+.dn-form-reassure a:hover{text-decoration:underline;}
+.dn-reassure-dot{display:inline-block;flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);}
+
+/* ---- Responsive: bays stack into a single vertical shaft ---- */
+@media (max-width:1000px){
+  .dn-contact-grid{grid-template-columns:1fr;}
+  .dn-bay-left{padding-right:0;padding-bottom:2.6rem;}
+  /* the column rule rotates to a horizontal engraved seam between sections */
+  .dn-bay-right{padding-left:0;padding-top:2.6rem;border-top:1px solid var(--dn-mist);}
+  .dn-bay-right::before{top:0;left:0;right:0;bottom:auto;width:auto;height:1px;background:linear-gradient(90deg,var(--dn-day),#caa14d);}
+  .dn-bay-right::after{top:-3px;left:50%;transform:translateX(-50%);}
 }
-@media(max-width:560px){
-  .dn-atrium-architrave{text-align:center;margin-inline:auto;}
-  .dn-contact-lead{margin-inline:auto;}
+@media (max-width:900px){
+  .dn-section{padding:4.5rem 0 5.5rem;}
+}
+@media (max-width:600px){
+  .dn-container{padding:0 18px;}
+  .dn-contact-form{padding:2rem 1.5rem;}
   .dn-form-row-2{grid-template-columns:1fr;}
   .dn-form-radios{grid-template-columns:1fr;}
-  .dn-contact-map-facade-note{display:none;}
+  .dn-radio.urgent{grid-column:auto;}
+  h2.dn-display{font-size:clamp(2rem,8vw,2.6rem);}
+  .dn-contact-detail .value{font-size:1.16rem;}
 }
-@media(max-width:380px){
-  .dn-contact-detail{padding:.95rem 1rem;column-gap:.8rem;}
-  .dn-contact-ico{width:42px;height:42px;}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .dn-btn-pulse{animation:none;}
-  .dn-form-submit{transition:none;}
+@media (max-width:380px){
+  .dn-contact-detail{padding:1rem 1rem;}
+  .dn-contact-form{padding:1.75rem 1.25rem;}
 }
 </style>
 </head>
 <body>
 <div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#1</span> <b>The Atrium</b> <span class="lab-lens">architectural</span> <span class="lab-win">Panel winner</span></div><span></span></div>
 
-<section id="contact" class="dn-section dn-contact dn-atrium">
-  <div class="dn-glow day" aria-hidden="true"></div>
-  <div class="dn-glow night" aria-hidden="true"></div>
+<section class="dn-section" id="contact">
+  <div class="dn-glow day" style="width:560px;height:560px;top:2%;left:-7%;opacity:.10;"></div>
+  <div class="dn-glow night" style="width:440px;height:440px;bottom:6%;right:-9%;opacity:.05;"></div>
 
   <div class="dn-container">
+    <!-- THE ARCHITRAVE: full-width engraved header band over both bays -->
+    <div class="dn-architrave">
+      <span class="dn-eyebrow dn-pill day">Book Appointment</span>
+      <h2 class="dn-display">Book an <em class="dn-hl-gold">appointment</em>.</h2>
+      <p class="dn-architrave-lead">For urgent toothache, swelling or a broken tooth, call our 24/7 emergency line and someone will talk you through it. For routine care, leave your details at the reception desk below and the team will get back to you.</p>
+    </div>
+
+    <!-- TWO STRUCTURAL BAYS divided by one load-bearing column rule -->
     <div class="dn-contact-grid">
 
-      <!-- engraved architrave header spanning both bays -->
-      <header class="dn-atrium-architrave">
-        <span class="dn-eyebrow dn-pill day">Book Appointment</span>
-        <h2 class="dn-display">Book an <em class="dn-hl-gold">appointment</em>.</h2>
-        <p class="dn-contact-lead">
-          For urgent toothache, swelling or a broken tooth, call our 24/7 emergency
-          line. For routine appointments, send us your details and the team will get back to you.
-        </p>
-      </header>
+      <!-- LEFT BAY: the building directory (engraved wall-plates + plinth) -->
+      <div class="dn-bay-left">
+        <p class="dn-bay-eyebrow">The Directory</p>
 
-      <!-- LEFT BAY — the building's directory -->
-      <div class="dn-contact-info">
         <div class="dn-contact-details">
-
-          <!-- Day plate -->
-          <div class="dn-contact-detail">
-            <span class="dn-contact-ico day" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </span>
-            <span class="dn-eyebrow day">Day Line</span>
-            <a href="tel:+441415486548" class="value">0141 548 6548</a>
-            <span class="hint">Mon to Sun, 7am to 11pm</span>
-          </div>
-
-          <!-- Night & Emergency plate — always-lit pilaster -->
+          <!-- The Night plate carries the always-lit pilaster -->
           <div class="dn-contact-detail is-emergency">
             <span class="dn-contact-ico night" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
             </span>
-            <span class="dn-eyebrow night">Night &amp; Emergency</span>
-            <a href="tel:+441415486548" class="value"><span class="live-pip" aria-hidden="true"></span>0141 548 6548</a>
-            <span class="hint">24-hour emergency line</span>
+            <span class="plate-label night">Night &amp; Emergency</span>
+            <a href="tel:+441415486548" class="value">0141 548 6548</a>
+            <span class="hint">24-hour emergency line - the light that stays on after hours.</span>
           </div>
 
-          <!-- Email plate -->
+          <div class="dn-contact-detail">
+            <span class="dn-contact-ico day" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+            </span>
+            <span class="plate-label day">Day Line</span>
+            <a href="tel:+441415486548" class="value">0141 548 6548</a>
+            <span class="hint">Mon to Sun, 7am to 11pm.</span>
+          </div>
+
           <div class="dn-contact-detail">
             <span class="dn-contact-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
             </span>
-            <span class="dn-eyebrow">Email</span>
+            <span class="plate-label">Email</span>
             <a href="mailto:reception@daynightdental.co.uk" class="value">reception@daynightdental.co.uk</a>
-            <span class="hint">We reply within 1 working hour</span>
+            <span class="hint">We reply within 1 working hour.</span>
           </div>
 
-          <!-- Visit plate -->
           <div class="dn-contact-detail">
             <span class="dn-contact-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
             </span>
-            <span class="dn-eyebrow">Visit</span>
+            <span class="plate-label">Visit</span>
             <p class="value">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</p>
-            <span class="hint">Free parking nearby</span>
+            <span class="hint">Free parking nearby.</span>
           </div>
         </div>
 
-        <!-- map facade (consent-gated stand-in; no third-party load) -->
-        <div class="dn-contact-map">
-          <button type="button" class="dn-contact-map-facade" id="mapFacade">
-            <span class="dn-contact-map-facade-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <span class="dn-contact-map-facade-text">
-              <strong>Merchant City, Glasgow G1 1SH</strong>
-              <span>Show Google map</span>
-            </span>
-            <span class="dn-contact-map-facade-note">Loads Google Maps, which may set cookies.</span>
-          </button>
-        </div>
-
-        <!-- engraved plinth: hours -->
-        <div class="dn-contact-hours">
-          <div class="dn-hours-head"><span class="dn-eyebrow">Opening Hours</span></div>
+        <!-- the engraved plinth: hours -->
+        <div class="dn-plinth dn-contact-hours">
+          <div class="dn-plinth-head"><span class="plate-label">Opening Hours</span></div>
           <table>
             <tbody>
               <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
@@ -476,152 +271,112 @@ a.value:hover{color:var(--dn-day);}
               <tr><td>Sunday</td><td>9am to 9pm</td></tr>
               <tr class="emergency-row">
                 <td>Emergency line</td>
-                <td><span class="live-dot" aria-hidden="true"></span>24 hours, 7 days</td>
+                <td><span class="live-dot" aria-hidden="true"></span> 24 hours, 7 days</td>
               </tr>
             </tbody>
           </table>
         </div>
+
+        <!-- the map facade closes the plinth -->
+        <button type="button" class="dn-map-facade" aria-label="Show Google map">
+          <span class="dn-map-facade-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="dn-map-facade-text">
+            <strong>Merchant City, Glasgow G1 1SH</strong>
+            <span class="map-cta">Show Google map</span>
+            <span class="map-note">Loads Google Maps, which may set cookies.</span>
+          </span>
+        </button>
       </div>
 
-      <!-- RIGHT BAY — the recessed reception desk -->
-      <div class="dn-contact-form-wrap">
-        <form class="dn-contact-form" id="bookForm" novalidate>
-          <h3 class="dn-display">Request an appointment</h3>
+      <!-- RIGHT BAY: the recessed reception desk (the form) -->
+      <div class="dn-bay-right">
+        <div class="dn-contact-form-wrap">
+          <p class="dn-bay-eyebrow">The Reception Desk</p>
+          <form class="dn-contact-form" onsubmit="return false;" aria-label="Request an appointment">
+            <h3 class="dn-display">Request an appointment</h3>
+            <p class="dn-form-intro">Leave your details and the team will call you back to confirm a time.</p>
 
-          <div class="dn-form-row">
-            <label>
-              <span>Your name</span>
-              <input type="text" name="name" autocomplete="name" placeholder="Full name">
-            </label>
-          </div>
-
-          <div class="dn-form-row dn-form-row-2">
-            <label>
-              <span>Phone</span>
-              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call">
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
-            </label>
-          </div>
-
-          <div class="dn-form-row">
-            <span class="dn-form-label" id="pref-time-label">Preferred time</span>
-            <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label" id="prefRadios">
-              <label class="dn-radio night urgent" data-pref="emergency">
-                <input type="radio" name="preference" value="emergency">
-                <span><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</span>
-              </label>
-              <label class="dn-radio day" data-pref="day">
-                <input type="radio" name="preference" value="day">
-                <span>Day (7am to 5pm)</span>
-              </label>
-              <label class="dn-radio night" data-pref="evening">
-                <input type="radio" name="preference" value="evening">
-                <span>Evening (5pm to 11pm)</span>
-              </label>
-              <label class="dn-radio night" data-pref="weekend">
-                <input type="radio" name="preference" value="weekend">
-                <span>Weekend</span>
+            <div class="dn-form-row">
+              <label class="dn-field">
+                <span>Your name</span>
+                <input type="text" name="name" autocomplete="name" placeholder="Full name" required>
               </label>
             </div>
-          </div>
 
-          <div class="dn-form-row">
-            <span class="dn-form-label" id="treat-label">Treatment of interest</span>
-            <div class="dn-select" id="treatSelect">
-              <button type="button" class="dn-select-trigger" aria-haspopup="listbox" aria-labelledby="treat-label" aria-expanded="false">
-                <span class="dn-select-value">Select an option</span>
-                <span class="chev" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                </span>
-              </button>
-              <div class="dn-select-menu" role="listbox" aria-labelledby="treat-label">
-                <div class="dn-select-opt" role="option" tabindex="0">Emergency / pain</div>
-                <div class="dn-select-opt" role="option" tabindex="0">New patient examination</div>
-                <div class="dn-select-opt" role="option" tabindex="0">Hygienist appointment</div>
-                <div class="dn-select-opt" role="option" tabindex="0">Cosmetic consultation</div>
-                <div class="dn-select-opt" role="option" tabindex="0">Invisalign</div>
-                <div class="dn-select-opt" role="option" tabindex="0">Dental implants</div>
-                <div class="dn-select-opt" role="option" tabindex="0">Teeth whitening</div>
-                <div class="dn-select-opt" role="option" tabindex="0">Other / unsure</div>
+            <div class="dn-form-row-2">
+              <label class="dn-field">
+                <span>Phone</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call" required>
+              </label>
+              <label class="dn-field">
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              </label>
+            </div>
+
+            <div class="dn-form-row">
+              <div class="dn-field">
+                <span id="pref-time-label">Preferred time</span>
+                <div class="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
+                  <label class="dn-radio night urgent">
+                    <input type="radio" name="preference" value="emergency">
+                    <span><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</span>
+                  </label>
+                  <label class="dn-radio day">
+                    <input type="radio" name="preference" value="day">
+                    <span>Day (7am to 5pm)</span>
+                  </label>
+                  <label class="dn-radio night">
+                    <input type="radio" name="preference" value="evening">
+                    <span>Evening (5pm to 11pm)</span>
+                  </label>
+                  <label class="dn-radio night">
+                    <input type="radio" name="preference" value="weekend">
+                    <span>Weekend</span>
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="dn-form-row">
-            <label>
-              <span>Anything we should know?</span>
-              <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
-            </label>
-          </div>
+            <div class="dn-form-row">
+              <div class="dn-field">
+                <span>Treatment of interest</span>
+                <div class="dn-select">
+                  <select name="treatment" aria-label="Treatment of interest" class="placeholder" onchange="this.classList.toggle('placeholder', this.value==='')">
+                    <option value="" selected>Select an option</option>
+                    <option>Emergency / pain</option>
+                    <option>New patient examination</option>
+                    <option>Hygienist appointment</option>
+                    <option>Cosmetic consultation</option>
+                    <option>Invisalign</option>
+                    <option>Dental implants</option>
+                    <option>Teeth whitening</option>
+                    <option>Other / unsure</option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
-          <button type="submit" class="dn-form-submit" id="submitBtn">
-            <span class="dn-btn-pulse" id="btnPulse" hidden></span>
-            <span id="submitLabel">Request Booking</span>
-            <span class="arrow" aria-hidden="true">→</span>
-          </button>
+            <div class="dn-form-row">
+              <label class="dn-field">
+                <span>Anything we should know?</span>
+                <em class="dn-help">Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please do not include detailed medical information here.</em>
+                <textarea name="notes" rows="3" placeholder="Optional - e.g. best times to call."></textarea>
+              </label>
+            </div>
 
-          <p class="dn-form-disclaimer">
-            We'll never share your details. By sending this you're happy for us to
-            contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
-          </p>
-        </form>
+            <button type="submit" class="dn-form-submit">Request Booking <span class="arrow" aria-hidden="true">→</span></button>
+
+            <p class="dn-form-disclaimer">We will never share your details. By sending this you are happy for us to contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.</p>
+
+            <p class="dn-form-reassure"><span class="dn-reassure-dot" aria-hidden="true"></span> Cannot wait for a reply? Call <a href="tel:+441415486548">0141 548 6548</a> - the emergency line is always lit.</p>
+          </form>
+        </div>
       </div>
-
     </div>
   </div>
 </section>
-
-<script>
-/* Preview-only interactions. Default state is fully visible without JS. */
-(function(){
-  // preferred-time bays: checked styling + emergency call-button flip
-  var radios = document.getElementById('prefRadios');
-  var submitBtn = document.getElementById('submitBtn');
-  var submitLabel = document.getElementById('submitLabel');
-  var btnPulse = document.getElementById('btnPulse');
-  if (radios) {
-    radios.addEventListener('change', function(e){
-      Array.prototype.forEach.call(radios.querySelectorAll('.dn-radio'), function(l){ l.classList.remove('checked'); });
-      var label = e.target.closest('.dn-radio');
-      if (label) label.classList.add('checked');
-      var emergency = e.target.value === 'emergency';
-      submitBtn.classList.toggle('is-emergency', emergency);
-      submitLabel.textContent = emergency ? 'Request Emergency Appointment' : 'Request Booking';
-      btnPulse.hidden = !emergency;
-    });
-  }
-
-  // custom select (mirrors the React Dropdown contract)
-  var sel = document.getElementById('treatSelect');
-  if (sel) {
-    var trigger = sel.querySelector('.dn-select-trigger');
-    var valueEl = sel.querySelector('.dn-select-value');
-    function close(){ sel.classList.remove('open'); trigger.classList.remove('is-open'); trigger.setAttribute('aria-expanded','false'); }
-    trigger.addEventListener('click', function(){
-      var open = sel.classList.toggle('open');
-      trigger.classList.toggle('is-open', open);
-      trigger.setAttribute('aria-expanded', String(open));
-    });
-    Array.prototype.forEach.call(sel.querySelectorAll('.dn-select-opt'), function(opt){
-      function pick(){
-        valueEl.textContent = opt.textContent;
-        trigger.classList.add('has-value');
-        close();
-      }
-      opt.addEventListener('click', pick);
-      opt.addEventListener('keydown', function(ev){ if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); pick(); } });
-    });
-    document.addEventListener('click', function(e){ if (!sel.contains(e.target)) close(); });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
-  }
-
-  // form is non-submitting in this preview
-  var form = document.getElementById('bookForm');
-  if (form) form.addEventListener('submit', function(e){ e.preventDefault(); });
-})();
-</script>
 </body>
 </html>
