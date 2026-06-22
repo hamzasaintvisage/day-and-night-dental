@@ -38,7 +38,7 @@ body, .dn-root {
   isolation: isolate;
 }
 
-/* ONE continuous luxury page glow — a single fixed layer behind everything:
+/* ONE continuous luxury page glow - a single fixed layer behind everything:
    a soft gold bloom hugging the top-left of the viewport, a soft blue bloom
    hugging the bottom-right. Because it's fixed and page-wide, the glow flows
    smoothly across every section with no rectangular banding. Sections sit on
@@ -118,7 +118,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
   box-shadow: 0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
 }
 /* ONE shared gap between EVERY section pill and the heading right after it, so
-   no pill ever sits flush against its title — identical on every section + page.
+   no pill ever sits flush against its title - identical on every section + page.
    Higher specificity than per-section heading margins, so it wins consistently. */
 .dn-eyebrow.dn-pill + h1,
 .dn-eyebrow.dn-pill + h2,
@@ -134,7 +134,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
   line-height: 1.12;
 }
 /* EXCEPTIONS: the small/utility bands keep a compact title (the recurring CTA
-   bands + the "what to expect" journey strip) — more specific, so they win. */
+   bands + the "what to expect" journey strip) - more specific, so they win. */
 .dn-ctaband .dn-eyebrow.dn-pill + h2 {
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   line-height: 1.18;
@@ -152,7 +152,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .dn-display em.dn-hl-gold { background: none; -webkit-text-fill-color: var(--dn-day); color: var(--dn-day); }
 .dn-display em.dn-hl-blue { background: none; -webkit-text-fill-color: var(--dn-night); color: var(--dn-night); }
 
-/* THE LINE — a 2px solid gold underline beneath each section's highlighted word
+/* THE LINE - a 2px solid gold underline beneath each section's highlighted word
    (normal placement, same 2px solid thickness as the Real Smiles original).
    inline-block keeps the word in the sentence flow. Real Smiles keeps its own
    bigger bar, so it is not in this list. */

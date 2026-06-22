@@ -414,7 +414,7 @@ export default function TreatmentPage({ data }) {
         </section>
       )}
 
-      {/* Fees & finance (optional) — no exact prices; satisfies cost/finance search intent */}
+      {/* Fees & finance (optional) - no exact prices; satisfies cost/finance search intent */}
       {data.fees && (
         <section className="dn-section">
           <div className="dn-container">

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Specimen Sheet — Book Appointment · Day Night Dental</title>
+<style>
+/* ============ SPECIMEN SHEET — swiss clinical datasheet ============ */
+:root{--mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;}
+
+.dn-section{position:relative;padding:clamp(2.5rem,6vw,6rem) 0 clamp(3.5rem,8vw,7rem);}
+.dn-container{max-width:var(--container);margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem);}
+
+/* faint atmosphere — kept subtle so the sheet reads as the instrument */
+.dn-amb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.dn-amb.day{width:480px;height:480px;background:var(--dn-day);opacity:.05;top:-4%;left:-6%;}
+.dn-amb.night{width:480px;height:480px;background:var(--dn-night);opacity:.05;bottom:-6%;right:-6%;}
+
+/* ---- the sheet ---- */
+.dn-contact-sheet{position:relative;z-index:1;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);background:var(--dn-near-black);overflow:hidden;box-shadow:0 40px 120px -40px rgba(0,0,0,.7);}
+.dn-contact-sheet::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;z-index:0;background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),var(--dn-mist) calc(12.5% - 1px) 12.5%);}
+.dn-contact-sheet>*{position:relative;z-index:1;}
+
+/* ---- header band ---- */
+.dn-sheet-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;padding:clamp(1.6rem,3.5vw,2.6rem) clamp(1.4rem,3.5vw,2.6rem) clamp(1.4rem,3vw,2rem);border-bottom:1px solid var(--dn-mist);}
+.dn-sheet-head .dn-display{margin:.95rem 0 0;font-family:var(--font-display);font-weight:340;font-size:clamp(1.85rem,4.4vw,3rem);line-height:1.04;letter-spacing:-.015em;color:var(--dn-bone);}
+.dn-sheet-ref{flex:none;margin:0;text-align:right;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);line-height:1.9;}
+.dn-sheet-ref b{display:block;color:var(--dn-day);font-weight:700;letter-spacing:.16em;}
+.dn-sheet-ref .blue{color:var(--dn-night-soft);}
+
+/* ---- asymmetric grid ---- */
+.dn-sheet-grid{position:relative;display:grid;grid-template-columns:1fr 1.15fr;}
+.dn-sheet-grid>*+*{border-left:1px solid var(--dn-mist);}
+.dn-sheet-col{padding:clamp(1.4rem,3.2vw,2.4rem) clamp(1.4rem,3.5vw,2.6rem) clamp(1.6rem,3.5vw,2.6rem);}
+
+/* column micro-headers */
+.dn-col-tag{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);padding-bottom:.65rem;border-bottom:1px solid var(--dn-mist);margin-bottom:.4rem;}
+.dn-col-tag .n{color:var(--dn-day);}
+
+/* ---- numbered register ---- */
+.dn-reg-row{display:grid;grid-template-columns:2.2rem 1fr auto;align-items:baseline;gap:.75rem;padding:1rem 0;border-bottom:1px solid var(--dn-mist);}
+.dn-reg-idx{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--dn-day);padding-top:.1rem;}
+.dn-reg-main{min-width:0;}
+.dn-reg-label{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-dim);margin-bottom:.3rem;}
+.dn-reg-val{display:inline-block;max-width:100%;overflow-wrap:anywhere;font-family:var(--font-display);font-size:1.2rem;line-height:1.2;color:var(--dn-bone);text-decoration:none;transition:color .2s,border-color .2s;border-bottom:1px solid transparent;}
+a.dn-reg-val:hover{color:var(--dn-day);border-bottom-color:var(--dn-day);}
+.dn-reg-hint{display:block;font-size:.8rem;color:var(--dn-bone-faint);margin-top:.3rem;}
+.dn-reg-addr{font-family:var(--font-display);font-size:1.05rem;line-height:1.4;color:var(--dn-bone);}
+.dn-reg-lead{align-self:center;height:0;border-bottom:1px dotted var(--dn-mist);}
+.dn-reg-tick{justify-self:end;align-self:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--dn-bone-faint);white-space:nowrap;}
+
+/* night & emergency — the single lit row */
+.dn-reg-row.night{background:linear-gradient(90deg,rgba(69,144,236,.07),transparent 70%);margin:0 calc(-1 * clamp(1.4rem,3.5vw,2.6rem));padding-left:clamp(1.4rem,3.5vw,2.6rem);padding-right:clamp(1.4rem,3.5vw,2.6rem);border-left:2px solid var(--dn-night);}
+.dn-reg-row.night .dn-reg-idx{color:var(--dn-night-soft);}
+.dn-reg-row.night .dn-reg-val{color:var(--dn-night-soft);font-weight:500;}
+.dn-reg-row.night a.dn-reg-val:hover{color:var(--dn-bone);border-bottom-color:var(--dn-night);}
+.dn-reg-row.night .dn-reg-label{color:var(--dn-night-soft);}
+.dn-reg-row.night .dn-reg-tick{color:var(--dn-night-soft);display:inline-flex;align-items:center;gap:.4rem;}
+.dn-live{width:6px;height:6px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);display:inline-block;animation:dn-pulse 2.4s ease-in-out infinite;}
+@keyframes dn-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(.78);}}
+
+/* ---- ruled hours table ---- */
+.dn-reg-hours{margin-top:1.6rem;}
+.dn-reg-hours-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:.5rem;}
+.dn-reg-hours table{width:100%;border-collapse:collapse;}
+.dn-reg-hours td{padding:.55rem 0;border-bottom:1px solid var(--dn-mist);font-size:.92rem;}
+.dn-reg-hours td:first-child{color:var(--dn-bone-dim);}
+.dn-reg-hours td:last-child{text-align:right;font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--dn-bone);}
+.dn-reg-hours tr:last-child td{border-bottom:0;}
+.dn-reg-hours tr.emergency td:last-child{color:var(--dn-night-soft);display:flex;align-items:center;justify-content:flex-end;gap:.45rem;}
+
+/* ---- form as datasheet entries ---- */
+.dn-contact-form{display:flex;flex-direction:column;}
+.dn-field{display:flex;flex-direction:column;gap:.4rem;padding-top:1.1rem;margin-top:1.1rem;border-top:1px solid var(--dn-mist);}
+.dn-field:first-of-type{margin-top:.4rem;}
+.dn-field>span,.dn-field-legend{font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-dim);}
+.dn-field>span::before,.dn-field-legend::before{content:"§ ";color:var(--dn-day);}
+.dn-field-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;padding-top:1.1rem;margin-top:1.1rem;border-top:1px solid var(--dn-mist);}
+.dn-field-pair .dn-field{padding-top:0;margin-top:0;border-top:0;}
+
+.dn-contact-sheet input,.dn-contact-sheet textarea{width:100%;padding:.55rem 0;background:transparent;border:0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone);font-family:var(--font-display);font-size:16px;line-height:1.4;transition:border-color .25s,box-shadow .25s;}
+.dn-contact-sheet textarea{resize:vertical;min-height:3.2em;}
+.dn-contact-sheet input::placeholder,.dn-contact-sheet textarea::placeholder{color:var(--dn-bone-faint);font-family:var(--font-body);font-size:.92rem;}
+.dn-contact-sheet input:focus,.dn-contact-sheet textarea:focus{outline:0;border-bottom-color:var(--dn-day);box-shadow:0 1px 0 var(--dn-day);}
+
+/* native-styled select as a ruled datasheet field */
+.dn-sheet-select{position:relative;}
+.dn-sheet-select select{width:100%;padding:.55rem 1.6rem .55rem 0;background:transparent;border:0;border-bottom:1px solid var(--dn-mist);color:var(--dn-bone);font-family:var(--font-display);font-size:16px;line-height:1.4;-webkit-appearance:none;appearance:none;cursor:pointer;transition:border-color .25s,box-shadow .25s;}
+.dn-sheet-select select:focus{outline:0;border-bottom-color:var(--dn-day);box-shadow:0 1px 0 var(--dn-day);}
+.dn-sheet-select select:invalid{color:var(--dn-bone-faint);}
+.dn-sheet-select option{background:var(--dn-charcoal);color:var(--dn-bone);}
+.dn-sheet-select::after{content:"";position:absolute;right:.3rem;top:50%;width:.5rem;height:.5rem;border-right:1.5px solid var(--dn-bone-dim);border-bottom:1.5px solid var(--dn-bone-dim);transform:translateY(-65%) rotate(45deg);pointer-events:none;}
+
+/* preferred-time radios as inline ruled chips */
+.dn-chip-row{display:flex;flex-wrap:wrap;gap:.6rem;}
+.dn-chip{position:relative;display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:.5rem 1rem;border:1px solid var(--dn-mist);border-radius:999px;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dn-bone-dim);cursor:pointer;transition:border-color .2s,color .2s,background .2s;user-select:none;}
+.dn-chip input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
+.dn-chip:hover{color:var(--dn-bone);border-color:var(--dn-bone-faint);}
+.dn-chip:has(input:focus-visible){box-shadow:0 0 0 2px var(--dn-day);border-color:var(--dn-day);}
+.dn-chip.day:has(input:checked){color:#0a0a0c;background:var(--dn-day);border-color:var(--dn-day);font-weight:700;}
+.dn-chip.night:has(input:checked){color:#0a0a0c;background:var(--dn-night-soft);border-color:var(--dn-night-soft);font-weight:700;}
+.dn-chip.urgent{color:var(--dn-night-soft);border-color:rgba(69,144,236,.4);}
+.dn-chip.urgent .urgent-dot{width:6px;height:6px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);}
+.dn-chip.urgent:has(input:checked){color:#0a0a0c;background:var(--dn-night);border-color:var(--dn-night);}
+.dn-chip.urgent:has(input:checked) .urgent-dot{background:#0a0a0c;box-shadow:none;}
+
+/* submit — bottom-rule "sign the sheet" bar */
+.dn-form-foot{margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--dn-mist);}
+.dn-form-submit{position:relative;display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;min-height:54px;padding:.95rem 1.4rem;border:0;border-radius:12px;background:var(--dn-day);color:#0a0a0c;font-family:var(--font-body);font-size:1rem;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:filter .2s,transform .12s;}
+.dn-form-submit .arrow{font-size:1.1rem;transition:transform .2s;}
+.dn-form-submit:hover{filter:brightness(1.06);}
+.dn-form-submit:hover .arrow{transform:translateX(4px);}
+.dn-form-submit:active{transform:translateY(1px);}
+.dn-form-submit.dn-btn-emergency{background:var(--dn-night);color:var(--dn-bone);}
+.dn-btn-pulse{position:absolute;inset:0;border-radius:12px;box-shadow:0 0 0 0 rgba(69,144,236,.6);animation:dn-btnpulse 1.8s ease-out infinite;pointer-events:none;}
+@keyframes dn-btnpulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.55);}70%{box-shadow:0 0 0 14px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
+.dn-form-disclaimer{margin:1rem 0 0;font-size:.78rem;line-height:1.5;color:var(--dn-bone-faint);}
+.dn-form-disclaimer a{color:var(--dn-bone-dim);text-underline-offset:2px;}
+.dn-form-disclaimer a:hover{color:var(--dn-day);}
+.dn-form-note{margin:0 0 .2rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);}
+
+/* ---- responsive ---- */
+@media (max-width:860px){
+  .dn-sheet-grid{grid-template-columns:1fr;}
+  .dn-sheet-grid>*+*{border-left:0;border-top:1px solid var(--dn-mist);}
+  .dn-sheet-head{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .dn-sheet-ref{text-align:left;}
+  .dn-contact-sheet::before{opacity:.32;}
+}
+@media (max-width:560px){
+  .dn-field-pair{grid-template-columns:1fr;gap:0;}
+  .dn-field-pair .dn-field{padding-top:1.1rem;margin-top:1.1rem;border-top:1px solid var(--dn-mist);}
+  .dn-field-pair .dn-field:first-child{padding-top:0;margin-top:0;border-top:0;}
+  .dn-chip{width:100%;justify-content:flex-start;}
+  .dn-reg-row{grid-template-columns:1.8rem 1fr;}
+  .dn-reg-lead{display:none;}
+  .dn-reg-tick{grid-column:2;justify-self:start;margin-top:.3rem;}
+  .dn-reg-row.night .dn-reg-tick{justify-self:start;}
+}
+@media (prefers-reduced-motion:reduce){
+  .dn-live,.dn-btn-pulse{animation:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#6</span> <b>Specimen Sheet</b> <span class="lab-lens">swiss</span> </div><span></span></div>
+
+<section id="contact" class="dn-section dn-contact">
+  <div class="dn-amb day"></div>
+  <div class="dn-amb night"></div>
+
+  <div class="dn-container">
+    <div class="dn-contact-sheet">
+
+      <!-- header band -->
+      <header class="dn-sheet-head">
+        <div>
+          <span class="dn-eyebrow dn-pill day">Book Appointment</span>
+          <h2 class="dn-display">Book an <em class="dn-hl-gold">appointment</em>.</h2>
+        </div>
+        <p class="dn-sheet-ref">
+          REF<br>
+          <b>DND-EMERGENCY</b>
+          <span class="blue">· 24H</span>
+        </p>
+      </header>
+
+      <div class="dn-sheet-grid">
+
+        <!-- LEFT — numbered register -->
+        <div class="dn-sheet-col dn-sheet-register">
+          <div class="dn-col-tag"><span>Register / Practice</span><span class="n">01–06</span></div>
+
+          <div class="dn-reg-row">
+            <span class="dn-reg-idx">01</span>
+            <span class="dn-reg-main">
+              <span class="dn-reg-label">Day Line</span>
+              <a class="dn-reg-val" href="tel:+441415486548">0141 548 6548</a>
+              <span class="dn-reg-hint">Mon to Sun, 7am to 11pm</span>
+            </span>
+            <span class="dn-reg-lead"></span>
+          </div>
+
+          <div class="dn-reg-row night">
+            <span class="dn-reg-idx">02</span>
+            <span class="dn-reg-main">
+              <span class="dn-reg-label">Night &amp; Emergency</span>
+              <a class="dn-reg-val" href="tel:+441415486548">0141 548 6548</a>
+              <span class="dn-reg-hint">24-hour emergency line — toothache, swelling, trauma</span>
+            </span>
+            <span class="dn-reg-tick"><span class="dn-live" aria-hidden="true"></span> LIVE · 24/7</span>
+          </div>
+
+          <div class="dn-reg-row">
+            <span class="dn-reg-idx">03</span>
+            <span class="dn-reg-main">
+              <span class="dn-reg-label">Email</span>
+              <a class="dn-reg-val" href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+              <span class="dn-reg-hint">We reply within 1 working hour</span>
+            </span>
+            <span class="dn-reg-lead"></span>
+          </div>
+
+          <div class="dn-reg-row">
+            <span class="dn-reg-idx">04</span>
+            <span class="dn-reg-main">
+              <span class="dn-reg-label">Visit</span>
+              <span class="dn-reg-addr">80 Hutcheson St<br>Merchant City, Glasgow G1 1SH</span>
+              <span class="dn-reg-hint">Free parking nearby</span>
+            </span>
+            <span class="dn-reg-lead"></span>
+          </div>
+
+          <!-- ruled hours table -->
+          <div class="dn-reg-hours">
+            <div class="dn-reg-hours-tag">05 — Opening Hours</div>
+            <table>
+              <tbody>
+                <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
+                <tr><td>Saturday</td><td>8am to 10pm</td></tr>
+                <tr><td>Sunday</td><td>9am to 9pm</td></tr>
+                <tr class="emergency"><td>Emergency line</td><td><span class="dn-live" aria-hidden="true"></span> 24 hours, 7 days</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- RIGHT — form as datasheet entries -->
+        <div class="dn-sheet-col">
+          <div class="dn-col-tag"><span>Request / Appointment</span><span class="n">FORM-01</span></div>
+
+          <form class="dn-contact-form" onsubmit="return false;" novalidate>
+            <p hidden aria-hidden="true"><label>Leave this empty:<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+            <label class="dn-field">
+              <span>Your name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Full name">
+            </label>
+
+            <div class="dn-field-pair">
+              <label class="dn-field">
+                <span>Phone</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+              </label>
+              <label class="dn-field">
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+              </label>
+            </div>
+
+            <fieldset class="dn-field" style="border:0;padding:0;margin-top:1.1rem;">
+              <legend class="dn-field-legend" style="padding:0;">Preferred time</legend>
+              <div class="dn-chip-row" style="margin-top:.7rem;">
+                <label class="dn-chip urgent night"><input type="radio" name="preference" value="emergency"><span class="urgent-dot" aria-hidden="true"></span>Emergency, today</label>
+                <label class="dn-chip day"><input type="radio" name="preference" value="day">Day · 7am–5pm</label>
+                <label class="dn-chip night"><input type="radio" name="preference" value="evening">Evening · 5pm–11pm</label>
+                <label class="dn-chip night"><input type="radio" name="preference" value="weekend">Weekend</label>
+              </div>
+            </fieldset>
+
+            <label class="dn-field">
+              <span>Treatment of interest</span>
+              <span class="dn-sheet-select">
+                <select name="treatment" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option>Emergency / pain</option>
+                  <option>New patient examination</option>
+                  <option>Hygienist appointment</option>
+                  <option>Cosmetic consultation</option>
+                  <option>Invisalign</option>
+                  <option>Dental implants</option>
+                  <option>Teeth whitening</option>
+                  <option>Other / unsure</option>
+                </select>
+              </span>
+            </label>
+
+            <label class="dn-field">
+              <span>Anything we should know?</span>
+              <textarea name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+            </label>
+
+            <div class="dn-form-foot">
+              <p class="dn-form-note">Sign &amp; submit</p>
+              <button type="submit" class="dn-form-submit">
+                <span class="dn-btn-pulse" hidden></span>
+                <span class="dn-submit-label">Request Booking</span>
+                <span class="arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="dn-form-disclaimer">
+                We'll never share your details. By sending this you're happy for us to
+                contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+              </p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Preview only: promote the submit bar to its urgent label/pulse when "Emergency" is selected.
+// Default state is fully visible without JS.
+(function(){
+  var form = document.querySelector('.dn-contact-form');
+  if(!form) return;
+  var btn = form.querySelector('.dn-form-submit');
+  var label = btn.querySelector('.dn-submit-label');
+  var pulse = btn.querySelector('.dn-btn-pulse');
+  form.addEventListener('change', function(e){
+    if(e.target && e.target.name === 'preference'){
+      var emergency = e.target.value === 'emergency';
+      btn.classList.toggle('dn-btn-emergency', emergency);
+      label.textContent = emergency ? 'Request Emergency Appointment' : 'Request Booking';
+      pulse.hidden = !emergency;
+    }
+  });
+})();
+</script>
+</body>
+</html>

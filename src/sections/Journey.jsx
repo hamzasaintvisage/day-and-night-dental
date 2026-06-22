@@ -1,7 +1,7 @@
 import { PRACTICE } from '../data/practice';
 import './journey.css';
 
-// "What to expect when you call" — a connected timeline of three reassuring steps,
+// "What to expect when you call" - a connected timeline of three reassuring steps,
 // sitting directly under the hero in place of the old emergency strip.
 export default function Journey() {
   const tel = `tel:${PRACTICE.phoneE164}`;

@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Merchant Plan — Where We Are · Day Night Dental</title>
+<style>
+/* ===========================================================
+   THE MERCHANT PLAN  ·  lens: architectural  ·  rank #3
+   "An architect's site plan: the city grid framed,
+    practice as keystone."  Solid gold/blue only — no gradients
+    used as fills. Fraunces display · Inter Tight body · 16px radii.
+   =========================================================== */
+
+.dn-section{padding:clamp(3.5rem,9vw,7.5rem) 0;position:relative;}
+.dn-areas{
+  background:
+    radial-gradient(120% 80% at 50% -8%, rgba(248,199,96,.05), transparent 58%),
+    var(--dn-near-black);
+}
+.dn-container{max-width:var(--container);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem);}
+
+/* ---- section head ------------------------------------------------ */
+.tp-section-head.dn-center-head{
+  text-align:center;
+  max-width:46rem;
+  margin:0 auto clamp(2.25rem,5vw,3.5rem);
+}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:340;
+  letter-spacing:-.02em;
+  line-height:1.05;
+  font-size:clamp(2rem,5.2vw,3.5rem);
+  margin:1.1rem 0 0;
+}
+
+/* ===================================================================
+   THE DRAWING SHEET — framed plan with corner ticks  (keyCss adapted)
+   =================================================================== */
+.dn-areas-map{
+  position:relative;
+  padding:clamp(2rem,4vw,3.25rem);
+  border:1px solid var(--dn-mist);
+  border-radius:var(--dn-r-card);
+  display:grid;
+  grid-template-columns:1.55fr .95fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+  /* faint drawing-sheet tone so the frame reads as paper-on-dark */
+  background:linear-gradient(rgba(255,255,255,.014), rgba(255,255,255,.014));
+}
+
+/* architect's crop marks — corner ticks. Two via ::before/::after here … */
+.dn-areas-map::before,
+.dn-areas-map::after{
+  content:"";position:absolute;width:18px;height:18px;
+  border:1.5px solid var(--dn-day);pointer-events:none;
+}
+.dn-areas-map::before{top:10px;left:10px;border-right:0;border-bottom:0;}
+.dn-areas-map::after{bottom:10px;right:10px;border-left:0;border-top:0;}
+
+/* … and the other two corners via an inner wrapper */
+.dn-sheet-ticks{position:absolute;inset:0;pointer-events:none;}
+.dn-sheet-ticks::before,
+.dn-sheet-ticks::after{
+  content:"";position:absolute;width:18px;height:18px;
+  border:1.5px solid var(--dn-day);
+}
+.dn-sheet-ticks::before{top:10px;right:10px;border-left:0;border-bottom:0;}
+.dn-sheet-ticks::after{bottom:10px;left:10px;border-right:0;border-top:0;}
+
+/* draughtsman's annotations inside the frame */
+.dn-sheet-label{
+  position:absolute;top:14px;left:38px;
+  font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+}
+.dn-sheet-scale{
+  position:absolute;bottom:14px;right:40px;
+  font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+}
+
+/* ---- LEFT column: the elevation -------------------------------- */
+.dn-areas-col{position:relative;min-width:0;padding-top:.5rem;}
+
+.dn-areas-lead{
+  font-size:clamp(1.02rem,1.7vw,1.18rem);
+  color:var(--dn-bone-dim);
+  max-width:34rem;
+  margin:0 0 clamp(1.75rem,3.5vw,2.4rem);
+}
+
+/* the plots: chips laid on faint blueprint guide-lines */
+.dn-areas-grid{
+  display:flex;flex-wrap:wrap;gap:.7rem;
+  padding:1.3rem 1.1rem;
+  border-radius:10px;
+  background-image:
+    repeating-linear-gradient(90deg,
+      color-mix(in srgb, var(--dn-day) 6%, transparent) 0 1px,
+      transparent 1px 64px),
+    repeating-linear-gradient(0deg,
+      color-mix(in srgb, var(--dn-day) 4%, transparent) 0 1px,
+      transparent 1px 64px);
+  background-position:0 0;
+}
+
+.dn-area-chip{
+  display:inline-flex;align-items:center;
+  min-height:44px;
+  padding:.55rem 1.05rem;
+  border:1px solid var(--dn-mist);
+  border-radius:999px;
+  background:rgba(10,10,12,.55);
+  color:var(--dn-bone-dim);
+  font-size:.92rem;font-weight:500;
+  cursor:default;
+  transition:border-color .3s, color .3s, box-shadow .3s, background .3s;
+}
+.dn-area-chip:hover,
+.dn-area-chip:focus-visible{
+  border-color:var(--dn-day);
+  color:var(--dn-bone);
+  background:rgba(10,10,12,.85);
+  box-shadow:0 0 0 1px var(--dn-day), 0 0 18px -4px var(--dn-day);
+  outline:none;
+}
+
+/* ghost annotation link (the sheet's note) */
+.dn-areas-note{margin:clamp(1.6rem,3vw,2rem) 0 0;}
+.tp-hero-ghost{
+  display:inline-flex;align-items:center;gap:.45rem;
+  min-height:44px;
+  font-size:.95rem;font-weight:600;
+  color:var(--dn-bone);text-decoration:none;
+  border-bottom:1px solid var(--dn-mist);
+  padding-bottom:2px;
+  transition:color .3s, border-color .3s;
+}
+.tp-hero-ghost:hover,
+.tp-hero-ghost:focus-visible{color:var(--dn-day);border-color:var(--dn-day);outline:none;}
+.tp-hero-ghost span{transition:transform .3s;}
+.tp-hero-ghost:hover span,
+.tp-hero-ghost:focus-visible span{transform:translateX(3px);}
+
+/* plumb-line down the gutter (desktop) — anchors the keystone */
+@media (min-width:821px){
+  .dn-areas-col::after{
+    content:"";position:absolute;top:-.5rem;bottom:-1rem;
+    right:clamp(-1rem,-2.5vw,-2rem);width:1px;
+    background:linear-gradient(
+      var(--dn-night-soft),
+      color-mix(in srgb, var(--dn-day) 0%, transparent));
+    opacity:.55;
+  }
+  /* plumb bob at the foot of the line */
+  .dn-areas-col::before{
+    content:"";position:absolute;bottom:-1.35rem;
+    right:clamp(-1.2rem,-2.5vw,-2.2rem);
+    width:7px;height:7px;border-radius:50%;
+    background:var(--dn-day);
+    box-shadow:0 0 12px -2px var(--dn-day);
+  }
+}
+
+/* ===================================================================
+   THE KEYSTONE — tall charcoal column, edge-lit gold left face
+   =================================================================== */
+.dn-areas-panel{
+  position:relative;
+  align-self:stretch;
+  padding:clamp(1.6rem,3vw,2.1rem);
+  background:var(--dn-charcoal);
+  border:1px solid var(--dn-mist);
+  border-left:2px solid var(--dn-day);
+  border-radius:var(--dn-r-card);
+  box-shadow:-14px 0 36px -22px var(--dn-day);
+}
+
+.dn-keystone-tag{
+  display:inline-block;
+  font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--dn-day);
+  margin-bottom:1.15rem;
+}
+
+.dn-areas-pin{display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem;}
+.dn-areas-pin .dot{
+  position:relative;flex:none;width:11px;height:11px;border-radius:50%;
+  background:var(--dn-day);
+}
+.dn-areas-pin .dot::after{
+  content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid var(--dn-day);opacity:.4;
+}
+.dn-areas-pin .nm{
+  font-family:var(--font-display);font-weight:560;
+  font-size:1.28rem;letter-spacing:-.01em;line-height:1.1;
+}
+
+.dn-areas-addr{
+  margin:0 0 1.5rem;
+  color:var(--dn-bone-dim);
+  font-size:.98rem;line-height:1.5;
+}
+
+/* landmark list rendered as a vertical measurement scale */
+.dn-areas-land{
+  list-style:none;margin:0;padding:0 0 0 1rem;
+  border-left:1px solid var(--dn-mist);
+  display:flex;flex-direction:column;gap:1rem;
+}
+.dn-areas-land li{
+  position:relative;
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.94rem;color:var(--dn-bone-dim);
+}
+.dn-areas-land .b{
+  flex:none;width:14px;height:1.5px;border-radius:0;
+  background:var(--dn-day);margin-left:-1rem;
+}
+.dn-areas-land li strong{
+  color:var(--dn-bone);font-weight:600;font-variant-numeric:tabular-nums;
+}
+
+/* CTA inside the keystone — call now (emergency angle) */
+.dn-keystone-cta{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin-top:1.7rem;min-height:44px;
+  padding:.65rem 1.2rem;border-radius:999px;
+  background:var(--dn-day);color:var(--dn-near-black);
+  font-weight:700;font-size:.92rem;
+  text-decoration:none;
+  transition:transform .25s, box-shadow .25s;
+}
+.dn-keystone-cta:hover,
+.dn-keystone-cta:focus-visible{
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px -10px var(--dn-day);
+  outline:none;
+}
+
+/* ===================================================================
+   MOBILE — frame collapses to one column; keystone first
+   =================================================================== */
+@media (max-width:820px){
+  .dn-areas-map{
+    grid-template-columns:1fr;
+    gap:1.75rem;
+    padding:clamp(1.5rem,6vw,2rem);
+  }
+  /* keystone (you-are-here anchor) moves to the top */
+  .dn-areas-panel{order:-1;align-self:auto;}
+  /* blueprint guides fade to ~4% so text stays crisp */
+  .dn-areas-grid{
+    background-image:
+      repeating-linear-gradient(90deg,
+        color-mix(in srgb, var(--dn-day) 4%, transparent) 0 1px,
+        transparent 1px 56px);
+  }
+  /* short vertical gold rule under the keystone (plumb-line, mobile) */
+  .dn-areas-panel::after{
+    content:"";position:absolute;left:50%;bottom:-1.55rem;
+    transform:translateX(-50%);
+    width:1.5px;height:26px;background:var(--dn-day);opacity:.7;
+  }
+  .dn-sheet-label{left:34px;font-size:.55rem;}
+  .dn-sheet-scale{display:none;}
+}
+
+@media (max-width:520px){
+  .dn-areas-grid{gap:.55rem;padding:1rem .85rem;}
+  .dn-area-chip{font-size:.86rem;padding:.5rem .9rem;}
+  .dn-sheet-label{display:none;}
+  .dn-areas-map::before,.dn-areas-map::after,
+  .dn-sheet-ticks::before,.dn-sheet-ticks::after{width:14px;height:14px;top:8px;}
+  .dn-areas-map::after,.dn-sheet-ticks::after{top:auto;bottom:8px;}
+  .dn-areas-map::before{left:8px;} .dn-sheet-ticks::before{right:8px;}
+  .dn-areas-map::after{right:8px;} .dn-sheet-ticks::after{left:8px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#3</span> <b>The Merchant Plan</b> <span class="lab-lens">architectural</span> </div><span></span></div>
+
+<section id="areas" class="dn-section dn-areas">
+  <div class="dn-container">
+
+    <div class="tp-section-head dn-center-head">
+      <span class="dn-eyebrow dn-pill day">Where We Are</span>
+      <h2 class="dn-display">A 24-hour dentist at the centre of <em class="dn-hl-gold">Merchant&nbsp;City</em></h2>
+    </div>
+
+    <!-- THE DRAWING SHEET: framed plan + plumb-line -->
+    <div class="dn-areas-map">
+      <span class="dn-sheet-ticks" aria-hidden="true"></span>
+      <span class="dn-sheet-label" aria-hidden="true">Site plan · Glasgow grid</span>
+      <span class="dn-sheet-scale" aria-hidden="true">Scale · 1 : citywide</span>
+
+      <!-- LEFT: the elevation -->
+      <div class="dn-areas-col">
+        <p class="dn-areas-lead">
+          Patients come to us from right across Glasgow. The practice sits in Merchant City,
+          minutes from the stations and easy to reach by car — day or night.
+        </p>
+
+        <div class="dn-areas-grid">
+          <span class="dn-area-chip" tabindex="0">Glasgow City Centre</span>
+          <span class="dn-area-chip" tabindex="0">Merchant City</span>
+          <span class="dn-area-chip" tabindex="0">Trongate</span>
+          <span class="dn-area-chip" tabindex="0">West End</span>
+          <span class="dn-area-chip" tabindex="0">Finnieston</span>
+          <span class="dn-area-chip" tabindex="0">Dennistoun</span>
+          <span class="dn-area-chip" tabindex="0">East End</span>
+          <span class="dn-area-chip" tabindex="0">Southside</span>
+          <span class="dn-area-chip" tabindex="0">Partick</span>
+          <span class="dn-area-chip" tabindex="0">Hillhead</span>
+          <span class="dn-area-chip" tabindex="0">Govanhill</span>
+          <span class="dn-area-chip" tabindex="0">Shawlands</span>
+        </div>
+
+        <p class="dn-areas-note">
+          <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true">→</span></a>
+        </p>
+      </div>
+
+      <!-- RIGHT: the keystone -->
+      <aside class="dn-areas-panel">
+        <span class="dn-keystone-tag" aria-hidden="true">You are here · Keystone</span>
+        <div class="dn-areas-pin">
+          <span class="dot"></span>
+          <span class="nm">Day Night Dental</span>
+        </div>
+        <p class="dn-areas-addr">
+          80 Hutcheson St<br>
+          Merchant City, Glasgow G1 1SH
+        </p>
+        <ul class="dn-areas-land">
+          <li><span class="b" aria-hidden="true"></span><span><strong>3 min</strong> from Queen Street station</span></li>
+          <li><span class="b" aria-hidden="true"></span><span><strong>5 min</strong> from Buchanan Street</span></li>
+          <li><span class="b" aria-hidden="true"></span><span>Parking on Hutcheson St &amp; Albion St</span></li>
+        </ul>
+        <a class="dn-keystone-cta" href="tel:+441415486548">Call 0141 548 6548</a>
+      </aside>
+
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

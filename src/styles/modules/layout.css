@@ -8,7 +8,7 @@
 }
 
 /* Sections are transparent so the single continuous page glow (.dn-ambient,
-   fixed behind all content) flows through them uninterrupted — no per-section
+   fixed behind all content) flows through them uninterrupted - no per-section
    pseudo-glow, which would tile into hard rectangular bands. */
 .dn-section {
   padding-block: var(--space-section);

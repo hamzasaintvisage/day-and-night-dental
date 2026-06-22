@@ -276,7 +276,7 @@
         }
 
         /* ============================================================
-           "The Masthead" — The Practitioners (editorial, panel pick).
+           "The Masthead" - The Practitioners (editorial, panel pick).
            Sticky header column + a numbered editorial list of practitioners.
            Reuses the global .dn-section / .dn-container / .dn-display; new
            styling scoped to .dn-mast-*. Headline keeps the global section size. */
@@ -327,7 +327,7 @@
           transition: box-shadow 0.4s, background 0.4s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .dn-mast-row.night { --c: var(--dn-night); }
-        /* single-colour-per-side hover/focus — ungated so it shows on touch too */
+        /* single-colour-per-side hover/focus - ungated so it shows on touch too */
         .dn-mast-row:hover, .dn-mast-row:focus {
           transform: translateX(4px);
           background: color-mix(in srgb, var(--c) 5%, transparent);

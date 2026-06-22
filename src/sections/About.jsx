@@ -1,4 +1,4 @@
-// "Why we're different" — editorial statement paired with a sunrise-to-midnight arc.
+// "Why we're different" - editorial statement paired with a sunrise-to-midnight arc.
 // The day is drawn as a path: sun rising, the three real-life moments along it, moon at midnight.
 export default function About() {
   return (

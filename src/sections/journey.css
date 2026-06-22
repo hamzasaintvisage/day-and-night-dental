@@ -1,6 +1,6 @@
-/* "What to expect when you call" — connected timeline of 3 icon-node steps. Scoped under .dn-journey. */
+/* "What to expect when you call" - connected timeline of 3 icon-node steps. Scoped under .dn-journey. */
 /* .dn-section.dn-journey (two classes) so this padding wins over the generic
-   .dn-section { padding-block: var(--space-section) } — otherwise the section
+   .dn-section { padding-block: var(--space-section) } - otherwise the section
    inherits the full ~7rem section padding and looks far too tall. */
 .dn-section.dn-journey {
   background: transparent;

@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Dispatch Board · Where We Are · Day Night Dental</title>
+<style>
+/* ---- section frame ---- */
+.dn-section{padding:clamp(3.5rem,8vw,7rem) 0;position:relative;}
+.dn-areas{
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(69,144,236,.07), transparent 60%),
+    var(--dn-near-black);
+}
+.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem);}
+.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.1rem;margin-bottom:clamp(2.4rem,5vw,3.4rem);}
+.dn-display{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(2rem,5.2vw,3.35rem);line-height:1.06;letter-spacing:-.015em;
+  margin:0;max-width:18ch;
+}
+
+/* ---- console card ---- */
+.dn-areas-board{
+  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  background:linear-gradient(160deg,var(--dn-charcoal),var(--dn-near-black));
+  overflow:hidden;
+  box-shadow:0 40px 90px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+/* ---- ruled header strip: origin + live tag + column captions ---- */
+.dn-board-head{
+  display:flex;justify-content:space-between;align-items:center;gap:1.5rem;
+  padding:1.5rem 1.7rem;border-bottom:1px solid var(--dn-mist);
+  background:rgba(255,255,255,.015);
+}
+.dn-origin{display:flex;flex-direction:column;gap:.35rem;min-width:0;}
+.dn-areas-pin{display:flex;align-items:center;gap:.6rem;}
+.dn-areas-pin .dot{
+  position:relative;width:11px;height:11px;border-radius:50%;flex:none;
+  background:var(--dn-night);
+  box-shadow:0 0 0 4px rgba(69,144,236,.16), 0 0 14px 2px rgba(69,144,236,.7);
+}
+.dn-areas-pin .dot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(69,144,236,.5);
+  animation:dn-ping 2.8s ease-out infinite;
+}
+@keyframes dn-ping{0%{transform:scale(.7);opacity:.9}80%,100%{transform:scale(2.1);opacity:0}}
+.dn-areas-pin .nm{font-family:var(--font-display);font-weight:600;font-size:1.18rem;letter-spacing:-.01em;}
+.dn-board-addr{
+  font-size:.82rem;color:var(--dn-bone-faint);letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;padding-left:1.45rem;
+}
+.dn-live{
+  display:inline-flex;align-items:center;gap:.45rem;align-self:flex-start;
+  margin-top:.15rem;font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dn-night);
+}
+.dn-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 8px var(--dn-night);animation:dn-blink 2s ease-in-out infinite;}
+@keyframes dn-blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+.dn-board-caps{
+  display:flex;align-items:center;gap:2.6rem;flex:none;
+  font:600 .68rem/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);
+}
+.dn-board-caps span{display:inline-block;}
+.dn-cap-area{min-width:7rem;text-align:left;}
+.dn-cap-zone{min-width:3rem;text-align:left;}
+.dn-cap-reach{min-width:3.4rem;text-align:right;}
+
+/* ---- body: grid + status rail ---- */
+.dn-board-body{display:grid;grid-template-columns:1fr 268px;}
+.dn-board-grid{display:grid;grid-template-columns:1fr 1fr;}
+.dn-board-row{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  min-height:54px;padding:.6rem 1.7rem;
+  border-bottom:1px solid var(--dn-mist);border-right:1px solid var(--dn-mist);
+  font-variant-numeric:tabular-nums;
+  transition:background .25s ease,color .25s ease;
+}
+/* remove the trailing right rule on the right column so it doesn't double the rail border */
+.dn-board-row:nth-child(2n){border-right:0;}
+.dn-board-row:hover{background:rgba(248,199,96,.06);}
+.dn-row-name{font-size:.98rem;color:var(--dn-bone-dim);transition:color .25s ease;letter-spacing:-.005em;}
+.dn-board-row:hover .dn-row-name{color:var(--dn-bone);}
+.dn-row-meta{display:flex;align-items:center;gap:1.1rem;flex:none;}
+
+.dn-zone{
+  font:600 .7rem var(--font-body);letter-spacing:.05em;
+  color:var(--dn-day);border-bottom:2px solid var(--dn-day);padding-bottom:1px;
+  min-width:1.8rem;text-align:center;font-variant-numeric:tabular-nums;
+}
+.dn-reach{display:flex;gap:3px;width:51px;justify-content:flex-end;}
+.dn-reach i{width:14px;height:4px;border-radius:1px;background:var(--dn-mist);transition:background .25s ease,box-shadow .25s ease;}
+.dn-reach i.on{background:var(--dn-day);box-shadow:0 0 8px var(--dn-day);}
+
+/* ---- status rail ---- */
+.dn-board-rail{
+  border-left:1px solid var(--dn-mist);padding:1.5rem 1.7rem;
+  display:flex;flex-direction:column;gap:1.1rem;background:rgba(255,255,255,.012);
+}
+.dn-rail-cap{
+  font:600 .68rem/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:var(--dn-night);
+  display:flex;align-items:center;gap:.5rem;
+}
+.dn-rail-cap::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
+.dn-areas-land{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85rem;}
+.dn-areas-land li{
+  display:flex;align-items:flex-start;gap:.65rem;
+  font-size:.9rem;color:var(--dn-bone-dim);line-height:1.4;
+}
+.dn-areas-land li .b{
+  flex:none;width:7px;height:7px;border-radius:50%;margin-top:.42rem;
+  background:var(--dn-day);box-shadow:0 0 8px rgba(248,199,96,.55);
+}
+.dn-rail-hours{
+  margin-top:.2rem;padding-top:1rem;border-top:1px solid var(--dn-mist);
+  display:flex;flex-direction:column;gap:.3rem;
+}
+.dn-rail-hours .lab{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-rail-hours .val{font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--dn-bone);letter-spacing:-.01em;}
+.dn-rail-hours .sub{font-size:.78rem;color:var(--dn-bone-faint);}
+
+.tp-hero-ghost{
+  display:inline-flex;align-items:center;gap:.35rem;align-self:flex-start;margin-top:auto;
+  text-decoration:none;color:var(--dn-day);font-weight:600;font-size:.9rem;
+  border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .25s ease,gap .25s ease;
+}
+.tp-hero-ghost:hover{border-color:var(--dn-day);gap:.6rem;}
+
+/* ---- console footer legend ---- */
+.dn-board-foot{
+  display:flex;flex-wrap:wrap;gap:.65rem 1.6rem;align-items:center;
+  padding:.95rem 1.7rem;border-top:1px solid var(--dn-mist);
+  font-size:.7rem;letter-spacing:.04em;color:var(--dn-bone-faint);
+  background:rgba(0,0,0,.25);
+}
+.dn-board-foot .key{display:inline-flex;align-items:center;gap:.45rem;}
+.dn-board-foot .swatch{width:18px;height:4px;border-radius:1px;background:var(--dn-day);box-shadow:0 0 6px rgba(248,199,96,.6);}
+.dn-board-foot .swatch.dim{background:var(--dn-mist);box-shadow:none;}
+.dn-board-foot .ztag{font-weight:600;color:var(--dn-day);border-bottom:2px solid var(--dn-day);padding-bottom:1px;}
+
+/* ---- mobile ---- */
+@media(max-width:820px){
+  .dn-board-head{flex-direction:column;align-items:flex-start;gap:.85rem;padding:1.3rem 1.2rem;}
+  .dn-board-addr{padding-left:1.45rem;}
+  .dn-board-body,.dn-board-grid{grid-template-columns:1fr;}
+  .dn-board-row{border-right:0;padding:.6rem 1.2rem;min-height:54px;}
+  .dn-board-row:nth-child(2n){border-right:0;}
+  .dn-board-rail{border-left:0;border-top:1px solid var(--dn-mist);padding:1.3rem 1.2rem;}
+  .dn-board-caps{display:none;}
+  .dn-board-foot{padding:.9rem 1.2rem;}
+}
+@media(max-width:420px){
+  .dn-row-name{font-size:.92rem;}
+  .dn-row-meta{gap:.8rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#5</span> <b>The Dispatch Board</b> <span class="lab-lens">dashboard</span> </div><span></span></div>
+
+<section id="areas" class="dn-section dn-areas">
+  <div class="dn-container">
+    <div class="tp-section-head dn-center-head">
+      <span class="dn-eyebrow dn-pill day">Where We Are</span>
+      <h2 class="dn-display">A 24-hour dentist in the heart of <em class="dn-hl-gold">Merchant&nbsp;City</em></h2>
+    </div>
+
+    <div class="dn-areas-board">
+      <div class="dn-board-head">
+        <div class="dn-origin">
+          <div class="dn-areas-pin">
+            <span class="dot"></span>
+            <span class="nm">Day Night Dental</span>
+          </div>
+          <span class="dn-board-addr">80 Hutcheson St, Merchant City G1 1SH</span>
+          <span class="dn-live">Origin · live</span>
+        </div>
+        <div class="dn-board-caps">
+          <span class="dn-cap-area">Area</span>
+          <span class="dn-cap-zone">Zone</span>
+          <span class="dn-cap-reach">Reach</span>
+        </div>
+      </div>
+
+      <div class="dn-board-body">
+        <div class="dn-board-grid">
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Glasgow City Centre</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">C1</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Merchant City</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">C1</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Trongate</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">C1</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">West End</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">W</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Finnieston</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">W</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Dennistoun</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">E</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">East End</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">E</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Southside</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">S</span>
+              <span class="dn-reach"><i class="on"></i><i class="on"></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Partick</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">W</span>
+              <span class="dn-reach"><i class="on"></i><i></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Hillhead</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">W</span>
+              <span class="dn-reach"><i class="on"></i><i></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Govanhill</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">S</span>
+              <span class="dn-reach"><i class="on"></i><i></i><i></i></span>
+            </span>
+          </div>
+
+          <div class="dn-board-row">
+            <span class="dn-row-name">Shawlands</span>
+            <span class="dn-row-meta">
+              <span class="dn-zone">S</span>
+              <span class="dn-reach"><i class="on"></i><i></i><i></i></span>
+            </span>
+          </div>
+
+        </div>
+
+        <aside class="dn-board-rail">
+          <span class="dn-rail-cap">Status</span>
+          <ul class="dn-areas-land">
+            <li><span class="b"></span>3 min from Queen Street station</li>
+            <li><span class="b"></span>5 min from Buchanan Street</li>
+            <li><span class="b"></span>Parking on Hutcheson St &amp; Albion St</li>
+          </ul>
+          <div class="dn-rail-hours">
+            <span class="lab">Dispatch window</span>
+            <span class="val">24 / 7</span>
+            <span class="sub">Emergency &amp; cosmetic care, every day</span>
+          </div>
+          <a href="/areas-served/" class="tp-hero-ghost">See the areas we serve across Glasgow<span aria-hidden="true"> →</span></a>
+        </aside>
+      </div>
+
+      <div class="dn-board-foot">
+        <span class="key"><span class="swatch"></span> Reach to origin</span>
+        <span class="key"><span class="ztag">C1</span> Central</span>
+        <span class="key"><span class="ztag">W</span> West</span>
+        <span class="key"><span class="ztag">E</span> East</span>
+        <span class="key"><span class="ztag">S</span> South</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

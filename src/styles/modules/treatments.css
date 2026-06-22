@@ -267,7 +267,7 @@
           line-height: 1.45;
           cursor: pointer;
           transition: color 0.2s, background 0.2s, border-color 0.2s;
-          /* a11y: ~44px tap target for the FAQ tab buttons (WCAG 2.5.8) — matters most
+          /* a11y: ~44px tap target for the FAQ tab buttons (WCAG 2.5.8) - matters most
              on mobile where they reflow into a wrapped row. min-height (not a fixed
              height) so long, multi-line questions never clip. */
           display: flex;
@@ -305,7 +305,7 @@
 
 
 /* ============================================================= */
-/* === Treatments — "Split Showcase glow" (txg-) ============== */
+/* === Treatments - "Split Showcase glow" (txg-) ============== */
 /* Ported from dist/design-preview/tx/4-glow.html. Pure-CSS      */
 /* :checked radios are replaced by React useState (.is-active).  */
 /* Uses site tokens; corner glow is scoped to .txg-root only.    */
@@ -492,7 +492,7 @@
 }
 
 /* hover */
-/* hover bar follows the item's side — gold for day, blue for night (never both) */
+/* hover bar follows the item's side - gold for day, blue for night (never both) */
 .txg-option:hover{background:rgba(255,255,255,0.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14);}
 .txg-option.day:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-gold) 70%, transparent);}
 .txg-option.night:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-blue) 70%, transparent);}

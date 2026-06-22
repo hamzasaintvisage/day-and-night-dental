@@ -15,7 +15,7 @@ const svc = (slug) => ({ '@type': 'MedicalProcedure', name: treatmentTitle(slug)
 // One connected business entity (linked by @id), with full local-business signals.
 export const dentistLd = {
   '@context': 'https://schema.org',
-  // Multi-typed: a Dentist that is ALSO an EmergencyService — the core signal for
+  // Multi-typed: a Dentist that is ALSO an EmergencyService - the core signal for
   // out-of-hours emergency queries. Both are LocalBusiness subtypes, so all the
   // local-business properties below still apply.
   '@type': ['Dentist', 'EmergencyService'],

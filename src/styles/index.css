@@ -1,4 +1,4 @@
-/* Day Night Dental global styles — 19 ordered modules.
+/* Day Night Dental global styles - 19 ordered modules.
    Responsive overrides live inside each module's own @media blocks;
    there are no cross-file cascade dependencies. Reordering is safe. */
 @import url('./modules/tokens.css');

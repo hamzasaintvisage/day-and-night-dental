@@ -66,7 +66,7 @@ export default function Home() {
         sub="Whether it's the middle of the night or the middle of the week, you can call us in Glasgow straight away for urgent help."
         callLabel="Call our 24/7 line"
       />
-      {/* Results / smile gallery — "The Gold Standard" design (responsive: one
+      {/* Results / smile gallery - "The Gold Standard" design (responsive: one
           colossal hero smile + a gold numbered rail, collapses on phones). */}
       <SmileGallerySpotlight />
       <Register />

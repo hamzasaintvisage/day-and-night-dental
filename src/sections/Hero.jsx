@@ -3,7 +3,7 @@ import { PRACTICE } from '../data/practice';
 export default function Hero() {
   return (
     <section id="top" className="dn-hero">
-      {/* Atmospheric glows: gold "day" on the left, blue "night" on the right — the brand as light */}
+      {/* Atmospheric glows: gold "day" on the left, blue "night" on the right - the brand as light */}
       <div className="dn-glow day" style={{ width: '600px', height: '600px', top: '-220px', left: '-160px', opacity: 0.16 }} />
       <div className="dn-glow night" style={{ width: '600px', height: '600px', top: '-220px', right: '-160px', opacity: 0.14 }} />
 

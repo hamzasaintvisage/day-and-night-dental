@@ -1,4 +1,4 @@
-/* "Why Day Night" — aurora treatment.
+/* "Why Day Night" - aurora treatment.
    A soft sunrise(gold)->night(blue) sky glow + faint horizon seam and stars sit
    behind frosted, numbered cards. Section-scoped; sits on top of the continuous
    page glow. All accents are SOLID gold/blue (day cards gold, night cards blue). */
@@ -17,7 +17,7 @@
   pointer-events: none;
   overflow: hidden;
 }
-/* the orb: a warm gold sun bloom up top, a cooler blue wash beneath — a localised
+/* the orb: a warm gold sun bloom up top, a cooler blue wash beneath - a localised
    day->night sky. Two separate radials (not a blended text gradient). */
 .dn-why2-orb {
   position: absolute;
@@ -153,7 +153,7 @@
   .dn-why2-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
-  /* Mobile: the 6-card stack becomes a horizontal swipe carousel — one card in
+  /* Mobile: the 6-card stack becomes a horizontal swipe carousel - one card in
      view with a small peek of the next, smooth CSS scroll-snap. Card styling,
      icons, borders + colours are unchanged; cards stay full-size (not tiny). */
   .dn-why2-grid {

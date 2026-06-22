@@ -27,8 +27,20 @@
   Header unset X-Powered-By
 
   # HTML must not be cached long, so a go-live (or any edit) is seen immediately.
+  # "always set" so it wins over any upstream no-store (which would force a full
+  # re-download instead of a cheap 304 revalidation).
   <FilesMatch "\.html$">
-    Header set Cache-Control "no-cache, must-revalidate"
+    Header always set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  # Content-hashed build assets (app-XXXX.js / .css) + self-hosted fonts are immutable
+  # for a given URL — cache them hard so repeat visits are instant. "always set" forces
+  # this over any server/gate-era no-store header that was killing browser caching.
+  <FilesMatch "\.(css|js|mjs|woff2)$">
+    Header always set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Images aren't content-hashed, so a month (still avoids the every-visit re-download).
+  <FilesMatch "\.(webp|png|jpe?g|svg|ico|avif)$">
+    Header always set Cache-Control "public, max-age=2592000"
   </FilesMatch>
 </IfModule>
 

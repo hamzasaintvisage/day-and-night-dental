@@ -1,5 +1,5 @@
 /* ============================================================================
-   CONCERNS — "Concern Chips glow"
+   CONCERNS - "Concern Chips glow"
    A conversational concern picker: selectable chips + a result panel that
    recommends the matching treatment. Pure-CSS :checked interaction from the
    static design is driven by React useState here (.is-active). Every class is
@@ -27,7 +27,7 @@
   line-height: 1.5;
 }
 
-/* ACCENT 1 — section-scoped ambient day->night corner wash:
+/* ACCENT 1 - section-scoped ambient day->night corner wash:
    gold radial glow anchored TOP-LEFT, blue radial glow anchored BOTTOM-RIGHT.
    Scoped to THIS section's root (not body/viewport) so it only lights here. */
 /* Disabled: the single continuous page glow (.dn-ambient) now lights this
@@ -157,7 +157,7 @@
 }
 
 /* featured chip carries a soft gold ring + "Most asked" tag */
-/* featured chip ONLY carries the "Most asked" tag — no permanent selected styling,
+/* featured chip ONLY carries the "Most asked" tag - no permanent selected styling,
    so the active chip is the single highlighted pill (premium + obvious). */
 .cxg-chip.featured {
   padding-right: 1.05rem;
@@ -192,8 +192,8 @@
 
 /* the active/selected chip */
 .cxg-chip.is-active {
-  /* ring + glow follow THIS chip's own accent — gold for day chips, blue for night
-     chips — NOT forced gold. Clean dark interior, no gold/blue gradient fill. */
+  /* ring + glow follow THIS chip's own accent - gold for day chips, blue for night
+     chips - NOT forced gold. Clean dark interior, no gold/blue gradient fill. */
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
   background: color-mix(in srgb, var(--accent) 6%, transparent);
   box-shadow:
@@ -212,7 +212,7 @@
 }
 .cxg-chip:focus-visible {
   /* focus ring follows THIS chip's own accent so a gold chip never shows a blue
-     ring on top of its gold hover glow (and vice-versa) — single colour per side */
+     ring on top of its gold hover glow (and vice-versa) - single colour per side */
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -407,7 +407,7 @@
   outline: 2px solid var(--cxg-gold);
   outline-offset: 3px;
 }
-/* the primary button carries a gold glow, so its focus ring is gold too — never a
+/* the primary button carries a gold glow, so its focus ring is gold too - never a
    blue ring on top of a gold glow. The ghost button has no accent glow, so its
    blue ring above stands alone (single colour). */
 .cxg-btn-primary:focus-visible {

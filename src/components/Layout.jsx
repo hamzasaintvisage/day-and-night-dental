@@ -13,7 +13,7 @@ import { PRACTICE, SITE } from '../data/practice'
 // Handles scroll-to-top on navigation and smooth-scroll to #hash targets.
 export default function Layout() {
   const { pathname, hash } = useLocation()
-  // Per-page canonical URL (trailing slash) — also the og:url default, so every route (incl. legal
+  // Per-page canonical URL (trailing slash) - also the og:url default, so every route (incl. legal
   // pages) gets its own shareable URL instead of inheriting the homepage's card.
   const canonicalUrl = SITE + (pathname.endsWith('/') ? pathname : pathname + '/')
 

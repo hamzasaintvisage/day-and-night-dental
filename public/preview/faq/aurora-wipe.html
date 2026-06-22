@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;} a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;} .lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;} .lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);} .dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);} em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Aurora Wipe · Common Questions · Day Night Dental</title>
+<style>
+/* ============================================================
+   AURORA WIPE — kinetic FAQ  (rank #6)
+   "A solid accent bar wipes each answer in; a marker glides the rail."
+   Solid gold / blue only (odd index = gold, even index = blue).
+   Never a gold→blue gradient. Default state visible without JS; first Q&A open.
+   ============================================================ */
+
+.dn-section{padding:120px 0;position:relative;}
+.dn-section::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(900px 480px at 18% -8%, color-mix(in srgb,var(--dn-night) 11%,transparent), transparent 70%),
+    radial-gradient(820px 460px at 92% 108%, color-mix(in srgb,var(--dn-day) 9%,transparent), transparent 72%);}
+.dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px;position:relative;}
+
+.tp-section-head{margin:0 auto 56px;max-width:760px;}
+.dn-center-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;}
+.dn-display{font-family:var(--font-display);font-weight:430;font-size:clamp(2rem,5.2vw,3.5rem);line-height:1.06;letter-spacing:-.015em;margin:0;text-wrap:balance;}
+
+/* ---------- two-column live rail (0.5fr / 1fr) ---------- */
+.dn-faq-side{display:grid;grid-template-columns:.5fr 1fr;gap:clamp(28px,4vw,56px);align-items:start;
+  max-width:1020px;margin:0 auto;}
+
+/* left: vertical live rail — hairline mist track + one travelling solid marker.
+   Marker position is driven purely by the inline --dn-faq-i index (zero JS measurement on desktop). */
+.dn-faq-nav{position:relative;padding-left:18px;display:flex;flex-direction:column;
+  --rail-h:64px;--rail-gap:8px;}
+.dn-faq-nav::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--dn-mist);border-radius:2px;}
+.dn-faq-rail-marker{position:absolute;left:-1px;top:0;width:4px;height:var(--rail-h);
+  background:var(--dn-day);border-radius:2px;
+  transform:translateY(calc(var(--dn-faq-i) * (var(--rail-h) + var(--rail-gap))));
+  transition:transform .45s cubic-bezier(.16,1,.3,1), background .25s, box-shadow .25s;
+  box-shadow:0 0 16px -2px color-mix(in srgb,var(--dn-day) 70%,transparent);}
+.dn-faq-nav[data-even="1"] .dn-faq-rail-marker{background:var(--dn-night);
+  box-shadow:0 0 16px -2px color-mix(in srgb,var(--dn-night) 70%,transparent);}
+
+.dn-faq-q{appearance:none;background:none;border:0;text-align:left;cursor:pointer;
+  font-family:var(--font-body);font-size:1.02rem;line-height:1.3;font-weight:500;
+  color:var(--dn-bone-faint);padding:10px 4px;min-height:var(--rail-h);display:flex;align-items:center;
+  transition:color .25s ease;width:100%;}
+.dn-faq-q + .dn-faq-q{margin-top:var(--rail-gap);}
+.dn-faq-q:hover{color:var(--dn-bone-dim);}
+.dn-faq-q.on{color:var(--dn-bone);}
+.dn-faq-q:focus-visible{outline:2px solid var(--dn-day);outline-offset:3px;border-radius:6px;}
+
+/* right: bordered answer card, near-black face + mist border + 16px radius.
+   On selection a solid accent panel sweeps left→right then the text fades up behind it. */
+.dn-faq-panel{position:relative;overflow:hidden;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  background:var(--dn-near-black);min-height:280px;
+  box-shadow:0 30px 80px -50px rgba(0,0,0,.9);}
+.dn-faq-a{display:none;padding:clamp(26px,3.5vw,40px);}
+.dn-faq-a.on{display:block;position:relative;}
+.dn-faq-a.on::before{content:'';position:absolute;inset:0;transform-origin:left;z-index:2;
+  background:color-mix(in srgb,var(--dn-faq-accent) 14%,transparent);
+  border-radius:var(--dn-r-card);
+  animation:dn-faq-wipe .5s cubic-bezier(.16,1,.3,1) forwards;}
+.dn-faq-a.on .q,.dn-faq-a.on .a{animation:dn-fade-up .45s ease .12s backwards;position:relative;z-index:1;}
+
+.dn-faq-a .kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:600;color:var(--dn-faq-accent);margin:0 0 16px;
+  position:relative;z-index:1;}
+.dn-faq-a .kicker::before{content:'';width:18px;height:2px;border-radius:2px;background:currentColor;}
+.dn-faq-a.on .kicker{animation:dn-fade-up .45s ease .12s backwards;}
+.dn-faq-a .q{font-family:var(--font-display);font-weight:480;font-size:clamp(1.28rem,2.4vw,1.7rem);
+  line-height:1.18;letter-spacing:-.01em;margin:0 0 14px;color:var(--dn-bone);}
+.dn-faq-a .a{margin:0;font-size:1.04rem;color:var(--dn-bone-dim);max-width:54ch;}
+
+@keyframes dn-faq-wipe{0%{transform:scaleX(0)}60%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+@keyframes dn-fade-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* foot CTA — always-visible Call 24/7 (NAP from practice.js) */
+.dn-faq-foot{text-align:center;margin:52px auto 0;max-width:560px;color:var(--dn-bone-faint);font-size:1.02rem;}
+.dn-faq-foot a{color:var(--dn-day);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--dn-day) 45%,transparent);
+  padding-bottom:1px;transition:border-color .2s;white-space:nowrap;}
+.dn-faq-foot a:hover{border-bottom-color:var(--dn-day);}
+
+/* ---------- mobile: rail collapses to a wrapped row of 44px pills + sliding underline ---------- */
+@media (max-width:760px){
+  .dn-section{padding:84px 0;}
+  .dn-faq-side{grid-template-columns:1fr;gap:24px;}
+  .dn-faq-nav{flex-direction:row;flex-wrap:wrap;gap:8px;padding-left:0;padding-bottom:12px;}
+  .dn-faq-nav::before{left:0;right:0;top:auto;bottom:0;width:auto;height:2px;}
+  .dn-faq-q{min-height:44px;width:auto;flex:0 1 auto;padding:8px 14px;font-size:.92rem;
+    border:1px solid var(--dn-mist);border-radius:999px;line-height:1.25;}
+  .dn-faq-q + .dn-faq-q{margin-top:0;}
+  .dn-faq-q.on{border-color:color-mix(in srgb,var(--dn-bone) 30%,transparent);
+    background:rgba(255,255,255,.04);}
+  /* travelling marker becomes a 2px underline that slides horizontally under the active pill (measured) */
+  .dn-faq-rail-marker{left:0;top:auto;bottom:-1px;height:2px;
+    width:var(--mk-w,40px);
+    transform:translateX(var(--mk-x,0px));
+    transition:transform .45s cubic-bezier(.16,1,.3,1), width .45s cubic-bezier(.16,1,.3,1), background .25s;}
+  .dn-faq-a .a{max-width:none;}
+}
+
+/* honour reduced-motion: disable the wipe, snap the marker */
+@media (prefers-reduced-motion: reduce){
+  .dn-faq-rail-marker{transition:none;}
+  .dn-faq-a.on::before{animation:none;display:none;}
+  .dn-faq-a.on .q,.dn-faq-a.on .a,.dn-faq-a.on .kicker{animation:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#6</span> <b>Aurora Wipe</b> <span class="lab-lens">kinetic</span> </div><span></span></div>
+
+<section class="dn-section" aria-labelledby="faq-heading">
+  <div class="dn-container">
+    <div class="tp-section-head dn-center-head">
+      <span class="dn-eyebrow dn-pill day">Common Questions</span>
+      <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
+    </div>
+
+    <!-- Live rail: questions left, single solid marker travels (--dn-faq-i); answer card right.
+         All answers rendered so search engines read every Q&A; only the active is shown. -->
+    <div class="dn-faq-side">
+      <div class="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical" data-even="1" style="--dn-faq-i:0;">
+        <span class="dn-faq-rail-marker" aria-hidden="true"></span>
+
+        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">Is there an emergency dentist open now in Glasgow?</button>
+        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">Are you taking on new patients?</button>
+        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">Where is the practice and where can I park?</button>
+        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">What are your opening hours?</button>
+      </div>
+
+      <div class="dn-faq-panel">
+        <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on" style="--dn-faq-accent:var(--dn-night);">
+          <span class="kicker">Emergency · 24/7</span>
+          <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
+          <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+        </div>
+
+        <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a" style="--dn-faq-accent:var(--dn-day);">
+          <span class="kicker">New patients</span>
+          <h3 class="q">Are you taking on new patients?</h3>
+          <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+        </div>
+
+        <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a" style="--dn-faq-accent:var(--dn-night);">
+          <span class="kicker">Location · Parking</span>
+          <h3 class="q">Where is the practice and where can I park?</h3>
+          <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+        </div>
+
+        <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a" style="--dn-faq-accent:var(--dn-day);">
+          <span class="kicker">Opening hours</span>
+          <h3 class="q">What are your opening hours?</h3>
+          <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="dn-faq-foot">
+      Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.
+    </p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var nav = document.querySelector('.dn-faq-nav');
+  if(!nav) return;
+  var tabs = Array.prototype.slice.call(nav.querySelectorAll('.dn-faq-q'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
+  var active = 0;
+
+  function isMobile(){ return window.matchMedia('(max-width:760px)').matches; }
+
+  function placeMobileMarker(){
+    // slide the underline under the active pill (measured — desktop uses pure CSS index transform)
+    if(!isMobile()) return;
+    var el = tabs[active];
+    nav.style.setProperty('--mk-w', el.offsetWidth + 'px');
+    nav.style.setProperty('--mk-x', el.offsetLeft + 'px');
+  }
+
+  function select(i, focus){
+    active = i;
+    nav.style.setProperty('--dn-faq-i', i);
+    nav.setAttribute('data-even', (i % 2 === 0) ? '1' : '0');
+    tabs.forEach(function(t, n){
+      var on = n === i;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p, n){
+      // replay the wipe animation on every (re)selection
+      if(n === i){ p.classList.remove('on'); void p.offsetWidth; p.classList.add('on'); }
+      else { p.classList.remove('on'); }
+    });
+    placeMobileMarker();
+    if(focus) tabs[i].focus();
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(i); });
+    t.addEventListener('focus', function(){ if(active !== i) select(i); });
+    t.addEventListener('keydown', function(e){
+      var last = tabs.length - 1, next = null;
+      if(e.key === 'ArrowDown' || e.key === 'ArrowRight') next = active === last ? 0 : active + 1;
+      else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = active === 0 ? last : active - 1;
+      else if(e.key === 'Home') next = 0;
+      else if(e.key === 'End') next = last;
+      if(next !== null){ e.preventDefault(); select(next, true); }
+    });
+  });
+
+  window.addEventListener('resize', placeMobileMarker);
+  placeMobileMarker();
+})();
+</script>
+</body>
+</html>

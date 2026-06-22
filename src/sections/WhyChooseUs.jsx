@@ -10,9 +10,9 @@ const points = [
   { icon: 'pin', side: 'night', h: 'Merchant City, central Glasgow', p: 'A central Glasgow practice for emergency, general and cosmetic dentistry.' },
 ]
 
-// "Why Day Night" — aurora treatment: a soft sunrise-to-night sky glow + faint
+// "Why Day Night" - aurora treatment: a soft sunrise-to-night sky glow + faint
 // horizon and stars behind frosted, numbered cards. Day cards glow gold, night
-// cards glow blue — the brand's day/night split, all solid colour.
+// cards glow blue - the brand's day/night split, all solid colour.
 export default function WhyChooseUs() {
   return (
     <section className="dn-section dn-why2">
@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
           <span className="dn-eyebrow dn-pill day">Why Day Night</span>
           <h2 className="dn-display">Why <em className="dn-hl-gold">Glasgow</em> patients choose Day Night Dental</h2>
           <p className="dn-why2-sub">
-            From the first urgent call to the calm of a finished treatment &mdash; care that holds the line, day or night.
+            From the first urgent call to the calm of a finished treatment, care that holds the line, day or night.
           </p>
         </div>
         <div className="dn-why2-grid">

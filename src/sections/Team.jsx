@@ -1,9 +1,9 @@
 
-// Two real GDC-registered dentists + the principal (name/GDC pending — kept as a placeholder card
+// Two real GDC-registered dentists + the principal (name/GDC pending - kept as a placeholder card
 // per owner). Photos pending: cards use a styled avatar until headshots arrive. The `gdc` value is
 // emitted into the Person schema by OurTeam.jsx; the bracketed principal name is auto-filtered out
 // of the schema until real, and `npm run check:launch` refuses go-live while a "[...]" placeholder
-// remains — so it can't accidentally ship unfinished.
+// remains - so it can't accidentally ship unfinished.
 export const team = [
   { id: 'principal', name: 'Dr Willie Chang', role: 'Principal Dentist', gdc: '296929', side: 'day' },
   { id: 'chiang', name: 'Dr Pei Hsin Chiang', role: 'Dentist', gdc: '333443', side: 'night' },
@@ -22,7 +22,7 @@ export function AvatarSvg() {
 // "The Masthead" team section (editorial lens, panel pick): a sticky header column
 // beside a numbered editorial list of practitioners (number · avatar · role/name · GDC).
 // Day/night accent per row; hover/focus lifts + glows in that row's single colour.
-// Static markup — every practitioner renders server-side for SEO; no client JS needed.
+// Static markup - every practitioner renders server-side for SEO; no client JS needed.
 export default function Team() {
   return (
     <section id="team" className="dn-section dn-team dn-team-masthead">

@@ -4,7 +4,7 @@ import { Icon } from '../components/ConcernIcon';
 import { PRACTICE } from '../data/practice';
 import './concerns-bento.css';
 
-// "Your concerns, our craft" — a conversational picker: one selectable chip per concern,
+// "Your concerns, our craft" - a conversational picker: one selectable chip per concern,
 // and a result panel below that recommends the matching treatment for the chosen chip.
 // The pure-CSS ":checked radio" interaction from the static design is implemented here with
 // React useState so it is SSR-safe (default selection renders on the server). day/night is a

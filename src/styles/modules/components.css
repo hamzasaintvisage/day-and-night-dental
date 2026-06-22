@@ -154,7 +154,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 .dn-skip-link:focus { left: 0; }
 
 /* ===== CTA band (homepage conversion prompts) ===== */
-/* Transparent so the continuous page glow flows through — no band fill, no
+/* Transparent so the continuous page glow flows through - no band fill, no
    border rectangle, no scoped pseudo-glow. */
 .dn-ctaband { position: relative; padding: 3.5rem 0; background: transparent; }
 .dn-ctaband-inner { position: relative; z-index: 1; display: flex; flex-direction: column;
@@ -311,7 +311,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 .dn-article-related { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--dn-mist); }
 /* The pill here is followed by .dn-article-related-links (a div), not a heading,
-   so the shared `.dn-eyebrow.dn-pill + h*` rule can't reach it — match its 1.25rem gap. */
+   so the shared `.dn-eyebrow.dn-pill + h*` rule can't reach it - match its 1.25rem gap. */
 .dn-article-related > .dn-eyebrow.dn-pill { display: inline-block; margin-bottom: 1.25rem; }
 .dn-article-related-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 .dn-article-related-links a { color: var(--dn-day); font-size: 0.9rem; }

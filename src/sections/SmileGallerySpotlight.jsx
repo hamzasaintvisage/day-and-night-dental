@@ -30,7 +30,7 @@ export default function SmileGallerySpotlight() {
             </h2>
             <p className="dn-gold-lead">
               A look at the difference composite bonding, veneers, Invisalign and dental
-              implants can make &mdash; one result at a time.
+              implants can make, one result at a time.
             </p>
             <p className="dn-gold-count" aria-live="polite">
               <b>{String(active + 1).padStart(2, '0')}</b>
