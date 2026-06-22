@@ -152,17 +152,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .dn-display em.dn-hl-gold { background: none; -webkit-text-fill-color: var(--dn-day); color: var(--dn-day); }
 .dn-display em.dn-hl-blue { background: none; -webkit-text-fill-color: var(--dn-night); color: var(--dn-night); }
 
-/* THE LINE — exactly the Real Smiles headline rule (a 2px solid gold line ABOVE
-   the word, with a small gap), applied to each section's highlighted word.
-   inline-block keeps the word in the sentence flow while the rule sits on top.
-   Real Smiles keeps its own bigger bar, so it is not in this list. */
+/* THE LINE — a 2px solid gold underline beneath each section's highlighted word
+   (normal placement, same 2px solid thickness as the Real Smiles original).
+   inline-block keeps the word in the sentence flow. Real Smiles keeps its own
+   bigger bar, so it is not in this list. */
 .dn-display em.dn-hl-gold,
 .txg-h2 em,
 .cxg-title em,
 .dn-arc-quote .dn-arc-gold {
   display: inline-block;
-  border-top: 2px solid var(--dn-day);
-  padding-top: 0.3rem;
+  border-bottom: 2px solid var(--dn-day);
+  padding-bottom: 0.1em;
 }
 
 /* The signature gradient, gold to blue, the entire brand in one line */

@@ -19,21 +19,15 @@ export function AvatarSvg() {
   )
 }
 
-function Portrait({ side }) {
-  return (
-    <div className={`dn-portrait ${side}`}>
-      <div className={`dn-avatar ${side}`}><AvatarSvg /></div>
-      <div className="dn-portrait-overlay" />
-      <div className="dn-portrait-frame" />
-    </div>
-  )
-}
-
+// "The Masthead" team section (editorial lens, panel pick): a sticky header column
+// beside a numbered editorial list of practitioners (number · avatar · role/name · GDC).
+// Day/night accent per row; hover/focus lifts + glows in that row's single colour.
+// Static markup — every practitioner renders server-side for SEO; no client JS needed.
 export default function Team() {
   return (
-    <section id="team" className="dn-section dn-team">
-      <div className="dn-container">
-        <div className="dn-section-head">
+    <section id="team" className="dn-section dn-team dn-team-masthead">
+      <div className="dn-container dn-masthead">
+        <header className="dn-mast-head">
           <span className="dn-eyebrow dn-pill day">The Practitioners</span>
           <h2 className="dn-display">
             The people behind your <em className="dn-hl-gold">smile</em>
@@ -42,20 +36,22 @@ export default function Team() {
             Our dentists are GDC-registered and experienced across emergency, restorative
             and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
           </p>
-        </div>
+          <p className="dn-mast-meta">GDC-registered · 0{team.length} practitioners</p>
+        </header>
 
-        <div className="dn-team-grid">
-          {team.map((member) => (
-            <article key={member.id} className="dn-team-card">
-              <Portrait side={member.side} />
-              <div className="dn-team-info">
-                <span className={`dn-eyebrow ${member.side}`}>{member.role}</span>
-                <h3>{member.name}</h3>
-                {member.gdc && <span className="dn-team-specialty">GDC No. {member.gdc}</span>}
-              </div>
-            </article>
+        <ol className="dn-mast-list">
+          {team.map((m, i) => (
+            <li key={m.id} className={`dn-mast-row ${m.side}`}>
+              <span className="dn-mast-num">{String(i + 1).padStart(2, '0')}</span>
+              <span className="dn-mast-avatar"><AvatarSvg /></span>
+              <span className="dn-mast-id">
+                <span className="dn-mast-role">{m.role}</span>
+                <span className="dn-mast-name">{m.name}</span>
+              </span>
+              {m.gdc && <span className="dn-mast-gdc">GDC No.<b>{m.gdc}</b></span>}
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )
