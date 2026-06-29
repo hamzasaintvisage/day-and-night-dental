@@ -30,11 +30,14 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <title>The Colonnade · Common Questions · Day Night Dental</title>
 <style>
 /* ============================================================
-   THE COLONNADE - architectural FAQ, elevated.
-   Four carved pillars rise on a shared plinth, each crowned by
-   an engraved numeral capital. Selecting a pillar lights its
-   shaft and opens the deep recessed portico bay it frames; the
-   answer reads through the doorway behind an engraved keystone.
+   THE COLONNADE - rebuilt as a VERTICAL ARCHITECTURAL TIMELINE.
+   A single carved central spine runs top to bottom. Four numbered
+   capitals (01 to 04) sit on the spine; each opens a recessed
+   portico bay carrying its question + full answer, alternating
+   left and right of the spine like a row of facing columns. Every
+   answer is permanently visible down the elevation (no tabs, no
+   accordion): the silhouette reads as a numbered timeline, not a
+   side-list or stacked card grid.
    ============================================================ */
 
 .dn-section{padding:clamp(4.5rem,8vw,7rem) 0 clamp(5rem,9vw,7.5rem);position:relative;}
@@ -57,221 +60,198 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   font-size:clamp(2.05rem,4.8vw,3.25rem);line-height:1.07;margin:0;max-width:19ch;
 }
 
-/* --- The facade ------------------------------------------------------- */
-.dn-faq-colonnade{
-  max-width:1000px;margin:clamp(2.8rem,5vw,3.8rem) auto 0;position:relative;
+/* ---- The timeline elevation ---------------------------------------- */
+.dn-faq-timeline{
+  --spine:2px;
+  max-width:1020px;margin:clamp(2.8rem,5vw,3.8rem) auto 0;position:relative;
+  /* the spine sits dead-centre; bays alternate either side of it */
 }
 
-/* The cornice: a stepped entablature crowning the colonnade. Three
-   stacked hairlines (gold lead, then two recessed shadow lines) read
-   as carved moulding rather than a single cheap rule. */
-.dn-cornice{margin-bottom:20px;}
-.dn-cornice .step{display:block;height:1px;width:100%;}
-.dn-cornice .step.lead{
-  background:linear-gradient(90deg,transparent,var(--dn-day) 16%,var(--dn-day) 84%,transparent);
-  opacity:.6;
+/* the carved central spine: a fluted vertical rail with a gold lead
+   thread, drawn continuously top to bottom behind every node */
+.dn-faq-timeline .spine{
+  position:absolute;top:6px;bottom:6px;left:50%;transform:translateX(-50%);
+  width:var(--spine);pointer-events:none;
+  background:linear-gradient(180deg,
+    transparent,
+    rgba(255,255,255,.16) 5%,
+    rgba(255,255,255,.16) 95%,
+    transparent);
 }
-.dn-cornice .step.shade{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16) 12%,rgba(255,255,255,.16) 88%,transparent);
-  opacity:.5;margin-top:3px;width:96%;margin-left:auto;margin-right:auto;
-}
-.dn-cornice .step.shade.b{opacity:.28;width:90%;}
-
-/* the pillar row - four shafts on a shared plinth rail */
-.dn-faq-nav{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
-  padding-bottom:0;position:relative;
-}
-
-/* a pillar (button) */
-.dn-faq-q{
-  --dn-faq-accent:var(--dn-day);
-  display:flex;flex-direction:column;justify-content:flex-end;
-  min-height:184px;padding:0;
-  text-align:left;cursor:pointer;color:var(--dn-bone-dim);
-  background:linear-gradient(180deg,rgba(255,255,255,.018),transparent 70%);
-  border:1px solid var(--dn-mist);border-bottom:none;
-  border-radius:var(--dn-r-card) var(--dn-r-card) 0 0;
-  transition:color .24s ease,border-color .24s ease,background .24s ease,box-shadow .3s ease,transform .24s ease;
-  position:relative;overflow:hidden;
-}
-.dn-faq-q:nth-child(even){--dn-faq-accent:var(--dn-night);}
-
-/* the capital: a banded head carrying the engraved numeral */
-.dn-faq-q .cap{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 15px 10px;border-bottom:1px solid var(--dn-mist);
-  background:rgba(255,255,255,.02);
-  transition:border-color .24s ease,background .24s ease;
-}
-.dn-faq-q .num{
-  font-family:var(--font-display);font-weight:600;font-size:1.05rem;line-height:1;
-  letter-spacing:.04em;font-variant-numeric:tabular-nums;
-  color:color-mix(in srgb,var(--dn-faq-accent) 60%,var(--dn-bone-faint));
-  transition:color .24s ease;
-}
-/* keystone dot on the capital, lights with the pillar */
-.dn-faq-q .keymark{
-  width:6px;height:6px;border-radius:50%;background:var(--dn-mist);
-  transition:background .24s ease,box-shadow .3s ease;
+/* a slender gold reading-line laid over the spine, the "lead" thread */
+.dn-faq-timeline .spine::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%);
+  background:linear-gradient(180deg,
+    transparent,
+    color-mix(in srgb,var(--dn-day) 70%,transparent) 12%,
+    color-mix(in srgb,var(--dn-day) 70%,transparent) 88%,
+    transparent);
+  opacity:.55;
 }
 
-/* the shaft: question text, fluted with a faint vertical groove */
-.dn-faq-q .shaft{
-  flex:1;display:flex;align-items:flex-end;padding:16px 15px 18px;position:relative;
-  font-family:var(--font-display);font-weight:600;font-size:1rem;line-height:1.26;
-  letter-spacing:-.005em;
+/* cornice cap crowning the top of the spine (a small entablature) */
+.dn-faq-timeline .cornice-cap,
+.dn-faq-timeline .footing-cap{
+  position:absolute;left:50%;transform:translateX(-50%);
+  width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);
 }
-.dn-faq-q .shaft::before{
-  content:'';position:absolute;left:50%;top:6px;bottom:14px;width:1px;
-  transform:translateX(-50%);
-  background:linear-gradient(180deg,transparent,rgba(255,255,255,.07) 26%,rgba(255,255,255,.07) 74%,transparent);
-  opacity:.65;pointer-events:none;transition:background .24s ease,opacity .24s ease;
+.dn-faq-timeline .cornice-cap{top:0;}
+.dn-faq-timeline .cornice-cap.b{top:4px;width:44px;opacity:.6;}
+.dn-faq-timeline .footing-cap{bottom:0;}
+.dn-faq-timeline .footing-cap.b{bottom:4px;width:44px;opacity:.6;}
+
+/* one bay = one numbered node + its portico of question/answer */
+.dn-bay{
+  --dn-bay-accent:var(--dn-day);
+  position:relative;display:grid;align-items:center;
+  grid-template-columns:1fr 96px 1fr;   /* portico | node gutter | empty (or mirrored) */
+  margin:0;padding:clamp(1.4rem,3vw,2.2rem) 0;
+}
+.dn-bay:nth-child(even of .dn-bay){--dn-bay-accent:var(--dn-night);}
+/* fallback for engines without :nth-child(... of ...) */
+.dn-bay.acc-night{--dn-bay-accent:var(--dn-night);}
+.dn-bay.acc-day{--dn-bay-accent:var(--dn-day);}
+
+/* odd bays place the portico on the LEFT, even bays on the RIGHT */
+.dn-bay.side-left .dn-portico{grid-column:1;text-align:right;}
+.dn-bay.side-left .dn-portico-spacer{grid-column:3;}
+.dn-bay.side-right .dn-portico{grid-column:3;text-align:left;}
+.dn-bay.side-right .dn-portico-spacer{grid-column:1;}
+
+/* the node capital straddling the spine: a banded plinth carrying
+   the engraved numeral, lit in the bay's accent */
+.dn-node{
+  grid-column:2;justify-self:center;position:relative;z-index:2;
+  width:72px;height:72px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.05),rgba(255,255,255,.012));
+  border:1px solid color-mix(in srgb,var(--dn-bay-accent) 42%,var(--dn-mist));
+  box-shadow:0 0 0 6px var(--dn-near-black),
+             0 0 24px -8px color-mix(in srgb,var(--dn-bay-accent) 60%,transparent);
+}
+.dn-node .num{
+  font-family:var(--font-display);font-weight:600;font-size:1.3rem;line-height:1;
+  letter-spacing:.02em;font-variant-numeric:tabular-nums;
+  color:var(--dn-bay-accent);
+}
+/* a tiny keystone tick sitting where the bay meets the spine */
+.dn-node::after{
+  content:'';position:absolute;width:7px;height:7px;border-radius:50%;
+  background:var(--dn-bay-accent);
+  box-shadow:0 0 10px 0 color-mix(in srgb,var(--dn-bay-accent) 80%,transparent);
+  top:50%;
+}
+.dn-bay.side-left .dn-node::after{right:-3px;transform:translateY(-50%);}
+.dn-bay.side-right .dn-node::after{left:-3px;transform:translateY(-50%);}
+
+/* a hairline arm connecting the node to its portico across the gutter */
+.dn-node .arm{
+  position:absolute;top:50%;height:1px;width:24px;transform:translateY(-50%);
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--dn-bay-accent) 55%,transparent),
+    transparent);
+}
+.dn-bay.side-left .dn-node .arm{right:100%;transform:translateY(-50%) scaleX(-1);}
+.dn-bay.side-right .dn-node .arm{left:100%;}
+
+/* the portico: the recessed bay holding the Q + full A */
+.dn-portico{
+  position:relative;padding:clamp(1.4rem,2.4vw,1.9rem) clamp(1.5rem,2.6vw,2rem);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.008));
+  border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
+  box-shadow:inset 0 18px 40px -30px rgba(0,0,0,.95),
+             inset 0 0 0 1px rgba(255,255,255,.015);
+  transition:border-color .26s ease,box-shadow .3s ease;
+}
+/* even glow when the bay is hovered/focused-within, single accent colour */
+.dn-portico:hover,.dn-portico:focus-within{
+  border-color:color-mix(in srgb,var(--dn-bay-accent) 55%,var(--dn-mist));
+  box-shadow:inset 0 18px 40px -30px rgba(0,0,0,.95),
+             0 0 30px -10px color-mix(in srgb,var(--dn-bay-accent) 55%,transparent),
+             inset 0 0 0 1px color-mix(in srgb,var(--dn-bay-accent) 18%,transparent);
+}
+/* slender colonnade flutes flanking the portico (left + right reveals) */
+.dn-portico::before,.dn-portico::after{
+  content:'';position:absolute;top:16px;bottom:16px;width:1px;
+  background:linear-gradient(180deg,transparent,var(--dn-mist) 22%,var(--dn-mist) 78%,transparent);
+  opacity:.7;pointer-events:none;
+}
+.dn-portico::before{left:10px;}
+.dn-portico::after{right:10px;}
+
+/* the keystone marker above each question: numeral + accent bar */
+.dn-portico .key{
+  display:flex;align-items:center;gap:10px;margin:0 0 12px;
+}
+.dn-bay.side-left .dn-portico .key{flex-direction:row-reverse;}
+.dn-portico .key .kn{
+  font-family:var(--font-display);font-weight:600;font-size:.74rem;letter-spacing:.2em;
+  color:var(--dn-bay-accent);font-variant-numeric:tabular-nums;text-transform:uppercase;
+}
+.dn-portico .key .kbar{
+  flex:1;height:1px;max-width:120px;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--dn-bay-accent) 55%,transparent),transparent 78%);
+}
+.dn-bay.side-left .dn-portico .key .kbar{
+  background:linear-gradient(270deg,color-mix(in srgb,var(--dn-bay-accent) 55%,transparent),transparent 78%);
 }
 
-/* lit pillar - even glow, no gate, single colour per side */
-.dn-faq-q.on,.dn-faq-q:hover,.dn-faq-q:focus-visible{
-  color:var(--dn-bone);border-color:var(--dn-faq-accent);
-  background:color-mix(in srgb,var(--dn-faq-accent) 9%,transparent);
-  box-shadow:0 0 26px -6px color-mix(in srgb,var(--dn-faq-accent) 55%,transparent),
-             inset 0 0 0 1px color-mix(in srgb,var(--dn-faq-accent) 16%,transparent);
-  outline:none;
+.dn-portico .q{
+  font-family:var(--font-display);font-weight:560;font-size:clamp(1.18rem,2vw,1.42rem);
+  line-height:1.2;margin:0 0 12px;letter-spacing:-.014em;color:var(--dn-bone);
 }
-.dn-faq-q.on .cap,.dn-faq-q:hover .cap,.dn-faq-q:focus-visible .cap{
-  border-bottom-color:color-mix(in srgb,var(--dn-faq-accent) 55%,transparent);
-  background:color-mix(in srgb,var(--dn-faq-accent) 7%,transparent);
-}
-.dn-faq-q.on .num,.dn-faq-q:hover .num,.dn-faq-q:focus-visible .num{color:var(--dn-faq-accent);}
-.dn-faq-q.on .keymark,.dn-faq-q:hover .keymark,.dn-faq-q:focus-visible .keymark{
-  background:var(--dn-faq-accent);box-shadow:0 0 9px 0 color-mix(in srgb,var(--dn-faq-accent) 80%,transparent);
-}
-.dn-faq-q.on .shaft::before,.dn-faq-q:hover .shaft::before,.dn-faq-q:focus-visible .shaft::before{
-  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--dn-faq-accent) 42%,transparent) 30%,color-mix(in srgb,var(--dn-faq-accent) 42%,transparent) 70%,transparent);
-  opacity:.95;
-}
-
-/* the plinth: a banded base rail the pillars stand on */
-.dn-plinth{
-  height:14px;border:1px solid var(--dn-mist);border-radius:0 0 4px 4px;
-  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
-  position:relative;
-}
-.dn-plinth::before{
-  content:'';position:absolute;left:0;right:0;top:4px;height:1px;background:var(--dn-mist);opacity:.7;
-}
-
-/* the recessed portico bay - a deep doorway you look into */
-.dn-faq-panel{
-  border:1px solid var(--dn-mist);border-top:none;
-  border-radius:0 0 var(--dn-r-card) var(--dn-r-card);
-  margin-top:16px;
-  padding:44px 56px 42px;background:var(--dn-near-black);
-  box-shadow:inset 0 26px 46px -28px rgba(0,0,0,.95),
-             inset 0 0 0 1px rgba(255,255,255,.02),
-             inset 0 -1px 0 0 rgba(255,255,255,.03);
-  position:relative;overflow:hidden;
-}
-/* depth wash: light falling into the back of the bay */
-.dn-faq-panel::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(80% 70% at 50% 0%,rgba(255,255,255,.035),transparent 62%);
-}
-/* hairline framing columns left + right of the bay (the door reveal) */
-.dn-faq-panel .reveal{
-  position:absolute;top:18px;bottom:18px;width:1px;background:var(--dn-mist);opacity:.6;
-}
-.dn-faq-panel .reveal.l{left:24px;}
-.dn-faq-panel .reveal.r{right:24px;}
-
-/* the keystone: a small engraved marker set above the answer,
-   carrying the bay's numeral and a single accent bar */
-.dn-faq-key{
-  display:flex;align-items:center;gap:12px;margin:0 0 18px;position:relative;
-}
-.dn-faq-key .kn{
-  font-family:var(--font-display);font-weight:600;font-size:.82rem;letter-spacing:.18em;
-  color:var(--dn-active-accent,var(--dn-day));font-variant-numeric:tabular-nums;
-}
-.dn-faq-key .kbar{
-  flex:1;height:1px;background:linear-gradient(90deg,
-    color-mix(in srgb,var(--dn-active-accent,var(--dn-day)) 55%,transparent),
-    transparent 70%);
-}
-
-/* base line caps the elevation - the building's footing shadow */
-.dn-faq-colonnade::after{
-  content:'';display:block;height:1px;width:88%;margin:20px auto 0;
-  background:linear-gradient(90deg,transparent,var(--dn-mist) 14%,var(--dn-mist) 86%,transparent);
-}
-
-/* answers - all rendered for SEO, only the active shown */
-.dn-faq-a{display:none;animation:bayIn .44s cubic-bezier(.2,.7,.2,1) both;}
-.dn-faq-a.on{display:block;}
-@keyframes bayIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-.dn-faq-a .q{
-  font-family:var(--font-display);font-weight:560;font-size:1.46rem;line-height:1.18;
-  margin:0 0 16px;letter-spacing:-.015em;color:var(--dn-bone);max-width:24ch;
-}
-.dn-faq-a .a{margin:0;color:var(--dn-bone-dim);font-size:1.08rem;line-height:1.72;max-width:60ch;}
+.dn-portico .a{margin:0;color:var(--dn-bone-dim);font-size:1.04rem;line-height:1.7;}
 
 /* footer CTA */
 .dn-faq-foot{
-  text-align:center;margin:clamp(2.4rem,5vw,3.2rem) auto 0;color:var(--dn-bone-faint);
+  text-align:center;margin:clamp(2.6rem,5vw,3.4rem) auto 0;color:var(--dn-bone-faint);
   font-size:1rem;max-width:1000px;
 }
 .dn-faq-foot a{color:var(--dn-day);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--dn-day) 50%,transparent);transition:border-color .2s,color .2s;font-weight:600;}
 .dn-faq-foot a:hover{border-bottom-color:var(--dn-day);color:#ffd87e;}
 
 @media (prefers-reduced-motion:reduce){
-  .dn-faq-a{animation:none;}
-  .dn-faq-q{transition:none;}
+  .dn-portico{transition:none;}
 }
 
-/* --- Mobile: facade collapses to a single column of carved niches --- */
+/* ---- Mobile: the spine slides to the left edge, all bays stack on
+        its right as a single descending column of porticos --------- */
 @media (max-width:768px){
-  .dn-faq-colonnade{margin-top:2.4rem;}
-  .dn-cornice{margin-bottom:0;}
-  .dn-cornice .step.shade{display:none;}
-  .dn-faq-nav{
-    grid-template-columns:1fr;gap:0;
-    border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);overflow:hidden;
-  }
-  .dn-faq-q{
-    min-height:0;flex-direction:row;align-items:stretch;
-    border:none;border-bottom:1px solid var(--dn-mist);border-radius:0;
-    background:transparent;
-  }
-  .dn-faq-q .cap{
-    flex-direction:column;justify-content:center;gap:7px;width:54px;flex:0 0 54px;
-    border-bottom:none;border-right:1px solid var(--dn-mist);padding:14px 0;
-  }
-  .dn-faq-q .num{font-size:.92rem;}
-  .dn-faq-q .shaft{
-    align-items:center;padding:14px 16px;font-size:1.02rem;min-height:56px;
-  }
-  .dn-faq-q .shaft::before{display:none;}
-  .dn-faq-q:last-of-type{border-bottom:none;}
-  .dn-faq-q.on,.dn-faq-q:hover,.dn-faq-q:focus-visible{box-shadow:none;}
-  .dn-faq-q.on .cap,.dn-faq-q:hover .cap,.dn-faq-q:focus-visible .cap{
-    border-right-color:color-mix(in srgb,var(--dn-faq-accent) 60%,transparent);
-  }
-  .dn-plinth{display:none;}
-  /* one open niche at a time, rendered directly below its row */
-  .dn-faq-mob-panel{
-    border-bottom:1px solid var(--dn-mist);
-    padding:22px 22px 26px 22px;background:var(--dn-near-black);
-    box-shadow:inset 0 16px 30px -22px rgba(0,0,0,.95);
-  }
-  .dn-faq-mob-panel .reveal{display:none;}
-  .dn-faq-a .q{font-size:1.2rem;max-width:none;}
-  .dn-faq-a .a{font-size:1rem;}
-}
+  .dn-faq-timeline{--spine:2px;margin-top:2.4rem;padding-left:8px;}
+  .dn-faq-timeline .spine{left:34px;transform:none;}
+  .dn-faq-timeline .cornice-cap,
+  .dn-faq-timeline .footing-cap{left:34px;transform:translateX(-50%);}
 
-/* desktop hides the mobile niches, mobile hides the desktop bay */
-.dn-faq-mob-panel{display:none;}
-@media (max-width:768px){
-  .dn-faq-panel{display:none;}
-  .dn-faq-mob-panel{display:block;}
+  .dn-bay{
+    grid-template-columns:68px 1fr;
+    padding:14px 0;column-gap:0;
+  }
+  .dn-bay.side-left .dn-portico,
+  .dn-bay.side-right .dn-portico{grid-column:2;text-align:left;}
+  .dn-bay.side-left .dn-portico .key,
+  .dn-bay.side-right .dn-portico .key{flex-direction:row;}
+  .dn-bay.side-left .dn-portico .key .kbar,
+  .dn-bay.side-right .dn-portico .key .kbar{
+    background:linear-gradient(90deg,color-mix(in srgb,var(--dn-bay-accent) 55%,transparent),transparent 78%);
+  }
+  .dn-bay.side-left .dn-portico-spacer,
+  .dn-bay.side-right .dn-portico-spacer{display:none;}
+
+  .dn-node{grid-column:1;justify-self:center;width:56px;height:56px;}
+  .dn-node .num{font-size:1.06rem;}
+  .dn-node::after{display:none;}
+  .dn-node .arm{display:block;left:100%;right:auto;transform:translateY(-50%);width:16px;
+    background:linear-gradient(90deg,color-mix(in srgb,var(--dn-bay-accent) 55%,transparent),transparent);}
+  .dn-bay.side-left .dn-node .arm{left:100%;right:auto;transform:translateY(-50%);}
+
+  .dn-portico{padding:18px 18px;}
+  .dn-portico::before{left:7px;}
+  .dn-portico::after{right:7px;}
+  .dn-portico .q{font-size:1.16rem;}
+  .dn-portico .a{font-size:1rem;}
+}
+@media (max-width:380px){
+  .dn-portico::before,.dn-portico::after{display:none;}
 }
 </style>
 </head>
@@ -286,63 +266,57 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
       <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
     </div>
 
-    <div class="dn-faq-colonnade">
-      <!-- the cornice / entablature crowning the colonnade -->
-      <div class="dn-cornice" aria-hidden="true">
-        <span class="step lead"></span>
-        <span class="step shade"></span>
-        <span class="step shade b"></span>
-      </div>
+    <!-- VERTICAL ARCHITECTURAL TIMELINE: one central spine, four numbered
+         nodes (01 to 04), each opening a portico bay that alternates left
+         and right of the spine. Every answer is rendered in the DOM and
+         permanently visible (no tabs, no accordion) for SEO + no-JS. -->
+    <div class="dn-faq-timeline">
+      <span class="spine" aria-hidden="true"></span>
+      <span class="cornice-cap" aria-hidden="true"></span>
+      <span class="cornice-cap b" aria-hidden="true"></span>
 
-      <!-- the pillar row -->
-      <div class="dn-faq-nav" role="tablist" aria-orientation="horizontal" aria-label="Common questions">
-        <button role="tab" id="faq-tab-0" aria-selected="true"  aria-controls="faq-panel-0" tabindex="0"  class="dn-faq-q on" data-i="0">
-          <span class="cap"><span class="num">I</span><span class="keymark" aria-hidden="true"></span></span>
-          <span class="shaft">Is there an emergency dentist open now in Glasgow?</span>
-        </button>
-        <button role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q"    data-i="1">
-          <span class="cap"><span class="num">II</span><span class="keymark" aria-hidden="true"></span></span>
-          <span class="shaft">Are you taking on new patients?</span>
-        </button>
-        <button role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q"    data-i="2">
-          <span class="cap"><span class="num">III</span><span class="keymark" aria-hidden="true"></span></span>
-          <span class="shaft">Where is the practice and where can I park?</span>
-        </button>
-        <button role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q"    data-i="3">
-          <span class="cap"><span class="num">IV</span><span class="keymark" aria-hidden="true"></span></span>
-          <span class="shaft">What are your opening hours?</span>
-        </button>
-      </div>
-
-      <!-- the plinth the pillars stand on -->
-      <div class="dn-plinth" aria-hidden="true"></div>
-
-      <!-- the recessed portico bay (desktop) - all answers rendered for SEO -->
-      <div class="dn-faq-panel" id="dn-faq-bay">
-        <span class="reveal l" aria-hidden="true"></span>
-        <span class="reveal r" aria-hidden="true"></span>
-
-        <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on" style="--dn-active-accent:var(--dn-day);">
-          <div class="dn-faq-key" aria-hidden="true"><span class="kn">I</span><span class="kbar"></span></div>
+      <article class="dn-bay side-left acc-day">
+        <div class="dn-portico">
+          <div class="key" aria-hidden="true"><span class="kn">01</span><span class="kbar"></span></div>
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
           <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
         </div>
-        <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a" style="--dn-active-accent:var(--dn-night);">
-          <div class="dn-faq-key" aria-hidden="true"><span class="kn">II</span><span class="kbar"></span></div>
+        <div class="dn-node" aria-hidden="true"><span class="arm"></span><span class="num">01</span></div>
+        <div class="dn-portico-spacer" aria-hidden="true"></div>
+      </article>
+
+      <article class="dn-bay side-right acc-night">
+        <div class="dn-portico-spacer" aria-hidden="true"></div>
+        <div class="dn-node" aria-hidden="true"><span class="arm"></span><span class="num">02</span></div>
+        <div class="dn-portico">
+          <div class="key" aria-hidden="true"><span class="kn">02</span><span class="kbar"></span></div>
           <h3 class="q">Are you taking on new patients?</h3>
           <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
         </div>
-        <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a" style="--dn-active-accent:var(--dn-day);">
-          <div class="dn-faq-key" aria-hidden="true"><span class="kn">III</span><span class="kbar"></span></div>
+      </article>
+
+      <article class="dn-bay side-left acc-day">
+        <div class="dn-portico">
+          <div class="key" aria-hidden="true"><span class="kn">03</span><span class="kbar"></span></div>
           <h3 class="q">Where is the practice and where can I park?</h3>
           <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
         </div>
-        <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a" style="--dn-active-accent:var(--dn-night);">
-          <div class="dn-faq-key" aria-hidden="true"><span class="kn">IV</span><span class="kbar"></span></div>
+        <div class="dn-node" aria-hidden="true"><span class="arm"></span><span class="num">03</span></div>
+        <div class="dn-portico-spacer" aria-hidden="true"></div>
+      </article>
+
+      <article class="dn-bay side-right acc-night">
+        <div class="dn-portico-spacer" aria-hidden="true"></div>
+        <div class="dn-node" aria-hidden="true"><span class="arm"></span><span class="num">04</span></div>
+        <div class="dn-portico">
+          <div class="key" aria-hidden="true"><span class="kn">04</span><span class="kbar"></span></div>
           <h3 class="q">What are your opening hours?</h3>
           <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
         </div>
-      </div>
+      </article>
+
+      <span class="footing-cap" aria-hidden="true"></span>
+      <span class="footing-cap b" aria-hidden="true"></span>
     </div>
 
     <p class="dn-faq-foot">
@@ -355,71 +329,6 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an emergency dentist open now in Glasgow?","acceptedAnswer":{"@type":"Answer","text":"Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."}},{"@type":"Question","name":"Are you taking on new patients?","acceptedAnswer":{"@type":"Answer","text":"Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."}},{"@type":"Question","name":"Where is the practice and where can I park?","acceptedAnswer":{"@type":"Answer","text":"You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."}},{"@type":"Question","name":"What are your opening hours?","acceptedAnswer":{"@type":"Answer","text":"We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."}}]}
 </script>
 
-<script>
-(function(){
-  var nav   = document.querySelector('.dn-faq-nav');
-  var tabs  = Array.prototype.slice.call(nav.querySelectorAll('.dn-faq-q'));
-  var bay   = document.getElementById('dn-faq-bay');
-  var panels= Array.prototype.slice.call(bay.querySelectorAll('.dn-faq-a'));
-  var mq    = window.matchMedia('(max-width: 768px)');
-
-  // Mobile: each pillar gets its own carved niche injected directly beneath it.
-  // We keep the desktop bay as the SSR-visible source of truth and clone its
-  // answer nodes into per-pillar mobile hosts.
-  var mobHosts = [];
-  function buildMobile(){
-    if (mobHosts.length) return;
-    tabs.forEach(function(tab, i){
-      var host = document.createElement('div');
-      host.className = 'dn-faq-mob-panel';
-      host.setAttribute('role','region');
-      host.setAttribute('aria-labelledby','faq-tab-'+i);
-      host.appendChild(panels[i].cloneNode(true));
-      host.firstChild.classList.add('on');
-      tab.insertAdjacentElement('afterend', host);
-      mobHosts.push(host);
-    });
-  }
-  function syncMobileVisible(active){
-    mobHosts.forEach(function(h,i){ h.style.display = (i===active && mq.matches) ? 'block' : 'none'; });
-  }
-
-  var active = 0;
-  function select(i, focus){
-    active = i;
-    tabs.forEach(function(t,n){
-      var on = n===i;
-      t.classList.toggle('on', on);
-      t.setAttribute('aria-selected', on ? 'true':'false');
-      t.tabIndex = on ? 0 : -1;
-    });
-    panels.forEach(function(p,n){ p.classList.toggle('on', n===i); });
-    syncMobileVisible(i);
-    if (focus) tabs[i].focus();
-  }
-
-  tabs.forEach(function(tab, i){
-    tab.addEventListener('click', function(){ select(i); });
-    tab.addEventListener('focus', function(){ select(i); });
-    tab.addEventListener('keydown', function(e){
-      var last = tabs.length - 1, next = null;
-      if (e.key==='ArrowRight' || e.key==='ArrowDown') next = (i===last)?0:i+1;
-      else if (e.key==='ArrowLeft' || e.key==='ArrowUp') next = (i===0)?last:i-1;
-      else if (e.key==='Home') next = 0;
-      else if (e.key==='End') next = last;
-      if (next!==null){ e.preventDefault(); select(next, true); }
-    });
-  });
-
-  function applyMode(){
-    if (mq.matches){ buildMobile(); syncMobileVisible(active); }
-    else { mobHosts.forEach(function(h){ h.style.display='none'; }); }
-  }
-  if (mq.addEventListener) mq.addEventListener('change', applyMode);
-  else if (mq.addListener) mq.addListener(applyMode);
-  applyMode();
-})();
-</script>
-
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
 </body>
 </html>

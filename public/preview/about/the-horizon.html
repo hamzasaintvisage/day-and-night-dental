@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Horizon - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE HORIZON - a wide cinematic vista.
+   A low gold sun at the LEFT horizon, a high blue moon at the
+   RIGHT over a dark landscape. The statement and day/night lead
+   are set across the open sky. Solid colours throughout: a gold
+   day-side at left, a blue night-side at right. NEVER a gold-to-
+   blue blend. A scenic, landscape composition with three
+   real-life moments planted along the ground line.
+   ───────────────────────────────────────────────────────────── */
+
+.hz-stage{
+  position:relative;
+  width:100%;
+  min-height:calc(100svh - 49px);
+  overflow:hidden;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  background:var(--dn-near-black);
+}
+
+/* ── the sky: a dark vista, gold dawn glow pooling low-left,
+      blue night settling high-right. Two SEPARATE solid-hue
+      radial pools, never touching as a blend. ── */
+.hz-sky{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    /* gold dawn pooled at the lower-left horizon */
+    radial-gradient(120% 90% at 6% 104%, rgba(248,199,96,.34), rgba(248,199,96,.10) 26%, transparent 52%),
+    /* blue night pooled at the upper-right */
+    radial-gradient(110% 95% at 100% -8%, rgba(69,144,236,.30), rgba(69,144,236,.08) 30%, transparent 58%),
+    /* deep base, near-black, cool toward the top */
+    linear-gradient(180deg, #07080d 0%, #0a0b11 46%, #0a0a0c 100%);
+}
+
+/* faint star specks on the night side only (top-right), via tiny dots */
+.hz-stars{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.6;
+  background-image:
+    radial-gradient(1.4px 1.4px at 78% 14%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1.1px 1.1px at 88% 8%, rgba(255,255,255,.55), transparent),
+    radial-gradient(1.2px 1.2px at 92% 22%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 70% 6%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1.3px 1.3px at 96% 12%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 82% 27%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1.1px 1.1px at 64% 11%, rgba(255,255,255,.42), transparent);
+}
+
+/* ── the SUN: a low solid-gold disc at the left horizon ── */
+.hz-sun{
+  position:absolute;
+  z-index:1;
+  left:clamp(-90px,2vw,40px);
+  bottom:clamp(-90px,4vw,-30px);
+  width:clamp(220px,30vw,420px);
+  height:clamp(220px,30vw,420px);
+  border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:
+    0 0 60px 6px rgba(248,199,96,.5),
+    0 0 180px 40px rgba(248,199,96,.28);
+  pointer-events:none;
+}
+.hz-sun::after{
+  /* a soft solid-gold halo ring, no blend into blue */
+  content:'';
+  position:absolute;
+  inset:-22%;
+  border-radius:50%;
+  background:radial-gradient(circle, transparent 56%, rgba(248,199,96,.16) 60%, transparent 74%);
+}
+
+/* ── the MOON: a high solid-blue disc at the right ── */
+.hz-moon{
+  position:absolute;
+  z-index:1;
+  right:clamp(18px,6vw,120px);
+  top:clamp(56px,9vw,110px);
+  width:clamp(74px,9vw,128px);
+  height:clamp(74px,9vw,128px);
+  border-radius:50%;
+  background:var(--dn-night);
+  box-shadow:
+    0 0 40px 4px rgba(69,144,236,.5),
+    0 0 120px 24px rgba(69,144,236,.26);
+  pointer-events:none;
+}
+/* crescent shadow carved with a solid near-black disc, keeps the moon solid blue */
+.hz-moon::after{
+  content:'';
+  position:absolute;
+  top:-7%;
+  right:-8%;
+  width:84%;
+  height:84%;
+  border-radius:50%;
+  background:#0a0b11;
+}
+
+/* ── the ground / landscape ridge along the bottom ── */
+.hz-ground{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  z-index:1;
+  width:100%;
+  height:clamp(120px,22vh,230px);
+  display:block;
+  pointer-events:none;
+}
+.hz-ground .ridge{fill:#050609;}
+.hz-ground .ridge-2{fill:#08090f;}
+/* a thin solid-gold rim where the land meets the dawn (left), fading off before centre */
+.hz-ground .rim{fill:none;stroke:var(--dn-day);stroke-width:1.6;opacity:.42;}
+
+/* ── content laid across the sky ── */
+.hz-wrap{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:clamp(2.4rem,6vw,4.2rem) clamp(20px,5vw,40px) clamp(9rem,20vh,12rem);
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+}
+
+.hz-eyebrow-row{margin-bottom:clamp(1.6rem,4vw,2.6rem);}
+
+.hz-statement{
+  max-width:18ch;
+}
+.hz-quote{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(2.5rem,7.4vw,5.6rem);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  margin:0;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+.hz-quote .gold{color:var(--dn-day);font-style:italic;font-weight:360;}
+
+.hz-lead{
+  margin:clamp(1.4rem,3.4vw,2.2rem) 0 0;
+  font-family:var(--font-display);
+  font-weight:360;
+  font-size:clamp(1.35rem,3vw,2.1rem);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  color:var(--dn-bone);
+}
+.hz-lead .gold{color:var(--dn-day);}
+.hz-lead .blue{color:var(--dn-night);}
+
+.hz-body{
+  margin:clamp(1.3rem,3vw,1.9rem) 0 0;
+  max-width:52ch;
+  color:var(--dn-bone-dim);
+  font-size:clamp(1rem,1.25vw,1.12rem);
+  line-height:1.74;
+}
+
+.hz-foot{
+  margin-top:clamp(2rem,5vw,3rem);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:clamp(1rem,3vw,2.2rem);
+}
+.hz-by{
+  font-size:.74rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-weight:600;
+}
+.hz-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  min-height:44px;
+  padding:11px 22px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:560;
+  font-size:.98rem;
+  color:var(--dn-near-black);
+  background:var(--dn-day);
+  border:1px solid var(--dn-day);
+  transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease, background .25s ease;
+  box-shadow:0 0 0 0 rgba(248,199,96,0);
+}
+.hz-link .arrow{transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .hz-link:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 36px -14px rgba(248,199,96,.6);
+  }
+  .hz-link:hover .arrow{transform:translateX(4px);}
+}
+.hz-link:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(248,199,96,.4);
+}
+
+/* ── the three real-life moments, planted along the ground line ── */
+.hz-moments{
+  position:absolute;
+  z-index:2;
+  left:0;right:0;
+  bottom:clamp(2rem,5vh,3.4rem);
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(.7rem,2.4vw,2rem);
+}
+.hz-moment{
+  position:relative;
+  padding-top:1.1rem;
+  border-top:1px solid var(--dn-mist);
+}
+.hz-moment::before{
+  /* a planted marker dot sitting on the horizon line */
+  content:'';
+  position:absolute;
+  top:-5px;
+  left:0;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--marker,var(--dn-day));
+  box-shadow:0 0 14px 1px var(--marker-glow,rgba(248,199,96,.55));
+}
+.hz-moment.night{--marker:var(--dn-night);--marker-glow:rgba(69,144,236,.55);}
+.hz-moment .when{
+  display:block;
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin-bottom:.35rem;
+  font-weight:600;
+}
+.hz-moment.night .when{color:color-mix(in srgb, var(--dn-night) 62%, var(--dn-bone-faint));}
+.hz-moment.day .when{color:color-mix(in srgb, var(--dn-day) 56%, var(--dn-bone-faint));}
+.hz-moment .what{
+  display:block;
+  font-family:var(--font-display);
+  font-size:clamp(.98rem,1.7vw,1.28rem);
+  font-weight:420;
+  line-height:1.16;
+  color:var(--dn-bone);
+}
+
+/* a quiet horizon caption tying day-side to night-side, no blend */
+.hz-axis{
+  position:absolute;
+  z-index:2;
+  left:0;right:0;
+  bottom:clamp(8.2rem,15vh,11rem);
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+  display:flex;
+  justify-content:space-between;
+  font-size:.6rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-weight:600;
+}
+.hz-axis .a-day{color:color-mix(in srgb, var(--dn-day) 64%, var(--dn-bone-faint));}
+.hz-axis .a-night{color:color-mix(in srgb, var(--dn-night) 64%, var(--dn-bone-faint));}
+
+/* ── responsive ── */
+@media (max-width:760px){
+  .hz-wrap{padding-bottom:clamp(11rem,30vh,14rem);}
+  .hz-axis{bottom:clamp(9rem,24vh,11rem);}
+}
+@media (max-width:560px){
+  .hz-statement{max-width:none;}
+  .hz-moments{
+    grid-template-columns:1fr;
+    gap:.55rem;
+    bottom:clamp(1.4rem,4vh,2.4rem);
+  }
+  .hz-moment{padding-top:.7rem;}
+  .hz-axis{display:none;}
+  .hz-sun{
+    left:-70px;
+    bottom:-70px;
+    width:240px;height:240px;
+  }
+  .hz-moon{right:18px;top:64px;width:78px;height:78px;}
+  .hz-wrap{padding-bottom:15rem;}
+}
+@media (max-width:380px){
+  .hz-quote{font-size:2.35rem;}
+  .hz-lead{font-size:1.3rem;}
+  .hz-wrap{padding-bottom:15.5rem;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hz-link{transition:none;}
+  .hz-link .arrow{transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Horizon</b> <span class="lab-lens">scenic</span></div><span></span></div>
+
+<section class="hz-stage" aria-labelledby="hz-heading">
+
+  <!-- sky and celestial bodies (decorative) -->
+  <div class="hz-sky" aria-hidden="true"></div>
+  <div class="hz-stars" aria-hidden="true"></div>
+  <div class="hz-sun" aria-hidden="true"></div>
+  <div class="hz-moon" aria-hidden="true"></div>
+
+  <!-- the landscape ridge along the bottom -->
+  <svg class="hz-ground" viewBox="0 0 1440 230" preserveAspectRatio="none" aria-hidden="true">
+    <path class="ridge-2" d="M0 120 C 180 92, 360 140, 560 118 C 760 96, 940 150, 1140 122 C 1300 100, 1380 130, 1440 116 L1440 230 L0 230 Z"></path>
+    <path class="ridge" d="M0 162 C 220 138, 420 184, 640 158 C 880 130, 1060 188, 1280 160 C 1360 150, 1410 168, 1440 160 L1440 230 L0 230 Z"></path>
+    <path class="rim" d="M0 162 C 220 138, 420 184, 640 158 C 760 145, 820 170, 880 162"></path>
+  </svg>
+
+  <!-- statement set across the sky -->
+  <div class="hz-wrap">
+    <div class="hz-eyebrow-row">
+      <span class="dn-eyebrow dn-pill day">WHY WE'RE DIFFERENT</span>
+    </div>
+
+    <div class="hz-statement">
+      <h2 class="hz-quote" id="hz-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+    </div>
+
+    <p class="hz-lead"><span class="gold">Daytime</span> dentistry. <span class="blue">Night-time</span> emergencies.</p>
+
+    <p class="hz-body">We're a Merchant City practice in the heart of Glasgow, open mornings, evenings and weekends, with a 24-hour line for emergencies. Whether it's a routine check-up, a cosmetic consultation, or urgent help when you need it, you shouldn't have to book time off work just to look after your teeth.</p>
+
+    <div class="hz-foot">
+      <a href="/our-team/" class="hz-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <span class="hz-by">Day Night Dental, Merchant City, Glasgow</span>
+    </div>
+  </div>
+
+  <!-- horizon axis labels: gold day-side at left, blue night-side at right -->
+  <div class="hz-axis" aria-hidden="true">
+    <span class="a-day">Daybreak</span>
+    <span class="a-night">Midnight</span>
+  </div>
+
+  <!-- the three real-life moments planted along the horizon -->
+  <div class="hz-moments">
+    <div class="hz-moment day">
+      <span class="when">Early mornings</span>
+      <span class="what">Before the school run</span>
+    </div>
+    <div class="hz-moment day">
+      <span class="when">Daytime and evenings</span>
+      <span class="what">On your lunch break</span>
+    </div>
+    <div class="hz-moment night">
+      <span class="when">24-hour emergency line</span>
+      <span class="what">Or at midnight</span>
+    </div>
+  </div>
+
+</section>
+
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
+</body>
+</html>

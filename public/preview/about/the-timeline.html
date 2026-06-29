@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Timeline - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE TIMELINE - a single horizontal day axis.
+   Time runs left (sunrise, gold) to right (midnight, blue) as one
+   straight ruled line. The statement sits above. The three
+   real-life moments are stops pinned along the axis, each on its
+   own tick. Day-side is solid gold, night-side is solid blue,
+   never a blended gradient. The handover is a hard, single point.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{position:relative;padding:clamp(4rem,8vw,7rem) 0 clamp(4.5rem,9vw,8rem);}
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(70% 50% at 16% 0%, rgba(248,199,96,.06), transparent 62%),
+    radial-gradient(70% 55% at 88% 100%, rgba(69,144,236,.06), transparent 66%);
+  pointer-events:none;
+}
+.dn-container{
+  position:relative;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── the statement, above the axis ── */
+.tl-head{max-width:780px;}
+.tl-head .dn-eyebrow{margin-bottom:1.5rem;}
+.tl-quote{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.1rem,5.2vw,3.5rem);
+  line-height:1.06;
+  letter-spacing:-.014em;
+  margin:0;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+.tl-quote .gold{color:var(--dn-day);}
+.tl-lead{
+  margin:1.25rem 0 0;
+  font-family:var(--font-display);
+  font-weight:360;
+  font-size:clamp(1.18rem,2.3vw,1.6rem);
+  line-height:1.3;
+  letter-spacing:-.01em;
+  color:var(--dn-bone-dim);
+}
+.tl-lead .gold{color:var(--dn-day);}
+.tl-lead .blue{color:var(--dn-night);}
+.tl-body{
+  margin:1.35rem 0 0;
+  max-width:56ch;
+  color:var(--dn-bone-dim);
+  font-size:1.04rem;
+  line-height:1.78;
+}
+
+/* ── the horizontal time axis ── */
+.tl-axis{
+  position:relative;
+  margin:clamp(3.6rem,7vw,6rem) 0 0;
+}
+/* day/night caps above the line */
+.tl-ends{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin:0 0 1.15rem;
+  font-size:.62rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.tl-ends .sun{color:var(--dn-day);display:inline-flex;align-items:center;gap:.55rem;}
+.tl-ends .moon{color:var(--dn-night);display:inline-flex;align-items:center;gap:.55rem;}
+.tl-ends .glyph{
+  width:13px;height:13px;border-radius:50%;
+  display:inline-block;
+}
+.tl-ends .sun .glyph{
+  background:var(--dn-day);
+  box-shadow:0 0 0 4px rgba(248,199,96,.16), 0 0 18px -2px rgba(248,199,96,.6);
+}
+.tl-ends .moon .glyph{
+  background:transparent;
+  box-shadow:inset -4px 0 0 0 var(--dn-night), 0 0 16px -2px rgba(69,144,236,.55);
+  border:1px solid var(--dn-night);
+}
+
+/* the rail: a single straight line, gold left half, blue right half (solid, hard split) */
+.tl-rail{
+  position:relative;
+  height:2px;
+  width:100%;
+  border-radius:2px;
+  background:linear-gradient(
+    90deg,
+    var(--dn-day) 0,
+    var(--dn-day) 50%,
+    var(--dn-night) 50%,
+    var(--dn-night) 100%
+  );
+}
+/* faint glow under the rail, split the same way (no blended midband) */
+.tl-rail::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;top:50%;
+  height:24px;
+  transform:translateY(-50%);
+  background:
+    linear-gradient(90deg, rgba(248,199,96,.5), rgba(248,199,96,.5) 50%, transparent 50%),
+    linear-gradient(90deg, transparent 50%, rgba(69,144,236,.5) 50%, rgba(69,144,236,.5));
+  filter:blur(14px);
+  opacity:.5;
+  pointer-events:none;
+  border-radius:24px;
+}
+/* the noon handover: a hard single point where day meets night */
+.tl-noon{
+  position:absolute;
+  left:50%;top:50%;
+  width:9px;height:9px;
+  transform:translate(-50%,-50%) rotate(45deg);
+  background:var(--dn-near-black);
+  border:1.5px solid var(--dn-bone-faint);
+  border-radius:1px;
+  z-index:2;
+}
+
+/* the stops, pinned along the axis by left% */
+.tl-stops{position:relative;}
+.tl-stop{
+  position:absolute;
+  top:0;
+  width:clamp(150px,21vw,220px);
+  transform:translateX(-50%);
+}
+.tl-stop.s1{left:16%;}
+.tl-stop.s2{left:50%;}
+.tl-stop.s3{left:84%;}
+/* the tick that drops from the rail to the stop node */
+.tl-stop .tick{
+  position:absolute;
+  left:50%;top:0;
+  width:1px;height:22px;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,currentColor,transparent);
+  opacity:.65;
+}
+/* the node on the axis */
+.tl-stop .node{
+  position:absolute;
+  left:50%;top:0;
+  width:14px;height:14px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:var(--dn-near-black);
+  border:2px solid currentColor;
+  box-shadow:0 0 0 4px rgba(255,255,255,.02);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+}
+.tl-stop .node::after{
+  content:'';
+  position:absolute;
+  left:50%;top:50%;
+  width:5px;height:5px;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:currentColor;
+}
+/* the card below the tick */
+.tl-card{
+  margin-top:36px;
+  text-align:center;
+}
+.tl-time{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.82rem;
+  letter-spacing:.1em;
+  font-variant-numeric:tabular-nums;
+  color:currentColor;
+  opacity:.9;
+}
+.tl-moment{
+  display:block;
+  margin-top:.5rem;
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(1.12rem,1.7vw,1.4rem);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+.tl-sub{
+  display:block;
+  margin-top:.5rem;
+  font-size:.92rem;
+  line-height:1.5;
+  color:var(--dn-bone-faint);
+}
+/* per-stop accent colour drives node + tick + time via currentColor */
+.tl-stop.day{color:var(--dn-day);}
+.tl-stop.night{color:var(--dn-night);}
+
+@media (hover:hover){
+  .tl-stop:hover .node{transform:translate(-50%,-50%) scale(1.28);box-shadow:0 0 0 5px rgba(255,255,255,.03), 0 0 18px -2px currentColor;}
+}
+
+/* ── byline + link, below the axis ── */
+.tl-foot{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.2rem 2rem;
+  margin:clamp(3rem,6vw,4.6rem) 0 0;
+  padding-top:1.6rem;
+  border-top:1px solid var(--dn-mist);
+}
+.tl-by{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:1.02rem;
+  letter-spacing:.01em;
+  color:var(--dn-bone-dim);
+}
+.tl-by .dot{color:var(--dn-bone-faint);padding:0 .4rem;}
+.tl-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  min-height:44px;
+  padding:0 .2rem;
+  color:var(--dn-night);
+  text-decoration:none;
+  font-weight:560;
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.tl-link .arrow{transition:transform .25s ease;}
+.tl-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.8rem;}
+.tl-link:hover .arrow{transform:translateX(3px);}
+.tl-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:3px;}
+
+/* ── responsive: collapse the absolute axis into a vertical timeline ── */
+@media (max-width:760px){
+  .tl-ends{margin-bottom:.95rem;}
+  .tl-axis{margin-top:clamp(2.8rem,9vw,4rem);}
+  /* keep a thin straight horizontal rail with the hard split */
+  .tl-rail{height:2px;}
+  /* stack the three stops below the rail as a row of three narrow columns */
+  .tl-stops{
+    position:static;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    margin-top:0;
+  }
+  .tl-stop{
+    position:relative;
+    left:auto !important;
+    top:auto;
+    width:100%;
+    transform:none;
+    display:grid;
+    grid-template-columns:14px 1fr;
+    gap:0 1rem;
+    padding:1.4rem 0;
+    border-top:1px solid var(--dn-mist);
+    text-align:left;
+  }
+  .tl-stop:first-child{border-top:0;}
+  /* turn tick + node into a left vertical spine marker */
+  .tl-stop .tick{
+    left:6px;top:0;bottom:0;height:auto;width:1px;
+    transform:none;
+    background:linear-gradient(180deg,currentColor,transparent 88%);
+    opacity:.4;
+  }
+  .tl-stop .node{
+    position:relative;
+    left:auto;top:.4em;
+    transform:none;
+    width:14px;height:14px;
+    margin:0;
+  }
+  .tl-stop .node::after{left:50%;top:50%;transform:translate(-50%,-50%);}
+  .tl-card{margin-top:0;text-align:left;}
+}
+@media (max-width:380px){
+  .tl-body{font-size:1rem;}
+  .tl-foot{gap:1rem 1.2rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  .tl-stop .node,.tl-link,.tl-link .arrow{transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Timeline</b> <span class="lab-lens">horizontal</span></div><span></span></div>
+
+<section class="dn-section tl-about" aria-labelledby="tl-heading">
+  <div class="dn-container">
+
+    <div class="tl-head">
+      <span class="dn-eyebrow dn-pill day">WHY WE'RE DIFFERENT</span>
+      <h2 class="tl-quote" id="tl-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+      <p class="tl-lead"><span class="gold">Daytime</span> dentistry. <span class="blue">Night-time</span> emergencies.</p>
+      <p class="tl-body">We're a Merchant City practice in the heart of Glasgow, open mornings, evenings and weekends, with a 24-hour line for emergencies. Whether it's a routine check-up, a cosmetic consultation, or urgent help when you need it, you shouldn't have to book time off work just to look after your teeth.</p>
+    </div>
+
+    <div class="tl-axis" aria-label="A single day, sunrise to midnight">
+      <div class="tl-ends">
+        <span class="sun"><span class="glyph" aria-hidden="true"></span>Sunrise</span>
+        <span class="moon"><span class="glyph" aria-hidden="true"></span>Midnight</span>
+      </div>
+
+      <div class="tl-rail" aria-hidden="true">
+        <span class="tl-noon"></span>
+      </div>
+
+      <div class="tl-stops">
+        <div class="tl-stop day s1">
+          <span class="tick" aria-hidden="true"></span>
+          <span class="node" aria-hidden="true"></span>
+          <span class="tl-card">
+            <span class="tl-time">07:00</span>
+            <span class="tl-moment">Before the school run</span>
+            <span class="tl-sub">Early mornings</span>
+          </span>
+        </div>
+
+        <div class="tl-stop day s2">
+          <span class="tick" aria-hidden="true"></span>
+          <span class="node" aria-hidden="true"></span>
+          <span class="tl-card">
+            <span class="tl-time">13:00</span>
+            <span class="tl-moment">On your lunch break</span>
+            <span class="tl-sub">Daytime and evenings</span>
+          </span>
+        </div>
+
+        <div class="tl-stop night s3">
+          <span class="tick" aria-hidden="true"></span>
+          <span class="node" aria-hidden="true"></span>
+          <span class="tl-card">
+            <span class="tl-time">00:00</span>
+            <span class="tl-moment">Or at midnight</span>
+            <span class="tl-sub">24-hour emergency line</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-foot">
+      <p class="tl-by">Day Night Dental <span class="dot" aria-hidden="true">·</span> Merchant City, Glasgow</p>
+      <a href="/our-team/" class="tl-link">Meet our team <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
+</body>
+</html>

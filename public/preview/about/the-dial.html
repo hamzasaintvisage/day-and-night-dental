@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Dial - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE DIAL - a 24-hour clock face. The practice runs the whole
+   way round: a solid gold daytime arc on the morning/afternoon
+   side, a solid blue night arc on the evening/overnight side
+   (never blended). Three real-life moments are pinned at their
+   real times around the ring. The statement reads beside it.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.4rem,8vw,7rem) 0;
+}
+/* gold morning whisper top-left, blue night whisper bottom-right - solid sides, never a blend */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(70% 50% at 22% 8%, rgba(248,199,96,.06), transparent 60%),
+    radial-gradient(70% 55% at 82% 96%, rgba(69,144,236,.055), transparent 64%);
+  pointer-events:none;
+}
+.dn-container{
+  position:relative;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── head ── */
+.dn-dial-head{margin-bottom:clamp(2rem,4vw,3rem);}
+
+/* ── layout: statement beside the dial ── */
+.dn-dial-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(2.4rem,5vw,5rem);
+  align-items:center;
+}
+
+/* ── the statement ── */
+.dn-dial-quote{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2rem,4.4vw,3.3rem);
+  line-height:1.08;
+  letter-spacing:-.014em;
+  margin:0;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+.dn-dial-gold{color:var(--dn-day);}
+.dn-dial-blue{color:var(--dn-night);}
+
+.dn-dial-lead{
+  margin:1.4rem 0 0;
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(1.18rem,1.9vw,1.5rem);
+  line-height:1.3;
+  letter-spacing:-.008em;
+  color:var(--dn-bone);
+}
+
+.dn-dial-body{
+  margin:1.3rem 0 0;
+  max-width:46ch;
+  color:var(--dn-bone-dim);
+  font-size:1.02rem;
+  line-height:1.78;
+}
+
+.dn-dial-by{
+  margin-top:1.7rem;
+  font-size:.7rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-weight:600;
+}
+.dn-dial-by .sep{color:color-mix(in srgb, var(--dn-day) 70%, var(--dn-bone-faint));padding:0 .5em;}
+
+.dn-dial-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  margin-top:1.5rem;
+  min-height:44px;
+  font-size:1rem;
+  font-weight:560;
+  color:var(--dn-night);
+  text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  padding-bottom:1px;
+  align-self:flex-start;
+  width:fit-content;
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-dial-link .arrow{transition:transform .25s ease;}
+@media (hover:hover){
+  .dn-dial-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.8rem;}
+  .dn-dial-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-dial-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:3px;}
+
+/* ── the dial column ── */
+.dn-dial-vis{
+  position:relative;
+  width:100%;
+}
+.dn-dial-figure{
+  position:relative;
+  width:min(100%,440px);
+  margin:0 auto;
+}
+.dn-dial-svg{width:100%;height:auto;display:block;overflow:visible;}
+
+/* ring tracks */
+.dn-ring-base{stroke:var(--dn-mist);stroke-width:14;fill:none;}
+.dn-arc-day{stroke:var(--dn-day);stroke-width:14;fill:none;stroke-linecap:round;
+  filter:drop-shadow(0 0 10px rgba(248,199,96,.32));}
+.dn-arc-night{stroke:var(--dn-night);stroke-width:14;fill:none;stroke-linecap:round;
+  filter:drop-shadow(0 0 10px rgba(69,144,236,.3));}
+
+/* hour ticks */
+.dn-tick{stroke:var(--dn-bone-faint);stroke-width:1.4;opacity:.5;}
+.dn-tick.major{stroke-width:2;opacity:.85;}
+.dn-tick.day{stroke:color-mix(in srgb, var(--dn-day) 60%, transparent);}
+.dn-tick.night{stroke:color-mix(in srgb, var(--dn-night) 55%, transparent);}
+
+/* hour numerals */
+.dn-num{
+  font-family:var(--font-display);
+  font-size:13px;
+  font-weight:500;
+  font-variant-numeric:tabular-nums;
+  fill:var(--dn-bone-faint);
+  text-anchor:middle;
+  dominant-baseline:middle;
+}
+.dn-num.lit-day{fill:var(--dn-day);}
+.dn-num.lit-night{fill:var(--dn-night);}
+
+/* hub centre */
+.dn-hub-label{
+  font-family:var(--font-display);
+  text-anchor:middle;
+}
+.dn-hub-24{font-size:46px;font-weight:300;fill:var(--dn-bone);letter-spacing:-.02em;}
+.dn-hub-sub{font-size:9px;font-weight:600;letter-spacing:.34em;fill:var(--dn-bone-faint);
+  text-transform:uppercase;}
+
+/* the day/night cap glyphs at top (midnight) and bottom (noon) */
+.dn-cap-sun{fill:none;stroke:var(--dn-day);stroke-width:1.6;stroke-linecap:round;}
+.dn-cap-sun-core{fill:var(--dn-day);}
+.dn-cap-moon{fill:var(--dn-night);}
+
+/* moment pins */
+.dn-pin-dot{stroke-width:2;}
+.dn-pin-dot.day{fill:var(--dn-day);stroke:var(--dn-near-black);}
+.dn-pin-dot.night{fill:var(--dn-night);stroke:var(--dn-near-black);}
+.dn-pin-ring.day{fill:none;stroke:var(--dn-day);stroke-opacity:.45;}
+.dn-pin-ring.night{fill:none;stroke:var(--dn-night);stroke-opacity:.45;}
+.dn-pin-lead{stroke-width:1;stroke-dasharray:2 3;}
+.dn-pin-lead.day{stroke:color-mix(in srgb, var(--dn-day) 55%, transparent);}
+.dn-pin-lead.night{stroke:color-mix(in srgb, var(--dn-night) 55%, transparent);}
+
+/* slow, calm sweep of a faint indicator hand (decorative, not a real clock) */
+.dn-sweep{transform-origin:200px 200px;animation:dn-orbit 60s linear infinite;}
+.dn-sweep line{stroke:var(--dn-bone-faint);stroke-width:1.2;opacity:.28;stroke-linecap:round;}
+.dn-sweep circle{fill:var(--dn-bone-faint);opacity:.3;}
+@keyframes dn-orbit{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){.dn-sweep{animation:none;}}
+
+/* ── the legend of moments, read as a list beneath the dial ── */
+.dn-dial-legend{
+  list-style:none;
+  margin:clamp(1.6rem,3vw,2.2rem) auto 0;
+  padding:0;
+  display:grid;
+  gap:.55rem;
+  max-width:440px;
+}
+.dn-dial-lg{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:.85rem;
+  padding:11px 14px;
+  min-height:44px;
+  border:1px solid var(--dn-mist);
+  border-radius:999px;
+  background:rgba(255,255,255,.02);
+}
+.dn-dial-lg .dot{
+  width:11px;height:11px;border-radius:50%;flex:none;
+}
+.dn-dial-lg.day .dot{background:var(--dn-day);box-shadow:0 0 10px -1px rgba(248,199,96,.55);}
+.dn-dial-lg.night .dot{background:var(--dn-night);box-shadow:0 0 10px -1px rgba(69,144,236,.5);}
+.dn-dial-lg .t{font-size:.98rem;color:var(--dn-bone);font-weight:480;}
+.dn-dial-lg .s{
+  font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dn-bone-faint);font-weight:600;white-space:nowrap;
+}
+.dn-dial-lg.day .s{color:color-mix(in srgb, var(--dn-day) 65%, var(--dn-bone-faint));}
+.dn-dial-lg.night .s{color:color-mix(in srgb, var(--dn-night) 65%, var(--dn-bone-faint));}
+
+/* the two ring-side captions */
+.dn-dial-sides{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  max-width:440px;
+  margin:1.1rem auto 0;
+  font-size:.64rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.dn-dial-sides .day{color:var(--dn-day);}
+.dn-dial-sides .night{color:var(--dn-night);}
+
+/* ── responsive: stack on narrow ── */
+@media (max-width:880px){
+  .dn-dial-grid{grid-template-columns:1fr;gap:clamp(2rem,6vw,3rem);}
+  .dn-dial-lede{order:1;text-align:center;}
+  .dn-dial-body{margin-left:auto;margin-right:auto;}
+  .dn-dial-link{margin-left:auto;margin-right:auto;}
+  .dn-dial-vis{order:2;}
+  .dn-dial-figure{width:min(100%,380px);}
+}
+@media (max-width:560px){
+  .dn-dial-quote{font-size:clamp(1.85rem,8vw,2.4rem);}
+  .dn-dial-lg{grid-template-columns:auto 1fr;gap:.6rem;padding:11px 13px;}
+  .dn-dial-lg .s{grid-column:1 / -1;padding-left:calc(11px + .6rem);}
+}
+@media (max-width:380px){
+  .dn-dial-figure{width:min(100%,300px);}
+  .dn-dial-by{letter-spacing:.16em;font-size:.66rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Dial</b> <span class="lab-lens">diagram</span></div><span></span></div>
+
+<section class="dn-section dn-dial" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <div class="dn-dial-head">
+      <span class="dn-eyebrow dn-pill day">WHY WE'RE DIFFERENT</span>
+    </div>
+
+    <div class="dn-dial-grid">
+      <!-- statement -->
+      <div class="dn-dial-lede">
+        <h2 class="dn-dial-quote" id="about-heading">
+          Built for real life, not <span class="dn-dial-gold">office</span> hours.
+        </h2>
+        <p class="dn-dial-lead">
+          <span class="dn-dial-gold">Daytime</span> dentistry.
+          <span class="dn-dial-blue">Night-time</span> emergencies.
+        </p>
+        <p class="dn-dial-body">
+          We're a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+          weekends, with a 24-hour line for emergencies. Whether it's a routine check-up, a cosmetic
+          consultation, or urgent help when you need it, you shouldn't have to book time off work just
+          to look after your teeth.
+        </p>
+        <div class="dn-dial-by">Day Night Dental <span class="sep">/</span> Merchant City, Glasgow</div>
+        <a href="/our-team/" class="dn-dial-link">
+          Meet our team <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- the dial -->
+      <div class="dn-dial-vis">
+        <figure class="dn-dial-figure">
+          <svg class="dn-dial-svg" viewBox="0 0 400 400" role="img"
+               aria-label="A 24-hour dial showing the practice open all the way round: a gold daytime arc and a blue night arc, with three real-life moments pinned at their times.">
+
+            <!-- base ring -->
+            <circle class="dn-ring-base" cx="200" cy="200" r="150"></circle>
+
+            <!--
+              24h dial, midnight at the top, running clockwise.
+              angle(deg from top, clockwise) = hour * 15.
+              Day arc: 06:00 to 18:00 (gold). Night arc: 18:00 to 06:00 (blue).
+              Path points computed for r=150 about (200,200).
+            -->
+            <!-- NIGHT arc: 18:00 -> 24:00 -> 06:00  (right side down, through bottom... actually through left/top) -->
+            <!-- We draw two solid arcs that meet exactly at 6:00 (right) and 18:00 (left). -->
+
+            <!-- DAY arc 06:00 (right, 3 o'clock) sweeping down through 12:00 (bottom) up to 18:00 (left, 9 o'clock) -->
+            <path class="dn-arc-day" d="M 350 200 A 150 150 0 0 1 50 200"></path>
+            <!-- NIGHT arc 18:00 (left) sweeping up through 24:00 (top) to 06:00 (right) -->
+            <path class="dn-arc-night" d="M 50 200 A 150 150 0 0 1 350 200"></path>
+
+            <!-- hour ticks every hour, majors every 3h -->
+            <g id="dn-ticks"></g>
+            <!-- key numerals -->
+            <g id="dn-nums"></g>
+
+            <!-- decorative slow sweep hand (not a real time) -->
+            <g class="dn-sweep" aria-hidden="true">
+              <line x1="200" y1="200" x2="200" y2="74"></line>
+              <circle cx="200" cy="74" r="3"></circle>
+            </g>
+
+            <!-- noon cap (bottom): a small sun marks the height of the day, midnight at top is marked by the night pin -->
+            <g aria-hidden="true" transform="translate(200,350)">
+              <circle class="dn-cap-sun-core" cx="0" cy="0" r="4.5"></circle>
+              <g class="dn-cap-sun">
+                <line x1="0" y1="-8" x2="0" y2="-11"></line>
+                <line x1="0" y1="8" x2="0" y2="11"></line>
+                <line x1="-8" y1="0" x2="-11" y2="0"></line>
+                <line x1="8" y1="0" x2="11" y2="0"></line>
+                <line x1="-5.7" y1="-5.7" x2="-7.8" y2="-7.8"></line>
+                <line x1="5.7" y1="5.7" x2="7.8" y2="7.8"></line>
+                <line x1="5.7" y1="-5.7" x2="7.8" y2="-7.8"></line>
+                <line x1="-5.7" y1="5.7" x2="-7.8" y2="7.8"></line>
+              </g>
+            </g>
+
+            <!-- moment pins, sat on the ring. day side gold / night side blue.
+                 lead lines start just outside the hub so they never cross the centre label. -->
+            <!-- 07:30 morning (right, day arc) -->
+            <g aria-hidden="true">
+              <line class="dn-pin-lead day" x1="216.6" y1="206.9" x2="338.6" y2="257.4"></line>
+              <circle class="dn-pin-ring day" cx="338.6" cy="257.4" r="11"></circle>
+              <circle class="dn-pin-dot day" cx="338.6" cy="257.4" r="6.5"></circle>
+            </g>
+            <!-- 16:30 afternoon/evening (left, day arc) -->
+            <g aria-hidden="true">
+              <line class="dn-pin-lead day" x1="183.4" y1="206.9" x2="61.4" y2="257.4"></line>
+              <circle class="dn-pin-ring day" cx="61.4" cy="257.4" r="11"></circle>
+              <circle class="dn-pin-dot day" cx="61.4" cy="257.4" r="6.5"></circle>
+            </g>
+            <!-- 00:00 midnight (top, night arc) - a small moon marks the night -->
+            <g aria-hidden="true">
+              <line class="dn-pin-lead night" x1="200" y1="182" x2="200" y2="50"></line>
+              <circle class="dn-pin-ring night" cx="200" cy="50" r="11"></circle>
+              <path class="dn-pin-dot night" d="M 202 43 a 7 7 0 1 0 0 14 a 5.4 5.4 0 0 1 0 -14 z"></path>
+            </g>
+
+            <!-- hub -->
+            <circle cx="200" cy="200" r="4" fill="var(--dn-bone-faint)"></circle>
+            <text class="dn-hub-label dn-hub-24" x="200" y="186">24</text>
+            <text class="dn-hub-label dn-hub-sub" x="200" y="214">hours a day</text>
+          </svg>
+        </figure>
+
+        <div class="dn-dial-sides" aria-hidden="true">
+          <span class="day">Daytime dentistry</span>
+          <span class="night">Night-time emergencies</span>
+        </div>
+
+        <ul class="dn-dial-legend">
+          <li class="dn-dial-lg day">
+            <span class="dot"></span>
+            <span class="t">Before the school run</span>
+            <span class="s">Early mornings</span>
+          </li>
+          <li class="dn-dial-lg day">
+            <span class="dot"></span>
+            <span class="t">On your lunch break</span>
+            <span class="s">Daytime and evenings</span>
+          </li>
+          <li class="dn-dial-lg night">
+            <span class="dot"></span>
+            <span class="t">Or at midnight</span>
+            <span class="s">24-hour emergency line</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var R = 150, CX = 200, CY = 200;
+  // angle in degrees measured from top (midnight), clockwise. hour*15.
+  function pt(hour, radius){
+    var a = (hour * 15 - 90) * Math.PI / 180; // -90 so 0h is at top
+    return { x: CX + radius * Math.cos(a), y: CY + radius * Math.sin(a) };
+  }
+
+  // ticks
+  var ticks = document.getElementById('dn-ticks');
+  var nums = document.getElementById('dn-nums');
+  if(ticks){
+    for(var h = 0; h < 24; h++){
+      var major = (h % 3 === 0);
+      var inner = pt(h, major ? R - 13 : R - 8);
+      var outer = pt(h, R - 1);
+      var ln = document.createElementNS('http://www.w3.org/2000/svg','line');
+      ln.setAttribute('x1', inner.x.toFixed(2));
+      ln.setAttribute('y1', inner.y.toFixed(2));
+      ln.setAttribute('x2', outer.x.toFixed(2));
+      ln.setAttribute('y2', outer.y.toFixed(2));
+      // day side hours 6..18, night side the rest
+      var side = (h >= 6 && h <= 18) ? 'day' : 'night';
+      ln.setAttribute('class', 'dn-tick ' + (major ? 'major ' : '') + side);
+      ticks.appendChild(ln);
+    }
+  }
+  // key numerals: 0 (top), 6 (right), 12 (bottom), 18 (left)
+  if(nums){
+    var keyHours = [
+      {h:0,  lit:'lit-night', label:'00'},
+      {h:6,  lit:'lit-day',   label:'06'},
+      {h:12, lit:'lit-day',   label:'12'},
+      {h:18, lit:'lit-night', label:'18'}
+    ];
+    keyHours.forEach(function(k){
+      var p = pt(k.h, R - 30);
+      var t = document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x', p.x.toFixed(2));
+      t.setAttribute('y', p.y.toFixed(2));
+      t.setAttribute('class', 'dn-num ' + k.lit);
+      t.textContent = k.label;
+      nums.appendChild(t);
+    });
+  }
+})();
+</script>
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
+</body>
+</html>

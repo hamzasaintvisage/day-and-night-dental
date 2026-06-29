@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Manifesto - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE MANIFESTO - a pure typographic statement.
+   The headline is the hero: set enormous, "office" in gold.
+   Beneath it the day/night lead, a tight body, a real-life
+   day-to-midnight triad and a byline. No diagram, no imagery.
+   Vast negative space, hairline furniture, a quiet continuous
+   gold day-side / blue night-side depth-glow.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-manifesto{
+  position:relative;
+  min-height:calc(100vh - 49px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(3.5rem,9vw,7rem) 0 clamp(3rem,7vw,5.5rem);
+  overflow:hidden;
+}
+/* continuous depth-glow: solid gold day-side (top-left), solid blue
+   night-side (bottom-right). Two separate radials, never blended into
+   each other, so there is no gold-to-blue gradient anywhere. */
+.dn-manifesto::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(70% 55% at 8% 0%, rgba(248,199,96,.10), transparent 60%),
+    radial-gradient(70% 60% at 100% 100%, rgba(69,144,236,.10), transparent 62%);
+  pointer-events:none;
+}
+.dn-container{
+  position:relative;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(22px,5vw,56px);
+}
+
+/* ── eyebrow ── */
+.mf-eyebrow{margin-bottom:clamp(2rem,5vw,3.4rem);}
+
+/* ── the headline, set as the entire hero ── */
+.mf-headline{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(2.9rem,11.5vw,9.5rem);
+  line-height:.96;
+  letter-spacing:-.028em;
+  margin:0;
+  max-width:15ch;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+.mf-headline .office{
+  color:var(--dn-day);
+  font-style:italic;
+  font-weight:360;
+}
+
+/* ── lead: daytime gold, night-time blue, kept on its own measure ── */
+.mf-lead{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(1.5rem,4.2vw,3rem);
+  line-height:1.12;
+  letter-spacing:-.012em;
+  margin:clamp(2.2rem,5vw,3.4rem) 0 0;
+  max-width:24ch;
+}
+.mf-lead .day{color:var(--dn-day);}
+.mf-lead .night{color:var(--dn-night);}
+
+/* ── body, a tight reading measure set against the headline ── */
+.mf-body{
+  margin:clamp(1.7rem,4vw,2.4rem) 0 0;
+  max-width:46ch;
+  font-size:clamp(1.02rem,1.35vw,1.22rem);
+  line-height:1.74;
+  color:var(--dn-bone-dim);
+}
+
+/* ── the real-life day-to-midnight triad ── */
+.mf-moments{
+  list-style:none;
+  margin:clamp(2.6rem,6vw,4rem) 0 0;
+  padding:0;
+  display:grid;
+  gap:clamp(1.4rem,3vw,2rem);
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  max-width:780px;
+}
+.mf-moment{
+  position:relative;
+  padding-top:1.05rem;
+  border-top:1px solid var(--dn-mist);
+}
+/* a single solid dot per moment: gold for daytime, blue for midnight */
+.mf-moment::before{
+  content:'';
+  position:absolute;
+  top:-4px;
+  left:0;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--mf-dot,var(--dn-day));
+  box-shadow:0 0 16px -2px var(--mf-dot,var(--dn-day));
+}
+.mf-moment.night::before{--mf-dot:var(--dn-night);}
+.mf-moment .t{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:420;
+  font-size:clamp(1.04rem,1.8vw,1.4rem);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  color:var(--dn-bone);
+}
+.mf-moment.day .t{color:var(--dn-day);}
+.mf-moment.night .t{color:var(--dn-night);}
+.mf-moment .s{
+  display:block;
+  margin-top:.5rem;
+  font-size:.74rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-weight:600;
+}
+
+/* ── coda: byline + link, sat on a hairline rule ── */
+.mf-coda{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.2rem 2rem;
+  margin:clamp(2.8rem,6vw,4.2rem) 0 0;
+  padding-top:clamp(1.4rem,3vw,2rem);
+  border-top:1px solid var(--dn-mist);
+}
+.mf-by{
+  font-family:var(--font-display);
+  font-weight:480;
+  font-size:clamp(1rem,1.5vw,1.18rem);
+  letter-spacing:.01em;
+  color:var(--dn-bone-dim);
+}
+.mf-by .sep{color:var(--dn-day);padding:0 .35em;}
+.mf-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  min-height:44px;
+  padding:.55rem 0;
+  color:var(--dn-night);
+  text-decoration:none;
+  font-weight:560;
+  font-size:1.02rem;
+  letter-spacing:.005em;
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.mf-link .arrow{
+  display:inline-block;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1);
+}
+@media (hover:hover){
+  .mf-link:hover{
+    color:var(--dn-night-soft);
+    border-color:var(--dn-night-soft);
+    gap:.85rem;
+  }
+  .mf-link:hover .arrow{transform:translateX(3px);}
+}
+.mf-link:focus-visible{
+  outline:2px solid color-mix(in srgb, var(--dn-night) 60%, transparent);
+  outline-offset:4px;
+  border-radius:2px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .mf-link,.mf-link .arrow{transition:none;}
+}
+
+/* ── tablet ── */
+@media (max-width:760px){
+  .mf-moments{
+    grid-template-columns:1fr;
+    gap:0;
+    max-width:34ch;
+  }
+  .mf-moment{
+    padding:1rem 0 1.1rem 1.1rem;
+    border-top:1px solid var(--dn-mist);
+  }
+  .mf-moment::before{top:1.35rem;left:0;}
+}
+
+/* ── mobile ── */
+@media (max-width:480px){
+  .dn-manifesto{min-height:auto;padding-top:2.6rem;}
+  .mf-headline{font-size:clamp(2.7rem,13.5vw,4.2rem);line-height:.99;}
+  .mf-coda{flex-direction:column;align-items:flex-start;gap:1rem;}
+}
+@media (max-width:380px){
+  .mf-headline{font-size:2.55rem;}
+  .mf-lead{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Manifesto</b> <span class="lab-lens">statement</span></div><span></span></div>
+
+<section class="dn-manifesto" aria-labelledby="mf-heading">
+  <div class="dn-container">
+
+    <span class="dn-eyebrow dn-pill day mf-eyebrow">Why We're Different</span>
+
+    <h2 class="mf-headline" id="mf-heading">Built for real life, not <span class="office">office</span> hours.</h2>
+
+    <p class="mf-lead">
+      <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+    </p>
+
+    <p class="mf-body">
+      We're a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+      weekends, with a 24-hour line for emergencies. Whether it's a routine check-up, a cosmetic
+      consultation, or urgent help when you need it, you shouldn't have to book time off work just
+      to look after your teeth.
+    </p>
+
+    <ul class="mf-moments">
+      <li class="mf-moment day">
+        <span class="t">Before the school run</span>
+        <span class="s">Early mornings</span>
+      </li>
+      <li class="mf-moment day">
+        <span class="t">On your lunch break</span>
+        <span class="s">Daytime and evenings</span>
+      </li>
+      <li class="mf-moment night">
+        <span class="t">Or at midnight</span>
+        <span class="s">24-hour emergency line</span>
+      </li>
+    </ul>
+
+    <div class="mf-coda">
+      <span class="mf-by">Day Night Dental <span class="sep" aria-hidden="true">/</span> Merchant City, Glasgow</span>
+      <a href="/our-team/" class="mf-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+  </div>
+</section>
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
+</body>
+</html>

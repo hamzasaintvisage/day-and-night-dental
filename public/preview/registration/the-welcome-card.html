@@ -222,11 +222,7 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
 
         <div class="wc-field" style="margin-top:15px;">
           <label class="wc-label" for="wc-address">Your address <span class="opt">optional</span></label>
-          <div class="wc-ac" id="wc-ac">
-            <input class="wc-input" type="text" id="wc-address" name="address" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="wc-ac-list" placeholder="Start typing your street or postcode">
-            <ul class="wc-ac-list" id="wc-ac-list" role="listbox" aria-label="Address suggestions"></ul>
-          </div>
-          <span class="wc-hint">Start typing and pick yours, or just type it in.</span>
+          <input class="wc-input" type="text" id="wc-address" name="address" autocomplete="street-address" placeholder="Street address and postcode">
         </div>
 
         <div class="wc-field" style="margin-top:15px;">
@@ -481,5 +477,6 @@ em.dn-hl-gold{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(
   if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); }); }
 })();
 </script>
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
 </body>
 </html>

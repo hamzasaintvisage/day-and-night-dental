@@ -31,21 +31,23 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <style>
 /* ============================================================
    THE MONOGRAM - couture lens (rank #1, panel winner)
-   "Questions engraved as a monogram index; the answer reads as
-   letterhead correspondence on a single sheet of stock."
-   Evolved: a true stationery sheet with embossed corner marks
-   and a wax-seal counter, an engraved vertical rule of Roman
-   numerals, a foil watermark numeral behind the open letter,
-   and a signed-off correspondence flourish. Solid gold #f8c760
-   + blue #4590ec only, never a gold-to-blue gradient; each
-   colour appears at most twice per state (active numeral seal +
-   the letterhead rule). No em dashes anywhere.
+   RE-DIVERSIFIED SILHOUETTE: a couture card grid. The single
+   stationery sheet and its driving index/letterhead split is
+   gone. In its place: a responsive 2x2 grid of four equal,
+   self-contained "calling card" stationery panels. Every card
+   carries its own monogram cipher (interlocked D N) as a
+   letterhead flourish, an engraved Roman index numeral, a
+   hairline rule, the question as a Fraunces heading, and the
+   full answer always on show. No toggling, no active state, no
+   panel driven by a list. Solid gold #f8c760 + blue #4590ec
+   only, alternating per card, never a gold-to-blue gradient.
+   No em dashes anywhere.
    ============================================================ */
 
 .dn-section{padding:clamp(4rem,9vw,8rem) 0 clamp(4.5rem,9vw,8.5rem);position:relative;}
 .dn-container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);position:relative;}
 
-/* faint ambient wash behind the sheet (neutral plus day/night glow, no brand gradient) */
+/* faint ambient wash behind the cards (neutral plus day/night glow, no brand gradient) */
 .dn-section::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:
     radial-gradient(ellipse 64% 52% at 50% -4%, rgba(248,199,96,.055), transparent 60%),
@@ -64,94 +66,75 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 .dn-cipher b{font-family:var(--font-display);font-weight:600;font-style:italic;font-size:.92rem;
   letter-spacing:.32em;text-transform:uppercase;color:var(--dn-bone-faint);padding-left:.32em;}
 
-/* ---- THE SHEET (single stationery sheet, two columns) ---- */
-.dn-faq-side{max-width:920px;margin:clamp(3.2rem,6vw,4.8rem) auto 0;display:grid;gap:0;
-  grid-template-columns:0.64fr 1fr;position:relative;
+/* ---- THE GRID: four equal calling cards ------------------ */
+.dn-faq-grid{max-width:1000px;margin:clamp(3.2rem,6vw,4.8rem) auto 0;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.4vw,28px);
+  list-style:none;padding:0;}
+
+.dn-faq-card{--ink:var(--dn-day);position:relative;display:flex;flex-direction:column;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,0) 42%),
+    linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0) 46%),
     var(--dn-charcoal);
-  border-radius:8px;padding:clamp(26px,3vw,40px) clamp(24px,3vw,42px);
-  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 40px 90px -50px rgba(0,0,0,.9);}
+  border:1px solid var(--dn-mist);border-radius:10px;
+  padding:clamp(26px,3vw,40px) clamp(24px,3vw,38px) clamp(28px,3.2vw,42px);
+  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 34px 80px -54px rgba(0,0,0,.9);
+  overflow:hidden;}
+.dn-faq-card:nth-child(even){--ink:var(--dn-night);}
 
-/* hairline frame plus a fainter inner rule: the embossed plate edge of the stock */
-.dn-faq-side::before{content:"";position:absolute;inset:7px;
-  border:1px solid var(--dn-mist);border-radius:5px;pointer-events:none;}
-.dn-faq-side::after{content:"";position:absolute;inset:13px;
-  border:1px solid rgba(255,255,255,.04);border-radius:3px;pointer-events:none;}
+/* a thin foil tab of the card's colour along the top edge: the wax-seal accent */
+.dn-faq-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--ink);opacity:.9;}
 
-/* engraved corner marks at the four corners of the sheet */
-.dn-corner{position:absolute;width:14px;height:14px;pointer-events:none;opacity:.55;z-index:2;}
+/* an embossed inner plate edge, the engraved frame of the stock */
+.dn-faq-card::after{content:"";position:absolute;inset:7px;border:1px solid rgba(255,255,255,.05);
+  border-radius:5px;pointer-events:none;}
+
+/* engraved corner marks at the four corners of each card */
+.dn-corner{position:absolute;width:12px;height:12px;pointer-events:none;opacity:.5;z-index:2;}
 .dn-corner::before,.dn-corner::after{content:"";position:absolute;background:var(--dn-bone-faint);}
-.dn-corner::before{width:14px;height:1px;}
-.dn-corner::after{width:1px;height:14px;}
-.dn-corner.tl{top:14px;left:14px;}
-.dn-corner.tr{top:14px;right:14px;}.dn-corner.tr::after{right:0;}.dn-corner.tr::before{right:0;}
-.dn-corner.bl{bottom:14px;left:14px;}.dn-corner.bl::after{bottom:0;}.dn-corner.bl::before{bottom:0;}
-.dn-corner.br{bottom:14px;right:14px;}.dn-corner.br::after{bottom:0;right:0;}.dn-corner.br::before{bottom:0;right:0;}
+.dn-corner::before{width:12px;height:1px;}
+.dn-corner::after{width:1px;height:12px;}
+.dn-corner.tl{top:13px;left:13px;}
+.dn-corner.tr{top:13px;right:13px;}.dn-corner.tr::after{right:0;}.dn-corner.tr::before{right:0;}
+.dn-corner.bl{bottom:13px;left:13px;}.dn-corner.bl::after{bottom:0;}.dn-corner.bl::before{bottom:0;}
+.dn-corner.br{bottom:13px;right:13px;}.dn-corner.br::after{bottom:0;right:0;}.dn-corner.br::before{bottom:0;right:0;}
 
-/* ---- left rail: monogram index --------------------------- */
-.dn-faq-nav{border-right:1px solid var(--dn-mist);padding-right:clamp(20px,2.6vw,32px);
-  display:flex;flex-direction:column;}
-.dn-faq-rail-label{font-family:var(--font-display);font-weight:600;font-style:italic;font-size:.66rem;
-  letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 .9rem;padding-left:46px;}
+/* ---- card letterhead: monogram cipher + Roman index ------ */
+.dn-faq-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;margin:0 0 1.25rem;}
+.dn-faq-mono{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-weight:600;
+  font-style:italic;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.dn-faq-mono .cipher{font-style:normal;font-size:.92rem;letter-spacing:.22em;color:var(--ink);padding-left:.18em;}
+.dn-faq-mono .cipher-line{width:clamp(20px,3vw,30px);height:1px;
+  background:linear-gradient(90deg,transparent,var(--dn-mist));}
 
-.dn-faq-q{--ink:var(--dn-day);position:relative;min-height:52px;display:grid;
-  grid-template-columns:34px 1fr;gap:12px;align-items:center;
-  border:none;border-bottom:1px solid var(--dn-mist);background:transparent;
-  color:var(--dn-bone-dim);font-family:var(--font-body);font-size:.93rem;line-height:1.34;font-weight:440;
-  letter-spacing:-.002em;text-align:left;cursor:pointer;padding:15px 4px 15px 0;
-  transition:color .25s ease,padding-left .3s cubic-bezier(.2,.7,.2,1);width:100%;}
-.dn-faq-q:first-of-type{border-top:1px solid var(--dn-mist);}
-.dn-faq-q:nth-of-type(even){--ink:var(--dn-night);}
+/* the Roman numeral, set in a hairline seal counter tinted to the card's ink */
+.dn-faq-num{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--ink);font-family:var(--font-display);font-weight:600;font-size:.94rem;
+  color:var(--ink);letter-spacing:.02em;line-height:1;
+  background:color-mix(in srgb,var(--ink) 10%,transparent);
+  box-shadow:0 0 24px -10px color-mix(in srgb,var(--ink) 80%,transparent);}
 
-/* the Roman numeral, set in a hairline seal counter */
-.dn-faq-q .num{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;
-  border:1px solid var(--dn-mist);font-family:var(--font-display);font-weight:600;font-size:.9rem;
-  color:var(--dn-bone-faint);letter-spacing:.02em;line-height:1;
-  transition:color .25s ease,border-color .25s ease,box-shadow .3s ease,background .25s ease;}
+/* a giant ghosted foil numeral watermark behind each card */
+.dn-faq-watermark{position:absolute;top:clamp(-26px,-2.4vw,-14px);right:clamp(-6px,-0.4vw,2px);
+  font-family:var(--font-display);font-weight:700;font-size:clamp(5rem,11vw,8rem);line-height:1;
+  color:color-mix(in srgb,var(--ink) 7%,transparent);pointer-events:none;z-index:0;letter-spacing:-.02em;}
 
-.dn-faq-q .qt{display:block;}
+/* ---- card body: question heading + always-visible answer - */
+.dn-faq-q{position:relative;z-index:1;font-family:var(--font-display);font-weight:520;
+  font-size:clamp(1.18rem,2.2vw,1.42rem);line-height:1.17;letter-spacing:-.01em;color:var(--dn-bone);margin:0;
+  padding-top:1.1rem;border-top:1px solid var(--ink);}
+.dn-faq-a{position:relative;z-index:1;font-family:var(--font-body);font-weight:400;
+  font-size:clamp(.95rem,1.5vw,1.02rem);line-height:1.74;color:var(--dn-bone-dim);margin:1rem 0 0;}
 
-@media (hover:hover){
-  .dn-faq-q:hover{color:var(--dn-bone);}
-  .dn-faq-q:hover .num{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 40%,transparent);}
-}
-.dn-faq-q:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px;}
-
-/* active row: the wax-seal numeral + a solid letterhead hairline */
-.dn-faq-q.on{color:var(--dn-bone);border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink);}
-.dn-faq-q.on .num{color:var(--ink);border-color:var(--ink);
-  background:color-mix(in srgb,var(--ink) 12%,transparent);
-  box-shadow:0 0 22px -8px color-mix(in srgb,var(--ink) 75%,transparent);}
-
-/* ---- right column: letterhead panel ---------------------- */
-.dn-faq-panel{border:none;background:transparent;padding:2px 0 0 clamp(22px,3.4vw,42px);position:relative;min-height:248px;}
-.dn-faq-a{--ink:var(--dn-day);display:none;}
-.dn-faq-a:nth-of-type(even){--ink:var(--dn-night);}
-.dn-faq-a.on{display:block;animation:dn-fade-up .42s ease;}
-
-/* giant ghosted foil numeral: watermark of the open answer */
-.dn-faq-a.on::before{content:attr(data-mono);position:absolute;top:clamp(-30px,-3vw,-18px);right:0;
-  font-family:var(--font-display);font-weight:700;font-size:clamp(5.5rem,12vw,8.5rem);line-height:1;
-  color:color-mix(in srgb,var(--ink) 9%,transparent);pointer-events:none;z-index:0;letter-spacing:-.02em;}
-
-.dn-faq-a .q{position:relative;z-index:1;font-family:var(--font-display);font-weight:520;
-  font-size:clamp(1.3rem,2.7vw,1.62rem);line-height:1.16;letter-spacing:-.01em;color:var(--dn-bone);margin:0;
-  padding-top:18px;border-top:1px solid var(--ink);}
-.dn-faq-a .a{position:relative;z-index:1;font-family:var(--font-body);font-weight:400;
-  font-size:clamp(.96rem,1.6vw,1.04rem);line-height:1.78;color:var(--dn-bone-dim);margin:1.1rem 0 0;
-  max-width:48ch;}
-
-/* a small correspondence sign-off: the "from" line of the letter */
-.dn-faq-a .seal{display:flex;align-items:center;gap:.7rem;margin:1.7rem 0 0;
-  font-family:var(--font-display);font-style:italic;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+/* a small correspondence sign-off at the foot of each card */
+.dn-faq-seal{position:relative;z-index:1;display:flex;align-items:center;gap:.7rem;margin:1.5rem 0 0;
+  font-family:var(--font-display);font-style:italic;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--dn-bone-faint);}
-.dn-faq-a .seal::before{content:"";width:28px;height:1px;background:var(--ink);}
-
-@keyframes dn-fade-up{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:none;}}
+.dn-faq-seal::before{content:"";width:26px;height:1px;background:var(--ink);}
 
 /* ---- the signature / foot -------------------------------- */
-.dn-faq-foot{max-width:920px;margin:clamp(3.4rem,6vw,5rem) auto 0;text-align:center;
+.dn-faq-foot{max-width:1000px;margin:clamp(3.4rem,6vw,5rem) auto 0;text-align:center;
   font-family:var(--font-display);font-weight:400;font-style:italic;
   font-size:clamp(1rem,2vw,1.18rem);color:var(--dn-bone-dim);letter-spacing:.005em;}
 .dn-faq-foot .flourish{display:block;margin:0 auto .9rem;width:42px;height:1px;
@@ -163,24 +146,15 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   padding-bottom:1px;transition:border-color .2s ease;}
 .dn-faq-foot a:hover{border-bottom-color:var(--dn-day);}
 
-@media (prefers-reduced-motion:reduce){
-  .dn-faq-a.on{animation:none;}
-  .dn-faq-q,.dn-faq-q .num{transition:none;}
-}
-
-/* ---- mobile: collapse to one column ---------------------- */
-@media (max-width:768px){
-  .dn-faq-side{grid-template-columns:1fr;padding:clamp(22px,5vw,30px) clamp(20px,5vw,26px);}
-  .dn-faq-nav{border-right:none;padding-right:0;}
-  .dn-faq-rail-label{padding-left:46px;}
-  .dn-faq-panel{padding-left:0;padding-top:1.5rem;min-height:0;}
-  .dn-faq-a.on::before{font-size:clamp(4.5rem,22vw,6.5rem);top:-14px;}
-  .dn-faq-a .a{max-width:none;}
+/* ---- mobile: single column under 700px ------------------- */
+@media (max-width:700px){
+  .dn-faq-grid{grid-template-columns:1fr;gap:clamp(16px,4vw,22px);}
+  .dn-faq-card{padding:clamp(24px,5vw,30px) clamp(22px,5vw,26px) clamp(26px,5vw,32px);}
+  .dn-faq-watermark{font-size:clamp(4.2rem,20vw,6rem);top:-12px;}
 }
 @media (max-width:380px){
-  .dn-faq-q{grid-template-columns:30px 1fr;gap:10px;font-size:.9rem;}
-  .dn-faq-q .num{width:28px;height:28px;font-size:.82rem;}
-  .dn-faq-rail-label{padding-left:40px;}
+  .dn-faq-num{width:34px;height:34px;font-size:.86rem;}
+  .dn-faq-mono{font-size:.6rem;letter-spacing:.24em;}
 }
 </style>
 </head>
@@ -195,43 +169,67 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
       <div class="dn-cipher" aria-hidden="true"><span></span><b>DN</b><span></span></div>
     </div>
 
-    <div class="dn-faq-side">
-      <span class="dn-corner tl" aria-hidden="true"></span>
-      <span class="dn-corner tr" aria-hidden="true"></span>
-      <span class="dn-corner bl" aria-hidden="true"></span>
-      <span class="dn-corner br" aria-hidden="true"></span>
+    <ul class="dn-faq-grid">
+      <li class="dn-faq-card">
+        <span class="dn-corner tl" aria-hidden="true"></span>
+        <span class="dn-corner tr" aria-hidden="true"></span>
+        <span class="dn-corner bl" aria-hidden="true"></span>
+        <span class="dn-corner br" aria-hidden="true"></span>
+        <span class="dn-faq-watermark" aria-hidden="true">I</span>
+        <div class="dn-faq-head">
+          <span class="dn-faq-mono" aria-hidden="true"><span class="cipher">DN</span><span class="cipher-line"></span></span>
+          <span class="dn-faq-num" aria-hidden="true">I</span>
+        </div>
+        <h3 class="dn-faq-q">Is there an emergency dentist open now in Glasgow?</h3>
+        <p class="dn-faq-a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+        <p class="dn-faq-seal" aria-hidden="true">Day Night Dental, Merchant City</p>
+      </li>
 
-      <div class="dn-faq-nav" role="tablist" aria-orientation="vertical" aria-label="Common questions">
-        <p class="dn-faq-rail-label" aria-hidden="true">Index</p>
-        <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on"><span class="num" aria-hidden="true">I</span><span class="qt">Is there an emergency dentist open now in Glasgow?</span></button>
-        <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q"><span class="num" aria-hidden="true">II</span><span class="qt">Are you taking on new patients?</span></button>
-        <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q"><span class="num" aria-hidden="true">III</span><span class="qt">Where is the practice and where can I park?</span></button>
-        <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q"><span class="num" aria-hidden="true">IV</span><span class="qt">What are your opening hours?</span></button>
-      </div>
+      <li class="dn-faq-card">
+        <span class="dn-corner tl" aria-hidden="true"></span>
+        <span class="dn-corner tr" aria-hidden="true"></span>
+        <span class="dn-corner bl" aria-hidden="true"></span>
+        <span class="dn-corner br" aria-hidden="true"></span>
+        <span class="dn-faq-watermark" aria-hidden="true">II</span>
+        <div class="dn-faq-head">
+          <span class="dn-faq-mono" aria-hidden="true"><span class="cipher">DN</span><span class="cipher-line"></span></span>
+          <span class="dn-faq-num" aria-hidden="true">II</span>
+        </div>
+        <h3 class="dn-faq-q">Are you taking on new patients?</h3>
+        <p class="dn-faq-a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+        <p class="dn-faq-seal" aria-hidden="true">Day Night Dental, Merchant City</p>
+      </li>
 
-      <div class="dn-faq-panel">
-        <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" data-mono="I" class="dn-faq-a on">
-          <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
-          <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
+      <li class="dn-faq-card">
+        <span class="dn-corner tl" aria-hidden="true"></span>
+        <span class="dn-corner tr" aria-hidden="true"></span>
+        <span class="dn-corner bl" aria-hidden="true"></span>
+        <span class="dn-corner br" aria-hidden="true"></span>
+        <span class="dn-faq-watermark" aria-hidden="true">III</span>
+        <div class="dn-faq-head">
+          <span class="dn-faq-mono" aria-hidden="true"><span class="cipher">DN</span><span class="cipher-line"></span></span>
+          <span class="dn-faq-num" aria-hidden="true">III</span>
         </div>
-        <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" data-mono="II" class="dn-faq-a">
-          <h3 class="q">Are you taking on new patients?</h3>
-          <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
+        <h3 class="dn-faq-q">Where is the practice and where can I park?</h3>
+        <p class="dn-faq-a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+        <p class="dn-faq-seal" aria-hidden="true">Day Night Dental, Merchant City</p>
+      </li>
+
+      <li class="dn-faq-card">
+        <span class="dn-corner tl" aria-hidden="true"></span>
+        <span class="dn-corner tr" aria-hidden="true"></span>
+        <span class="dn-corner bl" aria-hidden="true"></span>
+        <span class="dn-corner br" aria-hidden="true"></span>
+        <span class="dn-faq-watermark" aria-hidden="true">IV</span>
+        <div class="dn-faq-head">
+          <span class="dn-faq-mono" aria-hidden="true"><span class="cipher">DN</span><span class="cipher-line"></span></span>
+          <span class="dn-faq-num" aria-hidden="true">IV</span>
         </div>
-        <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" data-mono="III" class="dn-faq-a">
-          <h3 class="q">Where is the practice and where can I park?</h3>
-          <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
-        </div>
-        <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" data-mono="IV" class="dn-faq-a">
-          <h3 class="q">What are your opening hours?</h3>
-          <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
-          <p class="seal">Day Night Dental, Merchant City</p>
-        </div>
-      </div>
-    </div>
+        <h3 class="dn-faq-q">What are your opening hours?</h3>
+        <p class="dn-faq-a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+        <p class="dn-faq-seal" aria-hidden="true">Day Night Dental, Merchant City</p>
+      </li>
+    </ul>
 
     <p class="dn-faq-foot"><span class="flourish" aria-hidden="true"></span>Still not sure? <a href="tel:+441415486548">Call us on 0141 548 6548</a>, we will talk through your options, 24/7.</p>
   </div>
@@ -240,32 +238,6 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there an emergency dentist open now in Glasgow?","acceptedAnswer":{"@type":"Answer","text":"Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday."}},{"@type":"Question","name":"Are you taking on new patients?","acceptedAnswer":{"@type":"Answer","text":"Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night."}},{"@type":"Question","name":"Where is the practice and where can I park?","acceptedAnswer":{"@type":"Answer","text":"You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door."}},{"@type":"Question","name":"What are your opening hours?","acceptedAnswer":{"@type":"Answer","text":"We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems."}}]}
 </script>
-
-<script>
-(function(){
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-q'));
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
-  function select(i){
-    tabs.forEach(function(t,j){
-      var on = j === i;
-      t.classList.toggle('on', on);
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-    });
-    panels.forEach(function(p,j){ p.classList.toggle('on', j === i); });
-  }
-  tabs.forEach(function(tab,i){
-    tab.addEventListener('click', function(){ select(i); });
-    tab.addEventListener('keydown', function(e){
-      var last = tabs.length - 1, next = null;
-      if(e.key==='ArrowDown'||e.key==='ArrowRight') next = i===last ? 0 : i+1;
-      else if(e.key==='ArrowUp'||e.key==='ArrowLeft') next = i===0 ? last : i-1;
-      else if(e.key==='Home') next = 0;
-      else if(e.key==='End') next = last;
-      if(next!==null){ e.preventDefault(); select(next); tabs[next].focus(); }
-    });
-  });
-})();
-</script>
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
 </body>
 </html>

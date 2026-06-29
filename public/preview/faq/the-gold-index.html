@@ -70,12 +70,14 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </script>
 <style>
 /* ============================================================
-   THE GOLD INDEX - #3 / statement lens   (evolved)
-   Editorial table-of-contents: an indexed gold ledger of
-   questions on the left, one engraved glowing gold answer
-   plate on the right. The plate is the statement object:
-   it carries a struck ordinal, a hairline ledger rule, a
-   gold corner-bracket frame and a quiet "filed under" caption.
+   THE GOLD INDEX - #3 / statement lens   (re-diversified)
+   A BIG-NUMBER DIRECTORY: a luxury contents page. Oversized
+   gold numerals 01..04 sit beside each question title in a
+   single full-width index column (a table of contents, not a
+   tablist or accordion). Selecting an entry opens its full
+   answer in a shared detail area beneath the directory
+   (disclosure pattern: aria-expanded button controlling a
+   region). First entry open by default; every answer in DOM.
    ============================================================ */
 
 .dn-section{
@@ -95,7 +97,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 .tp-section-head.dn-center-head{
   text-align:center;
   max-width:780px;
-  margin:0 auto clamp(2.6rem,5vw,3.8rem);
+  margin:0 auto clamp(2.4rem,5vw,3.4rem);
 }
 .tp-section-head .dn-eyebrow{margin-bottom:1.15rem;}
 .dn-display{
@@ -107,7 +109,6 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   margin:0;
   color:var(--dn-bone);
 }
-/* a single short gold ledger rule centred beneath the headline */
 .dn-head-rule{
   width:56px;height:2px;margin:1.5rem auto 0;
   background:var(--dn-day);
@@ -115,147 +116,126 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   box-shadow:0 0 18px -2px color-mix(in srgb, var(--dn-day) 70%, transparent);
 }
 
-/* ---- two-column split ---- */
-.dn-faq-side{
-  display:grid;
-  grid-template-columns:0.86fr 1.14fr;
-  gap:clamp(28px,4vw,56px);
-  align-items:start;
+/* ---- directory shell ---- */
+.dn-directory{
+  max-width:920px;
+  margin-inline:auto;
 }
-
-/* ---- left: numbered index ledger ---- */
-.dn-index-label{
-  display:flex;align-items:baseline;gap:.6rem;
-  margin:0 6px .35rem;
+.dn-dir-label{
+  display:flex;align-items:baseline;gap:.7rem;
+  margin:0 2px .35rem;
   font-size:.66rem;
-  letter-spacing:.24em;
+  letter-spacing:.26em;
   text-transform:uppercase;
   color:var(--dn-bone-faint);
   font-weight:600;
 }
-.dn-index-label .ix-count{
+.dn-dir-label .ix-count{
+  margin-left:auto;
   font-family:var(--font-display);
   font-weight:600;
   color:var(--dn-day);
   letter-spacing:.08em;
 }
-.dn-faq-nav{
-  counter-reset:faq;
-  display:flex;
-  flex-direction:column;
-  gap:0;
+
+/* ---- the contents list: big-number rows ---- */
+.dn-dir-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  border-top:1px solid var(--dn-mist);
 }
-.dn-faq-q{
+.dn-dir-row{
+  border-bottom:1px solid var(--dn-mist);
+}
+.dn-dir-entry{
   position:relative;
   display:grid;
-  grid-template-columns:auto 1fr auto;
-  gap:clamp(14px,2vw,22px);
-  align-items:baseline;
+  grid-template-columns:clamp(64px,9vw,118px) 1fr auto;
+  align-items:center;
+  gap:clamp(16px,3vw,40px);
   width:100%;
   text-align:left;
-  border:none;
-  border-top:1px solid var(--dn-mist);
+  border:0;
   background:transparent;
-  padding:clamp(16px,2.4vw,22px) 6px;
+  padding:clamp(18px,2.8vw,30px) 8px;
   min-height:44px;
-  font-family:var(--font-display);
-  font-size:clamp(1.05rem,2.4vw,1.42rem);
-  font-weight:560;
-  line-height:1.18;
-  letter-spacing:-.006em;
-  color:var(--dn-bone-dim);
-  counter-increment:faq;
   cursor:pointer;
-  transition:color .22s ease, background .22s ease, padding-left .26s cubic-bezier(.2,.7,.2,1);
+  color:var(--dn-bone-dim);
+  font-family:var(--font-body);
+  transition:background .24s ease, padding-left .28s cubic-bezier(.2,.7,.2,1);
 }
-.dn-faq-nav .dn-faq-q:last-child{border-bottom:1px solid var(--dn-mist);}
-/* struck ledger numeral */
-.dn-faq-q::before{
-  content:counter(faq, decimal-leading-zero);
+/* the oversized gold (or faint) directory numeral */
+.dn-dir-num{
   font-family:var(--font-display);
   font-weight:600;
-  font-size:clamp(1.35rem,3vw,2rem);
-  line-height:.9;
-  color:var(--dn-bone-faint);
+  font-size:clamp(2.5rem,8vw,4.7rem);
+  line-height:.78;
+  letter-spacing:-.02em;
   font-variant-numeric:tabular-nums;
-  letter-spacing:.01em;
-  transition:color .22s ease;
+  color:var(--dn-mist);
+  transition:color .24s ease, text-shadow .24s ease;
+  -webkit-text-stroke:0;
 }
-/* an active-marker rail that grows from the left edge of the live row */
-.dn-faq-q::after{
-  content:'';
-  position:absolute;
-  left:-1px;top:50%;
-  width:2px;height:0;
-  background:var(--dn-day);
-  border-radius:2px;
-  transform:translateY(-50%);
-  box-shadow:0 0 14px -2px color-mix(in srgb, var(--dn-day) 80%, transparent);
-  transition:height .26s cubic-bezier(.2,.7,.2,1);
+.dn-dir-title{
+  font-family:var(--font-display);
+  font-weight:520;
+  font-size:clamp(1.08rem,2.5vw,1.5rem);
+  line-height:1.18;
+  letter-spacing:-.008em;
+  color:var(--dn-bone-dim);
+  transition:color .24s ease;
 }
-/* the open caret glyph on the far right of each row */
-.q-caret{
-  align-self:center;
-  width:9px;height:9px;
-  border-right:1.6px solid currentColor;
-  border-bottom:1.6px solid currentColor;
-  transform:rotate(-45deg);
-  opacity:.4;
+/* far-right disclosure caret */
+.dn-dir-caret{
+  flex:none;
+  width:11px;height:11px;
+  border-right:1.7px solid currentColor;
+  border-bottom:1.7px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
   color:var(--dn-bone-faint);
-  transition:opacity .22s ease, transform .3s cubic-bezier(.2,.7,.2,1), color .22s ease;
+  opacity:.45;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1), opacity .24s ease, color .24s ease;
 }
 @media (hover:hover){
-  .dn-faq-q:hover{
-    color:var(--dn-day);
-    padding-left:14px;
-  }
-  .dn-faq-q:hover::before{color:color-mix(in srgb, var(--dn-day) 70%, var(--dn-bone-faint));}
-  .dn-faq-q:hover .q-caret{opacity:.7;color:var(--dn-day);}
+  .dn-dir-entry:hover{padding-left:16px;}
+  .dn-dir-entry:hover .dn-dir-num{color:color-mix(in srgb, var(--dn-day) 60%, var(--dn-bone-faint));}
+  .dn-dir-entry:hover .dn-dir-title{color:var(--dn-day);}
+  .dn-dir-entry:hover .dn-dir-caret{opacity:.8;color:var(--dn-day);}
 }
-.dn-faq-q.on{color:var(--dn-day);padding-left:14px;}
-.dn-faq-q.on::before{color:var(--dn-day);}
-.dn-faq-q.on::after{height:calc(100% - 14px);}
-.dn-faq-q.on .q-caret{opacity:1;color:var(--dn-day);transform:rotate(45deg);}
-.dn-faq-q:focus-visible{
+.dn-dir-entry[aria-expanded="true"]{padding-left:16px;}
+.dn-dir-entry[aria-expanded="true"] .dn-dir-num{
+  color:var(--dn-day);
+  text-shadow:0 0 30px color-mix(in srgb, var(--dn-day) 36%, transparent);
+}
+.dn-dir-entry[aria-expanded="true"] .dn-dir-title{color:var(--dn-day);}
+.dn-dir-entry[aria-expanded="true"] .dn-dir-caret{
+  color:var(--dn-day);opacity:1;
+  transform:rotate(225deg) translateY(-2px);
+}
+.dn-dir-entry:focus-visible{
   outline:2px solid var(--dn-day);
-  outline-offset:-2px;
-  border-radius:8px;
+  outline-offset:-3px;
+  border-radius:10px;
 }
 
-/* index footnote under the list (kept editorial) */
-.dn-index-note{
-  margin:1.5rem 6px 0;
-  display:flex;align-items:center;gap:.7rem;
-  font-size:.72rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--dn-bone-faint);
-}
-.dn-index-note::before{
-  content:'';
-  width:5px;height:5px;border-radius:50%;
-  background:var(--dn-day);
-  box-shadow:0 0 10px 0 color-mix(in srgb, var(--dn-day) 75%, transparent);
-  flex:none;
-}
-
-/* ---- right: single engraved glowing answer plate ---- */
-.dn-faq-panel{
+/* ---- the shared detail / answer region beneath the directory ---- */
+.dn-dir-detail{
   position:relative;
-  border:1px solid color-mix(in srgb, var(--dn-day) 46%, transparent);
+  margin-top:clamp(20px,3vw,30px);
+  border:1px solid color-mix(in srgb, var(--dn-day) 44%, transparent);
   border-radius:var(--dn-r-card);
-  padding:clamp(28px,3.6vw,44px);
+  padding:clamp(26px,3.6vw,42px) clamp(22px,3.6vw,44px);
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--dn-day) 3%, transparent), transparent 38%),
     var(--dn-near-black);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--dn-day) 8%, transparent),
     0 26px 60px -28px color-mix(in srgb, var(--dn-day) 40%, transparent),
-    0 0 38px -8px color-mix(in srgb, var(--dn-day) 26%, transparent);
+    0 0 38px -8px color-mix(in srgb, var(--dn-day) 24%, transparent);
   overflow:hidden;
 }
-/* faint inner gold wash to feel like an engraved "plate" without a gradient ramp */
-.dn-faq-panel::after{
+.dn-dir-detail::after{
   content:'';
   position:absolute;
   inset:0;
@@ -263,45 +243,43 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   background:radial-gradient(140% 120% at 88% -10%, color-mix(in srgb, var(--dn-day) 9%, transparent) 0%, transparent 60%);
   pointer-events:none;
 }
-/* engraved gold corner brackets, top-left + bottom-right, like a certificate */
-.dn-faq-panel .corner{
+.dn-dir-detail .corner{
   position:absolute;
   width:20px;height:20px;
-  border-color:color-mix(in srgb, var(--dn-day) 64%, transparent);
+  border-color:color-mix(in srgb, var(--dn-day) 62%, transparent);
   z-index:2;
   pointer-events:none;
 }
-.dn-faq-panel .corner.tl{top:14px;left:14px;border-top:1.5px solid;border-left:1.5px solid;border-top-left-radius:6px;}
-.dn-faq-panel .corner.br{bottom:14px;right:14px;border-bottom:1.5px solid;border-right:1.5px solid;border-bottom-right-radius:6px;}
+.dn-dir-detail .corner.tl{top:14px;left:14px;border-top:1.5px solid;border-left:1.5px solid;border-top-left-radius:6px;}
+.dn-dir-detail .corner.br{bottom:14px;right:14px;border-bottom:1.5px solid;border-right:1.5px solid;border-bottom-right-radius:6px;}
 
-.dn-faq-a{
+.dn-dir-answer{
   display:none;
   position:relative;
   z-index:1;
   animation:platefade .34s ease both;
 }
-.dn-faq-a.on{display:block;}
+.dn-dir-answer.on{display:block;}
 @keyframes platefade{
   from{opacity:0;transform:translateY(8px);}
   to{opacity:1;transform:none;}
 }
-/* struck plate header: oversized ordinal + caption + hairline rule */
-.dn-faq-a .plate-head{
+.dn-dir-answer .plate-head{
   display:flex;
   align-items:flex-end;
   gap:1rem;
-  margin-bottom:1.05rem;
+  margin-bottom:1rem;
 }
-.dn-faq-a .ord{
+.dn-dir-answer .ord{
   font-family:var(--font-display);
-  font-size:clamp(2.8rem,7vw,3.7rem);
+  font-size:clamp(2.6rem,7vw,3.6rem);
   font-weight:600;
   line-height:.82;
   color:var(--dn-day);
   font-variant-numeric:tabular-nums;
   text-shadow:0 0 26px color-mix(in srgb, var(--dn-day) 32%, transparent);
 }
-.dn-faq-a .plate-cap{
+.dn-dir-answer .plate-cap{
   font-size:.62rem;
   letter-spacing:.26em;
   text-transform:uppercase;
@@ -309,34 +287,33 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   font-weight:600;
   padding-bottom:.32rem;
 }
-/* hairline rule that bridges the header into the body */
-.dn-faq-a .plate-rule{
+.dn-dir-answer .plate-rule{
   height:1px;
-  margin:0 0 1.1rem;
+  margin:0 0 1.05rem;
   background:linear-gradient(90deg,
     color-mix(in srgb, var(--dn-day) 55%, transparent),
     var(--dn-mist) 70%, transparent);
 }
-.dn-faq-a .q{
+.dn-dir-answer .q{
   font-family:var(--font-display);
   font-weight:440;
-  font-size:clamp(1.26rem,3vw,1.62rem);
+  font-size:clamp(1.24rem,3vw,1.6rem);
   line-height:1.16;
   letter-spacing:-.012em;
-  margin:0 0 .95rem;
+  margin:0 0 .9rem;
   color:var(--dn-bone);
 }
-.dn-faq-a .a{
+.dn-dir-answer .a{
   margin:0;
   font-size:1.04rem;
   line-height:1.68;
   color:var(--dn-bone-dim);
-  max-width:50ch;
+  max-width:62ch;
 }
 
 @media (prefers-reduced-motion:reduce){
-  .dn-faq-a{animation:none;}
-  .dn-faq-q,.dn-faq-q::after,.q-caret{transition:none;}
+  .dn-dir-answer{animation:none;}
+  .dn-dir-entry,.dn-dir-num,.dn-dir-caret,.dn-dir-title{transition:none;}
 }
 
 /* ---- footer call line ---- */
@@ -359,18 +336,19 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 }
 
 /* ---- responsive ---- */
-@media (max-width:768px){
-  .dn-faq-side{grid-template-columns:1fr;gap:24px;}
-  .dn-faq-nav{flex-direction:column;}
-  .dn-index-note{display:none;}
-  .dn-faq-a .a{max-width:none;}
-  .dn-faq-q{font-size:clamp(1.02rem,4.6vw,1.2rem);}
-  .dn-faq-q::before{font-size:clamp(1.2rem,5.6vw,1.55rem);}
+@media (max-width:600px){
+  .dn-dir-entry{
+    grid-template-columns:auto 1fr auto;
+    gap:16px;
+    padding:18px 4px;
+  }
+  .dn-dir-num{font-size:clamp(2rem,12vw,2.8rem);}
+  .dn-dir-answer .a{max-width:none;}
 }
-@media (max-width:400px){
-  .dn-faq-q{gap:12px;padding:15px 4px;}
-  .dn-faq-panel{padding:24px 18px;}
-  .dn-faq-a .plate-head{gap:.7rem;}
+@media (max-width:375px){
+  .dn-dir-entry{gap:13px;}
+  .dn-dir-detail{padding:22px 16px;}
+  .dn-dir-answer .plate-head{gap:.7rem;}
 }
 </style>
 </head>
@@ -385,25 +363,49 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
       <div class="dn-head-rule" aria-hidden="true"></div>
     </div>
 
-    <div class="dn-faq-side">
-      <!-- LEFT: numbered editorial index ledger -->
-      <div>
-        <p class="dn-index-label"><span>The Index</span><span class="ix-count">01&ndash;04</span></p>
-        <div class="dn-faq-nav" role="tablist" aria-label="Common questions" aria-orientation="vertical">
-          <button type="button" role="tab" id="faq-tab-0" aria-selected="true" aria-controls="faq-panel-0" tabindex="0" class="dn-faq-q on" data-i="0">Is there an emergency dentist open now in Glasgow?<span class="q-caret" aria-hidden="true"></span></button>
-          <button type="button" role="tab" id="faq-tab-1" aria-selected="false" aria-controls="faq-panel-1" tabindex="-1" class="dn-faq-q" data-i="1">Are you taking on new patients?<span class="q-caret" aria-hidden="true"></span></button>
-          <button type="button" role="tab" id="faq-tab-2" aria-selected="false" aria-controls="faq-panel-2" tabindex="-1" class="dn-faq-q" data-i="2">Where is the practice and where can I park?<span class="q-caret" aria-hidden="true"></span></button>
-          <button type="button" role="tab" id="faq-tab-3" aria-selected="false" aria-controls="faq-panel-3" tabindex="-1" class="dn-faq-q" data-i="3">What are your opening hours?<span class="q-caret" aria-hidden="true"></span></button>
-        </div>
-        <p class="dn-index-note">Day &amp; Night · Merchant City, Glasgow</p>
-      </div>
+    <div class="dn-directory">
+      <p class="dn-dir-label"><span>The Index</span><span>Merchant City, Glasgow</span><span class="ix-count">01&ndash;04</span></p>
 
-      <!-- RIGHT: single engraved glowing gold answer plate (swaps) -->
-      <div class="dn-faq-panel">
+      <!-- BIG-NUMBER DIRECTORY: oversized gold numerals beside each title.
+           Disclosure pattern: each button controls the shared region below. -->
+      <ul class="dn-dir-list">
+        <li class="dn-dir-row">
+          <button type="button" id="dir-btn-0" class="dn-dir-entry" aria-expanded="true" aria-controls="dir-region">
+            <span class="dn-dir-num" aria-hidden="true">01</span>
+            <span class="dn-dir-title">Is there an emergency dentist open now in Glasgow?</span>
+            <span class="dn-dir-caret" aria-hidden="true"></span>
+          </button>
+        </li>
+        <li class="dn-dir-row">
+          <button type="button" id="dir-btn-1" class="dn-dir-entry" aria-expanded="false" aria-controls="dir-region">
+            <span class="dn-dir-num" aria-hidden="true">02</span>
+            <span class="dn-dir-title">Are you taking on new patients?</span>
+            <span class="dn-dir-caret" aria-hidden="true"></span>
+          </button>
+        </li>
+        <li class="dn-dir-row">
+          <button type="button" id="dir-btn-2" class="dn-dir-entry" aria-expanded="false" aria-controls="dir-region">
+            <span class="dn-dir-num" aria-hidden="true">03</span>
+            <span class="dn-dir-title">Where is the practice and where can I park?</span>
+            <span class="dn-dir-caret" aria-hidden="true"></span>
+          </button>
+        </li>
+        <li class="dn-dir-row">
+          <button type="button" id="dir-btn-3" class="dn-dir-entry" aria-expanded="false" aria-controls="dir-region">
+            <span class="dn-dir-num" aria-hidden="true">04</span>
+            <span class="dn-dir-title">What are your opening hours?</span>
+            <span class="dn-dir-caret" aria-hidden="true"></span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- shared detail region: the open entry's full answer. Every answer is
+           in the DOM (only the selected one shown) so search engines read all. -->
+      <div class="dn-dir-detail" id="dir-region" role="region" aria-live="polite">
         <span class="corner tl" aria-hidden="true"></span>
         <span class="corner br" aria-hidden="true"></span>
 
-        <div role="tabpanel" id="faq-panel-0" aria-labelledby="faq-tab-0" tabindex="0" class="dn-faq-a on">
+        <div class="dn-dir-answer on" data-i="0" aria-labelledby="dir-btn-0">
           <div class="plate-head">
             <span class="ord" aria-hidden="true">01</span>
             <span class="plate-cap" aria-hidden="true">Filed under: Emergency</span>
@@ -412,7 +414,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
           <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
           <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
         </div>
-        <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" tabindex="0" class="dn-faq-a" hidden>
+        <div class="dn-dir-answer" data-i="1" aria-labelledby="dir-btn-1" hidden>
           <div class="plate-head">
             <span class="ord" aria-hidden="true">02</span>
             <span class="plate-cap" aria-hidden="true">Filed under: New patients</span>
@@ -421,7 +423,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
           <h3 class="q">Are you taking on new patients?</h3>
           <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
         </div>
-        <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" tabindex="0" class="dn-faq-a" hidden>
+        <div class="dn-dir-answer" data-i="2" aria-labelledby="dir-btn-2" hidden>
           <div class="plate-head">
             <span class="ord" aria-hidden="true">03</span>
             <span class="plate-cap" aria-hidden="true">Filed under: Finding us</span>
@@ -430,7 +432,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
           <h3 class="q">Where is the practice and where can I park?</h3>
           <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
         </div>
-        <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" tabindex="0" class="dn-faq-a" hidden>
+        <div class="dn-dir-answer" data-i="3" aria-labelledby="dir-btn-3" hidden>
           <div class="plate-head">
             <span class="ord" aria-hidden="true">04</span>
             <span class="plate-cap" aria-hidden="true">Filed under: Opening hours</span>
@@ -450,36 +452,34 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 <script>
 (function(){
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-q'));
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.dn-faq-a'));
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.dn-dir-entry'));
+  var answers = Array.prototype.slice.call(document.querySelectorAll('.dn-dir-answer'));
 
-  function select(i, focus){
-    tabs.forEach(function(t, k){
-      var on = k === i;
-      t.classList.toggle('on', on);
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
+  function open(i, focus){
+    btns.forEach(function(b, k){
+      b.setAttribute('aria-expanded', k === i ? 'true' : 'false');
     });
-    panels.forEach(function(p, k){
+    answers.forEach(function(a, k){
       var on = k === i;
-      p.classList.toggle('on', on);
-      if(on){ p.removeAttribute('hidden'); } else { p.setAttribute('hidden',''); }
+      a.classList.toggle('on', on);
+      if(on){ a.removeAttribute('hidden'); } else { a.setAttribute('hidden',''); }
     });
-    if(focus){ tabs[i].focus(); }
+    if(focus){ btns[i].focus(); }
   }
 
-  tabs.forEach(function(tab, i){
-    tab.addEventListener('click', function(){ select(i, false); });
-    tab.addEventListener('keydown', function(e){
-      var last = tabs.length - 1, next = null;
+  btns.forEach(function(btn, i){
+    btn.addEventListener('click', function(){ open(i, false); });
+    btn.addEventListener('keydown', function(e){
+      var last = btns.length - 1, next = null;
       if(e.key === 'ArrowDown' || e.key === 'ArrowRight') next = i === last ? 0 : i + 1;
       else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = i === 0 ? last : i - 1;
       else if(e.key === 'Home') next = 0;
       else if(e.key === 'End') next = last;
-      if(next !== null){ e.preventDefault(); select(next, true); }
+      if(next !== null){ e.preventDefault(); btns[next].focus(); }
     });
   });
 })();
 </script>
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
 </body>
 </html>

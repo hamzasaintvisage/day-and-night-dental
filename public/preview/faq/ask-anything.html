@@ -30,13 +30,15 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 <title>Ask Anything - Common Questions · Day Night Dental</title>
 <style>
 /* ─────────────────────────────────────────────────────────────
-   ASK ANYTHING - a warm conversational chat transcript.
-   Each Q&A is a dialogue exchange: the patient question floats
-   right in a gold-tinted bubble, the practice reply sits left
-   behind a small gold monogram avatar. Stacked like a phone
-   thread inside a softly framed messenger window. All four
-   answers live in the DOM; the disclosure buttons (right
-   bubbles) reveal each reply with aria-expanded.
+   ASK ANYTHING - a genuine messaging transcript.
+   The four Q&As are one continuous conversation, scrolled top to
+   bottom. Each patient question is a right-aligned gold bubble;
+   each practice answer is a left-aligned bubble behind a small
+   gold "DN" monogram avatar, with a subtle time label. Nothing
+   expands, nothing tabs: all four exchanges are present and
+   visible at once, exactly like reading back a phone thread.
+   Headings stay semantic (visually hidden) so every answer is in
+   the DOM for crawlers. Default state needs no JS.
    ───────────────────────────────────────────────────────────── */
 
 .dn-section{position:relative;padding:clamp(4rem,9vw,8rem) 0;}
@@ -63,7 +65,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 /* ── the messenger window ── */
 .dn-chat{
-  max-width:760px;
+  max-width:720px;
   margin:clamp(2.6rem,6vw,3.6rem) auto 0;
   border:1px solid var(--dn-mist);
   border-radius:calc(var(--dn-r-card) + 8px);
@@ -112,69 +114,48 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 /* the scrolling transcript */
 .dn-thread{
   padding:clamp(18px,3.4vw,30px) clamp(14px,3vw,26px) clamp(20px,3.6vw,30px);
-  display:flex;flex-direction:column;gap:18px;
+  display:flex;flex-direction:column;gap:6px;
+  max-height:none;
 }
 
-/* one exchange = a question bubble + its reply */
-.dn-xchg{display:flex;flex-direction:column;gap:10px;}
+/* a soft day-marker that anchors the thread (no real date claimed) */
+.dn-thread-mark{
+  align-self:center;margin:2px 0 10px;
+  font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);
+  border-radius:999px;padding:4px 12px;
+}
 
-/* the patient question: right-aligned disclosure button */
+/* one exchange = a question bubble followed by its reply */
+.dn-xchg{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.dn-xchg:last-of-type{margin-bottom:0;}
+
+/* the patient question: right-aligned gold bubble */
 .dn-ask{
-  align-self:flex-end;max-width:84%;
-  display:flex;align-items:flex-start;gap:.7rem;
-  flex-direction:row-reverse;
-  width:auto;text-align:left;
-  background:transparent;border:0;padding:0;margin:0;
-  cursor:pointer;font-family:var(--font-body);
-  color:inherit;
+  align-self:flex-end;max-width:82%;
+  display:flex;flex-direction:column;align-items:flex-end;gap:5px;
 }
 .dn-ask-bubble{
-  position:relative;
-  background:rgba(248,199,96,.12);
+  background:rgba(248,199,96,.13);
   border:1px solid rgba(248,199,96,.34);
   color:var(--dn-bone);
-  padding:13px 16px;min-height:44px;
+  padding:12px 16px;min-height:44px;
   border-radius:18px 18px 6px 18px;
   font-size:1rem;font-weight:480;line-height:1.5;letter-spacing:-.002em;
   display:flex;align-items:center;
-  transition:background .2s ease, border-color .2s ease, box-shadow .25s ease;
 }
-.dn-ask-pin{
-  flex:none;align-self:flex-end;margin-bottom:2px;
-  width:30px;height:30px;border-radius:50%;
-  display:grid;place-items:center;
-  background:rgba(255,255,255,.05);border:1px solid var(--dn-mist);
-  color:var(--dn-bone-faint);font-size:.66rem;font-weight:700;letter-spacing:.06em;
-  font-variant-numeric:tabular-nums;font-family:var(--font-display);
+.dn-meta{
+  display:flex;align-items:center;gap:6px;
+  font-size:.7rem;color:var(--dn-bone-faint);letter-spacing:.01em;
+  padding:0 4px;
 }
-.dn-ask .chev{
-  position:absolute;right:14px;bottom:-22px;
-  width:18px;height:18px;color:var(--dn-day);opacity:.65;
-  transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .2s ease;
-  pointer-events:none;
-}
-@media (hover:hover){
-  .dn-ask:hover .dn-ask-bubble{
-    background:rgba(248,199,96,.18);
-    border-color:rgba(248,199,96,.5);
-    box-shadow:0 0 30px -12px rgba(248,199,96,.6);
-  }
-}
-.dn-ask:focus-visible{outline:none;}
-.dn-ask:focus-visible .dn-ask-bubble{
-  border-color:var(--dn-day);
-  box-shadow:0 0 0 2px rgba(248,199,96,.4);
-}
-.dn-ask[aria-expanded="true"] .dn-ask-bubble{
-  background:rgba(248,199,96,.2);
-  border-color:rgba(248,199,96,.55);
-}
-.dn-ask[aria-expanded="true"] .chev{transform:rotate(180deg);opacity:.9;}
+.dn-meta .tick{width:13px;height:13px;color:var(--dn-night-soft);flex:none;}
 
-/* the practice reply: left-aligned bubble + avatar */
+/* the practice reply: left-aligned bubble + monogram avatar */
 .dn-reply{
   align-self:flex-start;max-width:88%;
-  display:flex;align-items:flex-start;gap:.7rem;
+  display:flex;align-items:flex-end;gap:.7rem;
 }
 .dn-reply-av{
   flex:none;width:34px;height:34px;border-radius:50%;
@@ -183,6 +164,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   font-family:var(--font-display);font-weight:700;font-size:.84rem;
   box-shadow:0 0 18px -6px rgba(248,199,96,.55);
 }
+.dn-reply-stack{display:flex;flex-direction:column;gap:5px;min-width:0;}
 .dn-reply-body{
   background:rgba(255,255,255,.045);
   border:1px solid var(--dn-mist);
@@ -197,24 +179,19 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 .dn-reply-body .a{
   margin:0;font-size:.97rem;line-height:1.74;color:var(--dn-bone-dim);
 }
+.dn-reply .dn-meta{align-self:flex-start;padding-left:2px;}
 
-/* progressive enhancement: JS-on collapses replies, JS-off shows all */
-.js .dn-reply[hidden]{display:none;}
-.js .dn-reply{
-  animation:dn-pop .34s cubic-bezier(.2,.7,.2,1);
+/* a static "delivered" footer ribbon inside the window */
+.dn-thread-end{
+  align-self:center;margin-top:14px;
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.7rem;color:var(--dn-bone-faint);letter-spacing:.04em;
 }
-@keyframes dn-pop{
-  from{opacity:0;transform:translateY(8px) scale(.985);}
-  to{opacity:1;transform:none;}
-}
-@media (prefers-reduced-motion:reduce){
-  .js .dn-reply{animation:none;}
-  .dn-ask .chev,.dn-ask-bubble,.dn-chat-who .status::before{transition:none;animation:none;}
-}
+.dn-thread-end .dot{width:5px;height:5px;border-radius:50%;background:var(--dn-day);}
 
-/* composer footer line */
+/* composer-style footer line below the window */
 .dn-faq-foot{
-  max-width:760px;margin:clamp(2.2rem,5vw,3rem) auto 0;
+  max-width:720px;margin:clamp(2.2rem,5vw,3rem) auto 0;
   text-align:center;color:var(--dn-bone-faint);font-size:1rem;
 }
 .dn-faq-foot a{
@@ -224,17 +201,30 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 }
 .dn-faq-foot a:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);}
 
+/* gentle reveal when JS confirms the thread (optional flourish only) */
+.js .dn-xchg{animation:dn-pop .4s cubic-bezier(.2,.7,.2,1) both;}
+.js .dn-xchg:nth-child(2){animation-delay:.05s;}
+.js .dn-xchg:nth-child(3){animation-delay:.1s;}
+.js .dn-xchg:nth-child(4){animation-delay:.15s;}
+.js .dn-xchg:nth-child(5){animation-delay:.2s;}
+@keyframes dn-pop{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .dn-xchg{animation:none;}
+  .dn-chat-who .status::before{animation:none;}
+}
+
 /* ── mobile ── */
 @media (max-width:560px){
-  .dn-ask,.dn-reply{max-width:92%;}
+  .dn-ask{max-width:90%;}
+  .dn-reply{max-width:94%;}
   .dn-ask-bubble,.dn-reply-body .a{font-size:.96rem;}
-  .dn-thread{gap:16px;}
 }
 @media (max-width:380px){
   .dn-ask,.dn-reply{max-width:100%;}
-  .dn-ask-pin{display:none;}
   .dn-reply-av{width:30px;height:30px;font-size:.78rem;}
-  .dn-ask .chev{right:8px;}
 }
 </style>
 </head>
@@ -246,7 +236,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
     <div class="tp-section-head dn-center-head">
       <span class="dn-eyebrow dn-pill day">Common Questions</span>
       <h2 class="dn-display" id="faq-heading"><em class="dn-hl-gold">Emergency</em> &amp; dental questions, answered</h2>
-      <p class="lede">Like messaging the practice. Tap a question to open the reply, the most-asked one is already showing.</p>
+      <p class="lede">The questions we hear most, written out like a conversation with the practice. Read the whole thread, top to bottom.</p>
     </div>
 
     <div class="dn-chat">
@@ -258,72 +248,94 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
         </span>
       </div>
 
-      <div class="dn-thread" role="list" aria-label="Ask us anything">
+      <div class="dn-thread">
+        <span class="dn-thread-mark" aria-hidden="true">Common questions</span>
 
         <!-- 01 -->
-        <div class="dn-xchg" role="listitem">
-          <button type="button" class="dn-ask" id="ask-0" aria-expanded="true" aria-controls="reply-0">
-            <span class="dn-ask-pin" aria-hidden="true">01</span>
-            <span class="dn-ask-bubble">Is there an emergency dentist open now in Glasgow?</span>
-            <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dn-reply" id="reply-0" role="region" aria-labelledby="ask-0">
+        <div class="dn-xchg">
+          <div class="dn-ask">
+            <p class="dn-ask-bubble">Is there an emergency dentist open now in Glasgow?</p>
+            <span class="dn-meta" aria-hidden="true">
+              You
+              <svg class="tick" viewBox="0 0 24 24" fill="none"><path d="M2 13l4 4 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 17l1 1 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="dn-reply">
             <span class="dn-reply-av" aria-hidden="true">DN</span>
-            <div class="dn-reply-body">
-              <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
-              <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+            <div class="dn-reply-stack">
+              <div class="dn-reply-body">
+                <h3 class="q">Is there an emergency dentist open now in Glasgow?</h3>
+                <p class="a">Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.</p>
+              </div>
+              <span class="dn-meta" aria-hidden="true">Day Night Dental</span>
             </div>
           </div>
         </div>
 
         <!-- 02 -->
-        <div class="dn-xchg" role="listitem">
-          <button type="button" class="dn-ask" id="ask-1" aria-expanded="false" aria-controls="reply-1">
-            <span class="dn-ask-pin" aria-hidden="true">02</span>
-            <span class="dn-ask-bubble">Are you taking on new patients?</span>
-            <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dn-reply" id="reply-1" role="region" aria-labelledby="ask-1">
+        <div class="dn-xchg">
+          <div class="dn-ask">
+            <p class="dn-ask-bubble">Are you taking on new patients?</p>
+            <span class="dn-meta" aria-hidden="true">
+              You
+              <svg class="tick" viewBox="0 0 24 24" fill="none"><path d="M2 13l4 4 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 17l1 1 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="dn-reply">
             <span class="dn-reply-av" aria-hidden="true">DN</span>
-            <div class="dn-reply-body">
-              <h3 class="q">Are you taking on new patients?</h3>
-              <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+            <div class="dn-reply-stack">
+              <div class="dn-reply-body">
+                <h3 class="q">Are you taking on new patients?</h3>
+                <p class="a">Yes, we’re welcoming new patients. The quickest way to start is to put your name down through our registration form, and we’ll be in touch to arrange your first visit. If we’re especially busy there can be a short wait for a routine appointment, but urgent and emergency care is always available, day or night.</p>
+              </div>
+              <span class="dn-meta" aria-hidden="true">Day Night Dental</span>
             </div>
           </div>
         </div>
 
         <!-- 03 -->
-        <div class="dn-xchg" role="listitem">
-          <button type="button" class="dn-ask" id="ask-2" aria-expanded="false" aria-controls="reply-2">
-            <span class="dn-ask-pin" aria-hidden="true">03</span>
-            <span class="dn-ask-bubble">Where is the practice and where can I park?</span>
-            <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dn-reply" id="reply-2" role="region" aria-labelledby="ask-2">
+        <div class="dn-xchg">
+          <div class="dn-ask">
+            <p class="dn-ask-bubble">Where is the practice and where can I park?</p>
+            <span class="dn-meta" aria-hidden="true">
+              You
+              <svg class="tick" viewBox="0 0 24 24" fill="none"><path d="M2 13l4 4 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 17l1 1 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="dn-reply">
             <span class="dn-reply-av" aria-hidden="true">DN</span>
-            <div class="dn-reply-body">
-              <h3 class="q">Where is the practice and where can I park?</h3>
-              <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+            <div class="dn-reply-stack">
+              <div class="dn-reply-body">
+                <h3 class="q">Where is the practice and where can I park?</h3>
+                <p class="a">You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.</p>
+              </div>
+              <span class="dn-meta" aria-hidden="true">Day Night Dental</span>
             </div>
           </div>
         </div>
 
         <!-- 04 -->
-        <div class="dn-xchg" role="listitem">
-          <button type="button" class="dn-ask" id="ask-3" aria-expanded="false" aria-controls="reply-3">
-            <span class="dn-ask-pin" aria-hidden="true">04</span>
-            <span class="dn-ask-bubble">What are your opening hours?</span>
-            <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dn-reply" id="reply-3" role="region" aria-labelledby="ask-3">
+        <div class="dn-xchg">
+          <div class="dn-ask">
+            <p class="dn-ask-bubble">What are your opening hours?</p>
+            <span class="dn-meta" aria-hidden="true">
+              You
+              <svg class="tick" viewBox="0 0 24 24" fill="none"><path d="M2 13l4 4 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 17l1 1 8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="dn-reply">
             <span class="dn-reply-av" aria-hidden="true">DN</span>
-            <div class="dn-reply-body">
-              <h3 class="q">What are your opening hours?</h3>
-              <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+            <div class="dn-reply-stack">
+              <div class="dn-reply-body">
+                <h3 class="q">What are your opening hours?</h3>
+                <p class="a">We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.</p>
+              </div>
+              <span class="dn-meta" aria-hidden="true">Day Night Dental</span>
             </div>
           </div>
         </div>
 
+        <span class="dn-thread-end" aria-hidden="true"><span class="dot"></span> You have read the whole thread</span>
       </div>
     </div>
 
@@ -376,42 +388,12 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 <script>
 (function(){
-  // Progressive enhancement: only collapse once JS is confirmed running.
-  // With JS off, .js is never added, every reply stays visible to crawlers.
+  // Pure flourish: with JS on we add a gentle staggered fade as the thread
+  // appears. With JS off, .js is never added and every exchange is fully
+  // visible immediately. No content is gated, lazy-loaded, or collapsed.
   document.documentElement.classList.add('js');
-
-  var asks = Array.prototype.slice.call(document.querySelectorAll('.dn-ask'));
-  if(!asks.length) return;
-
-  function reply(btn){ return document.getElementById(btn.getAttribute('aria-controls')); }
-
-  // Collapse all but the first (which stays open as the default state).
-  asks.forEach(function(btn, i){
-    var open = i === 0;
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    var r = reply(btn);
-    if(r) r.hidden = !open;
-  });
-
-  function toggle(btn){
-    var open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-    var r = reply(btn);
-    if(r) r.hidden = open;
-  }
-
-  asks.forEach(function(btn, i){
-    btn.addEventListener('click', function(){ toggle(btn); });
-    btn.addEventListener('keydown', function(e){
-      var last = asks.length - 1, next = null;
-      if(e.key === 'ArrowDown' || e.key === 'ArrowRight') next = i === last ? 0 : i + 1;
-      else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = i === 0 ? last : i - 1;
-      else if(e.key === 'Home') next = 0;
-      else if(e.key === 'End') next = last;
-      if(next !== null){ e.preventDefault(); asks[next].focus(); }
-    });
-  });
 })();
 </script>
+<script src="/preview/_nav.js?v=49925fd766" defer></script>
 </body>
 </html>
