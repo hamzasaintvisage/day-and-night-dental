@@ -4,23 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Enquiries · Concierge Letter · Day Night Dental</title>
+<title>Enquiries · Drop us a line · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
   /* ============================================================
-     CONCIERGE LETTER
-     A booking enquiry page written in a warm concierge tone.
-     The form sits enclosed on a stationery-style card, and the
-     map lives in the margin as a tasteful pin card. Real site
-     form classes (rd-*) copied verbatim from 14-reception-native.
+     CONCIERGE LETTER  ·  v2-09
+     A warm, personal enquiry page. The page reads like a note
+     from the front desk: a concierge greeting up top, the
+     enquiry form set on a stationery-style card, and the map
+     kept small and tasteful as a "pin card" in the margin.
+     Structurally distinct: a two-column letter/margin layout,
+     not a centred single card.
      ============================================================ */
 
   *{box-sizing:border-box;}
   body{
     margin:0;
     background:
-      radial-gradient(1000px 560px at 50% -6%, rgba(248,199,96,.05), transparent 60%),
-      radial-gradient(900px 520px at 88% 108%, rgba(69,144,236,.05), transparent 60%),
+      radial-gradient(1000px 560px at 12% -6%, rgba(248,199,96,.055), transparent 60%),
+      radial-gradient(900px 560px at 92% 108%, rgba(69,144,236,.06), transparent 62%),
       var(--dn-near-black,#0a0a0c);
     color:var(--dn-bone,#fff);
     font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
@@ -29,113 +31,127 @@
   }
   a{color:inherit;}
 
+  /* preview nav bar clearance */
   .cl-wrap{
-    max-width:1180px;
+    max-width:1220px;
     margin:0 auto;
-    /* clear the 52px preview nav bar plus breathing room */
     padding:clamp(4.5rem,8vw,6.5rem) clamp(1rem,4vw,2.5rem) 5rem;
     position:relative;
   }
 
-  /* soft glows, single colour each, never mixed */
-  .cl-glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
-  .cl-glow.day{width:460px;height:460px;top:40px;left:-180px;background:rgba(248,199,96,.10);}
-  .cl-glow.night{width:500px;height:500px;bottom:80px;right:-200px;background:rgba(69,144,236,.09);}
+  /* soft brand glows */
+  .cl-glow{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;}
+  .cl-glow.day{width:420px;height:420px;top:40px;left:-160px;background:rgba(248,199,96,.10);}
+  .cl-glow.night{width:460px;height:460px;bottom:60px;right:-170px;background:rgba(69,144,236,.09);}
 
-  /* ---------- header / invitation ---------- */
-  .cl-head{position:relative;z-index:2;max-width:640px;margin-bottom:2.6rem;}
+  /* ---------- top greeting band ---------- */
+  .cl-greeting{
+    position:relative;z-index:2;
+    max-width:640px;
+    margin-bottom:clamp(2.4rem,4vw,3.4rem);
+  }
   .cl-eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:6px 14px 6px 11px;
+    display:inline-flex;align-items:center;gap:9px;
+    padding:7px 16px 7px 13px;
     border-radius:999px;
-    font-size:.6rem;font-weight:600;
-    letter-spacing:.24em;text-transform:uppercase;
+    font-size:.62rem;font-weight:600;
+    letter-spacing:.26em;text-transform:uppercase;
     color:var(--dn-day);
     background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.12);
     box-shadow:0 0 20px -6px color-mix(in srgb, currentColor 55%, transparent), inset 0 1px 0 rgba(255,255,255,.05);
   }
   .cl-eyebrow::before{
-    content:'';width:6px;height:6px;flex:none;border-radius:50%;
+    content:'';width:7px;height:7px;flex:none;border-radius:50%;
     background:currentColor;
     box-shadow:0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
   }
-  .cl-head h1{
+  .cl-title{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(2.2rem,4.6vw,3.2rem);
-    font-weight:600;line-height:1.06;letter-spacing:-.02em;
-    margin:1.4rem 0 0;color:var(--dn-bone);
+    font-size:clamp(2.6rem,6vw,4.2rem);
+    font-weight:600;
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:1.4rem 0 0;
+    color:var(--dn-bone);
   }
-  .cl-head h1 em{font-style:italic;color:var(--dn-day);}
-  .cl-head h1 .night{font-style:italic;color:var(--dn-night);}
   .cl-lead{
-    font-size:1.02rem;line-height:1.6;color:var(--dn-bone-dim);
-    margin:1.15rem 0 0;max-width:56ch;
+    font-size:clamp(1rem,1.5vw,1.12rem);
+    line-height:1.65;
+    color:var(--dn-bone-dim);
+    margin:1.15rem 0 0;
+    max-width:52ch;
   }
+  .cl-lead b{color:var(--dn-bone);font-weight:600;}
 
-  /* ---------- layout: letter + margin ---------- */
+  /* ---------- the letter grid: form + margin ---------- */
   .cl-grid{
     position:relative;z-index:2;
     display:grid;
-    grid-template-columns:1fr 360px;
-    gap:1.6rem;
+    grid-template-columns:minmax(0,1fr) 336px;
+    gap:clamp(1.5rem,2.4vw,2.2rem);
     align-items:start;
   }
 
-  /* ---------- the stationery letter card ---------- */
-  .cl-letter{
+  /* ============================================================
+     THE STATIONERY CARD (holds the form)
+     ============================================================ */
+  .cl-sheet{
     position:relative;
     border:1px solid var(--dn-mist);
-    border-radius:16px;
+    border-radius:18px;
     background:linear-gradient(180deg,#101016,#0c0c11);
     box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
-    padding:clamp(1.75rem,3.2vw,2.75rem);
     overflow:hidden;
   }
-  /* gold hairline sheen across the top of the stationery */
-  .cl-letter::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,transparent,var(--dn-day),transparent);
-    opacity:.7;
+  /* thin gold hairline at the very top edge, like a letterhead rule */
+  .cl-sheet::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, transparent, var(--dn-day,#f8c760), transparent);
+    opacity:.7;z-index:2;
   }
-  /* faint ghosted monogram, hairline stroke, corner of the page */
-  .cl-monogram{
-    position:absolute;z-index:0;pointer-events:none;
-    right:-14px;top:-18px;
-    font-family:var(--font-display),'Fraunces',serif;
-    font-weight:600;font-size:150px;line-height:.8;letter-spacing:-.04em;
-    color:transparent;-webkit-text-stroke:1px rgba(248,199,96,.05);
-    user-select:none;
-  }
-  .cl-letter-inner{position:relative;z-index:1;}
 
-  /* letterhead */
+  /* letterhead strip inside the sheet */
   .cl-letterhead{
-    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-    flex-wrap:wrap;
-    padding-bottom:1.3rem;margin-bottom:1.7rem;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    padding:1.4rem clamp(1.6rem,3vw,2.6rem);
     border-bottom:1px solid var(--dn-mist);
+    background:rgba(255,255,255,.015);
   }
-  .cl-letterhead .cl-from{
+  .cl-lh-mark{
+    display:flex;align-items:baseline;gap:.5rem;
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.15rem;font-weight:600;letter-spacing:-.01em;color:var(--dn-bone);
+    font-size:1.02rem;font-weight:600;letter-spacing:-.01em;
   }
-  .cl-letterhead .cl-from span{color:var(--dn-day);}
-  .cl-letterhead .cl-place{
-    font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  .cl-lh-mark .day{color:var(--dn-day);}
+  .cl-lh-mark .night{color:var(--dn-night-soft);}
+  .cl-lh-mark .dental{color:var(--dn-bone);}
+  .cl-lh-note{
+    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
     color:var(--dn-bone-faint);font-weight:600;
   }
+
+  .cl-form-body{padding:clamp(1.75rem,3.2vw,2.7rem);}
+
+  /* handwritten-style salutation */
   .cl-salutation{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.2rem;font-weight:500;font-style:italic;color:var(--dn-bone);
-    margin:0 0 .5rem;
+    font-style:italic;font-weight:500;
+    font-size:1.28rem;line-height:1.45;
+    color:var(--dn-bone);
+    margin:0 0 1.75rem;
+    max-width:46ch;
   }
-  .cl-note{font-size:.9rem;line-height:1.6;color:var(--dn-bone-dim);margin:0 0 1.8rem;max-width:60ch;}
+  .cl-salutation .accent{color:var(--dn-day);font-style:italic;}
 
-  /* ---------- field group ---------- */
-  .rd-group{margin-bottom:1.9rem;}
-  .rd-group-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.15rem;}
-  .rd-group-tab{
+  /* group heads reuse the register "drawer tab" idea */
+  .cl-group{margin-bottom:1.9rem;}
+  .cl-group:last-of-type{margin-bottom:0;}
+  .cl-group-head{
+    display:flex;align-items:center;gap:.85rem;
+    margin-bottom:1.15rem;
+  }
+  .cl-group-tab{
     flex:none;
     font-family:var(--font-display),'Fraunces',serif;
     font-size:.85rem;font-weight:600;
@@ -145,222 +161,141 @@
     background:rgba(248,199,96,.07);
     border:1px solid rgba(248,199,96,.28);
   }
-  .rd-group.care .rd-group-tab{
+  .cl-group.night .cl-group-tab{
     color:var(--dn-night-soft);
     background:rgba(69,144,236,.07);
     border-color:rgba(69,144,236,.30);
   }
-  .rd-group-head h3{
+  .cl-group-head h3{
     font-family:var(--font-display),'Fraunces',serif;
     font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;
   }
-  .rd-group-head .rd-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
+  .cl-group-head .cl-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
 
-  /* ---------- rows + fields (verbatim from register form) ---------- */
-  .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
-  .rd-row.one{grid-template-columns:1fr;}
+  /* two-up rows for the form (mirrors register spacing) */
+  .cl-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
+  .cl-row.one{grid-template-columns:1fr;}
 
-  .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
-  .rd-field > .rd-label,
-  .rd-label{
-    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--dn-bone-dim);font-weight:600;
-    display:flex;align-items:center;gap:.35rem;
-  }
-  .rd-req{color:var(--dn-day);}
-  .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
-
-  .rd-input,
-  .rd-select,
-  .rd-textarea{
-    width:100%;
-    padding:.82rem .95rem;
-    background:#0c0c11;
-    border:1px solid var(--dn-mist);
-    border-radius:11px;
-    color:var(--dn-bone);
-    font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:1rem;
-    transition:border-color .25s, box-shadow .25s, background .25s;
-  }
-  .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
-  .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
-    outline:none;
-    border-color:var(--dn-day);
-    background:#101015;
-    box-shadow:0 0 0 3px rgba(248,199,96,.14);
-  }
-  .rd-textarea{resize:vertical;min-height:110px;line-height:1.5;}
-
-  .rd-select{
-    appearance:none;-webkit-appearance:none;-moz-appearance:none;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat:no-repeat;
-    background-position:right .95rem center;
-    padding-right:2.4rem;
-    cursor:pointer;
-  }
-  .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
-  .rd-select option{background:#101015;color:var(--dn-bone);}
-
-  /* ---------- consent ---------- */
-  .rd-consent{
-    display:flex;align-items:flex-start;gap:.8rem;
-    padding:1rem 1.1rem;
-    background:#0c0c11;
-    border:1px solid var(--dn-mist);
-    border-radius:12px;
-    cursor:pointer;
-    margin-top:.3rem;
-  }
-  .rd-consent input{
-    width:18px;height:18px;flex:none;margin-top:2px;
-    accent-color:var(--dn-day);cursor:pointer;
-  }
-  .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
-  .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
-
-  /* ---------- submit ---------- */
-  .rd-submit-row{
+  /* ---------- submit row ---------- */
+  .cl-submit-row{
     display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
     margin-top:1.9rem;padding-top:1.6rem;
     border-top:1px solid var(--dn-mist);
   }
-  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:260px;line-height:1.45;}
-  .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
-  .rd-submit{
-    display:inline-flex;align-items:center;gap:.6rem;
-    font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:.95rem;font-weight:600;letter-spacing:.01em;
-    padding:.95rem 1.7rem;
-    color:#0a0a0c;
-    background:var(--dn-day);
-    border:1px solid var(--dn-day);
-    border-radius:12px;
-    cursor:pointer;
-    transition:transform .15s, box-shadow .25s, background .25s;
-    box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
-  }
-  .rd-submit:hover{transform:translateY(-1px);background:var(--dn-day-soft);box-shadow:0 18px 40px -16px rgba(248,199,96,.7);}
-  .rd-submit .arrow{transition:transform .25s;}
-  .rd-submit:hover .arrow{transform:translateX(4px);}
-
-  /* the signature flourish under the letter */
-  .cl-signoff{margin-top:1.9rem;}
-  .cl-signoff .cl-regards{font-size:.85rem;color:var(--dn-bone-dim);margin:0 0 .35rem;}
-  .cl-signoff .cl-sign{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-style:italic;font-weight:500;font-size:1.35rem;color:var(--dn-day);
-  }
-  .cl-signoff .cl-role{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);margin-top:.3rem;}
+  .cl-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:260px;line-height:1.45;}
+  .cl-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
+  .cl-submit-row .rd-submit{white-space:nowrap;}
 
   /* ============================================================
-     THE MARGIN: pin card (map) + details + emergency
+     THE MARGIN  ·  pin card (map), hours, emergency, NAP
      ============================================================ */
-  .cl-margin{display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:70px;}
+  .cl-margin{
+    position:sticky;top:1.5rem;
+    display:flex;flex-direction:column;gap:1.1rem;
+  }
 
-  .cl-card{
+  /* map "pin card": small, tasteful, a photo-frame around the map */
+  .cl-pin{
     position:relative;
     border:1px solid var(--dn-mist);
     border-radius:16px;
     background:var(--dn-charcoal,#14141a);
     overflow:hidden;
-    box-shadow:0 24px 50px -34px rgba(0,0,0,.8);
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    box-shadow:0 24px 50px -34px rgba(0,0,0,.9);
   }
-  /* card hover: lift + ring + even glow, single colour per side (gold) */
-  .cl-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(248,199,96,.32);
-    box-shadow:0 28px 56px -34px rgba(0,0,0,.85), 0 0 26px -14px rgba(248,199,96,.4);
-  }
-
-  /* --- pin card: the map --- */
-  .cl-pin .cl-map-frame{
+  .cl-pin-frame{
     position:relative;
-    aspect-ratio:4/3;
+    aspect-ratio:5/4;
     background:#0c0c11;
   }
-  .cl-pin iframe{
-    position:absolute;inset:0;width:100%;height:100%;
-    border:0;display:block;
-    filter:grayscale(.35) contrast(1.02) brightness(.92);
+  .cl-pin-frame iframe{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    border:0;
+    filter:grayscale(.35) contrast(1.05) brightness(.92);
   }
-  .cl-pin-cap{
-    display:flex;align-items:flex-start;gap:.7rem;
-    padding:1rem 1.1rem 1.15rem;
+  /* a small floating pin badge over the map */
+  .cl-pin-badge{
+    position:absolute;left:14px;bottom:14px;z-index:2;
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.5rem .85rem;
+    border-radius:999px;
+    background:rgba(10,10,12,.82);
+    border:1px solid rgba(248,199,96,.4);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--dn-day);
+    pointer-events:none;
+  }
+  .cl-pin-badge svg{width:12px;height:12px;flex:none;}
+
+  .cl-pin-foot{
+    padding:1.05rem 1.15rem 1.15rem;
     border-top:1px solid var(--dn-mist);
   }
-  .cl-pin-ico{
-    flex:none;width:26px;height:26px;margin-top:1px;
-    color:var(--dn-day);
-  }
-  .cl-pin-ico svg{width:100%;height:100%;}
-  .cl-pin-cap .cl-addr{font-size:.82rem;line-height:1.45;color:var(--dn-bone-dim);}
-  .cl-pin-cap .cl-addr b{color:var(--dn-bone);font-weight:600;display:block;font-family:var(--font-display),'Fraunces',serif;font-size:.95rem;margin-bottom:.15rem;}
-
-  /* --- details card --- */
-  .cl-details{padding:1.25rem 1.3rem 1.4rem;}
-  .cl-details h3{
+  .cl-nap-name{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.02rem;font-weight:600;margin:0 0 .9rem;letter-spacing:-.01em;
+    font-size:1.02rem;font-weight:600;color:var(--dn-bone);
+    margin:0 0 .3rem;letter-spacing:-.01em;
   }
-  .cl-dl{display:flex;flex-direction:column;gap:.85rem;}
-  .cl-drow{display:flex;flex-direction:column;gap:.2rem;}
-  .cl-drow .cl-dk{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;}
-  .cl-drow .cl-dv{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.4;}
-  .cl-drow .cl-dv b{color:var(--dn-bone);font-weight:600;}
-  .cl-tel-link{
+  .cl-nap-addr{
+    font-size:.82rem;line-height:1.5;color:var(--dn-bone-dim);
+    margin:0 0 .75rem;
+  }
+  .cl-nap-tel{
+    display:inline-flex;align-items:center;gap:.5rem;
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.02rem;font-weight:600;color:var(--dn-day);
-    text-decoration:none;border-bottom:1px solid rgba(248,199,96,.35);
-    white-space:nowrap;
+    font-size:1.02rem;font-weight:600;
+    color:var(--dn-day);text-decoration:none;
+    border-bottom:1px solid rgba(248,199,96,.35);
+    padding-bottom:1px;
   }
-  .cl-tel-link:hover{color:var(--dn-day-soft);border-bottom-color:rgba(255,214,109,.6);}
+  .cl-nap-tel:hover{color:var(--dn-day-soft);border-bottom-color:rgba(248,199,96,.6);}
 
-  /* hours split */
+  /* hours card */
   .cl-hours{
-    list-style:none;margin:.2rem 0 0;padding:0;
-    display:flex;flex-direction:column;gap:.6rem;
+    border:1px solid var(--dn-mist);
+    border-radius:16px;
+    background:var(--dn-charcoal,#14141a);
+    padding:1.25rem 1.3rem;
+    box-shadow:0 20px 44px -34px rgba(0,0,0,.85);
   }
-  .cl-hours li{
-    display:flex;align-items:flex-start;gap:.6rem;
-    font-size:.82rem;color:var(--dn-bone-dim);line-height:1.4;
+  .cl-hours h4{
+    font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-bone-faint);font-weight:600;margin:0 0 1rem;
   }
-  .cl-hours li b{color:var(--dn-bone);font-weight:600;}
-  .cl-hdot{flex:none;width:7px;height:7px;border-radius:50%;margin-top:6px;background:var(--dn-day);}
-  .cl-hours li:nth-child(2) .cl-hdot{background:var(--dn-night-soft);}
-  .cl-hours li:nth-child(3) .cl-hdot{background:var(--dn-bone-faint);}
+  .cl-hours-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85rem;}
+  .cl-hours-row{display:flex;align-items:flex-start;gap:.7rem;}
+  .cl-hours-dot{
+    flex:none;width:8px;height:8px;border-radius:50%;margin-top:.35rem;
+    background:var(--dn-day);box-shadow:0 0 8px 1px rgba(248,199,96,.5);
+  }
+  .cl-hours-row.night .cl-hours-dot{background:var(--dn-night);box-shadow:0 0 8px 1px rgba(69,144,236,.5);}
+  .cl-hours-row.mut .cl-hours-dot{background:var(--dn-bone-faint);box-shadow:none;}
+  .cl-hours-label{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.9rem;font-weight:600;color:var(--dn-bone);line-height:1.25;
+  }
+  .cl-hours-value{font-size:.76rem;color:var(--dn-bone-dim);line-height:1.4;margin-top:.1rem;}
 
-  /* --- emergency call card: blue / night --- */
+  /* emergency call card (blue / night) */
   .cl-emergency{
     position:relative;
-    border:1px solid rgba(69,144,236,.42);
+    border:1px solid rgba(69,144,236,.4);
     border-radius:16px;
     background:rgba(69,144,236,.05);
-    padding:1.3rem 1.35rem 1.45rem;
+    padding:1.35rem 1.35rem 1.45rem;
     overflow:hidden;
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
   }
   .cl-emergency::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,transparent,var(--dn-night),transparent);
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, transparent, var(--dn-night,#4590ec), transparent);
     opacity:.8;
   }
-  /* hover: single-colour-per-side blue glow + lift */
-  .cl-emergency:hover{
-    transform:translateY(-4px);
-    border-color:rgba(69,144,236,.6);
-    box-shadow:0 28px 56px -34px rgba(0,0,0,.85), 0 0 28px -12px rgba(69,144,236,.5);
-  }
-  .cl-em-eyebrow{
-    display:inline-flex;align-items:center;gap:.55rem;
-    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--dn-night-soft);font-weight:600;margin:0 0 .7rem;
-  }
+  .cl-em-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem;}
   .cl-em-dot{
-    position:relative;flex:none;width:9px;height:9px;border-radius:50%;
-    background:rgba(69,144,236,.25);
+    flex:0 0 auto;position:relative;width:11px;height:11px;border-radius:50%;
+    background:rgba(69,144,236,.22);
   }
   .cl-em-dot::before{
     content:'';position:absolute;inset:-5px;border-radius:50%;
@@ -368,47 +303,55 @@
     animation:cl-pulse 2s ease-out infinite;
   }
   .cl-em-dot-core{
-    position:absolute;inset:1px;border-radius:50%;
+    position:absolute;inset:2px;border-radius:50%;
     background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);
     box-shadow:0 0 6px 1px rgba(69,144,236,.7);
   }
   @keyframes cl-pulse{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
+  .cl-em-eyebrow{
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);font-weight:600;
+  }
   .cl-em-title{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.15rem;font-weight:600;line-height:1.2;margin:0 0 .5rem;color:var(--dn-bone);
+    font-size:1.28rem;font-weight:600;line-height:1.2;letter-spacing:-.01em;
+    color:var(--dn-bone);margin:0 0 .5rem;
   }
-  .cl-em-title em{font-style:italic;color:var(--dn-night-soft);}
-  .cl-emergency p{font-size:.82rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 1.05rem;}
+  .cl-em-text{font-size:.78rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 1.05rem;}
   .cl-em-btn{
     display:flex;align-items:center;justify-content:center;gap:.6rem;
     width:100%;
     font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:1rem;font-weight:600;letter-spacing:.01em;
-    padding:.9rem 1.2rem;
+    font-size:1.05rem;font-weight:700;letter-spacing:.01em;
+    padding:.95rem 1.2rem;
     color:#0a0a0c;
-    background:var(--dn-night);
-    border:1px solid var(--dn-night);
+    background:var(--dn-night,#4590ec);
+    border:1px solid var(--dn-night,#4590ec);
     border-radius:12px;
     text-decoration:none;
     transition:transform .15s, box-shadow .25s, background .25s;
     box-shadow:0 14px 34px -16px rgba(69,144,236,.6);
   }
   .cl-em-btn:hover{transform:translateY(-1px);background:var(--dn-night-soft);box-shadow:0 18px 40px -16px rgba(69,144,236,.75);}
-  .cl-em-btn svg{width:17px;height:17px;flex:none;}
-  .cl-em-sub{font-size:.72rem;color:var(--dn-bone-faint);text-align:center;margin:.75rem 0 0;line-height:1.4;}
+  .cl-em-btn svg{width:16px;height:16px;flex:none;}
 
-  @media (prefers-reduced-motion:reduce){.cl-em-dot::before{animation:none;}}
+  @media (prefers-reduced-motion:reduce){
+    .cl-em-dot::before{animation:none;}
+  }
 
   /* ---------- responsive ---------- */
   @media (max-width:940px){
     .cl-grid{grid-template-columns:1fr;}
     .cl-margin{position:static;top:auto;}
+    .cl-pin-frame{aspect-ratio:16/9;}
   }
-  @media (max-width:560px){
-    .rd-row{grid-template-columns:1fr;}
-    .rd-submit{width:100%;justify-content:center;}
-    .rd-submit-note{max-width:none;}
-    .cl-letterhead{gap:.5rem;}
+  @media (max-width:620px){
+    .cl-row{grid-template-columns:1fr;}
+    .cl-submit-row .rd-submit{width:100%;justify-content:center;}
+    .cl-submit-note{max-width:none;}
+  }
+  @media (max-width:380px){
+    .rd-select{padding-right:2rem;background-position:right .6rem center;}
   }
 
   /* preview scroll override (keep LAST) */
@@ -416,47 +359,46 @@
 </style>
 </head>
 <body>
-<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Concierge Letter</div>
 
 <div class="cl-wrap">
   <div class="cl-glow day"></div>
   <div class="cl-glow night"></div>
 
-  <!-- ============ INVITATION ============ -->
-  <header class="cl-head">
-    <span class="cl-eyebrow">Enquiries &amp; Appointments</span>
-    <h1>A quiet word before we <em>meet</em>, <span class="night">day</span> or night.</h1>
-    <p class="cl-lead">Tell us a little about what you need and the best moment to reach you. One of our team will read your note personally and reply to arrange a time that suits. There is no obligation, and nothing to pay to enquire.</p>
-  </header>
+  <!-- ============ GREETING ============ -->
+  <div class="cl-greeting">
+    <span class="cl-eyebrow">Enquiries</span>
+    <h1 class="cl-title">Drop us a line</h1>
+    <p class="cl-lead">Tell us what you are looking for and the best time to reach you, and someone from our Merchant City team will write or call back. <b>No treatment jargon needed.</b> A sentence or two is plenty to get things moving.</p>
+  </div>
 
+  <!-- ============ LETTER GRID ============ -->
   <div class="cl-grid">
 
-    <!-- ============ THE STATIONERY LETTER ============ -->
-    <div class="cl-letter">
-      <span class="cl-monogram" aria-hidden="true">DN</span>
-      <div class="cl-letter-inner">
-
-        <div class="cl-letterhead">
-          <span class="cl-from">Day <span>Night</span> Dental</span>
-          <span class="cl-place">Merchant City, Glasgow</span>
+    <!-- ===== the stationery card ===== -->
+    <div class="cl-sheet">
+      <div class="cl-letterhead">
+        <div class="cl-lh-mark">
+          <span class="day">Day</span><span class="night">Night</span><span class="dental">Dental</span>
         </div>
+        <div class="cl-lh-note">Merchant City, Glasgow</div>
+      </div>
 
-        <p class="cl-salutation">Dear future patient,</p>
-        <p class="cl-note">Whether it is a bright new smile you are after, a check-up that is overdue, or a question you have been meaning to ask, we would be glad to hear from you. Leave your details below and we will be in touch.</p>
+      <div class="cl-form-body">
+        <p class="cl-salutation">Hello, and thank you for getting in touch. Leave your details below and we will take it from <span class="accent">here</span>.</p>
 
         <form onsubmit="return false;">
 
           <!-- ===== GROUP 1: WHO YOU ARE ===== -->
-          <section class="rd-group">
-            <div class="rd-group-head">
-              <span class="rd-group-tab">1</span>
+          <section class="cl-group">
+            <div class="cl-group-head">
+              <span class="cl-group-tab">1</span>
               <div>
                 <h3>Who you are</h3>
-                <div class="rd-group-sub">So we know who we are writing back to.</div>
+                <div class="cl-group-sub">Your name and the best ways to reach you.</div>
               </div>
             </div>
 
-            <div class="rd-row">
+            <div class="cl-row">
               <div class="rd-field">
                 <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
                 <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
@@ -467,7 +409,7 @@
               </div>
             </div>
 
-            <div class="rd-row">
+            <div class="cl-row">
               <div class="rd-field">
                 <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
                 <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
@@ -478,11 +420,11 @@
               </div>
             </div>
 
-            <div class="rd-row">
+            <div class="cl-row">
               <div class="rd-field">
                 <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
                 <select class="rd-select" id="contactTime" name="contactTime">
-                  <option value="" selected>No preference</option>
+                  <option value="No preference" selected>No preference</option>
                   <option>Morning</option>
                   <option>Afternoon</option>
                   <option>Evening</option>
@@ -491,7 +433,7 @@
               <div class="rd-field">
                 <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
                 <select class="rd-select" id="topic" name="topic" required>
-                  <option value="" selected disabled>Please choose</option>
+                  <option value="" selected disabled>Choose one</option>
                   <option>Request an appointment</option>
                   <option>Cosmetic consultation</option>
                   <option>Routine check-up or hygiene</option>
@@ -504,95 +446,103 @@
           </section>
 
           <!-- ===== GROUP 2: YOUR MESSAGE ===== -->
-          <section class="rd-group care">
-            <div class="rd-group-head">
-              <span class="rd-group-tab">2</span>
+          <section class="cl-group night">
+            <div class="cl-group-head">
+              <span class="cl-group-tab">2</span>
               <div>
                 <h3>Your message</h3>
-                <div class="rd-group-sub">In your own words, whatever is on your mind.</div>
+                <div class="cl-group-sub">A line or two about what you need. Take your time.</div>
               </div>
             </div>
 
-            <div class="rd-row one">
+            <div class="cl-row one">
               <div class="rd-field">
                 <label class="rd-label" for="message">Message <span class="rd-opt">optional</span></label>
-                <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="Tell us what you would like, and anything that helps us prepare. For example, a whitening consultation, a nervous first visit, or a filling that has been bothering you."></textarea>
+                <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="e.g. I would like to ask about whitening, or book a check-up for two of us. Whatever you tell us helps us prepare before we reply."></textarea>
               </div>
             </div>
 
-            <div class="rd-row one">
+            <div class="cl-row one">
               <label class="rd-consent">
                 <input type="checkbox" name="consent" required>
-                <span>I am happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
+                <span>I am happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about this enquiry.</span>
               </label>
             </div>
           </section>
 
           <!-- ===== submit ===== -->
-          <div class="rd-submit-row">
-            <p class="rd-submit-note"><strong>No payment now.</strong> An enquiry costs nothing and holds you to nothing. We reply personally.</p>
-            <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">&rarr;</span></button>
+          <div class="cl-submit-row">
+            <p class="cl-submit-note"><strong>We reply the same day where we can.</strong> Nothing is booked until you confirm.</p>
+            <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
           </div>
 
         </form>
-
-        <div class="cl-signoff">
-          <p class="cl-regards">With warm regards,</p>
-          <div class="cl-sign">The Day Night Dental team</div>
-          <div class="cl-role">Merchant City, Glasgow</div>
-        </div>
-
       </div>
     </div>
 
-    <!-- ============ THE MARGIN ============ -->
+    <!-- ===== the margin ===== -->
     <aside class="cl-margin">
 
-      <!-- pin card: map -->
-      <div class="cl-card cl-pin">
-        <div class="cl-map-frame">
-          <iframe src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed" loading="lazy" title="Day Night Dental location, 80 Hutcheson Street, Glasgow"></iframe>
+      <!-- map pin card -->
+      <div class="cl-pin">
+        <div class="cl-pin-frame">
+          <iframe
+            src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+            loading="lazy"
+            title="Day Night Dental location, Glasgow"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span class="cl-pin-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Find us
+          </span>
         </div>
-        <div class="cl-pin-cap">
-          <span class="cl-pin-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.5-6.5-10a6.5 6.5 0 0 1 13 0c0 4.5-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.4"/></svg>
-          </span>
-          <span class="cl-addr">
-            <b>Day Night Dental</b>
-            80 Hutcheson St, Merchant City,<br>Glasgow G1 1SH
-          </span>
+        <div class="cl-pin-foot">
+          <p class="cl-nap-name">Day Night Dental</p>
+          <p class="cl-nap-addr">80 Hutcheson St, Merchant City<br>Glasgow G1 1SH</p>
+          <a class="cl-nap-tel" href="tel:+441415486548">0141 548 6548</a>
         </div>
       </div>
 
-      <!-- details card -->
-      <div class="cl-card cl-details">
-        <h3>Find us &amp; reach us</h3>
-        <div class="cl-dl">
-          <div class="cl-drow">
-            <span class="cl-dk">By phone</span>
-            <span class="cl-dv"><a class="cl-tel-link" href="tel:+441415486548">0141 548 6548</a></span>
-          </div>
-          <div class="cl-drow">
-            <span class="cl-dk">Hours</span>
-            <ul class="cl-hours">
-              <li><span class="cl-hdot" aria-hidden="true"></span><span><b>Emergency dental care:</b> open 24 hours, 7 days.</span></li>
-              <li><span class="cl-hdot" aria-hidden="true"></span><span><b>Routine appointments:</b> by appointment.</span></li>
-              <li><span class="cl-hdot" aria-hidden="true"></span><span><b>NHS places:</b> waiting list when available.</span></li>
-            </ul>
-          </div>
-        </div>
+      <!-- hours -->
+      <div class="cl-hours">
+        <h4>Hours</h4>
+        <ul class="cl-hours-list">
+          <li class="cl-hours-row night">
+            <span class="cl-hours-dot" aria-hidden="true"></span>
+            <div>
+              <div class="cl-hours-label">Emergency care</div>
+              <div class="cl-hours-value">Open 24 hours, 7 days</div>
+            </div>
+          </li>
+          <li class="cl-hours-row">
+            <span class="cl-hours-dot" aria-hidden="true"></span>
+            <div>
+              <div class="cl-hours-label">Routine appointments</div>
+              <div class="cl-hours-value">By appointment</div>
+            </div>
+          </li>
+          <li class="cl-hours-row mut">
+            <span class="cl-hours-dot" aria-hidden="true"></span>
+            <div>
+              <div class="cl-hours-label">NHS</div>
+              <div class="cl-hours-value">Waiting list when available</div>
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <!-- emergency call card (blue / night) -->
+      <!-- emergency call -->
       <div class="cl-emergency">
-        <p class="cl-em-eyebrow"><span class="cl-em-dot" aria-hidden="true"><span class="cl-em-dot-core"></span></span>24/7 Emergency Line</p>
-        <h2 class="cl-em-title">In pain <em>right now</em>?</h2>
-        <p>Do not wait, and do not fill in a form. Our 24/7 line is answered day and night, so call us straight away and we will help.</p>
+        <div class="cl-em-head">
+          <span class="cl-em-dot" aria-hidden="true"><span class="cl-em-dot-core"></span></span>
+          <span class="cl-em-eyebrow">24/7 Emergency line</span>
+        </div>
+        <p class="cl-em-title">Toothache that cannot wait? Call us.</p>
+        <p class="cl-em-text">If you are in real pain, do not fill in a form. Phone the practice and speak to someone straight away, any hour.</p>
         <a class="cl-em-btn" href="tel:+441415486548">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call 0141 548 6548
         </a>
-        <p class="cl-em-sub">Answered around the clock, every day of the year.</p>
       </div>
 
     </aside>
@@ -600,13 +550,6 @@
   </div>
 </div>
 
-<script>
-/* stationery select colour: grey out placeholder until chosen (matches register form feel) */
-document.querySelectorAll('.rd-select').forEach(function(s){
-  function sync(){ s.style.color = s.value ? 'var(--dn-bone)' : 'rgba(255,255,255,.4)'; }
-  s.addEventListener('change', sync); sync();
-});
-</script>
 <script src="../register-forms/_dropdowns.js" defer></script>
 <script src="_nav-v2.js" defer></script>
 </body>

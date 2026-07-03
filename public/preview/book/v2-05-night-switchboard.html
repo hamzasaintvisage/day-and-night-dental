@@ -4,24 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Enquiries · Night Switchboard · Day Night Dental</title>
+<title>Enquiries · Always someone to talk to · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
   /* ============================================================
-     NIGHT SWITCHBOARD
-     A dark, 24/7-forward booking enquiry page. A bold blue
-     emergency switchboard panel leads at the top with a live
-     open-now indicator, the enquiry form sits below on a raised
-     desk surface, and the map closes the page as a calm footer
-     band. Form fields reuse the real site classes (rd-*) lifted
-     verbatim from register-forms/14-reception-native.
+     NIGHT SWITCHBOARD  (v2-05)
+     Reassurance-led enquiry page. A confident headline, a bold
+     blue emergency-call panel up top, the enquiry form beneath,
+     and the map anchored as a full-width footer band.
+     Form fields reuse the real site classes (rd-input, rd-field,
+     rd-label, rd-select, rd-textarea, rd-consent, rd-submit) from
+     14-reception-native so they match the live site exactly.
      ============================================================ */
 
   *{box-sizing:border-box;}
   body{
     margin:0;
     background:
-      radial-gradient(1100px 620px at 50% -8%, rgba(69,144,236,.08), transparent 60%),
+      radial-gradient(1150px 620px at 78% -6%, rgba(69,144,236,.07), transparent 58%),
+      radial-gradient(1000px 560px at 8% 6%, rgba(248,199,96,.045), transparent 58%),
       var(--dn-near-black,#0a0a0c);
     color:var(--dn-bone,#fff);
     font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
@@ -30,20 +31,19 @@
   }
   a{color:inherit;}
 
-  .sw-wrap{
-    max-width:1120px;
+  .ns-wrap{
+    max-width:1080px;
     margin:0 auto;
-    padding:clamp(2.5rem,6vw,4.5rem) clamp(1rem,4vw,2.5rem) 0;
+    padding:clamp(3.5rem,8vw,6rem) clamp(1.15rem,5vw,2.5rem) 0;
     position:relative;
   }
 
-  /* soft glows behind the page */
-  .sw-glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
-  .sw-glow.night{width:520px;height:520px;top:-60px;right:-180px;background:rgba(69,144,236,.14);}
-  .sw-glow.day{width:420px;height:420px;top:640px;left:-180px;background:rgba(248,199,96,.09);}
-
-  /* ---------- eyebrow ---------- */
-  .sw-eyebrow{
+  /* ---------- HERO / REASSURANCE ---------- */
+  .ns-hero{
+    max-width:720px;
+    margin:0 0 clamp(2.25rem,4vw,3rem);
+  }
+  .ns-eyebrow{
     display:inline-flex;align-items:center;gap:8px;
     padding:6px 14px 6px 11px;
     border-radius:999px;
@@ -54,213 +54,143 @@
     border:1px solid rgba(255,255,255,.12);
     box-shadow:0 0 20px -6px color-mix(in srgb, currentColor 55%, transparent), inset 0 1px 0 rgba(255,255,255,.05);
   }
-  .sw-eyebrow::before{
+  .ns-eyebrow::before{
     content:'';width:6px;height:6px;flex:none;border-radius:50%;
     background:currentColor;
     box-shadow:0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
   }
-  .sw-eyebrow.gold{color:var(--dn-day);}
-
-  /* ============================================================
-     THE SWITCHBOARD PANEL (blue, night-accented, leads the page)
-     ============================================================ */
-  .sw-board{
-    position:relative;
-    z-index:2;
-    border:1px solid rgba(69,144,236,.42);
-    border-radius:18px;
-    background:
-      radial-gradient(130% 80% at 88% 0%, rgba(69,144,236,.12), transparent 60%),
-      linear-gradient(180deg, #0f1420, #0a0d14);
-    padding:clamp(1.75rem,3.4vw,2.75rem);
-    overflow:hidden;
-    box-shadow:0 40px 90px -50px rgba(0,0,0,.95), 0 0 60px -34px rgba(69,144,236,.4);
+  .ns-hero h1{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(2.4rem,5.5vw,3.7rem);
+    font-weight:600;line-height:1.02;letter-spacing:-.02em;
+    margin:1.15rem 0 0;color:var(--dn-bone);
   }
-  .sw-board::before{
+  .ns-hero p{
+    font-size:clamp(1rem,1.6vw,1.12rem);
+    color:var(--dn-bone-dim);line-height:1.6;
+    margin:1.15rem 0 0;max-width:56ch;
+  }
+
+  /* ---------- BOLD BLUE EMERGENCY PANEL ---------- */
+  .ns-emergency{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:clamp(1.25rem,3vw,2rem);
+    padding:clamp(1.5rem,3vw,2rem) clamp(1.5rem,3.4vw,2.4rem);
+    border-radius:16px;
+    background:
+      radial-gradient(120% 140% at 12% 0%, rgba(69,144,236,.16), transparent 60%),
+      rgba(69,144,236,.09);
+    border:1px solid rgba(69,144,236,.42);
+    box-shadow:0 30px 70px -40px rgba(69,144,236,.5), inset 0 1px 0 rgba(255,255,255,.05);
+    overflow:hidden;
+    margin-bottom:clamp(2.5rem,5vw,3.75rem);
+  }
+  .ns-emergency::before{
     content:'';position:absolute;top:0;left:0;right:0;height:2px;
     background:linear-gradient(90deg, transparent, var(--dn-night,#4590ec), transparent);
-    opacity:.8;
+    opacity:.85;
   }
-
-  .sw-board-grid{
-    position:relative;z-index:1;
-    display:grid;
-    grid-template-columns:1.4fr 1fr;
-    gap:clamp(1.5rem,3vw,2.75rem);
-    align-items:center;
-  }
-
-  .sw-board h1{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(2.1rem,4.4vw,3.2rem);
-    font-weight:600;line-height:1.05;letter-spacing:-.02em;
-    margin:1.2rem 0 .9rem;color:var(--dn-bone);
-  }
-  .sw-board h1 em{font-style:italic;color:var(--dn-night-soft);}
-  .sw-board h1 .day{font-style:italic;color:var(--dn-day);}
-  .sw-lead{
-    font-size:1rem;line-height:1.6;color:var(--dn-bone-dim);
-    max-width:46ch;margin:0 0 1.6rem;
-  }
-
-  /* open-now indicator */
-  .sw-status{
-    display:inline-flex;align-items:center;gap:.7rem;
-    padding:.6rem 1.15rem;
-    border:1px solid rgba(69,144,236,.4);
-    border-radius:999px;
-    background:rgba(69,144,236,.08);
-  }
-  .sw-status b{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:.92rem;font-weight:600;color:var(--dn-bone);
-  }
-  .sw-live-dot{
+  .ns-em-left{display:flex;align-items:flex-start;gap:1rem;min-width:0;}
+  .ns-em-dot{
     flex:0 0 auto;position:relative;
-    width:11px;height:11px;border-radius:50%;
-    background:rgba(69,144,236,.22);
+    width:13px;height:13px;margin-top:6px;border-radius:50%;
+    background:rgba(69,144,236,.25);
   }
-  .sw-live-dot::before{
-    content:'';position:absolute;inset:-5px;border-radius:50%;
-    background:rgba(69,144,236,.45);
-    animation:sw-pulse 2s ease-out infinite;
+  .ns-em-dot::before{
+    content:'';position:absolute;inset:-6px;border-radius:50%;
+    background:rgba(69,144,236,.4);
+    animation:ns-pulse 2s ease-out infinite;
   }
-  .sw-live-dot-core{
+  .ns-em-dot-core{
     position:absolute;inset:2px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);
-    box-shadow:0 0 6px 1px rgba(69,144,236,.7);
+    background:radial-gradient(circle at 35% 30%,#a6cdf6,#4590ec);
+    box-shadow:0 0 8px 1px rgba(69,144,236,.75);
   }
-  @keyframes sw-pulse{
-    0%{transform:scale(.6);opacity:.8;}
-    70%{transform:scale(1.9);opacity:0;}
-    100%{transform:scale(1.9);opacity:0;}
+  @keyframes ns-pulse{
+    0%{transform:scale(.6);opacity:.85;}
+    70%{transform:scale(2);opacity:0;}
+    100%{transform:scale(2);opacity:0;}
   }
-
-  /* ---------- the emergency call card (right of the board) ---------- */
-  .sw-call{
-    position:relative;
-    border:1px solid rgba(69,144,236,.5);
-    border-radius:16px;
-    background:rgba(69,144,236,.07);
-    padding:1.6rem 1.5rem;
-    box-shadow:0 24px 50px -30px rgba(0,0,0,.8), 0 0 40px -22px rgba(69,144,236,.5);
-    text-align:center;
+  .ns-em-copy .ns-em-label{
+    font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);margin:0 0 .45rem;
   }
-  .sw-call-eyebrow{
-    font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-night-soft);font-weight:600;margin:0 0 .55rem;
-  }
-  .sw-call h2{
+  .ns-em-copy h2{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.25rem;font-weight:600;line-height:1.2;letter-spacing:-.01em;
-    margin:0 0 .5rem;color:var(--dn-bone);
+    font-size:clamp(1.3rem,2.6vw,1.75rem);font-weight:600;
+    letter-spacing:-.015em;line-height:1.12;margin:0;color:var(--dn-bone);
   }
-  .sw-call p{font-size:.82rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 1.15rem;}
-  .sw-call-btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;width:100%;
-    font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:1.05rem;font-weight:600;letter-spacing:.01em;
-    padding:.95rem 1.5rem;
-    color:#06090f;
-    background:var(--dn-night);
-    border:1px solid var(--dn-night);
-    border-radius:12px;
-    text-decoration:none;
+  .ns-em-copy p{
+    font-size:.85rem;color:var(--dn-bone-dim);line-height:1.5;
+    margin:.55rem 0 0;max-width:44ch;
+  }
+  .ns-call{
+    flex:none;
+    display:inline-flex;flex-direction:column;align-items:flex-start;gap:.15rem;
+    padding:1rem 1.5rem;
+    border-radius:14px;
+    background:var(--dn-night,#4590ec);
+    border:1px solid var(--dn-night,#4590ec);
+    color:#06121f;text-decoration:none;
+    box-shadow:0 18px 40px -18px rgba(69,144,236,.8);
     transition:transform .15s, box-shadow .25s, background .25s;
-    box-shadow:0 14px 34px -16px rgba(69,144,236,.7);
   }
-  .sw-call-btn:hover{transform:translateY(-2px);background:var(--dn-night-soft);box-shadow:0 20px 44px -16px rgba(69,144,236,.85);}
-  .sw-call-btn svg{width:17px;height:17px;flex:none;}
-  .sw-call-small{margin:.85rem 0 0;font-size:.7rem;color:var(--dn-bone-faint);letter-spacing:.02em;}
-
-  /* ---------- hours strip inside board ---------- */
-  .sw-hours{
-    position:relative;z-index:1;
-    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-    margin-top:1.75rem;
-    border:1px solid var(--dn-mist);
-    border-radius:12px;
-    background:var(--dn-mist);
-    overflow:hidden;
+  .ns-call:hover{transform:translateY(-2px);background:#5a9ff0;box-shadow:0 24px 50px -18px rgba(69,144,236,.95);}
+  .ns-call .ns-call-kicker{
+    font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(6,18,31,.72);
   }
-  .sw-hour{
-    background:#0b0e15;
-    padding:1rem 1.1rem;
-  }
-  .sw-hour dt{
-    font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--dn-bone-faint);font-weight:600;margin:0 0 .4rem;
-  }
-  .sw-hour dd{
-    margin:0;
+  .ns-call .ns-call-num{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1rem;font-weight:600;color:var(--dn-bone);line-height:1.25;
+    font-size:1.55rem;font-weight:700;letter-spacing:-.01em;line-height:1;
+    color:#06121f;
+    display:flex;align-items:center;gap:.5rem;
   }
-  .sw-hour.emergency dd{color:var(--dn-night-soft);}
-  .sw-hour dd small{display:block;font-family:var(--font-body),'Inter Tight',sans-serif;font-size:.72rem;font-weight:400;color:var(--dn-bone-faint);margin-top:.2rem;}
+  .ns-call .ns-call-num svg{width:16px;height:16px;}
 
-  /* ============================================================
-     THE ENQUIRY DESK
-     ============================================================ */
-  .sw-section-head{
-    position:relative;z-index:2;
-    margin:clamp(3rem,6vw,4.5rem) 0 2rem;
-  }
-  .sw-section-head h2{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;line-height:1.08;
-    letter-spacing:-.02em;margin:1.1rem 0 .6rem;color:var(--dn-bone);
-  }
-  .sw-section-head h2 em{font-style:italic;color:var(--dn-day);}
-  .sw-section-head p{font-size:.98rem;color:var(--dn-bone-dim);line-height:1.55;max-width:52ch;margin:0;}
-
-  .sw-desk{
-    position:relative;z-index:2;
+  /* ---------- MAIN GRID: form + aside ---------- */
+  .ns-main{
     display:grid;
     grid-template-columns:1fr 320px;
-    gap:0;
-    border:1px solid var(--dn-mist);
-    border-radius:18px;
-    background:linear-gradient(180deg, #101016, #0c0c11);
-    overflow:hidden;
-    box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
+    gap:clamp(1.25rem,2.6vw,2rem);
+    align-items:start;
+    margin-bottom:clamp(3.5rem,6vw,5rem);
   }
-  .sw-form-panel{
+
+  .ns-formcard{
     position:relative;
-    padding:clamp(1.75rem,3.2vw,2.75rem);
-    border-right:1px solid var(--dn-mist);
+    padding:clamp(1.6rem,3.2vw,2.5rem);
+    border:1px solid var(--dn-mist);
+    border-radius:16px;
+    background:linear-gradient(180deg,#101016,#0c0c11);
+    box-shadow:0 40px 90px -55px rgba(0,0,0,.95);
+    overflow:hidden;
+  }
+  .ns-formcard::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-day,#f8c760);opacity:.55;
+  }
+  .ns-form-eyebrow{
+    font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-day);margin:0 0 .55rem;
+  }
+  .ns-form-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.4rem,2.6vw,1.85rem);font-weight:600;
+    letter-spacing:-.015em;line-height:1.1;margin:0 0 .5rem;color:var(--dn-bone);
+  }
+  .ns-form-sub{
+    font-size:.86rem;color:var(--dn-bone-dim);line-height:1.55;
+    margin:0 0 1.9rem;max-width:52ch;
   }
 
-  /* ====== rd-* form classes: lifted verbatim from 14-reception-native ====== */
-  .rd-group{margin-bottom:1.9rem;}
-  .rd-group:last-of-type{margin-bottom:0;}
-  .rd-group-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.15rem;}
-  .rd-group-tab{
-    flex:none;
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:.85rem;font-weight:600;
-    width:30px;height:30px;border-radius:8px;
-    display:grid;place-items:center;
-    color:var(--dn-day);
-    background:rgba(248,199,96,.07);
-    border:1px solid rgba(248,199,96,.28);
-  }
-  .rd-group.care .rd-group-tab{
-    color:var(--dn-night-soft);
-    background:rgba(69,144,236,.07);
-    border-color:rgba(69,144,236,.30);
-  }
-  .rd-group-head h3{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;
-  }
-  .rd-group-head .rd-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
-
+  /* two-up rows (reuse rd-field internals from the real site form) */
   .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
   .rd-row.one{grid-template-columns:1fr;}
-
   .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
-  .rd-field > .rd-label,
   .rd-label{
     font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
     color:var(--dn-bone-dim);font-weight:600;
@@ -269,9 +199,7 @@
   .rd-req{color:var(--dn-day);}
   .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
 
-  .rd-input,
-  .rd-select,
-  .rd-textarea{
+  .rd-input,.rd-select,.rd-textarea{
     width:100%;
     padding:.82rem .95rem;
     background:#0c0c11;
@@ -284,177 +212,155 @@
   }
   .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
   .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
-    outline:none;
-    border-color:var(--dn-day);
-    background:#101015;
+    outline:none;border-color:var(--dn-day);background:#101015;
     box-shadow:0 0 0 3px rgba(248,199,96,.14);
   }
-  .rd-textarea{resize:vertical;min-height:110px;line-height:1.5;}
-
+  .rd-textarea{resize:vertical;min-height:118px;line-height:1.5;}
   .rd-select{
     appearance:none;-webkit-appearance:none;-moz-appearance:none;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat:no-repeat;
-    background-position:right .95rem center;
-    padding-right:2.4rem;
-    cursor:pointer;
+    background-repeat:no-repeat;background-position:right .95rem center;
+    padding-right:2.4rem;cursor:pointer;
   }
   .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
   .rd-select option{background:#101015;color:var(--dn-bone);}
 
-  /* ---------- consent ---------- */
   .rd-consent{
     display:flex;align-items:flex-start;gap:.8rem;
     padding:1rem 1.1rem;
-    background:#0c0c11;
-    border:1px solid var(--dn-mist);
-    border-radius:12px;
-    cursor:pointer;
-    margin-top:.3rem;
+    background:#0c0c11;border:1px solid var(--dn-mist);border-radius:12px;
+    cursor:pointer;margin-top:.3rem;
   }
-  .rd-consent input{
-    width:18px;height:18px;flex:none;margin-top:2px;
-    accent-color:var(--dn-day);cursor:pointer;
-  }
+  .rd-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--dn-day);cursor:pointer;}
   .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
   .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
 
-  /* ---------- submit row ---------- */
-  .rd-submit-row{
+  .ns-submit-row{
     display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-    margin-top:1.9rem;padding-top:1.6rem;
-    border-top:1px solid var(--dn-mist);
+    margin-top:1.9rem;padding-top:1.6rem;border-top:1px solid var(--dn-mist);
   }
-  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:240px;line-height:1.45;}
-  .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
+  .ns-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:250px;line-height:1.45;}
+  .ns-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
   .rd-submit{
     display:inline-flex;align-items:center;gap:.6rem;
     font-family:var(--font-body),'Inter Tight',sans-serif;
     font-size:.95rem;font-weight:600;letter-spacing:.01em;
-    padding:.95rem 1.7rem;
-    color:#0a0a0c;
-    background:var(--dn-day);
-    border:1px solid var(--dn-day);
-    border-radius:12px;
-    cursor:pointer;
-    transition:transform .15s, box-shadow .25s, background .25s;
+    padding:.95rem 1.7rem;color:#0a0a0c;
+    background:var(--dn-day);border:1px solid var(--dn-day);border-radius:12px;
+    cursor:pointer;transition:transform .15s, box-shadow .25s, background .25s;
     box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
   }
   .rd-submit:hover{transform:translateY(-1px);background:var(--dn-day-soft);box-shadow:0 18px 40px -16px rgba(248,199,96,.7);}
   .rd-submit .arrow{transition:transform .25s;}
   .rd-submit:hover .arrow{transform:translateX(4px);}
 
-  /* ============================================================
-     RIGHT RAIL: contact + NAP
-     ============================================================ */
-  .sw-rail{
+  /* ---------- ASIDE: hours + contact ---------- */
+  .ns-aside{display:flex;flex-direction:column;gap:1rem;position:sticky;top:96px;}
+  .ns-panel{
     position:relative;
-    padding:clamp(1.75rem,3vw,2.4rem) clamp(1.5rem,2.4vw,2rem);
-    background:
-      radial-gradient(120% 55% at 85% 0%, rgba(248,199,96,.06), transparent 55%),
-      radial-gradient(110% 55% at 12% 100%, rgba(69,144,236,.06), transparent 55%),
-      linear-gradient(180deg, #0e0e14, #0a0a0e);
+    padding:1.5rem 1.5rem 1.6rem;
+    border:1px solid var(--dn-mist);
+    border-radius:16px;
+    background:var(--dn-charcoal,#14141a);
     overflow:hidden;
-    isolation:isolate;
   }
-  .sw-rail::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg, transparent, var(--dn-day,#f8c760), transparent);
-    opacity:.7;z-index:2;
-  }
-  .sw-rail-inner{position:relative;z-index:1;}
-  .sw-rail h3{
+  .ns-panel h3{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.35rem;font-weight:600;letter-spacing:-.01em;
-    margin:.85rem 0 .35rem;
+    font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin:0 0 1.1rem;color:var(--dn-bone);
   }
-  .sw-rail-lead{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.55;margin:0 0 1.5rem;}
+  .ns-hours{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.95rem;}
+  .ns-hours li{display:flex;flex-direction:column;gap:.25rem;}
+  .ns-hours .ns-h-term{
+    font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+    color:var(--dn-bone-faint);display:flex;align-items:center;gap:.45rem;
+  }
+  .ns-hours .ns-h-term .ns-tag{
+    width:7px;height:7px;border-radius:50%;flex:none;background:var(--dn-day);
+  }
+  .ns-hours li:first-child .ns-h-term .ns-tag{background:var(--dn-night-soft);box-shadow:0 0 8px var(--dn-night);}
+  .ns-hours .ns-h-val{font-size:.92rem;color:var(--dn-bone);font-weight:500;line-height:1.35;}
+  .ns-hours .ns-h-val em{font-style:normal;color:var(--dn-night-soft);font-weight:600;}
 
-  .sw-nap{
-    list-style:none;margin:0;padding:0;
-    display:flex;flex-direction:column;gap:1rem;
+  .ns-nap{
+    padding-top:1.3rem;margin-top:1.3rem;border-top:1px solid var(--dn-mist);
+    display:flex;flex-direction:column;gap:.7rem;
   }
-  .sw-nap li{
-    display:flex;align-items:flex-start;gap:.85rem;
-    font-size:.86rem;line-height:1.5;color:var(--dn-bone-dim);
-  }
-  .sw-nap-ic{
-    flex:none;width:34px;height:34px;border-radius:9px;
-    display:grid;place-items:center;
-    background:rgba(248,199,96,.07);
-    border:1px solid rgba(248,199,96,.28);
-    color:var(--dn-day);
-  }
-  .sw-nap li.night .sw-nap-ic{
-    background:rgba(69,144,236,.07);border-color:rgba(69,144,236,.3);color:var(--dn-night-soft);
-  }
-  .sw-nap-ic svg{width:16px;height:16px;}
-  .sw-nap-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin:0 0 .25rem;}
-  .sw-nap b{color:var(--dn-bone);font-weight:600;}
-  .sw-nap a{color:var(--dn-night-soft);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(125,181,240,.35);}
-  .sw-nap a:hover{color:#a6cdf6;border-bottom-color:rgba(166,205,246,.6);}
-
-  .sw-rail-emergency{
-    display:flex;align-items:flex-start;gap:12px;
-    margin-top:1.6rem;padding-top:1.6rem;
-    border-top:1px solid var(--dn-mist);
-  }
-  .sw-rail-emergency .sw-live-dot{margin-top:3px;}
-  .sw-rail-emergency p{font-size:.77rem;color:var(--dn-bone-dim);line-height:1.5;margin:0;}
-  .sw-rail-emergency strong{color:var(--dn-night-soft);font-weight:600;}
-
-  /* ============================================================
-     THE MAP FOOTER BAND
-     ============================================================ */
-  .sw-map-band{
-    position:relative;z-index:2;
-    margin-top:clamp(3rem,6vw,4.5rem);
-    border-top:1px solid var(--dn-mist);
-    background:#0a0a0e;
-  }
-  .sw-map-inner{
-    max-width:1120px;margin:0 auto;
-    padding:clamp(2.5rem,5vw,3.75rem) clamp(1rem,4vw,2.5rem);
-    display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(1.5rem,3vw,2.75rem);align-items:center;
-  }
-  .sw-map-copy h2{
+  .ns-nap .ns-name{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;line-height:1.1;letter-spacing:-.015em;
-    margin:1rem 0 .6rem;color:var(--dn-bone);
+    font-size:1.02rem;font-weight:600;color:var(--dn-bone);
   }
-  .sw-map-copy p{font-size:.92rem;color:var(--dn-bone-dim);line-height:1.6;margin:0 0 1.25rem;max-width:38ch;}
-  .sw-map-address{
-    font-style:normal;font-size:.95rem;line-height:1.6;color:var(--dn-bone);
-    padding:1rem 1.15rem;border:1px solid var(--dn-mist);border-radius:12px;background:#0c0c11;
+  .ns-nap address{font-style:normal;font-size:.85rem;color:var(--dn-bone-dim);line-height:1.55;}
+  .ns-nap .ns-tel{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.12rem;font-weight:600;color:var(--dn-day);text-decoration:none;
+    border-bottom:1px solid rgba(248,199,96,.35);align-self:flex-start;
+    padding-bottom:1px;transition:color .2s, border-color .2s;
   }
-  .sw-map-address a{color:var(--dn-day);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(248,199,96,.35);}
-  .sw-map-address a:hover{border-bottom-color:rgba(248,199,96,.7);}
-  .sw-map-frame{
-    position:relative;border:1px solid var(--dn-mist);border-radius:16px;overflow:hidden;
-    box-shadow:0 30px 70px -40px rgba(0,0,0,.9);
-    transition:border-color .25s, box-shadow .25s, transform .25s;
-  }
-  .sw-map-frame:hover{transform:translateY(-4px);border-color:rgba(69,144,236,.4);box-shadow:0 34px 80px -40px rgba(0,0,0,.95), 0 0 40px -22px rgba(69,144,236,.4);}
-  .sw-map-frame iframe{display:block;width:100%;height:380px;border:0;filter:grayscale(.25) contrast(1.05) brightness(.92);}
+  .ns-nap .ns-tel:hover{color:var(--dn-day-soft);border-bottom-color:rgba(255,214,109,.65);}
+  .ns-nap .ns-tel svg{width:15px;height:15px;}
 
-  @media (prefers-reduced-motion:reduce){.sw-live-dot::before{animation:none;}}
+  /* ---------- MAP FOOTER BAND ---------- */
+  .ns-mapband{
+    position:relative;
+    border-top:1px solid var(--dn-mist);
+    background:#0b0b0f;
+  }
+  .ns-mapband-inner{
+    max-width:1080px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1.35fr;
+    gap:0;align-items:stretch;
+  }
+  .ns-map-copy{
+    padding:clamp(2.25rem,4vw,3.25rem) clamp(1.15rem,4vw,2.5rem);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .ns-map-copy .ns-eyebrow{color:var(--dn-day);margin-bottom:1rem;}
+  .ns-map-copy h2{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;letter-spacing:-.015em;
+    line-height:1.1;margin:0 0 .85rem;color:var(--dn-bone);
+  }
+  .ns-map-copy p{font-size:.9rem;color:var(--dn-bone-dim);line-height:1.6;margin:0 0 1.4rem;max-width:42ch;}
+  .ns-map-copy .ns-mini-nap{font-size:.85rem;color:var(--dn-bone-dim);line-height:1.6;font-style:normal;}
+  .ns-map-copy .ns-mini-nap strong{color:var(--dn-bone);font-weight:600;display:block;font-family:var(--font-display),'Fraunces',serif;font-size:.98rem;margin-bottom:.2rem;}
+  .ns-map-copy .ns-tel2{
+    display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;
+    font-family:var(--font-display),'Fraunces',serif;font-weight:600;font-size:1.05rem;
+    color:var(--dn-day);text-decoration:none;border-bottom:1px solid rgba(248,199,96,.35);
+    align-self:flex-start;padding-bottom:1px;
+  }
+  .ns-map-copy .ns-tel2:hover{color:var(--dn-day-soft);}
+  .ns-map-frame{
+    position:relative;min-height:340px;border-left:1px solid var(--dn-mist);overflow:hidden;
+  }
+  .ns-map-frame iframe{
+    position:absolute;inset:0;width:100%;height:100%;border:0;
+    filter:grayscale(1) contrast(1.05) brightness(.72) invert(.92) hue-rotate(180deg);
+  }
+  .ns-map-frame::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 90px 20px rgba(10,10,12,.55);
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .ns-em-dot::before{animation:none;}
+  }
 
   /* ---------- responsive ---------- */
-  @media (max-width:980px){
-    .sw-board-grid{grid-template-columns:1fr;}
-    .sw-desk{grid-template-columns:1fr;}
-    .sw-form-panel{border-right:none;border-bottom:1px solid var(--dn-mist);}
-    .sw-map-inner{grid-template-columns:1fr;}
+  @media (max-width:900px){
+    .ns-main{grid-template-columns:1fr;}
+    .ns-aside{position:static;}
+    .ns-emergency{grid-template-columns:1fr;}
+    .ns-call{align-self:flex-start;}
+    .ns-mapband-inner{grid-template-columns:1fr;}
+    .ns-map-frame{border-left:none;border-top:1px solid var(--dn-mist);min-height:320px;}
   }
-  @media (max-width:620px){
-    .rd-row{grid-template-columns:1fr;}
-    .sw-hours{grid-template-columns:1fr;}
+  @media (max-width:600px){
+    .rd-row,.rd-row.one{grid-template-columns:1fr;}
     .rd-submit{width:100%;justify-content:center;}
-    .rd-submit-note{max-width:none;}
-    .sw-map-frame iframe{height:300px;}
-  }
-  @media (max-width:380px){
-    .rd-select{padding-right:2rem;background-position:right .6rem center;}
+    .ns-submit-note{max-width:none;}
+    .ns-call{width:100%;}
   }
 
   /* preview scroll override (keep LAST) */
@@ -462,195 +368,145 @@
 </style>
 </head>
 <body>
-<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#4590ec;opacity:.7">DESIGN: Night Switchboard</div>
 
-<div class="sw-wrap">
-  <div class="sw-glow night"></div>
-  <div class="sw-glow day"></div>
+<div class="ns-wrap">
 
-  <!-- ============ THE SWITCHBOARD PANEL ============ -->
-  <section class="sw-board">
-    <div class="sw-board-grid">
-      <div>
-        <span class="sw-eyebrow">Book &amp; enquire</span>
-        <h1>The line is open, <span class="day">day</span> and <em>night</em>.</h1>
-        <p class="sw-lead">Day Night Dental is a 24/7 emergency and cosmetic practice in Merchant City, Glasgow. Call the switchboard for anything urgent, or send an enquiry below and the front desk will come back to you.</p>
-        <div class="sw-status">
-          <span class="sw-live-dot" aria-hidden="true"><span class="sw-live-dot-core"></span></span>
-          <b>Emergency line open now, 24 hours</b>
-        </div>
-      </div>
+  <!-- ========== HERO / REASSURANCE ========== -->
+  <header class="ns-hero">
+    <span class="ns-eyebrow">Enquiries</span>
+    <h1>Always someone to talk to</h1>
+    <p>A real person answers at our Merchant City practice around the clock, so whether it is a sudden problem or a question you have been putting off, you are never left holding it on your own. Tell us what you need below and we will take it from there.</p>
+  </header>
 
-      <div class="sw-call">
-        <p class="sw-call-eyebrow">24/7 Emergency</p>
-        <h2>In pain right now?</h2>
-        <p>Do not wait for an email back. Call our 24/7 line and speak to someone tonight.</p>
-        <a class="sw-call-btn" href="tel:+441415486548">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call 0141 548 6548
-        </a>
-        <p class="sw-call-small">Merchant City, Glasgow. Open 24 hours, 7 days.</p>
+  <!-- ========== BOLD BLUE EMERGENCY PANEL ========== -->
+  <section class="ns-emergency" aria-label="Emergency dental line">
+    <div class="ns-em-left">
+      <span class="ns-em-dot" aria-hidden="true"><span class="ns-em-dot-core"></span></span>
+      <div class="ns-em-copy">
+        <p class="ns-em-label">Emergency line, open 24 hours</p>
+        <h2>Toothache that cannot wait? Call us.</h2>
+        <p>If you are in pain, do not fill in a form. Speak to us straight away and we will get you seen.</p>
       </div>
     </div>
-
-    <!-- hours split, truthful -->
-    <dl class="sw-hours">
-      <div class="sw-hour emergency">
-        <dt>Emergency dental care</dt>
-        <dd>Open 24 hours<small>7 days a week</small></dd>
-      </div>
-      <div class="sw-hour">
-        <dt>Routine appointments</dt>
-        <dd>By appointment<small>Call or enquire below</small></dd>
-      </div>
-      <div class="sw-hour">
-        <dt>NHS places</dt>
-        <dd>Waiting list<small>When available</small></dd>
-      </div>
-    </dl>
+    <a class="ns-call" href="tel:+441415486548" aria-label="Call the emergency line on 0141 548 6548">
+      <span class="ns-call-kicker">Emergency line</span>
+      <span class="ns-call-num">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0141 548 6548
+      </span>
+    </a>
   </section>
 
-  <!-- ============ THE ENQUIRY DESK ============ -->
-  <div class="sw-section-head">
-    <span class="sw-eyebrow gold">Send an enquiry</span>
-    <h2>Not urgent? <em>Leave it with us.</em></h2>
-    <p>For appointments, consultations or a quick question, fill in the form and the front desk will call or email you back. Just the essentials, we cover the rest on the call.</p>
-  </div>
+  <!-- ========== MAIN GRID ========== -->
+  <div class="ns-main">
 
-  <div class="sw-desk">
+    <!-- form -->
+    <div class="ns-formcard">
+      <p class="ns-form-eyebrow">Send an enquiry</p>
+      <h2 class="ns-form-title">Leave us a message</h2>
+      <p class="ns-form-sub">Not urgent? Fill this in and we will get back to you. Give us a rough idea of what it is about and when suits you for a call, and we will match you to the right person on the team.</p>
 
-    <!-- ===== left: the enquiry form ===== -->
-    <div class="sw-form-panel">
       <form onsubmit="return false;">
 
-        <!-- GROUP 1: your details -->
-        <section class="rd-group">
-          <div class="rd-group-head">
-            <span class="rd-group-tab">1</span>
-            <div>
-              <h3>Your details</h3>
-              <div class="rd-group-sub">Who we should reach, and how.</div>
-            </div>
+        <div class="rd-row">
+          <div class="rd-field">
+            <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
+            <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
           </div>
-
-          <div class="rd-row">
-            <div class="rd-field">
-              <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
-              <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
-            </div>
-            <div class="rd-field">
-              <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
-              <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
-            </div>
+          <div class="rd-field">
+            <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
+            <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
           </div>
+        </div>
 
-          <div class="rd-row">
-            <div class="rd-field">
-              <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
-              <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
-            </div>
-            <div class="rd-field">
-              <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
-              <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
-            </div>
+        <div class="rd-row">
+          <div class="rd-field">
+            <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
+            <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
           </div>
-
-          <div class="rd-row one">
-            <div class="rd-field">
-              <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
-              <select class="rd-select" id="contactTime" name="contactTime">
-                <option value="" selected>No preference</option>
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
-            </div>
+          <div class="rd-field">
+            <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
+            <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
           </div>
-        </section>
+        </div>
 
-        <!-- GROUP 2: your enquiry -->
-        <section class="rd-group care">
-          <div class="rd-group-head">
-            <span class="rd-group-tab">2</span>
-            <div>
-              <h3>Your enquiry</h3>
-              <div class="rd-group-sub">What is on your mind, in your own words.</div>
-            </div>
+        <div class="rd-row">
+          <div class="rd-field">
+            <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
+            <select class="rd-select" id="contactTime" name="contactTime">
+              <option value="" selected disabled>No preference</option>
+              <option>No preference</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
           </div>
-
-          <div class="rd-row one">
-            <div class="rd-field">
-              <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
-              <select class="rd-select" id="topic" name="topic" required>
-                <option value="" selected disabled>Please choose</option>
-                <option>Request an appointment</option>
-                <option>Cosmetic consultation</option>
-                <option>Routine check-up or hygiene</option>
-                <option>A question about a treatment</option>
-                <option>General enquiry</option>
-                <option>Something else</option>
-              </select>
-            </div>
+          <div class="rd-field">
+            <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
+            <select class="rd-select" id="topic" name="topic" required>
+              <option value="" selected disabled>Choose one</option>
+              <option>Request an appointment</option>
+              <option>Cosmetic consultation</option>
+              <option>Routine check-up or hygiene</option>
+              <option>A question about a treatment</option>
+              <option>General enquiry</option>
+              <option>Something else</option>
+            </select>
           </div>
+        </div>
 
-          <div class="rd-row one">
-            <div class="rd-field">
-              <label class="rd-label" for="message">Message <span class="rd-opt">optional</span></label>
-              <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="e.g. I would like to book a whitening consultation, or ask about implants. A line or two is plenty, it just helps us prepare before we call."></textarea>
-            </div>
+        <div class="rd-row one">
+          <div class="rd-field">
+            <label class="rd-label" for="message">Message <span class="rd-req">*</span></label>
+            <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="Tell us a little about what you need. Even a sentence or two helps us point you to the right person." required></textarea>
           </div>
+        </div>
 
-          <div class="rd-row one">
-            <label class="rd-consent">
-              <input type="checkbox" name="consent" required>
-              <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
-            </label>
-          </div>
-        </section>
+        <div class="rd-row one">
+          <label class="rd-consent">
+            <input type="checkbox" name="consent" required>
+            <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
+          </label>
+        </div>
 
-        <!-- submit -->
-        <div class="rd-submit-row">
-          <p class="rd-submit-note"><strong>No obligation.</strong> An enquiry simply starts the conversation. We confirm any costs before anything goes ahead.</p>
-          <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">&rarr;</span></button>
+        <div class="ns-submit-row">
+          <p class="ns-submit-note"><strong>We reply personally.</strong> No automated queue, no chasing. A member of the team gets back to you.</p>
+          <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
         </div>
 
       </form>
     </div>
 
-    <!-- ===== right: contact rail (NAP) ===== -->
-    <aside class="sw-rail">
-      <div class="sw-rail-inner">
-        <span class="sw-eyebrow gold">Find us</span>
-        <h3>Merchant City desk</h3>
-        <p class="sw-rail-lead">We are in the heart of the Merchant City, a short walk from Glasgow city centre.</p>
-
-        <ul class="sw-nap">
+    <!-- aside: hours + contact -->
+    <aside class="ns-aside">
+      <div class="ns-panel">
+        <h3>Opening hours</h3>
+        <ul class="ns-hours">
           <li>
-            <span class="sw-nap-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <div>
-              <p class="sw-nap-label">Address</p>
-              <b>Day Night Dental</b><br>80 Hutcheson St, Merchant City,<br>Glasgow G1 1SH
-            </div>
-          </li>
-          <li class="night">
-            <span class="sw-nap-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <div>
-              <p class="sw-nap-label">Phone, 24/7</p>
-              <a href="tel:+441415486548">0141 548 6548</a>
-            </div>
+            <span class="ns-h-term"><span class="ns-tag"></span>Emergency care</span>
+            <span class="ns-h-val"><em>Open 24 hours, 7 days</em></span>
           </li>
           <li>
-            <span class="sw-nap-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div>
-              <p class="sw-nap-label">Emergency care</p>
-              <b>Open 24 hours, 7 days</b>
-            </div>
+            <span class="ns-h-term"><span class="ns-tag"></span>Routine appointments</span>
+            <span class="ns-h-val">By appointment</span>
+          </li>
+          <li>
+            <span class="ns-h-term"><span class="ns-tag"></span>NHS</span>
+            <span class="ns-h-val">Waiting list when available</span>
           </li>
         </ul>
 
-        <div class="sw-rail-emergency">
-          <span class="sw-live-dot" aria-hidden="true"><span class="sw-live-dot-core"></span></span>
-          <p><strong>In pain right now?</strong> Do not wait for a reply to your enquiry. Call the 24/7 line above.</p>
+        <div class="ns-nap">
+          <span class="ns-name">Day Night Dental</span>
+          <address>
+            80 Hutcheson St<br>
+            Merchant City, Glasgow<br>
+            G1 1SH
+          </address>
+          <a class="ns-tel" href="tel:+441415486548">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            0141 548 6548
+          </a>
         </div>
       </div>
     </aside>
@@ -658,22 +514,25 @@
   </div>
 </div>
 
-<!-- ============ THE MAP FOOTER BAND ============ -->
-<section class="sw-map-band">
-  <div class="sw-map-inner">
-    <div class="sw-map-copy">
-      <span class="sw-eyebrow">On the map</span>
-      <h2>80 Hutcheson Street</h2>
-      <p>Right in the Merchant City, moments from Glasgow Cross and the city centre. Parking and transport links are close by.</p>
-      <address class="sw-map-address">
-        <b>Day Night Dental</b><br>
-        80 Hutcheson St, Merchant City<br>
-        Glasgow G1 1SH<br>
-        <a href="tel:+441415486548">0141 548 6548</a>
-      </address>
+<!-- ========== MAP FOOTER BAND ========== -->
+<section class="ns-mapband" aria-label="Find us">
+  <div class="ns-mapband-inner">
+    <div class="ns-map-copy">
+      <span class="ns-eyebrow">Find us</span>
+      <h2>In the heart of Merchant City</h2>
+      <p>We are on Hutcheson Street, a two-minute walk from the Trongate and easy to reach from Glasgow Central and Queen Street.</p>
+      <div class="ns-mini-nap">
+        <strong>Day Night Dental</strong>
+        80 Hutcheson St, Merchant City,<br>
+        Glasgow G1 1SH
+      </div>
+      <a class="ns-tel2" href="tel:+441415486548">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0141 548 6548
+      </a>
     </div>
-    <div class="sw-map-frame">
-      <iframe src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed" loading="lazy" title="Day Night Dental location, 80 Hutcheson Street, Glasgow"></iframe>
+    <div class="ns-map-frame">
+      <iframe src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed" loading="lazy" title="Day Night Dental location, Glasgow"></iframe>
     </div>
   </div>
 </section>

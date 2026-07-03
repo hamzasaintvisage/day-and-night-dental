@@ -4,117 +4,128 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Enquiries · The Monogram · Day Night Dental</title>
+<title>Enquiries · Ask us anything · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
   /* ============================================================
      THE MONOGRAM
-     Refined monogram maison style. A centred DN monogram crowns
-     the page, a tight elegant enquiry form sits below on the desk
-     surface, the hours read as a small-caps index, and the map is
-     a square framed card with a gold hairline. Form field markup
-     and classes are lifted from 14-reception-native.
+     A refined maison layout. A centred DN monogram crests the page,
+     the headline sits beneath it, then a tight two-column body: an
+     elegant enquiry form on the left, and a slim index rail on the
+     right carrying the hours as a small-caps ledger, the NAP, a
+     blue emergency plate, and a square gold-hairline framed map.
+     Form fields reuse the finalised site classes (rd-*) verbatim
+     from 14-reception-native.
      ============================================================ */
 
   *{box-sizing:border-box;}
   body{
     margin:0;
     background:
-      radial-gradient(1000px 560px at 50% -6%, rgba(248,199,96,.05), transparent 60%),
-      radial-gradient(900px 520px at 50% 108%, rgba(69,144,236,.05), transparent 60%),
+      radial-gradient(900px 520px at 50% -6%, rgba(248,199,96,.05), transparent 60%),
+      radial-gradient(900px 560px at 84% 108%, rgba(69,144,236,.05), transparent 62%),
       var(--dn-near-black,#0a0a0c);
     color:var(--dn-bone,#fff);
     font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
     -webkit-font-smoothing:antialiased;
-    line-height:1.6;
     overflow-x:hidden;
   }
   a{color:inherit;}
+  .dn-header{top:52px;}
 
-  .mg-wrap{
-    max-width:760px;
+  .mo-wrap{
+    max-width:1120px;
     margin:0 auto;
-    padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,2rem) 5rem;
+    padding:clamp(7.5rem,10vw,9rem) clamp(1rem,4vw,2.5rem) 5rem;
     position:relative;
   }
 
-  /* soft glows */
-  .mg-glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
-  .mg-glow.day{width:420px;height:420px;top:-40px;left:50%;transform:translateX(-50%);background:rgba(248,199,96,.08);}
-  .mg-glow.night{width:460px;height:460px;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(69,144,236,.06);}
+  /* soft anchoring glows */
+  .mo-glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
+  .mo-glow.day{width:420px;height:420px;top:-40px;left:50%;transform:translateX(-50%);background:rgba(248,199,96,.07);}
+  .mo-glow.night{width:460px;height:460px;bottom:80px;right:-140px;background:rgba(69,144,236,.08);}
 
-  /* ---------- MONOGRAM CROWN ---------- */
-  .mg-crest{position:relative;z-index:2;text-align:center;margin-bottom:2.6rem;}
-  .mg-monogram{
-    width:88px;height:88px;margin:0 auto 1.4rem;
+  /* ---------- centred crest ---------- */
+  .mo-crest{position:relative;z-index:2;text-align:center;margin-bottom:clamp(2.75rem,5vw,3.75rem);}
+
+  .mo-monogram{
+    width:88px;height:88px;margin:0 auto 1.6rem;
     display:grid;place-items:center;
     border-radius:50%;
     border:1px solid rgba(248,199,96,.4);
-    background:rgba(248,199,96,.05);
+    background:rgba(248,199,96,.04);
     box-shadow:0 0 40px -14px rgba(248,199,96,.4), inset 0 1px 0 rgba(255,255,255,.05);
-    font-family:var(--font-display),'Fraunces',serif;
-    font-weight:600;font-size:2.05rem;letter-spacing:.02em;line-height:1;
-    color:var(--dn-day);
+    position:relative;
   }
-  .mg-monogram .n{color:var(--dn-night-soft);}
-  .mg-eyebrow{
+  .mo-monogram::before{
+    content:'';position:absolute;inset:6px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .mo-monogram span{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-weight:600;font-size:1.9rem;letter-spacing:.02em;line-height:1;
+  }
+  .mo-monogram span .d{color:var(--dn-day);}
+  .mo-monogram span .n{color:var(--dn-night-soft);}
+
+  .mo-eyebrow{
     display:inline-flex;align-items:center;gap:8px;
-    padding:6px 15px;margin-bottom:1.3rem;
-    border-radius:999px;
+    padding:6px 15px 6px 12px;border-radius:999px;
     font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
     color:var(--dn-day);
     background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 0 20px -6px rgba(248,199,96,.4), inset 0 1px 0 rgba(255,255,255,.05);
+    box-shadow:0 0 20px -6px rgba(248,199,96,.5), inset 0 1px 0 rgba(255,255,255,.05);
   }
-  .mg-eyebrow::before{
+  .mo-eyebrow::before{
     content:'';width:6px;height:6px;flex:none;border-radius:50%;
-    background:currentColor;box-shadow:0 0 8px 1px rgba(248,199,96,.7);
-  }
-  .mg-title{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(2.1rem,5vw,3rem);font-weight:600;line-height:1.06;
-    letter-spacing:-.015em;margin:0 0 1rem;color:var(--dn-bone);
-  }
-  .mg-title em{font-style:italic;color:var(--dn-day);}
-  .mg-title .night{font-style:italic;color:var(--dn-night);}
-  .mg-lead{
-    max-width:52ch;margin:0 auto;
-    font-size:.95rem;color:var(--dn-bone-dim);line-height:1.6;
-  }
-  .mg-rule{
-    width:44px;height:1px;margin:1.7rem auto 0;
-    background:linear-gradient(90deg, transparent, var(--dn-day), transparent);
+    background:currentColor;box-shadow:0 0 8px 1px rgba(248,199,96,.6);
   }
 
-  /* ---------- THE DESK SURFACE ---------- */
-  .mg-desk{
+  .mo-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(2.6rem,6vw,4.2rem);
+    font-weight:500;line-height:1.04;letter-spacing:-.02em;
+    margin:1.4rem 0 0;color:var(--dn-bone);
+  }
+  .mo-lead{
+    max-width:52ch;margin:1.25rem auto 0;
+    font-size:1.02rem;line-height:1.65;color:var(--dn-bone-dim);
+  }
+  .mo-rule{
+    width:60px;height:1px;margin:1.8rem auto 0;
+    background:linear-gradient(90deg,transparent,var(--dn-day),transparent);
+    opacity:.65;
+  }
+
+  /* ---------- body: form + index rail ---------- */
+  .mo-body{
     position:relative;z-index:2;
+    display:grid;
+    grid-template-columns:1fr 360px;
+    gap:clamp(1.5rem,3vw,2.5rem);
+    align-items:start;
+  }
+
+  /* the form card */
+  .mo-form-card{
+    padding:clamp(1.75rem,3vw,2.6rem);
     border:1px solid var(--dn-mist);
     border-radius:18px;
-    background:linear-gradient(180deg, #101016, #0c0c11);
-    overflow:hidden;
-    box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
+    background:linear-gradient(180deg,#101016,#0c0c11);
+    box-shadow:0 40px 90px -55px rgba(0,0,0,.95);
   }
-  .mg-desk::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg, transparent, var(--dn-day), transparent);
-    opacity:.7;z-index:2;
-  }
-  .mg-form-panel{position:relative;padding:clamp(1.75rem,4vw,2.75rem);}
-
-  .mg-panel-head{text-align:center;margin-bottom:1.9rem;}
-  .mg-panel-head h2{
+  .mo-form-title{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin:0 0 .35rem;
+    font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin:0 0 .3rem;
   }
-  .mg-panel-head p{font-size:.8rem;color:var(--dn-bone-faint);margin:0;}
+  .mo-form-sub{font-size:.8rem;color:var(--dn-bone-faint);line-height:1.5;margin:0 0 1.8rem;}
 
-  /* ---------- FORM CLASSES (lifted from 14-reception-native) ---------- */
+  /* rows */
   .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
   .rd-row.one{grid-template-columns:1fr;}
+
   .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
-  .rd-field > .rd-label,
   .rd-label{
     font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
     color:var(--dn-bone-dim);font-weight:600;
@@ -123,35 +134,25 @@
   .rd-req{color:var(--dn-day);}
   .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
 
-  .rd-input,
-  .rd-select,
-  .rd-textarea{
-    width:100%;
-    padding:.82rem .95rem;
-    background:#0c0c11;
-    border:1px solid var(--dn-mist);
-    border-radius:11px;
+  .rd-input,.rd-select,.rd-textarea{
+    width:100%;padding:.82rem .95rem;
+    background:#0c0c11;border:1px solid var(--dn-mist);border-radius:11px;
     color:var(--dn-bone);
-    font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:1rem;
+    font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1rem;
     transition:border-color .25s, box-shadow .25s, background .25s;
   }
   .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
   .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
-    outline:none;
-    border-color:var(--dn-day);
-    background:#101015;
+    outline:none;border-color:var(--dn-day);background:#101015;
     box-shadow:0 0 0 3px rgba(248,199,96,.14);
   }
-  .rd-textarea{resize:vertical;min-height:110px;line-height:1.5;}
+  .rd-textarea{resize:vertical;min-height:104px;line-height:1.5;}
 
   .rd-select{
     appearance:none;-webkit-appearance:none;-moz-appearance:none;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat:no-repeat;
-    background-position:right .95rem center;
-    padding-right:2.4rem;
-    cursor:pointer;
+    background-repeat:no-repeat;background-position:right .95rem center;
+    padding-right:2.4rem;cursor:pointer;
   }
   .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
   .rd-select option{background:#101015;color:var(--dn-bone);}
@@ -159,37 +160,26 @@
   /* consent */
   .rd-consent{
     display:flex;align-items:flex-start;gap:.8rem;
-    padding:1rem 1.1rem;
-    background:#0c0c11;
-    border:1px solid var(--dn-mist);
-    border-radius:12px;
-    cursor:pointer;margin-top:.3rem;
+    padding:1rem 1.1rem;background:#0c0c11;
+    border:1px solid var(--dn-mist);border-radius:12px;cursor:pointer;margin-top:.3rem;
   }
-  .rd-consent input{
-    width:18px;height:18px;flex:none;margin-top:2px;
-    accent-color:var(--dn-day);cursor:pointer;
-  }
+  .rd-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--dn-day);cursor:pointer;}
   .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
   .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
 
   /* submit */
   .rd-submit-row{
     display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-    margin-top:1.9rem;padding-top:1.6rem;
-    border-top:1px solid var(--dn-mist);
+    margin-top:1.9rem;padding-top:1.6rem;border-top:1px solid var(--dn-mist);
   }
-  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:260px;line-height:1.45;}
+  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:230px;line-height:1.45;}
   .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
   .rd-submit{
     display:inline-flex;align-items:center;gap:.6rem;
     font-family:var(--font-body),'Inter Tight',sans-serif;
     font-size:.95rem;font-weight:600;letter-spacing:.01em;
-    padding:.95rem 1.7rem;
-    color:#0a0a0c;
-    background:var(--dn-day);
-    border:1px solid var(--dn-day);
-    border-radius:12px;
-    cursor:pointer;
+    padding:.95rem 1.7rem;color:#0a0a0c;
+    background:var(--dn-day);border:1px solid var(--dn-day);border-radius:12px;cursor:pointer;
     transition:transform .15s, box-shadow .25s, background .25s;
     box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
   }
@@ -197,170 +187,184 @@
   .rd-submit .arrow{transition:transform .25s;}
   .rd-submit:hover .arrow{transform:translateX(4px);}
 
-  /* ---------- EMERGENCY CTA (night accented) ---------- */
-  .mg-emergency{
-    position:relative;z-index:2;
-    display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;
-    margin-top:1.6rem;
-    padding:1.3rem 1.5rem;
-    border-radius:16px;
-    background:rgba(69,144,236,.06);
-    border:1px solid rgba(69,144,236,.4);
-    box-shadow:0 20px 44px -28px rgba(0,0,0,.8), 0 0 30px -18px rgba(69,144,236,.35);
-    transition:transform .25s, border-color .25s, box-shadow .25s;
+  /* ============================================================
+     INDEX RAIL
+     ============================================================ */
+  .mo-rail{display:flex;flex-direction:column;gap:1.1rem;}
+
+  .mo-panel{
+    border:1px solid var(--dn-mist);border-radius:16px;
+    background:var(--dn-charcoal,#14141a);
+    padding:1.5rem 1.5rem 1.6rem;
+    position:relative;overflow:hidden;
   }
-  .mg-emergency:hover{
-    transform:translateY(-4px);
-    border-color:rgba(69,144,236,.6);
-    box-shadow:0 26px 52px -28px rgba(0,0,0,.85), 0 0 40px -16px rgba(69,144,236,.5);
+  .mo-panel-label{
+    font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-bone-faint);margin:0 0 1.1rem;
+    display:flex;align-items:center;gap:.6rem;
   }
-  .mg-em-dot{
-    flex:0 0 auto;position:relative;width:12px;height:12px;
-    border-radius:50%;background:rgba(69,144,236,.22);
+  .mo-panel-label::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
+
+  /* hours as a small-caps index ledger */
+  .mo-hours{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+  .mo-hours li{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+    padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.06);
   }
-  .mg-em-dot::before{
+  .mo-hours li:last-child{border-bottom:none;}
+  .mo-hours .mo-h-term{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.82rem;font-weight:600;letter-spacing:.04em;
+    font-variant:small-caps;text-transform:lowercase;
+    color:var(--dn-bone);white-space:nowrap;
+  }
+  .mo-hours .mo-h-val{
+    font-size:.76rem;color:var(--dn-bone-dim);text-align:right;line-height:1.4;
+  }
+  .mo-hours .mo-h-val b{color:var(--dn-day);font-weight:600;}
+  .mo-hours li.night .mo-h-val b{color:var(--dn-night-soft);}
+
+  /* NAP index */
+  .mo-nap{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.95rem;}
+  .mo-nap li{display:flex;gap:.85rem;align-items:flex-start;}
+  .mo-nap .mo-ico{
+    flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    border:1px solid rgba(248,199,96,.28);background:rgba(248,199,96,.06);
+  }
+  .mo-nap li.night .mo-ico{border-color:rgba(69,144,236,.3);background:rgba(69,144,236,.06);}
+  .mo-nap .mo-ico svg{width:15px;height:15px;}
+  .mo-nap .mo-nap-k{
+    font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-bone-faint);font-weight:600;margin:0 0 .2rem;
+  }
+  .mo-nap .mo-nap-v{font-size:.86rem;color:var(--dn-bone);line-height:1.45;margin:0;}
+  .mo-nap a.mo-nap-v{
+    font-family:var(--font-display),'Fraunces',serif;font-weight:600;font-size:1rem;
+    color:var(--dn-night-soft);text-decoration:none;
+    border-bottom:1px solid rgba(125,181,240,.35);
+  }
+  .mo-nap a.mo-nap-v:hover{color:#a6cdf6;border-bottom-color:rgba(166,205,246,.6);}
+
+  /* emergency plate */
+  .mo-emergency{
+    border:1px solid rgba(69,144,236,.4);border-radius:16px;
+    background:rgba(69,144,236,.05);
+    padding:1.35rem 1.5rem 1.5rem;position:relative;overflow:hidden;
+  }
+  .mo-emergency::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--dn-night),transparent);opacity:.8;
+  }
+  .mo-em-head{display:flex;align-items:center;gap:.7rem;margin:0 0 .7rem;}
+  .mo-em-dot{
+    flex:none;position:relative;width:11px;height:11px;border-radius:50%;
+    background:rgba(69,144,236,.22);
+  }
+  .mo-em-dot::before{
     content:'';position:absolute;inset:-5px;border-radius:50%;
-    background:rgba(69,144,236,.45);animation:mg-pulse 2s ease-out infinite;
+    background:rgba(69,144,236,.45);animation:mo-pulse 2s ease-out infinite;
   }
-  .mg-em-core{
+  .mo-em-dot-core{
     position:absolute;inset:2px;border-radius:50%;
     background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);
     box-shadow:0 0 6px 1px rgba(69,144,236,.7);
   }
-  @keyframes mg-pulse{
-    0%{transform:scale(.6);opacity:.8;}
-    70%{transform:scale(1.9);opacity:0;}
-    100%{transform:scale(1.9);opacity:0;}
+  @keyframes mo-pulse{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
+  .mo-em-eyebrow{
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);font-weight:600;
   }
-  .mg-em-body{flex:1 1 220px;min-width:0;}
-  .mg-em-eyebrow{
-    font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-night-soft);font-weight:600;margin:0 0 .35rem;
-  }
-  .mg-em-body p{margin:0;font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;}
-  .mg-em-tel{
-    flex:0 0 auto;
-    display:inline-flex;align-items:center;gap:.55rem;
+  .mo-em-title{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.05rem;font-weight:600;
-    padding:.8rem 1.35rem;border-radius:12px;
-    color:#eaf3ff;
-    background:rgba(69,144,236,.14);
-    border:1px solid var(--dn-night);
-    text-decoration:none;white-space:nowrap;
-    box-shadow:0 12px 30px -16px rgba(69,144,236,.6);
-    transition:background .25s, transform .15s;
+    font-size:1.12rem;font-weight:600;letter-spacing:-.01em;margin:0 0 .5rem;color:var(--dn-bone);
   }
-  .mg-em-tel:hover{background:rgba(69,144,236,.24);transform:translateY(-1px);}
+  .mo-em-copy{font-size:.79rem;color:var(--dn-bone-dim);line-height:1.55;margin:0 0 1rem;}
+  .mo-em-call{
+    display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;
+    padding:.9rem 1.1rem;border-radius:12px;
+    background:var(--dn-night);border:1px solid var(--dn-night);
+    color:#08111d;font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:.98rem;font-weight:700;letter-spacing:.01em;text-decoration:none;
+    box-shadow:0 14px 34px -16px rgba(69,144,236,.6);
+    transition:transform .15s, box-shadow .25s, background .25s;
+  }
+  .mo-em-call:hover{transform:translateY(-1px);background:var(--dn-night-soft);box-shadow:0 18px 40px -16px rgba(69,144,236,.75);}
+  .mo-em-call svg{width:16px;height:16px;}
 
-  /* ---------- THE INDEX (details + hours) ---------- */
-  .mg-index{
-    display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
-    margin-top:1.6rem;position:relative;z-index:2;
-  }
-  .mg-panel{
-    background:var(--dn-charcoal,#14141a);
-    border:1px solid var(--dn-mist);
-    border-radius:16px;
-    padding:1.5rem 1.6rem;
-    position:relative;overflow:hidden;
-    box-shadow:0 16px 32px -22px rgba(0,0,0,.7);
-    transition:transform .25s, border-color .25s, box-shadow .25s;
-  }
-  .mg-panel::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;
-    background:var(--dn-day);opacity:.6;
-  }
-  .mg-panel:hover{
-    transform:translateY(-4px);
-    border-color:rgba(248,199,96,.32);
-    box-shadow:0 22px 40px -22px rgba(0,0,0,.8), 0 0 26px -14px rgba(248,199,96,.35);
-  }
-  .mg-panel-title{
-    font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-day);font-weight:600;margin:0 0 1rem;
-  }
-
-  /* NAP */
-  .mg-nap-name{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.1rem;font-weight:600;margin:0 0 .5rem;color:var(--dn-bone);
-  }
-  .mg-nap-addr{margin:0 0 1rem;font-size:.85rem;color:var(--dn-bone-dim);line-height:1.55;font-style:normal;}
-  .mg-nap-tel{
-    display:inline-flex;align-items:center;gap:.5rem;
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.02rem;font-weight:600;
-    color:var(--dn-night-soft);text-decoration:none;
-    border-bottom:1px solid rgba(125,181,240,.35);
-  }
-  .mg-nap-tel:hover{color:#a6cdf6;border-bottom-color:rgba(166,205,246,.6);}
-
-  /* hours as small-caps index */
-  .mg-hours{list-style:none;margin:0;padding:0;}
-  .mg-hours li{
-    display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-    padding:.7rem 0;
-    border-bottom:1px solid rgba(255,255,255,.07);
-  }
-  .mg-hours li:last-child{border-bottom:none;padding-bottom:0;}
-  .mg-hours li:first-child{padding-top:0;}
-  .mg-hours dt{
-    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--dn-bone-dim);font-weight:600;font-variant:small-caps;
-  }
-  .mg-hours dd{
-    margin:0;font-size:.82rem;color:var(--dn-bone);text-align:right;
-    font-family:var(--font-display),'Fraunces',serif;
-  }
-  .mg-hours .em dd{color:var(--dn-night-soft);}
-
-  /* ---------- MAP: square framed card, gold hairline ---------- */
-  .mg-map-section{margin-top:1.6rem;position:relative;z-index:2;text-align:center;}
-  .mg-map-eyebrow{
+  /* ============================================================
+     THE MAP: square, gold-hairline framed card
+     ============================================================ */
+  .mo-map-wrap{margin-top:clamp(2.5rem,5vw,4rem);position:relative;z-index:2;text-align:center;}
+  .mo-map-eyebrow{
     display:inline-flex;align-items:center;gap:8px;
-    margin-bottom:1.1rem;
+    padding:6px 15px 6px 12px;border-radius:999px;
     font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-bone-dim);
+    color:var(--dn-night-soft);
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 0 20px -6px rgba(69,144,236,.5),inset 0 1px 0 rgba(255,255,255,.05);
   }
-  .mg-map-eyebrow::before,.mg-map-eyebrow::after{
-    content:'';width:26px;height:1px;background:rgba(248,199,96,.4);
+  .mo-map-eyebrow::before{
+    content:'';width:6px;height:6px;flex:none;border-radius:50%;
+    background:currentColor;box-shadow:0 0 8px 1px rgba(69,144,236,.6);
   }
-  .mg-map-frame{
+  .mo-map-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:500;letter-spacing:-.015em;
+    margin:1.1rem 0 .5rem;
+  }
+  .mo-map-note{font-size:.86rem;color:var(--dn-bone-dim);margin:0 auto 2rem;max-width:44ch;line-height:1.6;}
+
+  /* the square frame */
+  .mo-map-frame{
+    max-width:620px;margin:0 auto;
+    padding:12px;border-radius:20px;
+    border:1px solid rgba(248,199,96,.45);
+    background:rgba(248,199,96,.03);
+    box-shadow:0 40px 90px -55px rgba(0,0,0,.95), 0 0 40px -22px rgba(248,199,96,.4);
     position:relative;
-    max-width:520px;margin:0 auto;
-    padding:10px;
-    border-radius:18px;
-    border:1px solid rgba(248,199,96,.4);
-    background:rgba(248,199,96,.04);
-    box-shadow:0 30px 60px -34px rgba(0,0,0,.85), 0 0 30px -18px rgba(248,199,96,.25);
   }
-  .mg-map-frame iframe{
-    display:block;width:100%;aspect-ratio:1/1;height:auto;
-    border:0;border-radius:11px;
-    filter:grayscale(.2) contrast(1.02);
-  }
+  /* corner gold ticks */
+  .mo-corner{position:absolute;width:16px;height:16px;pointer-events:none;}
+  .mo-corner::before,.mo-corner::after{content:'';position:absolute;background:var(--dn-day);opacity:.8;}
+  .mo-corner::before{width:16px;height:1.5px;}
+  .mo-corner::after{width:1.5px;height:16px;}
+  .mo-corner.tl{top:-1px;left:-1px;}
+  .mo-corner.tr{top:-1px;right:-1px;}
+  .mo-corner.tr::before{right:0;} .mo-corner.tr::after{right:0;}
+  .mo-corner.bl{bottom:-1px;left:-1px;} .mo-corner.bl::before{bottom:0;} .mo-corner.bl::after{bottom:0;}
+  .mo-corner.br{bottom:-1px;right:-1px;} .mo-corner.br::before{bottom:0;right:0;} .mo-corner.br::after{bottom:0;right:0;}
 
-  .mg-foot{
-    margin-top:2.4rem;text-align:center;position:relative;z-index:2;
-    font-size:.74rem;color:var(--dn-bone-faint);line-height:1.55;
+  .mo-map-square{
+    position:relative;aspect-ratio:1/1;width:100%;
+    border-radius:12px;overflow:hidden;background:#0c0c11;
+    border:1px solid var(--dn-mist);
   }
+  .mo-map-square iframe{
+    position:absolute;inset:0;width:100%;height:100%;border:0;
+    filter:grayscale(.35) contrast(1.05) brightness(.92);
+  }
+  /* address plate below the map */
+  .mo-map-plate{
+    max-width:620px;margin:1.1rem auto 0;
+    display:flex;align-items:center;justify-content:center;gap:.7rem;flex-wrap:wrap;
+    font-size:.82rem;color:var(--dn-bone-dim);
+  }
+  .mo-map-plate b{color:var(--dn-bone);font-family:var(--font-display),'Fraunces',serif;font-weight:600;}
+  .mo-map-plate .sep{width:4px;height:4px;border-radius:50%;background:var(--dn-day);opacity:.7;}
 
-  @media (prefers-reduced-motion:reduce){
-    .mg-em-dot::before{animation:none;}
-  }
+  @media (prefers-reduced-motion:reduce){.mo-em-dot::before{animation:none;}}
 
   /* ---------- responsive ---------- */
-  @media (max-width:640px){
+  @media (max-width:900px){
+    .mo-body{grid-template-columns:1fr;}
+    .mo-rail{order:2;}
+  }
+  @media (max-width:560px){
     .rd-row{grid-template-columns:1fr;}
-    .mg-index{grid-template-columns:1fr;}
     .rd-submit{width:100%;justify-content:center;}
     .rd-submit-note{max-width:none;}
-    .mg-emergency{flex-direction:column;align-items:flex-start;}
-    .mg-em-tel{width:100%;justify-content:center;}
-  }
-  @media (max-width:380px){
-    .rd-select{padding-right:2rem;background-position:right .6rem center;}
+    .rd-select{padding-right:2rem;background-position:right .7rem center;}
+    .mo-map-frame{padding:8px;}
   }
 
   /* preview scroll override (keep LAST) */
@@ -369,36 +373,39 @@
 </head>
 <body>
 
-<div class="mg-wrap">
-  <div class="mg-glow day"></div>
-  <div class="mg-glow night"></div>
+<!-- ============ REAL SITE HEADER ============ -->
+<header class="dn-header"><div class="dn-header-inner"><a class="dn-header-logo" aria-label="Day Night Dental home" href="/"><img src="/logo-mark.webp?v=2" class="dn-header-mark" alt="Day Night Dental logo" width="160" height="139"><div class="dn-header-wordmark"><span class="day">Day</span><span class="night">Night</span><span class="dental">Dental</span></div></a><nav class="dn-header-nav" aria-label="Primary"><a href="/treatments/">Treatments</a><a href="/our-team/">Our Team</a><a href="/register-as-patient/">Register</a><a href="/#testimonials">Reviews</a><a href="/#contact">Contact</a></nav><div class="dn-header-cta"><a href="tel:+441415486548" class="dn-header-phone"><span class="dot"></span>0141 548 6548</a><a class="dn-btn primary dn-btn-emergency" href="/#contact"><span class="dn-btn-pulse"></span>Emergency Booking<span class="arrow">→</span></a></div><button type="button" class="dn-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></div></header>
 
-  <!-- ============ MONOGRAM CROWN ============ -->
-  <div class="mg-crest">
-    <div class="mg-monogram" aria-hidden="true">D<span class="n">N</span></div>
-    <span class="mg-eyebrow">Enquiries</span>
-    <h1 class="mg-title">Write to us, <em>day</em> or <span class="night">night</span>.</h1>
-    <p class="mg-lead">Send us a note and the front desk will be in touch. For anything urgent, please call our 24/7 line, we would rather hear your voice.</p>
-    <div class="mg-rule" aria-hidden="true"></div>
+<div class="mo-wrap">
+  <div class="mo-glow day"></div>
+  <div class="mo-glow night"></div>
+
+  <!-- ============ CENTRED CREST ============ -->
+  <div class="mo-crest">
+    <div class="mo-monogram" aria-hidden="true"><span><span class="d">D</span><span class="n">N</span></span></div>
+    <span class="mo-eyebrow">Merchant City, Glasgow</span>
+    <h1 class="mo-title">Ask us anything</h1>
+    <p class="mo-lead">A treatment you are weighing up, a check-up you keep meaning to book, or a question you are not sure who to ask. Send it over and a real person from the practice will reply, no obligation.</p>
+    <div class="mo-rule" aria-hidden="true"></div>
   </div>
 
-  <!-- ============ THE DESK: ENQUIRY FORM ============ -->
-  <div class="mg-desk">
-    <div class="mg-form-panel">
-      <div class="mg-panel-head">
-        <h2>Send an enquiry</h2>
-        <p>The essentials only. We fill in the rest when we reply.</p>
-      </div>
+  <!-- ============ BODY: FORM + INDEX RAIL ============ -->
+  <div class="mo-body">
+
+    <!-- ===== the enquiry form ===== -->
+    <div class="mo-form-card">
+      <h2 class="mo-form-title">Send an enquiry</h2>
+      <p class="mo-form-sub">The essentials are all we need to reply. Everything else, we cover on the call.</p>
 
       <form onsubmit="return false;">
         <div class="rd-row">
           <div class="rd-field">
             <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
-            <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
+            <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="First name" required>
           </div>
           <div class="rd-field">
             <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
-            <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
+            <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Last name" required>
           </div>
         </div>
 
@@ -439,89 +446,126 @@
 
         <div class="rd-row one">
           <div class="rd-field">
-            <label class="rd-label" for="message">Message <span class="rd-req">*</span></label>
-            <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="Tell us a little about what you need. A toothache, a whitening question, a second opinion, whatever is on your mind." required></textarea>
+            <label class="rd-label" for="message">Message <span class="rd-opt">optional</span></label>
+            <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="Tell us what is on your mind. A few words is plenty, and it helps us prepare before we reply."></textarea>
           </div>
         </div>
 
         <div class="rd-row one">
           <label class="rd-consent">
             <input type="checkbox" name="consent" required>
-            <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
+            <span>I'm happy for Day Night Dental to hold my details in line with the <a href="#" onclick="return false;">privacy policy</a>, and to reply to my enquiry.</span>
           </label>
         </div>
 
         <div class="rd-submit-row">
-          <p class="rd-submit-note"><strong>No obligation.</strong> An enquiry simply starts a conversation. Nothing is booked until you say so.</p>
-          <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">&#8594;</span></button>
+          <p class="rd-submit-note"><strong>No obligation.</strong> An enquiry is just a conversation, nothing is booked until you say so.</p>
+          <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
         </div>
       </form>
     </div>
+
+    <!-- ===== the index rail ===== -->
+    <aside class="mo-rail">
+
+      <!-- hours as a small-caps ledger -->
+      <div class="mo-panel">
+        <p class="mo-panel-label">Hours</p>
+        <ul class="mo-hours">
+          <li class="night">
+            <span class="mo-h-term">Emergency care</span>
+            <span class="mo-h-val"><b>Open 24 hours</b>, 7 days</span>
+          </li>
+          <li>
+            <span class="mo-h-term">Routine appointments</span>
+            <span class="mo-h-val">By appointment</span>
+          </li>
+          <li>
+            <span class="mo-h-term">NHS</span>
+            <span class="mo-h-val">Waiting list when available</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- NAP index -->
+      <div class="mo-panel">
+        <p class="mo-panel-label">Find us</p>
+        <ul class="mo-nap">
+          <li>
+            <span class="mo-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#f8c760" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <p class="mo-nap-k">Address</p>
+              <p class="mo-nap-v">Day Night Dental<br>80 Hutcheson St, Merchant City<br>Glasgow G1 1SH</p>
+            </div>
+          </li>
+          <li class="night">
+            <span class="mo-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#7DB5F0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>
+            </span>
+            <div>
+              <p class="mo-nap-k">Phone</p>
+              <a class="mo-nap-v" href="tel:+441415486548">0141 548 6548</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- emergency plate -->
+      <div class="mo-emergency">
+        <div class="mo-em-head">
+          <span class="mo-em-dot" aria-hidden="true"><span class="mo-em-dot-core"></span></span>
+          <span class="mo-em-eyebrow">24/7 emergency line</span>
+        </div>
+        <p class="mo-em-title">Toothache that cannot wait?</p>
+        <p class="mo-em-copy">If you are in real pain right now, skip the form. Call the practice and speak to someone straight away.</p>
+        <a class="mo-em-call" href="tel:+441415486548">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#08111d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>
+          Call 0141 548 6548
+        </a>
+      </div>
+
+    </aside>
   </div>
 
-  <!-- ============ EMERGENCY CTA ============ -->
-  <div class="mg-emergency">
-    <span class="mg-em-dot" aria-hidden="true"><span class="mg-em-core"></span></span>
-    <div class="mg-em-body">
-      <p class="mg-em-eyebrow">24/7 Emergency line</p>
-      <p>In pain right now? Do not wait, call our 24/7 line and we will help you straight away.</p>
-    </div>
-    <a class="mg-em-tel" href="tel:+441415486548">
-      <span aria-hidden="true">&#9742;</span> 0141 548 6548
-    </a>
-  </div>
+  <!-- ============ THE MAP: square gold-hairline framed card ============ -->
+  <div class="mo-map-wrap">
+    <span class="mo-map-eyebrow">80 Hutcheson Street</span>
+    <h2 class="mo-map-title">In the heart of Merchant City</h2>
+    <p class="mo-map-note">Two minutes from Glasgow Cross, with the subway and city car parks a short walk away.</p>
 
-  <!-- ============ THE INDEX: details + hours ============ -->
-  <div class="mg-index">
-    <div class="mg-panel">
-      <p class="mg-panel-title">Find us</p>
-      <p class="mg-nap-name">Day Night Dental</p>
-      <address class="mg-nap-addr">
-        80 Hutcheson St<br>
-        Merchant City<br>
-        Glasgow G1 1SH
-      </address>
-      <a class="mg-nap-tel" href="tel:+441415486548">
-        <span aria-hidden="true">&#9742;</span> 0141 548 6548
-      </a>
+    <div class="mo-map-frame">
+      <span class="mo-corner tl" aria-hidden="true"></span>
+      <span class="mo-corner tr" aria-hidden="true"></span>
+      <span class="mo-corner bl" aria-hidden="true"></span>
+      <span class="mo-corner br" aria-hidden="true"></span>
+      <div class="mo-map-square">
+        <iframe src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed" loading="lazy" title="Day Night Dental location, Glasgow"></iframe>
+      </div>
     </div>
 
-    <div class="mg-panel">
-      <p class="mg-panel-title">Hours</p>
-      <ul class="mg-hours">
-        <li class="em">
-          <dt>Emergency dental care</dt>
-          <dd>Open 24 hours, 7 days</dd>
-        </li>
-        <li>
-          <dt>Routine appointments</dt>
-          <dd>By appointment</dd>
-        </li>
-        <li>
-          <dt>NHS places</dt>
-          <dd>Waiting list when available</dd>
-        </li>
-      </ul>
+    <div class="mo-map-plate">
+      <b>Day Night Dental</b>
+      <span class="sep" aria-hidden="true"></span>
+      <span>80 Hutcheson St, Merchant City, Glasgow G1 1SH</span>
+      <span class="sep" aria-hidden="true"></span>
+      <a href="tel:+441415486548" style="color:var(--dn-night-soft);font-weight:600;">0141 548 6548</a>
     </div>
   </div>
 
-  <!-- ============ MAP: square framed card, gold hairline ============ -->
-  <div class="mg-map-section">
-    <span class="mg-map-eyebrow">On the map</span>
-    <div class="mg-map-frame">
-      <iframe
-        src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
-        loading="lazy"
-        title="Day Night Dental location, 80 Hutcheson Street, Glasgow"></iframe>
-    </div>
-  </div>
-
-  <p class="mg-foot">
-    Day Night Dental, 80 Hutcheson St, Merchant City, Glasgow G1 1SH.<br>
-    A GDC-regulated practice. We reply to enquiries as quickly as we can, and always sooner for anything urgent by phone.
-  </p>
 </div>
 
+<script>
+/* Replicate the live header scrolled behaviour. */
+(function(){
+  var h=document.querySelector('.dn-header');
+  if(!h)return;
+  function onScroll(){h.classList.toggle('scrolled',(window.scrollY||0)>8);}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 <script src="../register-forms/_dropdowns.js" defer></script>
 <script src="_nav-v2.js" defer></script>
 </body>

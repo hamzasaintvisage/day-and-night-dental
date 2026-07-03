@@ -4,22 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Enquiries · Two-Column Ledger · Day Night Dental</title>
+<title>Enquiries · Let us get you sorted · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
   /* ============================================================
      TWO-COLUMN LEDGER
-     Left column: the enquiry form (real 14-reception-native
-     desk styling). Right column: a stacked ledger of hours,
-     NAP, a night-accented emergency CTA, and the map as the
-     bottom card of the stack.
+     A practical enquiry desk. On the left, the form beneath a
+     confident headline. On the right, a stacked rail: hours,
+     the practice address, an emergency call plate, and the map.
+     Field markup + classes lifted verbatim from the real site
+     (14-reception-native) so the inputs are identical.
      ============================================================ */
 
   *{box-sizing:border-box;}
   body{
     margin:0;
     background:
-      radial-gradient(1100px 600px at 50% -8%, rgba(248,199,96,.05), transparent 60%),
+      radial-gradient(1100px 620px at 8% -6%, rgba(248,199,96,.06), transparent 58%),
+      radial-gradient(1000px 620px at 96% 104%, rgba(69,144,236,.07), transparent 58%),
       var(--dn-near-black,#0a0a0c);
     color:var(--dn-bone,#fff);
     font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
@@ -28,110 +30,123 @@
   }
   a{color:inherit;}
 
-  .tl-wrap{
-    max-width:1180px;
+  .lg-wrap{
+    max-width:1220px;
     margin:0 auto;
-    padding:clamp(4.5rem,8vw,6.5rem) clamp(1rem,4vw,2.5rem) 5rem;
+    padding:clamp(4.5rem,8vw,7rem) clamp(1rem,4vw,2.5rem) 5rem;
     position:relative;
   }
 
-  /* soft glows behind the layout */
-  .tl-glow{position:absolute;border-radius:50%;filter:blur(55px);pointer-events:none;z-index:0;}
-  .tl-glow.day{width:440px;height:440px;top:40px;left:-170px;background:rgba(248,199,96,.10);}
-  .tl-glow.night{width:480px;height:480px;bottom:120px;right:-190px;background:rgba(69,144,236,.10);}
-
-  /* ---------- section head ---------- */
-  .tl-head{position:relative;z-index:2;margin-bottom:2.75rem;max-width:640px;}
-  .tl-eyebrow{
+  /* ---------- page head ---------- */
+  .lg-head{max-width:640px;margin:0 0 2.75rem;}
+  .lg-eyebrow{
     display:inline-flex;align-items:center;gap:8px;
-    padding:6px 14px 6px 11px;border-radius:999px;
-    font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-day);background:rgba(255,255,255,.04);
+    padding:7px 15px 7px 12px;
+    border-radius:999px;
+    font-size:.62rem;font-weight:600;
+    letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-day);
+    background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.12);
     box-shadow:0 0 20px -6px color-mix(in srgb, currentColor 55%, transparent), inset 0 1px 0 rgba(255,255,255,.05);
   }
-  .tl-eyebrow::before{
+  .lg-eyebrow::before{
     content:'';width:6px;height:6px;flex:none;border-radius:50%;
-    background:currentColor;box-shadow:0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
+    background:currentColor;
+    box-shadow:0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
   }
-  .tl-title{
+  .lg-head h1{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(2.2rem,4.4vw,3.1rem);font-weight:700;line-height:1.08;
-    letter-spacing:-.02em;margin:1.5rem 0 0;color:var(--dn-bone);
+    font-size:clamp(2.4rem,5vw,3.6rem);
+    font-weight:600;line-height:1.04;letter-spacing:-.02em;
+    margin:1.3rem 0 0;color:var(--dn-bone);
   }
-  .tl-title em{font-style:italic;font-weight:700;color:var(--dn-day);-webkit-text-fill-color:var(--dn-day);}
-  .tl-title .night{font-style:italic;color:var(--dn-night);}
-  .tl-lead{font-size:1rem;color:var(--dn-bone-dim);line-height:1.6;margin:1.25rem 0 0;}
-
-  /* ---------- the two-column grid ---------- */
-  .tl-grid{
-    position:relative;z-index:2;
-    display:grid;grid-template-columns:1fr 400px;gap:1.5rem;align-items:start;
+  .lg-head p{
+    font-size:1.02rem;line-height:1.6;color:var(--dn-bone-dim);
+    margin:1.1rem 0 0;max-width:56ch;
   }
 
-  /* ===== left: the form surface ===== */
-  .tl-form-card{
+  /* ---------- the two-column layout ---------- */
+  .lg-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+    gap:clamp(1.25rem,2.6vw,2rem);
+    align-items:start;
+  }
+
+  /* ---------- the form panel (left) ---------- */
+  .lg-panel{
     position:relative;
-    padding:clamp(1.75rem,3.2vw,2.75rem);
-    border:1px solid var(--dn-mist);border-radius:18px;
-    background:linear-gradient(180deg, #101016, #0c0c11);
+    padding:clamp(1.75rem,3vw,2.6rem);
+    border:1px solid var(--dn-mist);
+    border-radius:18px;
+    background:linear-gradient(180deg,#101016,#0c0c11);
     box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
   }
-  .tl-form-card::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:18px 18px 0 0;
-    background:linear-gradient(90deg, transparent, var(--dn-day,#f8c760), transparent);opacity:.7;
+  .lg-panel::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--dn-day,#f8c760),transparent);
+    opacity:.6;
   }
-
-  /* group heads (same drawer pattern as the register desk) */
-  .rd-group{margin-bottom:1.9rem;}
-  .rd-group:last-of-type{margin-bottom:0;}
-  .rd-group-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.15rem;}
-  .rd-group-tab{
-    flex:none;font-family:var(--font-display),'Fraunces',serif;
-    font-size:.85rem;font-weight:600;width:30px;height:30px;border-radius:8px;
-    display:grid;place-items:center;color:var(--dn-day);
-    background:rgba(248,199,96,.07);border:1px solid rgba(248,199,96,.28);
+  .lg-panel-head{
+    display:flex;align-items:center;gap:.85rem;
+    margin-bottom:1.6rem;padding-bottom:1.4rem;
+    border-bottom:1px solid var(--dn-mist);
   }
-  .rd-group.care .rd-group-tab{color:var(--dn-night-soft);background:rgba(69,144,236,.07);border-color:rgba(69,144,236,.30);}
-  .rd-group-head h3{font-family:var(--font-display),'Fraunces',serif;font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;}
-  .rd-group-head .rd-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
+  .lg-panel-tab{
+    flex:none;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1rem;font-weight:600;
+    width:34px;height:34px;border-radius:9px;
+    display:grid;place-items:center;
+    color:var(--dn-day);
+    background:rgba(248,199,96,.07);
+    border:1px solid rgba(248,199,96,.28);
+  }
+  .lg-panel-head h2{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.15rem;font-weight:600;margin:0;letter-spacing:-.01em;
+  }
+  .lg-panel-head .sub{font-size:.76rem;color:var(--dn-bone-faint);margin-top:.15rem;}
 
+  /* fields (rd-* classes match the real site exactly) */
   .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
   .rd-row.one{grid-template-columns:1fr;}
-  .rd-row:last-child{margin-bottom:0;}
-
   .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
   .rd-label{
     font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--dn-bone-dim);font-weight:600;display:flex;align-items:center;gap:.35rem;
+    color:var(--dn-bone-dim);font-weight:600;
+    display:flex;align-items:center;gap:.35rem;
   }
   .rd-req{color:var(--dn-day);}
   .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
-
   .rd-input,.rd-select,.rd-textarea{
-    width:100%;padding:.82rem .95rem;background:#0c0c11;
-    border:1px solid var(--dn-mist);border-radius:11px;color:var(--dn-bone);
+    width:100%;padding:.82rem .95rem;
+    background:#0c0c11;border:1px solid var(--dn-mist);border-radius:11px;
+    color:var(--dn-bone);
     font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1rem;
     transition:border-color .25s, box-shadow .25s, background .25s;
   }
   .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
   .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
-    outline:none;border-color:var(--dn-day);background:#101015;box-shadow:0 0 0 3px rgba(248,199,96,.14);
+    outline:none;border-color:var(--dn-day);background:#101015;
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
   }
-  .rd-textarea{resize:vertical;min-height:110px;line-height:1.5;}
-
+  .rd-textarea{resize:vertical;min-height:120px;line-height:1.5;}
   .rd-select{
     appearance:none;-webkit-appearance:none;-moz-appearance:none;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat:no-repeat;background-position:right .95rem center;padding-right:2.4rem;cursor:pointer;
+    background-repeat:no-repeat;background-position:right .95rem center;
+    padding-right:2.4rem;cursor:pointer;
   }
   .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
   .rd-select option{background:#101015;color:var(--dn-bone);}
 
   /* consent */
   .rd-consent{
-    display:flex;align-items:flex-start;gap:.8rem;padding:1rem 1.1rem;
-    background:#0c0c11;border:1px solid var(--dn-mist);border-radius:12px;cursor:pointer;margin-top:.3rem;
+    display:flex;align-items:flex-start;gap:.8rem;
+    padding:1rem 1.1rem;background:#0c0c11;
+    border:1px solid var(--dn-mist);border-radius:12px;cursor:pointer;margin-top:.3rem;
   }
   .rd-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--dn-day);cursor:pointer;}
   .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
@@ -140,15 +155,16 @@
   /* submit */
   .rd-submit-row{
     display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-    margin-top:1.9rem;padding-top:1.6rem;border-top:1px solid var(--dn-mist);
+    margin-top:1.7rem;padding-top:1.5rem;border-top:1px solid var(--dn-mist);
   }
-  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:250px;line-height:1.45;}
+  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:260px;line-height:1.45;}
   .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
   .rd-submit{
     display:inline-flex;align-items:center;gap:.6rem;
     font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:.95rem;font-weight:600;letter-spacing:.01em;padding:.95rem 1.7rem;
-    color:#0a0a0c;background:var(--dn-day);border:1px solid var(--dn-day);border-radius:12px;cursor:pointer;
+    font-size:.95rem;font-weight:600;letter-spacing:.01em;
+    padding:.95rem 1.7rem;color:#0a0a0c;
+    background:var(--dn-day);border:1px solid var(--dn-day);border-radius:12px;cursor:pointer;
     transition:transform .15s, box-shadow .25s, background .25s;
     box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
   }
@@ -157,148 +173,156 @@
   .rd-submit:hover .arrow{transform:translateX(4px);}
 
   /* ============================================================
-     RIGHT: the stacked ledger column
+     RIGHT RAIL: hours, NAP, emergency, map
      ============================================================ */
-  .tl-ledger{display:flex;flex-direction:column;gap:1.25rem;}
+  .lg-rail{display:flex;flex-direction:column;gap:clamp(1.25rem,2.4vw,1.6rem);}
 
-  /* generic ledger card: hairline border, flat near-black, gold top hairline */
-  .tl-card{
+  .lg-card{
     position:relative;
-    padding:1.5rem 1.5rem 1.6rem;
-    border-radius:16px;
+    padding:clamp(1.3rem,2.4vw,1.7rem);
+    border:1px solid var(--dn-mist);border-radius:16px;
     background:var(--dn-charcoal,#14141a);
-    border:1px solid var(--dn-mist,rgba(255,255,255,.1));
-    box-shadow:0 16px 34px -22px rgba(0,0,0,.7);
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    overflow:hidden;
   }
-  .tl-card::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;border-radius:16px 16px 0 0;
-    background:var(--dn-day,#f8c760);opacity:.7;
+  .lg-card-eyebrow{
+    font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-bone-faint);margin:0 0 1rem;
+    display:flex;align-items:center;gap:.5rem;
   }
-  .tl-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(248,199,96,.32);
-    box-shadow:0 22px 44px -22px rgba(0,0,0,.8), 0 0 26px -14px rgba(248,199,96,.4);
+  .lg-card-eyebrow::before{
+    content:'';width:6px;height:6px;border-radius:50%;flex:none;
+    background:var(--dn-day);box-shadow:0 0 8px 1px rgba(248,199,96,.6);
   }
-  /* the night-accented card flips the single-colour side to blue */
-  .tl-card.night::before{background:var(--dn-night,#4590ec);}
-  .tl-card.night:hover{
-    border-color:rgba(69,144,236,.4);
-    box-shadow:0 22px 44px -22px rgba(0,0,0,.8), 0 0 26px -14px rgba(69,144,236,.45);
-  }
+  .lg-card.night .lg-card-eyebrow::before{background:var(--dn-night);box-shadow:0 0 8px 1px rgba(69,144,236,.6);}
 
-  .tl-card-eyebrow{
-    display:inline-block;font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-day);margin:0 0 .9rem;
-  }
-  .tl-card.night .tl-card-eyebrow{color:var(--dn-night-soft);}
-  .tl-card h3{
-    font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin:0 0 1rem;color:var(--dn-bone);
-  }
-
-  /* hours rows */
-  .tl-hours{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;}
-  .tl-hours li{
+  /* hours as a small ledger */
+  .lg-hours{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;}
+  .lg-hours li{
     display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-    padding:.85rem 0;border-top:1px solid var(--dn-mist);
+    padding:.85rem 0;border-bottom:1px solid var(--dn-mist);
   }
-  .tl-hours li:first-child{border-top:none;padding-top:0;}
-  .tl-hours li:last-child{padding-bottom:0;}
-  .tl-hours .tl-hours-k{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.4;max-width:60%;}
-  .tl-hours .tl-hours-v{
-    font-family:var(--font-display),'Fraunces',serif;font-size:.95rem;font-weight:600;
-    color:var(--dn-bone);text-align:right;line-height:1.3;white-space:nowrap;
+  .lg-hours li:first-child{padding-top:0;}
+  .lg-hours li:last-child{border-bottom:none;padding-bottom:0;}
+  .lg-hours .k{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.98rem;font-weight:600;color:var(--dn-bone);
   }
-  .tl-hours .tl-hours-v.on{color:var(--dn-night-soft);}
+  .lg-hours .v{font-size:.82rem;color:var(--dn-bone-dim);text-align:right;line-height:1.4;}
+  .lg-hours .v.open{
+    display:inline-flex;align-items:center;gap:.45rem;
+    color:var(--dn-night-soft);font-weight:600;
+  }
+  .lg-hours .v.open::before{
+    content:'';width:8px;height:8px;border-radius:50%;flex:none;
+    background:var(--dn-night);box-shadow:0 0 0 4px rgba(69,144,236,.16);
+    animation:lg-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes lg-pulse{0%,100%{box-shadow:0 0 0 4px rgba(69,144,236,.16);}50%{box-shadow:0 0 0 7px rgba(69,144,236,.04);}}
 
   /* NAP */
-  .tl-nap{font-size:.92rem;line-height:1.65;color:var(--dn-bone-dim);margin:0;}
-  .tl-nap strong{display:block;font-family:var(--font-display),'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--dn-bone);margin-bottom:.4rem;}
-  .tl-nap-tel{
-    display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;
-    font-family:var(--font-display),'Fraunces',serif;font-size:1.05rem;font-weight:600;
-    color:var(--dn-day);text-decoration:none;
-    border-bottom:1px solid rgba(248,199,96,.35);padding-bottom:2px;
+  .lg-nap{display:flex;flex-direction:column;gap:1rem;}
+  .lg-nap .name{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.25rem;font-weight:600;letter-spacing:-.01em;color:var(--dn-bone);margin:0;
   }
-  .tl-nap-tel:hover{color:var(--dn-day-soft);border-bottom-color:rgba(248,199,96,.6);}
+  .lg-nap-row{display:flex;align-items:flex-start;gap:.85rem;}
+  .lg-nap-ic{
+    flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    border:1px solid rgba(248,199,96,.24);background:rgba(248,199,96,.06);
+  }
+  .lg-nap-ic svg{width:16px;height:16px;stroke:var(--dn-day);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .lg-nap-row.tel .lg-nap-ic{border-color:rgba(69,144,236,.28);background:rgba(69,144,236,.07);}
+  .lg-nap-row.tel .lg-nap-ic svg{stroke:var(--dn-night-soft);}
+  .lg-nap-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin-bottom:.25rem;}
+  .lg-nap-val{font-size:.92rem;color:var(--dn-bone-dim);line-height:1.5;}
+  a.lg-nap-tel{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.12rem;font-weight:600;color:var(--dn-night-soft);
+    text-decoration:none;border-bottom:1px solid rgba(125,181,240,.3);
+    transition:color .2s, border-color .2s;
+  }
+  a.lg-nap-tel:hover{color:#a6cdf6;border-bottom-color:rgba(166,205,246,.6);}
 
-  /* emergency CTA card (night accented, prominent) */
-  .tl-emergency{
-    position:relative;padding:1.6rem 1.5rem 1.7rem;border-radius:16px;overflow:hidden;
+  /* emergency plate (night accented, phone first) */
+  .lg-emergency{
+    position:relative;
+    padding:clamp(1.4rem,2.4vw,1.8rem);
+    border:1px solid rgba(69,144,236,.42);border-radius:16px;
     background:
-      radial-gradient(120% 80% at 90% 0%, rgba(69,144,236,.12), transparent 60%),
-      var(--dn-charcoal,#14141a);
-    border:1px solid rgba(69,144,236,.42);
-    box-shadow:0 18px 40px -22px rgba(0,0,0,.8), 0 0 34px -18px rgba(69,144,236,.35);
-    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      radial-gradient(120% 90% at 100% 0%, rgba(69,144,236,.09), transparent 60%),
+      #0c0e14;
+    overflow:hidden;
   }
-  .tl-emergency:hover{
-    transform:translateY(-4px);border-color:rgba(69,144,236,.6);
-    box-shadow:0 24px 48px -22px rgba(0,0,0,.85), 0 0 40px -16px rgba(69,144,236,.5);
+  .lg-emergency::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--dn-night,#4590ec),transparent);
+    opacity:.8;
   }
-  .tl-emergency::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:16px 16px 0 0;
-    background:linear-gradient(90deg, transparent, var(--dn-night,#4590ec), transparent);opacity:.85;
+  .lg-em-eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);margin:0 0 .7rem;
   }
-  .tl-em-eyebrow{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 .8rem;}
-  .tl-em-eyebrow span{font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-night-soft);}
-  .tl-dot{position:relative;width:11px;height:11px;flex:none;border-radius:50%;background:rgba(69,144,236,.22);}
-  .tl-dot::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:rgba(69,144,236,.45);animation:tl-pulse 2s ease-out infinite;}
-  .tl-dot-core{position:absolute;inset:2px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);box-shadow:0 0 6px 1px rgba(69,144,236,.7);}
-  @keyframes tl-pulse{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
-  .tl-emergency h3{font-family:var(--font-display),'Fraunces',serif;font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 .6rem;color:var(--dn-bone);}
-  .tl-emergency h3 em{font-style:italic;color:var(--dn-night-soft);}
-  .tl-emergency p{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.55;margin:0 0 1.15rem;}
-  .tl-call-btn{
-    display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;
-    font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:.01em;
-    padding:1rem 1.4rem;color:#fff;background:var(--dn-night,#4590ec);
-    border:1px solid var(--dn-night);border-radius:12px;text-decoration:none;
+  .lg-em-dot{position:relative;width:11px;height:11px;flex:none;border-radius:50%;background:rgba(69,144,236,.22);}
+  .lg-em-dot::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:rgba(69,144,236,.4);animation:lg-em-pulse 2s ease-out infinite;}
+  .lg-em-core{position:absolute;inset:2px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);box-shadow:0 0 6px 1px rgba(69,144,236,.7);}
+  @keyframes lg-em-pulse{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
+  .lg-emergency h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.3rem;font-weight:600;line-height:1.15;letter-spacing:-.01em;
+    margin:0 0 .5rem;color:var(--dn-bone);
+  }
+  .lg-emergency p{font-size:.82rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 1.15rem;}
+  .lg-em-call{
+    display:flex;align-items:center;justify-content:center;gap:.6rem;
+    width:100%;padding:.95rem 1.3rem;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1.05rem;font-weight:600;letter-spacing:.01em;
+    color:#0a0a0c;background:var(--dn-night);border:1px solid var(--dn-night);border-radius:12px;
+    text-decoration:none;
+    box-shadow:0 14px 34px -16px rgba(69,144,236,.6);
     transition:transform .15s, box-shadow .25s, background .25s;
-    box-shadow:0 14px 34px -16px rgba(69,144,236,.7);
   }
-  .tl-call-btn:hover{transform:translateY(-1px);background:#5a9df0;box-shadow:0 18px 42px -16px rgba(69,144,236,.9);}
-  .tl-call-btn .tl-phone-ico{width:17px;height:17px;flex:none;}
+  .lg-em-call svg{width:17px;height:17px;stroke:#0a0a0c;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+  .lg-em-call:hover{transform:translateY(-1px);background:var(--dn-night-soft);box-shadow:0 18px 40px -16px rgba(69,144,236,.75);}
 
-  /* map card (bottom of the stack) */
-  .tl-map-card{
-    position:relative;border-radius:16px;overflow:hidden;
-    border:1px solid var(--dn-mist);
-    background:var(--dn-charcoal,#14141a);
-    box-shadow:0 16px 34px -22px rgba(0,0,0,.7);
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  /* map */
+  .lg-map-card{padding:0;overflow:hidden;border-radius:16px;border:1px solid var(--dn-mist);background:var(--dn-charcoal,#14141a);}
+  .lg-map-head{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1.15rem 1.3rem;border-bottom:1px solid var(--dn-mist);
   }
-  .tl-map-card::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:1px;z-index:2;
-    background:var(--dn-day,#f8c760);opacity:.7;
+  .lg-map-head .t{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1rem;font-weight:600;color:var(--dn-bone);
   }
-  .tl-map-card:hover{
-    transform:translateY(-4px);border-color:rgba(248,199,96,.32);
-    box-shadow:0 22px 44px -22px rgba(0,0,0,.8), 0 0 26px -14px rgba(248,199,96,.4);
+  .lg-map-head .t small{display:block;font-family:var(--font-body);font-size:.72rem;font-weight:400;color:var(--dn-bone-faint);margin-top:.15rem;}
+  .lg-map-head .dir{
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+    color:var(--dn-day);white-space:nowrap;
+    border-bottom:1px solid rgba(248,199,96,.3);padding-bottom:2px;
   }
-  .tl-map-head{padding:1.1rem 1.5rem;border-bottom:1px solid var(--dn-mist);}
-  .tl-map-head .tl-card-eyebrow{margin:0 0 .35rem;}
-  .tl-map-head p{margin:0;font-size:.82rem;color:var(--dn-bone-dim);line-height:1.45;}
-  .tl-map-frame{position:relative;line-height:0;background:#0c0c11;}
-  .tl-map-frame iframe{width:100%;height:260px;border:0;display:block;filter:grayscale(.25) contrast(1.05) brightness(.9);}
+  .lg-map-frame{position:relative;line-height:0;}
+  .lg-map-frame iframe{
+    width:100%;height:300px;border:0;display:block;
+    filter:grayscale(.35) contrast(1.05) brightness(.92);
+  }
+  .lg-map-frame::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 60px 12px rgba(10,10,12,.55);
+  }
 
   /* ---------- responsive ---------- */
-  @media (max-width:980px){
-    .tl-grid{grid-template-columns:1fr;}
-    .tl-ledger{order:2;}
+  @media (max-width:960px){
+    .lg-grid{grid-template-columns:1fr;}
+    .lg-rail{order:2;}
   }
-  @media (max-width:620px){
+  @media (max-width:560px){
     .rd-row{grid-template-columns:1fr;}
+    .rd-submit-row{flex-direction:column;align-items:stretch;}
     .rd-submit{width:100%;justify-content:center;}
     .rd-submit-note{max-width:none;}
-    .tl-hours .tl-hours-k{max-width:55%;}
-  }
-  @media (max-width:380px){
     .rd-select{padding-right:2rem;background-position:right .6rem center;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .tl-dot::before{animation:none;}
   }
 
   /* preview scroll override (keep LAST) */
@@ -306,178 +330,170 @@
 </style>
 </head>
 <body>
-<div style="position:fixed;top:60px;left:12px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Two-Column Ledger</div>
 
-<div class="tl-wrap">
-  <div class="tl-glow day"></div>
-  <div class="tl-glow night"></div>
+<div class="lg-wrap">
 
-  <!-- ============ SECTION HEAD ============ -->
-  <div class="tl-head">
-    <span class="tl-eyebrow">Enquiries</span>
-    <h1 class="tl-title">Reach us, <em>day</em> or <span class="night">night</span>.</h1>
-    <p class="tl-lead">Send us a note and we will come back to you promptly. For anything urgent, the fastest route is always the phone. Our 24/7 line is answered around the clock, every day of the year.</p>
+  <!-- ============ PAGE HEAD ============ -->
+  <div class="lg-head">
+    <span class="lg-eyebrow">Enquiries</span>
+    <h1>Let us get you sorted</h1>
+    <p>Tell us a little about what you need and the best way to reach you. A member of the practice team in Merchant City reads every enquiry and replies personally, usually within one working hour.</p>
   </div>
 
   <!-- ============ TWO-COLUMN GRID ============ -->
-  <div class="tl-grid">
+  <div class="lg-grid">
 
     <!-- ===== LEFT: the enquiry form ===== -->
-    <div class="tl-form-card">
-      <form onsubmit="return false;">
+    <div class="lg-panel">
+      <div class="lg-panel-head">
+        <span class="lg-panel-tab">✎</span>
+        <div>
+          <h2>Send us an enquiry</h2>
+          <div class="sub">A few essentials, and whatever is on your mind.</div>
+        </div>
+      </div>
 
-        <!-- GROUP 1: your details -->
-        <section class="rd-group">
-          <div class="rd-group-head">
-            <span class="rd-group-tab">1</span>
-            <div>
-              <h3>Your details</h3>
-              <div class="rd-group-sub">Who you are, and how we should reach you back.</div>
-            </div>
+      <form onsubmit="return false;" novalidate>
+
+        <div class="rd-row">
+          <div class="rd-field">
+            <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
+            <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
           </div>
-
-          <div class="rd-row">
-            <div class="rd-field">
-              <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
-              <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
-            </div>
-            <div class="rd-field">
-              <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
-              <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
-            </div>
+          <div class="rd-field">
+            <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
+            <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
           </div>
+        </div>
 
-          <div class="rd-row">
-            <div class="rd-field">
-              <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
-              <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
-            </div>
-            <div class="rd-field">
-              <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
-              <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
-            </div>
+        <div class="rd-row">
+          <div class="rd-field">
+            <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
+            <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
           </div>
-
-          <div class="rd-row one">
-            <div class="rd-field">
-              <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
-              <select class="rd-select" id="contactTime" name="contactTime">
-                <option value="" selected>No preference</option>
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
-            </div>
+          <div class="rd-field">
+            <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
+            <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
           </div>
-        </section>
+        </div>
 
-        <!-- GROUP 2: your enquiry -->
-        <section class="rd-group care">
-          <div class="rd-group-head">
-            <span class="rd-group-tab">2</span>
-            <div>
-              <h3>Your enquiry</h3>
-              <div class="rd-group-sub">Tell us what you need, and we will take it from there.</div>
-            </div>
+        <div class="rd-row">
+          <div class="rd-field">
+            <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
+            <select class="rd-select" id="contactTime" name="contactTime">
+              <option value="" selected disabled>No preference</option>
+              <option>No preference</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
           </div>
-
-          <div class="rd-row one">
-            <div class="rd-field">
-              <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
-              <select class="rd-select" id="topic" name="topic" required>
-                <option value="" selected disabled>Please choose</option>
-                <option>Request an appointment</option>
-                <option>Cosmetic consultation</option>
-                <option>Routine check-up or hygiene</option>
-                <option>A question about a treatment</option>
-                <option>General enquiry</option>
-                <option>Something else</option>
-              </select>
-            </div>
+          <div class="rd-field">
+            <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
+            <select class="rd-select" id="topic" name="topic" required>
+              <option value="" selected disabled>Please choose</option>
+              <option>Request an appointment</option>
+              <option>Cosmetic consultation</option>
+              <option>Routine check-up or hygiene</option>
+              <option>A question about a treatment</option>
+              <option>General enquiry</option>
+              <option>Something else</option>
+            </select>
           </div>
+        </div>
 
-          <div class="rd-row one">
-            <div class="rd-field">
-              <label class="rd-label" for="message">Message <span class="rd-opt">optional</span></label>
-              <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="A short note about what you need. For example, a new patient check-up, whitening, a chipped tooth, or a question about implants. The more you tell us, the better we can help."></textarea>
-            </div>
+        <div class="rd-row one">
+          <div class="rd-field">
+            <label class="rd-label" for="message">Message <span class="rd-req">*</span></label>
+            <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="A sentence or two on what you need. For example, a chipped front tooth you would like looked at, whitening before a wedding, or a check-up for the family." required></textarea>
           </div>
+        </div>
 
-          <div class="rd-row one">
-            <label class="rd-consent">
-              <input type="checkbox" name="consent" required>
-              <span>I am happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
-            </label>
-          </div>
-        </section>
+        <div class="rd-row one">
+          <label class="rd-consent">
+            <input type="checkbox" name="consent" required>
+            <span>I am happy for Day Night Dental to hold my details in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
+          </label>
+        </div>
 
-        <!-- submit -->
         <div class="rd-submit-row">
-          <p class="rd-submit-note"><strong>Not urgent?</strong> This form is the right place. For anything urgent, please call our 24/7 line.</p>
-          <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">&rarr;</span></button>
+          <p class="rd-submit-note"><strong>No obligation.</strong> An enquiry simply starts the conversation. Nothing is booked until you say so.</p>
+          <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
         </div>
 
       </form>
     </div>
 
-    <!-- ===== RIGHT: the stacked ledger ===== -->
-    <aside class="tl-ledger">
+    <!-- ===== RIGHT: the stacked rail ===== -->
+    <aside class="lg-rail">
 
       <!-- hours -->
-      <div class="tl-card night">
-        <span class="tl-card-eyebrow">Opening hours</span>
-        <h3>When we are here</h3>
-        <ul class="tl-hours">
+      <div class="lg-card night">
+        <p class="lg-card-eyebrow">Opening hours</p>
+        <ul class="lg-hours">
           <li>
-            <span class="tl-hours-k">Emergency dental care</span>
-            <span class="tl-hours-v on">Open 24 hours, 7 days</span>
+            <span class="k">Emergency care</span>
+            <span class="v open">Open 24 hours, 7 days</span>
           </li>
           <li>
-            <span class="tl-hours-k">Routine appointments</span>
-            <span class="tl-hours-v">By appointment</span>
+            <span class="k">Routine appointments</span>
+            <span class="v">By appointment</span>
           </li>
           <li>
-            <span class="tl-hours-k">NHS places</span>
-            <span class="tl-hours-v">Waiting list when available</span>
+            <span class="k">NHS</span>
+            <span class="v">Waiting list when available</span>
           </li>
         </ul>
       </div>
 
       <!-- NAP -->
-      <div class="tl-card">
-        <span class="tl-card-eyebrow">Find us</span>
-        <h3>Where we are</h3>
-        <p class="tl-nap">
-          <strong>Day Night Dental</strong>
-          80 Hutcheson St,<br>
-          Merchant City,<br>
-          Glasgow G1 1SH
-        </p>
-        <a class="tl-nap-tel" href="tel:+441415486548">0141 548 6548</a>
+      <div class="lg-card">
+        <p class="lg-card-eyebrow">Find us</p>
+        <div class="lg-nap">
+          <p class="name">Day Night Dental</p>
+          <div class="lg-nap-row">
+            <span class="lg-nap-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            </span>
+            <div>
+              <div class="lg-nap-label">Address</div>
+              <div class="lg-nap-val">80 Hutcheson Street, Merchant City,<br>Glasgow G1 1SH</div>
+            </div>
+          </div>
+          <div class="lg-nap-row tel">
+            <span class="lg-nap-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"/></svg>
+            </span>
+            <div>
+              <div class="lg-nap-label">Phone</div>
+              <a class="lg-nap-tel" href="tel:+441415486548">0141 548 6548</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- emergency CTA -->
-      <div class="tl-emergency">
-        <div class="tl-em-eyebrow">
-          <span class="tl-dot" aria-hidden="true"><span class="tl-dot-core"></span></span>
-          <span>24/7 Emergency line</span>
-        </div>
-        <h3>In pain <em>right now?</em></h3>
-        <p>Do not wait, and do not fill in a form. Call our 24/7 line and we will get you seen. We are here around the clock, every day of the year.</p>
-        <a class="tl-call-btn" href="tel:+441415486548">
-          <svg class="tl-phone-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <!-- emergency call -->
+      <div class="lg-emergency">
+        <p class="lg-em-eyebrow"><span class="lg-em-dot" aria-hidden="true"><span class="lg-em-core"></span></span>24/7 Emergency line</p>
+        <h3>Toothache that cannot wait? Call us.</h3>
+        <p>Severe pain, a knocked-out tooth, swelling or a broken restoration. Skip the form and speak to us straight away.</p>
+        <a class="lg-em-call" href="tel:+441415486548">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"/></svg>
           Call 0141 548 6548
         </a>
       </div>
 
-      <!-- map (bottom of the stack) -->
-      <div class="tl-map-card">
-        <div class="tl-map-head">
-          <span class="tl-card-eyebrow">On the map</span>
-          <p>80 Hutcheson Street, in the heart of Merchant City, Glasgow.</p>
+      <!-- map -->
+      <div class="lg-map-card">
+        <div class="lg-map-head">
+          <div class="t">On Hutcheson Street<small>A short walk from Glasgow Cross</small></div>
+          <a class="dir" href="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH" target="_blank" rel="noopener">Directions</a>
         </div>
-        <div class="tl-map-frame">
-          <iframe src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed" loading="lazy" title="Day Night Dental location, 80 Hutcheson Street, Glasgow"></iframe>
+        <div class="lg-map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+            loading="lazy"
+            title="Day Night Dental location, Glasgow"></iframe>
         </div>
       </div>
 

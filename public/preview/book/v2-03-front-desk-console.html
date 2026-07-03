@@ -4,22 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Enquiries · Front Desk Console · Day Night Dental</title>
+<title>Enquiries · Reach the front desk · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
   /* ============================================================
-     FRONT DESK CONSOLE
-     A reception check-in console: the enquiry form is a front-desk
-     card with a nameplate header. Beside it, a framed "find us"
-     map card sits above an hours ledger. Real site form classes
-     (rd-*) copied from 14-reception-native.
+     V2-03 · FRONT DESK CONSOLE
+     A reception desk console: an engraved nameplate header, the
+     enquiry form as a check-in card, and a slim side console with
+     a framed map and an hours ledger. Form fields reuse the real
+     site's rd-* classes from register-forms/_styles.css so they
+     look identical to the live register form.
      ============================================================ */
 
   *{box-sizing:border-box;}
   body{
     margin:0;
     background:
-      radial-gradient(1100px 600px at 50% -8%, rgba(248,199,96,.05), transparent 60%),
+      radial-gradient(1100px 620px at 78% -6%, rgba(69,144,236,.06), transparent 60%),
+      radial-gradient(900px 520px at 8% 8%, rgba(248,199,96,.05), transparent 62%),
       var(--dn-near-black,#0a0a0c);
     color:var(--dn-bone,#fff);
     font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
@@ -28,275 +30,240 @@
   }
   a{color:inherit;}
 
-  .fc-wrap{
+  .fd-wrap{
     max-width:1200px;
     margin:0 auto;
-    padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,2.5rem) 5rem;
+    padding:clamp(4.5rem,7vw,6.5rem) clamp(1rem,4vw,2.5rem) 5rem;
     position:relative;
   }
+  .fd-glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
+  .fd-glow.day{width:420px;height:420px;top:40px;left:-170px;background:rgba(248,199,96,.09);}
+  .fd-glow.night{width:500px;height:500px;bottom:60px;right:-200px;background:rgba(69,144,236,.10);}
 
-  /* soft glows */
-  .fc-glow{position:absolute;border-radius:50%;filter:blur(55px);pointer-events:none;z-index:0;}
-  .fc-glow.day{width:440px;height:440px;top:20px;left:-170px;background:rgba(248,199,96,.10);}
-  .fc-glow.night{width:480px;height:480px;bottom:140px;right:-190px;background:rgba(69,144,236,.10);}
-
-  /* ---------- section head ---------- */
-  .fc-head{position:relative;z-index:2;margin-bottom:2.5rem;max-width:720px;}
-  .fc-eyebrow{
+  /* ---------- NAMEPLATE HEADER ---------- */
+  .fd-nameplate{
+    position:relative;z-index:2;
+    display:flex;align-items:flex-end;justify-content:space-between;
+    flex-wrap:wrap;gap:1.5rem;
+    margin-bottom:2.4rem;
+    padding-bottom:1.9rem;
+    border-bottom:1px solid var(--dn-mist);
+  }
+  .fd-eyebrow{
     display:inline-flex;align-items:center;gap:8px;
     padding:6px 14px 6px 11px;border-radius:999px;
     font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--dn-day);background:rgba(255,255,255,.04);
+    color:var(--dn-day);
+    background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 0 20px -6px color-mix(in srgb, currentColor 55%, transparent), inset 0 1px 0 rgba(255,255,255,.05);
+    box-shadow:0 0 20px -6px rgba(248,199,96,.5), inset 0 1px 0 rgba(255,255,255,.05);
   }
-  .fc-eyebrow::before{
-    content:'';width:6px;height:6px;flex:none;border-radius:50%;background:currentColor;
-    box-shadow:0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
+  .fd-eyebrow::before{
+    content:'';width:6px;height:6px;flex:none;border-radius:50%;
+    background:currentColor;box-shadow:0 0 8px 1px rgba(248,199,96,.7);
   }
-  .fc-title{
+  .fd-title{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:clamp(2.2rem,4.4vw,3.1rem);font-weight:600;line-height:1.06;
-    letter-spacing:-.02em;margin:1.4rem 0 .9rem;
+    font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;line-height:1.02;
+    letter-spacing:-.02em;margin:1.1rem 0 0;color:var(--dn-bone);
   }
-  .fc-title em{font-style:italic;color:var(--dn-day);}
-  .fc-title .night{font-style:italic;color:var(--dn-night);}
-  .fc-lead{font-size:1.02rem;color:var(--dn-bone-dim);line-height:1.6;margin:0;}
+  .fd-lead{
+    font-size:1rem;color:var(--dn-bone-dim);line-height:1.55;
+    margin:.9rem 0 0;max-width:42ch;
+  }
+  /* the engraved "desk" tag on the right of the plate */
+  .fd-plate-tag{
+    flex:none;
+    display:flex;flex-direction:column;gap:.35rem;
+    padding:.95rem 1.2rem;
+    border:1px solid var(--dn-mist);border-radius:14px;
+    background:rgba(255,255,255,.02);
+    min-width:190px;
+  }
+  .fd-plate-tag .k{
+    font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;
+  }
+  .fd-plate-tag .v{
+    font-family:var(--font-display),'Fraunces',serif;font-size:1.02rem;font-weight:600;color:var(--dn-bone);
+  }
+  .fd-plate-tag .status{display:inline-flex;align-items:center;gap:.5rem;color:var(--dn-night-soft);}
+  .fd-live-dot{
+    width:8px;height:8px;border-radius:50%;flex:none;
+    background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);
+    box-shadow:0 0 0 4px rgba(69,144,236,.16);
+    animation:fd-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes fd-pulse{0%,100%{box-shadow:0 0 0 4px rgba(69,144,236,.16);}50%{box-shadow:0 0 0 7px rgba(69,144,236,.04);}}
 
-  /* ---------- layout ---------- */
-  .fc-console{
+  /* ---------- THE CONSOLE GRID ---------- */
+  .fd-console{
     position:relative;z-index:2;
-    display:grid;grid-template-columns:1.55fr 1fr;gap:1.5rem;align-items:start;
+    display:grid;
+    grid-template-columns:1fr 360px;
+    gap:1.4rem;
+    align-items:start;
   }
 
-  /* ---------- the desk card (form) ---------- */
-  .fc-desk{
+  /* ===== the check-in card (left) ===== */
+  .fd-checkin{
+    position:relative;
     border:1px solid var(--dn-mist);
     border-radius:18px;
     background:linear-gradient(180deg,#101016,#0c0c11);
     overflow:hidden;
     box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
   }
-  /* nameplate header */
-  .fc-nameplate{
-    display:flex;align-items:center;gap:1rem;
-    padding:1.4rem clamp(1.5rem,3vw,2.4rem);
-    border-bottom:1px solid var(--dn-mist);
-    background:
-      radial-gradient(120% 120% at 0% 0%, rgba(248,199,96,.06), transparent 60%);
-    position:relative;
-  }
-  .fc-nameplate::before{
+  .fd-checkin::before{
     content:'';position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,transparent,var(--dn-day,#f8c760),transparent);opacity:.7;
+    background:linear-gradient(90deg,transparent,var(--dn-day),transparent);
+    opacity:.7;z-index:2;
   }
-  .fc-plate-mono{
-    flex:none;width:44px;height:44px;border-radius:11px;
+  .fd-checkin-head{
+    display:flex;align-items:center;gap:.85rem;
+    padding:1.4rem clamp(1.5rem,3vw,2.4rem) 1.15rem;
+    border-bottom:1px solid var(--dn-mist);
+    background:rgba(255,255,255,.015);
+  }
+  .fd-checkin-head .tab{
+    flex:none;width:34px;height:34px;border-radius:9px;
     display:grid;place-items:center;
-    font-family:var(--font-display),'Fraunces',serif;font-weight:600;font-size:1.15rem;
+    font-family:var(--font-display),'Fraunces',serif;font-size:.9rem;font-weight:600;
     color:var(--dn-day);background:rgba(248,199,96,.07);border:1px solid rgba(248,199,96,.28);
   }
-  .fc-plate-txt h2{
+  .fd-checkin-head h2{
     font-family:var(--font-display),'Fraunces',serif;
-    font-size:1.2rem;font-weight:600;margin:0;letter-spacing:-.01em;
+    font-size:1.15rem;font-weight:600;margin:0;letter-spacing:-.01em;
   }
-  .fc-plate-txt p{font-size:.72rem;color:var(--dn-bone-faint);margin:.2rem 0 0;letter-spacing:.02em;}
-  .fc-plate-status{
-    margin-left:auto;display:inline-flex;align-items:center;gap:.55rem;
-    padding:.5rem .9rem;border-radius:999px;
-    border:1px solid rgba(69,144,236,.35);background:rgba(69,144,236,.06);
-    font-size:.68rem;font-weight:600;color:var(--dn-bone);white-space:nowrap;
-  }
-  .fc-plate-dot{
-    width:8px;height:8px;border-radius:50%;flex:none;background:var(--dn-night-soft);
-    box-shadow:0 0 0 4px rgba(69,144,236,.18);animation:fc-pulse 2.4s ease-in-out infinite;
-  }
-  @keyframes fc-pulse{0%,100%{box-shadow:0 0 0 4px rgba(69,144,236,.18);}50%{box-shadow:0 0 0 7px rgba(69,144,236,.05);}}
+  .fd-checkin-head .sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.12rem;}
+  .fd-form-panel{padding:clamp(1.6rem,3vw,2.4rem);}
 
-  .fc-form-panel{padding:clamp(1.6rem,3vw,2.5rem);}
-
-  /* ---------- copied from 14-reception-native (rd-* real site classes) ---------- */
-  .rd-group{margin-bottom:1.9rem;}
-  .rd-group:last-of-type{margin-bottom:0;}
-  .rd-group-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.15rem;}
-  .rd-group-tab{
-    flex:none;font-family:var(--font-display),'Fraunces',serif;
-    font-size:.85rem;font-weight:600;width:30px;height:30px;border-radius:8px;
-    display:grid;place-items:center;color:var(--dn-day);
-    background:rgba(248,199,96,.07);border:1px solid rgba(248,199,96,.28);
+  /* section label inside the form */
+  .fd-seclabel{
+    display:flex;align-items:center;gap:.7rem;
+    font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-bone-faint);font-weight:600;
+    margin:1.9rem 0 1.1rem;
   }
-  .rd-group.care .rd-group-tab{color:var(--dn-night-soft);background:rgba(69,144,236,.07);border-color:rgba(69,144,236,.30);}
-  .rd-group-head h3{font-family:var(--font-display),'Fraunces',serif;font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;}
-  .rd-group-head .rd-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
+  .fd-seclabel:first-of-type{margin-top:0;}
+  .fd-seclabel::after{content:'';flex:1;height:1px;background:var(--dn-mist);}
 
-  .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
-  .rd-row.one{grid-template-columns:1fr;}
-  .rd-row:last-child{margin-bottom:0;}
+  /* ===== the side console (right) ===== */
+  .fd-side{display:flex;flex-direction:column;gap:1.4rem;position:sticky;top:70px;}
 
-  .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
-  .rd-label{
-    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--dn-bone-dim);font-weight:600;display:flex;align-items:center;gap:.35rem;
-  }
-  .rd-req{color:var(--dn-day);}
-  .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
-
-  .rd-input,.rd-select,.rd-textarea{
-    width:100%;padding:.82rem .95rem;background:#0c0c11;
-    border:1px solid var(--dn-mist);border-radius:11px;color:var(--dn-bone);
-    font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1rem;
-    transition:border-color .25s, box-shadow .25s, background .25s;
-  }
-  .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
-  .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
-    outline:none;border-color:var(--dn-day);background:#101015;box-shadow:0 0 0 3px rgba(248,199,96,.14);
-  }
-  .rd-textarea{resize:vertical;min-height:118px;line-height:1.5;}
-
-  .rd-select{
-    appearance:none;-webkit-appearance:none;-moz-appearance:none;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-repeat:no-repeat;background-position:right .95rem center;padding-right:2.4rem;cursor:pointer;
-  }
-  .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
-  .rd-select option{background:#101015;color:var(--dn-bone);}
-
-  .rd-consent{
-    display:flex;align-items:flex-start;gap:.8rem;padding:1rem 1.1rem;
-    background:#0c0c11;border:1px solid var(--dn-mist);border-radius:12px;cursor:pointer;margin-top:.3rem;
-  }
-  .rd-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--dn-day);cursor:pointer;}
-  .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
-  .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
-
-  .rd-submit-row{
-    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-    margin-top:1.9rem;padding-top:1.6rem;border-top:1px solid var(--dn-mist);
-  }
-  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:250px;line-height:1.45;}
-  .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
-  .rd-submit{
-    display:inline-flex;align-items:center;gap:.6rem;
-    font-family:var(--font-body),'Inter Tight',sans-serif;
-    font-size:.95rem;font-weight:600;letter-spacing:.01em;padding:.95rem 1.7rem;
-    color:#0a0a0c;background:var(--dn-day);border:1px solid var(--dn-day);border-radius:12px;cursor:pointer;
-    transition:transform .15s, box-shadow .25s, background .25s;box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
-  }
-  .rd-submit:hover{transform:translateY(-1px);background:var(--dn-day-soft);box-shadow:0 18px 40px -16px rgba(248,199,96,.7);}
-  .rd-submit .arrow{transition:transform .25s;}
-  .rd-submit:hover .arrow{transform:translateX(4px);}
-
-  /* ============================================================
-     RIGHT COLUMN: find-us map card, hours ledger, emergency cta
-     ============================================================ */
-  .fc-side{display:flex;flex-direction:column;gap:1.5rem;}
-
-  .fc-card{
+  /* framed map */
+  .fd-map-frame{
     position:relative;
     border:1px solid var(--dn-mist);border-radius:16px;
-    background:var(--dn-charcoal,#14141a);
-    overflow:hidden;
-    box-shadow:0 26px 50px -34px rgba(0,0,0,.8);
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    background:#0c0c11;overflow:hidden;
+    box-shadow:0 30px 70px -46px rgba(0,0,0,.9);
   }
-
-  /* map card (framed "find us") */
-  .fc-map-head{
-    display:flex;align-items:center;justify-content:space-between;gap:1rem;
-    padding:1.1rem 1.3rem;border-bottom:1px solid var(--dn-mist);
+  .fd-map-frame::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;z-index:3;
+    background:linear-gradient(90deg,transparent,var(--dn-night),transparent);opacity:.7;
   }
-  .fc-kicker{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-day);font-weight:600;margin:0 0 .35rem;}
-  .fc-map-head h3{font-family:var(--font-display),'Fraunces',serif;font-size:1.12rem;font-weight:600;margin:0;letter-spacing:-.01em;}
-  .fc-map-frame{position:relative;padding:12px;background:#0c0c11;}
-  .fc-map-frame iframe{
-    display:block;width:100%;height:240px;border:0;border-radius:11px;
-    filter:grayscale(.18) contrast(1.02);
+  .fd-map-cap{
+    display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+    padding:.85rem 1.1rem;border-bottom:1px solid var(--dn-mist);
   }
-  .fc-map-foot{
-    display:flex;align-items:flex-start;gap:.7rem;padding:1.1rem 1.3rem 1.25rem;border-top:1px solid var(--dn-mist);
+  .fd-map-cap .name{font-family:var(--font-display),'Fraunces',serif;font-size:.95rem;font-weight:600;}
+  .fd-map-cap .pin{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;}
+  .fd-map-frame iframe{
+    display:block;width:100%;height:210px;border:0;
+    filter:grayscale(.28) contrast(1.05) brightness(.82);
   }
-  .fc-pin{
-    flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;margin-top:1px;
-    color:var(--dn-day);background:rgba(248,199,96,.07);border:1px solid rgba(248,199,96,.28);
+  .fd-map-foot{
+    display:flex;align-items:flex-start;gap:.7rem;
+    padding:1rem 1.1rem;border-top:1px solid var(--dn-mist);
+    background:rgba(255,255,255,.015);
   }
-  .fc-pin svg{width:13px;height:13px;}
-  .fc-address{font-size:.85rem;color:var(--dn-bone-dim);line-height:1.5;}
-  .fc-address strong{color:var(--dn-bone);font-weight:600;display:block;margin-bottom:.15rem;}
-  .fc-address a.fc-tel{
-    color:var(--dn-night-soft);font-weight:600;text-decoration:none;
-    border-bottom:1px solid rgba(125,181,240,.35);white-space:nowrap;
-  }
-  .fc-address a.fc-tel:hover{color:#a6cdf6;border-bottom-color:rgba(166,205,246,.6);}
+  .fd-map-foot svg{flex:none;margin-top:2px;}
+  .fd-addr{font-size:.8rem;line-height:1.5;color:var(--dn-bone-dim);}
+  .fd-addr b{color:var(--dn-bone);font-weight:600;}
+  .fd-addr a{color:var(--dn-night-soft);text-decoration:none;border-bottom:1px solid rgba(125,181,240,.35);white-space:nowrap;font-weight:600;}
+  .fd-addr a:hover{color:#a6cdf6;}
 
   /* hours ledger */
-  .fc-ledger{padding:1.3rem 1.4rem 1.4rem;}
-  .fc-ledger h3{font-family:var(--font-display),'Fraunces',serif;font-size:1.12rem;font-weight:600;margin:0 0 1rem;letter-spacing:-.01em;}
-  .fc-line{
+  .fd-ledger{
+    border:1px solid var(--dn-mist);border-radius:16px;
+    background:var(--dn-charcoal,#14141a);overflow:hidden;
+    box-shadow:0 30px 70px -48px rgba(0,0,0,.9);
+  }
+  .fd-ledger-head{
+    display:flex;align-items:center;gap:.6rem;
+    padding:1rem 1.2rem .85rem;border-bottom:1px solid var(--dn-mist);
+  }
+  .fd-ledger-head .lbl{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;}
+  .fd-ledger-head h3{font-family:var(--font-display),'Fraunces',serif;font-size:1.05rem;font-weight:600;margin:0;}
+  .fd-ledger-rows{padding:.4rem 0;}
+  .fd-lrow{
     display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
-    padding:.85rem 0;border-top:1px solid var(--dn-mist);
+    padding:.85rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.05);
   }
-  .fc-line:first-of-type{border-top:none;padding-top:0;}
-  .fc-line-label{font-size:.85rem;color:var(--dn-bone);font-weight:500;line-height:1.4;}
-  .fc-line-label .fc-sub{display:block;font-size:.72rem;color:var(--dn-bone-faint);font-weight:400;margin-top:.15rem;}
-  .fc-tag{
-    flex:none;font-size:.68rem;font-weight:600;letter-spacing:.02em;
-    padding:.35rem .7rem;border-radius:999px;white-space:nowrap;align-self:flex-start;margin-top:.1rem;
-  }
-  .fc-tag.night{color:var(--dn-night-soft);background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.4);}
-  .fc-tag.day{color:var(--dn-day);background:rgba(248,199,96,.06);border:1px solid rgba(248,199,96,.35);}
-  .fc-tag.mist{color:var(--dn-bone-dim);background:rgba(255,255,255,.03);border:1px solid var(--dn-mist);}
+  .fd-lrow:last-child{border-bottom:0;}
+  .fd-lrow .lk{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--dn-bone);font-weight:500;}
+  .fd-lrow .lk .dot{width:7px;height:7px;border-radius:50%;flex:none;}
+  .fd-lrow.em .lk .dot{background:var(--dn-night);box-shadow:0 0 8px 1px rgba(69,144,236,.6);}
+  .fd-lrow.rt .lk .dot{background:var(--dn-day);}
+  .fd-lrow.nhs .lk .dot{background:var(--dn-bone-faint);}
+  .fd-lrow .lv{font-size:.78rem;color:var(--dn-bone-dim);text-align:right;line-height:1.4;max-width:15ch;}
+  .fd-lrow.em .lv{color:var(--dn-night-soft);font-weight:600;}
 
-  /* emergency cta (blue / night) */
-  .fc-emergency{
+  /* emergency call cta */
+  .fd-emergency{
     position:relative;
-    border:1px solid rgba(69,144,236,.4);border-radius:16px;
+    border:1px solid rgba(69,144,236,.42);border-radius:16px;
     background:
-      radial-gradient(120% 120% at 0% 0%, rgba(69,144,236,.10), transparent 60%),
+      radial-gradient(120% 80% at 100% 0%,rgba(69,144,236,.10),transparent 60%),
       rgba(69,144,236,.05);
-    padding:1.4rem;
-    box-shadow:0 26px 50px -34px rgba(0,0,0,.8);
-    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    padding:1.3rem 1.35rem;
+    box-shadow:0 30px 70px -48px rgba(0,0,0,.9),0 0 40px -24px rgba(69,144,236,.45);
+    overflow:hidden;
   }
-  .fc-emergency::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,transparent,var(--dn-night,#4590ec),transparent);opacity:.75;
+  .fd-em-eyebrow{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;
+    margin:0 0 .7rem;
   }
-  .fc-emergency:hover{
-    transform:translateY(-4px);border-color:rgba(69,144,236,.6);
-    box-shadow:0 30px 56px -34px rgba(0,0,0,.85), 0 0 34px -16px rgba(69,144,236,.4);
+  .fd-em-dot{
+    position:relative;width:9px;height:9px;flex:none;border-radius:50%;
+    background:rgba(69,144,236,.22);
   }
-  .fc-em-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem;}
-  .fc-em-dot{flex:none;position:relative;width:11px;height:11px;border-radius:50%;background:rgba(69,144,236,.22);}
-  .fc-em-dot::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:rgba(69,144,236,.45);animation:fc-ring 2s ease-out infinite;}
-  .fc-em-dot-core{position:absolute;inset:2px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);box-shadow:0 0 6px 1px rgba(69,144,236,.7);}
-  @keyframes fc-ring{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
-  .fc-em-eyebrow{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;margin:0;}
-  .fc-em-title{font-family:var(--font-display),'Fraunces',serif;font-size:1.35rem;font-weight:600;line-height:1.1;letter-spacing:-.01em;margin:0 0 .5rem;}
-  .fc-em-title em{font-style:italic;color:var(--dn-night-soft);}
-  .fc-emergency p{font-size:.82rem;color:var(--dn-bone-dim);line-height:1.55;margin:0 0 1.1rem;}
-  .fc-call-btn{
-    display:inline-flex;align-items:center;gap:.65rem;width:100%;justify-content:center;
-    font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:.01em;
-    padding:1rem 1.4rem;color:#0a0a0c;background:var(--dn-night);border:1px solid var(--dn-night);border-radius:12px;
-    text-decoration:none;transition:transform .15s, box-shadow .25s, background .25s;
-    box-shadow:0 14px 34px -16px rgba(69,144,236,.6);
+  .fd-em-dot::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:rgba(69,144,236,.45);animation:fd-ping 2s ease-out infinite;}
+  .fd-em-dot::after{content:'';position:absolute;inset:1px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);box-shadow:0 0 6px 1px rgba(69,144,236,.7);}
+  @keyframes fd-ping{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
+  .fd-emergency h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.2rem;font-weight:600;line-height:1.18;margin:0 0 .45rem;letter-spacing:-.01em;
   }
-  .fc-call-btn svg{width:17px;height:17px;}
-  .fc-call-btn:hover{transform:translateY(-1px);background:var(--dn-night-soft);box-shadow:0 18px 40px -16px rgba(69,144,236,.75);}
-  .fc-call-sub{font-size:.72rem;color:var(--dn-bone-faint);margin:.75rem 0 0;text-align:center;}
-
-  @media (prefers-reduced-motion:reduce){.fc-em-dot::before{animation:none;}.fc-plate-dot{animation:none;}}
+  .fd-emergency p{font-size:.78rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 1rem;}
+  .fd-call-btn{
+    display:flex;align-items:center;justify-content:center;gap:.6rem;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1.02rem;font-weight:600;letter-spacing:.01em;
+    padding:.95rem 1.3rem;
+    color:#fff;background:var(--dn-night);
+    border:1px solid var(--dn-night);border-radius:12px;
+    text-decoration:none;
+    transition:transform .15s,box-shadow .25s,background .25s;
+    box-shadow:0 14px 34px -16px rgba(69,144,236,.75);
+  }
+  .fd-call-btn:hover{transform:translateY(-1px);background:var(--dn-night-soft);color:#0a0a0c;box-shadow:0 18px 42px -16px rgba(69,144,236,.9);}
+  .fd-call-btn svg{flex:none;}
 
   /* ---------- responsive ---------- */
-  @media (max-width:960px){
-    .fc-console{grid-template-columns:1fr;}
+  @media (max-width:980px){
+    .fd-console{grid-template-columns:1fr;}
+    .fd-side{position:static;top:auto;}
+    .fd-map-frame iframe{height:240px;}
   }
-  @media (max-width:600px){
-    .rd-row{grid-template-columns:1fr;}
+  @media (max-width:620px){
+    .rd-row,.rd-row.address{grid-template-columns:1fr;}
+    .fd-plate-tag{width:100%;}
     .rd-submit{width:100%;justify-content:center;}
     .rd-submit-note{max-width:none;}
-    .fc-plate-status{display:none;}
-    .rd-select{padding-right:2rem;background-position:right .6rem center;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .fd-live-dot,.fd-em-dot::before{animation:none;}
   }
 
   /* preview scroll override (keep LAST) */
@@ -304,205 +271,178 @@
 </style>
 </head>
 <body>
-<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Front Desk Console</div>
 
-<div class="fc-wrap">
-  <div class="fc-glow day"></div>
-  <div class="fc-glow night"></div>
+<div class="fd-wrap">
+  <div class="fd-glow day"></div>
+  <div class="fd-glow night"></div>
 
-  <!-- ============ SECTION HEAD ============ -->
-  <div class="fc-head">
-    <span class="fc-eyebrow">Enquiries</span>
-    <h1 class="fc-title">Check in at the <em>front desk</em>, <span class="night">day</span> or night.</h1>
-    <p class="fc-lead">Leave your details and a short note, and the desk gets back to you. For anything routine this is the calm way in. If you are in pain right now, please pick up the phone instead, our line is answered around the clock.</p>
-  </div>
+  <!-- ============ NAMEPLATE HEADER ============ -->
+  <header class="fd-nameplate">
+    <div>
+      <span class="fd-eyebrow">Enquiries · Merchant City</span>
+      <h1 class="fd-title">Reach the front desk</h1>
+      <p class="fd-lead">Leave your details with reception and we will get back to you. Tell us what you need and the best time to reach you, and one of the team will pick it up from there.</p>
+    </div>
+    <div class="fd-plate-tag">
+      <span class="k">Reception</span>
+      <span class="v status"><span class="fd-live-dot" aria-hidden="true"></span>Taking messages</span>
+      <span class="k" style="margin-top:.3rem;">Reply within one working day</span>
+    </div>
+  </header>
 
   <!-- ============ THE CONSOLE ============ -->
-  <div class="fc-console">
+  <div class="fd-console">
 
-    <!-- ===== left: the desk card (enquiry form) ===== -->
-    <div class="fc-desk">
-      <div class="fc-nameplate">
-        <span class="fc-plate-mono" aria-hidden="true">DN</span>
-        <div class="fc-plate-txt">
-          <h2>Front desk enquiry</h2>
-          <p>Merchant City, Glasgow</p>
+    <!-- ===== left: the check-in card ===== -->
+    <section class="fd-checkin">
+      <div class="fd-checkin-head">
+        <span class="tab">✎</span>
+        <div>
+          <h2>Check in with reception</h2>
+          <div class="sub">A few essentials, and we take it from there.</div>
         </div>
-        <span class="fc-plate-status"><span class="fc-plate-dot" aria-hidden="true"></span>Desk open now</span>
       </div>
 
-      <div class="fc-form-panel">
+      <div class="fd-form-panel">
         <form onsubmit="return false;">
 
-          <!-- ===== GROUP 1: WHO YOU ARE ===== -->
-          <section class="rd-group">
-            <div class="rd-group-head">
-              <span class="rd-group-tab">1</span>
-              <div>
-                <h3>Who you are</h3>
-                <div class="rd-group-sub">The essentials, so we can reach you back.</div>
-              </div>
-            </div>
+          <div class="fd-seclabel">Your details</div>
 
-            <div class="rd-row">
-              <div class="rd-field">
-                <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
-                <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
-              </div>
-              <div class="rd-field">
-                <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
-                <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
-              </div>
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
+              <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
             </div>
-
-            <div class="rd-row">
-              <div class="rd-field">
-                <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
-                <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
-              </div>
-              <div class="rd-field">
-                <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
-                <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
-              </div>
+            <div class="rd-field">
+              <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
+              <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
             </div>
+          </div>
 
-            <div class="rd-row one">
-              <div class="rd-field">
-                <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
-                <select class="rd-select" id="contactTime" name="contactTime">
-                  <option value="" selected>No preference</option>
-                  <option>Morning</option>
-                  <option>Afternoon</option>
-                  <option>Evening</option>
-                </select>
-              </div>
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
+              <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
             </div>
-          </section>
-
-          <!-- ===== GROUP 2: WHAT YOU NEED ===== -->
-          <section class="rd-group care">
-            <div class="rd-group-head">
-              <span class="rd-group-tab">2</span>
-              <div>
-                <h3>What you need</h3>
-                <div class="rd-group-sub">Tell the desk what is on your mind.</div>
-              </div>
+            <div class="rd-field">
+              <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
+              <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
             </div>
+          </div>
 
-            <div class="rd-row one">
-              <div class="rd-field">
-                <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
-                <select class="rd-select" id="topic" name="topic" required>
-                  <option value="" selected disabled>Choose one</option>
-                  <option>Request an appointment</option>
-                  <option>Cosmetic consultation</option>
-                  <option>Routine check-up or hygiene</option>
-                  <option>A question about a treatment</option>
-                  <option>General enquiry</option>
-                  <option>Something else</option>
-                </select>
-              </div>
+          <div class="rd-row one">
+            <div class="rd-field">
+              <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
+              <select class="rd-select" id="contactTime" name="contactTime">
+                <option value="" selected>No preference</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+              </select>
             </div>
+          </div>
 
-            <div class="rd-row one">
-              <div class="rd-field">
-                <label class="rd-label" for="message">Message <span class="rd-opt">optional</span></label>
-                <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="A line or two helps us prepare. For example: a chipped front tooth, whitening before a wedding, or a question about implants."></textarea>
-              </div>
+          <div class="fd-seclabel">Your enquiry</div>
+
+          <div class="rd-row one">
+            <div class="rd-field">
+              <label class="rd-label" for="topic">What is this about? <span class="rd-req">*</span></label>
+              <select class="rd-select" id="topic" name="topic" required>
+                <option value="" selected disabled>Choose one</option>
+                <option>Request an appointment</option>
+                <option>Cosmetic consultation</option>
+                <option>Routine check-up or hygiene</option>
+                <option>A question about a treatment</option>
+                <option>General enquiry</option>
+                <option>Something else</option>
+              </select>
             </div>
+          </div>
 
-            <div class="rd-row one">
-              <label class="rd-consent">
-                <input type="checkbox" name="consent" required>
-                <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
-              </label>
+          <div class="rd-row one">
+            <div class="rd-field">
+              <label class="rd-label" for="message">Message <span class="rd-opt">optional</span></label>
+              <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="Tell us a little about what you need. The more you share, the better we can prepare before we call you back."></textarea>
             </div>
-          </section>
+          </div>
 
-          <!-- ===== submit ===== -->
+          <div class="rd-row one">
+            <label class="rd-consent">
+              <input type="checkbox" name="consent" required>
+              <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
+            </label>
+          </div>
+
           <div class="rd-submit-row">
-            <p class="rd-submit-note"><strong>No obligation.</strong> An enquiry is just the start of a conversation, nothing is booked yet.</p>
-            <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">&rarr;</span></button>
+            <p class="rd-submit-note"><strong>No obligation.</strong> This is an enquiry, not a booking. We confirm everything with you before anything is arranged.</p>
+            <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
           </div>
 
         </form>
       </div>
-    </div>
+    </section>
 
-    <!-- ===== right: find us + hours + emergency ===== -->
-    <aside class="fc-side">
+    <!-- ===== right: the side console ===== -->
+    <aside class="fd-side">
 
-      <!-- framed find-us map card -->
-      <div class="fc-card">
-        <div class="fc-map-head">
-          <div>
-            <p class="fc-kicker">Find us</p>
-            <h3>80 Hutcheson Street</h3>
-          </div>
+      <!-- framed map -->
+      <div class="fd-map-frame">
+        <div class="fd-map-cap">
+          <span class="name">Find the practice</span>
+          <span class="pin">G1 1SH</span>
         </div>
-        <div class="fc-map-frame">
-          <iframe
-            src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
-            loading="lazy"
-            title="Day Night Dental location, 80 Hutcheson Street, Glasgow"></iframe>
-        </div>
-        <div class="fc-map-foot">
-          <span class="fc-pin" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          </span>
-          <div class="fc-address">
-            <strong>Day Night Dental</strong>
-            80 Hutcheson St, Merchant City, Glasgow G1 1SH<br>
-            <a class="fc-tel" href="tel:+441415486548">0141 548 6548</a>
+        <iframe
+          src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+          loading="lazy"
+          title="Day Night Dental location, Glasgow"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="fd-map-foot">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.5c-2.6 0-4.7 2.1-4.7 4.7 0 3.3 4.7 8.3 4.7 8.3s4.7-5 4.7-8.3c0-2.6-2.1-4.7-4.7-4.7z" stroke="#f8c760" stroke-width="1.2"/>
+            <circle cx="8" cy="6.2" r="1.7" stroke="#f8c760" stroke-width="1.2"/>
+          </svg>
+          <div class="fd-addr">
+            <b>Day Night Dental</b><br>
+            80 Hutcheson St, Merchant City,<br>
+            Glasgow G1 1SH<br>
+            <a href="tel:+441415486548">0141 548 6548</a>
           </div>
         </div>
       </div>
 
       <!-- hours ledger -->
-      <div class="fc-card">
-        <div class="fc-ledger">
-          <p class="fc-kicker">Opening hours</p>
-          <h3>When we are here</h3>
-
-          <div class="fc-line">
-            <div class="fc-line-label">
-              Emergency dental care
-              <span class="fc-sub">In pain or a knocked tooth, any hour.</span>
-            </div>
-            <span class="fc-tag night">Open 24 hours, 7 days</span>
+      <div class="fd-ledger">
+        <div class="fd-ledger-head">
+          <span class="lbl">Ledger</span>
+          <h3 style="margin-left:auto;">Opening hours</h3>
+        </div>
+        <div class="fd-ledger-rows">
+          <div class="fd-lrow em">
+            <span class="lk"><span class="dot"></span>Emergency care</span>
+            <span class="lv">Open 24 hours, 7 days</span>
           </div>
-
-          <div class="fc-line">
-            <div class="fc-line-label">
-              Routine appointments
-              <span class="fc-sub">Check-ups, hygiene, cosmetic work.</span>
-            </div>
-            <span class="fc-tag day">By appointment</span>
+          <div class="fd-lrow rt">
+            <span class="lk"><span class="dot"></span>Routine appointments</span>
+            <span class="lv">By appointment</span>
           </div>
-
-          <div class="fc-line">
-            <div class="fc-line-label">
-              NHS places
-              <span class="fc-sub">Added when a space comes up.</span>
-            </div>
-            <span class="fc-tag mist">Waiting list when available</span>
+          <div class="fd-lrow nhs">
+            <span class="lk"><span class="dot"></span>NHS</span>
+            <span class="lv">Waiting list when available</span>
           </div>
         </div>
       </div>
 
-      <!-- emergency cta -->
-      <div class="fc-emergency">
-        <div class="fc-em-head">
-          <span class="fc-em-dot" aria-hidden="true"><span class="fc-em-dot-core"></span></span>
-          <p class="fc-em-eyebrow">24/7 Emergency line</p>
-        </div>
-        <h4 class="fc-em-title">In pain right now? <em>Do not wait.</em></h4>
-        <p>An enquiry form is the wrong tool for an emergency. Call our 24/7 line and a real person answers, whatever the hour.</p>
-        <a class="fc-call-btn" href="tel:+441415486548">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call our 24/7 line
+      <!-- emergency call cta -->
+      <div class="fd-emergency">
+        <p class="fd-em-eyebrow"><span class="fd-em-dot" aria-hidden="true"></span>24/7 Emergency line</p>
+        <h3>Toothache that cannot wait? Call us.</h3>
+        <p>If you are in real pain right now, do not fill in a form. Speak to the team directly and we will see you as soon as we can.</p>
+        <a class="fd-call-btn" href="tel:+441415486548">
+          <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+            <path d="M5.6 2.3 3.4 2c-.5-.1-.9.2-1 .7C2 4.9 2.7 8 5 10.3s5.4 3 7.6 2.6c.5-.1.8-.5.7-1l-.3-2.2c-.1-.4-.4-.7-.8-.7l-1.9-.1c-.3 0-.6.1-.8.4l-.5.7c-1.2-.6-2.2-1.6-2.8-2.8l.7-.5c.3-.2.4-.5.4-.8l-.1-1.9c0-.4-.3-.7-.7-.8z" fill="#fff"/>
+          </svg>
+          0141 548 6548
         </a>
-        <p class="fc-call-sub">0141 548 6548 &middot; answered day and night</p>
       </div>
 
     </aside>
