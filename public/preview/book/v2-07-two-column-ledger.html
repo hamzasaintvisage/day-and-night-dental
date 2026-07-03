@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../register-forms/_styles.css">
+<title>Two Column Ledger - Book an appointment · Day Night Dental</title>
+<style>
+/* ============================================================
+   V2-07  TWO-COLUMN LEDGER
+   Left column  = the enquiry form (single request card).
+   Right column = a stacked "ledger" of everything you need to
+   reach the practice: hours register, NAP block, a night-blue
+   emergency call CTA, then the Google map as the bottom card.
+   Palette: SOLID gold + blue only, never a gold->blue blend.
+   Single colour per side: form side glows gold, ledger's
+   emergency card glows blue.
+   ============================================================ */
+:root{
+  --dn-well:#181820;
+  --dn-well-line:rgba(255,255,255,.09);
+  --dn-hair:rgba(255,255,255,.10);
+  --dn-hair-soft:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box;}
+html,body{overflow-x:hidden;}
+body{
+  margin:0;
+  background:var(--dn-near-black);
+  color:var(--dn-bone);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* continuous page glow: gold top-left, blue bottom-right */
+.dn-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.dn-ambient::before,.dn-ambient::after{content:'';position:absolute;border-radius:50%;filter:blur(120px);}
+.dn-ambient::before{width:640px;height:640px;top:-160px;left:-140px;background:var(--dn-day);opacity:.07;}
+.dn-ambient::after{width:640px;height:640px;bottom:-200px;right:-160px;background:var(--dn-night);opacity:.08;}
+
+.wrap{position:relative;z-index:1;width:min(1240px,92vw);margin-inline:auto;padding:clamp(3rem,7vw,6.5rem) 0 clamp(4rem,8vw,7rem);}
+
+/* masthead */
+.masthead{max-width:52ch;margin-bottom:clamp(2.2rem,5vw,3.4rem);}
+.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--dn-day);}
+.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+.masthead h1{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;line-height:1.0;font-size:clamp(2.4rem,5.4vw,4rem);margin:1.4rem 0 0;}
+.masthead h1 em{font-style:normal;color:var(--dn-day);}
+.masthead p{color:var(--dn-bone-dim);max-width:44ch;margin:1.1rem 0 0;font-size:1.02rem;}
+
+/* the two-column grid */
+.grid{display:grid;grid-template-columns:6fr 5fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:start;}
+
+/* ---------- shared card shell ---------- */
+.card{
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--dn-hair);
+  border-radius:var(--dn-r-card,16px);
+  padding:clamp(1.5rem,3vw,2.2rem);
+}
+.card-label{display:flex;align-items:center;gap:.7rem;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 1.3rem;}
+.card-label b{font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:0;color:var(--dn-day);text-transform:none;}
+.card-label .ln{flex:1;height:1px;background:var(--dn-hair-soft);}
+
+/* ---------- LEFT: the form ---------- */
+.form-card h2{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;font-size:1.7rem;margin:0 0 .3rem;}
+.form-card .sub{color:var(--dn-bone-dim);font-size:.94rem;margin:0 0 1.6rem;}
+.field{margin-bottom:1.05rem;}
+.field.row{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem;margin-bottom:0;}
+.field.row>div{margin-bottom:1.05rem;}
+label{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dn-bone-dim);margin-bottom:.5rem;font-weight:600;}
+.req{color:var(--dn-day);}
+input,select,textarea{
+  width:100%;
+  background:var(--dn-well);
+  border:1px solid var(--dn-well-line);
+  border-radius:12px;
+  color:var(--dn-bone);
+  font-family:var(--font-body);
+  font-size:.98rem;
+  padding:.82rem .95rem;
+  transition:border-color .18s,box-shadow .18s;
+}
+textarea{resize:vertical;min-height:104px;line-height:1.55;}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23f8c760' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right .95rem center;padding-right:2.6rem;}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.34);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:rgba(248,199,96,.6);box-shadow:0 0 0 3px rgba(248,199,96,.14);}
+
+.consent{display:flex;gap:.7rem;align-items:flex-start;margin:.35rem 0 1.5rem;font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;}
+.consent input{width:20px;height:20px;flex:0 0 20px;margin-top:.15rem;accent-color:var(--dn-day);cursor:pointer;padding:0;}
+.consent label{text-transform:none;letter-spacing:0;font-weight:400;margin:0;font-size:.86rem;color:var(--dn-bone-dim);}
+
+.btn-submit{
+  width:100%;border:none;cursor:pointer;
+  background:var(--dn-day);color:#0a0a0c;
+  font-family:var(--font-body);font-weight:700;font-size:1rem;letter-spacing:.01em;
+  padding:.95rem 1.2rem;border-radius:100px;
+  transition:transform .18s,box-shadow .18s;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 0 1.5px rgba(248,199,96,.75),0 0 32px -2px rgba(248,199,96,.48),0 22px 46px -18px rgba(248,199,96,.62);}
+.form-note{text-align:center;color:var(--dn-bone-faint);font-size:.78rem;margin:1rem 0 0;}
+
+/* ---------- RIGHT: the ledger column ---------- */
+.ledger{display:flex;flex-direction:column;gap:clamp(1.4rem,3vw,2.4rem);}
+
+/* hours register */
+.hours li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.85rem 0;border-bottom:1px dashed var(--dn-hair-soft);list-style:none;}
+.hours ul{margin:0;padding:0;}
+.hours li:last-child{border-bottom:none;padding-bottom:0;}
+.hours .k{font-size:.94rem;color:var(--dn-bone);font-weight:600;}
+.hours .k small{display:block;font-weight:400;color:var(--dn-bone-faint);font-size:.76rem;letter-spacing:.01em;margin-top:.15rem;text-transform:none;}
+.hours .v{font-family:var(--font-display);font-weight:600;font-size:1.02rem;text-align:right;white-space:nowrap;color:var(--dn-day);}
+.hours .v.blue{color:var(--dn-night);}
+.hours .v.muted{color:var(--dn-bone-dim);font-family:var(--font-body);font-weight:500;font-size:.92rem;}
+
+/* NAP block */
+.nap dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.85rem 1.1rem;align-items:baseline;}
+.nap dt{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);padding-top:.15rem;}
+.nap dd{margin:0;font-size:.98rem;}
+.nap dd a{color:var(--dn-bone);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s;}
+.nap dd a:hover{border-color:var(--dn-day);}
+.nap .addr{font-family:var(--font-display);font-weight:500;line-height:1.35;}
+.nap .phone{font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--dn-day);}
+
+/* emergency CTA (blue side) */
+.emergency{
+  background:rgba(69,144,236,.07);
+  border:1px solid rgba(69,144,236,.32);
+  border-radius:var(--dn-r-card,16px);
+  padding:clamp(1.5rem,3vw,2.1rem);
+  transition:transform .18s,box-shadow .18s;
+}
+.emergency:hover{transform:translateY(-4px);box-shadow:0 0 0 1.5px rgba(69,144,236,.75),0 0 32px -2px rgba(69,144,236,.48),0 22px 46px -18px rgba(69,144,236,.62);}
+.emergency .tag{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-night);font-weight:700;}
+.emergency .tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 0 4px rgba(69,144,236,.22);}
+.emergency h3{font-family:var(--font-display);font-weight:600;font-size:1.45rem;margin:.9rem 0 .4rem;line-height:1.15;}
+.emergency p{color:var(--dn-bone-dim);font-size:.92rem;margin:0 0 1.3rem;}
+.btn-emergency{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  width:100%;text-decoration:none;
+  background:var(--dn-night);color:#fff;
+  font-family:var(--font-body);font-weight:700;font-size:1.06rem;letter-spacing:.01em;
+  padding:1rem 1.2rem;border-radius:100px;
+  transition:transform .18s,box-shadow .18s;
+}
+.btn-emergency:hover{transform:translateY(-2px);box-shadow:0 0 0 1.5px rgba(69,144,236,.8),0 0 32px -2px rgba(69,144,236,.5),0 22px 46px -18px rgba(69,144,236,.62);}
+.btn-emergency svg{width:19px;height:19px;flex:0 0 19px;}
+.emergency .fine{color:var(--dn-bone-faint);font-size:.76rem;margin:.9rem 0 0;text-align:center;}
+
+/* map card, bottom of the ledger */
+.map-card{padding:0;overflow:hidden;}
+.map-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 1.35rem;border-bottom:1px solid var(--dn-hair);}
+.map-head span{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.map-head a{font-size:.8rem;color:var(--dn-day);text-decoration:none;font-weight:600;}
+.map-head a:hover{text-decoration:underline;}
+.map-frame{position:relative;width:100%;aspect-ratio:16/10;background:#0c0c10;}
+.map-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.35) contrast(1.05) brightness(.92);}
+
+/* responsive */
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr;}
+  .field.row{grid-template-columns:1fr;gap:0;}
+}
+@media (max-width:520px){
+  .nap dl{grid-template-columns:1fr;gap:.35rem 0;}
+  .nap dt{padding-top:.6rem;}
+}
+</style>
+</head>
+<body>
+<div class="dn-ambient" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="masthead">
+    <span class="dn-pill">Book · Day Night Dental</span>
+    <h1>Two ways to reach us, <em>day or night.</em></h1>
+    <p>Send a request on the left and the front desk replies at your preferred time. In pain right now? The emergency line on the right is answered around the clock.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- LEFT: the enquiry form -->
+    <section class="card form-card" aria-labelledby="form-h">
+      <p class="card-label"><b>01</b> The request <span class="ln"></span></p>
+      <h2 id="form-h">Request an appointment</h2>
+      <p class="sub">Routine, cosmetic or implant enquiries. We usually reply the same working day.</p>
+
+      <form onsubmit="event.preventDefault();this.querySelector('.btn-submit').textContent='Request sent';this.querySelector('.btn-submit').disabled=true;">
+        <div class="field">
+          <label for="name">Full name <span class="req">*</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Bruce" required>
+        </div>
+
+        <div class="field row">
+          <div>
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="07700 900000" required>
+          </div>
+          <div>
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="jane@email.com" required>
+          </div>
+        </div>
+
+        <div class="field row">
+          <div>
+            <label for="contact_time">Preferred contact time</label>
+            <select id="contact_time" name="contact_time">
+              <option value="">No preference</option>
+              <option>Morning (8am to 12pm)</option>
+              <option>Afternoon (12pm to 5pm)</option>
+              <option>Evening (5pm to 8pm)</option>
+              <option>Anytime today</option>
+            </select>
+          </div>
+          <div>
+            <label for="reason">Treatment or reason</label>
+            <select id="reason" name="reason">
+              <option value="">Select one</option>
+              <option>General check-up</option>
+              <option>Emergency or pain</option>
+              <option>Cosmetic (whitening, veneers)</option>
+              <option>Dental implants</option>
+              <option>Dentures</option>
+              <option>NHS waiting list</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us briefly what you need. If it is an emergency, please call the number on the right instead."></textarea>
+        </div>
+
+        <div class="consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <label for="consent">I consent to Day Night Dental contacting me about my enquiry. See our privacy notice for how we handle your details. <span class="req">*</span></label>
+        </div>
+
+        <button type="submit" class="btn-submit">Send request</button>
+        <p class="form-note">This is a preview. No details are sent.</p>
+      </form>
+    </section>
+
+    <!-- RIGHT: the ledger column -->
+    <div class="ledger">
+
+      <!-- hours register -->
+      <section class="card hours" aria-labelledby="hours-h">
+        <p class="card-label" id="hours-h"><b>02</b> Opening hours <span class="ln"></span></p>
+        <ul>
+          <li>
+            <span class="k">Emergency dental care<small>Answered by our team, never a machine</small></span>
+            <span class="v blue">Open 24 hours, 7 days</span>
+          </li>
+          <li>
+            <span class="k">Routine appointments<small>Check-ups, cosmetic, implants</small></span>
+            <span class="v">By appointment</span>
+          </li>
+          <li>
+            <span class="k">NHS places<small>New patients</small></span>
+            <span class="v muted">Waiting list when available</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- NAP block -->
+      <section class="card nap" aria-labelledby="nap-h">
+        <p class="card-label" id="nap-h"><b>03</b> Find us <span class="ln"></span></p>
+        <dl>
+          <dt>Practice</dt>
+          <dd class="addr">Day Night Dental</dd>
+          <dt>Address</dt>
+          <dd class="addr">80 Hutcheson Street<br>Merchant City, Glasgow<br>G1 1SH</dd>
+          <dt>Phone</dt>
+          <dd><a class="phone" href="tel:+441415486548">0141 548 6548</a></dd>
+        </dl>
+      </section>
+
+      <!-- emergency CTA (blue) -->
+      <section class="emergency" aria-labelledby="em-h">
+        <span class="tag">In pain tonight?</span>
+        <h3 id="em-h">Emergency dental line</h3>
+        <p>Broken tooth, swelling, knocked-out tooth or unbearable pain? Call now. We are open 24 hours, every day.</p>
+        <a class="btn-emergency" href="tel:+441415486548">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 0141 548 6548
+        </a>
+        <p class="fine">Available 24/7. Please call, do not use the form, for emergencies.</p>
+      </section>
+
+      <!-- map card, bottom of the ledger -->
+      <section class="card map-card" aria-labelledby="map-h">
+        <div class="map-head">
+          <span id="map-h">04 · On the map</span>
+          <a href="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH" target="_blank" rel="noopener">Get directions</a>
+        </div>
+        <div class="map-frame">
+          <iframe
+            title="Map showing Day Night Dental, 80 Hutcheson Street, Merchant City, Glasgow G1 1SH"
+            src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+
+    </div><!-- /ledger -->
+  </div><!-- /grid -->
+</main>
+
+<script src="../register-forms/_nav.js" defer></script>
+</body>
+</html>

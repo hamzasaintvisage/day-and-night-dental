@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Concierge Letter v2 - Day Night Dental</title>
+<link rel="stylesheet" href="../register-forms/_styles.css">
+<style>
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--dn-near-black);color:var(--dn-bone);
+    font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  img,iframe{max-width:100%;display:block;} a{color:inherit;}
+
+  /* continuous soft page glow: gold top-left, blue bottom-right */
+  .cx-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+  .cx-ambient::before,.cx-ambient::after{content:'';position:absolute;border-radius:50%;filter:blur(140px);}
+  .cx-ambient::before{width:640px;height:640px;background:var(--dn-day);opacity:.07;top:-160px;left:-160px;}
+  .cx-ambient::after{width:680px;height:680px;background:var(--dn-night);opacity:.075;bottom:-200px;right:-180px;}
+
+  .cx-wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:clamp(40px,7vw,88px) clamp(16px,4vw,32px) clamp(72px,10vw,120px);}
+
+  /* ---- header: the invitation opening ---- */
+  .cx-head{max-width:760px;margin:0 auto clamp(34px,5vw,58px);text-align:center;}
+  .cx-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:100px;
+    background:rgba(248,199,96,.05);border:1px solid rgba(248,199,96,.35);
+    font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--dn-day);
+  }
+  .cx-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+  .cx-head h1{
+    font-family:var(--font-display);font-weight:400;font-size:clamp(2.15rem,6vw,3.5rem);
+    line-height:1.05;letter-spacing:-.015em;margin:22px 0 0;
+  }
+  .cx-head h1 em{font-style:italic;color:var(--dn-day);}
+  .cx-kicker{margin:20px auto 0;max-width:580px;color:var(--dn-bone-dim);font-size:clamp(1rem,2.4vw,1.14rem);}
+
+  /* ---- two column: letter + margin cards ---- */
+  .cx-layout{display:grid;grid-template-columns:1.55fr .95fr;gap:clamp(20px,3vw,32px);align-items:start;}
+
+  /* ===== the stationery letter ===== */
+  .cx-letter{
+    position:relative;background:#111117;border:1px solid rgba(255,255,255,.1);border-radius:16px;
+    padding:clamp(26px,4vw,50px) clamp(22px,4vw,52px);
+    box-shadow:0 40px 120px -54px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  /* gold ruled left margin, a hairline (no gradient) */
+  .cx-letter::before{content:'';position:absolute;left:clamp(12px,2.4vw,26px);top:clamp(22px,4vw,44px);bottom:clamp(22px,4vw,44px);width:2px;background:var(--dn-day);opacity:.26;border-radius:2px;}
+
+  .cx-letterhead{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .cx-mark{font-family:var(--font-display);font-weight:600;font-size:1.2rem;}
+  .cx-mark small{display:block;font-family:var(--font-body);font-weight:500;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);margin-top:6px;}
+  .cx-date{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);text-align:right;}
+
+  .cx-salut{font-family:var(--font-display);font-weight:400;font-size:clamp(1.25rem,3.4vw,1.6rem);margin:26px 0 12px;}
+  .cx-intro{color:var(--dn-bone-dim);font-size:1.02rem;margin:0 0 6px;max-width:52ch;}
+
+  .cx-note{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);margin:30px 0 14px;font-weight:600;}
+
+  /* form fields */
+  .cx-field{margin-top:16px;}
+  .cx-label{display:block;font-size:.82rem;letter-spacing:.02em;color:var(--dn-bone-dim);margin-bottom:8px;font-weight:500;}
+  .cx-label .req{color:var(--dn-day);}
+  .cx-input,.cx-select,.cx-textarea{
+    width:100%;min-height:52px;padding:14px 16px;background:var(--dn-charcoal,#14141a);
+    border:1px solid rgba(255,255,255,.1);border-radius:12px;color:var(--dn-bone);
+    font-family:var(--font-body);font-size:16px;outline:none;
+    transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+  }
+  .cx-input::placeholder,.cx-textarea::placeholder{color:var(--dn-bone-faint);}
+  .cx-input:hover,.cx-select:hover,.cx-textarea:hover{border-color:rgba(248,199,96,.4);}
+  .cx-input:focus,.cx-select:focus,.cx-textarea:focus{
+    border-color:var(--dn-day);background:rgba(248,199,96,.05);
+    box-shadow:0 0 0 4px rgba(248,199,96,.16);
+  }
+  .cx-textarea{min-height:112px;resize:vertical;line-height:1.6;}
+  .cx-select{
+    appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23f8c760' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 16px center;padding-right:44px;
+  }
+  .cx-select option{background:#16161d;color:var(--dn-bone);}
+
+  .cx-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+  /* preferred contact time as pill radios */
+  .cx-pills{display:flex;flex-wrap:wrap;gap:10px;}
+  .cx-pill{position:relative;}
+  .cx-pill input{position:absolute;opacity:0;width:0;height:0;}
+  .cx-pill span{
+    display:inline-flex;align-items:center;min-height:44px;padding:0 18px;
+    border:1px solid rgba(255,255,255,.1);border-radius:100px;background:var(--dn-charcoal,#14141a);
+    font-size:.94rem;font-weight:500;color:var(--dn-bone-dim);cursor:pointer;transition:all .18s ease;
+  }
+  .cx-pill:hover span{border-color:rgba(248,199,96,.4);color:var(--dn-bone);}
+  .cx-pill input:focus-visible+span{box-shadow:0 0 0 3px rgba(248,199,96,.4);}
+  .cx-pill input:checked+span{background:var(--dn-day);border-color:var(--dn-day);color:var(--dn-near-black);font-weight:600;}
+
+  /* consent */
+  .cx-consent{display:flex;align-items:flex-start;gap:13px;margin-top:26px;font-size:.9rem;color:var(--dn-bone-dim);line-height:1.55;cursor:pointer;}
+  .cx-consent input{position:absolute;opacity:0;width:0;height:0;}
+  .cx-box{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--dn-bone-faint);background:var(--dn-charcoal,#14141a);display:inline-flex;align-items:center;justify-content:center;margin-top:1px;transition:all .18s ease;}
+  .cx-box svg{width:13px;height:13px;opacity:0;transform:scale(.5);transition:all .18s ease;color:var(--dn-near-black);}
+  .cx-consent input:focus-visible+.cx-box{box-shadow:0 0 0 3px rgba(248,199,96,.4);}
+  .cx-consent input:checked+.cx-box{background:var(--dn-day);border-color:var(--dn-day);}
+  .cx-consent input:checked+.cx-box svg{opacity:1;transform:scale(1);}
+  .cx-consent a{color:var(--dn-day);text-decoration:underline;text-underline-offset:2px;}
+
+  /* sign-off + submit */
+  .cx-signoff{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);}
+  .cx-signoff .cx-warm{font-family:var(--font-display);font-size:1.08rem;color:var(--dn-bone-dim);}
+  .cx-signature{font-family:var(--font-display);font-style:italic;font-size:1.5rem;color:var(--dn-day);margin:6px 0 2px;}
+  .cx-sig-role{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-faint);}
+  .cx-submit{
+    display:inline-flex;align-items:center;gap:11px;min-height:56px;margin-top:26px;padding:0 32px;
+    border:none;border-radius:100px;background:var(--dn-day);color:var(--dn-near-black);
+    font-family:var(--font-body);font-size:1.02rem;font-weight:700;cursor:pointer;
+    transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 16px 38px -14px rgba(248,199,96,.6);
+  }
+  .cx-submit:hover{transform:translateY(-2px);box-shadow:0 22px 46px -14px rgba(248,199,96,.78);}
+  .cx-submit:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(248,199,96,.4),0 16px 38px -14px rgba(248,199,96,.6);}
+  .cx-submit .arw{transition:transform .18s ease;}
+  .cx-submit:hover .arw{transform:translateX(4px);}
+  .cx-reassure{display:inline-flex;align-items:center;gap:9px;margin-top:14px;font-size:.88rem;color:var(--dn-bone-faint);}
+  .cx-reassure .dot{width:8px;height:8px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 0 0 rgba(248,199,96,.5);animation:cxPulseGold 2s infinite;}
+  @keyframes cxPulseGold{0%{box-shadow:0 0 0 0 rgba(248,199,96,.5);}70%{box-shadow:0 0 0 6px rgba(248,199,96,0);}100%{box-shadow:0 0 0 0 rgba(248,199,96,0);}}
+
+  /* ===== margin column ===== */
+  .cx-margin{display:flex;flex-direction:column;gap:clamp(18px,2.4vw,22px);position:sticky;top:24px;}
+
+  /* map-pin card */
+  .cx-mapcard{
+    background:#111117;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;
+    box-shadow:0 30px 80px -50px rgba(0,0,0,.9);transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .cx-mapcard:hover{transform:translateY(-4px);box-shadow:0 0 0 1.5px rgba(248,199,96,.75),0 0 32px -2px rgba(248,199,96,.48),0 22px 46px -18px rgba(248,199,96,.62);}
+  .cx-map-embed{position:relative;aspect-ratio:4/3;background:#0d0d12;}
+  .cx-map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.28) contrast(1.04) brightness(.92);}
+  .cx-map-body{padding:18px 20px 20px;}
+  .cx-map-pinrow{display:flex;align-items:flex-start;gap:11px;}
+  .cx-map-pin{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.3);display:flex;align-items:center;justify-content:center;color:var(--dn-day);}
+  .cx-map-pin svg{width:17px;height:17px;}
+  .cx-map-name{font-family:var(--font-display);font-weight:600;font-size:1.02rem;line-height:1.3;}
+  .cx-map-addr{font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;margin-top:3px;}
+  .cx-map-dir{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:.84rem;font-weight:600;color:var(--dn-day);text-decoration:none;}
+  .cx-map-dir svg{width:14px;height:14px;transition:transform .18s ease;}
+  .cx-map-dir:hover svg{transform:translateX(3px);}
+
+  /* card shared for NAP / hours */
+  .cx-card{background:#111117;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px 22px 24px;box-shadow:0 30px 80px -50px rgba(0,0,0,.9);transition:transform .2s ease,box-shadow .2s ease;}
+  .cx-card:hover{transform:translateY(-4px);box-shadow:0 0 0 1.5px rgba(248,199,96,.75),0 0 32px -2px rgba(248,199,96,.48),0 22px 46px -18px rgba(248,199,96,.62);}
+  .cx-card-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-day);font-weight:600;margin-bottom:14px;}
+  .cx-card-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+  .cx-nap{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .cx-nap li{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;color:var(--dn-bone-dim);}
+  .cx-nap svg{flex:none;width:16px;height:16px;color:var(--dn-day);margin-top:2px;}
+  .cx-nap a{color:var(--dn-bone);text-decoration:none;font-weight:600;}
+  .cx-nap a:hover{color:var(--dn-day);}
+
+  /* hours split */
+  .cx-hours{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .cx-hours li{display:flex;gap:12px;align-items:flex-start;}
+  .cx-h-dot{flex:none;width:9px;height:9px;border-radius:50%;margin-top:6px;}
+  .cx-h-dot.day{background:var(--dn-day);}
+  .cx-h-dot.night{background:var(--dn-night);}
+  .cx-h-dot.mute{background:var(--dn-bone-faint);}
+  .cx-h-label{font-weight:600;font-size:.9rem;color:var(--dn-bone);}
+  .cx-h-value{display:block;font-size:.84rem;color:var(--dn-bone-dim);margin-top:1px;}
+
+  /* ===== emergency CTA, night-accented, set apart ===== */
+  .cx-emergency{
+    grid-column:1 / -1;margin-top:clamp(20px,3vw,28px);
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:space-between;
+    padding:clamp(20px,3vw,28px) clamp(22px,4vw,34px);
+    background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.36);border-radius:18px;
+    box-shadow:0 0 40px -8px rgba(69,144,236,.28) inset;
+  }
+  .cx-em-text{display:flex;flex-direction:column;gap:5px;min-width:0;}
+  .cx-em-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-night-soft);font-weight:600;}
+  .cx-em-eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 0 0 rgba(69,144,236,.55);animation:cxPulseNight 1.8s infinite;}
+  @keyframes cxPulseNight{0%{box-shadow:0 0 0 0 rgba(69,144,236,.55);}70%{box-shadow:0 0 0 8px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
+  .cx-em-text strong{font-family:var(--font-display);font-weight:500;font-size:clamp(1.05rem,2.6vw,1.28rem);}
+  .cx-em-text span.sub{font-size:.9rem;color:var(--dn-bone-dim);}
+  .cx-em-call{
+    display:inline-flex;align-items:center;gap:11px;min-height:56px;padding:0 28px;
+    border:1px solid var(--dn-night);border-radius:100px;background:var(--dn-night);color:#fff;
+    font-weight:700;font-size:1.06rem;text-decoration:none;white-space:nowrap;
+    transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 16px 38px -14px rgba(69,144,236,.7);
+  }
+  .cx-em-call:hover{transform:translateY(-2px);box-shadow:0 22px 46px -14px rgba(69,144,236,.85);}
+  .cx-em-call svg{width:18px;height:18px;}
+
+  @media (max-width:900px){
+    .cx-layout{grid-template-columns:1fr;}
+    .cx-margin{position:static;}
+  }
+  @media (max-width:560px){
+    .cx-two{grid-template-columns:1fr;}
+    .cx-emergency{flex-direction:column;align-items:stretch;}
+    .cx-em-call{justify-content:center;}
+    .cx-date{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<div class="cx-ambient" aria-hidden="true"></div>
+
+<main class="cx-wrap">
+  <header class="cx-head">
+    <span class="cx-eyebrow">An Invitation to Book</span>
+    <h1>You are warmly <em>invited</em><br>to take a seat with us.</h1>
+    <p class="cx-kicker">Not a form that feels like a form. Just a short note to our reception team. Tell us who you are and when suits, and we will write straight back, usually within one working hour.</p>
+  </header>
+
+  <div class="cx-layout">
+
+    <!-- ===== the letter (form) ===== -->
+    <form class="cx-letter" action="/api/send-enquiry.php" method="post" novalidate>
+      <!-- honeypot -->
+      <p hidden aria-hidden="true"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+      <div class="cx-letterhead">
+        <div class="cx-mark">Day Night Dental<small>Merchant City, Glasgow</small></div>
+        <div class="cx-date">Reception Desk<br>Est. Merchant City</div>
+      </div>
+
+      <p class="cx-salut">With pleasure,</p>
+      <p class="cx-intro">Please complete the note below and consider it your reservation request. There is no obligation, and everything you share stays private to our clinical team.</p>
+
+      <span class="cx-note">Your details</span>
+
+      <div class="cx-two">
+        <div class="cx-field">
+          <label class="cx-label" for="cx-name">Your name <span class="req">*</span></label>
+          <input class="cx-input" type="text" id="cx-name" name="name" autocomplete="name" placeholder="Jane Macleod" required>
+        </div>
+        <div class="cx-field">
+          <label class="cx-label" for="cx-phone">Phone <span class="req">*</span></label>
+          <input class="cx-input" type="tel" id="cx-phone" name="phone" autocomplete="tel" placeholder="07700 900123" required>
+        </div>
+      </div>
+
+      <div class="cx-field">
+        <label class="cx-label" for="cx-email">Email <span class="req">*</span></label>
+        <input class="cx-input" type="email" id="cx-email" name="email" autocomplete="email" placeholder="jane@example.co.uk" required>
+      </div>
+
+      <div class="cx-field">
+        <label class="cx-label">Best time to reach you</label>
+        <div class="cx-pills">
+          <label class="cx-pill"><input type="radio" name="preferred_time" value="Morning" checked><span>Morning</span></label>
+          <label class="cx-pill"><input type="radio" name="preferred_time" value="Afternoon"><span>Afternoon</span></label>
+          <label class="cx-pill"><input type="radio" name="preferred_time" value="Evening"><span>Evening</span></label>
+          <label class="cx-pill"><input type="radio" name="preferred_time" value="Anytime"><span>Anytime</span></label>
+        </div>
+      </div>
+
+      <div class="cx-field">
+        <label class="cx-label" for="cx-reason">What can we help with?</label>
+        <select class="cx-select" id="cx-reason" name="treatment">
+          <option value="" selected disabled>Please choose a reason</option>
+          <option>Emergency or dental pain</option>
+          <option>Routine check-up and hygiene</option>
+          <option>Cosmetic dentistry</option>
+          <option>Teeth whitening</option>
+          <option>Dental implants</option>
+          <option>Dentures</option>
+          <option>Invisible braces or alignment</option>
+          <option>NHS place enquiry</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <span class="cx-note">A note to reception</span>
+      <div class="cx-field">
+        <label class="cx-label" for="cx-message">Anything you would like us to know</label>
+        <textarea class="cx-textarea" id="cx-message" name="message" placeholder="A little about what has brought you to us, or a preferred day of the week."></textarea>
+      </div>
+
+      <label class="cx-consent">
+        <input type="checkbox" name="consent" required>
+        <span class="cx-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>I am happy for Day Night Dental to contact me about my enquiry. I have read the <a href="#">privacy notice</a>.</span>
+      </label>
+
+      <div class="cx-signoff">
+        <p class="cx-warm">We look forward to welcoming you.</p>
+        <p class="cx-signature">The Day Night Dental team</p>
+        <p class="cx-sig-role">Reception &amp; Clinical Care, Merchant City</p>
+
+        <button class="cx-submit" type="submit">
+          Send my note
+          <svg class="arw" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="cx-reassure"><span class="dot"></span> We reply within one working hour, every day.</p>
+      </div>
+    </form>
+
+    <!-- ===== margin: map-pin card + NAP + hours ===== -->
+    <aside class="cx-margin">
+
+      <!-- map-pin card (the whole point) -->
+      <div class="cx-mapcard">
+        <div class="cx-map-embed">
+          <iframe title="Map to Day Night Dental, 80 Hutcheson Street, Glasgow G1 1SH"
+            src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="cx-map-body">
+          <div class="cx-map-pinrow">
+            <span class="cx-map-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <div class="cx-map-name">Day Night Dental</div>
+              <div class="cx-map-addr">80 Hutcheson St, Merchant City<br>Glasgow G1 1SH</div>
+            </div>
+          </div>
+          <a class="cx-map-dir" href="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH" target="_blank" rel="noopener">
+            Get directions
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- NAP -->
+      <div class="cx-card">
+        <span class="cx-card-eyebrow">Find us</span>
+        <ul class="cx-nap">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>80 Hutcheson St, Merchant City,<br>Glasgow G1 1SH</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span><a href="tel:+441415486548">0141 548 6548</a></span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- hours split, truthful -->
+      <div class="cx-card">
+        <span class="cx-card-eyebrow">Our hours</span>
+        <ul class="cx-hours">
+          <li>
+            <span class="cx-h-dot night"></span>
+            <span><span class="cx-h-label">Emergency dental care</span><span class="cx-h-value">Open 24 hours, 7 days</span></span>
+          </li>
+          <li>
+            <span class="cx-h-dot day"></span>
+            <span><span class="cx-h-label">Routine appointments</span><span class="cx-h-value">By appointment</span></span>
+          </li>
+          <li>
+            <span class="cx-h-dot mute"></span>
+            <span><span class="cx-h-label">NHS places</span><span class="cx-h-value">Waiting list when available</span></span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ===== emergency CTA, set apart, night accent ===== -->
+    <section class="cx-emergency">
+      <div class="cx-em-text">
+        <span class="cx-em-eyebrow"><span class="dot"></span> In pain right now?</span>
+        <strong>Do not wait on a note. Call us.</strong>
+        <span class="sub">Our emergency line is answered around the clock, every night and every weekend.</span>
+      </div>
+      <a class="cx-em-call" href="tel:+441415486548">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call 0141 548 6548
+      </a>
+    </section>
+
+  </div>
+</main>
+</body>
+</html>

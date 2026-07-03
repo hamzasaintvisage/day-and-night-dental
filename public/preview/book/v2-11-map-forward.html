@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Book — Map Forward · Day Night Dental</title>
+<link rel="stylesheet" href="../register-forms/_styles.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--dn-near-black, #0a0a0c);
+    color: var(--dn-bone, #fff);
+    font-family: var(--font-body, -apple-system, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Continuous glow field, gold top-left / blue bottom-right */
+  .glow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60vw 60vw at 8% 4%, rgba(248,199,96,.16), transparent 60%),
+      radial-gradient(64vw 64vw at 94% 96%, rgba(69,144,236,.16), transparent 62%);
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 56px) clamp(16px, 4vw, 44px) clamp(48px, 7vw, 88px);
+  }
+
+  /* ---- Header ---- */
+  .head {
+    text-align: center;
+    margin-bottom: clamp(22px, 3.5vw, 40px);
+  }
+  .eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: .28em;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border: 1px solid rgba(248,199,96,.55);
+    border-radius: 100px;
+    color: var(--dn-day, #f8c760);
+    margin-bottom: 18px;
+  }
+  .head h1 {
+    font-family: var(--font-display, Georgia, serif);
+    font-weight: 500;
+    font-size: clamp(30px, 5vw, 54px);
+    line-height: 1.05;
+    margin: 0 0 12px;
+    letter-spacing: -.01em;
+  }
+  .head h1 em { font-style: italic; color: var(--dn-day, #f8c760); }
+  .head p {
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--dn-bone-dim, rgba(255,255,255,.72));
+    font-size: clamp(14px, 1.6vw, 16.5px);
+    line-height: 1.6;
+  }
+
+  /* ---- Map stage: the largest element ---- */
+  .stage {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 30px 80px -40px rgba(0,0,0,.9);
+    min-height: 640px;
+  }
+  .stage iframe {
+    display: block;
+    width: 100%;
+    height: 720px;
+    border: 0;
+    /* Tune the dark theme so the map sits inside the brand */
+    filter: grayscale(.35) invert(.92) hue-rotate(180deg) brightness(.92) contrast(.9);
+  }
+  /* Subtle vignette so floating cards read cleanly */
+  .stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(115deg, rgba(10,10,12,.62) 0%, rgba(10,10,12,.12) 34%, rgba(10,10,12,0) 52%),
+      linear-gradient(300deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,0) 40%);
+  }
+
+  /* ---- Floating form card, lower-left ---- */
+  .form-card {
+    position: absolute;
+    z-index: 3;
+    left: clamp(18px, 3vw, 40px);
+    bottom: clamp(18px, 3vw, 40px);
+    width: min(430px, calc(100% - 36px));
+    background: rgba(14,14,18,.82);
+    backdrop-filter: blur(18px) saturate(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+    border: 1px solid rgba(248,199,96,.28);
+    border-radius: 16px;
+    padding: clamp(20px, 2.2vw, 28px);
+    box-shadow: 0 22px 46px -18px rgba(248,199,96,.32), 0 20px 60px -30px rgba(0,0,0,.9);
+  }
+  .form-card h2 {
+    font-family: var(--font-display, Georgia, serif);
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0 0 4px;
+  }
+  .form-card .sub {
+    color: var(--dn-bone-dim, rgba(255,255,255,.72));
+    font-size: 13px;
+    margin: 0 0 16px;
+  }
+  .field { margin-bottom: 12px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--dn-bone-faint, rgba(255,255,255,.55));
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  input, select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 10px;
+    color: var(--dn-bone, #fff);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 11px 12px;
+    transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  select { appearance: none; -webkit-appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%23f8c760' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  textarea { resize: vertical; min-height: 66px; }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,.34); }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(248,199,96,.7);
+    box-shadow: 0 0 0 3px rgba(248,199,96,.16);
+    background: rgba(255,255,255,.06);
+  }
+  .consent {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 4px 0 16px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--dn-bone-dim, rgba(255,255,255,.72));
+  }
+  .consent input { width: 16px; height: 16px; margin-top: 1px; flex: 0 0 auto; accent-color: var(--dn-day, #f8c760); }
+  .btn-gold {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: var(--dn-day, #f8c760);
+    color: #101015;
+    border: 0;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 18px;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1.5px rgba(248,199,96,.75), 0 0 32px -2px rgba(248,199,96,.48), 0 22px 46px -18px rgba(248,199,96,.62);
+  }
+
+  /* ---- Floating emergency CTA, top-right (blue) ---- */
+  .emergency {
+    position: absolute;
+    z-index: 3;
+    top: clamp(18px, 3vw, 34px);
+    right: clamp(18px, 3vw, 34px);
+    width: min(320px, calc(100% - 36px));
+    background: rgba(14,16,22,.84);
+    backdrop-filter: blur(18px) saturate(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+    border: 1px solid rgba(69,144,236,.5);
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 22px 46px -18px rgba(69,144,236,.5), 0 20px 60px -30px rgba(0,0,0,.9);
+    text-align: left;
+  }
+  .emergency .pulse {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--dn-night-soft, #7DB5F0);
+    margin-bottom: 10px;
+  }
+  .emergency .pulse .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--dn-night, #4590ec);
+    box-shadow: 0 0 0 0 rgba(69,144,236,.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(69,144,236,.55); }
+    70% { box-shadow: 0 0 0 10px rgba(69,144,236,0); }
+    100% { box-shadow: 0 0 0 0 rgba(69,144,236,0); }
+  }
+  .emergency h3 {
+    font-family: var(--font-display, Georgia, serif);
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 6px;
+  }
+  .emergency p {
+    margin: 0 0 14px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--dn-bone-dim, rgba(255,255,255,.72));
+  }
+  .btn-blue {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: var(--dn-night, #4590ec);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 15.5px;
+    padding: 13px 18px;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-blue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1.5px rgba(69,144,236,.75), 0 0 32px -2px rgba(69,144,236,.48), 0 22px 46px -18px rgba(69,144,236,.62);
+  }
+
+  /* ---- Info strip beneath the map: NAP + hours ---- */
+  .info {
+    display: grid;
+    grid-template-columns: 1.1fr 1.4fr;
+    gap: clamp(14px, 2vw, 24px);
+    margin-top: clamp(18px, 2.5vw, 28px);
+  }
+  .panel {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+    padding: clamp(20px, 2.4vw, 28px);
+  }
+  .panel h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    color: var(--dn-day, #f8c760);
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .nap p { margin: 0 0 6px; font-size: 15px; line-height: 1.55; }
+  .nap .name { font-family: var(--font-display, Georgia, serif); font-size: 19px; margin-bottom: 10px; }
+  .nap a { color: var(--dn-bone, #fff); text-decoration: none; border-bottom: 1px solid rgba(248,199,96,.5); }
+  .nap a:hover { color: var(--dn-day, #f8c760); }
+
+  .hours .hrow {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .hours .hrow:last-child { border-bottom: 0; }
+  .hours .hrow .k { font-weight: 600; font-size: 14.5px; }
+  .hours .hrow .k small { display: block; font-weight: 400; font-size: 12px; color: var(--dn-bone-faint, rgba(255,255,255,.55)); margin-top: 2px; }
+  .hours .hrow .v { font-size: 13.5px; color: var(--dn-bone-dim, rgba(255,255,255,.72)); text-align: right; white-space: nowrap; align-self: center; }
+  .hours .hrow .v.open { color: var(--dn-night-soft, #7DB5F0); font-weight: 700; }
+  .hours .hrow .v.gold { color: var(--dn-day, #f8c760); font-weight: 700; }
+
+  /* ---- Responsive: cards flow below the map on narrow screens ---- */
+  @media (max-width: 860px) {
+    .stage { min-height: 0; }
+    .stage iframe { height: 380px; }
+    .stage::after { display: none; }
+    .form-card, .emergency {
+      position: static;
+      width: 100%;
+      margin-top: 16px;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(14,14,18,.96);
+    }
+    .emergency { order: -1; } /* emergency first on mobile */
+    .stage { display: flex; flex-direction: column; }
+    .info { grid-template-columns: 1fr; }
+    .row2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 860px) {
+    /* On mobile put the floating cards outside the map, stacked */
+    .stack { display: flex; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <main class="wrap">
+    <header class="head">
+      <span class="eyebrow">Find us &amp; book</span>
+      <h1>We are in the heart of <em>Merchant City</em></h1>
+      <p>Two minutes from George Square. Drop a pin, then send us your details, or call straight through if it is an emergency tonight.</p>
+    </header>
+
+    <section class="stage stack">
+      <!-- 1. Google Maps embed, the largest element -->
+      <iframe
+        title="Map showing Day Night Dental, 80 Hutcheson Street, Merchant City, Glasgow G1 1SH"
+        src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+      <!-- 5. Emergency CTA, floating top-right (blue) -->
+      <aside class="emergency">
+        <span class="pulse"><span class="dot"></span> Open now · 24/7</span>
+        <h3>Dental emergency?</h3>
+        <p>Severe pain, swelling, trauma or a knocked-out tooth. We answer around the clock, every day of the year.</p>
+        <a class="btn-blue" href="tel:01415486548">Call 0141 548 6548</a>
+      </aside>
+
+      <!-- 1. Enquiry form, floating lower-left (gold) -->
+      <div class="form-card">
+        <h2>Request an appointment</h2>
+        <p class="sub">Routine and cosmetic bookings. We reply the same working day.</p>
+        <form onsubmit="return false;" novalidate>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Cameron" autocomplete="name">
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="07…" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="time">Best time to reach you</label>
+              <select id="time" name="preferred_time">
+                <option value="" selected>No preference</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="reason">Treatment / reason</label>
+              <select id="reason" name="treatment">
+                <option value="" selected>Choose…</option>
+                <option>New patient check-up</option>
+                <option>Emergency / dental pain</option>
+                <option>Cosmetic (whitening, veneers)</option>
+                <option>Dental implants</option>
+                <option>Dentures</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us briefly what you need."></textarea>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>I agree to Day Night Dental contacting me about my enquiry. See our privacy notice.</span>
+          </label>
+          <button class="btn-gold" type="submit">Send enquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 3 + 4. NAP and truthful 24/7 hours split -->
+    <section class="info">
+      <div class="panel nap">
+        <h4>Visit us</h4>
+        <p class="name">Day Night Dental</p>
+        <p>80 Hutcheson Street</p>
+        <p>Merchant City, Glasgow</p>
+        <p>G1 1SH</p>
+        <p style="margin-top:12px;"><a href="tel:01415486548">0141 548 6548</a></p>
+      </div>
+      <div class="panel hours">
+        <h4>Opening hours</h4>
+        <div class="hrow">
+          <span class="k">Emergency dental care<small>Walk-in and phone, any hour</small></span>
+          <span class="v open">Open 24 hours, 7 days</span>
+        </div>
+        <div class="hrow">
+          <span class="k">Routine appointments<small>Check-ups, cosmetic, implants</small></span>
+          <span class="v gold">By appointment</span>
+        </div>
+        <div class="hrow">
+          <span class="k">NHS places<small>Availability changes over time</small></span>
+          <span class="v">Waiting list when available</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

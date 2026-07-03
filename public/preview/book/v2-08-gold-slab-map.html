@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Book your visit — Gold Slab &amp; Map — Day Night Dental</title>
+<link rel="stylesheet" href="../register-forms/_styles.css">
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --surface:#101015;
+    --surface-2:#15151c;
+    --line:rgba(255,255,255,.10);
+    --line-soft:rgba(255,255,255,.08);
+    --bone:#ffffff;
+    --bone-dim:rgba(255,255,255,.66);
+    --bone-faint:rgba(255,255,255,.44);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--bone);}
+  body{
+    font-family:var(--font-body,'Inter Tight',-apple-system,sans-serif);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* Continuous soft glow: gold top-left, blue bottom-right */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(60% 55% at 8% 2%, rgba(248,199,96,.14) 0%, transparent 60%),
+      radial-gradient(62% 60% at 98% 100%, rgba(69,144,236,.16) 0%, transparent 62%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 20px 96px;}
+
+  /* ------- SOLID GOLD HEADER SLAB ------- */
+  .slab{
+    background:var(--dn-day,#f8c760);
+    color:#0a0a0c;
+    border-radius:0 0 20px 20px;
+    padding:44px clamp(24px,5vw,64px) 40px;
+    margin:0 -20px 44px;
+    position:relative;
+    overflow:hidden;
+  }
+  .slab::after{
+    content:"";position:absolute;right:-40px;top:-60px;width:280px;height:280px;
+    border:1px solid rgba(10,10,12,.14);border-radius:50%;pointer-events:none;
+  }
+  .slab .eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    font-weight:600;padding:6px 16px;border:1px solid rgba(10,10,12,.55);
+    border-radius:100px;color:#0a0a0c;background:transparent;margin-bottom:20px;
+  }
+  .slab h1{
+    font-family:var(--font-display,Georgia,serif);
+    font-weight:600;letter-spacing:-.02em;line-height:1.02;
+    font-size:clamp(2.4rem,6.4vw,4.2rem);margin:0 0 12px;color:#0a0a0c;
+  }
+  .slab p{
+    margin:0;max-width:46ch;font-size:clamp(1rem,1.6vw,1.15rem);
+    color:rgba(10,10,12,.78);font-weight:450;
+  }
+  .slab-meta{
+    display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:24px;
+    font-size:.9rem;font-weight:550;color:rgba(10,10,12,.82);
+  }
+  .slab-meta a{color:#0a0a0c;text-decoration:none;border-bottom:1.5px solid rgba(10,10,12,.4);}
+  .slab-meta a:hover{border-bottom-color:#0a0a0c;}
+
+  /* ------- TWO-COLUMN BODY ------- */
+  .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start;}
+  .panel{
+    background:var(--surface);border:1px solid var(--line-soft);
+    border-radius:16px;padding:clamp(22px,3vw,32px);
+  }
+  .panel h2{
+    font-family:var(--font-display,Georgia,serif);font-weight:600;
+    font-size:1.5rem;letter-spacing:-.01em;margin:0 0 6px;
+  }
+  .panel .lede{color:var(--bone-dim);font-size:.94rem;margin:0 0 22px;}
+
+  /* Form */
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--bone-faint);font-weight:600;margin-bottom:7px;
+  }
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--surface-2);color:var(--bone);
+    border:1px solid var(--line);border-radius:11px;
+    padding:12px 14px;font:inherit;font-size:.96rem;
+    transition:border-color .18s ease,box-shadow .18s ease;
+  }
+  .field textarea{resize:vertical;min-height:96px;}
+  .field select{appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;}
+  .field input::placeholder,.field textarea::placeholder{color:var(--bone-faint);}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--dn-day,#f8c760);
+    box-shadow:0 0 0 3px rgba(248,199,96,.18);
+  }
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .consent{display:flex;gap:11px;align-items:flex-start;margin:6px 0 20px;}
+  .consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--dn-day,#f8c760);flex:0 0 auto;}
+  .consent label{font-size:.82rem;color:var(--bone-dim);line-height:1.5;}
+
+  .btn-gold{
+    width:100%;background:var(--dn-day,#f8c760);color:#0a0a0c;
+    border:none;border-radius:12px;padding:15px 20px;
+    font-family:var(--font-body);font-weight:700;font-size:1rem;letter-spacing:.01em;
+    cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .btn-gold:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 0 1.5px rgba(248,199,96,.75),0 0 32px -2px rgba(248,199,96,.48),0 22px 46px -18px rgba(248,199,96,.62);
+  }
+  .form-note{margin:14px 0 0;font-size:.78rem;color:var(--bone-faint);text-align:center;}
+
+  /* Right column stack */
+  .stack{display:flex;flex-direction:column;gap:26px;}
+
+  /* Emergency CTA (blue / night) */
+  .emergency{
+    background:var(--surface);
+    border:1px solid rgba(69,144,236,.42);
+    border-radius:16px;padding:26px clamp(22px,3vw,30px);
+    position:relative;overflow:hidden;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .emergency::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(80% 90% at 100% 100%,rgba(69,144,236,.16) 0%,transparent 64%);
+  }
+  .emergency:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 0 1.5px rgba(69,144,236,.75),0 0 32px -2px rgba(69,144,236,.48),0 22px 46px -18px rgba(69,144,236,.62);
+  }
+  .emergency .tag{
+    display:inline-block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;
+    padding:5px 14px;border:1px solid rgba(69,144,236,.6);border-radius:100px;
+    color:var(--dn-night-soft,#7DB5F0);margin-bottom:14px;position:relative;
+  }
+  .emergency h2{
+    font-family:var(--font-display,Georgia,serif);font-weight:600;font-size:1.55rem;
+    margin:0 0 6px;position:relative;letter-spacing:-.01em;
+  }
+  .emergency p{margin:0 0 20px;color:var(--bone-dim);font-size:.92rem;position:relative;}
+  .btn-night{
+    display:inline-flex;align-items:center;gap:12px;
+    background:var(--dn-night,#4590ec);color:#04101f;
+    text-decoration:none;border-radius:12px;padding:15px 24px;
+    font-weight:750;font-size:1.14rem;letter-spacing:.01em;position:relative;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .btn-night:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 0 1.5px rgba(69,144,236,.75),0 0 32px -2px rgba(69,144,236,.48),0 22px 46px -18px rgba(69,144,236,.62);
+  }
+  .btn-night .dot{width:9px;height:9px;border-radius:50%;background:#04101f;
+    box-shadow:0 0 0 4px rgba(4,16,31,.25);animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+  /* Map */
+  .map-panel{padding:0;overflow:hidden;background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;}
+  .map-panel iframe{display:block;width:100%;height:280px;border:0;filter:grayscale(.2) contrast(1.05);}
+  .map-cap{
+    display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;justify-content:space-between;
+    padding:16px 20px;border-top:1px solid var(--line-soft);font-size:.85rem;color:var(--bone-dim);
+  }
+  .map-cap strong{color:var(--bone);font-weight:600;}
+  .map-cap a{color:var(--dn-day,#f8c760);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .map-cap a:hover{text-decoration:underline;}
+
+  /* Hours */
+  .hours{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;padding:clamp(22px,3vw,28px);}
+  .hours h2{font-family:var(--font-display,Georgia,serif);font-weight:600;font-size:1.35rem;margin:0 0 4px;}
+  .hours .sub{color:var(--bone-faint);font-size:.82rem;margin:0 0 18px;}
+  .hours ul{list-style:none;margin:0;padding:0;}
+  .hours li{
+    display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-top:1px solid var(--line-soft);
+  }
+  .hours li:first-child{border-top:none;padding-top:0;}
+  .hours .mark{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:6px;}
+  .hours .mark.gold{background:var(--dn-day,#f8c760);}
+  .hours .mark.blue{background:var(--dn-night,#4590ec);}
+  .hours .mark.faint{background:rgba(255,255,255,.28);}
+  .hours .h-title{font-weight:650;font-size:.98rem;color:var(--bone);}
+  .hours .h-val{font-size:.86rem;color:var(--bone-dim);margin-top:2px;}
+  .hours .h-247{color:var(--dn-day,#f8c760);font-weight:650;}
+
+  footer.pnav{margin-top:52px;text-align:center;color:var(--bone-faint);font-size:.8rem;}
+
+  @media (max-width:860px){
+    .grid{grid-template-columns:1fr;gap:22px;}
+    .stack{gap:22px;}
+    .map-panel iframe{height:240px;}
+  }
+  @media (max-width:520px){
+    .row2{grid-template-columns:1fr;}
+    .slab{padding:36px 22px 32px;}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- GOLD SLAB HEADER -->
+    <header class="slab">
+      <span class="eyebrow">Merchant City · Glasgow</span>
+      <h1>Book your visit</h1>
+      <p>Tell us what is going on and when suits you. A member of our reception team replies personally, no phone tree, no automated queue.</p>
+      <div class="slab-meta">
+        <span>Day Night Dental</span>
+        <span>80 Hutcheson St, Merchant City, Glasgow G1 1SH</span>
+        <a href="tel:01415486548">0141 548 6548</a>
+      </div>
+    </header>
+
+    <!-- TWO-COLUMN BODY -->
+    <div class="grid">
+
+      <!-- LEFT: FORM -->
+      <section class="panel" aria-label="Enquiry form">
+        <h2>Send an enquiry</h2>
+        <p class="lede">Routine and cosmetic appointments. For a dental emergency right now, call the number on the right instead.</p>
+        <form onsubmit="event.preventDefault();this.querySelector('.btn-gold').textContent='Thank you, we will be in touch';this.querySelector('.btn-gold').disabled=true;">
+          <div class="row2">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Jamie Cameron" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="07700 900123" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="contact_time">Preferred contact time</label>
+              <select id="contact_time" name="contact_time">
+                <option value="">No preference</option>
+                <option>Morning (8am to 12pm)</option>
+                <option>Afternoon (12pm to 5pm)</option>
+                <option>Evening (5pm to 9pm)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="reason">Treatment / reason</label>
+              <select id="reason" name="reason">
+                <option value="">Please choose</option>
+                <option>New patient check-up</option>
+                <option>Dental implants</option>
+                <option>Cosmetic / smile makeover</option>
+                <option>Teeth whitening</option>
+                <option>Dentures</option>
+                <option>Toothache or pain (non-urgent)</option>
+                <option>Something else</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="A little about what you are looking for, and any dates that suit you."></textarea>
+          </div>
+          <div class="consent">
+            <input id="consent" name="consent" type="checkbox" required>
+            <label for="consent">I agree that Day Night Dental may contact me about my enquiry. My details are kept private and never shared. See our privacy notice.</label>
+          </div>
+          <button type="submit" class="btn-gold">Request my appointment</button>
+          <p class="form-note">We aim to reply within one working day.</p>
+        </form>
+      </section>
+
+      <!-- RIGHT: EMERGENCY + MAP + HOURS -->
+      <div class="stack">
+
+        <!-- EMERGENCY CTA (blue) -->
+        <section class="emergency" aria-label="Emergency dental care">
+          <span class="tag">Emergency · Open now</span>
+          <h2>In pain tonight?</h2>
+          <p>Our emergency line is answered around the clock, every day of the year. You are not waiting until morning.</p>
+          <a class="btn-night" href="tel:01415486548"><span class="dot"></span>Call 0141 548 6548</a>
+        </section>
+
+        <!-- GOOGLE MAP -->
+        <section class="map-panel" aria-label="Practice location map">
+          <iframe
+            title="Map showing Day Night Dental, 80 Hutcheson Street, Glasgow G1 1SH"
+            src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-cap">
+            <span><strong>80 Hutcheson St</strong>, Merchant City, Glasgow G1 1SH</span>
+            <a href="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH" target="_blank" rel="noopener">Get directions</a>
+          </div>
+        </section>
+
+        <!-- HOURS (truthful 24/7 split) -->
+        <section class="hours" aria-label="Opening hours">
+          <h2>When we are open</h2>
+          <p class="sub">Day for planned care, night for emergencies.</p>
+          <ul>
+            <li>
+              <span class="mark blue"></span>
+              <div>
+                <div class="h-title">Emergency dental care</div>
+                <div class="h-val"><span class="h-247">Open 24 hours, 7 days.</span> Call any time.</div>
+              </div>
+            </li>
+            <li>
+              <span class="mark gold"></span>
+              <div>
+                <div class="h-title">Routine appointments</div>
+                <div class="h-val">By appointment. Book via the form or by phone.</div>
+              </div>
+            </li>
+            <li>
+              <span class="mark faint"></span>
+              <div>
+                <div class="h-title">NHS places</div>
+                <div class="h-val">Waiting list when available. Ask us to add you.</div>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <footer class="pnav">Day Night Dental · 80 Hutcheson St, Merchant City, Glasgow G1 1SH · <a href="tel:01415486548" style="color:var(--dn-day,#f8c760);text-decoration:none;">0141 548 6548</a></footer>
+  </div>
+  <script src="../register-forms/_nav.js" defer></script>
+</body>
+</html>
