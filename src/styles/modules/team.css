@@ -143,8 +143,8 @@
           align-items: flex-start;
           transition: border-color 0.3s;
         }
-        .dn-wall-card.day:hover  { border-color: color-mix(in srgb, var(--dn-day) 80%, transparent); box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-day) 72%, transparent), 0 0 26px -2px color-mix(in srgb, var(--dn-day) 46%, transparent), 0 16px 34px -16px color-mix(in srgb, var(--dn-day) 55%, transparent); }
-        .dn-wall-card.night:hover { border-color: color-mix(in srgb, var(--dn-night) 80%, transparent); box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-night) 72%, transparent), 0 0 26px -2px color-mix(in srgb, var(--dn-night) 46%, transparent), 0 16px 34px -16px color-mix(in srgb, var(--dn-night) 55%, transparent); }
+        .dn-wall-card.day:hover  { border-color: color-mix(in srgb, var(--dn-day) 82%, transparent); box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-day) 75%, transparent), 0 0 32px -2px color-mix(in srgb, var(--dn-day) 48%, transparent), 0 22px 46px -18px color-mix(in srgb, var(--dn-day) 62%, transparent); }
+        .dn-wall-card.night:hover { border-color: color-mix(in srgb, var(--dn-night) 82%, transparent); box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--dn-night) 75%, transparent), 0 0 32px -2px color-mix(in srgb, var(--dn-night) 48%, transparent), 0 22px 46px -18px color-mix(in srgb, var(--dn-night) 62%, transparent); }
         .dn-wall-avwrap {
           position: relative;
           width: 76px;
