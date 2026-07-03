@@ -78,6 +78,22 @@ export default function SmileGallerySpotlight() {
             </div>
           </div>
 
+          {/* Every result exposed for image search (visually hidden; the spotlight above shows one at a time). */}
+          <ul className="dn-visually-hidden" aria-hidden="true">
+            {smiles.map((s, i) => (
+              <li key={i}>
+                <img
+                  src={s.image}
+                  alt={`${s.caption} result at Day Night Dental, ${s.cat.toLowerCase()} dentistry in Merchant City, Glasgow`}
+                  width={900}
+                  height={1100}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </li>
+            ))}
+          </ul>
+
         </div>
 
         <div className="dn-gallery-cta">
