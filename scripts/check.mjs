@@ -1,13 +1,16 @@
 // Post-build smoke check + launch gate (run via `npm run check`; `npm run check:launch` = go-live mode).
 // HARD failures (always): missing pages, FIXED-DATA placeholders, wrong sitemap domain, any BROKEN
-// internal link or #anchor, and invalid medical schema @types. Owner-rule + hygiene issues (gold->blue
-// gradient, TODO NAP in source, public .vite manifests) and parked name placeholders warn in dev and
-// hard-fail at go-live (LAUNCH=1).
+// internal link or #anchor, invalid medical schema @types, unparseable JSON-LD, banned schema
+// strategy (FAQPage, review markup before real reviews), a #dentist node without true 24/7 hours,
+// missing 24/7 positioning copy, and noindex/sitemap contradictions. Owner-rule + hygiene issues
+// (gold->blue gradient, TODO NAP in source, public .vite manifests) and parked name placeholders
+// warn in dev and hard-fail at go-live (LAUNCH=1).
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { TREATMENT_SLUGS } from '../src/data/treatments.js'
+import { PRACTICE } from '../src/data/practice.js'
 
-const DIST = 'dist'
+const DIST = process.env.CHECK_DIST || 'dist' // CHECK_DIST: self-test hook, points at a scratch copy
 const LAUNCH = process.env.LAUNCH === '1' // go-live mode: parked/owner-rule items become hard failures
 const errors = []
 const warnings = []
@@ -39,7 +42,7 @@ function walk(dir) {
   return out
 }
 
-// Exclude the noindex design-lab mockups under dist/preview/ — they are not real site pages
+// Exclude the noindex design-lab mockups under dist/preview/, they are not real site pages
 // (owner rule) and link to placeholder anchors, so they must not be gated as production routes.
 const htmlFiles = walk(DIST).filter((f) => f.endsWith('.html') && !f.includes('/preview/'))
 const rel = (f) => f.replace(DIST + '/', '')
@@ -116,9 +119,108 @@ for (const file of htmlFiles) {
 }
 if (schemaBad.size) errors.push(`invalid JSON-LD procedure @type(s): ${[...schemaBad].join(', ')}`)
 
+// 2e. JSON-LD must PARSE on every page. Broken JSON-LD is silently ignored by Google, so a stray
+//     quote or trailing comma would kill the whole local-SEO strategy without any visible symptom.
+//     Parsed roots are kept for the structural checks below (2f-2h).
+const LD_RE = /<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi
+const ldByFile = new Map() // file -> parsed JSON-LD roots
+for (const file of htmlFiles) {
+  const txt = readFileSync(file, 'utf8')
+  const roots = []
+  for (const m of txt.matchAll(LD_RE)) {
+    try { roots.push(JSON.parse(m[1])) }
+    catch (e) { errors.push(`JSON-LD does not parse in ${rel(file)}: ${e.message}`) }
+  }
+  if (roots.length) ldByFile.set(file, roots)
+}
+// Flatten a parsed root (object, array or @graph) into every object node it contains.
+function ldNodes(root) {
+  const out = []
+  const visit = (n) => {
+    if (Array.isArray(n)) { n.forEach(visit); return }
+    if (n && typeof n === 'object') { out.push(n); Object.values(n).forEach(visit) }
+  }
+  visit(root)
+  return out
+}
+const typesOf = (n) => [].concat(n['@type'] ?? [])
+
+// 2f. Schema strategy bans, checked on PARSED nodes (site-wide, not just treatments):
+//     - "Dentistry"/"Orthodontics" are not valid schema.org @types anywhere.
+//     - FAQPage must never be emitted (FAQ rich results are dead for sites like ours; policy).
+//     - No aggregateRating/Review markup until PRACTICE.rating holds real review data
+//       (fake social proof = ASA/GDC/Google-policy risk).
+const ratingAllowed = PRACTICE.rating != null
+const invalidTypes = new Set(), faqPages = new Set(), ratingBad = new Set()
+for (const [file, roots] of ldByFile) {
+  for (const node of roots.flatMap(ldNodes)) {
+    for (const t of typesOf(node)) {
+      if (t === 'Dentistry' || t === 'Orthodontics') invalidTypes.add(`${t} (in ${rel(file)})`)
+      if (t === 'FAQPage') faqPages.add(rel(file))
+      if (!ratingAllowed && (t === 'AggregateRating' || t === 'Review')) ratingBad.add(`@type ${t} (in ${rel(file)})`)
+    }
+    if (!ratingAllowed && ('aggregateRating' in node || 'review' in node)) {
+      ratingBad.add(`aggregateRating/review property (in ${rel(file)})`)
+    }
+  }
+}
+if (invalidTypes.size) errors.push(`invalid schema @type(s) in JSON-LD: ${[...invalidTypes].join(', ')}`)
+if (faqPages.size) errors.push(`banned FAQPage schema emitted (policy: we do not emit it) in: ${[...faqPages].join(', ')}`)
+if (ratingBad.size) errors.push(`review/rating markup with no real reviews (PRACTICE.rating is null): ${[...ratingBad].join(', ')}`)
+
+// 2g. Business-hours truth: every #dentist node must declare genuine 24/7 opening hours
+//     (all 7 days, opens 00:00, closes 23:59) in its PARSED openingHoursSpecification.
+//     The whole positioning is "open day and night, every day", so partial hours = strategy bug.
+const WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+let dentistNodeSeen = false
+for (const [file, roots] of ldByFile) {
+  for (const node of roots.flatMap(ldNodes)) {
+    if (!String(node['@id'] ?? '').endsWith('#dentist')) continue
+    if (Object.keys(node).length === 1) continue // pure {"@id": ...} cross-reference, not the entity
+    dentistNodeSeen = true
+    const allDay = new Set()
+    for (const spec of [].concat(node.openingHoursSpecification ?? [])) {
+      if (!spec || typeof spec !== 'object') continue
+      if (spec.opens !== '00:00' || spec.closes !== '23:59') continue
+      for (const d of [].concat(spec.dayOfWeek ?? [])) allDay.add(String(d).replace(/^https?:\/\/schema\.org\//i, ''))
+    }
+    const missing = WEEK.filter((d) => !allDay.has(d))
+    if (missing.length) errors.push(`#dentist hours not 24/7 in ${rel(file)}: no 00:00-23:59 spec for ${missing.join(', ')}`)
+  }
+}
+if (!dentistNodeSeen) errors.push('no JSON-LD node with @id ending "#dentist" found on any page')
+
+// 2h. Positioning copy: the two money pages must actually say 24/7 (or 24-hour) somewhere.
+for (const f of ['index.html', 'treatments/emergency-dentist/index.html']) {
+  const p = join(DIST, f)
+  if (!existsSync(p)) continue // already reported by the missing-pages check
+  if (!/24\/7|24[ -]hour/i.test(readFileSync(p, 'utf8'))) errors.push(`positioning: no 24/7 / 24-hour wording in ${f}`)
+}
+
 // 3. Sitemap must use the canonical domain.
 const sm = existsSync(join(DIST, 'sitemap.xml')) ? readFileSync(join(DIST, 'sitemap.xml'), 'utf8') : ''
 if (!sm.includes('https://daynightdental.co.uk/')) errors.push('sitemap.xml missing canonical domain')
+
+// 3b. noindex integrity. Post-submit pages (thank-you/registered) must carry a robots noindex
+//     meta, and NOTHING in the sitemap may point at a noindex page (a noindexed sitemap URL is a
+//     mixed signal Search Console flags and Google distrusts).
+function hasNoindex(txt) {
+  for (const m of txt.matchAll(/<meta\b[^>]*>/gi)) {
+    if (/name=["']robots["']/i.test(m[0]) && /noindex/i.test(m[0])) return true
+  }
+  return false
+}
+for (const f of ['thank-you/index.html', 'registered/index.html']) {
+  const p = join(DIST, f)
+  if (!existsSync(p)) { errors.push(`noindex page missing: ${f}`); continue }
+  if (!hasNoindex(readFileSync(p, 'utf8'))) errors.push(`missing robots noindex meta on ${f}`)
+}
+for (const m of sm.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+  const url = m[1].trim()
+  const target = routeFile(url.replace(/^https?:\/\/[^/]+/i, ''))
+  if (!target) { errors.push(`sitemap URL has no built page: ${url}`); continue }
+  if (hasNoindex(readFileSync(target, 'utf8'))) errors.push(`sitemap URL points to a noindex page: ${url}`)
+}
 
 // 4. OWNER-RULE + hygiene gates (warn in dev, hard-fail at go-live).
 // 4a. No gold->blue gradient in any shipped CSS/HTML (the brand rule). Each gradient() call is

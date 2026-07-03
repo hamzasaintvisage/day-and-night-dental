@@ -1,14 +1,12 @@
 import { useRef, useState } from 'react'
-import { Head } from 'vite-react-ssg'
 import { PRACTICE } from '../data/practice'
-import { jsonLd } from '../lib/jsonLd'
 
-// NOTE: opening hours below are PLACEHOLDERS (Sat/Sun invented), confirm the real
-// hours with the owner before go-live.
+// NOTE: hours are owner-confirmed: emergency care is available 24 hours a day,
+// 7 days a week; routine appointments are arranged separately by appointment.
 const faqs = [
   {
     q: 'Is there an emergency dentist open now in Glasgow?',
-    a: 'Yes. Day Night Dental runs a 24-hour emergency helpline and keeps same-day appointments open every day. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.',
+    a: 'Yes. Day Night Dental runs a 24-hour emergency helpline, and we hold same-day emergency slots every day and aim to see you quickly. You can call any time, including evenings and weekends, so there’s no need to sit in pain until Monday.',
     cap: 'Emergency',
   },
   {
@@ -17,26 +15,21 @@ const faqs = [
     cap: 'New patients',
   },
   {
+    q: 'Do you take NHS patients?',
+    a: 'NHS places are offered from our waiting list when spaces become available, so it’s worth registering your interest early. If you’re in pain, don’t wait for registration: call our 24/7 emergency line and we’ll help you straight away.',
+    cap: 'NHS',
+  },
+  {
     q: 'Where is the practice and where can I park?',
     a: 'You’ll find us in Merchant City in central Glasgow, a short walk from Queen Street and Argyle Street stations. There are a few car parks nearby and on-street parking close to the door.',
     cap: 'Finding us',
   },
   {
     q: 'What are your opening hours?',
-    a: 'We’re open in the practice Monday to Friday 7am to 11pm, Saturday 8am to 10pm and Sunday 9am to 9pm. Outside those hours our 24-hour emergency line is there for urgent dental problems.',
+    a: 'Emergency dental care is available 24 hours a day, 7 days a week. Routine dental appointments are arranged separately by appointment. If you are in pain, call first and we will guide you.',
     cap: 'Opening hours',
   },
 ]
-
-const faqLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-}
 
 // Inline accordion: an oversized gold numeral beside each question; clicking a
 // question opens its answer in a gold-edged box directly beneath it. Disclosure
@@ -64,9 +57,6 @@ export default function HomeFaq() {
 
   return (
     <section className="dn-section tp-faq dn-faq" aria-labelledby="faq-heading">
-      <Head>
-        <script type="application/ld+json">{jsonLd(faqLd)}</script>
-      </Head>
       <div className="dn-container">
         <div className="tp-section-head dn-center-head">
           <span className="dn-eyebrow dn-pill day">Common Questions</span>
@@ -77,7 +67,7 @@ export default function HomeFaq() {
         </div>
 
         {/* inline accordion: each question opens its own answer directly beneath it.
-            Every answer is in the DOM (hidden when closed) so search engines read all four. */}
+            Every answer is in the DOM (hidden when closed) so search engines read them all. */}
         <ul className="dn-faq-acc">
           {faqs.map((f, i) => {
             const isOpen = open === i

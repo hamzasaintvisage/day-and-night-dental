@@ -90,18 +90,6 @@ export default function TreatmentPage({ data }) {
       ? { offers: { '@type': 'Offer', priceCurrency: 'GBP', price: data.priceFrom, availability: 'https://schema.org/InStock' } }
       : {}),
   }
-  const faqLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': `${url}#faq`,
-    inLanguage: 'en-GB',
-    mainEntity: data.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  }
-
   return (
     <>
       <Head>
@@ -130,7 +118,6 @@ export default function TreatmentPage({ data }) {
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
         <script type="application/ld+json">{jsonLd(procedureLd)}</script>
         <script type="application/ld+json">{jsonLd(serviceLd)}</script>
-        <script type="application/ld+json">{jsonLd(faqLd)}</script>
       </Head>
 
       {/* Breadcrumb */}

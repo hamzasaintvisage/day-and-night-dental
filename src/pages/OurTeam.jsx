@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Team, { team } from '../sections/Team'
 import { SITE, PRACTICE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
+import { dentistLd } from '../lib/schemas'
 
 const url = `${SITE}/our-team/`
 const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
@@ -44,6 +45,9 @@ export default function OurTeam() {
         <meta name="twitter:title" content="Our Team | Day Night Dental, Glasgow" />
         <meta name="twitter:description" content="Meet the GDC-registered team behind Day Night Dental, Glasgow." />
       </Head>
+      <Head>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
+      </Head>
       {teamLd && (
         <Head>
           <script type="application/ld+json">{jsonLd(teamLd)}</script>
@@ -60,6 +64,59 @@ export default function OurTeam() {
 
       <h1 className="dn-visually-hidden">Meet the dental team at Day Night Dental in Glasgow</h1>
       <Team />
+
+      <section className="dn-section">
+        <div className="dn-container">
+          <div className="tp-section-head">
+            <span className="dn-eyebrow dn-pill day">What We Do</span>
+            <h2 className="dn-display">One team for emergencies <em className="dn-hl-gold">and</em> everyday care</h2>
+          </div>
+          <p style={{ maxWidth: '720px' }}>
+            The team here looks after both sides of dentistry. There are the urgent problems: toothache that
+            will not settle, broken teeth, swelling, lost crowns. And there is the everyday work that keeps
+            you out of trouble in the first place: check-ups, fillings, and cosmetic and implant treatment
+            when you choose it. Everything happens under one roof at 80 Hutcheson Street in Merchant City,
+            a short walk from Argyle Street and Queen Street stations and St Enoch subway, and the practice
+            is open day and night, every day.
+          </p>
+        </div>
+      </section>
+
+      <section className="dn-section">
+        <div className="dn-container">
+          <div className="tp-section-head">
+            <span className="dn-eyebrow dn-pill night">Your Protection</span>
+            <h2 className="dn-display">Regulated care you can <em className="dn-hl-blue">check yourself</em></h2>
+          </div>
+          <p style={{ maxWidth: '720px' }}>
+            Every dentist who treats you is registered with the General Dental Council, the UK regulator for
+            dental professionals. That registration is not a formality. It means recognised qualifications,
+            professional indemnity, ongoing training every year, and clear standards the whole team is
+            accountable to. You can look up any dentist on the GDC's public register before you ever sit in
+            the chair, and we would encourage you to.
+          </p>
+        </div>
+      </section>
+
+      <section className="dn-section">
+        <div className="dn-container">
+          <div className="tp-section-head">
+            <span className="dn-eyebrow dn-pill day">Before You Visit</span>
+            <h2 className="dn-display">Nervous, or not sure <em className="dn-hl-gold">what to expect?</em></h2>
+          </div>
+          <p style={{ maxWidth: '720px' }}>
+            Nervous patients are welcome here, and you will not be rushed. Tell us when you book and the team
+            will go at your pace: everything is explained before it happens, you can ask for a pause at any
+            point, and nothing goes ahead until you say so. If it helps, a first visit can simply be a look
+            and a chat, with no treatment at all.
+          </p>
+          <p style={{ maxWidth: '720px' }}>
+            When you call, just tell us what is happening. We will ask a few quick questions to understand
+            how urgent things are, give you practical advice for the meantime, and offer you a time to come
+            in. We hold same-day emergency slots every day and aim to see you quickly, whatever the hour.
+          </p>
+        </div>
+      </section>
 
       <section className="dn-section tp-cta">
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />

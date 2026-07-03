@@ -2,6 +2,8 @@ import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
 import Register from '../sections/Register'
 import { SITE } from '../data/practice'
+import { jsonLd } from '../lib/jsonLd'
+import { dentistLd } from '../lib/schemas'
 
 const url = `${SITE}/register-as-patient/`
 const OG_IMAGE = `${SITE}/og-image.jpg?v=2`
@@ -15,7 +17,7 @@ export default function RegisterAsPatient() {
         <link rel="canonical" href={url} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Register as a Patient | Day Night Dental, Glasgow" />
-        <meta property="og:description" content="Become a new patient at Day Night Dental, Glasgow, day, evening and weekend appointments." />
+        <meta property="og:description" content="Become a new patient at Day Night Dental in Merchant City, Glasgow. New patients welcome for every treatment." />
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
@@ -23,7 +25,10 @@ export default function RegisterAsPatient() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={OG_IMAGE} />
         <meta name="twitter:title" content="Register as a Patient | Day Night Dental, Glasgow" />
-        <meta name="twitter:description" content="Become a new patient at Day Night Dental, Glasgow, day, evening and weekend appointments." />
+        <meta name="twitter:description" content="Become a new patient at Day Night Dental in Merchant City, Glasgow. New patients welcome for every treatment." />
+      </Head>
+      <Head>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">

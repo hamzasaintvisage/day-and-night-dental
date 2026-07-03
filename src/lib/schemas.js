@@ -21,7 +21,7 @@ export const dentistLd = {
   '@type': ['Dentist', 'EmergencyService'],
   '@id': DENTIST_ID,
   name: PRACTICE.name,
-  description: '24/7 emergency, cosmetic and general dental practice in Merchant City, Glasgow.',
+  description: '24/7 emergency dental service in Merchant City, Glasgow, with routine dental care by appointment.',
   slogan: 'Pain doesn’t wait. Neither do we.',
   url: `${SITE}/`,
   telephone: PRACTICE.phoneE164,
@@ -32,6 +32,7 @@ export const dentistLd = {
     'Emergency dentistry', 'Out-of-hours dental care', 'Toothache relief',
     'Dental abscess treatment', 'Broken tooth repair', 'Knocked-out tooth (avulsion)',
     'Dental implants', 'Invisalign', 'Teeth whitening', 'Cosmetic dentistry',
+    'Routine dental care',
   ],
   image: [OG_IMAGE],
   logo: `${SITE}/logo.png?v=2`,
@@ -58,9 +59,7 @@ export const dentistLd = {
     { '@type': 'Place', name: 'Glasgow West End' },
   ],
   openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '23:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '08:00', closes: '22:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Sunday', opens: '09:00', closes: '21:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '00:00', closes: '23:59' },
   ],
   // 24/7 emergency helpline modelled honestly as a contact point (separate from in-practice hours).
   contactPoint: {

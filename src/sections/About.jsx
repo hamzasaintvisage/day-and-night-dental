@@ -87,8 +87,8 @@ export default function About() {
           </p>
 
           <p className="dn-body">
-            We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
-            weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+            We&rsquo;re a Merchant City practice in the heart of Glasgow, open day and night, every
+            day, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
             consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
             to look after your teeth.
           </p>

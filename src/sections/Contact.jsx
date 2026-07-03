@@ -114,7 +114,7 @@ export default function Contact() {
                 <span className="dn-contact-ico day" aria-hidden="true"><Icon type="phone" /></span>
                 <span className="dn-eyebrow day">Day Line</span>
                 <a href={`tel:${PRACTICE.phoneE164}`} className="value">{PRACTICE.phoneDisplay}</a>
-                <span className="hint">Mon to Sun, 7am to 11pm</span>
+                <span className="hint">Open 24 hours, 7 days</span>
               </div>
 
               <div className="dn-contact-detail">
@@ -128,7 +128,7 @@ export default function Contact() {
                 <span className="dn-contact-ico" aria-hidden="true"><Icon type="mail" /></span>
                 <span className="dn-eyebrow">Email</span>
                 <a href={`mailto:${PRACTICE.email}`} className="value">{PRACTICE.email}</a>
-                <span className="hint">We reply within 1 working hour</span>
+                <span className="hint">We aim to reply within one working hour</span>
               </div>
 
               <div className="dn-contact-detail">
@@ -169,13 +169,12 @@ export default function Contact() {
               </div>
               <table>
                 <tbody>
-                  <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
-                  <tr><td>Saturday</td><td>8am to 10pm</td></tr>
-                  <tr><td>Sunday</td><td>9am to 9pm</td></tr>
                   <tr className="emergency-row">
-                    <td>Emergency line</td>
-                    <td><span className="live-dot" /> 24 hours, 7 days</td>
+                    <td>Emergency dental care</td>
+                    <td><span className="live-dot" /> Open 24 hours</td>
                   </tr>
+                  <tr><td>Routine appointments</td><td>By appointment</td></tr>
+                  <tr><td>NHS enquiries</td><td>Waiting list, subject to availability</td></tr>
                 </tbody>
               </table>
             </div>
@@ -225,8 +224,8 @@ export default function Contact() {
                   <div className="dn-form-radios" role="radiogroup" aria-labelledby="pref-time-label">
                     {[
                       { v: 'emergency', label: 'Emergency, today', side: 'night', emergency: true },
-                      { v: 'day', label: 'Day (7am to 5pm)', side: 'day' },
-                      { v: 'evening', label: 'Evening (5pm to 11pm)', side: 'night' },
+                      { v: 'day', label: 'Day (morning or afternoon)', side: 'day' },
+                      { v: 'evening', label: 'Evening or overnight', side: 'night' },
                       { v: 'weekend', label: 'Weekend', side: 'night' },
                     ].map(opt => (
                       <label key={opt.v} className={`dn-radio ${opt.side} ${opt.emergency ? 'urgent' : ''} ${form.preference === opt.v ? 'checked' : ''}`}>

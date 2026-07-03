@@ -22,6 +22,9 @@ const treatments = [
   {
     id: 'emergency',
     title: 'Emergency Care',
+    // Fuller wording for the desktop stage H3 only, so the page never carries
+    // two identical "Emergency Care" H3s (the mobile accordion keeps `title`).
+    stageTitle: '24/7 Emergency Care',
     tag: '24/7 Available',
     side: 'day',
     icon: 'clock',
@@ -132,7 +135,7 @@ function Panel({ t, num, isActive, inline }) {
         {t.tag}
       </span>
 
-      <h3 className="txg-ptitle">{t.title}</h3>
+      <h3 className="txg-ptitle">{!inline && t.stageTitle ? t.stageTitle : t.title}</h3>
       <p className="txg-psub">{t.sub}</p>
       <p className="txg-pdesc">{t.description}</p>
 

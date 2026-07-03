@@ -33,16 +33,6 @@ export default function ArticleLayout({ post }) {
       { '@type': 'ListItem', position: 3, name: post.title, item: url },
     ],
   }
-  const faqLd = post.faqs && post.faqs.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: post.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
-    })),
-  } : null
-
   return (
     <>
       <Head>
@@ -65,7 +55,6 @@ export default function ArticleLayout({ post }) {
         <script type="application/ld+json">{jsonLd(dentistLd)}</script>
         <script type="application/ld+json">{jsonLd(ld)}</script>
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
-        {faqLd && <script type="application/ld+json">{jsonLd(faqLd)}</script>}
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
@@ -125,10 +114,10 @@ export default function ArticleLayout({ post }) {
           )}
 
           <div className="dn-article-cta">
-            <p>Need to be seen? We're open day and night in Merchant City, Glasgow.</p>
+            <p>Need urgent dental help? Day Night Dental provides 24/7 emergency dental care from Merchant City, Glasgow.</p>
             <div className="tp-cta-actions">
               <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary">Call {PRACTICE.phoneDisplay}</a>
-              <Link to="/register-as-patient/" className="dn-btn">Register as a patient</Link>
+              <Link to="/treatments/emergency-dentist/" className="dn-btn">Emergency dentist info</Link>
             </div>
           </div>
         </div>

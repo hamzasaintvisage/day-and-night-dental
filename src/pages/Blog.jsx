@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { posts } from '../data/blog'
 import { SITE } from '../data/practice'
 import { jsonLd } from '../lib/jsonLd'
+import { dentistLd } from '../lib/schemas'
 
 const url = `${SITE}/blog/`
 
@@ -24,7 +25,7 @@ export default function Blog() {
         <link rel="canonical" href={url} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Dental Advice & Guides | Day Night Dental" />
-        <meta property="og:description" content="Honest dental advice from our Glasgow team." />
+        <meta property="og:description" content="Practical dental advice from our Glasgow team." />
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content="Day Night Dental" />
         <meta property="og:locale" content="en_GB" />
@@ -32,10 +33,11 @@ export default function Blog() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={`${SITE}/og-image.jpg?v=2`} />
         <meta name="twitter:title" content="Dental Advice & Guides | Day Night Dental" />
-        <meta name="twitter:description" content="Honest dental advice from our Glasgow team." />
+        <meta name="twitter:description" content="Practical dental advice from our Glasgow team." />
       </Head>
       <Head>
         <script type="application/ld+json">{jsonLd(breadcrumbLd)}</script>
+        <script type="application/ld+json">{jsonLd(dentistLd)}</script>
       </Head>
 
       <nav className="tp-breadcrumb" aria-label="Breadcrumb">
