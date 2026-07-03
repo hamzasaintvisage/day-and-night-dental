@@ -44,11 +44,10 @@ export default function Footer() {
               <li><Link to="/our-team/">Our Team</Link></li>
               <li><Link to="/areas-served/">Areas We Serve</Link></li>
               <li><Link to="/register-as-patient/">Register as Patient</Link></li>
-              <li><Link to="/#testimonials">Reviews</Link></li>
-              <li><Link to="/#contact">Contact</Link></li>
-              <li><Link to="/treatments/emergency-dentist/">Emergency Care</Link></li>
-              <li><Link to="/blog/">Advice &amp; Guides</Link></li>
               <li><Link to="/register-as-patient/">Fees &amp; first visit</Link></li>
+              <li><Link to="/#testimonials">Reviews</Link></li>
+              <li><Link to="/blog/">Advice &amp; Guides</Link></li>
+              <li><Link to="/#contact">Contact</Link></li>
             </ul>
           </div>
 

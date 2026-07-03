@@ -1,6 +1,6 @@
 // Blog posts. Each entry becomes a pre-rendered /blog/<slug> page automatically
-// via routes.jsx. Newest posts first. Optional fields: `faqs` (renders an FAQ
-// block + FAQPage schema) and `relatedPosts` (blog-to-blog "Related reading" links).
+// via routes.jsx. Newest posts first. Optional fields: `faqs` (renders a plain FAQ
+// block only, NO FAQPage schema - banned by house rules) and `relatedPosts` (blog-to-blog links).
 export const posts = [
   {
     slug: 'toothache-worse-at-night',
