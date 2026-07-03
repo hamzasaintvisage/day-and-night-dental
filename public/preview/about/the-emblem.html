@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Emblem - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE EMBLEM - a crest-led poster.
+   A large, always-on circular seal is the centrepiece: concentric
+   rings with "DAY NIGHT DENTAL . OPEN 24/7 . MERCHANT CITY" running
+   around the band, and a gold-sun / blue-moon device split down the
+   centre. The editorial statement sits beneath the crest. The seal
+   is a static SVG that renders fully with JS disabled; the only
+   motion is an optional slow rotation of the ring text (decorative,
+   reduced-motion aware). Solid gold day-half, solid blue night-half,
+   never blended; the seam is a hard vertical split. Continuous
+   gold/blue depth-glow behind the ground.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3rem,7vw,5.5rem) 0 clamp(3.4rem,8vw,6rem);
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(60% 55% at 12% 6%, rgba(248,199,96,.12), transparent 60%),
+    radial-gradient(62% 58% at 88% 96%, rgba(69,144,236,.12), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.dn-eyebrow{margin-bottom:clamp(1.5rem,4vw,2.4rem);}
+
+/* ── the crest ── */
+.dn-crest{
+  position:relative;
+  width:min(86vw,460px);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+}
+/* a soft pooled halo directly under the seal */
+.dn-crest::before{
+  content:'';
+  position:absolute;
+  inset:-8%;
+  border-radius:50%;
+  background:
+    radial-gradient(closest-side, rgba(248,199,96,.16), transparent 72%);
+  filter:blur(8px);
+  pointer-events:none;
+  z-index:-1;
+}
+.dn-crest svg{width:100%;height:100%;display:block;overflow:visible;}
+
+/* slow rotation of the ring-text group only (optional, decorative) */
+.dn-ring-spin{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:dn-rotate 64s linear infinite;
+}
+@keyframes dn-rotate{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+
+.dn-ringtext{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  fill:var(--dn-bone-dim);
+}
+.dn-ringtext .gold{fill:var(--dn-day);}
+.dn-ringtext .blue{fill:var(--dn-night);}
+
+/* centre device labels */
+.dn-device-word{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:.02em;
+}
+
+/* the statement beneath the crest */
+.dn-stage{
+  max-width:760px;
+  margin:clamp(2.4rem,5vw,3.4rem) auto 0;
+}
+
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.2rem,5.6vw,3.9rem);
+  line-height:1.05;
+  letter-spacing:-.016em;
+  margin:0 auto;
+  max-width:17ch;
+  color:var(--dn-bone);
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:380;}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);
+  line-height:1.3;
+  letter-spacing:-.008em;
+  margin:clamp(1.4rem,3vw,2rem) auto 0;
+  color:var(--dn-bone-dim);
+}
+.dn-lead .day{color:var(--dn-day);}
+.dn-lead .night{color:var(--dn-night);}
+
+.dn-body{
+  margin:clamp(1.3rem,2.6vw,1.7rem) auto 0;
+  max-width:52ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.4vw,1.08rem);
+  line-height:1.78;
+}
+
+/* ── byline + team link ── */
+.dn-by{
+  margin:clamp(2rem,4vw,2.6rem) auto 0;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  margin-top:.9rem;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-ring-spin{animation:none;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-ringtext{font-size:15px;letter-spacing:.28em;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-headline{font-size:2rem;}
+  .dn-crest{width:min(90vw,340px);}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Emblem</b> <span class="lab-lens">badge</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+
+    <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+    <!-- THE CREST: always-on, fully static seal -->
+    <div class="dn-crest">
+      <svg viewBox="-250 -250 500 500" role="img" aria-label="Day Night Dental seal: open 24 hours a day, 7 days a week, Merchant City, Glasgow">
+        <defs>
+          <!-- ring text path: a circle, set anti-clockwise baseline so text reads upright along the top -->
+          <path id="dn-ringpath" d="M0,-178 A178,178 0 1 1 0,178 A178,178 0 1 1 0,-178" fill="none"/>
+          <!-- hard vertical seam clip: left (day) and right (night) halves -->
+          <clipPath id="dn-leftHalf"><rect x="-250" y="-250" width="250" height="500"/></clipPath>
+          <clipPath id="dn-rightHalf"><rect x="0" y="-250" width="250" height="500"/></clipPath>
+        </defs>
+
+        <!-- outer hairline ring -->
+        <circle cx="0" cy="0" r="218" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+        <!-- main band ring -->
+        <circle cx="0" cy="0" r="200" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+        <circle cx="0" cy="0" r="156" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+
+        <!-- gentle tick marks around the band -->
+        <g stroke="rgba(255,255,255,.18)" stroke-width="1.4" stroke-linecap="round">
+          <line x1="0" y1="-200" x2="0" y2="-188"/>
+          <line x1="200" y1="0" x2="188" y2="0"/>
+          <line x1="0" y1="200" x2="0" y2="188"/>
+          <line x1="-200" y1="0" x2="-188" y2="0"/>
+        </g>
+
+        <!-- rotating ring text -->
+        <g class="dn-ring-spin">
+          <text class="dn-ringtext">
+            <textPath href="#dn-ringpath" startOffset="0%">
+              DAY NIGHT DENTAL&#160;&#160;&#8226;&#160;&#160;OPEN 24/7&#160;&#160;&#8226;&#160;&#160;MERCHANT CITY&#160;&#160;&#8226;&#160;&#160;
+            </textPath>
+          </text>
+        </g>
+
+        <!-- inner disc background -->
+        <circle cx="0" cy="0" r="150" fill="#101015"/>
+
+        <!-- DAY HALF: gold sun on the left of the seam -->
+        <g clip-path="url(#dn-leftHalf)">
+          <!-- sun rays -->
+          <g stroke="var(--dn-day)" stroke-width="3" stroke-linecap="round" opacity=".92">
+            <line x1="-72" y1="0" x2="-110" y2="0"/>
+            <line x1="-62" y1="-36" x2="-95" y2="-55"/>
+            <line x1="-62" y1="36" x2="-95" y2="55"/>
+            <line x1="-36" y1="-62" x2="-55" y2="-95"/>
+            <line x1="-36" y1="62" x2="-55" y2="95"/>
+            <line x1="0" y1="-72" x2="0" y2="-112"/>
+            <line x1="0" y1="72" x2="0" y2="112"/>
+          </g>
+          <!-- sun body (full circle, clipped to the left half) -->
+          <circle cx="0" cy="0" r="56" fill="var(--dn-day)"/>
+        </g>
+
+        <!-- NIGHT HALF: blue crescent moon on the right of the seam -->
+        <g clip-path="url(#dn-rightHalf)">
+          <!-- a few stars -->
+          <g fill="var(--dn-night)" opacity=".9">
+            <circle cx="92" cy="-66" r="3.2"/>
+            <circle cx="116" cy="-18" r="2.4"/>
+            <circle cx="84" cy="40" r="2.8"/>
+            <circle cx="110" cy="74" r="2.2"/>
+          </g>
+          <!-- crescent: blue disc with the inner-black bite, full circle clipped to right half -->
+          <circle cx="0" cy="0" r="56" fill="var(--dn-night)"/>
+          <circle cx="26" cy="-10" r="48" fill="#101015"/>
+        </g>
+
+        <!-- the hard seam down the centre: gold above-left, blue below-right meet at a crisp line -->
+        <line x1="0" y1="-150" x2="0" y2="150" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+
+        <!-- small day/night word marks under the device -->
+        <text class="dn-device-word" x="-30" y="120" text-anchor="middle" font-size="15" fill="var(--dn-day)" letter-spacing="2">DAY</text>
+        <text class="dn-device-word" x="30" y="120" text-anchor="middle" font-size="15" fill="var(--dn-night)" letter-spacing="2">NIGHT</text>
+
+        <!-- est. mark for the seal feel (factual: practice locale, not a fabricated rating) -->
+        <text class="dn-device-word" x="0" y="-104" text-anchor="middle" font-size="12" fill="var(--dn-bone-faint)" letter-spacing="3">GLASGOW</text>
+      </svg>
+    </div>
+
+    <!-- THE STATEMENT -->
+    <div class="dn-stage">
+      <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+
+      <p class="dn-lead">
+        <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+      </p>
+
+      <p class="dn-body">
+        We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+        weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+        consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+        to look after your teeth.
+      </p>
+
+      <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+      <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+  </div>
+</section>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

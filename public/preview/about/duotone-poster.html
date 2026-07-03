@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Duotone Poster - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   DUOTONE POSTER - a hard Bauhaus / Swiss colour-block poster.
+   Big geometric gold and blue blocks, oversized display type,
+   strong grid and rules. The statement and the day/night lead
+   are set as bold poster typography. Solid gold #f8c760 and solid
+   blue #4590ec only, on a dark near-black ground; where gold meets
+   blue it is a hard-stop seam, never a smooth blend. The poster
+   renders its full default state with JS disabled; the only motion
+   is a small click toggle that swaps which side leads.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(2.4rem,5vw,4rem) 0 clamp(3.2rem,7vw,5.5rem);
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(60% 55% at 8% 6%, rgba(248,199,96,.12), transparent 60%),
+    radial-gradient(64% 60% at 94% 98%, rgba(69,144,236,.12), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(18px,5vw,40px);
+}
+
+/* ── poster frame: a thick rule around the whole composition ── */
+.dn-poster{
+  position:relative;
+  border:3px solid var(--dn-bone);
+  background:var(--dn-near-black);
+}
+/* top index rule: a Swiss masthead band */
+.dn-mast{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  border-bottom:3px solid var(--dn-bone);
+  font-family:var(--font-body);
+  font-weight:700;
+  text-transform:uppercase;
+}
+.dn-mast .m-num{
+  background:var(--dn-day);
+  color:var(--dn-black);
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(1.1rem,2.4vw,1.7rem);
+  line-height:1;
+  display:flex;align-items:center;
+  padding:.55em .7em;
+  letter-spacing:-.02em;
+}
+.dn-mast .m-tag{
+  flex:1;
+  display:flex;align-items:center;
+  padding:.6em clamp(.8rem,2vw,1.3rem);
+  font-size:clamp(.58rem,1.4vw,.74rem);
+  letter-spacing:.26em;
+  color:var(--dn-bone);
+  border-left:3px solid var(--dn-bone);
+  min-width:0;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.dn-mast .m-loc{
+  background:var(--dn-night);
+  color:var(--dn-black);
+  display:flex;align-items:center;
+  padding:.6em clamp(.7rem,1.8vw,1.1rem);
+  font-size:clamp(.55rem,1.3vw,.7rem);
+  letter-spacing:.2em;
+  border-left:3px solid var(--dn-bone);
+  white-space:nowrap;
+}
+
+/* ── the duotone block grid: gold day-side / blue night-side ── */
+.dn-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  border-bottom:3px solid var(--dn-bone);
+}
+
+/* big headline panel, day-side, gold solid block bottom-anchored */
+.dn-head-cell{
+  position:relative;
+  padding:clamp(1.6rem,4vw,3rem) clamp(1.4rem,3.5vw,3rem) clamp(1.6rem,4vw,2.6rem);
+  border-right:3px solid var(--dn-bone);
+  overflow:hidden;
+  min-width:0;
+}
+/* hard gold corner block, hard-stop seam (no blend) */
+.dn-head-cell::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;
+  width:46%;
+  height:8px;
+  background:var(--dn-day);
+}
+.dn-head-cell::after{
+  content:'';
+  position:absolute;
+  left:0;bottom:0;
+  width:8px;
+  height:54%;
+  background:var(--dn-day);
+}
+.dn-eyebrow-row{
+  display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;
+  margin-bottom:clamp(1.1rem,2.6vw,1.7rem);
+}
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(2.5rem,7.6vw,5.5rem);
+  line-height:.95;
+  letter-spacing:-.026em;
+  margin:0;
+  color:var(--dn-bone);
+  text-transform:none;
+}
+.dn-headline .gold{
+  color:var(--dn-black);
+  background:var(--dn-day);
+  padding:0 .12em;
+  font-style:normal;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+
+/* lead panel, night-side, a blue solid block ── */
+.dn-lead-cell{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:clamp(1.6rem,3.5vw,2.6rem) clamp(1.4rem,3vw,2.2rem);
+  background:var(--dn-charcoal);
+  min-width:0;
+}
+.dn-lead-cell::before{
+  content:'';
+  position:absolute;
+  right:0;top:0;
+  width:8px;height:42%;
+  background:var(--dn-night);
+}
+.dn-lead-cell::after{
+  content:'';
+  position:absolute;
+  right:0;bottom:0;
+  width:50%;height:8px;
+  background:var(--dn-night);
+}
+.dn-lead-kicker{
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:.6rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin-bottom:1.1rem;
+}
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(1.9rem,4.4vw,3.1rem);
+  line-height:1;
+  letter-spacing:-.02em;
+  margin:0;
+}
+.dn-lead .day{color:var(--dn-day);display:block;}
+.dn-lead .day-sub,.dn-lead .night-sub{
+  display:block;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.62rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  margin:.4rem 0 1rem;
+}
+.dn-lead .night{color:var(--dn-night);display:block;}
+.dn-lead .night-sub{margin-bottom:0;}
+
+/* ── lower band: body copy on a blue rule, day/night index blocks ── */
+.dn-lower{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,300px);
+}
+.dn-body-cell{
+  padding:clamp(1.5rem,3.5vw,2.6rem) clamp(1.4rem,3.5vw,3rem);
+  border-right:3px solid var(--dn-bone);
+  min-width:0;
+}
+.dn-body-cell .num-tab{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:.85rem;
+  color:var(--dn-black);
+  background:var(--dn-night);
+  padding:.2em .55em;
+  letter-spacing:.04em;
+  margin-bottom:1.1rem;
+}
+.dn-body{
+  margin:0;
+  max-width:46ch;
+  font-size:clamp(1.02rem,1.5vw,1.18rem);
+  line-height:1.7;
+  color:var(--dn-bone-dim);
+}
+.dn-body strong{color:var(--dn-bone);font-weight:700;}
+
+/* index column: stacked day/night hard blocks */
+.dn-index{
+  display:flex;
+  flex-direction:column;
+}
+.dn-index .ix{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(1rem,2.6vw,1.5rem) clamp(1.1rem,2.6vw,1.6rem);
+  min-height:0;
+}
+.dn-index .ix.day{
+  background:var(--dn-day);
+  color:var(--dn-black);
+  border-bottom:3px solid var(--dn-bone);
+}
+.dn-index .ix.night{
+  background:var(--dn-night);
+  color:var(--dn-black);
+}
+.dn-index .ix .ix-tag{
+  font-family:var(--font-body);
+  font-weight:800;
+  font-size:.56rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  opacity:.78;
+  margin-bottom:.35rem;
+}
+.dn-index .ix .ix-big{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(1.3rem,3vw,1.9rem);
+  line-height:.95;
+  letter-spacing:-.02em;
+}
+
+/* ── footer band: byline + team link, hard rule between ── */
+.dn-foot{
+  display:flex;
+  align-items:stretch;
+  flex-wrap:wrap;
+}
+.dn-by{
+  flex:1;
+  display:flex;align-items:center;
+  padding:clamp(1rem,2.4vw,1.4rem) clamp(1.4rem,3.5vw,3rem);
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:clamp(.62rem,1.5vw,.78rem);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-bone);
+  min-width:200px;
+}
+.dn-by .dot{
+  display:inline-block;
+  width:8px;height:8px;
+  background:var(--dn-day);
+  margin:0 .7em;
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  min-height:44px;
+  padding:0 clamp(1.4rem,3.5vw,2.4rem);
+  background:var(--dn-bone);
+  color:var(--dn-black);
+  font-family:var(--font-body);
+  font-weight:800;
+  font-size:clamp(.78rem,1.6vw,.95rem);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-left:3px solid var(--dn-bone);
+  transition:background .2s ease, color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{
+  font-family:var(--font-display);
+  font-weight:800;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1);
+}
+@media (hover:hover){
+  .dn-link:hover{background:var(--dn-night);color:var(--dn-black);gap:.85rem;}
+  .dn-link:hover .arrow{transform:translateX(4px);}
+}
+.dn-link:focus-visible{outline:3px solid var(--dn-night);outline-offset:3px;}
+
+/* ── click-to-swap toggle (pure decoration; default state stands alone) ── */
+.dn-swap{
+  position:absolute;
+  z-index:2;
+  top:-1px;right:-1px;
+}
+.dn-swap button{
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:.55rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-bone-dim);
+  background:rgba(10,10,12,.7);
+  border:1px solid var(--dn-mist);
+  border-radius:999px;
+  padding:6px 13px;
+  min-height:32px;
+  cursor:pointer;
+  transition:color .2s ease,border-color .2s ease;
+}
+.dn-swap button:hover{color:var(--dn-bone);border-color:var(--dn-bone-faint);}
+.dn-swap button:focus-visible{outline:2px solid var(--dn-day);outline-offset:3px;}
+
+/* swapped: gold lead-block becomes blue-led, etc. (subtle, optional) */
+.dn-poster.dn-flip .dn-head-cell::before,
+.dn-poster.dn-flip .dn-head-cell::after{background:var(--dn-night);}
+.dn-poster.dn-flip .dn-headline .gold{background:var(--dn-day);}
+
+/* ── responsive ── */
+@media (max-width:840px){
+  .dn-grid{grid-template-columns:1fr;}
+  .dn-head-cell{border-right:0;border-bottom:3px solid var(--dn-bone);}
+  .dn-lead-cell{justify-content:flex-start;}
+  .dn-lower{grid-template-columns:1fr;}
+  .dn-body-cell{border-right:0;border-bottom:3px solid var(--dn-bone);}
+  .dn-index{flex-direction:row;}
+  .dn-index .ix.day{border-bottom:0;border-right:3px solid var(--dn-bone);}
+  .dn-index .ix{flex:1;min-width:0;}
+}
+@media (max-width:560px){
+  .dn-mast .m-tag{letter-spacing:.14em;}
+  .dn-foot{flex-direction:column;}
+  .dn-link{border-left:0;border-top:3px solid var(--dn-bone);justify-content:center;padding:14px;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 14px;}
+  .dn-headline{font-size:2.35rem;}
+  .dn-mast .m-tag{font-size:.5rem;letter-spacing:.1em;}
+  .dn-mast .m-loc{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Duotone Poster</b> <span class="lab-lens">bauhaus</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <div class="dn-poster" id="poster">
+
+      <div class="dn-swap">
+        <button type="button" id="swapBtn" aria-pressed="false">Flip the rule</button>
+      </div>
+
+      <!-- masthead index band -->
+      <div class="dn-mast" aria-hidden="true">
+        <span class="m-num">01</span>
+        <span class="m-tag">Why We&rsquo;re Different</span>
+        <span class="m-loc">Merchant City, Glasgow</span>
+      </div>
+
+      <!-- duotone headline / lead grid -->
+      <div class="dn-grid">
+        <div class="dn-head-cell">
+          <div class="dn-eyebrow-row">
+            <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+          </div>
+          <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+        </div>
+
+        <div class="dn-lead-cell">
+          <p class="dn-lead-kicker">The two halves of the day</p>
+          <p class="dn-lead">
+            <span class="day">Daytime</span>
+            <span class="day-sub">dentistry</span>
+            <span class="night">Night-time</span>
+            <span class="night-sub">emergencies</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- body + day/night index blocks -->
+      <div class="dn-lower">
+        <div class="dn-body-cell">
+          <span class="num-tab">02</span>
+          <p class="dn-body">
+            We&rsquo;re a <strong>Merchant City</strong> practice in the heart of Glasgow, open mornings, evenings and
+            weekends, with a <strong>24-hour line for emergencies</strong>. Whether it&rsquo;s a routine check-up, a cosmetic
+            consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+            to look after your teeth.
+          </p>
+        </div>
+
+        <div class="dn-index" aria-hidden="true">
+          <div class="ix day">
+            <span class="ix-tag">Day</span>
+            <span class="ix-big">Mornings, evenings &amp; weekends</span>
+          </div>
+          <div class="ix night">
+            <span class="ix-tag">Night</span>
+            <span class="ix-big">24-hour emergency line</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- byline + team link -->
+      <div class="dn-foot">
+        <div class="dn-by"><span class="dot" aria-hidden="true"></span>Day Night Dental, Merchant City, Glasgow</div>
+        <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Pure-decoration toggle. The poster renders its full default state with
+  // JS off; this only flips which colour leads the corner rules, on demand.
+  // No time/random APIs used.
+  var btn = document.getElementById('swapBtn');
+  var poster = document.getElementById('poster');
+  if(!btn || !poster) return;
+  btn.addEventListener('click', function(){
+    var flipped = poster.classList.toggle('dn-flip');
+    btn.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  });
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

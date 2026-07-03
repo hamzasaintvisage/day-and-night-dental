@@ -112,9 +112,19 @@ function Panel({ t, num, isActive, inline }) {
       };
   return (
     <article
-      className={`txg-panel ${t.side} ${isActive ? 'is-active' : ''}`}
+      className={`txg-panel ${t.side} ${t.highlight ? 'is-emergency' : ''} ${isActive ? 'is-active' : ''}`}
       {...tabProps}
     >
+      {/* Desktop stage panel only. The mobile accordion omits this so the "Live now"
+          strip never renders sandwiched between the emergency option and its content. */}
+      {t.highlight && !inline && (
+        <div className="txg-emg-banner">
+          <span className="txg-emg-pip" aria-hidden="true" />
+          <span className="txg-emg-now">Live now</span>
+          <span className="txg-emg-copy"><b>24/7 emergency line</b> answering around the clock</span>
+          <span className="txg-emg-num">{phoneDisplay}</span>
+        </div>
+      )}
       <span className="txg-pnum" aria-hidden="true">{num}</span>
 
       <span className={`txg-ptag ${t.highlight ? 'is-emergency' : ''}`}>
@@ -128,7 +138,7 @@ function Panel({ t, num, isActive, inline }) {
 
       <ul className="txg-points">
         {t.points.map((p, i) => (
-          <li key={i}><Check />{p}</li>
+          <li key={i}><span className="txg-tick"><Check /></span>{p}</li>
         ))}
       </ul>
 
@@ -211,6 +221,21 @@ export default function Treatments() {
           <h2 className="txg-h2">
             Every aspect of <em>modern</em> dentistry, under one roof
           </h2>
+          <div className="txg-live-banner" role="status">
+            <span className="txg-live-pip" aria-hidden="true" />
+            <span className="txg-live-now">Live now</span>
+            <span className="txg-live-copy"><b>24/7 emergency dental line</b> answering around the clock</span>
+            <a
+              className="txg-live-call"
+              href={`tel:${phoneE164}`}
+              aria-label={`Call the 24/7 emergency dental line now on ${phoneDisplay}`}
+            >
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" aria-hidden="true">
+                <path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5L17 12l4 1.5V17a2 2 0 0 1-2 2A15 15 0 0 1 4 6a2 2 0 0 1 1-2Z" />
+              </svg>
+              {phoneDisplay}
+            </a>
+          </div>
           <TrustStrip className="txg-head-trust" />
         </header>
 
@@ -228,7 +253,7 @@ export default function Treatments() {
                   <button
                     type="button"
                     id={`txg-opt-${t.id}`}
-                    className={`txg-option ${t.side} ${isActive ? 'is-active' : ''}`}
+                    className={`txg-option ${t.side} ${t.highlight ? 'is-emergency' : ''} ${isActive ? 'is-active' : ''}`}
                     role="tab"
                     aria-selected={isActive}
                     aria-controls={`txg-panel-${t.id}`}
@@ -249,28 +274,13 @@ export default function Treatments() {
                           </span>
                         </span>
                         <span className="txg-option-teaser">{t.teaser}</span>
-                        {t.highlight && (
-                          <a
-                            className="txg-option-call"
-                            href={`tel:${phoneE164}`}
-                            aria-label={`Call the 24/7 emergency dental line now on ${phoneDisplay}`}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" aria-hidden="true">
-                              <path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5L17 12l4 1.5V17a2 2 0 0 1-2 2A15 15 0 0 1 4 6a2 2 0 0 1 1-2Z" />
-                            </svg>
-                            Call now · 24/7
-                          </a>
-                        )}
                       </span>
                       <svg className="txg-option-arrow" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" />
                       </svg>
                     </span>
                   </button>
-                  {/* mobile-only inline accordion: the open treatment's detail
-                      expands right here inside the list (desktop hides this and
-                      uses the stage panel on the right instead). */}
+                  {/* mobile-only inline accordion: the open treatment's detail expands here. */}
                   {isActive && (
                     <div className="txg-acc">
                       <Panel t={t} num={num} isActive inline />

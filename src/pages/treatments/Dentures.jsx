@@ -13,7 +13,7 @@ const data = {
   side: "day",
   tag: "Replacing Teeth",
   h1Plain: "Dentures",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>Dentures, custom made <em>to fit your mouth</em></>),
   lead: "Dentures are removable replacements for missing teeth. They can replace a few teeth or a whole arch, and they are custom made to fit your mouth. A well-fitting set can help you eat more comfortably, speak more clearly and feel more confident smiling.",
   seo: { title: "Dentures in Glasgow | Day Night Dental", description: "Full and partial dentures in Glasgow. Custom made to help with eating, speech and confidence. Day and evening appointments, 7 days." },

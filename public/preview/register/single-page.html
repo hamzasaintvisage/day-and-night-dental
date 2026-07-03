@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview · Register (single page)</title>
+<!-- Links the REAL compiled style modules so this preview matches the live form exactly.
+     This is a throwaway mockup under /preview/ — the real component (src/sections/Register.jsx)
+     is NOT touched. -->
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* preview-only chrome + a safety reset; none of this ships to the real site */
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--dn-near-black,#0a0a0c);color:var(--dn-bone,#fff);
+       font-family:var(--font-body),system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;}
+  .pv-bar{position:sticky;top:0;z-index:60;display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+          padding:10px 18px;background:rgba(10,10,12,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+          border-bottom:1px solid var(--dn-mist);font-size:.78rem;letter-spacing:.03em;}
+  .pv-bar b{color:var(--dn-day);font-weight:600;}
+  .pv-bar span{color:var(--dn-bone-dim);}
+  /* the divider that replaces the old Step 1 / Step 2 break: the two sections now stack on one page */
+  .pv-care{margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--dn-mist);}
+  /* the concatenated modules set overflow/height on html+body for the full multi-section site,
+     which traps scrolling on this standalone page. Strip it back to a normal scrolling document
+     (the decorative glows are still clipped by .dn-register's own overflow-x:clip). */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+  /* feedback: tighten the care-type radio cards so they read a bit smaller */
+  .dn-form-radios{gap:.6rem;}
+  .dn-radio-card{padding:.7rem 1rem;gap:.15rem;}
+  .dn-radio-card .title{font-size:.95rem;}
+  .dn-radio-card .desc{font-size:.72rem;line-height:1.35;}
+</style>
+</head>
+<body>
+  <div class="pv-bar">
+    <span><b>PREVIEW</b> &middot; Registration as ONE page (11 fields) &middot; live form not touched</span>
+    <span>resize to test mobile</span>
+  </div>
+
+  <section id="register" class="dn-section dn-register">
+    <div class="dn-glow day" style="width:500px;height:500px;top:20%;left:-150px;opacity:.08;"></div>
+    <div class="dn-glow night" style="width:500px;height:500px;bottom:20%;right:-150px;opacity:.08;"></div>
+
+    <div class="dn-container">
+      <div class="dn-section-head">
+        <span class="dn-eyebrow dn-pill day">New Patients</span>
+        <h2 class="dn-display">Register in <em class="dn-hl-gold">three</em> minutes</h2>
+        <p class="dn-section-lead">
+          We're taking on new patients for every treatment we offer. Fill in the form
+          below and we'll confirm your first appointment within one working hour.
+        </p>
+        <p class="dn-register-urgent">
+          In pain right now? Don't wait to register,
+          <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        </p>
+      </div>
+
+      <div class="dn-register-grid">
+        <!-- Left: benefits / why register (unchanged from the live form) -->
+        <aside class="dn-register-aside">
+          <div class="dn-register-aside-inner">
+            <span class="dn-eyebrow day">What's Included</span>
+            <h3 class="dn-display">Your first visit</h3>
+            <ul class="dn-register-includes">
+              <li><span class="num">01</span><div><h4>Comprehensive examination</h4><p>A full assessment with intra-oral scans and bite analysis. That's 45 minutes with your assigned dentist.</p></div></li>
+              <li><span class="num">02</span><div><h4>Digital x-rays</h4><p>Low-dose digital imaging when it's clinically needed. There are no films to develop, so you won't be left waiting.</p></div></li>
+              <li><span class="num">03</span><div><h4>Personalised treatment plan</h4><p>You'll get a written plan with the cost of each item set out before any work starts, so you always know where you stand.</p></div></li>
+              <li><span class="num">04</span><div><h4>Hygiene appointment</h4><p>We book this in alongside your examination, so you leave with a proper clean and a fresh start.</p></div></li>
+            </ul>
+            <div class="dn-register-aside-foot">
+              <div class="dn-register-price">
+                <span class="label">First visit from</span>
+                <span class="amount"><span class="currency">£</span>95</span>
+              </div>
+              <p class="dn-register-aside-note">
+                We confirm the cost of your first visit before anything goes ahead, so there are no surprises. NHS care is by waiting list when we have space, and children under 18 are examined free.
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right: the merged single-page form -->
+        <div class="dn-register-form-wrap">
+          <form class="dn-register-form" onsubmit="return false;">
+
+            <!-- ===== Section 1: Your details ===== -->
+            <div class="dn-register-step">
+              <h3 class="dn-display">Tell us about you</h3>
+
+              <div class="dn-form-row dn-form-row-2">
+                <label><span>First name *</span><input type="text" name="firstName" autocomplete="given-name" placeholder="Hamza"></label>
+                <label><span>Last name *</span><input type="text" name="lastName" autocomplete="family-name" placeholder="Abrar"></label>
+              </div>
+
+              <div class="dn-form-row">
+                <span class="dn-form-label">Date of birth *</span>
+                <div class="dn-dob-grid">
+                  <div class="dn-dropdown day" data-open="false">
+                    <button type="button" class="dn-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Day of birth: Day">
+                      <span class="placeholder">Day</span><span class="dn-dropdown-chev" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="dn-dropdown day" data-open="false">
+                    <button type="button" class="dn-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Month of birth: Month">
+                      <span class="placeholder">Month</span><span class="dn-dropdown-chev" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="dn-dropdown day" data-open="false">
+                    <button type="button" class="dn-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Year of birth: Year">
+                      <span class="placeholder">Year</span><span class="dn-dropdown-chev" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dn-form-row dn-form-row-2">
+                <label><span>Phone *</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number"></label>
+                <label><span>Email *</span><input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com"></label>
+              </div>
+
+              <div class="dn-form-row dn-form-row-2">
+                <label><span>Address</span><input type="text" name="address" autocomplete="street-address" placeholder="Street address (optional)"></label>
+                <label><span>Postcode *</span><input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH"></label>
+              </div>
+            </div>
+
+            <!-- ===== Section 2: Your care (same page, divider above) ===== -->
+            <div class="dn-register-step pv-care">
+              <h3 class="dn-display">How would you like to be seen?</h3>
+
+              <div class="dn-form-row">
+                <span class="dn-form-label" id="care-type-label">Care type *</span>
+                <div class="dn-form-radios" role="radiogroup" aria-labelledby="care-type-label">
+                  <label class="dn-radio-card day"><input type="radio" name="careType" value="private"><span class="title">Private</span><span class="desc">Full choice of times and treatments</span></label>
+                  <label class="dn-radio-card night"><input type="radio" name="careType" value="nhs"><span class="title">NHS</span><span class="desc">Waiting list, when we have space</span></label>
+                  <label class="dn-radio-card day"><input type="radio" name="careType" value="mixed"><span class="title">Either</span><span class="desc">Whatever gets you seen soonest</span></label>
+                  <label class="dn-radio-card night"><input type="radio" name="careType" value="unsure"><span class="title">Not sure yet</span><span class="desc">We'll talk it through on the call</span></label>
+                </div>
+              </div>
+
+              <div class="dn-form-row">
+                <span class="dn-form-label">How did you hear about us?</span>
+                <div class="dn-dropdown day" data-open="false">
+                  <button type="button" class="dn-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="How did you hear about us?: Optional">
+                    <span class="placeholder">Optional</span><span class="dn-dropdown-chev" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- NEW optional free-text field -->
+              <div class="dn-form-row">
+                <label>
+                  <span>What do you need help with?</span>
+                  <textarea name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+                </label>
+              </div>
+
+              <div class="dn-form-row">
+                <label class="dn-checkbox">
+                  <input type="checkbox" name="consent">
+                  <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- single submit (no Continue / Back / "Step 1 of 2") -->
+            <div class="dn-register-actions" style="justify-content:flex-end;">
+              <button type="submit" class="dn-btn primary">Complete Registration <span class="arrow">→</span></button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Preview-only: light up the chosen care-type card (the live form does this via React state).
+    document.querySelectorAll('.dn-form-radios').forEach(function (group) {
+      group.addEventListener('change', function (e) {
+        group.querySelectorAll('.dn-radio-card').forEach(function (card) {
+          card.classList.toggle('checked', card.contains(e.target) && e.target.checked);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

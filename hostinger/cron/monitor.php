@@ -21,13 +21,21 @@ require $cfg;
 
 const DOMAIN_ID = '9e838f7b-10b4-49b7-b927-adcf367a82f3';
 const FAILED_WINDOW = 86400; // 24h
+const RETENTION_DAYS = 90;   // must match purge-enquiries.php
+const RETENTION_GRACE = 86400 * 2; // small grace: a purge that runs daily can lag by ~a day
 
+// IDENTICAL resolution to the endpoint's private_dir() (send-enquiry.php) and to
+// purge-enquiries.php: the SAME above-webroot candidates, SAME order, and deliberately NO
+// sys_get_temp_dir() fallback, so all three bind to the exact same directory and cannot drift.
 function private_dir(): ?string {
-    foreach ([
-        !empty($_SERVER['DOCUMENT_ROOT']) ? dirname($_SERVER['DOCUMENT_ROOT']) . '/dnd-private' : null,
-        dirname(__DIR__, 2) . '/dnd-private',
-        sys_get_temp_dir() . '/dnd-private',
-    ] as $dir) { if ($dir && is_dir($dir)) return $dir; }
+    $candidates = [];
+    if (!empty($_SERVER['DOCUMENT_ROOT'])) {
+        $candidates[] = dirname($_SERVER['DOCUMENT_ROOT']) . '/dnd-private';
+    }
+    $candidates[] = dirname(__DIR__, 2) . '/dnd-private';
+    foreach ($candidates as $dir) {
+        if (is_dir($dir) && is_writable($dir)) return $dir;
+    }
     return null;
 }
 
@@ -60,6 +68,23 @@ if ($priv && is_file($priv . '/failed-sends.ndjson')) {
         if ($at !== false && $at >= $cut) $recent++;
     }
     if ($recent > 0) $problems[] = "$recent enquiry(s) failed to email in the last 24h — see failed-sends.ndjson (full data in enquiries.ndjson)";
+}
+
+// 3) Oldest backup record must be within retention + grace, proving the daily purge ran.
+// A record older than 90 days + grace means purge-enquiries.php has NOT been sweeping (a
+// GDPR storage-limitation breach and a sign the cron is broken), so flag it.
+if ($priv && is_file($priv . '/enquiries.ndjson')) {
+    $oldest = null;
+    foreach (file($priv . '/enquiries.ndjson', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $l) {
+        $at = strtotime(json_decode($l, true)['at'] ?? '');
+        if ($at !== false && ($oldest === null || $at < $oldest)) $oldest = $at;
+    }
+    if ($oldest !== null) {
+        $ageDays = (int)floor((time() - $oldest) / 86400);
+        if ((time() - $oldest) > (RETENTION_DAYS * 86400 + RETENTION_GRACE)) {
+            $problems[] = "Oldest enquiry backup is {$ageDays} days old (retention is " . RETENTION_DAYS . " days), purge-enquiries.php may not be running";
+        }
+    }
 }
 
 // log every run

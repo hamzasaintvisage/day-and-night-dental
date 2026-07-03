@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Classic Split - Contact Us · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   CLASSIC SPLIT - an elevated take on the standard contact split.
+   Left: the practice's real contact methods, opening hours and a
+   static location facade (no live Google Maps iframe, no third-party
+   cookies). Right: a prominent enquiry form built on the premium
+   field-kit (filled charcoal wells, gold focus glow, a custom ARIA
+   listbox dropdown with a noscript native fallback). Solid gold
+   day-side, solid blue night-side, never a gold-to-blue blend.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{position:relative;padding:clamp(2.6rem,6vw,5rem) 0 clamp(3.4rem,8vw,6rem);overflow:hidden;}
+.dn-section::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 55% at 10% 6%, rgba(248,199,96,.10), transparent 60%),
+    radial-gradient(62% 58% at 92% 98%, rgba(69,144,236,.10), transparent 62%);
+}
+.dn-container{position:relative;z-index:1;width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+
+/* ── page intro ── */
+.cs-intro{max-width:760px;margin:0 0 clamp(2rem,4vw,2.8rem);}
+.cs-intro .pill-line{margin-bottom:18px;}
+.cs-intro h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;letter-spacing:-.016em;margin:0 0 14px;}
+.cs-intro h1 em{font-style:normal;color:var(--dn-day);}
+.cs-intro p{color:var(--dn-bone-dim);font-size:clamp(1.02rem,1.5vw,1.15rem);max-width:54ch;margin:0;line-height:1.7;}
+
+/* ── the two-column split ── */
+.cs-grid{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);gap:clamp(1.4rem,3vw,2.4rem);align-items:start;}
+
+/* ============ LEFT: info column ============ */
+.cs-info{display:flex;flex-direction:column;gap:clamp(1rem,2vw,1.3rem);min-width:0;}
+
+/* contact methods */
+.cs-methods{list-style:none;margin:0;padding:0;display:grid;gap:11px;}
+.cs-method{position:relative;display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:start;padding:16px 18px;border-radius:16px;background:linear-gradient(180deg,rgba(22,22,28,.7),rgba(14,14,18,.7));border:1px solid var(--dn-mist);transition:border-color .18s,background .18s;}
+.cs-method:hover{border-color:rgba(255,255,255,.2);background:linear-gradient(180deg,rgba(26,26,33,.8),rgba(16,16,20,.8));}
+.cs-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:0 0 auto;}
+.cs-ico svg{width:21px;height:21px;}
+.cs-ico.day{background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.34);color:var(--dn-day);}
+.cs-ico.night{background:rgba(69,144,236,.13);border:1px solid rgba(69,144,236,.36);color:var(--dn-night-soft);}
+.cs-ico.neutral{background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.cs-m-body{min-width:0;}
+.cs-m-k{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:4px;}
+.cs-m-k.day{color:var(--dn-day);}
+.cs-m-k.night{color:var(--dn-night-soft);}
+.cs-m-k.neutral{color:var(--dn-bone-faint);}
+.cs-m-v{display:block;font-family:var(--font-display);font-weight:560;font-size:1.24rem;line-height:1.2;letter-spacing:-.01em;color:var(--dn-bone);text-decoration:none;word-break:break-word;}
+a.cs-m-v{transition:color .18s;}
+a.cs-m-v:hover{color:var(--dn-day);}
+.cs-method.night a.cs-m-v:hover{color:var(--dn-night-soft);}
+.cs-m-hint{display:block;font-size:.84rem;color:var(--dn-bone-dim);margin-top:3px;}
+.cs-m-hint .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ad07a;margin-right:6px;vertical-align:middle;}
+
+/* location facade (static, no live map) */
+.cs-map{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--dn-mist);background:#0d0d12;}
+.cs-map-svg{display:block;width:100%;height:auto;}
+.cs-map-overlay{display:flex;align-items:center;gap:13px;padding:15px 17px;background:linear-gradient(180deg,rgba(14,14,18,0),rgba(10,10,12,.9));border-top:1px solid var(--dn-mist);}
+.cs-map-pin{width:42px;height:42px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:rgba(248,199,96,.12);border:1px solid rgba(248,199,96,.36);color:var(--dn-day);}
+.cs-map-pin svg{width:19px;height:19px;}
+.cs-map-txt{min-width:0;}
+.cs-map-txt strong{display:block;font-family:var(--font-display);font-weight:560;font-size:1.02rem;color:var(--dn-bone);line-height:1.25;}
+.cs-map-txt span{display:block;font-size:.82rem;color:var(--dn-bone-faint);margin-top:2px;}
+.cs-map-link{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--dn-night-soft);padding:9px 14px;border-radius:999px;border:1px solid rgba(69,144,236,.36);background:rgba(69,144,236,.08);text-decoration:none;min-height:44px;box-sizing:border-box;transition:background .18s,border-color .18s;}
+.cs-map-link:hover{background:rgba(69,144,236,.16);border-color:rgba(69,144,236,.55);}
+.cs-map-link svg{width:13px;height:13px;}
+
+/* opening hours */
+.cs-hours{border-radius:16px;border:1px solid var(--dn-mist);background:linear-gradient(180deg,rgba(22,22,28,.7),rgba(14,14,18,.7));padding:18px 20px 14px;}
+.cs-hours-head{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--dn-bone-faint);margin:0 0 10px;}
+.cs-hours table{width:100%;border-collapse:collapse;}
+.cs-hours td{padding:9px 0;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.cs-hours tr:last-child td{border-bottom:none;}
+.cs-hours td:first-child{color:var(--dn-bone-dim);}
+.cs-hours td:last-child{text-align:right;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
+.cs-hours tr.emerg td:first-child{color:var(--dn-night-soft);font-weight:600;}
+.cs-hours tr.emerg td:last-child{color:var(--dn-bone);}
+.cs-hours .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ad07a;margin-right:7px;vertical-align:middle;}
+
+/* ============ RIGHT: the form panel ============ */
+.cs-form-panel{position:relative;background:linear-gradient(180deg,rgba(22,22,28,.96),rgba(14,14,18,.97));border:1px solid var(--dn-mist);border-radius:24px;box-shadow:0 40px 110px -50px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.02) inset;overflow:hidden;}
+.cs-form-panel::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:rgba(248,199,96,.55);}
+.cs-form-head{padding:26px 26px 4px;}
+.cs-form-head h2{font-family:var(--font-display);font-weight:380;font-size:1.62rem;line-height:1.16;letter-spacing:-.01em;margin:0 0 7px;}
+.cs-form-head h2 em{font-style:normal;color:var(--dn-day);}
+.cs-form-head p{color:var(--dn-bone-dim);font-size:.95rem;margin:0;max-width:46ch;}
+
+.cs-form{padding:18px 26px 26px;}
+
+/* premium inputs - FILLED charcoal wells */
+.cs-field{position:relative;}
+.cs-field + .cs-field{margin-top:15px;}
+.cs-label{display:block;font-size:.92rem;color:var(--dn-bone);margin-bottom:8px;font-weight:500;}
+.cs-label .opt{color:var(--dn-bone-faint);font-weight:400;font-size:.84rem;margin-left:5px;}
+.cs-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+textarea.cs-input{padding:13px 15px;min-height:96px;resize:vertical;line-height:1.5;}
+.cs-input::placeholder{color:var(--dn-bone-faint);}
+.cs-input:hover{border-color:rgba(255,255,255,.2);}
+.cs-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.cs-grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.cs-grid2 .cs-field + .cs-field{margin-top:0;}
+
+/* preferred-time radio chips */
+.cs-radios{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.cs-radio{position:relative;display:flex;align-items:center;gap:9px;min-height:48px;padding:0 14px;border-radius:13px;background:var(--dn-charcoal);border:1px solid var(--dn-mist);cursor:pointer;font-size:.95rem;color:var(--dn-bone-dim);transition:border-color .16s,background .16s,color .16s;}
+.cs-radio input{position:absolute;opacity:0;width:1px;height:1px;margin:0;}
+.cs-radio:hover{border-color:rgba(255,255,255,.22);}
+.cs-radio .dot{width:18px;height:18px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--dn-bone-faint);display:grid;place-items:center;transition:border-color .16s;}
+.cs-radio .dot::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--dn-day);transform:scale(0);transition:transform .16s;}
+.cs-radio.day input:checked ~ .dot{border-color:var(--dn-day);}
+.cs-radio.day input:checked ~ .dot::after{transform:scale(1);background:var(--dn-day);}
+.cs-radio.night input:checked ~ .dot{border-color:var(--dn-night-soft);}
+.cs-radio.night input:checked ~ .dot::after{transform:scale(1);background:var(--dn-night-soft);}
+.cs-radio.day input:checked ~ span{color:var(--dn-bone);}
+.cs-radio.night input:checked ~ span{color:var(--dn-bone);}
+.cs-radio.day:has(input:checked){border-color:var(--dn-day);background:rgba(248,199,96,.07);}
+.cs-radio.night:has(input:checked){border-color:rgba(69,144,236,.55);background:rgba(69,144,236,.08);}
+.cs-radio input:focus-visible ~ .dot{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.cs-radio.urgent{grid-column:1 / -1;}
+.cs-radio.urgent .urgent-dot{width:8px;height:8px;border-radius:50%;background:var(--dn-night-soft);box-shadow:0 0 0 0 rgba(69,144,236,.5);animation:cs-pulse 2.2s infinite;margin-right:1px;flex:0 0 auto;}
+@keyframes cs-pulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}70%{box-shadow:0 0 0 7px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
+
+/* custom dropdown - styled trigger + floating dark listbox */
+.cs-dd{position:relative;}
+.cs-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.cs-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.cs-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.cs-dd.open .cs-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.cs-dd-trigger .ph{color:var(--dn-bone-faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cs-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.cs-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.cs-dd.open .cs-chev{transform:rotate(180deg);}
+.cs-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:300px;overflow-y:auto;list-style:none;margin:0;}
+.cs-dd:not(.open) .cs-dd-list{display:none;}
+.cs-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.cs-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.cs-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.cs-opt:hover,.cs-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.cs-opt:hover::before,.cs-opt.active::before{opacity:1;}
+.cs-opt[aria-selected="true"]{color:var(--dn-day);}
+.cs-opt[aria-selected="true"] .check{opacity:1;}
+.cs-dd-native{margin-top:9px;}
+
+/* submit - solid gold primary */
+.cs-send-row{margin-top:20px;}
+.cs-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.05rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s,background .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);position:relative;overflow:hidden;}
+.cs-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.cs-btn:active{transform:scale(.985);}
+.cs-btn svg{width:18px;height:18px;}
+/* emergency path: same solid gold token, with a soft live pulse ring */
+.cs-btn.is-emergency .cs-btn-pulse{content:'';position:absolute;inset:0;border-radius:14px;box-shadow:0 0 0 0 rgba(248,199,96,.55);animation:cs-btn-pulse 2s infinite;pointer-events:none;}
+@keyframes cs-btn-pulse{0%{box-shadow:0 0 0 0 rgba(248,199,96,.5);}70%{box-shadow:0 0 0 12px rgba(248,199,96,0);}100%{box-shadow:0 0 0 0 rgba(248,199,96,0);}}
+.cs-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.84rem;color:var(--dn-bone-dim);}
+.cs-reassure svg{width:15px;height:15px;color:#5cd98c;flex:0 0 auto;}
+.cs-disclaimer{margin:14px 0 0;font-size:.78rem;color:var(--dn-bone-faint);line-height:1.55;text-align:center;}
+.cs-disclaimer a{color:var(--dn-day);text-decoration:none;}
+.cs-disclaimer a:hover{text-decoration:underline;}
+
+/* ── responsive ── */
+@media(max-width:900px){
+  .cs-grid{grid-template-columns:1fr;}
+  .cs-form-panel{order:-1;}
+}
+@media(max-width:560px){
+  .cs-radios{grid-template-columns:1fr;}
+  .cs-map-overlay{flex-wrap:wrap;}
+  .cs-map-link{margin-left:0;width:100%;justify-content:center;}
+}
+@media(max-width:480px){
+  .cs-form-head{padding-left:20px;padding-right:20px;}
+  .cs-form{padding-left:20px;padding-right:20px;}
+  .cs-grid2{grid-template-columns:1fr;gap:15px;}
+  .cs-grid2 .cs-field + .cs-field{margin-top:15px;}
+  .cs-method{grid-template-columns:42px 1fr;gap:12px;}
+}
+@media(max-width:380px){
+  .dn-container{padding:0 16px;}
+  .cs-intro h1{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Classic Split</b> <span class="lab-lens">split</span></div><span></span></div>
+
+<section class="dn-section" id="contact" aria-labelledby="contact-heading">
+  <div class="dn-container">
+
+    <header class="cs-intro">
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">Get in touch</span></div>
+      <h1 id="contact-heading">Tooth trouble? Let's get you <em>seen</em>.</h1>
+      <p>
+        For urgent toothache, swelling or a broken tooth, call our 24-hour emergency line.
+        For routine appointments, send us your details and the team will get back to you.
+      </p>
+    </header>
+
+    <div class="cs-grid">
+
+      <!-- ============ LEFT: info column ============ -->
+      <div class="cs-info">
+
+        <ul class="cs-methods">
+          <li class="cs-method">
+            <span class="cs-ico day" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span class="cs-m-body">
+              <span class="cs-m-k day">Day line</span>
+              <a class="cs-m-v" href="tel:+441415486548">0141 548 6548</a>
+              <span class="cs-m-hint">Open Mon to Sun, 7am to 11pm</span>
+            </span>
+          </li>
+
+          <li class="cs-method night">
+            <span class="cs-ico night" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>
+            </span>
+            <span class="cs-m-body">
+              <span class="cs-m-k night">24-hour emergency line</span>
+              <a class="cs-m-v" href="tel:+441415486548">0141 548 6548</a>
+              <span class="cs-m-hint"><span class="live-dot"></span>Answered around the clock, 7 days</span>
+            </span>
+          </li>
+
+          <li class="cs-method">
+            <span class="cs-ico neutral" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span class="cs-m-body">
+              <span class="cs-m-k neutral">Email</span>
+              <a class="cs-m-v" href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+              <span class="cs-m-hint">We reply within 1 working hour</span>
+            </span>
+          </li>
+
+          <li class="cs-method">
+            <span class="cs-ico neutral" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span class="cs-m-body">
+              <span class="cs-m-k neutral">Visit</span>
+              <span class="cs-m-v" style="font-size:1.06rem;">80 Hutcheson Street, Merchant City, Glasgow G1 1SH</span>
+              <span class="cs-m-hint">Free parking nearby</span>
+            </span>
+          </li>
+        </ul>
+
+        <!-- static location facade: inline SVG mini-map, no live Google Maps iframe -->
+        <div class="cs-map">
+          <svg class="cs-map-svg" viewBox="0 0 600 230" role="img" aria-label="Stylised map of Merchant City, Glasgow showing the Day Night Dental location" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="cs-grid-p" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,.045)" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="600" height="230" fill="#0d0d12"/>
+            <rect width="600" height="230" fill="url(#cs-grid-p)"/>
+            <!-- river ribbon -->
+            <path d="M-10 196 C120 176 200 214 320 192 C440 170 520 206 610 188 L610 230 L-10 230 Z" fill="rgba(69,144,236,.1)"/>
+            <path d="M-10 196 C120 176 200 214 320 192 C440 170 520 206 610 188" fill="none" stroke="rgba(69,144,236,.3)" stroke-width="1.5"/>
+            <!-- main streets -->
+            <path d="M70 0 L70 230 M210 0 L210 230 M350 0 L350 230 M490 0 L490 230" stroke="rgba(255,255,255,.07)" stroke-width="2"/>
+            <path d="M0 60 L600 60 M0 130 L600 130" stroke="rgba(255,255,255,.07)" stroke-width="2"/>
+            <!-- a lit street to the pin (gold) -->
+            <path d="M210 130 L350 130 L350 96" stroke="rgba(248,199,96,.42)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- the pin -->
+            <g transform="translate(350 96)">
+              <circle r="26" fill="rgba(248,199,96,.12)"/>
+              <circle r="26" fill="none" stroke="rgba(248,199,96,.4)" stroke-width="1"/>
+              <path d="M0 -15 C8 -15 14 -9 14 -1 C14 9 0 20 0 20 C0 20 -14 9 -14 -1 C-14 -9 -8 -15 0 -15 Z" fill="#f8c760"/>
+              <circle cy="-1" r="5" fill="#0a0a0c"/>
+            </g>
+          </svg>
+          <div class="cs-map-overlay">
+            <span class="cs-map-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span class="cs-map-txt">
+              <strong>Merchant City, Glasgow G1 1SH</strong>
+              <span>80 Hutcheson Street · free parking nearby</span>
+            </span>
+            <a class="cs-map-link" href="https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z" target="_blank" rel="noopener noreferrer">
+              Directions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- opening hours (placeholders, presented as written) -->
+        <div class="cs-hours">
+          <p class="cs-hours-head">Opening hours</p>
+          <table>
+            <tbody>
+              <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
+              <tr><td>Saturday</td><td>8am to 10pm</td></tr>
+              <tr><td>Sunday</td><td>9am to 9pm</td></tr>
+              <tr class="emerg"><td>Emergency line</td><td><span class="live-dot"></span>24 hours, 7 days</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- ============ RIGHT: the form panel ============ -->
+      <div class="cs-form-panel">
+        <div class="cs-form-head">
+          <h2>Request an <em>appointment</em></h2>
+          <p>Send your details and we will get back to you. In pain right now? Call the line above, day or night.</p>
+        </div>
+
+        <noscript>
+          <p style="margin:0 26px 18px;padding:13px 15px;border-radius:13px;background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.28);font-size:.9rem;color:var(--dn-bone-dim);">
+            This form works best with JavaScript. You can also call us on
+            <a href="tel:+441415486548" style="color:var(--dn-day);">0141 548 6548</a> or email
+            <a href="mailto:reception@daynightdental.co.uk" style="color:var(--dn-day);">reception@daynightdental.co.uk</a>.
+          </p>
+        </noscript>
+
+        <form class="cs-form" id="cs-form" method="post" action="/api/send-enquiry.php" novalidate>
+          <!-- honeypot bot-field -->
+          <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="cs-field">
+            <label class="cs-label" for="cs-name">Your name</label>
+            <input class="cs-input" type="text" id="cs-name" name="name" required autocomplete="name" placeholder="Full name">
+          </div>
+
+          <div class="cs-grid2" style="margin-top:15px;">
+            <div class="cs-field">
+              <label class="cs-label" for="cs-phone">Phone</label>
+              <input class="cs-input" type="tel" id="cs-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+            </div>
+            <div class="cs-field">
+              <label class="cs-label" for="cs-email">Email</label>
+              <input class="cs-input" type="email" id="cs-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+          </div>
+
+          <div class="cs-field" style="margin-top:15px;">
+            <span class="cs-label" id="cs-pref-label">Preferred time</span>
+            <div class="cs-radios" role="radiogroup" aria-labelledby="cs-pref-label">
+              <label class="cs-radio night urgent">
+                <input type="radio" name="preference" value="emergency">
+                <span class="urgent-dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span>Emergency, today</span>
+              </label>
+              <label class="cs-radio day">
+                <input type="radio" name="preference" value="day">
+                <span class="dot" aria-hidden="true"></span>
+                <span>Day, 7am to 5pm</span>
+              </label>
+              <label class="cs-radio night">
+                <input type="radio" name="preference" value="evening">
+                <span class="dot" aria-hidden="true"></span>
+                <span>Evening, 5pm to 11pm</span>
+              </label>
+              <label class="cs-radio night">
+                <input type="radio" name="preference" value="weekend">
+                <span class="dot" aria-hidden="true"></span>
+                <span>Weekend</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="cs-field" style="margin-top:15px;">
+            <label class="cs-label" id="cs-dd-label">Treatment of interest</label>
+            <div class="cs-dd" id="cs-dd">
+              <button type="button" class="cs-dd-trigger" id="cs-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cs-dd-label cs-dd-trigger">
+                <span class="ph" id="cs-dd-val">Select an option</span>
+                <svg class="cs-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="cs-dd-list" id="cs-dd-list" role="listbox" aria-labelledby="cs-dd-label" tabindex="-1">
+                <li class="cs-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="New patient examination">New patient examination<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="Hygienist appointment">Hygienist appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="Invisalign">Invisalign<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="Dental implants">Dental implants<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="Teeth whitening">Teeth whitening<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="cs-opt" role="option" data-value="Other / unsure">Other / unsure<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              </ul>
+            </div>
+            <input type="hidden" name="treatment" id="cs-treatment" value="">
+            <!-- SSR-safe / no-JS fallback: native select only inside noscript -->
+            <noscript>
+              <div class="cs-dd-native">
+                <select name="treatment" aria-label="Treatment of interest" style="width:100%;font-size:16px;color:#fff;background:#14141a;border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:14px 15px;min-height:50px;">
+                  <option value="">Select an option</option>
+                  <option value="Emergency / pain">Emergency / pain</option>
+                  <option value="New patient examination">New patient examination</option>
+                  <option value="Hygienist appointment">Hygienist appointment</option>
+                  <option value="Cosmetic consultation">Cosmetic consultation</option>
+                  <option value="Invisalign">Invisalign</option>
+                  <option value="Dental implants">Dental implants</option>
+                  <option value="Teeth whitening">Teeth whitening</option>
+                  <option value="Other / unsure">Other / unsure</option>
+                </select>
+              </div>
+            </noscript>
+          </div>
+
+          <div class="cs-field" style="margin-top:15px;">
+            <label class="cs-label" for="cs-notes">Anything we should know? <span class="opt">optional</span></label>
+            <textarea class="cs-input" id="cs-notes" name="notes" rows="3" placeholder="Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+          </div>
+
+          <div class="cs-send-row">
+            <button type="submit" class="cs-btn" id="cs-btn">
+              <span class="cs-btn-pulse" aria-hidden="true"></span>
+              <span id="cs-btn-label">Request Booking</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="cs-reassure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              We reply within 1 working hour
+            </p>
+            <p class="cs-disclaimer">
+              We will never share your details. By sending this you are happy for us to
+              contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+            </p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('cs-dd');
+  if(dd){
+    var trigger = document.getElementById('cs-dd-trigger');
+    var list = document.getElementById('cs-dd-list');
+    var valEl = document.getElementById('cs-dd-val');
+    var hidden = document.getElementById('cs-treatment');
+    var opts = Array.prototype.slice.call(list.querySelectorAll('.cs-opt'));
+    var activeIdx = -1;
+
+    function open(){
+      dd.classList.add('open');
+      trigger.setAttribute('aria-expanded','true');
+      var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+      setActive(sel > -1 ? sel : 0);
+      list.focus();
+    }
+    function close(focusTrigger){
+      dd.classList.remove('open');
+      trigger.setAttribute('aria-expanded','false');
+      if(focusTrigger) trigger.focus();
+    }
+    function setActive(i){
+      if(i < 0) i = 0;
+      if(i > opts.length-1) i = opts.length-1;
+      opts.forEach(function(o){o.classList.remove('active');});
+      activeIdx = i;
+      opts[i].classList.add('active');
+      opts[i].scrollIntoView({block:'nearest'});
+    }
+    function choose(o){
+      opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+      o.setAttribute('aria-selected','true');
+      var v = o.getAttribute('data-value');
+      valEl.textContent = v;
+      trigger.classList.add('has-val');
+      hidden.value = v;
+      close(true);
+    }
+
+    trigger.addEventListener('click', function(){
+      dd.classList.contains('open') ? close(false) : open();
+    });
+    trigger.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+    });
+    opts.forEach(function(o,i){
+      o.addEventListener('click', function(){ choose(o); });
+      o.addEventListener('mousemove', function(){ setActive(i); });
+    });
+    list.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+      else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+      else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+      else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+      else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+    });
+    document.addEventListener('click', function(e){
+      if(!dd.contains(e.target)) close(false);
+    });
+  }
+
+  /* ---- emergency path: swap the gold submit button label + live pulse ring ---- */
+  var btn = document.getElementById('cs-btn');
+  var btnLabel = document.getElementById('cs-btn-label');
+  var radios = document.querySelectorAll('input[name="preference"]');
+  function syncBtn(){
+    var emergency = document.querySelector('input[name="preference"]:checked');
+    emergency = emergency && emergency.value === 'emergency';
+    if(btn) btn.classList.toggle('is-emergency', !!emergency);
+    if(btnLabel) btnLabel.textContent = emergency ? 'Request Emergency Appointment' : 'Request Booking';
+  }
+  radios.forEach(function(r){ r.addEventListener('change', syncBtn); });
+
+  /* static preview: never actually submit */
+  var form = document.getElementById('cs-form');
+  if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); }); }
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

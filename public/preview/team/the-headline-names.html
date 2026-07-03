@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Headline Names - The Practitioners · Day Night Dental</title>
+<style>
+/* ════════════════════════════════════════════════════════════════
+   THE HEADLINE NAMES - a type-led masthead. The practitioners' names
+   ARE the layout: three oversized Fraunces nameplates stacked like a
+   front-page headline run, each a full-bleed line. The role, GDC
+   number and a struck monogram are set as fine editorial credits
+   tucked against each name. Day/night accent per name. Deliberately
+   NOT a row of equal cards, NOT a stack of equal info-rows - the
+   silhouette is jagged oversized typography, not boxes.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Section shell ─────────────────────────────────────────── */
+.dn-section{
+  padding:clamp(3.4rem,8vw,7rem) clamp(1.1rem,5vw,2.4rem) clamp(4rem,9vw,8.5rem);
+  position:relative;
+}
+.dn-section::before{
+  /* single soft gold wash high-left - no blend between accents */
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(120% 60% at 8% -10%,rgba(248,199,96,.085),transparent 56%);
+  pointer-events:none;
+}
+.dn-section::after{
+  /* a matching cool wash low-right, kept separate from the gold */
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(90% 50% at 102% 108%,rgba(69,144,236,.07),transparent 58%);
+  pointer-events:none;
+}
+.dn-container{max-width:var(--container);margin-inline:auto;position:relative;}
+
+/* ── Intro band (eyebrow / headline / lead) ────────────────── */
+.dn-intro{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,21rem);
+  align-items:end;
+  gap:clamp(1.4rem,4vw,3.2rem);
+  padding-bottom:clamp(1.4rem,3vw,2.1rem);
+  margin-bottom:clamp(2.4rem,5vw,3.6rem);
+  border-bottom:1px solid var(--dn-mist);
+}
+.dn-intro-head{display:flex;flex-direction:column;align-items:flex-start;gap:1.15rem;}
+.dn-display{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.3rem,5.2vw,3.95rem);
+  line-height:.99;
+  letter-spacing:-.02em;
+  margin:.1rem 0 0;
+  max-width:18ch;
+  text-wrap:balance;
+}
+.dn-section-lead{
+  margin:0;
+  color:var(--dn-bone-dim);
+  font-size:clamp(1rem,1.25vw,1.08rem);
+  line-height:1.66;
+}
+.dn-section-lead .dn-drop{
+  float:left;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:3.1em;
+  line-height:.72;
+  margin:.05em .14em -.05em 0;
+  color:var(--dn-day);
+}
+
+/* ── The headline run (the names ARE the design) ───────────── */
+.dn-namerun{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+}
+.dn-name{
+  --c:var(--dn-day);
+  position:relative;
+  display:block;
+  padding:clamp(1.7rem,3.6vw,3rem) 0;
+  border-top:1px solid var(--dn-mist);
+  isolation:isolate;
+  transition:background .5s,box-shadow .5s;
+  border-radius:var(--dn-r-card);
+}
+.dn-namerun .dn-name:last-child{border-bottom:1px solid var(--dn-mist);}
+.dn-name.night{--c:var(--dn-night);}
+
+/* left accent spine, grows on hover/focus */
+.dn-name::before{
+  content:"";
+  position:absolute;
+  left:0;top:18%;bottom:18%;
+  width:3px;
+  border-radius:3px;
+  background:color-mix(in srgb,var(--c) 24%,transparent);
+  transform:scaleY(.3);
+  transform-origin:center;
+  transition:transform .5s cubic-bezier(.16,1,.3,1),background .5s;
+}
+
+/* credits row above each headline: folio · role · GDC · monogram */
+.dn-name-credit{
+  display:flex;
+  align-items:center;
+  gap:clamp(.7rem,2vw,1.3rem);
+  padding-left:clamp(1.1rem,2.6vw,2rem);
+  margin-bottom:clamp(.55rem,1.4vw,1rem);
+  flex-wrap:wrap;
+}
+.dn-name-folio{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.92rem;
+  letter-spacing:.04em;
+  color:var(--c);
+  font-variant-numeric:tabular-nums;
+}
+.dn-name-role{
+  font-size:.66rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+}
+.dn-name-role::before{
+  content:"";
+  width:22px;height:1px;
+  background:var(--c);
+  flex:none;
+}
+.dn-name-gdc{
+  font-variant-numeric:tabular-nums;
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  white-space:nowrap;
+}
+.dn-name-gdc b{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.86rem;
+  letter-spacing:.06em;
+  color:var(--dn-bone);
+  margin-left:.4rem;
+}
+.dn-credit-spacer{flex:1 1 1.5rem;min-width:0;}
+
+/* struck monogram medal, sits in the credit line */
+.dn-mono{
+  position:relative;
+  width:46px;height:46px;
+  flex:none;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid color-mix(in srgb,var(--c) 46%,transparent);
+  background:radial-gradient(120% 120% at 30% 22%,color-mix(in srgb,var(--c) 16%,var(--dn-charcoal)),var(--dn-charcoal));
+  color:var(--c);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.02rem;
+  letter-spacing:.01em;
+  transition:border-color .5s,box-shadow .5s;
+}
+.dn-mono::after{
+  content:"";
+  position:absolute;inset:4px;
+  border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--c) 20%,transparent);
+  pointer-events:none;
+}
+
+/* the oversized name itself */
+.dn-name-line{
+  display:block;
+  padding-left:clamp(1.1rem,2.6vw,2rem);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.55rem,9vw,6.6rem);
+  line-height:.92;
+  letter-spacing:-.03em;
+  margin:0;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+/* the accent only touches the honorific so the name reads clean */
+.dn-name-line .dn-dr{color:var(--c);}
+
+@media(hover:hover){
+  .dn-name:hover,.dn-name.is-active{
+    background:color-mix(in srgb,var(--c) 5%,transparent);
+    box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 30%,transparent),0 0 46px -6px color-mix(in srgb,var(--c) 42%,transparent);
+  }
+  .dn-name:hover::before,.dn-name.is-active::before{transform:scaleY(1);background:var(--c);}
+  .dn-name:hover .dn-mono,.dn-name.is-active .dn-mono{
+    border-color:color-mix(in srgb,var(--c) 80%,transparent);
+    box-shadow:0 0 18px -4px color-mix(in srgb,var(--c) 60%,transparent);
+  }
+}
+/* touch: glow fires via .is-active (single colour per side) */
+.dn-name.is-active{
+  background:color-mix(in srgb,var(--c) 5%,transparent);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 30%,transparent),0 0 46px -6px color-mix(in srgb,var(--c) 42%,transparent);
+}
+.dn-name.is-active::before{transform:scaleY(1);background:var(--c);}
+.dn-name.is-active .dn-mono{
+  border-color:color-mix(in srgb,var(--c) 80%,transparent);
+  box-shadow:0 0 18px -4px color-mix(in srgb,var(--c) 60%,transparent);
+}
+/* keyboard focus mirrors the glow, no JS needed */
+.dn-name:focus-visible{
+  outline:none;
+  background:color-mix(in srgb,var(--c) 5%,transparent);
+  box-shadow:0 0 0 1.5px color-mix(in srgb,var(--c) 80%,transparent),0 0 46px -6px color-mix(in srgb,var(--c) 42%,transparent);
+}
+.dn-name:focus-visible::before{transform:scaleY(1);background:var(--c);}
+.dn-name:focus-visible .dn-mono{
+  border-color:color-mix(in srgb,var(--c) 80%,transparent);
+  box-shadow:0 0 18px -4px color-mix(in srgb,var(--c) 60%,transparent);
+}
+
+/* ── Footer meta line ──────────────────────────────────────── */
+.dn-run-meta{
+  margin:clamp(1.8rem,4vw,2.6rem) 0 0;
+  display:flex;
+  align-items:baseline;
+  gap:.7rem;
+  font-size:.68rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--dn-bone-faint);
+  font-variant-numeric:tabular-nums;
+}
+.dn-run-meta .dn-meta-count{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.7rem;
+  letter-spacing:0;
+  line-height:1;
+  color:var(--dn-day);
+}
+
+@media(max-width:760px){
+  .dn-intro{grid-template-columns:1fr;align-items:start;}
+  .dn-name-line{font-size:clamp(2.4rem,12vw,4.2rem);}
+}
+@media(max-width:430px){
+  .dn-name-line{padding-left:.9rem;font-size:2.35rem;letter-spacing:-.02em;}
+  .dn-name-credit{padding-left:.9rem;gap:.6rem;}
+  .dn-name-folio{font-size:.82rem;}
+  .dn-name-role{letter-spacing:.18em;}
+  .dn-credit-spacer{flex-basis:100%;display:none;}
+  .dn-name-gdc{order:3;}
+  .dn-mono{width:42px;height:42px;font-size:.95rem;order:4;margin-left:auto;}
+  .dn-section-lead .dn-drop{font-size:2.7em;}
+}
+@media(prefers-reduced-motion:reduce){
+  .dn-name,.dn-name::before,.dn-mono{transition:box-shadow .2s,background .2s,border-color .2s;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Headline Names</b> <span class="lab-lens">typographic</span></div><span></span></div>
+
+<section id="team" class="dn-section dn-team">
+  <div class="dn-container">
+
+    <div class="dn-intro">
+      <div class="dn-intro-head">
+        <span class="dn-eyebrow dn-pill day">The Practitioners</span>
+        <h2 class="dn-display">The people behind your <em class="dn-hl-gold">smile</em></h2>
+      </div>
+      <p class="dn-section-lead">
+        <span class="dn-drop" aria-hidden="true">O</span>ur dentists are GDC-registered and experienced across emergency, restorative
+        and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
+      </p>
+    </div>
+
+    <ol class="dn-namerun">
+      <li class="dn-name day" tabindex="0">
+        <div class="dn-name-credit">
+          <span class="dn-name-folio">01</span>
+          <span class="dn-name-role">Principal Dentist</span>
+          <span class="dn-credit-spacer"></span>
+          <span class="dn-name-gdc">GDC No.<b>296929</b></span>
+          <span class="dn-mono" aria-hidden="true">WC</span>
+        </div>
+        <p class="dn-name-line"><span class="dn-dr">Dr</span> Willie Chang</p>
+      </li>
+
+      <li class="dn-name night" tabindex="0">
+        <div class="dn-name-credit">
+          <span class="dn-name-folio">02</span>
+          <span class="dn-name-role">Dentist</span>
+          <span class="dn-credit-spacer"></span>
+          <span class="dn-name-gdc">GDC No.<b>333443</b></span>
+          <span class="dn-mono" aria-hidden="true">PC</span>
+        </div>
+        <p class="dn-name-line"><span class="dn-dr">Dr</span> Pei Hsin Chiang</p>
+      </li>
+
+      <li class="dn-name day" tabindex="0">
+        <div class="dn-name-credit">
+          <span class="dn-name-folio">03</span>
+          <span class="dn-name-role">Dentist</span>
+          <span class="dn-credit-spacer"></span>
+          <span class="dn-name-gdc">GDC No.<b>310152</b></span>
+          <span class="dn-mono" aria-hidden="true">CL</span>
+        </div>
+        <p class="dn-name-line"><span class="dn-dr">Dr</span> Chia-Hsuan Lee</p>
+      </li>
+    </ol>
+
+    <p class="dn-run-meta">
+      <span class="dn-meta-count">03</span>
+      <span>GDC-registered, 03 practitioners</span>
+    </p>
+
+  </div>
+</section>
+
+<script>
+/* Touch devices: fire the name glow via .is-active (single colour per side).
+   Default state is fully visible/usable without JS - this only adds tap feedback. */
+(function () {
+  if (!window.matchMedia || window.matchMedia('(hover: hover)').matches) return;
+  var rows = document.querySelectorAll('.dn-name');
+  rows.forEach(function (row) {
+    row.addEventListener('touchstart', function () {
+      rows.forEach(function (r) { if (r !== row) r.classList.remove('is-active'); });
+      row.classList.toggle('is-active');
+    }, { passive: true });
+  });
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Neon Sign - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   NEON SIGN - a luminous signage hero. The statement is rendered
+   as illuminated neon tubing mounted on a dark brick wall, with a
+   gold "OPEN / 24 HOURS" neon motif beside it, soft tube-glow, a
+   faint floor reflection, and a low flicker. Solid gold day-side,
+   solid blue night-side, never a gold-to-blue blend. The full
+   default state renders with JS disabled; the only JS adds an
+   optional flicker that the page does not depend on.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.4rem,8vw,6.5rem) 0 clamp(2.6rem,6vw,4.2rem);
+  overflow:hidden;
+}
+/* the dark wall: near-black ground, faint brick grid, vignette + corner glow */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(64% 52% at 24% 26%, rgba(248,199,96,.13), transparent 60%),
+    radial-gradient(60% 52% at 80% 78%, rgba(69,144,236,.13), transparent 62%),
+    radial-gradient(120% 120% at 50% 36%, transparent 52%, rgba(0,0,0,.62) 100%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 92px),
+    #07070a;
+}
+.dn-section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  /* subtle uneven brick wash so the wall reads as a real surface */
+  background:
+    radial-gradient(40% 30% at 12% 64%, rgba(255,255,255,.018), transparent 70%),
+    radial-gradient(38% 28% at 88% 22%, rgba(255,255,255,.015), transparent 70%);
+  mix-blend-mode:screen;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+.dn-stage{
+  position:relative;
+  max-width:980px;
+  margin:0 auto;
+}
+
+.dn-eyebrow{margin-bottom:clamp(1.4rem,3vw,2rem);}
+
+/* ── the sign layout: statement tubes + OPEN motif ── */
+.dn-board{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(1.4rem,4vw,3rem);
+  align-items:center;
+}
+
+/* mounting hint: a thin lit baseboard the tubes sit above */
+.dn-board::after{
+  content:'';
+  position:absolute;
+  left:-2%;
+  right:-2%;
+  bottom:-1.1rem;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+  pointer-events:none;
+}
+
+/* ── the neon statement (the headline + lead, in tubing) ── */
+.dn-tubes{min-width:0;}
+
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.3rem,7vw,4.9rem);
+  line-height:1.04;
+  letter-spacing:-.018em;
+  margin:0;
+  color:#fff;
+  /* bone-white tube core with a faint warm halo so the unlit words still read as glass */
+  text-shadow:
+    0 0 1px rgba(255,255,255,.85),
+    0 0 8px rgba(255,255,255,.28),
+    0 0 22px rgba(255,255,255,.12);
+}
+/* the lit word: solid gold tube, layered bloom (never blends into blue) */
+.dn-headline .gold{
+  color:#ffe6a8;
+  font-style:italic;
+  font-weight:380;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 8px var(--dn-day),
+    0 0 20px var(--dn-day),
+    0 0 44px rgba(248,199,96,.7),
+    0 0 78px rgba(248,199,96,.42);
+}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(1.3rem,3vw,2.1rem);
+  line-height:1.25;
+  letter-spacing:-.008em;
+  margin:clamp(1.5rem,3.4vw,2.3rem) 0 0;
+  color:var(--dn-bone-dim);
+}
+/* day word: solid gold tube */
+.dn-lead .day{
+  color:#ffe6a8;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 7px var(--dn-day),
+    0 0 18px var(--dn-day),
+    0 0 40px rgba(248,199,96,.55);
+}
+/* night word: solid blue tube */
+.dn-lead .night{
+  color:#bcd8ff;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 7px var(--dn-night),
+    0 0 18px var(--dn-night),
+    0 0 40px rgba(69,144,236,.55);
+}
+
+/* ── the OPEN / 24 HOURS neon motif (gold side) ── */
+.dn-open{
+  position:relative;
+  flex:0 0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.55rem;
+  padding:clamp(1rem,2.4vw,1.5rem) clamp(1.1rem,2.6vw,1.7rem);
+  border-radius:18px;
+  /* a thin lit-tube border ring, gold only */
+  border:1.5px solid rgba(248,199,96,.55);
+  box-shadow:
+    0 0 8px rgba(248,199,96,.3),
+    0 0 28px rgba(248,199,96,.18),
+    inset 0 0 18px rgba(248,199,96,.1);
+  background:rgba(248,199,96,.03);
+}
+.dn-open-word{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.2rem,5.2vw,3.6rem);
+  line-height:.9;
+  letter-spacing:.04em;
+  color:#ffe6a8;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 9px var(--dn-day),
+    0 0 22px var(--dn-day),
+    0 0 48px rgba(248,199,96,.6);
+}
+.dn-open-rule{
+  width:100%;
+  height:1.5px;
+  border-radius:2px;
+  background:rgba(248,199,96,.55);
+  box-shadow:0 0 7px rgba(248,199,96,.6);
+}
+.dn-open-sub{
+  font-family:var(--font-body);
+  font-size:.62rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:#ffe6a8;
+  text-shadow:0 0 6px rgba(248,199,96,.7),0 0 16px rgba(248,199,96,.4);
+}
+/* the "24" pop, slightly larger to read as a clock */
+.dn-open-sub .num{font-size:.78rem;letter-spacing:.18em;}
+
+/* a faint reflection of the OPEN sign on the floor below the board */
+.dn-open-refl{
+  margin-top:.6rem;
+  text-align:center;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1rem,2.2vw,1.5rem);
+  line-height:1;
+  letter-spacing:.04em;
+  color:rgba(248,199,96,.16);
+  transform:scaleY(-.6);
+  transform-origin:top;
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 80%);
+          mask-image:linear-gradient(180deg,#000,transparent 80%);
+  filter:blur(.5px);
+  pointer-events:none;
+  user-select:none;
+}
+
+/* ── body copy: a dimmer painted plaque under the tubes ── */
+.dn-body{
+  margin:clamp(2rem,4.4vw,2.9rem) 0 0;
+  max-width:56ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.5vw,1.1rem);
+  line-height:1.8;
+}
+
+/* ── byline + team link ── */
+.dn-by{
+  margin:clamp(1.8rem,3.6vw,2.4rem) 0 0;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  margin-top:.6rem;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+/* ── the floor reflection of the whole sign (faint, mirrored) ── */
+.dn-reflection{
+  position:relative;
+  z-index:1;
+  margin-top:clamp(1.6rem,4vw,2.6rem);
+  text-align:left;
+  pointer-events:none;
+  user-select:none;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 72%);
+          mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 72%);
+  transform:scaleY(-.55);
+  transform-origin:top;
+  filter:blur(1px);
+  opacity:.5;
+}
+.dn-reflection .rfl{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(1.6rem,4.4vw,3rem);
+  line-height:1.05;
+  letter-spacing:-.018em;
+  margin:0;
+  color:rgba(255,255,255,.22);
+}
+.dn-reflection .rfl .gold{color:rgba(248,199,96,.4);font-style:italic;}
+
+/* ── neon flicker (CSS-only; the page reads fully without it) ── */
+@keyframes dn-flick{
+  0%,100%{opacity:1;}
+  92%{opacity:1;}
+  93%{opacity:.62;}
+  94%{opacity:1;}
+  96%{opacity:.78;}
+  97%{opacity:1;}
+}
+.dn-headline .gold,.dn-open-word{animation:dn-flick 7.5s steps(1,end) infinite;}
+.dn-lead .night{animation:dn-flick 9.2s steps(1,end) infinite;}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-headline .gold,.dn-open-word,.dn-lead .night{animation:none;}
+}
+
+/* ── responsive ── */
+@media (max-width:760px){
+  .dn-board{
+    grid-template-columns:1fr;
+    gap:clamp(1.6rem,5vw,2.2rem);
+    justify-items:start;
+  }
+  .dn-board::after{display:none;}
+  .dn-open{align-self:flex-start;}
+  .dn-open-refl{display:none;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-headline{font-size:2.1rem;}
+  .dn-open-word{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Neon Sign</b> <span class="lab-lens">signage</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <div class="dn-stage">
+      <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+      <div class="dn-board">
+        <div class="dn-tubes">
+          <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+          <p class="dn-lead">
+            <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+          </p>
+        </div>
+
+        <div class="dn-open" aria-hidden="true">
+          <span class="dn-open-word">OPEN</span>
+          <span class="dn-open-rule"></span>
+          <span class="dn-open-sub"><span class="num">24</span> HOURS</span>
+          <span class="dn-open-refl">OPEN</span>
+        </div>
+      </div>
+
+      <p class="dn-body">
+        We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+        weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+        consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+        to look after your teeth.
+      </p>
+
+      <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+      <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+
+      <div class="dn-reflection" aria-hidden="true">
+        <p class="rfl">Built for real life, not <span class="gold">office</span> hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Optional accent: a few neon tubes get a one-off warm-up flutter on load.
+  // Purely decorative - every tube is already fully lit with JS disabled,
+  // and the CSS flicker keyframes run on their own. No timers, no time/random APIs.
+  var tubes = document.querySelectorAll('.dn-headline .gold, .dn-open-word');
+  for (var i = 0; i < tubes.length; i++){
+    tubes[i].classList.add('dn-warm');
+  }
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

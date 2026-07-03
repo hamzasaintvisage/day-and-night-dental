@@ -29,57 +29,175 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>Gold Masthead - The Practitioners · Day Night Dental</title>
 <style>
-/* ============ Section shell ============ */
+/* ============================================================
+   GOLD MASTHEAD - Statement (evolved in place)
+   Identity kept: an editorial "masthead" where each name is set
+   in giant outline-stroke display type that fills SOLID in its
+   single side-accent on hover/focus. Pushed further into a true
+   printed-masthead bar: a folio nameplate header, an issue rule,
+   a hairline-ruled roster with a leading accent spine, monogram
+   avatar discs and a tabular GDC register column.
+   ============================================================ */
 .dn-section{padding:clamp(4rem,9vw,8rem) 0;position:relative;}
 .dn-team{background:var(--dn-near-black);position:relative;overflow:hidden;}
-/* one soft, single-colour gold wash - no gradient across accents */
-.dn-team::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 60% at 78% -8%,rgba(248,199,96,.07),transparent 60%);pointer-events:none;}
+/* one soft, single-colour gold wash high-centre - no gradient across accents */
+.dn-team::before{content:"";position:absolute;inset:0;background:radial-gradient(78% 52% at 82% -10%,rgba(248,199,96,.085),transparent 60%);pointer-events:none;}
 .dn-container{width:min(var(--container),100% - 2.5rem);margin-inline:auto;position:relative;z-index:1;}
 
-/* ============ Section head ============ */
-.dn-section-head{max-width:54ch;}
-.dn-display{font-family:var(--font-display);font-weight:600;line-height:1.02;letter-spacing:-.015em;font-size:clamp(2.3rem,5.4vw,4rem);margin:1.1rem 0 0;}
-.dn-section-lead{color:var(--dn-bone-dim);font-size:clamp(1rem,1.3vw,1.15rem);max-width:52ch;margin:1.25rem 0 0;}
-.dn-mast-baseline{display:flex;align-items:center;gap:.85rem;margin-top:1.9rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-variant-numeric:tabular-nums;}
-.dn-mast-baseline::after{content:"";flex:1;height:1px;background:var(--dn-mist);}
+/* ============ Masthead nameplate header ============ */
+.dn-mast-head{max-width:60ch;}
+.dn-display{font-family:var(--font-display);font-weight:600;line-height:1.0;letter-spacing:-.02em;font-size:clamp(2.5rem,6vw,4.5rem);margin:1.15rem 0 0;text-wrap:balance;}
+.dn-section-lead{color:var(--dn-bone-dim);font-size:clamp(1.02rem,1.35vw,1.18rem);max-width:54ch;margin:1.4rem 0 0;}
 
-/* ============ Masthead roster (rank #5 keyCss) ============ */
-.dn-roster{display:grid;gap:0;margin-top:clamp(2rem,5vw,4rem);}
-.dn-roster-row{--acc:var(--dn-day);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(1rem,3vw,2.5rem);padding:clamp(1.4rem,4vw,2.8rem) clamp(.4rem,1.4vw,1.2rem);border-top:1px solid var(--dn-mist);border-radius:var(--dn-r-card);transition:box-shadow .4s ease,background .4s ease;outline:none;}
+/* the "issue line" - the masthead rule that opens the register */
+.dn-mast-rule{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.1rem;margin-top:clamp(2.2rem,5vw,3.4rem);}
+.dn-mast-rule::after,.dn-mast-rule .line{content:"";height:1px;background:linear-gradient(90deg,var(--dn-mist),rgba(255,255,255,.02));}
+.dn-mast-rule .line{order:2;}
+.dn-mast-folio{font-family:var(--font-body);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-faint);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.dn-mast-folio b{color:var(--dn-day);font-family:var(--font-display);font-weight:600;letter-spacing:.06em;}
+.dn-mast-vol{order:3;font-family:var(--font-display);font-weight:600;font-size:.78rem;letter-spacing:.06em;color:var(--dn-bone-dim);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+/* ============ Register (roster) ============ */
+.dn-roster{display:grid;gap:0;margin-top:0;}
+.dn-roster-row{
+  --acc:var(--dn-day);
+  position:relative;
+  display:grid;
+  grid-template-columns:auto auto 1fr auto;
+  align-items:center;
+  gap:clamp(1rem,3vw,2.6rem);
+  padding:clamp(1.5rem,4vw,2.9rem) clamp(.8rem,2vw,1.6rem) clamp(1.5rem,4vw,2.9rem) clamp(1.1rem,2.4vw,1.8rem);
+  border-top:1px solid var(--dn-mist);
+  border-radius:var(--dn-r-card);
+  transition:box-shadow .45s ease,background .45s ease;
+  outline:none;
+}
 .dn-roster-row.night{--acc:var(--dn-night);}
 .dn-roster-row:last-child{border-bottom:1px solid var(--dn-mist);}
 
-.dn-roster-idx{font-family:var(--font-display);font-size:clamp(1rem,2vw,1.4rem);color:var(--acc);letter-spacing:.04em;font-variant-numeric:tabular-nums;align-self:start;padding-top:.35rem;}
-
-.dn-roster-body{min-width:0;}
-.dn-roster-name{font-family:var(--font-display);font-weight:700;line-height:.92;font-size:clamp(2rem,7.2vw,5.2rem);margin:0;color:transparent;-webkit-text-stroke:1px var(--dn-bone);text-stroke:1px var(--dn-bone);letter-spacing:-.01em;transition:color .4s ease,-webkit-text-stroke-color .4s ease;}
-.dn-roster-meta{font-family:var(--font-body);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-dim);margin:.7rem 0 0;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
-.dn-roster-meta .dot{width:4px;height:4px;border-radius:50%;background:var(--acc);flex:none;}
-.dn-roster-meta .gdc{color:var(--dn-bone-faint);}
-
-.dn-roster-disc{width:clamp(64px,10vw,112px);aspect-ratio:1;border-radius:50%;border:1px solid var(--dn-mist);overflow:hidden;display:grid;place-items:center;color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--dn-charcoal));transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s ease;flex:none;}
-.dn-roster-disc svg{width:62%;height:62%;}
-
-@media (hover:hover){
-  .dn-roster-row:hover,.dn-roster-row:focus-within{background:color-mix(in srgb,var(--acc) 5%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 34px -4px color-mix(in srgb,var(--acc) 42%,transparent);}
+/* leading accent spine - the bar that names the side colour */
+.dn-roster-row::before{
+  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:3px;height:0;border-radius:3px;background:var(--acc);
+  transition:height .45s cubic-bezier(.16,1,.3,1),box-shadow .45s ease;
 }
-.dn-roster-row:hover .dn-roster-name,.dn-roster-row:focus-within .dn-roster-name,.dn-roster-row.is-active .dn-roster-name{color:var(--acc);-webkit-text-stroke-color:transparent;text-stroke-color:transparent;}
-.dn-roster-row:hover .dn-roster-disc,.dn-roster-row:focus-within .dn-roster-disc,.dn-roster-row.is-active .dn-roster-disc{transform:scale(1.06);border-color:color-mix(in srgb,var(--acc) 70%,transparent);}
-/* touch/active fallback so the statement still fires without hover */
-.dn-roster-row.is-active{background:color-mix(in srgb,var(--acc) 5%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 34px -4px color-mix(in srgb,var(--acc) 42%,transparent);}
 
-/* ============ Mobile (rank #5 layoutMobile) ============ */
-@media (max-width:640px){
-  .dn-roster-row{grid-template-columns:auto auto;grid-template-areas:"disc idx" "name name" "meta meta";align-items:center;gap:.6rem clamp(.8rem,4vw,1.4rem);padding:clamp(1.6rem,7vw,2.2rem) .15rem;}
+/* folio / register index */
+.dn-roster-idx{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(.82rem,1.4vw,1rem);
+  color:var(--acc);letter-spacing:.04em;font-variant-numeric:tabular-nums;
+  align-self:start;padding-top:.55rem;
+}
+
+/* monogram avatar disc - styled initial device, never a fake photo */
+.dn-roster-disc{
+  position:relative;
+  width:clamp(58px,8.5vw,92px);aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;flex:none;
+  color:var(--acc);
+  background:radial-gradient(120% 120% at 30% 22%,color-mix(in srgb,var(--acc) 16%,var(--dn-charcoal)),var(--dn-charcoal) 78%);
+  border:1px solid color-mix(in srgb,var(--acc) 26%,var(--dn-mist));
+  transition:transform .45s cubic-bezier(.16,1,.3,1),border-color .45s ease,box-shadow .45s ease;
+}
+.dn-roster-disc::after{
+  content:"";position:absolute;inset:5px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--acc) 22%,transparent);
+}
+.dn-roster-mono{
+  font-family:var(--font-display);font-weight:600;line-height:1;
+  font-size:clamp(1.1rem,2.4vw,1.7rem);letter-spacing:.02em;
+  color:var(--acc);font-variant-numeric:tabular-nums;
+}
+
+/* identity block */
+.dn-roster-body{min-width:0;}
+.dn-roster-kicker{
+  display:block;font-family:var(--font-body);font-weight:600;
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dn-bone-faint);margin:0 0 .65rem;
+}
+.dn-roster-name{
+  font-family:var(--font-display);font-weight:700;line-height:.9;
+  font-size:clamp(2.1rem,7.4vw,5.4rem);margin:0;letter-spacing:-.018em;
+  color:transparent;-webkit-text-stroke:1px var(--dn-bone);text-stroke:1px var(--dn-bone);
+  transition:color .45s ease,-webkit-text-stroke-color .45s ease;
+}
+
+/* register column - role + GDC, set tabular like a printed index */
+.dn-roster-reg{
+  justify-self:end;text-align:right;min-width:0;
+  font-variant-numeric:tabular-nums;
+}
+.dn-roster-role{
+  display:block;font-family:var(--font-body);font-weight:600;
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dn-bone-dim);white-space:nowrap;
+}
+.dn-roster-gdc{
+  display:flex;align-items:center;justify-content:flex-end;gap:.55rem;
+  margin-top:.7rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dn-bone-faint);white-space:nowrap;
+}
+.dn-roster-gdc::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--acc);flex:none;}
+.dn-roster-gdc b{font-family:var(--font-display);font-weight:600;font-size:1.02rem;letter-spacing:.04em;color:var(--dn-bone);text-transform:none;}
+
+/* ============ Statement: the fill ============ */
+@media (hover:hover){
+  .dn-roster-row:hover,.dn-roster-row:focus-within{
+    background:color-mix(in srgb,var(--acc) 5%,transparent);
+    box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 36px -4px color-mix(in srgb,var(--acc) 44%,transparent);
+  }
+}
+.dn-roster-row:hover .dn-roster-name,
+.dn-roster-row:focus-within .dn-roster-name,
+.dn-roster-row.is-active .dn-roster-name{
+  color:var(--acc);-webkit-text-stroke-color:transparent;text-stroke-color:transparent;
+}
+.dn-roster-row:hover .dn-roster-disc,
+.dn-roster-row:focus-within .dn-roster-disc,
+.dn-roster-row.is-active .dn-roster-disc{
+  transform:scale(1.05);
+  border-color:color-mix(in srgb,var(--acc) 68%,transparent);
+  box-shadow:0 0 24px -6px color-mix(in srgb,var(--acc) 60%,transparent);
+}
+.dn-roster-row:hover::before,
+.dn-roster-row:focus-within::before,
+.dn-roster-row.is-active::before{height:62%;box-shadow:0 0 16px -2px var(--acc);}
+
+/* touch/active fallback so the statement still fires without hover */
+.dn-roster-row.is-active{
+  background:color-mix(in srgb,var(--acc) 5%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 36px -4px color-mix(in srgb,var(--acc) 44%,transparent);
+}
+
+/* ============ Tablet ============ */
+@media (max-width:820px){
+  .dn-roster-row{grid-template-columns:auto auto 1fr;gap:.9rem clamp(1rem,3vw,1.8rem);}
+  .dn-roster-reg{grid-column:1 / -1;justify-self:start;text-align:left;display:flex;align-items:baseline;gap:1.1rem;margin-top:.4rem;padding-left:calc(clamp(58px,8.5vw,92px) + clamp(.82rem,1.4vw,1rem) + clamp(1rem,3vw,1.8rem) + clamp(1rem,3vw,1.8rem));flex-wrap:wrap;}
+  .dn-roster-gdc{margin-top:0;justify-content:flex-start;}
+}
+
+/* ============ Mobile ============ */
+@media (max-width:560px){
+  .dn-roster-row{
+    grid-template-columns:auto 1fr;
+    grid-template-areas:"disc idx" "name name" "reg reg";
+    align-items:center;gap:.55rem clamp(.9rem,4vw,1.3rem);
+    padding:clamp(1.7rem,7vw,2.3rem) .2rem;
+  }
   .dn-roster-disc{grid-area:disc;}
   .dn-roster-idx{grid-area:idx;justify-self:start;align-self:center;padding-top:0;}
   .dn-roster-body{grid-area:name;}
-  .dn-roster-name{margin-top:.4rem;}
-  .dn-roster-meta{grid-area:meta;}
+  .dn-roster-kicker{margin-top:.5rem;}
+  .dn-roster-name{margin-top:.25rem;}
+  .dn-roster-reg{grid-area:reg;padding-left:0;display:flex;flex-direction:column;align-items:flex-start;gap:.55rem;margin-top:.2rem;}
+  .dn-roster-gdc{margin-top:0;}
+  .dn-mast-vol{display:none;}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .dn-roster-row,.dn-roster-disc,.dn-roster-name{transition:none;}
+  .dn-roster-row,.dn-roster-disc,.dn-roster-name,.dn-roster-row::before{transition:none;}
 }
 </style>
 </head>
@@ -88,57 +206,65 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 <section id="team" class="dn-section dn-team">
   <div class="dn-container">
-    <div class="dn-section-head">
+    <div class="dn-mast-head">
       <span class="dn-eyebrow dn-pill day">The Practitioners</span>
       <h2 class="dn-display">The people behind your <em class="dn-hl-gold">smile</em></h2>
       <p class="dn-section-lead">
         Our dentists are GDC-registered and experienced across emergency, restorative
         and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
       </p>
-      <p class="dn-mast-baseline">GDC-Registered · 03 Practitioners</p>
+    </div>
+
+    <div class="dn-mast-rule">
+      <span class="dn-mast-folio">GDC-Registered <b>·</b> 03 Practitioners</span>
+      <span class="line" aria-hidden="true"></span>
+      <span class="dn-mast-vol">The Register</span>
     </div>
 
     <div class="dn-roster">
 
       <article class="dn-roster-row day" tabindex="0">
         <span class="dn-roster-idx">01</span>
-        <div class="dn-roster-body">
-          <h3 class="dn-roster-name">Dr Willie Chang</h3>
-          <p class="dn-roster-meta"><span>Principal Dentist</span><span class="dot" aria-hidden="true"></span><span class="gdc">GDC No. 296929</span></p>
-        </div>
         <div class="dn-roster-disc" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="32" cy="25" r="11"/>
-            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
-          </svg>
+          <span class="dn-roster-mono">WC</span>
+        </div>
+        <div class="dn-roster-body">
+          <span class="dn-roster-kicker">Principal Dentist</span>
+          <h3 class="dn-roster-name">Dr Willie Chang</h3>
+        </div>
+        <div class="dn-roster-reg">
+          <span class="dn-roster-role">Principal Dentist</span>
+          <span class="dn-roster-gdc">GDC No.<b>296929</b></span>
         </div>
       </article>
 
       <article class="dn-roster-row night" tabindex="0">
         <span class="dn-roster-idx">02</span>
-        <div class="dn-roster-body">
-          <h3 class="dn-roster-name">Dr Pei Hsin Chiang</h3>
-          <p class="dn-roster-meta"><span>Dentist</span><span class="dot" aria-hidden="true"></span><span class="gdc">GDC No. 333443</span></p>
-        </div>
         <div class="dn-roster-disc" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="32" cy="25" r="11"/>
-            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
-          </svg>
+          <span class="dn-roster-mono">PC</span>
+        </div>
+        <div class="dn-roster-body">
+          <span class="dn-roster-kicker">Dentist</span>
+          <h3 class="dn-roster-name">Dr Pei Hsin Chiang</h3>
+        </div>
+        <div class="dn-roster-reg">
+          <span class="dn-roster-role">Dentist</span>
+          <span class="dn-roster-gdc">GDC No.<b>333443</b></span>
         </div>
       </article>
 
       <article class="dn-roster-row day" tabindex="0">
         <span class="dn-roster-idx">03</span>
-        <div class="dn-roster-body">
-          <h3 class="dn-roster-name">Dr Chia-Hsuan Lee</h3>
-          <p class="dn-roster-meta"><span>Dentist</span><span class="dot" aria-hidden="true"></span><span class="gdc">GDC No. 310152</span></p>
-        </div>
         <div class="dn-roster-disc" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="32" cy="25" r="11"/>
-            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"/>
-          </svg>
+          <span class="dn-roster-mono">CL</span>
+        </div>
+        <div class="dn-roster-body">
+          <span class="dn-roster-kicker">Dentist</span>
+          <h3 class="dn-roster-name">Dr Chia-Hsuan Lee</h3>
+        </div>
+        <div class="dn-roster-reg">
+          <span class="dn-roster-role">Dentist</span>
+          <span class="dn-roster-gdc">GDC No.<b>310152</b></span>
         </div>
       </article>
 
@@ -148,7 +274,7 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 <script>
 // Default state is fully visible/usable without JS. This only adds a touch
-// affordance so the "outline → solid fill" statement also fires on tap,
+// affordance so the "outline -> solid fill" statement also fires on tap,
 // since the spec calls for the accent to be reachable on touch devices.
 (function(){
   var rows = document.querySelectorAll('.dn-roster-row');
@@ -161,6 +287,6 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
   });
 })();
 </script>
-<script src="/preview/_nav.js?v=49925fd766" defer></script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
 </body>
 </html>

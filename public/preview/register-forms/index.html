@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register form designs · Day Night Dental</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+  body{background:var(--dn-near-black,#0a0a0c);color:var(--dn-bone,#fff);font-family:var(--font-body),system-ui,sans-serif;margin:0;}
+  .rf-wrap{max-width:1100px;margin:0 auto;padding:64px 24px 96px;}
+  .rf-head{text-align:center;margin-bottom:56px;}
+  .rf-eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dn-day,#f8c760);
+              border:1px solid rgba(248,199,96,.4);border-radius:100px;padding:7px 16px;margin-bottom:20px;}
+  .rf-head h1{font-family:var(--font-display),Georgia,serif;font-weight:600;font-size:clamp(2rem,5vw,3.1rem);line-height:1.05;margin:0 0 14px;}
+  .rf-head p{color:var(--dn-bone-dim,rgba(255,255,255,.72));max-width:640px;margin:0 auto;line-height:1.6;}
+  .rf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+  .rf-card{display:block;text-decoration:none;color:inherit;background:#101015;border:1px solid var(--dn-mist,rgba(255,255,255,.1));
+           border-radius:14px;padding:24px;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden;}
+  .rf-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--dn-day,#f8c760);opacity:.5;}
+  .rf-card:hover{border-color:rgba(248,199,96,.5);transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(248,199,96,.4);}
+  .rf-card.night::before{background:var(--dn-night,#4590ec);}
+  .rf-num{font-family:var(--font-display),Georgia,serif;font-size:1.2rem;color:var(--dn-day,#f8c760);}
+  .rf-card.night .rf-num{color:var(--dn-night-soft,#6aa8f2);}
+  .rf-name{font-family:var(--font-display),Georgia,serif;font-size:1.35rem;font-weight:600;margin:6px 0 10px;}
+  .rf-desc{font-size:.85rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));line-height:1.55;}
+  .rf-tag{display:inline-block;margin-top:14px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-day,#f8c760);}
+  .rf-card.night .rf-tag{color:var(--dn-night-soft,#6aa8f2);}
+  .rf-card.base{background:#14141a;border-color:rgba(248,199,96,.35);}
+  .rf-foot{text-align:center;margin-top:56px;color:var(--dn-bone-faint,rgba(255,255,255,.5));font-size:.8rem;}
+</style>
+</head>
+<body>
+  <div class="rf-wrap">
+    <div class="rf-head">
+      <span class="rf-eyebrow">New Patient Form · 12 directions</span>
+      <h1>Registration, redesigned</h1>
+      <p>One page, the same 11 locked fields, the same value content in every one. Only the presentation changes. Open any design to see it full-size; your live form stays untouched.</p>
+    </div>
+    <div class="rf-grid">
+      <a class="rf-card" href="01-evolved.html"><span class="rf-num">01</span><div class="rf-name">The Evolved Form</div><div class="rf-desc">The baseline we built together: two sections on one page, left value panel and right form.</div><span class="rf-tag">Baseline →</span></a>
+      <a class="rf-card" href="02-the-atrium.html"><span class="rf-num">02</span><div class="rf-name">The Atrium</div><div class="rf-desc">Centered single column, no sidebar. Editorial spacing, value woven inline above and below the form.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="03-concierge-letter.html"><span class="rf-num">03</span><div class="rf-name">The Concierge Letter</div><div class="rf-desc">A warm signed note on a stationery sheet, the value list enclosed, the form below the fold line.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card night" href="04-split-stage.html"><span class="rf-num">04</span><div class="rf-name">The Split Stage</div><div class="rf-desc">Bold 50/50: a dramatic sticky value stage on the left, the compact form on the right.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="05-reception-desk.html"><span class="rf-num">05</span><div class="rf-name">The Reception Desk</div><div class="rf-desc">Framed like a front-desk check-in, nameplate header, two-up rows, a blue-railed value ledger.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="06-thirty-seconds.html"><span class="rf-num">06</span><div class="rf-name">Thirty Seconds</div><div class="rf-desc">Speed-first. A stopwatch promise, a dense compact field card, one big submit, value rail below.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="07-gold-slab.html"><span class="rf-num">07</span><div class="rf-name">The Gold Slab</div><div class="rf-desc">A solid-gold header block over a dark two-column body. Strong day/night contrast, no gradients.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card night" href="08-night-watch.html"><span class="rf-num">08</span><div class="rf-name">Night Watch</div><div class="rf-desc">Dark and 24/7-aware. "Register any time, even at 2am", a live night-line indicator, blue accents.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="09-the-ledger.html"><span class="rf-num">09</span><div class="rf-name">The Ledger</div><div class="rf-desc">An editorial registry: lettered groups, numbered rows, gold hairline rules, a visit index.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="10-quiet-card.html"><span class="rf-num">10</span><div class="rf-name">The Quiet Card</div><div class="rf-desc">One elegant floating card on a soft glow, holding all the value content and the form together.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card" href="11-two-column-grid.html"><span class="rf-num">11</span><div class="rf-name">The Grid</div><div class="rf-desc">A modern two-column field grid in one card, value content as a strip on top, no sidebar.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card night" href="12-welcome-threshold.html"><span class="rf-num">12</span><div class="rf-name">The Welcome Threshold</div><div class="rf-desc">A welcome hero, a strip of value cards, then the full-width form. Warm and confidence-building.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card base" href="13-reception-hybrid.html"><span class="rf-num">13</span><div class="rf-name">Reception Desk + Headline ★</div><div class="rf-desc">The panel's pick (05) with the Split Stage headline grafted on: form-first layout, plus a bold Fraunces "day / night" hero. The recommended build.</div><span class="rf-tag">View →</span></a>
+      <a class="rf-card base" href="14-reception-native.html"><span class="rf-num">14</span><div class="rf-name">Reception Native ★★</div><div class="rf-desc">The full combination in true site context: your real header, the site's centred section head, #13's form-first desk, and the Deep Editorial value rail. The build candidate.</div><span class="rf-tag">View →</span></a>
+    </div>
+    <div class="rf-foot">11 fields · same information in every design · independently field + brand verified</div>
+  </div>
+</body>
+</html>

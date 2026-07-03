@@ -13,7 +13,7 @@ const data = {
   side: "night",
   tag: "Smile Design",
   h1Plain: "Smile Makeover",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>A smile makeover is <em>a plan, not a single treatment</em></>),
   lead: "A smile makeover is a plan, not a single treatment. We look at your whole face, work out what is bothering you, and put the right steps in the right order. You see a digital preview before anything starts, so you know roughly where you are heading.",
   seo: { title: "Smile Makeover in Glasgow | Day Night Dental", description: "Plan your smile makeover in Glasgow with a digital preview before we start. Cosmetic and general dentistry, day and evening appointments, seven days a week." },

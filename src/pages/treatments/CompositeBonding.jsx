@@ -13,7 +13,7 @@ const data = {
   side: "night",
   tag: "Smile Design",
   h1Plain: "Composite Bonding",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>Composite bonding, reshaping teeth <em>without drilling them down</em></>),
   lead: "Tooth-coloured resin, sculpted by hand to help with chips, gaps, worn edges and tired-looking front teeth. Often no drilling, usually done in a single visit, and largely reversible. Day and evening appointments, seven days a week in Merchant City.",
   seo: { title: "Composite Bonding in Glasgow | Day Night Dental", description: "Composite bonding in Glasgow to help with chips, gaps and worn edges. Tooth-coloured, often no drilling, usually one visit. Day and evening, seven days a week." },

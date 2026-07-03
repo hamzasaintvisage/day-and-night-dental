@@ -13,7 +13,7 @@ const data = {
   side: "night",
   tag: "Smile Design",
   h1Plain: "Cosmetic Dentistry",
-  procedureType: "CosmeticProcedure",
+  procedureType: "MedicalProcedure",
   title: (<>Cosmetic dentistry, <em>a smile designed around your face</em></>),
   lead: "From porcelain veneers to subtle composite bonding, we build your cosmetic plan around your features, your goals and the way you want to feel when you smile.",
   seo: { title: "Cosmetic Dentistry in Glasgow | Day Night Dental", description: "Cosmetic dentistry in Glasgow. Porcelain veneers, composite bonding and smile makeovers at Day Night Dental, with a digital smile preview, 7 days a week." },

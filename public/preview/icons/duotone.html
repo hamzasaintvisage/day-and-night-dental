@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Duotone dental icon family · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   DUOTONE LINE-MARK FAMILY
+   One clean 1pt line built on the brand's logo geometry, with a
+   single soft accent shape tinted behind/within the line for depth.
+   Gold = day concepts, blue = night/urgent. Never gold blended into
+   blue: one accent per icon. viewBox 0 0 36 36, currentColor, round
+   caps, optically matched detail. Legible at 24px, refined at 72px.
+   ───────────────────────────────────────────────────────────── */
+
+.page{position:relative;overflow:hidden;}
+.page::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(70% 50% at 12% 4%, rgba(248,199,96,.10), transparent 60%),
+    radial-gradient(70% 50% at 88% 98%, rgba(69,144,236,.10), transparent 62%);
+}
+.wrap{position:relative;z-index:1;max-width:var(--container);margin:0 auto;padding:clamp(2.4rem,6vw,4.4rem) clamp(20px,5vw,40px) 5rem;}
+
+.head{max-width:60ch;margin-bottom:clamp(2.4rem,5vw,3.4rem);}
+.head h1{
+  font-family:var(--font-display);font-weight:340;
+  font-size:clamp(2rem,5vw,3.3rem);line-height:1.06;letter-spacing:-.016em;
+  margin:1.1rem 0 0;color:var(--dn-bone);
+}
+.head h1 .gold{color:var(--dn-day);font-style:italic;font-weight:380;}
+.head p{margin:1rem 0 0;max-width:56ch;color:var(--dn-bone-faint);font-size:1.04rem;line-height:1.75;}
+
+.block{margin-top:clamp(2.6rem,5vw,3.8rem);}
+.block-h{
+  display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;
+  margin:0 0 1.5rem;padding-bottom:.7rem;border-bottom:1px solid var(--dn-mist);
+}
+.block-h h2{font-family:var(--font-display);font-weight:380;font-size:1.45rem;letter-spacing:-.01em;margin:0;color:var(--dn-bone);}
+.block-h span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);}
+
+/* ── icon colour inheritance: every icon is currentColor ── */
+.ic{display:inline-flex;color:var(--dn-day);}      /* default day-gold */
+.ic.night{color:var(--dn-night);}
+.ic svg{display:block;}
+
+/* ── (a) the family at three sizes ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(168px,1fr));
+  gap:14px;
+}
+.cell{
+  border:1px solid var(--dn-mist);border-radius:14px;
+  background:rgba(255,255,255,.025);
+  padding:22px 16px 16px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.cell .sizes{display:flex;align-items:flex-end;gap:18px;min-height:84px;}
+.cell .lbl{margin-top:16px;text-align:center;}
+.cell .lbl b{display:block;font-family:var(--font-display);font-weight:420;font-size:1.02rem;color:var(--dn-bone);}
+.cell .lbl small{display:block;margin-top:2px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.sizes .s28{width:28px;height:28px;}
+.sizes .s48{width:48px;height:48px;}
+.sizes .s72{width:72px;height:72px;}
+.ruler{display:flex;gap:18px;justify-content:center;margin-top:8px;font-size:.58rem;letter-spacing:.1em;color:var(--dn-bone-faint);}
+.ruler span{width:28px;text-align:center;}
+.ruler span:nth-child(2){width:48px;}
+.ruler span:nth-child(3){width:72px;}
+
+/* ── (b) current vs new ── */
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.cmp{border:1px solid var(--dn-mist);border-radius:14px;background:rgba(255,255,255,.025);padding:20px;}
+.cmp .cmp-title{font-family:var(--font-display);font-weight:420;font-size:1.05rem;margin-bottom:16px;color:var(--dn-bone);}
+.cmp-row{display:flex;align-items:center;gap:18px;}
+.cmp-side{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 8px;border-radius:11px;}
+.cmp-side.old{background:rgba(255,255,255,.02);border:1px dashed var(--dn-mist);}
+.cmp-side.new{background:rgba(248,199,96,.05);border:1px solid color-mix(in srgb, var(--dn-day) 26%, transparent);}
+.cmp-side .tag{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.cmp-side.new .tag{color:var(--dn-day);}
+.cmp-arrow{color:var(--dn-bone-faint);flex:0 0 auto;}
+.cmp-side .ic{width:48px;height:48px;}
+/* the old marks are drawn in muted bone to read as "before" */
+.cmp-side.old .ic{color:var(--dn-bone-dim);}
+.cmp-note{margin-top:14px;font-size:.82rem;color:var(--dn-bone-faint);line-height:1.6;}
+
+/* ── (c) in context: chips ── */
+.ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;}
+.ctx-col h3{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 14px;font-weight:600;}
+
+/* treatment option chip, mirrors .txg-option look */
+.t-chip{
+  display:flex;align-items:center;gap:14px;
+  width:100%;text-align:left;
+  padding:14px 18px;border-radius:14px;
+  border:1px solid var(--dn-mist);
+  background:rgba(255,255,255,.03);
+  margin-bottom:12px;
+}
+.t-chip.is-active{border-color:color-mix(in srgb, var(--accent) 55%, transparent);background:color-mix(in srgb, var(--accent) 9%, rgba(255,255,255,.02));}
+.t-chip .ico{flex:0 0 auto;display:inline-flex;width:30px;height:30px;color:var(--accent);}
+.t-chip .meta b{display:block;font-family:var(--font-display);font-weight:420;font-size:1.06rem;color:var(--dn-bone);}
+.t-chip .meta small{display:block;color:var(--dn-bone-faint);font-size:.82rem;}
+.t-chip.day{--accent:var(--dn-day);}
+.t-chip.night{--accent:var(--dn-night);}
+
+/* concern chip, mirrors .cxg-chip pill */
+.c-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.c-chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 16px 10px 12px;border-radius:999px;
+  border:1px solid var(--dn-mist);background:rgba(255,255,255,.03);
+  font-weight:520;font-size:.95rem;color:var(--dn-bone-dim);
+}
+.c-chip .ic{width:24px;height:24px;flex:0 0 auto;}
+.c-chip.day{--accent:var(--dn-day);}
+.c-chip.night{--accent:var(--dn-night);}
+.c-chip .ic{color:var(--accent);}
+.c-chip.is-active{border-color:color-mix(in srgb, var(--accent) 55%, transparent);background:color-mix(in srgb, var(--accent) 10%, rgba(255,255,255,.02));color:var(--dn-bone);}
+
+.foot{margin-top:3rem;font-size:.8rem;color:var(--dn-bone-faint);line-height:1.7;max-width:70ch;}
+.foot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78em;color:var(--dn-bone-dim);background:rgba(255,255,255,.05);padding:1px 6px;border-radius:5px;}
+
+@media (max-width:520px){
+  .sizes .s72{width:60px;height:60px;}
+  .cmp-row{gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     ICON DEFINITIONS (drawn once, reused via <use>)
+     All on viewBox 0 0 36 36, stroke-width 1, currentColor, round caps.
+     The duotone "accent" is a low-opacity fill of currentColor sitting
+     behind/within the line, giving depth while inheriting one accent.
+     ════════════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+
+    <!-- TOOTH · General Dentistry · healthy molar, soft enamel sheen -->
+    <g id="i-tooth">
+      <path d="M18 8 Q11 8 9 14 Q8 22 11 28 Q13 30.5 14 26 Q15 22 18 22 Q21 22 22 26 Q23 30.5 25 28 Q28 22 27 14 Q25 8 18 8 Z"
+            fill="currentColor" fill-opacity="0.13" stroke="none"/>
+      <path d="M18 8 Q11 8 9 14 Q8 22 11 28 Q13 30.5 14 26 Q15 22 18 22 Q21 22 22 26 Q23 30.5 25 28 Q28 22 27 14 Q25 8 18 8 Z"
+            fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M13.5 13.5 Q13 17 15.5 19" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+    </g>
+
+    <!-- EMERGENCY · Emergency Care · tooth + pulse heartbeat line -->
+    <g id="i-emergency">
+      <path d="M18 8 Q11 8 9 14 Q8 22 11 28 Q13 30.5 14 26 Q15 22 18 22 Q21 22 22 26 Q23 30.5 25 28 Q28 22 27 14 Q25 8 18 8 Z"
+            fill="currentColor" fill-opacity="0.13" stroke="none"/>
+      <path d="M18 8 Q11 8 9 14 Q8 22 11 28 Q13 30.5 14 26 Q15 22 18 22 Q21 22 22 26 Q23 30.5 25 28 Q28 22 27 14 Q25 8 18 8 Z"
+            fill="none" stroke="currentColor" stroke-width="1"/>
+      <!-- pulse / heartbeat sweeping across the crown -->
+      <path d="M9.5 17 L14 17 L15.7 13 L18.2 21.5 L20 17 L26.5 17"
+            fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- COSMETIC · Cosmetic Dentistry · even smile row of teeth + refined shine -->
+    <g id="i-cosmetic">
+      <!-- soft tint filling the band of teeth -->
+      <path d="M7.5 14.5 Q18 11.5 28.5 14.5 L27 21.5 Q18 24.5 9 21.5 Z" fill="currentColor" fill-opacity="0.12" stroke="none"/>
+      <!-- mouth: upper smile line (lip), then the teeth band, then the lower smile arc -->
+      <path d="M7.5 14.5 Q18 11.2 28.5 14.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <!-- the row of even teeth: tall enough to read as teeth, gently scalloped bottoms -->
+      <path d="M9 14.9 L9.6 21
+               M13 13.7 L13.3 22
+               M18 13.2 L18 22.4
+               M23 13.7 L22.7 22
+               M27 14.9 L26.4 21"
+            fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <!-- lower smile arc closing the row of teeth -->
+      <path d="M9 20.8 Q18 25 27 20.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <!-- refined four-point shine, top-right -->
+      <path d="M26 8.5 Q26.6 10.4 28.5 11 Q26.6 11.6 26 13.5 Q25.4 11.6 23.5 11 Q25.4 10.4 26 8.5 Z" fill="currentColor" stroke="none"/>
+    </g>
+
+    <!-- ALIGNER · Invisalign · a clear tray shell tracing over an upper row of teeth -->
+    <g id="i-aligner">
+      <!-- tint: the clear tray, a thin shell wrapping the crowns -->
+      <path d="M7 12 Q7 10.5 8.6 10.8 Q13 11.6 18 11.6 Q23 11.6 27.4 10.8 Q29 10.5 29 12
+               Q29 19 24 21.2 Q21 22.4 18 22.4 Q15 22.4 12 21.2 Q7 19 7 12 Z"
+            fill="currentColor" fill-opacity="0.1" stroke="none"/>
+      <!-- the teeth: rounded crowns pointing down from the gum, in an even row -->
+      <path d="M9.4 13 Q9.4 18.5 11.7 18.5 Q14 18.5 14 13
+               M14 13 Q14 19 18 19 Q22 19 22 13
+               M22 13 Q22 18.5 24.3 18.5 Q26.6 18.5 26.6 13"
+            fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- gum-line: top edge the crowns hang from -->
+      <path d="M8.5 13 Q18 11.6 27.5 13" fill="none" stroke="currentColor" stroke-width="1"/>
+      <!-- outer clear tray shell, hugging just outside the teeth -->
+      <path d="M7 12 Q7 10.5 8.6 10.8 Q13 11.6 18 11.6 Q23 11.6 27.4 10.8 Q29 10.5 29 12
+               Q29 19.5 23.5 21.8 Q21 22.8 18 22.8 Q15 22.8 12.5 21.8 Q7 19.5 7 12 Z"
+            fill="none" stroke="currentColor" stroke-width="1"/>
+      <!-- soft highlight on the clear plastic, upper-left -->
+      <path d="M9 12.5 Q9 16.5 10.5 18.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+    </g>
+
+    <!-- IMPLANT · Dental Implants · crown + abutment + threaded screw post -->
+    <g id="i-implant">
+      <!-- crown tint -->
+      <path d="M11 11 Q11 7 14.5 7 Q16.5 7 18 8 Q19.5 7 21.5 7 Q25 7 25 11 Q25 13.8 22.5 14.8 L13.5 14.8 Q11 13.8 11 11 Z"
+            fill="currentColor" fill-opacity="0.14" stroke="none"/>
+      <!-- crown: a proper tooth crown with two cusps, narrowing to the neck -->
+      <path d="M11 11 Q11 7 14.5 7 Q16.5 7 18 8 Q19.5 7 21.5 7 Q25 7 25 11 Q25 13.8 22.5 14.8 L13.5 14.8 Q11 13.8 11 11 Z"
+            fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+      <!-- occlusal groove on the crown -->
+      <path d="M18 8 L18 11" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <!-- abutment: trapezoid connector seating the crown on the post -->
+      <path d="M14.5 14.8 L21.5 14.8 L20.2 18 L15.8 18 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+      <!-- tapered threaded screw post -->
+      <path d="M15.8 18 L20.2 18 L18 30 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+      <!-- thread ridges: shallow chevrons reading as a screw -->
+      <path d="M15.9 20 L20.1 20 M16.3 22.4 L19.7 22.4 M16.7 24.8 L19.3 24.8 M17.1 27.2 L18.9 27.2"
+            fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.9"/>
+    </g>
+
+    <!-- WHITENING · Teeth Whitening · single tooth + clean sparkle shine -->
+    <g id="i-whitening">
+      <path d="M18 9 Q12 9 10.5 14.5 Q9.7 21 12 27 Q13.6 30 14.6 26 Q15.4 22.5 18 22.5 Q20.6 22.5 21.4 26 Q22.4 30 24 27 Q26.3 21 25.5 14.5 Q24 9 18 9 Z"
+            fill="currentColor" fill-opacity="0.13" stroke="none"/>
+      <path d="M18 9 Q12 9 10.5 14.5 Q9.7 21 12 27 Q13.6 30 14.6 26 Q15.4 22.5 18 22.5 Q20.6 22.5 21.4 26 Q22.4 30 24 27 Q26.3 21 25.5 14.5 Q24 9 18 9 Z"
+            fill="none" stroke="currentColor" stroke-width="1"/>
+      <!-- soft enamel highlight on the tooth -->
+      <path d="M14.5 14 Q14 17.5 16 19.5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <!-- big four-point sparkle, top-right, with two small twinkles -->
+      <path d="M25 7 Q25.7 9.4 28 10 Q25.7 10.6 25 13 Q24.3 10.6 22 10 Q24.3 9.4 25 7 Z" fill="currentColor" stroke="none"/>
+      <circle cx="29.5" cy="13.5" r="0.9" fill="currentColor"/>
+      <circle cx="21.5" cy="6" r="0.75" fill="currentColor" opacity="0.8"/>
+    </g>
+
+    <!-- DENTURE · Dentures · full set of teeth on a U-shaped gum base -->
+    <g id="i-denture">
+      <!-- gum base tint: the pink horseshoe the teeth sit on -->
+      <path d="M7 17.5 Q7 25 18 27.5 Q29 25 29 17.5 L29 16.5 Q24 17.8 18 17.8 Q12 17.8 7 16.5 Z"
+            fill="currentColor" fill-opacity="0.14" stroke="none"/>
+      <!-- the row of denture teeth: distinct rounded crowns across the arch -->
+      <path d="M8 16
+               Q8 10.8 11 10.8 Q14 10.8 14 16
+               Q14 11 18 11 Q22 11 22 16
+               Q22 10.8 25 10.8 Q28 10.8 28 16"
+            fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- gum-line: the band where teeth meet the gum -->
+      <path d="M8 16 Q18 18.4 28 16" fill="none" stroke="currentColor" stroke-width="1"/>
+      <!-- the U-shaped gum base wrapping under the teeth -->
+      <path d="M8 16 Q7 24.5 18 27.5 Q29 24.5 28 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <!-- soft inner gum contour for depth -->
+      <path d="M10.5 18 Q10 23 18 25.2 Q26 23 25.5 18" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+    </g>
+
+    <!-- OLD marks for the comparison row (reproduced from current set) -->
+    <g id="old-clock">
+      <circle cx="18" cy="18" r="13" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M18 10v8l5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <g id="old-smile">
+      <circle cx="18" cy="18" r="11" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M12 20 Q18 26 24 20" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="14" cy="14" r="0.8" fill="currentColor"/>
+      <circle cx="22" cy="14" r="0.8" fill="currentColor"/>
+    </g>
+    <g id="old-sparkle">
+      <path d="M10 18 Q10 10 18 10 Q26 10 26 18 Q26 26 18 26 Q10 26 10 18 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M18 6 L18 9 M18 27 L18 30 M6 18 L9 18 M27 18 L30 18" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+      <path d="M15 15 Q17 17 19 16" fill="none" stroke="currentColor" stroke-width="1"/>
+    </g>
+  </defs>
+</svg>
+
+<main class="page">
+<div class="wrap">
+
+  <header class="head">
+    <span class="dn-eyebrow dn-pill day">Icon system</span>
+    <h1>The <span class="gold">duotone line</span> dental family.</h1>
+    <p>Seven marks drawn as one hand: the logo's single hairline, round caps and soft corner
+      rhythm, lifted with one tinted accent shape for depth. Gold carries the daytime, planned
+      care; blue carries the night and the urgent. One accent per icon, never a gold-into-blue
+      blend. Everything is <em class="dn-hl-gold">currentColor</em>, so a chip's side decides the tint.</p>
+  </header>
+
+  <!-- (a) THE FAMILY AT THREE SIZES -->
+  <section class="block">
+    <div class="block-h"><h2>The set</h2><span>28 / 48 / 72 px · currentColor</span></div>
+    <div class="grid">
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic"><svg class="s28" viewBox="0 0 36 36"><use href="#i-tooth"/></svg></span>
+          <span class="ic"><svg class="s48" viewBox="0 0 36 36"><use href="#i-tooth"/></svg></span>
+          <span class="ic"><svg class="s72" viewBox="0 0 36 36"><use href="#i-tooth"/></svg></span>
+        </div>
+        <div class="lbl"><b>tooth</b><small>General</small></div>
+      </div>
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic night"><svg class="s28" viewBox="0 0 36 36"><use href="#i-emergency"/></svg></span>
+          <span class="ic night"><svg class="s48" viewBox="0 0 36 36"><use href="#i-emergency"/></svg></span>
+          <span class="ic night"><svg class="s72" viewBox="0 0 36 36"><use href="#i-emergency"/></svg></span>
+        </div>
+        <div class="lbl"><b>emergency</b><small>Urgent care</small></div>
+      </div>
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic"><svg class="s28" viewBox="0 0 36 36"><use href="#i-cosmetic"/></svg></span>
+          <span class="ic"><svg class="s48" viewBox="0 0 36 36"><use href="#i-cosmetic"/></svg></span>
+          <span class="ic"><svg class="s72" viewBox="0 0 36 36"><use href="#i-cosmetic"/></svg></span>
+        </div>
+        <div class="lbl"><b>cosmetic</b><small>Smile makeover</small></div>
+      </div>
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic night"><svg class="s28" viewBox="0 0 36 36"><use href="#i-aligner"/></svg></span>
+          <span class="ic night"><svg class="s48" viewBox="0 0 36 36"><use href="#i-aligner"/></svg></span>
+          <span class="ic night"><svg class="s72" viewBox="0 0 36 36"><use href="#i-aligner"/></svg></span>
+        </div>
+        <div class="lbl"><b>aligner</b><small>Invisalign</small></div>
+      </div>
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic"><svg class="s28" viewBox="0 0 36 36"><use href="#i-implant"/></svg></span>
+          <span class="ic"><svg class="s48" viewBox="0 0 36 36"><use href="#i-implant"/></svg></span>
+          <span class="ic"><svg class="s72" viewBox="0 0 36 36"><use href="#i-implant"/></svg></span>
+        </div>
+        <div class="lbl"><b>implant</b><small>Crown + post</small></div>
+      </div>
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic"><svg class="s28" viewBox="0 0 36 36"><use href="#i-whitening"/></svg></span>
+          <span class="ic"><svg class="s48" viewBox="0 0 36 36"><use href="#i-whitening"/></svg></span>
+          <span class="ic"><svg class="s72" viewBox="0 0 36 36"><use href="#i-whitening"/></svg></span>
+        </div>
+        <div class="lbl"><b>whitening</b><small>Shine</small></div>
+      </div>
+
+      <div class="cell">
+        <div class="sizes">
+          <span class="ic night"><svg class="s28" viewBox="0 0 36 36"><use href="#i-denture"/></svg></span>
+          <span class="ic night"><svg class="s48" viewBox="0 0 36 36"><use href="#i-denture"/></svg></span>
+          <span class="ic night"><svg class="s72" viewBox="0 0 36 36"><use href="#i-denture"/></svg></span>
+        </div>
+        <div class="lbl"><b>denture</b><small>Full arch</small></div>
+      </div>
+
+    </div>
+    <div class="ruler"><span>28</span><span>48</span><span>72</span></div>
+  </section>
+
+  <!-- (b) CURRENT vs NEW -->
+  <section class="block">
+    <div class="block-h"><h2>Current vs new</h2><span>The three weakest current marks, elevated</span></div>
+    <div class="compare">
+
+      <div class="cmp">
+        <div class="cmp-title">Emergency</div>
+        <div class="cmp-row">
+          <div class="cmp-side old">
+            <span class="ic"><svg viewBox="0 0 36 36"><use href="#old-clock"/></svg></span>
+            <span class="tag">Was · generic clock</span>
+          </div>
+          <span class="cmp-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="cmp-side new">
+            <span class="ic night"><svg viewBox="0 0 36 36"><use href="#i-emergency"/></svg></span>
+            <span class="tag">Now · tooth + pulse</span>
+          </div>
+        </div>
+        <p class="cmp-note">A clock said "open hours", not "dental emergency". The new mark is a tooth
+          with a heartbeat sweeping the crown, urgent and unmistakably dental. Carried in blue, the night accent.</p>
+      </div>
+
+      <div class="cmp">
+        <div class="cmp-title">Cosmetic</div>
+        <div class="cmp-row">
+          <div class="cmp-side old">
+            <span class="ic"><svg viewBox="0 0 36 36"><use href="#old-smile"/></svg></span>
+            <span class="tag">Was · smiley face</span>
+          </div>
+          <span class="cmp-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="cmp-side new">
+            <span class="ic"><svg viewBox="0 0 36 36"><use href="#i-cosmetic"/></svg></span>
+            <span class="tag">Now · even smile row</span>
+          </div>
+        </div>
+        <p class="cmp-note">A dotted-eye circle read as an emoji, not dentistry. The new mark is a row of
+          even teeth between gum and smile line with a refined shine, a genuine makeover cue in gold.</p>
+      </div>
+
+      <div class="cmp">
+        <div class="cmp-title">Whitening</div>
+        <div class="cmp-row">
+          <div class="cmp-side old">
+            <span class="ic"><svg viewBox="0 0 36 36"><use href="#old-sparkle"/></svg></span>
+            <span class="tag">Was · vague blob</span>
+          </div>
+          <span class="cmp-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="cmp-side new">
+            <span class="ic"><svg viewBox="0 0 36 36"><use href="#i-whitening"/></svg></span>
+            <span class="tag">Now · tooth + sparkle</span>
+          </div>
+        </div>
+        <p class="cmp-note">The old "sparkle" was a rounded square with spokes, indistinct from the smile mark.
+          The new one is a clean tooth lit by a four-point sparkle and twinkles, clearly whitening.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- (c) IN CONTEXT -->
+  <section class="block">
+    <div class="block-h"><h2>In context</h2><span>Treatment chip · concern chip · both accents</span></div>
+    <div class="ctx">
+
+      <div class="ctx-col">
+        <h3>Treatment chip</h3>
+        <button class="t-chip day is-active" type="button">
+          <span class="ico"><svg viewBox="0 0 36 36"><use href="#i-implant"/></svg></span>
+          <span class="meta"><b>Dental implants</b><small>A permanent replacement</small></span>
+        </button>
+        <button class="t-chip night" type="button">
+          <span class="ico"><svg viewBox="0 0 36 36"><use href="#i-emergency"/></svg></span>
+          <span class="meta"><b>Emergency care</b><small>Seen the same day</small></span>
+        </button>
+        <button class="t-chip day" type="button">
+          <span class="ico"><svg viewBox="0 0 36 36"><use href="#i-cosmetic"/></svg></span>
+          <span class="meta"><b>Cosmetic dentistry</b><small>Veneers and bonding</small></span>
+        </button>
+      </div>
+
+      <div class="ctx-col">
+        <h3>Concern chip</h3>
+        <div class="c-chips">
+          <span class="c-chip day is-active"><span class="ic"><svg viewBox="0 0 36 36"><use href="#i-whitening"/></svg></span>Stained teeth</span>
+          <span class="c-chip day"><span class="ic"><svg viewBox="0 0 36 36"><use href="#i-tooth"/></svg></span>Routine check</span>
+          <span class="c-chip night"><span class="ic"><svg viewBox="0 0 36 36"><use href="#i-aligner"/></svg></span>Crooked teeth</span>
+          <span class="c-chip night is-active"><span class="ic"><svg viewBox="0 0 36 36"><use href="#i-emergency"/></svg></span>Toothache tonight</span>
+          <span class="c-chip day"><span class="ic"><svg viewBox="0 0 36 36"><use href="#i-denture"/></svg></span>Missing teeth</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <p class="foot">
+    Built on the logo geometry in <code>ConcernIcon.jsx</code>: viewBox <code>0 0 36 36</code>,
+    <code>stroke-width:1</code>, <code>currentColor</code>, round caps. Each duotone accent is a
+    <code>fill-opacity</code> wash of the same <code>currentColor</code>, so a single colour drives
+    both the line and its tint. No em dashes, no gold-into-blue blends, no fake social proof.
+  </p>
+
+</div>
+</main>
+
+</body>
+</html>

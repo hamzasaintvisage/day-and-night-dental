@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Browse register designs · Day Night Dental</title>
+<style>
+  :root{--gold:#f8c760;--blue:#4590ec;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:#0a0a0c;color:#fff;font-family:'Inter Tight',-apple-system,system-ui,sans-serif;overflow:hidden;}
+  #bar{position:fixed;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;
+       background:rgba(10,10,12,.96);border-bottom:1px solid rgba(255,255,255,.12);z-index:10;
+       -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+  .btn{font:600 13px/1 'Inter Tight',system-ui,sans-serif;color:#fff;background:#1b1b22;border:1px solid rgba(255,255,255,.14);
+       border-radius:100px;padding:10px 18px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;
+       transition:border-color .2s,color .2s,background .2s;white-space:nowrap;}
+  .btn:hover{border-color:var(--gold);color:var(--gold);}
+  .btn.primary{background:var(--gold);color:#0a0a0c;border-color:var(--gold);}
+  .btn.primary:hover{background:#ffd97a;color:#0a0a0c;}
+  #label{flex:1;text-align:center;font-size:15px;font-weight:600;}
+  #label b{font-family:'Fraunces',Georgia,serif;}
+  #count{color:rgba(255,255,255,.55);font-size:12px;margin-left:8px;letter-spacing:.06em;font-weight:500;}
+  #frame{position:fixed;top:56px;left:0;right:0;bottom:0;width:100%;border:0;background:#0a0a0c;}
+  #hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.05em;
+        color:rgba(255,255,255,.4);background:rgba(10,10,12,.8);padding:6px 12px;border-radius:100px;
+        border:1px solid rgba(255,255,255,.1);pointer-events:none;z-index:9;}
+</style>
+</head>
+<body>
+  <div id="bar">
+    <a class="btn" href="index.html" title="Back to the grid of all 12">▦ All</a>
+    <button class="btn" id="prev" title="Previous (left arrow)">◀ Prev</button>
+    <div id="label"><b id="name"></b><span id="count"></span></div>
+    <button class="btn primary" id="next" title="Next (right arrow)">Next ▶</button>
+    <a class="btn" id="full" href="#" target="_blank" rel="noopener" title="Open this one in its own tab">Open ↗</a>
+  </div>
+  <iframe id="frame" title="design preview"></iframe>
+  <div id="hint">Use the ◀ ▶ buttons or your left / right arrow keys</div>
+  <script>
+    var D = [
+      ['01-evolved.html', 'The Evolved Form'],
+      ['02-the-atrium.html', 'The Atrium'],
+      ['03-concierge-letter.html', 'The Concierge Letter'],
+      ['04-split-stage.html', 'The Split Stage'],
+      ['05-reception-desk.html', 'The Reception Desk'],
+      ['06-thirty-seconds.html', 'Thirty Seconds'],
+      ['07-gold-slab.html', 'The Gold Slab'],
+      ['08-night-watch.html', 'Night Watch'],
+      ['09-the-ledger.html', 'The Ledger'],
+      ['10-quiet-card.html', 'The Quiet Card'],
+      ['11-two-column-grid.html', 'The Grid'],
+      ['12-welcome-threshold.html', 'The Welcome Threshold']
+    ];
+    function idxFromHash(){ var h=(location.hash||'').replace(/[^0-9]/g,''); var n=parseInt(h,10); if(!n||n<1||n>D.length) n=1; return n-1; }
+    var i = idxFromHash();
+    var frame=document.getElementById('frame'), nameEl=document.getElementById('name'), count=document.getElementById('count'),
+        prev=document.getElementById('prev'), next=document.getElementById('next'), full=document.getElementById('full');
+    function pad(n){ return (n<10?'0':'')+n; }
+    function render(){
+      var d=D[i];
+      frame.src=d[0];
+      nameEl.textContent=d[1];
+      count.textContent=' · '+pad(i+1)+' / '+D.length;
+      full.href=d[0];
+      var want='#'+(i+1);
+      if(location.hash!==want) history.replaceState(null,'',want);
+    }
+    function go(step){ i=(i+step+D.length)%D.length; render(); }   // wraps around so "next" never dead-ends
+    prev.onclick=function(){ go(-1); };
+    next.onclick=function(){ go(1); };
+    document.addEventListener('keydown', function(e){
+      if(e.key==='ArrowLeft'){ go(-1); } else if(e.key==='ArrowRight'){ go(1); }
+    });
+    window.addEventListener('hashchange', function(){ var n=idxFromHash(); if(n!==i){ i=n; render(); } });
+    render();
+  </script>
+</body>
+</html>

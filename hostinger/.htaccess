@@ -17,10 +17,11 @@
   Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header always set X-Permitted-Cross-Domain-Policies "none"
-  # Analytics domains (GA4 + Meta Pixel) are pre-allowed so enabling the IDs in config.js
-  # "just works" instead of being silently blocked by CSP. They load nothing until the owner
-  # sets the IDs and the visitor grants consent.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+  # Analytics domains (GA4 + Meta Pixel) and Google reCAPTCHA v3 (www.google.com + www.gstatic.com
+  # for the script, www.google.com for the challenge iframe) are pre-allowed so enabling the IDs /
+  # keys in config.js "just works" instead of being silently blocked by CSP. They load nothing
+  # until the owner sets the IDs / keys and (for analytics) the visitor grants consent.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 
   # Don't disclose the PHP version (X-Powered-By) on any response.
   Header always unset X-Powered-By
@@ -60,6 +61,8 @@
 <FilesMatch "\.(ndjson|log|env|bak|sql)$">
   Require all denied
 </FilesMatch>
+# Block Vite build manifests from public access (defence in depth; the deploy also excludes dist/.vite).
+RedirectMatch 403 ^/\.vite(/|$)
 Options -Indexes
 
 # ----------------------------------------------------------------------------

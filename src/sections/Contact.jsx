@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { PRACTICE } from '../data/practice';
 import Dropdown from '../components/Dropdown';
 import { Icon } from '../components/ConcernIcon';
-import { submitEnquiry, buildEnquiryExtras } from '../lib/submitEnquiry';
+import { submitEnquiry, buildEnquiryExtras, loadRecaptcha, getRecaptchaToken } from '../lib/submitEnquiry';
+import { RECAPTCHA_SITE_KEY } from '../data/config';
 import { hasConsent } from '../lib/analytics';
 
 const treatmentOptions = [
@@ -30,6 +31,11 @@ export default function Contact() {
   const loadedAt = useRef(0);
   useEffect(() => { loadedAt.current = Date.now(); }, []);
 
+  // Google reCAPTCHA v3 (only when a Site key is configured; empty key = off, zero network to
+  // Google). v3 is invisible/score-based (small badge only, no widget). The script loads lazily
+  // in an effect, so this stays SSR-safe; a fresh token is fetched at submit time.
+  useEffect(() => { loadRecaptcha(RECAPTCHA_SITE_KEY); }, []);
+
   // Don't load the Google map (third-party cookies) until the visitor has consented, or
   // explicitly chooses to show it (PECR: no non-essential cookies before consent).
   const [showMap, setShowMap] = useState(false);
@@ -53,6 +59,10 @@ export default function Contact() {
     setError('');
     const botField = e.target['bot-field']?.value || '';
     const extras = buildEnquiryExtras(loadedAt.current, botField);
+    // reCAPTCHA v3: fetch a fresh, single-use score token for this submit (no-op when the
+    // Site key is empty, so the form still submits with zero network to Google).
+    const recaptchaToken = await getRecaptchaToken(RECAPTCHA_SITE_KEY, 'contact');
+    if (recaptchaToken) extras.recaptchaToken = recaptchaToken;
 
     // Submit to the email pipeline (/api/send-enquiry). Route to thank-you on success;
     // on failure surface the server's own reason (rate limit, validation, etc.) so the
@@ -274,8 +284,8 @@ export default function Contact() {
                 </button>
 
                 <p className="dn-form-disclaimer">
-                  We’ll never share your details. By sending this you’re happy for us to
-                  contact you about your enquiry. Read our <Link to="/privacy/">privacy policy</Link>.
+                  We only use your details to deal with your enquiry, as set out in our privacy
+                  policy. By sending this you’re happy for us to contact you about it. Read our <Link to="/privacy/">privacy policy</Link>.
                 </p>
               </form>
           </div>

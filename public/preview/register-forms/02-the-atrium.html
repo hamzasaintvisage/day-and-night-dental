@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview · Register · The Atrium</title>
+<!-- Inherits the REAL brand tokens, fonts and base component classes. Throwaway preview under /preview/. -->
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     THE ATRIUM
+     Centered single column. No left/right sidebar. Grand
+     editorial spacing, a large Fraunces headline, full-width
+     fields with generous air between groups. All value content
+     woven into the single column: a centred value strip under
+     the headline, then the form, then a tidy "what's included /
+     your first visit" benefits list (all four benefits) below.
+     Gallery-calm, premium.
+     ============================================================ */
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  /* ---- the staged section + soft single-colour glows ---- */
+  .atr{
+    position:relative;
+    overflow-x:clip;
+    padding:7.5rem 1.5rem 6rem;
+    isolation:isolate;
+  }
+  .atr-glow{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(20px);
+    z-index:0;
+  }
+  .atr-glow.day{
+    width:620px;height:620px;
+    top:-160px;left:50%;
+    transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(248,199,96,.10) 0%, rgba(248,199,96,0) 68%);
+  }
+  .atr-glow.night{
+    width:820px;height:820px;
+    bottom:-300px;left:50%;
+    transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(69,144,236,.08) 0%, rgba(69,144,236,0) 70%);
+  }
+  /* a faint vertical hairline running down the centre, gallery-spine */
+  .atr-spine{
+    position:absolute;
+    top:0;bottom:0;left:50%;
+    width:1px;
+    transform:translateX(-50%);
+    background:linear-gradient(to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.06) 10%,
+      rgba(255,255,255,.06) 90%,
+      rgba(255,255,255,0) 100%);
+    z-index:0;
+  }
+
+  .atr-wrap{
+    position:relative;
+    z-index:1;
+    max-width:700px;
+    margin:0 auto;
+  }
+
+  /* ============================ MASTHEAD ============================ */
+  .atr-head{
+    text-align:center;
+    margin-bottom:4rem;
+  }
+  .atr-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:.55rem;
+    padding:.5rem 1.1rem;
+    border:1px solid var(--dn-mist);
+    border-radius:999px;
+    background:rgba(248,199,96,.04);
+    font-size:.66rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--dn-day);
+    font-weight:600;
+  }
+  .atr-eyebrow .dot{
+    width:5px;height:5px;border-radius:50%;
+    background:var(--dn-day);
+    box-shadow:0 0 8px 1px rgba(248,199,96,.7);
+  }
+  .atr-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.9rem, 7vw, 4.4rem);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:1.6rem 0 0;
+    color:var(--dn-bone);
+  }
+  .atr-title em{
+    font-style:italic;
+    color:var(--dn-day);
+  }
+  .atr-lead{
+    max-width:31rem;
+    margin:1.6rem auto 0;
+    font-size:1.06rem;
+    line-height:1.6;
+    color:var(--dn-bone-dim);
+  }
+
+  /* ---- centred value strip (NOT an aside) ---- */
+  .atr-meta{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:.55rem 1.4rem;
+    margin:2.4rem auto 0;
+    max-width:38rem;
+    padding:0;
+  }
+  .atr-meta li{
+    list-style:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    font-size:.78rem;
+    letter-spacing:.02em;
+    color:var(--dn-bone-faint);
+  }
+  .atr-meta li .mk{
+    color:var(--dn-day);
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:.95rem;
+  }
+  .atr-meta li.night .mk{ color:var(--dn-night-soft); }
+
+  .atr-urgent{
+    margin:2rem auto 0;
+    font-size:.86rem;
+    color:var(--dn-bone-faint);
+    text-align:center;
+  }
+  .atr-urgent a{
+    color:var(--dn-night-soft);
+    font-weight:600;
+    border-bottom:1px solid rgba(125,181,240,.35);
+    padding-bottom:1px;
+  }
+
+  /* ============================ THE SHEET ============================ */
+  .atr-sheet{
+    background:linear-gradient(180deg, rgba(20,20,26,.55) 0%, rgba(10,10,12,.2) 100%);
+    border:1px solid var(--dn-mist);
+    border-radius:20px;
+    padding:3.5rem 3.25rem 3rem;
+    position:relative;
+    overflow:hidden;
+  }
+  /* gold hairline crown */
+  .atr-sheet::before{
+    content:'';
+    position:absolute;
+    top:0;left:8%;right:8%;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--dn-day) 50%, transparent);
+    opacity:.55;
+  }
+
+  /* ---- group blocks, separated by generous air + a centred marker ---- */
+  .atr-group + .atr-group{
+    margin-top:3.5rem;
+    padding-top:3.5rem;
+    border-top:1px solid var(--dn-mist);
+  }
+  .atr-group-head{
+    text-align:center;
+    margin-bottom:2.4rem;
+  }
+  .atr-step-mark{
+    display:inline-block;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:.82rem;
+    letter-spacing:.05em;
+    color:var(--dn-day);
+    margin-bottom:.7rem;
+  }
+  .atr-group.night .atr-step-mark{ color:var(--dn-night-soft); }
+  .atr-group-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.65rem;
+    letter-spacing:-.01em;
+    color:var(--dn-bone);
+    margin:0;
+  }
+
+  /* ---- fields ---- */
+  .atr-field{ margin-bottom:1.6rem; }
+  .atr-field:last-child{ margin-bottom:0; }
+  .atr-duo{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.1rem;
+  }
+  .atr-lbl{
+    display:block;
+    font-size:.66rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+    margin-bottom:.6rem;
+    font-weight:600;
+  }
+  .atr-lbl .req{ color:var(--dn-day); margin-left:.15em; }
+  .atr-lbl .opt{
+    color:var(--dn-bone-faint);
+    letter-spacing:.08em;
+    font-weight:400;
+    text-transform:none;
+    font-size:.9em;
+  }
+
+  .atr-input,
+  .atr-select,
+  .atr-textarea{
+    width:100%;
+    padding:.95rem 1.05rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:11px;
+    color:var(--dn-bone);
+    font-family:var(--font-body);
+    font-size:1rem; /* 16px: avoids iOS zoom-on-focus */
+    line-height:1.4;
+    transition:border-color .25s, box-shadow .25s, background .25s;
+  }
+  .atr-input::placeholder,
+  .atr-textarea::placeholder{ color:var(--dn-bone-faint); }
+  .atr-input:hover,
+  .atr-select:hover,
+  .atr-textarea:hover{ border-color:rgba(255,255,255,.22); }
+  .atr-input:focus,
+  .atr-select:focus,
+  .atr-textarea:focus{
+    outline:none;
+    border-color:var(--dn-day);
+    background:rgba(248,199,96,.04);
+    box-shadow:0 0 0 3px rgba(248,199,96,.12);
+  }
+  .atr-textarea{ resize:vertical; min-height:7.5rem; }
+
+  /* native selects, styled on-brand with a single-colour chevron */
+  .atr-select{
+    -webkit-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    padding-right:2.6rem;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f8c760' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 1.05rem center;
+  }
+  .atr-select:focus{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f8c760' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 1.05rem center;
+  }
+  .atr-select option{ background:var(--dn-charcoal); color:var(--dn-bone); }
+  .atr-select.is-placeholder{ color:var(--dn-bone-faint); }
+
+  .atr-dob{
+    display:grid;
+    grid-template-columns:1fr 1.4fr 1fr;
+    gap:.75rem;
+  }
+
+  /* ---- care-type cards ---- */
+  .atr-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:.85rem;
+    margin-top:.2rem;
+  }
+  .atr-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:.3rem;
+    padding:1.15rem 1.25rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:13px;
+    cursor:pointer;
+    transition:border-color .25s, background .25s, transform .2s;
+  }
+  .atr-card:hover{ border-color:rgba(255,255,255,.22); transform:translateY(-1px); }
+  /* keep the real radio in the tab order, visually hidden */
+  .atr-card input{
+    position:absolute;
+    width:1px;height:1px;
+    opacity:0;margin:0;
+  }
+  .atr-card:has(input:focus-visible){
+    outline:2px solid var(--dn-day);
+    outline-offset:2px;
+  }
+  .atr-card .ct-title{
+    font-family:var(--font-display);
+    font-size:1.12rem;
+    font-weight:600;
+    color:var(--dn-bone);
+    letter-spacing:-.01em;
+  }
+  .atr-card .ct-desc{
+    font-size:.78rem;
+    line-height:1.4;
+    color:var(--dn-bone-dim);
+  }
+  /* a check-dot that appears when selected */
+  .atr-card .ct-dot{
+    position:absolute;
+    top:1.15rem;right:1.15rem;
+    width:14px;height:14px;
+    border-radius:50%;
+    border:1px solid var(--dn-mist);
+    transition:all .25s;
+  }
+  /* selected states - single colour per card, NO gold->blue mixing */
+  .atr-card.is-on.day{
+    border-color:var(--dn-day);
+    background:rgba(248,199,96,.06);
+  }
+  .atr-card.is-on.day .ct-title{ color:var(--dn-day); }
+  .atr-card.is-on.day .ct-dot{
+    border-color:var(--dn-day);
+    background:var(--dn-day);
+    box-shadow:0 0 0 3px rgba(248,199,96,.18);
+  }
+  .atr-card.is-on.night{
+    border-color:var(--dn-night);
+    background:rgba(69,144,236,.06);
+  }
+  .atr-card.is-on.night .ct-title{ color:var(--dn-night-soft); }
+  .atr-card.is-on.night .ct-dot{
+    border-color:var(--dn-night);
+    background:var(--dn-night);
+    box-shadow:0 0 0 3px rgba(69,144,236,.18);
+  }
+
+  /* ---- consent ---- */
+  .atr-consent{
+    display:flex;
+    align-items:flex-start;
+    gap:.85rem;
+    padding:1.15rem 1.25rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:13px;
+    cursor:pointer;
+  }
+  .atr-consent input{
+    width:18px;height:18px;
+    margin-top:1px;
+    flex:0 0 auto;
+    accent-color:var(--dn-day);
+    cursor:pointer;
+  }
+  .atr-consent span{
+    font-size:.82rem;
+    line-height:1.55;
+    color:var(--dn-bone-dim);
+  }
+  .atr-consent a{ color:var(--dn-day); border-bottom:1px solid rgba(248,199,96,.35); }
+
+  /* ---- submit ---- */
+  .atr-actions{
+    margin-top:2.8rem;
+    text-align:center;
+  }
+  .atr-submit{
+    display:inline-flex;
+    align-items:center;
+    gap:.65rem;
+    padding:1.05rem 2.6rem;
+    border:1px solid var(--dn-day);
+    border-radius:999px;
+    background:var(--dn-day);
+    color:#0a0a0c;
+    font-family:var(--font-body);
+    font-size:.95rem;
+    font-weight:600;
+    letter-spacing:.02em;
+    cursor:pointer;
+    transition:transform .2s, box-shadow .25s, background .25s;
+  }
+  .atr-submit .arr{ transition:transform .25s; }
+  .atr-submit:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 40px -16px rgba(248,199,96,.55);
+    background:var(--dn-day-soft);
+  }
+  .atr-submit:hover .arr{ transform:translateX(4px); }
+  .atr-fineprint{
+    margin:1.3rem auto 0;
+    font-size:.76rem;
+    color:var(--dn-bone-faint);
+    max-width:28rem;
+    line-height:1.5;
+  }
+
+  /* ============================ YOUR FIRST VISIT (below the form) ============================ */
+  .atr-included{
+    margin-top:4.5rem;
+    padding-top:0;
+    text-align:center;
+  }
+  .atr-included-head{
+    margin-bottom:2.6rem;
+  }
+  .atr-included-eyebrow{
+    display:inline-block;
+    font-size:.66rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--dn-day);
+    font-weight:600;
+    margin-bottom:.9rem;
+  }
+  .atr-included-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(1.9rem, 4.5vw, 2.5rem);
+    letter-spacing:-.015em;
+    margin:0 auto;
+    color:var(--dn-bone);
+  }
+  .atr-included-title em{ font-style:italic; color:var(--dn-day); }
+  .atr-included-sub{
+    max-width:30rem;
+    margin:1rem auto 0;
+    font-size:.95rem;
+    line-height:1.6;
+    color:var(--dn-bone-dim);
+  }
+
+  .atr-benefits{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.1rem;
+    margin:0 0 2.5rem;
+    padding:0;
+    text-align:left;
+  }
+  .atr-benefit{
+    list-style:none;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:1rem;
+    padding:1.5rem 1.5rem;
+    background:rgba(20,20,26,.5);
+    border:1px solid var(--dn-mist);
+    border-radius:14px;
+  }
+  .atr-benefit .num{
+    font-family:var(--font-display);
+    font-style:normal;
+    font-size:1.3rem;
+    line-height:1;
+    color:var(--dn-day);
+  }
+  .atr-benefit:nth-child(even) .num{ color:var(--dn-night-soft); }
+  .atr-benefit h4{
+    font-family:var(--font-display);
+    font-size:1.05rem;
+    font-weight:600;
+    letter-spacing:-.01em;
+    margin:.05rem 0 .4rem;
+    color:var(--dn-bone);
+  }
+  .atr-benefit p{
+    margin:0;
+    font-size:.83rem;
+    line-height:1.55;
+    color:var(--dn-bone-dim);
+  }
+
+  /* the price + reassurance footer band, centred */
+  .atr-band{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:1.5rem 2.5rem;
+    padding:2rem 2.25rem;
+    background:rgba(10,10,12,.5);
+    border:1px solid var(--dn-mist);
+    border-radius:16px;
+    position:relative;
+    overflow:hidden;
+  }
+  .atr-band::before{
+    content:'';
+    position:absolute;
+    top:0;left:10%;right:10%;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(248,199,96,.5) 50%, transparent);
+  }
+  .atr-price{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.25rem;
+    min-width:8rem;
+  }
+  .atr-price .label{
+    font-size:.64rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+  }
+  .atr-price .amount{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:2.6rem;
+    line-height:1;
+    color:var(--dn-day);
+  }
+  .atr-price .amount .currency{ font-size:1.25rem; margin-right:.05em; vertical-align:.15em; }
+  .atr-band-notes{
+    display:flex;
+    flex-direction:column;
+    gap:.6rem;
+    max-width:24rem;
+    text-align:left;
+  }
+  .atr-band-notes li{
+    list-style:none;
+    display:flex;
+    align-items:flex-start;
+    gap:.6rem;
+    font-size:.82rem;
+    line-height:1.5;
+    color:var(--dn-bone-dim);
+  }
+  .atr-band-notes li .tick{
+    flex:0 0 auto;
+    margin-top:.18rem;
+    width:14px;height:14px;
+  }
+  .atr-band-notes li .tick.day path{ stroke:var(--dn-day); }
+  .atr-band-notes li .tick.night path{ stroke:var(--dn-night-soft); }
+
+  /* closing 24/7 line, centred under the band */
+  .atr-closing{
+    margin:2.5rem auto 0;
+    text-align:center;
+    font-size:.9rem;
+    line-height:1.6;
+    color:var(--dn-bone-faint);
+    max-width:34rem;
+  }
+  .atr-closing a{
+    color:var(--dn-night-soft);
+    font-weight:600;
+    border-bottom:1px solid rgba(125,181,240,.35);
+    padding-bottom:1px;
+    white-space:nowrap;
+  }
+
+  /* ============================ RESPONSIVE ============================ */
+  @media (max-width:700px){
+    .atr{ padding:5rem 1.1rem 4rem; }
+    .atr-spine{ display:none; }
+    .atr-head{ margin-bottom:3rem; }
+    .atr-sheet{ padding:2.25rem 1.4rem 2rem; border-radius:16px; }
+    .atr-duo{ grid-template-columns:1fr; }
+    .atr-cards{ grid-template-columns:1fr; }
+    .atr-group + .atr-group{ margin-top:2.75rem; padding-top:2.75rem; }
+    .atr-submit{ width:100%; justify-content:center; }
+    .atr-benefits{ grid-template-columns:1fr; }
+    .atr-band{ flex-direction:column; gap:1.25rem; padding:1.75rem 1.4rem; }
+    .atr-band-notes{ text-align:left; }
+    .atr-included{ margin-top:3.5rem; }
+  }
+  @media (max-width:380px){
+    .atr-dob{ gap:.45rem; }
+    .atr-meta{ gap:.5rem 1rem; }
+  }
+
+  /* preview-only: let the standalone page scroll normally */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+  <div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Atrium</div>
+
+  <section class="atr">
+    <div class="atr-glow day"></div>
+    <div class="atr-glow night"></div>
+    <div class="atr-spine"></div>
+
+    <div class="atr-wrap">
+
+      <!-- ===================== MASTHEAD ===================== -->
+      <header class="atr-head">
+        <span class="atr-eyebrow"><span class="dot"></span>New Patients</span>
+
+        <h1 class="atr-title">Register in <em>three</em> minutes</h1>
+
+        <p class="atr-lead">
+          We are taking on new patients for every treatment we offer. Fill in the
+          form below and we will confirm your first appointment within one working hour.
+        </p>
+
+        <ul class="atr-meta">
+          <li><span class="mk">£95</span> first visit</li>
+          <li class="night"><span class="mk">Free</span> exams for under 18s</li>
+          <li><span class="mk">NHS</span> by waiting list, when we have space</li>
+          <li class="night"><span class="mk">1 hour</span> reply within one working hour</li>
+        </ul>
+
+        <p class="atr-urgent">
+          In pain right now? Do not wait to register,
+          <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        </p>
+      </header>
+
+      <!-- ===================== THE SHEET ===================== -->
+      <form class="atr-sheet" onsubmit="return false;">
+
+        <!-- ---------- GROUP 1: YOUR DETAILS ---------- -->
+        <div class="atr-group day">
+          <div class="atr-group-head">
+            <span class="atr-step-mark">i.</span>
+            <h2 class="atr-group-title">Your details</h2>
+          </div>
+
+          <div class="atr-field atr-duo">
+            <div>
+              <label class="atr-lbl" for="atr-first">First name <span class="req">*</span></label>
+              <input class="atr-input" id="atr-first" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza">
+            </div>
+            <div>
+              <label class="atr-lbl" for="atr-last">Last name <span class="req">*</span></label>
+              <input class="atr-input" id="atr-last" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar">
+            </div>
+          </div>
+
+          <div class="atr-field">
+            <span class="atr-lbl" id="atr-dob-lbl">Date of birth <span class="req">*</span></span>
+            <div class="atr-dob" role="group" aria-labelledby="atr-dob-lbl">
+              <select class="atr-select is-placeholder" name="dobDay" aria-label="Day of birth">
+                <option value="" selected disabled>Day</option>
+                <option>1</option><option>2</option><option>7</option>
+                <option>14</option><option>21</option><option>28</option><option>31</option>
+              </select>
+              <select class="atr-select is-placeholder" name="dobMonth" aria-label="Month of birth">
+                <option value="" selected disabled>Month</option>
+                <option>January</option><option>February</option><option>March</option>
+                <option>June</option><option>September</option><option>December</option>
+              </select>
+              <select class="atr-select is-placeholder" name="dobYear" aria-label="Year of birth">
+                <option value="" selected disabled>Year</option>
+                <option>1955</option><option>1972</option><option>1988</option>
+                <option>1996</option><option>2004</option><option>2012</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="atr-field atr-duo">
+            <div>
+              <label class="atr-lbl" for="atr-phone">Phone <span class="req">*</span></label>
+              <input class="atr-input" id="atr-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Best contact number">
+            </div>
+            <div>
+              <label class="atr-lbl" for="atr-email">Email <span class="req">*</span></label>
+              <input class="atr-input" id="atr-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+          </div>
+
+          <div class="atr-field atr-duo">
+            <div>
+              <label class="atr-lbl" for="atr-address">Address <span class="opt">(optional)</span></label>
+              <input class="atr-input" id="atr-address" name="address" type="text" autocomplete="street-address" placeholder="Street address, optional">
+            </div>
+            <div>
+              <label class="atr-lbl" for="atr-postcode">Postcode <span class="req">*</span></label>
+              <input class="atr-input" id="atr-postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="G1 1SH">
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- GROUP 2: YOUR CARE ---------- -->
+        <div class="atr-group night">
+          <div class="atr-group-head">
+            <span class="atr-step-mark">ii.</span>
+            <h2 class="atr-group-title">Your care</h2>
+          </div>
+
+          <div class="atr-field">
+            <span class="atr-lbl" id="atr-care-lbl">Care type <span class="req">*</span></span>
+            <div class="atr-cards" data-care role="radiogroup" aria-labelledby="atr-care-lbl">
+              <label class="atr-card day">
+                <input type="radio" name="careType" value="private">
+                <span class="ct-dot" aria-hidden="true"></span>
+                <span class="ct-title">Private</span>
+                <span class="ct-desc">Full choice of times and treatments</span>
+              </label>
+              <label class="atr-card night">
+                <input type="radio" name="careType" value="nhs">
+                <span class="ct-dot" aria-hidden="true"></span>
+                <span class="ct-title">NHS</span>
+                <span class="ct-desc">Waiting list, when we have space</span>
+              </label>
+              <label class="atr-card day">
+                <input type="radio" name="careType" value="mixed">
+                <span class="ct-dot" aria-hidden="true"></span>
+                <span class="ct-title">Either</span>
+                <span class="ct-desc">Whatever gets you seen soonest</span>
+              </label>
+              <label class="atr-card night">
+                <input type="radio" name="careType" value="unsure">
+                <span class="ct-dot" aria-hidden="true"></span>
+                <span class="ct-title">Not sure yet</span>
+                <span class="ct-desc">We will talk it through on the call</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="atr-field">
+            <label class="atr-lbl" for="atr-hear">How did you hear about us? <span class="opt">(optional)</span></label>
+            <select class="atr-select is-placeholder" id="atr-hear" name="referral">
+              <option value="" selected disabled>Optional</option>
+              <option>Google search</option>
+              <option>Friend or family</option>
+              <option>Instagram</option>
+              <option>Walked past the practice</option>
+              <option>Existing patient</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="atr-field">
+            <label class="atr-lbl" for="atr-notes">What do you need help with? <span class="opt">(optional)</span></label>
+            <textarea class="atr-textarea" id="atr-notes" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+          </div>
+
+          <div class="atr-field">
+            <label class="atr-consent">
+              <input type="checkbox" name="consent">
+              <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- ---------- SUBMIT ---------- -->
+        <div class="atr-actions">
+          <button type="submit" class="atr-submit">Complete Registration <span class="arr" aria-hidden="true">&rarr;</span></button>
+          <p class="atr-fineprint">Register in three minutes. We confirm your first appointment within one working hour.</p>
+        </div>
+
+      </form>
+
+      <!-- ===================== YOUR FIRST VISIT (woven below the column) ===================== -->
+      <section class="atr-included">
+        <div class="atr-included-head">
+          <span class="atr-included-eyebrow">What's included</span>
+          <h2 class="atr-included-title">Your <em>first</em> visit</h2>
+          <p class="atr-included-sub">
+            A proper first appointment, set out in full before you arrive. Here is exactly what it covers.
+          </p>
+        </div>
+
+        <ul class="atr-benefits">
+          <li class="atr-benefit">
+            <span class="num">01</span>
+            <div>
+              <h4>Comprehensive examination</h4>
+              <p>A 45 minute full assessment with intra-oral scans and bite analysis, so nothing is rushed and nothing is missed.</p>
+            </div>
+          </li>
+          <li class="atr-benefit">
+            <span class="num">02</span>
+            <div>
+              <h4>Digital x-rays</h4>
+              <p>Low-dose digital imaging when it is clinically needed. There are no films to develop, so you are not left waiting.</p>
+            </div>
+          </li>
+          <li class="atr-benefit">
+            <span class="num">03</span>
+            <div>
+              <h4>Personalised treatment plan</h4>
+              <p>A written plan with the cost of each item set out before any work starts, so you always know where you stand.</p>
+            </div>
+          </li>
+          <li class="atr-benefit">
+            <span class="num">04</span>
+            <div>
+              <h4>Hygiene appointment</h4>
+              <p>Booked in alongside your examination, so you leave with a proper clean and a fresh start.</p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- price + reassurance band -->
+        <div class="atr-band">
+          <div class="atr-price">
+            <span class="label">First visit from</span>
+            <span class="amount"><span class="currency">£</span>95</span>
+          </div>
+          <ul class="atr-band-notes">
+            <li>
+              <svg class="tick day" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.5l3 3 7-7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Children under 18 are examined free.
+            </li>
+            <li>
+              <svg class="tick night" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.5l3 3 7-7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              NHS care is by waiting list, when we have space.
+            </li>
+            <li>
+              <svg class="tick day" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.5l3 3 7-7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              We confirm the cost of your first visit before anything goes ahead, so there are no surprises.
+            </li>
+          </ul>
+        </div>
+
+        <!-- closing 24/7 line -->
+        <p class="atr-closing">
+          A new practice in Merchant City, Glasgow. In pain right now? Call our 24/7 emergency
+          line on <a href="tel:+441415486548">0141 548 6548</a>.
+        </p>
+      </section>
+
+    </div>
+  </section>
+
+  <script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+  <script>
+    // tint placeholder selects until a real option is chosen (purely cosmetic, on-brand)
+    document.querySelectorAll('.atr-select').forEach(function(s){
+      s.addEventListener('change',function(){ s.classList.toggle('is-placeholder', !s.value); });
+    });
+  </script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

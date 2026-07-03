@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Split Flap - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   SPLIT FLAP - an airport departure board. The statement is the
+   board header; each "departure" row is a real-life moment with a
+   mechanical split-flap STATUS reading OPEN / 24-HR. Gold day-side
+   rows, blue night-side row. Flaps flip kinetically on load, but
+   the board renders fully legible with JS disabled. Solid gold and
+   solid blue only, never a blend. Continuous gold/blue depth-glow.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(2.6rem,6vw,5rem) 0 clamp(3.4rem,8vw,6rem);
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(72% 56% at 12% 4%, rgba(248,199,96,.11), transparent 60%),
+    radial-gradient(72% 60% at 88% 98%, rgba(69,144,236,.11), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:980px;
+  margin:0 auto;
+  padding:0 clamp(16px,5vw,40px);
+}
+
+/* ── the board shell ── */
+.dn-board{
+  position:relative;
+  border-radius:18px;
+  background:
+    linear-gradient(180deg, #101015, #08080b);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:
+    0 40px 90px -50px rgba(0,0,0,.9),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  padding:clamp(1.1rem,3vw,2rem);
+}
+/* mounting bolts in the corners, like a real board */
+.dn-board::before,.dn-board::after{
+  content:'';
+  position:absolute;
+  width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #4a4a52, #1a1a20);
+  box-shadow:0 0 0 1px rgba(0,0,0,.6);
+}
+.dn-board::before{top:14px;left:14px;}
+.dn-board::after{bottom:14px;right:14px;}
+
+/* ── board header: eyebrow + statement ── */
+.dn-board-head{
+  position:relative;
+  padding:clamp(.4rem,2vw,1rem) clamp(.2rem,2vw,1.2rem) clamp(1.2rem,3vw,1.8rem);
+  border-bottom:1px dashed rgba(255,255,255,.14);
+  margin-bottom:clamp(1rem,2.5vw,1.4rem);
+}
+.dn-board-head .dn-eyebrow{margin-bottom:1.1rem;}
+
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:360;
+  font-size:clamp(2rem,5.4vw,3.9rem);
+  line-height:1.04;
+  letter-spacing:-.018em;
+  margin:0;
+  max-width:17ch;
+  color:var(--dn-bone);
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:400;}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(1.15rem,2.4vw,1.7rem);
+  line-height:1.3;
+  letter-spacing:-.006em;
+  margin:clamp(1rem,2.4vw,1.5rem) 0 0;
+  color:var(--dn-bone-dim);
+}
+.dn-lead .day{color:var(--dn-day);}
+.dn-lead .night{color:var(--dn-night);}
+
+/* ── column legend, like a board's column titles ── */
+.dn-cols{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:.6rem 1rem;
+  align-items:end;
+  padding:0 clamp(.2rem,1.5vw,1rem) .55rem;
+}
+.dn-cols span{
+  font-size:.58rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-bone-faint);
+}
+.dn-cols .col-status{text-align:right;}
+
+/* ── departure rows ── */
+.dn-rows{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.dn-row{
+  --accent:var(--dn-day);
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:.7rem 1rem;
+  align-items:center;
+  padding:clamp(.7rem,2vw,1.05rem) clamp(.7rem,1.6vw,1.1rem);
+  border-radius:11px;
+  background:rgba(255,255,255,.022);
+  border:1px solid rgba(255,255,255,.07);
+  border-left:3px solid var(--accent);
+}
+.dn-row.night{--accent:var(--dn-night);}
+
+.dn-row-left{min-width:0;}
+.dn-row-when{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent);
+  margin-bottom:.34rem;
+}
+.dn-row-when::before{
+  content:'';
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);
+  flex:0 0 auto;
+}
+.dn-row-what{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(1.05rem,2.4vw,1.55rem);
+  line-height:1.12;
+  letter-spacing:.01em;
+  color:var(--dn-bone);
+  word-break:break-word;
+}
+
+/* ── the split-flap status module ── */
+.dn-flaps{
+  display:flex;
+  gap:4px;
+  flex:0 0 auto;
+  align-items:center;
+}
+.dn-flap{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:clamp(20px,4.4vw,28px);
+  height:clamp(30px,6.4vw,40px);
+  border-radius:4px;
+  background:linear-gradient(180deg,#1c1c22 0 50%,#121217 50% 100%);
+  color:var(--accent);
+  font-family:var(--font-body);
+  font-weight:800;
+  font-size:clamp(.95rem,2.6vw,1.35rem);
+  line-height:1;
+  letter-spacing:.02em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 2px 4px -1px rgba(0,0,0,.6);
+  overflow:hidden;
+  -webkit-text-stroke:0;
+}
+/* the centre hinge seam of a real flap */
+.dn-flap::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;top:50%;
+  height:1px;
+  transform:translateY(-.5px);
+  background:rgba(0,0,0,.7);
+  box-shadow:0 1px 0 rgba(255,255,255,.04);
+  z-index:3;
+}
+.dn-flap .ch{position:relative;z-index:1;}
+
+/* kinetic flip: a top leaf folds down over the resting glyph */
+.dn-flap .leaf{
+  position:absolute;
+  left:0;right:0;top:0;
+  height:50%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(180deg,#23232b,#16161c);
+  border-radius:4px 4px 0 0;
+  transform-origin:bottom center;
+  transform:rotateX(0deg);
+  z-index:4;
+  pointer-events:none;
+  opacity:0;
+}
+.dn-flap .leaf .ghost{
+  transform:translateY(50%);
+  color:var(--dn-bone-faint);
+  font-weight:800;
+  font-size:clamp(.95rem,2.6vw,1.35rem);
+}
+.js .dn-flap .leaf{
+  opacity:1;
+  animation:dn-flip .42s cubic-bezier(.4,.05,.4,1) forwards;
+  animation-delay:var(--flip-delay,0s);
+}
+@keyframes dn-flip{
+  0%{transform:rotateX(0deg);opacity:1;}
+  60%{transform:rotateX(-92deg);opacity:1;}
+  100%{transform:rotateX(-92deg);opacity:0;}
+}
+
+/* status word lockup */
+.dn-status{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+}
+.dn-status .lbl{
+  font-size:.52rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-bone-faint);
+}
+
+/* ── board footer: byline + scrolling ticker + team link ── */
+.dn-board-foot{
+  margin-top:clamp(1.1rem,2.5vw,1.6rem);
+  padding-top:clamp(1rem,2.2vw,1.3rem);
+  border-top:1px dashed rgba(255,255,255,.14);
+}
+.dn-body{
+  margin:0 auto;
+  max-width:62ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(.95rem,1.4vw,1.05rem);
+  line-height:1.78;
+  text-align:center;
+}
+.dn-foot-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  margin-top:clamp(1.1rem,2.4vw,1.5rem);
+}
+.dn-by{
+  font-size:.7rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+@media (prefers-reduced-motion:reduce){
+  .js .dn-flap .leaf{animation:none;opacity:0;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-cols{display:none;}
+  .dn-row{grid-template-columns:1fr;}
+  .dn-status{flex-direction:row;align-items:center;justify-content:flex-start;}
+  .dn-status .lbl{order:2;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 14px;}
+  .dn-board{padding:1rem .85rem;}
+  .dn-headline{font-size:1.82rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Split Flap</b> <span class="lab-lens">mechanical</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <div class="dn-board" role="group" aria-label="Day Night Dental departures board">
+
+      <div class="dn-board-head">
+        <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+        <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+        <p class="dn-lead">
+          <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+        </p>
+      </div>
+
+      <div class="dn-cols" aria-hidden="true">
+        <span class="col-when">Departure</span>
+        <span class="col-status">Status</span>
+      </div>
+
+      <ul class="dn-rows">
+        <li class="dn-row day">
+          <div class="dn-row-left">
+            <span class="dn-row-when">Early mornings</span>
+            <span class="dn-row-what">Before the school run</span>
+          </div>
+          <div class="dn-status">
+            <span class="lbl">Status</span>
+            <div class="dn-flaps" aria-label="Open" data-word="OPEN"></div>
+          </div>
+        </li>
+
+        <li class="dn-row day">
+          <div class="dn-row-left">
+            <span class="dn-row-when">Daytime and evenings</span>
+            <span class="dn-row-what">On your lunch break</span>
+          </div>
+          <div class="dn-status">
+            <span class="lbl">Status</span>
+            <div class="dn-flaps" aria-label="Open" data-word="OPEN"></div>
+          </div>
+        </li>
+
+        <li class="dn-row night">
+          <div class="dn-row-left">
+            <span class="dn-row-when">24-hour emergency line</span>
+            <span class="dn-row-what">Or at midnight</span>
+          </div>
+          <div class="dn-status">
+            <span class="lbl">Status</span>
+            <div class="dn-flaps" aria-label="24 hours" data-word="24HR"></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="dn-board-foot">
+        <p class="dn-body">
+          We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+          weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+          consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+          to look after your teeth.
+        </p>
+        <div class="dn-foot-row">
+          <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+          <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Build the split-flap status modules. The board is fully legible
+  // with JS off (a CSS fallback renders the resting glyph in each flap);
+  // this just paints the letters and, where motion is allowed, runs a
+  // one-shot mechanical flip on load. No clocks, no randomness.
+  document.body.classList.add('js');
+
+  var reduce = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var groups = document.querySelectorAll('.dn-flaps');
+  var globalIndex = 0;
+
+  Array.prototype.forEach.call(groups, function(group){
+    var word = (group.getAttribute('data-word') || '').split('');
+    word.forEach(function(ch){
+      var flap = document.createElement('span');
+      flap.className = 'dn-flap';
+
+      // resting glyph (always visible, this is the JS-off equivalent)
+      var glyph = document.createElement('span');
+      glyph.className = 'ch';
+      glyph.textContent = ch;
+      flap.appendChild(glyph);
+
+      // top leaf that folds down for the flip effect
+      var leaf = document.createElement('span');
+      leaf.className = 'leaf';
+      var ghost = document.createElement('span');
+      ghost.className = 'ghost';
+      ghost.textContent = ch;
+      leaf.appendChild(ghost);
+      // stagger each flap so the board "clacks" across, left to right
+      leaf.style.setProperty('--flip-delay', (globalIndex * 0.07).toFixed(2) + 's');
+      flap.appendChild(leaf);
+
+      group.appendChild(flap);
+      globalIndex++;
+    });
+  });
+
+  // If motion is reduced, leaves are hidden by CSS; resting glyphs stand.
+  void reduce;
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

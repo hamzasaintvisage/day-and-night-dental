@@ -275,24 +275,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
   .dn-why-item::before { transition: opacity 0.3s ease; }
   .dn-why-item:hover::before { opacity: 1; }
 
-  /* Area chips are compact, but retain the same clear alternating ring. */
-  .dn-area-chip { --dn-hover-accent: var(--dn-day); }
-  .dn-area-chip:nth-child(even) { --dn-hover-accent: var(--dn-night); }
-  .dn-area-chip::after {
-    content: ''; position: absolute; inset: 0; border-radius: 999px; padding: 1.5px; pointer-events: none;
-    background: var(--dn-hover-accent);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
-    opacity: 0; transition: opacity 0.3s ease;
-  }
-  .dn-area-chip:hover {
-    color: var(--dn-bone);
-    border-color: color-mix(in srgb, var(--dn-hover-accent) 82%, transparent);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-hover-accent) 68%, transparent),
-                0 0 20px -4px color-mix(in srgb, var(--dn-hover-accent) 48%, transparent);
-  }
-  .dn-area-chip:hover::after { opacity: 1; }
+  /* (Area-chip hover now lives with the Nightfall "Where We Are" styles in shared.css.) */
   /* About pillars: a subtle lift on hover. No box, no colour overlay. */
   .dn-pillar { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   .dn-pillar:hover { transform: translateY(-6px); }
@@ -304,8 +287,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible,
 }
 .tp-benefit-link:focus-visible,
 .tp-related-card:focus-visible,
-.dn-blog-card:focus-visible,
-.dn-area-chip:focus-visible {
+.dn-blog-card:focus-visible {
   outline: 2px solid var(--dn-hover-accent, var(--dn-day));
   outline-offset: 3px;
 }

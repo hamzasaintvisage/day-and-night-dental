@@ -8,7 +8,7 @@ const data = {
   side: "day",
   tag: "Foundation Care",
   h1Plain: "General Dentistry",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>General dentistry, <em>everyday care for teeth that last a lifetime</em></>),
   lead: "Routine check-ups, gentle hygiene visits and natural-looking white fillings. Our general dentistry keeps your whole family's smiles healthy and comfortable, day or night.",
   seo: { title: "General Dentistry in Glasgow | Day Night Dental", description: "General dentistry at Day Night Dental in Glasgow: check-ups, hygiene visits, white fillings and children's care. Day and evening appointments, 7 days a week." },

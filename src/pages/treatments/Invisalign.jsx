@@ -13,7 +13,7 @@ const data = {
   side: 'day',
   tag: 'Clear Aligners',
   h1Plain: 'Invisalign',
-  procedureType: 'Orthodontics',
+  procedureType: 'MedicalProcedure',
   title: (
     <>Invisalign<span style={{ color: 'var(--dn-day)' }}>®</span>, a straighter smile, <em>almost invisibly</em></>
   ),

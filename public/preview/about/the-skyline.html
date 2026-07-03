@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Skyline - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE SKYLINE - a poster-scale Merchant City night scene.
+   A bold city skyline silhouette runs across the foot of the
+   screen. A solid gold sun sits low on the left horizon; a solid
+   blue moon hangs high on the right. The statement is set large
+   in the sky between them. Solid gold and solid blue only, never
+   a gold-to-blue blend - the two depth-glows are hard-separated
+   to their own sides of the sky. Open while the city sleeps.
+   With JS disabled the full scene renders; JS only adds a faint
+   parallax drift to the stars and a slow twinkle, both optional.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  min-height:calc(100vh - 49px);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+  background:var(--dn-near-black);
+}
+
+/* sky atmosphere: solid gold glow pinned bottom-left (the rising sun),
+   solid blue glow pinned top-right (the moon). They live on opposite
+   corners and never meet in the middle, so there is no blend. */
+.dn-sky{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(46% 40% at 8% 100%, rgba(248,199,96,.22), transparent 64%),
+    radial-gradient(40% 36% at 92% 4%, rgba(69,144,236,.20), transparent 66%),
+    radial-gradient(120% 90% at 50% -10%, rgba(20,20,28,.6), transparent 70%);
+  pointer-events:none;
+}
+
+/* scattered stars - decorative, render with JS off */
+.dn-stars{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.dn-star{
+  position:absolute;
+  width:2px;height:2px;
+  border-radius:50%;
+  background:var(--dn-bone);
+  opacity:.5;
+}
+.dn-star.big{width:3px;height:3px;opacity:.7;}
+.dn-star.tw{animation:dn-twinkle var(--tw,4s) ease-in-out infinite;}
+@keyframes dn-twinkle{0%,100%{opacity:.18;}50%{opacity:.8;}}
+
+/* THE GOLD SUN - solid disc, low on the left horizon */
+.dn-sun{
+  position:absolute;
+  z-index:1;
+  left:clamp(-58px,2vw,40px);
+  bottom:clamp(120px,20vh,210px);
+  width:clamp(108px,17vw,210px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:0 0 70px 18px rgba(248,199,96,.42),0 0 160px 50px rgba(248,199,96,.16);
+}
+/* THE BLUE MOON - solid disc with a clean crescent bite, high on the right */
+.dn-moon{
+  position:absolute;
+  z-index:1;
+  right:clamp(14px,6vw,90px);
+  top:clamp(70px,12vh,120px);
+  width:clamp(58px,8vw,104px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:var(--dn-night);
+  box-shadow:0 0 54px 12px rgba(69,144,236,.4),0 0 130px 40px rgba(69,144,236,.14);
+}
+.dn-moon::after{
+  content:'';
+  position:absolute;
+  top:-16%;right:-14%;
+  width:86%;height:86%;
+  border-radius:50%;
+  background:var(--dn-near-black);
+}
+
+/* ── the statement, set large in the sky ── */
+.dn-stage{
+  position:relative;
+  z-index:3;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:clamp(4.5rem,11vh,9rem) clamp(20px,5vw,40px) clamp(12rem,30vh,19rem);
+}
+.dn-stage-inner{max-width:21ch;}
+.dn-eyebrow{margin-bottom:clamp(1.1rem,2.4vw,1.6rem);}
+
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(2.7rem,8.4vw,6.4rem);
+  line-height:1;
+  letter-spacing:-.02em;
+  margin:0;
+  color:var(--dn-bone);
+  text-shadow:0 2px 40px rgba(0,0,0,.55);
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:360;}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(1.35rem,3.4vw,2.3rem);
+  line-height:1.22;
+  letter-spacing:-.01em;
+  margin:clamp(1.5rem,3.4vw,2.4rem) 0 0;
+  color:var(--dn-bone-dim);
+  max-width:none;
+}
+.dn-lead .day{color:var(--dn-day);}
+.dn-lead .night{color:var(--dn-night);}
+
+.dn-body{
+  margin:clamp(1.3rem,2.8vw,1.8rem) 0 0;
+  max-width:48ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.5vw,1.12rem);
+  line-height:1.78;
+}
+
+.dn-by{
+  margin:clamp(1.8rem,4vw,2.4rem) 0 0;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  margin-top:.9rem;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+/* ── the Merchant City skyline silhouette ── */
+.dn-skyline{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  z-index:2;
+  width:100%;
+  height:clamp(150px,26vh,300px);
+  display:block;
+}
+.dn-skyline svg{width:100%;height:100%;display:block;}
+.dn-skyline .city{fill:var(--dn-black);}
+/* a few lit windows: gold on the day-leaning left, blue on the night-leaning right */
+.dn-win-day{fill:var(--dn-day);opacity:.9;}
+.dn-win-night{fill:var(--dn-night);opacity:.9;}
+.dn-win-dim{fill:var(--dn-bone);opacity:.16;}
+/* a thin "open" status line riding the rooftops */
+.dn-openline{
+  position:absolute;
+  z-index:3;
+  left:clamp(20px,5vw,40px);
+  bottom:clamp(150px,26vh,300px);
+  margin-bottom:clamp(.6rem,1.4vw,1rem);
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:6px 14px;
+  border-radius:999px;
+  background:rgba(10,10,12,.7);
+  border:1px solid var(--dn-mist);
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-bone-dim);
+}
+.dn-openline .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:0 0 0 3px rgba(248,199,96,.18);
+  animation:dn-pulse 2.6s ease-in-out infinite;
+}
+@keyframes dn-pulse{0%,100%{opacity:1;}50%{opacity:.45;}}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-star.tw{animation:none;opacity:.55;}
+  .dn-openline .dot{animation:none;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-stage{padding-bottom:clamp(11rem,34vh,15rem);}
+  .dn-stage-inner{max-width:none;}
+  .dn-sun{bottom:clamp(140px,22vh,200px);}
+}
+@media (max-width:380px){
+  .dn-headline{font-size:2.5rem;}
+  .dn-lead{font-size:1.3rem;}
+  .dn-openline{font-size:.56rem;letter-spacing:.16em;padding:5px 11px;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Skyline</b> <span class="lab-lens">scenic</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+
+  <div class="dn-sky" aria-hidden="true"></div>
+
+  <!-- decorative starfield (renders with JS off; JS only adds twinkle classes) -->
+  <div class="dn-stars" aria-hidden="true">
+    <span class="dn-star big" style="left:18%;top:14%"></span>
+    <span class="dn-star" style="left:30%;top:9%"></span>
+    <span class="dn-star" style="left:44%;top:22%"></span>
+    <span class="dn-star big" style="left:58%;top:11%"></span>
+    <span class="dn-star" style="left:67%;top:28%"></span>
+    <span class="dn-star" style="left:74%;top:18%"></span>
+    <span class="dn-star big" style="left:83%;top:33%"></span>
+    <span class="dn-star" style="left:88%;top:22%"></span>
+    <span class="dn-star" style="left:24%;top:34%"></span>
+    <span class="dn-star" style="left:51%;top:38%"></span>
+    <span class="dn-star" style="left:12%;top:42%"></span>
+    <span class="dn-star big" style="left:71%;top:44%"></span>
+    <span class="dn-star" style="left:38%;top:48%"></span>
+    <span class="dn-star" style="left:62%;top:7%"></span>
+    <span class="dn-star" style="left:9%;top:24%"></span>
+  </div>
+
+  <!-- the gold sun, low on the left horizon -->
+  <div class="dn-sun" aria-hidden="true"></div>
+  <!-- the blue moon, high on the right -->
+  <div class="dn-moon" aria-hidden="true"></div>
+
+  <!-- the statement, set large in the sky -->
+  <div class="dn-stage">
+    <div class="dn-stage-inner">
+      <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+      <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+
+      <p class="dn-lead">
+        <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+      </p>
+
+      <p class="dn-body">
+        We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+        weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+        consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+        to look after your teeth.
+      </p>
+
+      <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+      <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+
+  <!-- open-while-the-city-sleeps status, riding the rooftops -->
+  <div class="dn-openline" aria-hidden="true"><span class="dot"></span>Open while the city sleeps</div>
+
+  <!-- the Merchant City skyline silhouette across the foot of the screen -->
+  <div class="dn-skyline" aria-hidden="true">
+    <svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- one continuous rooftop path: low tenements, a spire, the City Chambers
+           tower, the Tolbooth steeple, a clock tower and a couple of cranes -->
+      <path class="city" d="
+        M0,300 L0,170
+        L70,170 L70,150 L150,150 L150,168
+        L210,168 L210,120 L230,120 L230,100 L250,100 L250,120 L270,120 L270,168
+        L330,168 L330,140 L410,140 L410,168
+        L470,168 L470,96 L482,72 L494,96 L494,168
+        L548,168 L548,130 L620,130 L620,118 L700,118 L700,168
+        L756,168 L756,60 L772,44 L788,60 L788,168
+        L840,168 L840,108 L920,108 L920,168
+        L980,168 L980,150 L1056,150 L1056,168
+        L1112,168 L1112,84 L1126,70 L1140,84 L1140,168
+        L1196,168 L1196,128 L1280,128 L1280,168
+        L1340,168 L1340,156 L1440,156 L1440,300 Z
+      "/>
+      <!-- gold windows on the day-leaning left -->
+      <rect class="dn-win-day" x="92"  y="160" width="6" height="6"/>
+      <rect class="dn-win-day" x="110" y="160" width="6" height="6"/>
+      <rect class="dn-win-day" x="350" y="150" width="6" height="6"/>
+      <rect class="dn-win-day" x="372" y="150" width="6" height="6"/>
+      <rect class="dn-win-day" x="350" y="162" width="6" height="6"/>
+      <rect class="dn-win-day" x="568" y="142" width="6" height="6"/>
+      <rect class="dn-win-day" x="600" y="142" width="6" height="6"/>
+      <rect class="dn-win-dim" x="394" y="150" width="6" height="6"/>
+      <rect class="dn-win-dim" x="568" y="154" width="6" height="6"/>
+      <!-- blue windows on the night-leaning right -->
+      <rect class="dn-win-night" x="858" y="120" width="6" height="6"/>
+      <rect class="dn-win-night" x="880" y="120" width="6" height="6"/>
+      <rect class="dn-win-night" x="858" y="134" width="6" height="6"/>
+      <rect class="dn-win-night" x="902" y="120" width="6" height="6"/>
+      <rect class="dn-win-night" x="1214" y="140" width="6" height="6"/>
+      <rect class="dn-win-night" x="1238" y="140" width="6" height="6"/>
+      <rect class="dn-win-night" x="1214" y="152" width="6" height="6"/>
+      <rect class="dn-win-dim" x="880" y="134" width="6" height="6"/>
+      <rect class="dn-win-dim" x="1262" y="140" width="6" height="6"/>
+      <!-- a couple of clock/spire accents -->
+      <rect class="dn-win-day" x="478" y="110" width="8" height="8"/>
+      <rect class="dn-win-night" x="1118" y="98" width="8" height="8"/>
+    </svg>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  // Optional polish only. The scene is complete with JS off:
+  // here we add a slow twinkle to a subset of stars and a very
+  // faint parallax drift as the user scrolls. No time/random APIs.
+  var stars = Array.prototype.slice.call(document.querySelectorAll('.dn-star'));
+  var durations = [3.2, 4.6, 5.4, 4.0, 6.2];
+  stars.forEach(function(star, i){
+    if(i % 2 === 0){
+      star.classList.add('tw');
+      star.style.setProperty('--tw', durations[i % durations.length] + 's');
+    }
+  });
+
+  var field = document.querySelector('.dn-stars');
+  if(field && window.matchMedia && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if(ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function(){
+        var y = window.pageYOffset || 0;
+        field.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+        ticking = false;
+      });
+    }, {passive:true});
+  }
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

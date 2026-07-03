@@ -14,7 +14,7 @@ const data = {
   tag: "Gum Health",
   h1Plain: "Gum Disease Treatment",
   procedureType: "MedicalProcedure",
-  title: (<>Bleeding gums are <em>not normal</em></>),
+  title: (<>Gum disease treatment, because bleeding gums are <em>not normal</em></>),
   lead: "Bleeding gums are not normal. They are usually the first sign of gum disease, and the early stage can usually be reversed. We treat gum disease at Day Night Dental in central Glasgow, with day and evening appointments seven days a week.",
   seo: { title: "Gum Disease Treatment in Glasgow | Day Night Dental", description: "Gum disease treatment in Glasgow to stop bleeding gums and protect your teeth. Day and evening appointments, 7 days a week, in Merchant City." },
   meta: [{"k": "Two stages", "v": "Gingivitis and periodontitis", "tone": "day"}, {"k": "Early stage", "v": "Often painless", "tone": ""}, {"k": "Treatment", "v": "Usually no surgery", "tone": "night"}],

@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview 14 · Reception Native</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     RECEPTION NATIVE
+     The Reception Desk form (13) judged in true site context:
+     the REAL site header at the top, the site's own centred
+     section head (eyebrow pill + display headline + lead) above
+     the desk, and the right value rail restyled with the Deep
+     Editorial treatment from 04-panel-de (rn- prefix).
+     ============================================================ */
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 600px at 50% -8%, rgba(248,199,96,.05), transparent 60%),
+      var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  /* Preview chrome: _nav.js injects a fixed 52px bar at the very top and pads
+     the body by 52px. The real site header is position:fixed at top:0, so we
+     shift it down to sit directly below that bar. */
+  .dn-header{top:52px;}
+
+  .rd-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    /* The real header is fixed and transparent (like the live site, which
+       clears it with generous hero top padding), so the wrap carries enough
+       top padding to clear the ~102px header sitting below the preview bar. */
+    padding:clamp(8rem,11vw,9.5rem) clamp(1rem,4vw,2.5rem) 5rem;
+    position:relative;
+  }
+
+  /* soft glows behind the desk */
+  .rd-glow{position:absolute;border-radius:50%;filter:blur(50px);pointer-events:none;z-index:0;}
+  .rd-glow.day{width:440px;height:440px;top:60px;left:-160px;background:rgba(248,199,96,.10);}
+  .rd-glow.night{width:480px;height:480px;bottom:120px;right:-180px;background:rgba(69,144,236,.10);}
+
+  /* ---------- STANDARD SECTION HEAD (site pattern, replaces the nameplate) ---------- */
+  .rn-head{
+    position:relative;
+    z-index:2;
+    margin-bottom:2.75rem; /* tighter than the site's 4rem so the desk stays close */
+  }
+  .rn-head h2.rn-title{
+    font-size:clamp(2.2rem,4.4vw,3.1rem);
+    font-weight:700;
+    line-height:1.08;
+    letter-spacing:-.02em;
+    margin:1.5rem 0 0;
+  }
+  .rn-head h2 em{
+    font-style:italic;
+    font-weight:700;
+    color:var(--dn-day);
+    -webkit-text-fill-color:var(--dn-day);
+    background:none;
+  }
+  .rn-head h2 .rd-night{
+    font-style:italic;
+    color:var(--dn-night);
+  }
+  /* slim status chip under the lead: keeps the three-minute promise
+     (the one-working-hour line now lives in the lead itself) */
+  .rn-chip{
+    display:inline-flex;align-items:center;gap:.7rem;
+    margin-top:1.4rem;
+    padding:.6rem 1.1rem;
+    border:1px solid rgba(69,144,236,.35);
+    border-radius:999px;
+    background:rgba(69,144,236,.06);
+  }
+  .rn-chip b{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.92rem;font-weight:600;color:var(--dn-bone);
+  }
+  .rd-status-dot{
+    width:9px;height:9px;border-radius:50%;flex:none;
+    background:var(--dn-night-soft);
+    box-shadow:0 0 0 4px rgba(69,144,236,.18);
+    animation:rd-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes rd-pulse{0%,100%{box-shadow:0 0 0 4px rgba(69,144,236,.18);}50%{box-shadow:0 0 0 7px rgba(69,144,236,.05);}}
+
+  /* ---------- THE DESK SURFACE (raised) ---------- */
+  .rd-desk{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1fr 340px;
+    gap:0;
+    border:1px solid var(--dn-mist);
+    border-radius:18px;
+    background:linear-gradient(180deg, #101016, #0c0c11);
+    overflow:hidden;
+    box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
+  }
+
+  /* left: the form surface, slightly raised with an inset top sheen */
+  .rd-form-panel{
+    position:relative;
+    padding:clamp(1.75rem,3.2vw,2.75rem);
+    border-right:1px solid var(--dn-mist);
+  }
+
+  /* rd-hero-title kept for the section head reuse */
+  .rd-hero-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;line-height:1.05;
+    letter-spacing:-.015em;margin:0;color:var(--dn-bone);
+  }
+  .rd-hero-title em{font-style:italic;color:var(--dn-day);}
+  .rd-hero-title .rd-night{color:var(--dn-night);font-size:inherit;font-style:italic;}
+
+  /* ---------- field group (a "drawer" on the desk) ---------- */
+  .rd-group{margin-bottom:1.9rem;}
+  .rd-group-head{
+    display:flex;align-items:center;gap:.85rem;
+    margin-bottom:1.15rem;
+  }
+  .rd-group-tab{
+    flex:none;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.85rem;font-weight:600;
+    width:30px;height:30px;border-radius:8px;
+    display:grid;place-items:center;
+    color:var(--dn-day);
+    background:rgba(248,199,96,.07);
+    border:1px solid rgba(248,199,96,.28);
+  }
+  .rd-group.care .rd-group-tab{
+    color:var(--dn-night-soft);
+    background:rgba(69,144,236,.07);
+    border-color:rgba(69,144,236,.30);
+  }
+  .rd-group-head h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;
+  }
+  .rd-group-head .rd-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
+
+  /* ---------- two-up rows ---------- */
+  .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
+  .rd-row.one{grid-template-columns:1fr;}
+  .rd-row.address{grid-template-columns:1.6fr 1fr;}
+
+  .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
+  .rd-field > .rd-label,
+  .rd-label{
+    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--dn-bone-dim);font-weight:600;
+    display:flex;align-items:center;gap:.35rem;
+  }
+  .rd-req{color:var(--dn-day);}
+  .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
+
+  .rd-input,
+  .rd-select,
+  .rd-textarea{
+    width:100%;
+    padding:.82rem .95rem;
+    background:#0c0c11;
+    border:1px solid var(--dn-mist);
+    border-radius:11px;
+    color:var(--dn-bone);
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1rem;
+    transition:border-color .25s, box-shadow .25s, background .25s;
+  }
+  .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
+  .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
+    outline:none;
+    border-color:var(--dn-day);
+    background:#101015;
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+  }
+  .rd-textarea{resize:vertical;min-height:96px;line-height:1.5;}
+
+  /* native select on-brand */
+  .rd-select{
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right .95rem center;
+    padding-right:2.4rem;
+    cursor:pointer;
+  }
+  .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
+  .rd-select option{background:#101015;color:var(--dn-bone);}
+
+  .rd-dob{display:grid;grid-template-columns:.85fr 1.2fr .9fr;gap:.6rem;}
+
+  /* ---------- care-type cards ---------- */
+  .rd-care-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+  .rd-care-card{
+    position:relative;
+    display:flex;flex-direction:column;gap:.25rem;
+    padding:.95rem 1.05rem .95rem 1.05rem;
+    background:#0c0c11;
+    border:1px solid var(--dn-mist);
+    border-radius:12px;
+    cursor:pointer;
+    transition:border-color .25s, background .25s, transform .15s;
+  }
+  .rd-care-card:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.22);}
+  .rd-care-card input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
+  .rd-care-card .rd-care-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.02rem;font-weight:600;color:var(--dn-bone);
+    display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  }
+  .rd-care-card .rd-care-desc{font-size:.74rem;color:var(--dn-bone-dim);line-height:1.4;}
+  .rd-care-tick{
+    width:18px;height:18px;border-radius:50%;flex:none;
+    border:1px solid var(--dn-mist);
+    display:grid;place-items:center;
+    transition:border-color .25s, background .25s;
+  }
+  .rd-care-tick svg{width:10px;height:10px;opacity:0;transform:scale(.5);transition:opacity .2s, transform .2s;}
+  .rd-care-card:has(input:focus-visible){outline:2px solid var(--dn-day);outline-offset:2px;}
+
+  /* selected states (day = gold cards, night = blue cards) */
+  .rd-care-card.day.is-on{border-color:var(--dn-day);background:rgba(248,199,96,.06);}
+  .rd-care-card.day.is-on .rd-care-title{color:var(--dn-day);}
+  .rd-care-card.day.is-on .rd-care-tick{border-color:var(--dn-day);background:var(--dn-day);}
+  .rd-care-card.night.is-on{border-color:var(--dn-night);background:rgba(69,144,236,.07);}
+  .rd-care-card.night.is-on .rd-care-title{color:var(--dn-night-soft);}
+  .rd-care-card.night.is-on .rd-care-tick{border-color:var(--dn-night);background:var(--dn-night);}
+  .rd-care-card.is-on .rd-care-tick svg{opacity:1;transform:scale(1);}
+
+  /* ---------- consent ---------- */
+  .rd-consent{
+    display:flex;align-items:flex-start;gap:.8rem;
+    padding:1rem 1.1rem;
+    background:#0c0c11;
+    border:1px solid var(--dn-mist);
+    border-radius:12px;
+    cursor:pointer;
+    margin-top:.3rem;
+  }
+  .rd-consent input{
+    width:18px;height:18px;flex:none;margin-top:2px;
+    accent-color:var(--dn-day);cursor:pointer;
+  }
+  .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
+  .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+
+  /* ---------- submit row ---------- */
+  .rd-submit-row{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    margin-top:1.9rem;padding-top:1.6rem;
+    border-top:1px solid var(--dn-mist);
+  }
+  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:240px;line-height:1.45;}
+  .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
+  .rd-submit{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:.95rem;font-weight:600;letter-spacing:.01em;
+    padding:.95rem 1.7rem;
+    color:#0a0a0c;
+    background:var(--dn-day);
+    border:1px solid var(--dn-day);
+    border-radius:12px;
+    cursor:pointer;
+    transition:transform .15s, box-shadow .25s, background .25s;
+    box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
+  }
+  .rd-submit:hover{transform:translateY(-1px);background:var(--dn-day-soft);box-shadow:0 18px 40px -16px rgba(248,199,96,.7);}
+  .rd-submit .arrow{transition:transform .25s;}
+  .rd-submit:hover .arrow{transform:translateX(4px);}
+
+  /* ============================================================
+     RIGHT: the value rail, Deep Editorial treatment (ported from
+     04-panel-de, renamed de- to rn- to avoid collisions)
+     ============================================================ */
+  .rd-rail{
+    position:relative;
+    padding:clamp(1.75rem,3vw,2.4rem) clamp(1.5rem,2.4vw,2rem);
+    /* restrained gold + blue radial tints over near-black (two separate
+       single-colour radials, never one gradient mixing the two) */
+    background:
+      radial-gradient(120% 55% at 85% 0%, rgba(248,199,96,.06), transparent 55%),
+      radial-gradient(110% 55% at 12% 100%, rgba(69,144,236,.06), transparent 55%),
+      linear-gradient(180deg, #0e0e14, #0a0a0e);
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .rd-rail::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, transparent, var(--dn-day,#f8c760), transparent);
+    opacity:.7;
+    z-index:2;
+  }
+
+  /* faint ghosted Fraunces watermark, hairline stroke only, scaled to the rail */
+  .rn-monogram{
+    position:absolute;z-index:0;pointer-events:none;
+    right:-18px;top:-4px;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-weight:600;font-size:170px;line-height:.8;
+    letter-spacing:-.04em;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(248,199,96,.05);
+    user-select:none;
+  }
+  .rn-inner{position:relative;z-index:1;}
+
+  /* eyebrow: the site's pill (hairline border, glowing dot), gold */
+  .rn-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px 6px 11px;
+    border-radius:999px;
+    font-size:.6rem;font-weight:600;
+    letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-day);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 0 20px -6px color-mix(in srgb, currentColor 55%, transparent), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .rn-eyebrow::before{
+    content:'';width:6px;height:6px;flex:none;border-radius:50%;
+    background:currentColor;
+    box-shadow:0 0 8px 1px color-mix(in srgb, currentColor 70%, transparent);
+  }
+  .rd-rail h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.45rem;font-weight:600;letter-spacing:-.01em;
+    margin:.85rem 0 .35rem;
+  }
+  .rd-rail-lead{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.55;margin:0 0 1.5rem;}
+
+  /* numbered item cards */
+  .rn-list{list-style:none;margin:0 0 0;padding:0;}
+  .rn-item{position:relative;margin:0 0 14px;padding:0;}
+  .rn-item:last-child{margin-bottom:0;}
+
+  /* faint ghosted numeral behind each card, hairline stroke only */
+  .rn-ghost{
+    position:absolute;z-index:0;pointer-events:none;
+    right:2px;top:50%;transform:translateY(-52%);
+    font-family:var(--font-display),'Fraunces',serif;
+    font-weight:600;font-size:96px;line-height:1;
+    letter-spacing:-.03em;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(248,199,96,.06);
+    user-select:none;
+  }
+
+  /* hairline-bordered card: flat near-black fill, 1px mist border, thin gold
+     top hairline accent (no bevels, no embossing) */
+  .rn-card{
+    position:relative;z-index:1;
+    display:flex;align-items:flex-start;gap:15px;
+    padding:17px 16px 18px;
+    border-radius:13px;
+    background:var(--dn-charcoal,#14141a);
+    border:1px solid var(--dn-mist,rgba(255,255,255,.1));
+    overflow:hidden;
+    box-shadow:0 16px 32px -20px rgba(0,0,0,.65);
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .rn-card::before{
+    content:'';
+    position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-day,#f8c760);
+    opacity:.7;
+  }
+  .rn-card:hover{
+    transform:translateY(-2px);
+    border-color:rgba(248,199,96,.32);
+    box-shadow:0 20px 38px -20px rgba(0,0,0,.75), 0 0 24px -14px rgba(248,199,96,.35);
+  }
+
+  /* SOLID gold Fraunces numeral (never a metallic / clipped gradient) */
+  .rn-num{
+    flex:0 0 auto;
+    width:46px;
+    padding-top:0;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-weight:500;font-size:1.9rem;line-height:.9;
+    letter-spacing:-.02em;
+    color:var(--dn-day,#f8c760);
+    -webkit-text-fill-color:var(--dn-day,#f8c760);
+    font-variant-numeric:tabular-nums;
+  }
+  .rn-body{min-width:0;}
+  .rn-item-title{
+    margin:0 0 4px;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.02rem;font-weight:700;
+    letter-spacing:-.01em;
+    color:var(--dn-bone,#fff);
+  }
+  .rn-item-text{
+    margin:0;
+    font-size:.76rem;line-height:1.5;
+    color:var(--dn-bone-dim,rgba(255,255,255,.72));
+  }
+
+  /* price plate + notes (stacked for the narrow rail) */
+  .rn-pricerow{
+    display:flex;flex-direction:column;gap:14px;
+    margin-top:1.5rem;
+    padding-top:1.5rem;
+    border-top:1px solid var(--dn-mist,rgba(255,255,255,.1));
+  }
+  /* price plate: thin gold-hairline card, gold-tinted flat fill (no metallic) */
+  .rn-plate{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    padding:17px 20px 18px;
+    border-radius:13px;
+    background:rgba(248,199,96,.055);
+    border:1px solid rgba(248,199,96,.45);
+    box-shadow:0 18px 36px -22px rgba(0,0,0,.7), 0 0 30px -18px rgba(248,199,96,.3);
+  }
+  .rn-plate-label{
+    font-size:.6rem;font-weight:600;
+    letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-bone-dim,rgba(255,255,255,.6));
+  }
+  /* SOLID gold amount, never a metallic / clipped gradient */
+  .rn-plate-figure{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-weight:700;font-size:2.5rem;line-height:1;
+    letter-spacing:-.02em;
+    color:var(--dn-day,#f8c760);
+    -webkit-text-fill-color:var(--dn-day,#f8c760);
+  }
+  .rn-notes{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .rn-notes li{
+    position:relative;
+    padding-left:15px;
+    font-size:.76rem;line-height:1.45;
+    color:var(--dn-bone-dim,rgba(255,255,255,.66));
+  }
+  /* flat solid dots, gold then blue, matching the day/night rhythm */
+  .rn-notes li::before{
+    content:'';
+    position:absolute;left:0;top:6px;
+    width:5px;height:5px;border-radius:50%;
+    background:var(--dn-day,#f8c760);
+  }
+  .rn-notes li:nth-child(even)::before{background:var(--dn-night-soft,#7DB5F0);}
+
+  /* 24/7 emergency: blue-hairline card with pulsing dot */
+  .rn-emergency{
+    display:flex;align-items:flex-start;gap:12px;
+    margin-top:1.5rem;
+    padding:15px 16px;
+    border-radius:13px;
+    background:rgba(69,144,236,.05);
+    border:1px solid rgba(69,144,236,.4);
+  }
+  .rn-dot{
+    flex:0 0 auto;position:relative;
+    width:11px;height:11px;margin-top:3px;
+    border-radius:50%;
+    background:rgba(69,144,236,.22);
+  }
+  .rn-dot::before{
+    content:'';position:absolute;inset:-5px;border-radius:50%;
+    background:rgba(69,144,236,.45);
+    animation:rn-pulse 2s ease-out infinite;
+  }
+  .rn-dot-core{
+    position:absolute;inset:2px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);
+    box-shadow:0 0 6px 1px rgba(69,144,236,.7);
+  }
+  @keyframes rn-pulse{
+    0%{transform:scale(.6);opacity:.8;}
+    70%{transform:scale(1.9);opacity:0;}
+    100%{transform:scale(1.9);opacity:0;}
+  }
+  .rn-em-body{min-width:0;}
+  .rn-em-eyebrow{
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);font-weight:600;
+    margin:0 0 .4rem;
+  }
+  .rn-emergency p{font-size:.77rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 .5rem;}
+  .rn-tel{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.02rem;font-weight:600;
+    color:var(--dn-night-soft,#7DB5F0);
+    text-decoration:none;
+    border-bottom:1px solid rgba(125,181,240,.35);
+    white-space:nowrap;
+  }
+  .rn-tel:hover{color:#a6cdf6;border-bottom-color:rgba(166,205,246,.6);}
+  @media (prefers-reduced-motion:reduce){
+    .rn-dot::before{animation:none;}
+    .rd-status-dot{animation:none;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .rd-desk{grid-template-columns:1fr;}
+    .rd-form-panel{border-right:none;border-bottom:1px solid var(--dn-mist);}
+    .rd-rail::before{background:linear-gradient(90deg, transparent, var(--dn-day,#f8c760), transparent);}
+  }
+  @media (max-width:620px){
+    .rd-row,.rd-row.address{grid-template-columns:1fr;}
+    .rd-care-grid{grid-template-columns:1fr;}
+    .rd-dob{grid-template-columns:.85fr 1.2fr .9fr;}
+    .rd-submit{width:100%;justify-content:center;}
+    .rd-submit-note{max-width:none;}
+    .rn-monogram{font-size:130px;}
+  }
+  @media (max-width:380px){
+    .rd-dob{gap:.4rem;}
+    .rd-select{padding-right:2rem;background-position:right .6rem center;}
+  }
+
+  /* preview scroll override (keep LAST): vertical scroll stays free, but the
+     horizontal axis is clipped so the decorative glows never cause sideways
+     overflow (the override above would otherwise cancel overflow-x:hidden) */
+  html,body{overflow:visible!important;overflow-x:clip!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Reception Native</div>
+
+<!-- ============ REAL SITE HEADER (markup lifted from dist/register-as-patient) ============ -->
+<header class="dn-header"><div class="dn-header-inner"><a class="dn-header-logo" aria-label="Day Night Dental home" href="/"><img src="/logo-mark.webp?v=2" class="dn-header-mark" alt="Day Night Dental logo" width="160" height="139"><div class="dn-header-wordmark"><span class="day">Day</span><span class="night">Night</span><span class="dental">Dental</span></div></a><nav class="dn-header-nav" aria-label="Primary"><a href="/treatments/">Treatments</a><a href="/our-team/">Our Team</a><a href="/register-as-patient/">Register</a><a href="/#testimonials">Reviews</a><a href="/#contact">Contact</a></nav><div class="dn-header-cta"><a href="tel:+441415486548" class="dn-header-phone"><span class="dot"></span>0141 548 6548</a><a class="dn-btn primary dn-btn-emergency" href="/#contact"><span class="dn-btn-pulse"></span>Emergency Booking<span class="arrow">→</span></a></div><button type="button" class="dn-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button></div></header>
+
+<div class="rd-wrap">
+  <div class="rd-glow day"></div>
+  <div class="rd-glow night"></div>
+
+  <!-- ============ STANDARD SECTION HEAD (site pattern) ============ -->
+  <div class="dn-section-head rn-head">
+    <span class="dn-eyebrow dn-pill day">New Patients</span>
+    <h2 class="rd-hero-title rn-title">Here for you, <em>day</em> or <span class="rd-night">night</span>.</h2>
+    <p class="dn-section-lead">We are taking on new patients for every treatment we offer, and we confirm your first appointment within one working hour. Please check in below, just the essentials, the rest we cover on the call.</p>
+    <div class="rn-chip">
+      <span class="rd-status-dot" aria-hidden="true"></span>
+      <b>Register in three minutes</b>
+    </div>
+  </div>
+
+  <!-- ============ THE DESK SURFACE ============ -->
+  <div class="rd-desk">
+
+    <!-- ===== left: the form ===== -->
+    <div class="rd-form-panel">
+      <form onsubmit="return false;">
+
+        <!-- ===== GROUP 1: YOUR DETAILS ===== -->
+        <section class="rd-group">
+          <div class="rd-group-head">
+            <span class="rd-group-tab">1</span>
+            <div>
+              <h3>Your details</h3>
+              <div class="rd-group-sub">Who we should welcome, and how to reach you.</div>
+            </div>
+          </div>
+
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
+              <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
+            </div>
+            <div class="rd-field">
+              <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
+              <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
+            </div>
+          </div>
+
+          <div class="rd-row one">
+            <div class="rd-field">
+              <span class="rd-label">Date of birth <span class="rd-req">*</span></span>
+              <div class="rd-dob">
+                <select class="rd-select" name="dobDay" aria-label="Day of birth" required>
+                  <option value="" selected disabled>Day</option>
+                  <option>01</option><option>02</option><option>07</option><option>14</option>
+                  <option>21</option><option>28</option><option>31</option>
+                </select>
+                <select class="rd-select" name="dobMonth" aria-label="Month of birth" required>
+                  <option value="" selected disabled>Month</option>
+                  <option>January</option><option>February</option><option>March</option>
+                  <option>June</option><option>September</option><option>December</option>
+                </select>
+                <select class="rd-select" name="dobYear" aria-label="Year of birth" required>
+                  <option value="" selected disabled>Year</option>
+                  <option>2008</option><option>1999</option><option>1990</option>
+                  <option>1985</option><option>1972</option><option>1960</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
+              <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
+            </div>
+            <div class="rd-field">
+              <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
+              <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
+            </div>
+          </div>
+
+          <div class="rd-row address">
+            <div class="rd-field">
+              <label class="rd-label" for="address">Address <span class="rd-opt">optional</span></label>
+              <input class="rd-input" id="address" name="address" type="text" autocomplete="street-address" placeholder="Street address (optional)">
+            </div>
+            <div class="rd-field">
+              <label class="rd-label" for="postcode">Postcode <span class="rd-req">*</span></label>
+              <input class="rd-input" id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="G1 1SH" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== GROUP 2: YOUR CARE ===== -->
+        <section class="rd-group care">
+          <div class="rd-group-head">
+            <span class="rd-group-tab">2</span>
+            <div>
+              <h3>Your care</h3>
+              <div class="rd-group-sub">How you would like to be seen, and what is on your mind.</div>
+            </div>
+          </div>
+
+          <div class="rd-field" style="margin-bottom:1.1rem;">
+            <span class="rd-label">Care type <span class="rd-req">*</span></span>
+            <div class="rd-care-grid" data-care role="radiogroup" aria-label="Care type">
+              <label class="rd-care-card day">
+                <input type="radio" name="careType" value="private" required>
+                <span class="rd-care-title">Private
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">Full choice of times and treatments</span>
+              </label>
+              <label class="rd-care-card night">
+                <input type="radio" name="careType" value="nhs" required>
+                <span class="rd-care-title">NHS
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">Waiting list, when we have space</span>
+              </label>
+              <label class="rd-care-card day">
+                <input type="radio" name="careType" value="mixed" required>
+                <span class="rd-care-title">Either
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">Whatever gets you seen soonest</span>
+              </label>
+              <label class="rd-care-card night">
+                <input type="radio" name="careType" value="unsure" required>
+                <span class="rd-care-title">Not sure yet
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">We'll talk it through on the call</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="referral">How did you hear about us? <span class="rd-opt">optional</span></label>
+              <select class="rd-select" id="referral" name="referral">
+                <option value="" selected disabled>Optional</option>
+                <option>Google search</option>
+                <option>Friend or family</option>
+                <option>Instagram</option>
+                <option>Walked past the practice</option>
+                <option>Existing patient</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="rd-field" style="justify-content:flex-end;">
+              <span class="rd-label" style="visibility:hidden;">spacer</span>
+              <div style="font-size:.74rem;color:var(--dn-bone-faint);line-height:1.45;align-self:center;padding-bottom:.6rem;">
+                Anything you tell us helps the desk prepare before your call.
+              </div>
+            </div>
+          </div>
+
+          <div class="rd-row one">
+            <div class="rd-field">
+              <label class="rd-label" for="notes">What do you need help with? <span class="rd-opt">optional</span></label>
+              <textarea class="rd-textarea" id="notes" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+            </div>
+          </div>
+
+          <div class="rd-row one">
+            <label class="rd-consent">
+              <input type="checkbox" name="consent" required>
+              <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- ===== submit ===== -->
+        <div class="rd-submit-row">
+          <p class="rd-submit-note"><strong>No payment now.</strong> We confirm the cost of your first visit before anything goes ahead.</p>
+          <button type="submit" class="rd-submit">Complete Registration <span class="arrow" aria-hidden="true">→</span></button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ===== right: the value rail, Deep Editorial treatment ===== -->
+    <aside class="rd-rail">
+      <span class="rn-monogram" aria-hidden="true">DN</span>
+
+      <div class="rn-inner">
+        <span class="rn-eyebrow">What's included</span>
+        <h3>Your first visit</h3>
+        <p class="rd-rail-lead">Everything below is part of your first appointment, set out plainly before you decide anything.</p>
+
+        <ol class="rn-list">
+          <li class="rn-item">
+            <span class="rn-ghost" aria-hidden="true">01</span>
+            <div class="rn-card">
+              <span class="rn-num">01</span>
+              <div class="rn-body">
+                <h4 class="rn-item-title">Comprehensive examination</h4>
+                <p class="rn-item-text">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+              </div>
+            </div>
+          </li>
+          <li class="rn-item">
+            <span class="rn-ghost" aria-hidden="true">02</span>
+            <div class="rn-card">
+              <span class="rn-num">02</span>
+              <div class="rn-body">
+                <h4 class="rn-item-title">Digital x-rays</h4>
+                <p class="rn-item-text">Low-dose, with no films to develop, so you are not left waiting.</p>
+              </div>
+            </div>
+          </li>
+          <li class="rn-item">
+            <span class="rn-ghost" aria-hidden="true">03</span>
+            <div class="rn-card">
+              <span class="rn-num">03</span>
+              <div class="rn-body">
+                <h4 class="rn-item-title">Personalised treatment plan</h4>
+                <p class="rn-item-text">Written, with the cost of each item set out before any work starts.</p>
+              </div>
+            </div>
+          </li>
+          <li class="rn-item">
+            <span class="rn-ghost" aria-hidden="true">04</span>
+            <div class="rn-card">
+              <span class="rn-num">04</span>
+              <div class="rn-body">
+                <h4 class="rn-item-title">Hygiene appointment</h4>
+                <p class="rn-item-text">Booked alongside the examination, so you leave with a fresh start.</p>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+        <div class="rn-pricerow">
+          <div class="rn-plate">
+            <span class="rn-plate-label">First visit from</span>
+            <span class="rn-plate-figure">£95</span>
+          </div>
+          <ul class="rn-notes">
+            <li>Children under 18 are examined free.</li>
+            <li>NHS care is by waiting list when we have space.</li>
+          </ul>
+        </div>
+
+        <div class="rn-emergency">
+          <span class="rn-dot" aria-hidden="true"><span class="rn-dot-core"></span></span>
+          <div class="rn-em-body">
+            <p class="rn-em-eyebrow">24/7 Emergency</p>
+            <p>In pain right now? Don't wait to register, we are a new practice in Merchant City, Glasgow.</p>
+            <a class="rn-tel" href="tel:+441415486548">0141 548 6548</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+<script>
+/* Replicate the live header behaviour: add .scrolled (blur + dark background)
+   once the page scrolls, exactly as the React header does. */
+(function(){
+  var h=document.querySelector('.dn-header');
+  if(!h)return;
+  function onScroll(){h.classList.toggle('scrolled',(window.scrollY||0)>8);}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,2061 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Left panel - treatment options</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;background:#08080a;color:#fff;margin:0;font-family:'Inter Tight',-apple-system,system-ui,sans-serif;}
+  .pl-wrap{max-width:1560px;margin:0 auto;padding:52px 24px 110px;}
+  .pl-head{text-align:center;margin-bottom:46px;}
+  .pl-head .eb{display:inline-block;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#f8c760;border:1px solid rgba(248,199,96,.4);border-radius:100px;padding:7px 15px;margin-bottom:16px;}
+  .pl-head h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 10px;}
+  .pl-head p{color:rgba(255,255,255,.62);max-width:640px;margin:0 auto;line-height:1.6;}
+  .pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(470px,1fr));gap:34px;align-items:start;justify-items:center;}
+  .pl-cell{width:100%;max-width:520px;}
+  .pl-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#f8c760;margin:0 0 16px;font-weight:600;text-align:center;}
+.ed-panel {
+  --ed-day: #f8c760;
+  --ed-night: #4590ec;
+  --ed-near-black: #0a0a0c;
+  --ed-charcoal: #14141a;
+  --ed-mist: #2a2a35;
+  --ed-bone: #ffffff;
+  --ed-bone-dim: rgba(255, 255, 255, 0.72);
+  --ed-bone-faint: rgba(255, 255, 255, 0.5);
+  --ed-hair: rgba(255, 255, 255, 0.1);
+  --ed-font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --ed-font-body: 'Inter Tight', -apple-system, sans-serif;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  padding: 3.25rem 3rem 2.75rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0) 55%),
+    var(--ed-near-black);
+  border: 1px solid var(--ed-mist);
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: var(--ed-font-body);
+  color: var(--ed-bone);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* gold hairline caps the sheet like a magazine cover trim */
+.ed-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ed-day) 22%, var(--ed-day) 78%, transparent);
+  opacity: 0.85;
+  z-index: 2;
+}
+
+/* single, calm radial glow, gold top-left fading to nothing */
+.ed-glow {
+  position: absolute;
+  top: -18%;
+  left: -22%;
+  width: 78%;
+  height: 60%;
+  background: radial-gradient(circle at 30% 30%, rgba(248, 199, 96, 0.16), transparent 68%);
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ed-panel > *:not(.ed-glow) { position: relative; z-index: 1; }
+
+/* ---- masthead ---- */
+.ed-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+.ed-eyebrow {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(248, 199, 96, 0.4);
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ed-day);
+  background: rgba(248, 199, 96, 0.05);
+}
+.ed-folio {
+  font-family: var(--ed-font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ed-bone-faint);
+  white-space: nowrap;
+}
+
+/* ---- headline ---- */
+.ed-head {
+  margin: 0 0 1.25rem;
+  font-family: var(--ed-font-display);
+  font-weight: 500;
+  font-size: clamp(2.35rem, 6vw, 2.95rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--ed-bone);
+}
+.ed-head em { font-style: normal; }
+.ed-head .ed-gold { color: var(--ed-day); }
+.ed-head .ed-blue { color: var(--ed-night); }
+
+.ed-lead {
+  margin: 0 0 2.5rem;
+  max-width: 40ch;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: var(--ed-bone-dim);
+}
+
+/* ---- first-visit editorial list ---- */
+.ed-visit-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+.ed-visit-kicker .ed-rule {
+  width: 26px;
+  height: 1px;
+  background: var(--ed-day);
+  flex: 0 0 auto;
+}
+.ed-visit-title {
+  font-family: var(--ed-font-display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ed-bone-dim);
+}
+
+.ed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ed-hair);
+}
+.ed-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--ed-hair);
+}
+.ed-num {
+  font-family: var(--ed-font-display);
+  font-weight: 400;
+  font-size: 2.25rem;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  color: var(--ed-day);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.ed-item-body { min-width: 0; }
+.ed-item-head {
+  margin: 0 0 0.3rem;
+  font-family: var(--ed-font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  color: var(--ed-bone);
+}
+.ed-item-copy {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ed-bone-dim);
+}
+
+/* ---- price line ---- */
+.ed-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.5rem 0 2rem;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--ed-mist);
+}
+.ed-price-label {
+  font-family: var(--ed-font-display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ed-bone-dim);
+}
+.ed-price-figure {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.05em;
+  font-family: var(--ed-font-display);
+  font-weight: 500;
+  font-size: 2.75rem;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--ed-day);
+  font-variant-numeric: lining-nums;
+}
+.ed-price-from {
+  margin-right: 0.5rem;
+  font-family: var(--ed-font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ed-bone-faint);
+  align-self: center;
+}
+.ed-price-cur { font-size: 1.55rem; align-self: flex-start; margin-top: 0.12em; }
+
+/* ---- policy notes ---- */
+.ed-notes {
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--ed-hair);
+}
+.ed-note {
+  margin: 0;
+  padding: 0.85rem 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ed-bone-faint);
+  border-bottom: 1px solid var(--ed-hair);
+}
+
+/* ---- 24/7 emergency footer ---- */
+.ed-emergency {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.25rem 1.35rem;
+  background: rgba(69, 144, 236, 0.05);
+  border: 1px solid rgba(69, 144, 236, 0.28);
+  border-radius: 12px;
+}
+.ed-live {
+  position: relative;
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.42rem;
+}
+.ed-live-dot {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ed-night);
+  box-shadow: 0 0 8px rgba(69, 144, 236, 0.9);
+}
+.ed-live-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ed-night);
+  animation: ed-pulse 2s ease-out infinite;
+}
+@keyframes ed-pulse {
+  0%   { transform: scale(1); opacity: 0.7; }
+  70%  { transform: scale(3.2); opacity: 0; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+.ed-emergency-copy {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--ed-bone-dim);
+}
+.ed-emergency-tel {
+  color: var(--ed-night);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(69, 144, 236, 0.35);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.ed-emergency-tel:hover { color: #7db5f0; border-bottom-color: #7db5f0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-live-dot::after { animation: none; }
+}
+
+@media (max-width: 600px) {
+  .ed-panel { padding: 2.5rem 1.75rem 2.25rem; }
+  .ed-masthead { flex-wrap: wrap; gap: 0.75rem; }
+  .ed-item { column-gap: 1.15rem; }
+  .ed-num { font-size: 2rem; }
+}
+.wc-panel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  padding: 44px 40px 46px;
+  background: #0c0c10;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 26px;
+  overflow: hidden;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  color: #e7e7ec;
+  -webkit-font-smoothing: antialiased;
+}
+.wc-panel *, .wc-panel *::before, .wc-panel *::after { box-sizing: border-box; }
+
+.wc-glow {
+  position: absolute;
+  top: -140px;
+  left: -90px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle at center, rgba(248,199,96,0.16), rgba(248,199,96,0) 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+.wc-panel > *:not(.wc-glow) { position: relative; z-index: 1; }
+
+.wc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 15px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f8c760;
+  background: rgba(248,199,96,0.09);
+  border: 1px solid rgba(248,199,96,0.28);
+  border-radius: 999px;
+}
+
+.wc-head {
+  margin: 22px 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: 39px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: #f4f4f7;
+}
+.wc-head .wc-gold { color: #f8c760; font-style: italic; }
+.wc-head .wc-blue { color: #4590ec; font-style: italic; }
+
+.wc-lead {
+  margin: 20px 0 0;
+  font-size: 15.5px;
+  line-height: 1.62;
+  color: #a7a7b2;
+  max-width: 40ch;
+}
+
+.wc-visit {
+  margin-top: 32px;
+  padding: 22px 22px 8px;
+  background: rgba(255,255,255,0.022);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+}
+.wc-visit-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 2px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.wc-visit-kicker {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #f4f4f7;
+  letter-spacing: -0.01em;
+}
+.wc-visit-note {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6f6f7c;
+}
+
+.wc-rows { list-style: none; margin: 0; padding: 6px 0 0; }
+.wc-row {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 15px 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.wc-row:last-child { border-bottom: none; }
+
+.wc-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: #f8c760;
+  background: rgba(248,199,96,0.10);
+  border: 1px solid rgba(248,199,96,0.24);
+  border-radius: 14px;
+}
+.wc-chip svg { width: 21px; height: 21px; }
+
+.wc-row-body { display: flex; flex-direction: column; gap: 3px; padding-top: 1px; }
+.wc-row-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ececf1;
+  letter-spacing: -0.005em;
+}
+.wc-row-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #97979f;
+}
+
+.wc-reassure {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 22px;
+  background: rgba(69,144,236,0.05);
+  border: 1px solid rgba(69,144,236,0.2);
+  border-radius: 20px;
+}
+.wc-price {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 20px;
+  border-right: 1px solid rgba(255,255,255,0.09);
+}
+.wc-price-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #8f9aa8;
+}
+.wc-price-value {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1;
+  color: #4590ec;
+  letter-spacing: -0.01em;
+}
+
+.wc-policies { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.wc-policy {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #c2c2cb;
+}
+.wc-policy-mark {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: #4590ec;
+}
+.wc-policy-mark svg { width: 14px; height: 14px; }
+
+.wc-emergency {
+  margin-top: 22px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.022);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+}
+.wc-live {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+}
+.wc-live-dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4590ec;
+  box-shadow: 0 0 0 0 rgba(69,144,236,0.5);
+  animation: wc-pulse 2s ease-out infinite;
+}
+@keyframes wc-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(69,144,236,0.5); }
+  70% { box-shadow: 0 0 0 9px rgba(69,144,236,0); }
+  100% { box-shadow: 0 0 0 0 rgba(69,144,236,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wc-live-dot { animation: none; }
+}
+.wc-emergency-body { display: flex; flex-direction: column; gap: 3px; }
+.wc-emergency-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #eaeaef;
+  letter-spacing: -0.005em;
+}
+.wc-emergency-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #9a9aa3;
+}
+.wc-emergency-num {
+  color: #f8c760;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(248,199,96,0.35);
+}
+.wc-emergency-num:hover { border-bottom-color: #f8c760; }
+.jn-panel{
+  --jn-day:#f8c760;
+  --jn-day-soft:#ffd66d;
+  --jn-blue:#4590ec;
+  --jn-blue-soft:#7db5f0;
+  --jn-near-black:#0a0a0c;
+  --jn-charcoal:#14141a;
+  --jn-bone:#ffffff;
+  --jn-bone-dim:rgba(255,255,255,.72);
+  --jn-bone-faint:rgba(255,255,255,.52);
+  --jn-hair:rgba(255,255,255,.10);
+  --jn-hair-soft:rgba(255,255,255,.06);
+  --jn-font-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --jn-font-body:'Inter Tight',-apple-system,sans-serif;
+
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  box-sizing:border-box;
+  width:100%;
+  max-width:500px;
+  min-width:440px;
+  padding:44px 40px 40px;
+  background:
+    linear-gradient(180deg,#14141a 0%,#0c0c10 62%,#0a0a0c 100%);
+  border:1px solid var(--jn-hair);
+  border-radius:22px;
+  font-family:var(--jn-font-body);
+  color:var(--jn-bone);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.jn-panel *{box-sizing:border-box;}
+
+/* atmosphere */
+.jn-panel .jn-glow{position:absolute;z-index:-1;border-radius:50%;filter:blur(46px);pointer-events:none;}
+.jn-panel .jn-glow-a{top:-70px;left:-40px;width:260px;height:260px;
+  background:radial-gradient(circle,rgba(248,199,96,.20),transparent 70%);}
+.jn-panel .jn-glow-b{bottom:-90px;right:-60px;width:300px;height:300px;
+  background:radial-gradient(circle,rgba(69,144,236,.16),transparent 70%);}
+
+/* header */
+.jn-panel .jn-head{position:relative;margin-bottom:30px;}
+.jn-panel .jn-eyebrow{
+  display:inline-flex;align-items:center;
+  padding:6px 14px;
+  font-family:var(--jn-font-body);
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--jn-day);
+  background:rgba(248,199,96,.07);
+  border:1px solid rgba(248,199,96,.32);
+  border-radius:999px;
+}
+.jn-panel .jn-title{
+  margin:18px 0 0;
+  font-family:var(--jn-font-display);
+  font-weight:560;
+  font-size:38px;
+  line-height:1.08;
+  letter-spacing:-.015em;
+  color:var(--jn-bone);
+}
+.jn-panel .jn-title em{font-style:normal;position:relative;white-space:nowrap;}
+.jn-panel .jn-gold{color:var(--jn-day);}
+.jn-panel .jn-blue{color:var(--jn-blue);}
+.jn-panel .jn-title em::after{
+  content:"";position:absolute;left:0;right:0;bottom:.04em;height:2px;border-radius:2px;
+}
+.jn-panel .jn-gold::after{background:linear-gradient(90deg,var(--jn-day),rgba(248,199,96,0));}
+.jn-panel .jn-blue::after{background:linear-gradient(90deg,var(--jn-blue),rgba(69,144,236,0));}
+.jn-panel .jn-lead{
+  margin:18px 0 0;
+  max-width:40ch;
+  font-size:15px;
+  line-height:1.62;
+  color:var(--jn-bone-dim);
+}
+.jn-panel .jn-meta{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:20px;padding:9px 16px;
+  font-size:12.5px;letter-spacing:.02em;
+  color:var(--jn-bone-dim);
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--jn-hair-soft);
+  border-radius:999px;
+}
+.jn-panel .jn-meta-dur{color:var(--jn-bone);font-weight:600;letter-spacing:.01em;}
+.jn-panel .jn-meta-dot{width:4px;height:4px;border-radius:50%;background:var(--jn-day);opacity:.7;}
+.jn-panel .jn-meta-all{color:var(--jn-bone-faint);}
+
+/* the journey spine */
+.jn-panel .jn-journey{
+  list-style:none;margin:0 0 4px;padding:0;
+  position:relative;
+}
+.jn-panel .jn-step{
+  position:relative;
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:16px;
+  padding:0 0 22px 0;
+}
+.jn-panel .jn-step:last-child{padding-bottom:0;}
+/* continuous gold spine drawn behind the nodes */
+.jn-panel .jn-step::before{
+  content:"";
+  position:absolute;
+  left:16px;top:9px;bottom:-2px;
+  width:1.5px;
+  background:linear-gradient(180deg,rgba(248,199,96,.55),rgba(248,199,96,.18));
+}
+.jn-panel .jn-step:last-child::before{
+  bottom:auto;height:20px;
+  background:linear-gradient(180deg,rgba(248,199,96,.55),rgba(248,199,96,0));
+}
+.jn-panel .jn-node{
+  position:relative;z-index:1;
+  width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 38%,#1c1c24,#101015);
+  border:1.5px solid rgba(248,199,96,.55);
+  box-shadow:0 0 0 4px #0d0d11, 0 0 14px rgba(248,199,96,.18);
+}
+.jn-panel .jn-node-num{
+  font-family:var(--jn-font-display);
+  font-size:15px;font-weight:600;line-height:1;
+  color:var(--jn-day);
+}
+.jn-panel .jn-step-body{padding-top:4px;}
+.jn-panel .jn-step-title{
+  margin:0;
+  font-family:var(--jn-font-display);
+  font-weight:560;
+  font-size:17px;
+  letter-spacing:-.005em;
+  color:var(--jn-bone);
+}
+.jn-panel .jn-step-copy{
+  margin:5px 0 0;
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--jn-bone-faint);
+  max-width:38ch;
+}
+
+/* arrival: price + policy notes */
+.jn-panel .jn-arrival{
+  margin-top:26px;
+  padding:20px 22px;
+  background:
+    radial-gradient(120% 140% at 100% 0%,rgba(248,199,96,.07),transparent 60%),
+    rgba(255,255,255,.028);
+  border:1px solid rgba(248,199,96,.22);
+  border-radius:16px;
+}
+.jn-panel .jn-price{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--jn-hair-soft);
+}
+.jn-panel .jn-price-label{
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--jn-bone-faint);font-weight:600;
+}
+.jn-panel .jn-price-value{display:inline-flex;align-items:baseline;gap:8px;}
+.jn-panel .jn-price-from{
+  font-size:12px;letter-spacing:.04em;color:var(--jn-bone-dim);
+}
+.jn-panel .jn-price-num{
+  font-family:var(--jn-font-display);
+  font-weight:600;
+  font-size:34px;line-height:1;
+  color:var(--jn-day);
+  letter-spacing:-.01em;
+}
+.jn-panel .jn-notes{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px;}
+.jn-panel .jn-note{
+  position:relative;
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;line-height:1.5;
+  color:var(--jn-bone-dim);
+}
+.jn-panel .jn-note-mark{
+  flex:none;margin-top:6px;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--jn-blue);
+  box-shadow:0 0 8px rgba(69,144,236,.5);
+}
+
+/* 24/7 emergency, calm closing reassurance */
+.jn-panel .jn-emergency{
+  display:flex;align-items:flex-start;gap:14px;
+  margin-top:20px;
+  padding:16px 18px;
+  text-decoration:none;
+  background:rgba(69,144,236,.055);
+  border:1px solid rgba(69,144,236,.28);
+  border-radius:14px;
+  transition:background .25s ease,border-color .25s ease;
+}
+.jn-panel .jn-emergency:hover{
+  background:rgba(69,144,236,.10);
+  border-color:rgba(69,144,236,.5);
+}
+.jn-panel .jn-live{
+  flex:none;margin-top:3px;
+  position:relative;
+  width:12px;height:12px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.jn-panel .jn-live-dot{
+  position:relative;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--jn-blue-soft);
+  box-shadow:0 0 10px rgba(69,144,236,.7);
+}
+.jn-panel .jn-live-dot::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:var(--jn-blue);
+  animation:jn-pulse 2s ease-out infinite;
+}
+@keyframes jn-pulse{
+  0%{transform:scale(1);opacity:.7;}
+  70%{transform:scale(3.2);opacity:0;}
+  100%{transform:scale(3.2);opacity:0;}
+}
+.jn-panel .jn-emergency-body{display:block;}
+.jn-panel .jn-emergency-lead{
+  display:block;
+  font-family:var(--jn-font-display);
+  font-weight:560;font-size:15px;
+  color:var(--jn-bone);
+}
+.jn-panel .jn-emergency-copy{
+  display:block;margin-top:4px;
+  font-size:13px;line-height:1.55;
+  color:var(--jn-bone-dim);
+}
+.jn-panel .jn-emergency-num{
+  color:var(--jn-blue-soft);font-weight:600;white-space:nowrap;letter-spacing:.01em;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .jn-panel .jn-live-dot::before{animation:none;}
+}
+.tr-panel{
+  position:relative;
+  box-sizing:border-box;
+  width:460px;
+  max-width:100%;
+  padding:40px 38px 34px;
+  background:
+    radial-gradient(120% 80% at 12% 0%, rgba(248,199,96,0.10), rgba(248,199,96,0) 46%),
+    radial-gradient(120% 90% at 92% 108%, rgba(69,144,236,0.12), rgba(69,144,236,0) 50%),
+    #0c0c10;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:22px;
+  overflow:hidden;
+  font-family:'Inter Tight',system-ui,sans-serif;
+  color:#e9e9ee;
+}
+.tr-panel *{box-sizing:border-box;}
+.tr-panel::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:22px;
+  padding:1px;
+  background:linear-gradient(160deg, rgba(248,199,96,0.28), rgba(255,255,255,0) 32%, rgba(255,255,255,0) 66%, rgba(69,144,236,0.28));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  pointer-events:none;
+}
+
+.tr-panel .tr-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 13px 6px 11px;
+  border:1px solid rgba(248,199,96,0.34);
+  border-radius:100px;
+  background:rgba(248,199,96,0.06);
+  font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase;
+  color:#f8c760;
+}
+.tr-panel .tr-eyebrow-dot{ width:5px; height:5px; border-radius:50%; background:#f8c760; box-shadow:0 0 0 3px rgba(248,199,96,0.16); }
+
+.tr-panel .tr-head{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:500;
+  font-size:37px;
+  line-height:1.08;
+  letter-spacing:-0.015em;
+  margin:22px 0 0;
+  color:#f4f4f7;
+}
+.tr-panel .tr-gold{ color:#f8c760; font-style:italic; }
+.tr-panel .tr-blue{ color:#4590ec; font-style:italic; }
+
+.tr-panel .tr-lead{
+  margin:16px 0 0;
+  font-size:14.5px; line-height:1.6;
+  color:#a7a7b2;
+  max-width:39ch;
+}
+
+.tr-panel .tr-rule{
+  height:1px; margin:30px 0 0;
+  background:linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0));
+}
+
+.tr-panel .tr-visit{ margin-top:28px; }
+.tr-panel .tr-visit-head{
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+}
+.tr-panel .tr-visit-title{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:500; font-size:18px; letter-spacing:-0.01em;
+  color:#ededf2; margin:0;
+}
+.tr-panel .tr-visit-tag{
+  font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+  color:#f8c760;
+}
+
+.tr-panel .tr-list{ list-style:none; margin:18px 0 0; padding:0; }
+.tr-panel .tr-item{
+  position:relative;
+  display:grid; grid-template-columns:26px 1fr; column-gap:14px;
+  padding:15px 0 16px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.tr-panel .tr-item:first-child{ border-top:0; padding-top:2px; }
+.tr-panel .tr-check{
+  grid-row:1 / span 2;
+  width:26px; height:26px; margin-top:2px;
+  border-radius:50%;
+  border:1px solid rgba(248,199,96,0.5);
+  background:rgba(248,199,96,0.08);
+  display:flex; align-items:center; justify-content:center;
+}
+.tr-panel .tr-check svg{ width:13px; height:13px; }
+.tr-panel .tr-item-t{
+  font-size:14.5px; font-weight:600; color:#ededf2; letter-spacing:-0.005em;
+  line-height:1.3;
+}
+.tr-panel .tr-item-d{
+  margin-top:4px; font-size:13px; line-height:1.5; color:#9a9aa6;
+}
+
+.tr-panel .tr-trust{
+  margin-top:26px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  background:rgba(255,255,255,0.02);
+  overflow:hidden;
+}
+.tr-panel .tr-price{
+  display:flex; align-items:baseline; gap:10px;
+  padding:18px 20px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.tr-panel .tr-price-label{ font-size:12.5px; letter-spacing:0.02em; color:#9a9aa6; }
+.tr-panel .tr-price-value{
+  font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:26px;
+  color:#f8c760; letter-spacing:-0.01em; margin-left:auto;
+}
+.tr-panel .tr-notes{ list-style:none; margin:0; padding:6px 20px 14px; }
+.tr-panel .tr-note{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:8px 0; font-size:13px; line-height:1.45; color:#b7b7c1;
+}
+.tr-panel .tr-note svg{ width:15px; height:15px; margin-top:1px; flex:none; color:#4590ec; }
+.tr-panel .tr-note b{ color:#e6e6ec; font-weight:600; }
+
+.tr-panel .tr-emg{
+  position:relative;
+  margin-top:24px;
+  padding:18px 20px;
+  border:1px solid rgba(69,144,236,0.28);
+  border-radius:16px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(69,144,236,0.14), rgba(69,144,236,0) 60%),
+    rgba(69,144,236,0.04);
+}
+.tr-panel .tr-emg-top{
+  display:flex; align-items:center; gap:9px; margin-bottom:8px;
+}
+.tr-panel .tr-live{
+  position:relative; width:8px; height:8px; border-radius:50%; background:#4590ec; flex:none;
+}
+.tr-panel .tr-live::after{
+  content:""; position:absolute; inset:-4px; border-radius:50%;
+  border:1px solid rgba(69,144,236,0.7);
+  animation:tr-pulse 1.8s ease-out infinite;
+}
+@keyframes tr-pulse{
+  0%{ transform:scale(0.6); opacity:0.9; }
+  100%{ transform:scale(1.9); opacity:0; }
+}
+.tr-panel .tr-emg-live{
+  font-size:10.5px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#8ab6f2;
+}
+.tr-panel .tr-emg-247{ margin-left:auto; font-size:11px; font-weight:600; letter-spacing:0.14em; color:#4590ec; }
+.tr-panel .tr-emg-copy{ font-size:13.5px; line-height:1.5; color:#c3c3cd; margin:0; }
+.tr-panel .tr-emg-copy b{ color:#eef2fb; font-weight:600; }
+.tr-panel .tr-emg-tel{ color:#7fb0f4; font-weight:600; text-decoration:none; white-space:nowrap; }
+.tr-panel .tr-emg-tel:hover{ color:#a7cbf8; }
+
+@media (prefers-reduced-motion:reduce){
+  .tr-panel .tr-live::after{ animation:none; }
+}
+.bd-panel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 8% -10%, rgba(248,199,96,0.10), rgba(248,199,96,0) 55%),
+    radial-gradient(120% 90% at 100% 108%, rgba(69,144,236,0.12), rgba(69,144,236,0) 55%),
+    linear-gradient(180deg, #101015 0%, #0a0a0c 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 22px;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  color: #e9e9ee;
+}
+
+.bd-panel *,
+.bd-panel *::before,
+.bd-panel *::after { box-sizing: border-box; }
+
+.bd-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(58px);
+  pointer-events: none;
+  z-index: 0;
+}
+.bd-glow-gold {
+  width: 260px; height: 260px;
+  top: -90px; left: -70px;
+  background: radial-gradient(circle, rgba(248,199,96,0.28), rgba(248,199,96,0) 70%);
+}
+.bd-glow-blue {
+  width: 300px; height: 300px;
+  bottom: -110px; right: -90px;
+  background: radial-gradient(circle, rgba(69,144,236,0.26), rgba(69,144,236,0) 70%);
+}
+
+.bd-inner {
+  position: relative;
+  z-index: 1;
+  padding: 40px 36px 38px;
+}
+
+.bd-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px 7px 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f8c760;
+  background: rgba(248,199,96,0.08);
+  border: 1px solid rgba(248,199,96,0.28);
+  border-radius: 999px;
+}
+.bd-eyebrow::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #f8c760;
+  box-shadow: 0 0 10px rgba(248,199,96,0.9);
+}
+
+.bd-headline {
+  margin: 22px 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 43px;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  color: #f7f6f4;
+}
+.bd-gold { color: #f8c760; font-style: italic; }
+.bd-blue { color: #4590ec; font-style: italic; }
+
+.bd-lead {
+  margin: 20px 0 0;
+  max-width: 40ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b6b6bf;
+}
+
+.bd-visit {
+  margin-top: 32px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.bd-visit-label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8f8f9a;
+}
+
+.bd-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bd-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.018);
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.bd-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+.bd-card-day::before  { background: #f8c760; box-shadow: 0 0 16px rgba(248,199,96,0.55); }
+.bd-card-night::before { background: #4590ec; box-shadow: 0 0 16px rgba(69,144,236,0.55); }
+
+.bd-num {
+  flex: none;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1;
+  min-width: 34px;
+  padding-top: 1px;
+}
+.bd-card-day .bd-num  { color: #f8c760; }
+.bd-card-night .bd-num { color: #4590ec; }
+
+.bd-card-body { flex: 1; }
+.bd-card-title {
+  margin: 0 0 4px;
+  font-family: "Inter Tight", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #f1f1f3;
+}
+.bd-card-copy {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #a4a4 af;
+  color: #a4a4af;
+}
+
+.bd-price {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bd-price-plate {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background:
+    radial-gradient(140% 160% at 100% 0%, rgba(248,199,96,0.16), rgba(248,199,96,0) 60%),
+    rgba(248,199,96,0.05);
+  border: 1px solid rgba(248,199,96,0.34);
+}
+.bd-price-lead {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #cba552;
+}
+.bd-price-figure {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: #efe3c4;
+}
+.bd-price-figure strong {
+  font-size: 40px;
+  font-weight: 600;
+  color: #f8c760;
+  letter-spacing: -0.02em;
+  margin-left: 4px;
+}
+
+.bd-policy {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.bd-policy li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 13.5px;
+  color: #adadb6;
+}
+.bd-policy-dot {
+  flex: none;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #4590ec;
+  box-shadow: 0 0 8px rgba(69,144,236,0.7);
+}
+
+.bd-emergency {
+  margin-top: 28px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background:
+    radial-gradient(150% 180% at 0% 100%, rgba(69,144,236,0.16), rgba(69,144,236,0) 62%),
+    rgba(69,144,236,0.055);
+  border: 1px solid rgba(69,144,236,0.34);
+}
+.bd-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+.bd-live-dot {
+  position: relative;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #4590ec;
+}
+.bd-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(69,144,236,0.7);
+  animation: bd-pulse 1.9s ease-out infinite;
+}
+@keyframes bd-pulse {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  70%  { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.bd-live-text {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8fbdf3;
+}
+.bd-emergency-copy {
+  margin: 0 0 8px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #cdcdd4;
+}
+.bd-emergency-tel {
+  display: inline-block;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #4590ec;
+  text-decoration: none;
+}
+.bd-emergency-tel:hover { color: #6fa8f0; }
+
+@media (max-width: 460px) {
+  .bd-inner { padding: 32px 24px 30px; }
+  .bd-headline { font-size: 36px; }
+  .bd-price-figure strong { font-size: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-live-dot::after { animation: none; }
+}
+.lg-panel{
+  --lg-day:#f8c760;
+  --lg-night:#4590ec;
+  --lg-bg:#0a0a0c;
+  --lg-bg-2:#14141a;
+  --lg-ink:#f4f2ee;
+  --lg-muted:#a09c95;
+  --lg-faint:#6c6862;
+  --lg-line:rgba(244,242,238,.11);
+  --lg-line-soft:rgba(244,242,238,.07);
+  position:relative;
+  box-sizing:border-box;
+  width:100%;
+  max-width:500px;
+  min-width:0;
+  padding:44px 42px 40px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,0) 40%),
+    var(--lg-bg);
+  border:1px solid var(--lg-line);
+  border-radius:20px;
+  overflow:hidden;
+  font-family:"Inter Tight",system-ui,sans-serif;
+  color:var(--lg-ink);
+  -webkit-font-smoothing:antialiased;
+}
+.lg-panel *,
+.lg-panel *::before,
+.lg-panel *::after{box-sizing:border-box;}
+
+.lg-glow{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(140% 90% at -8% -6%,rgba(248,199,96,.14),rgba(248,199,96,0) 46%),
+    radial-gradient(150% 100% at 108% 112%,rgba(69,144,236,.13),rgba(69,144,236,0) 50%);
+}
+.lg-panel > *{position:relative;}
+
+/* ---------- Masthead ---------- */
+.lg-masthead{padding-bottom:26px;border-bottom:1px solid var(--lg-line);}
+.lg-mast-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:22px;
+}
+.lg-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 14px;
+  border:1px solid rgba(248,199,96,.4);
+  border-radius:999px;
+  background:rgba(248,199,96,.07);
+  color:var(--lg-day);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.lg-folio{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--lg-faint);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.lg-headline{
+  margin:0;
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:500;
+  font-size:clamp(2rem,5.4vw,2.55rem);
+  line-height:1.08;
+  letter-spacing:-.015em;
+  color:var(--lg-ink);
+}
+.lg-hl-gold{font-style:italic;color:var(--lg-day);font-weight:600;}
+.lg-hl-blue{font-style:italic;color:var(--lg-night);font-weight:600;}
+.lg-lead{
+  margin:20px 0 0;
+  max-width:40ch;
+  font-size:15px;
+  line-height:1.62;
+  color:var(--lg-muted);
+}
+
+/* ---------- Ledger ---------- */
+.lg-ledger{
+  margin-top:30px;
+  padding:24px 22px 20px;
+  border:1px solid var(--lg-line);
+  border-radius:16px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0) 55%),
+    var(--lg-bg-2);
+}
+.lg-ledger-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  padding-bottom:16px;
+  margin-bottom:4px;
+  border-bottom:1px solid var(--lg-line);
+}
+.lg-ledger-title{
+  font-family:"Fraunces",Georgia,serif;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:.01em;
+  color:var(--lg-ink);
+}
+.lg-ledger-sub{
+  font-size:11px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--lg-faint);
+}
+
+.lg-items{list-style:none;margin:0;padding:0;}
+.lg-item{
+  display:flex;
+  gap:16px;
+  padding:16px 0;
+  border-bottom:1px solid var(--lg-line-soft);
+}
+.lg-item:last-child{border-bottom:0;padding-bottom:6px;}
+
+.lg-index{
+  flex:0 0 auto;
+  width:26px;
+  height:26px;
+  margin-top:1px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(248,199,96,.32);
+  border-radius:7px;
+  background:rgba(248,199,96,.06);
+  color:var(--lg-day);
+  font-family:"Fraunces",Georgia,serif;
+  font-size:13px;
+  font-weight:600;
+  line-height:1;
+}
+.lg-item-body{flex:1;min-width:0;}
+.lg-item-line{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.lg-item-name{
+  font-size:14.5px;
+  font-weight:600;
+  letter-spacing:.005em;
+  color:var(--lg-ink);
+  white-space:nowrap;
+}
+.lg-leader{
+  flex:1;
+  min-width:14px;
+  align-self:center;
+  border-bottom:1px dotted rgba(244,242,238,.28);
+  transform:translateY(-2px);
+}
+.lg-incl{
+  flex:0 0 auto;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--lg-day);
+  font-style:italic;
+  font-family:"Fraunces",Georgia,serif;
+}
+.lg-item-desc{
+  margin:6px 0 0;
+  font-size:13px;
+  line-height:1.55;
+  color:var(--lg-muted);
+}
+
+/* ---------- Total line ---------- */
+.lg-total{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1.5px solid var(--lg-line);
+}
+.lg-total-label{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--lg-faint);
+  white-space:nowrap;
+}
+.lg-total-leader{
+  flex:1;
+  align-self:center;
+  border-bottom:1px dotted rgba(244,242,238,.22);
+  transform:translateY(-3px);
+}
+.lg-total-value{
+  font-family:"Fraunces",Georgia,serif;
+  font-size:26px;
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--lg-day);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- Footnotes ---------- */
+.lg-notes{
+  margin-top:22px;
+  padding-left:2px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+.lg-note{
+  margin:0;
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--lg-faint);
+  letter-spacing:.005em;
+}
+.lg-note-mark{
+  display:inline-block;
+  width:14px;
+  color:var(--lg-muted);
+  font-family:"Fraunces",Georgia,serif;
+}
+
+/* ---------- 24/7 Stamp ---------- */
+.lg-stamp{
+  position:relative;
+  margin-top:26px;
+  padding:22px 22px 20px;
+  border:1px solid rgba(69,144,236,.34);
+  border-radius:14px;
+  background:
+    radial-gradient(120% 120% at 100% 0%,rgba(69,144,236,.1),rgba(69,144,236,0) 60%),
+    rgba(69,144,236,.035);
+}
+.lg-stamp-corner{
+  position:absolute;
+  width:9px;
+  height:9px;
+  border:1px solid rgba(69,144,236,.6);
+}
+.lg-stamp-corner.lg-tl{top:7px;left:7px;border-right:0;border-bottom:0;}
+.lg-stamp-corner.lg-tr{top:7px;right:7px;border-left:0;border-bottom:0;}
+.lg-stamp-corner.lg-bl{bottom:7px;left:7px;border-right:0;border-top:0;}
+.lg-stamp-corner.lg-br{bottom:7px;right:7px;border-left:0;border-top:0;}
+
+.lg-stamp-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.lg-live{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--lg-night);
+}
+.lg-live-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--lg-night);
+  box-shadow:0 0 0 0 rgba(69,144,236,.55);
+  animation:lg-pulse 2s ease-out infinite;
+}
+@keyframes lg-pulse{
+  0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}
+  70%{box-shadow:0 0 0 9px rgba(69,144,236,0);}
+  100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}
+}
+.lg-stamp-tag{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--lg-faint);
+}
+.lg-stamp-copy{
+  margin:0 0 14px;
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--lg-muted);
+  max-width:34ch;
+}
+.lg-stamp-num{
+  display:inline-block;
+  font-family:"Fraunces",Georgia,serif;
+  font-size:23px;
+  font-weight:600;
+  letter-spacing:.01em;
+  color:var(--lg-ink);
+  text-decoration:none;
+  font-variant-numeric:tabular-nums;
+  transition:color .2s ease;
+}
+.lg-stamp-num:hover{color:var(--lg-night);}
+
+@media (prefers-reduced-motion:reduce){
+  .lg-live-dot{animation:none;}
+}
+@media (max-width:480px){
+  .lg-panel{padding:34px 26px 32px;border-radius:16px;}
+  .lg-item-name{white-space:normal;}
+  .lg-leader{display:none;}
+}
+</style>
+</head>
+<body>
+  <div class="pl-wrap">
+    <div class="pl-head">
+      <span class="eb">The whole left panel &middot; 6 options</span>
+      <h1>Pick the left panel</h1>
+      <p>Six complete takes on the persuasive half (headline, lead, the "first visit" block, the £95, the notes, the 24/7 line). Same content in each, fully redesigned. Tell me the letter and I'll drop it into #4, then it can carry to the others.</p>
+    </div>
+    <div class="pl-grid">
+      <div class="pl-cell"><p class="pl-label">Option A &middot; The Editorial</p><div class="ed-panel">
+  <div class="ed-glow" aria-hidden="true"></div>
+
+  <header class="ed-masthead">
+    <span class="ed-eyebrow">New Patients</span>
+    <span class="ed-folio">No. 01 / Registration</span>
+  </header>
+
+  <h2 class="ed-head">
+    Register in <em class="ed-gold">three</em> minutes,<br>
+    seen by <em class="ed-blue">morning</em>.
+  </h2>
+
+  <p class="ed-lead">
+    We are taking on new patients for every treatment we offer, and we
+    confirm your first appointment within one working hour.
+  </p>
+
+  <section class="ed-visit" aria-label="Your first visit">
+    <div class="ed-visit-kicker">
+      <span class="ed-rule" aria-hidden="true"></span>
+      <span class="ed-visit-title">Your first visit</span>
+    </div>
+
+    <ol class="ed-list">
+      <li class="ed-item">
+        <span class="ed-num">01</span>
+        <div class="ed-item-body">
+          <h3 class="ed-item-head">Comprehensive examination</h3>
+          <p class="ed-item-copy">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+        </div>
+      </li>
+      <li class="ed-item">
+        <span class="ed-num">02</span>
+        <div class="ed-item-body">
+          <h3 class="ed-item-head">Digital x-rays</h3>
+          <p class="ed-item-copy">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+        </div>
+      </li>
+      <li class="ed-item">
+        <span class="ed-num">03</span>
+        <div class="ed-item-body">
+          <h3 class="ed-item-head">Personalised treatment plan</h3>
+          <p class="ed-item-copy">Written, with the cost of each item set out before any work starts.</p>
+        </div>
+      </li>
+      <li class="ed-item">
+        <span class="ed-num">04</span>
+        <div class="ed-item-body">
+          <h3 class="ed-item-head">Hygiene appointment</h3>
+          <p class="ed-item-copy">Booked in alongside your examination, so you leave with a fresh start.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="ed-price">
+    <span class="ed-price-label">First visit</span>
+    <span class="ed-price-figure"><span class="ed-price-from">from</span><span class="ed-price-cur">£</span>95</span>
+  </div>
+
+  <div class="ed-notes">
+    <p class="ed-note">Children under 18 are examined free.</p>
+    <p class="ed-note">NHS care is by waiting list when we have space.</p>
+  </div>
+
+  <footer class="ed-emergency">
+    <span class="ed-live" aria-hidden="true"><span class="ed-live-dot"></span></span>
+    <p class="ed-emergency-copy">
+      In pain right now? Do not wait to register, call our 24/7 emergency line on
+      <a class="ed-emergency-tel" href="tel:01415486548">0141 548 6548</a>.
+    </p>
+  </footer>
+</div></div>
+<div class="pl-cell"><p class="pl-label">Option B &middot; The Warm Concierge</p><div class="wc-panel">
+  <div class="wc-glow" aria-hidden="true"></div>
+
+  <span class="wc-eyebrow">New Patients</span>
+
+  <h1 class="wc-head">
+    Register in <span class="wc-gold">three</span> minutes,<br>
+    settled in by <span class="wc-blue">morning</span>.
+  </h1>
+
+  <p class="wc-lead">We are taking on new patients for every treatment we offer, and we confirm your first appointment within one working hour.</p>
+
+  <div class="wc-visit">
+    <div class="wc-visit-head">
+      <span class="wc-visit-kicker">Your first visit</span>
+      <span class="wc-visit-note">Everything included</span>
+    </div>
+
+    <ul class="wc-rows">
+      <li class="wc-row">
+        <span class="wc-chip" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="6"/>
+            <path d="M15.5 15.5 20 20"/>
+          </svg>
+        </span>
+        <span class="wc-row-body">
+          <span class="wc-row-title">Comprehensive examination</span>
+          <span class="wc-row-text">A 45-minute full assessment with intra-oral scans and bite analysis.</span>
+        </span>
+      </li>
+
+      <li class="wc-row">
+        <span class="wc-chip" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4h9l5 5v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/>
+            <path d="M14 4v5h5"/>
+            <path d="M9 13.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+            <path d="M9 13.5h6"/>
+          </svg>
+        </span>
+        <span class="wc-row-body">
+          <span class="wc-row-title">Digital x-rays</span>
+          <span class="wc-row-text">Low-dose imaging, no films to develop, so you are not left waiting.</span>
+        </span>
+      </li>
+
+      <li class="wc-row">
+        <span class="wc-chip" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+            <path d="M14 3v4h4"/>
+            <path d="M8.5 12.5l1.5 1.5 3-3.5"/>
+            <path d="M8.5 17h7"/>
+          </svg>
+        </span>
+        <span class="wc-row-body">
+          <span class="wc-row-title">Personalised treatment plan</span>
+          <span class="wc-row-text">Written, with the cost of each item set out before any work starts.</span>
+        </span>
+      </li>
+
+      <li class="wc-row">
+        <span class="wc-chip" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21c4.5-2.6 7-5.8 7-9.4A4.6 4.6 0 0 0 12 7.8 4.6 4.6 0 0 0 5 11.6c0 3.6 2.5 6.8 7 9.4z"/>
+            <path d="M12 7.8V4.5"/>
+            <path d="M10.4 5.4 12 4l1.6 1.4"/>
+          </svg>
+        </span>
+        <span class="wc-row-body">
+          <span class="wc-row-title">Hygiene appointment</span>
+          <span class="wc-row-text">Booked in alongside your examination, so you leave with a fresh start.</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="wc-reassure">
+    <div class="wc-price">
+      <span class="wc-price-label">First visit from</span>
+      <span class="wc-price-value">£95</span>
+    </div>
+    <ul class="wc-policies">
+      <li class="wc-policy">
+        <span class="wc-policy-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg>
+        </span>
+        <span>Children under 18 are examined free.</span>
+      </li>
+      <li class="wc-policy">
+        <span class="wc-policy-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg>
+        </span>
+        <span>NHS care is by waiting list when we have space.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="wc-emergency">
+    <span class="wc-live" aria-hidden="true"><span class="wc-live-dot"></span></span>
+    <div class="wc-emergency-body">
+      <span class="wc-emergency-label">In pain right now?</span>
+      <p class="wc-emergency-text">Do not wait to register, call our 24/7 emergency line on
+        <a class="wc-emergency-num" href="tel:01415486548">0141 548 6548</a>.</p>
+    </div>
+  </div>
+</div></div>
+<div class="pl-cell"><p class="pl-label">Option C &middot; The First-Visit Journey</p><div class="jn-panel">
+  <div class="jn-glow jn-glow-a" aria-hidden="true"></div>
+  <div class="jn-glow jn-glow-b" aria-hidden="true"></div>
+
+  <div class="jn-head">
+    <span class="jn-eyebrow">New Patients</span>
+    <h2 class="jn-title">Register in <em class="jn-gold">three</em> minutes, seen by <em class="jn-blue">morning</em>.</h2>
+    <p class="jn-lead">We are taking on new patients for every treatment we offer, and we confirm your first appointment within one working hour.</p>
+    <div class="jn-meta">
+      <span class="jn-meta-dur">About 90 minutes</span>
+      <span class="jn-meta-dot" aria-hidden="true"></span>
+      <span class="jn-meta-all">all in one visit</span>
+    </div>
+  </div>
+
+  <ol class="jn-journey">
+    <li class="jn-step">
+      <span class="jn-node" aria-hidden="true"><span class="jn-node-num">1</span></span>
+      <div class="jn-step-body">
+        <h3 class="jn-step-title">Comprehensive examination</h3>
+        <p class="jn-step-copy">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+      </div>
+    </li>
+    <li class="jn-step">
+      <span class="jn-node" aria-hidden="true"><span class="jn-node-num">2</span></span>
+      <div class="jn-step-body">
+        <h3 class="jn-step-title">Digital x-rays</h3>
+        <p class="jn-step-copy">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+      </div>
+    </li>
+    <li class="jn-step">
+      <span class="jn-node" aria-hidden="true"><span class="jn-node-num">3</span></span>
+      <div class="jn-step-body">
+        <h3 class="jn-step-title">Personalised treatment plan</h3>
+        <p class="jn-step-copy">Written, with the cost of each item set out before any work starts.</p>
+      </div>
+    </li>
+    <li class="jn-step">
+      <span class="jn-node" aria-hidden="true"><span class="jn-node-num">4</span></span>
+      <div class="jn-step-body">
+        <h3 class="jn-step-title">Hygiene appointment</h3>
+        <p class="jn-step-copy">Booked in alongside your examination, so you leave with a fresh start.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="jn-arrival">
+    <div class="jn-price">
+      <span class="jn-price-label">First visit</span>
+      <span class="jn-price-value"><span class="jn-price-from">from</span> <span class="jn-price-num">£95</span></span>
+    </div>
+    <ul class="jn-notes">
+      <li class="jn-note"><span class="jn-note-mark" aria-hidden="true"></span>Children under 18 are examined free.</li>
+      <li class="jn-note"><span class="jn-note-mark" aria-hidden="true"></span>NHS care is by waiting list when we have space.</li>
+    </ul>
+  </div>
+
+  <a class="jn-emergency" href="tel:01415486548">
+    <span class="jn-live" aria-hidden="true"><span class="jn-live-dot"></span></span>
+    <span class="jn-emergency-body">
+      <span class="jn-emergency-lead">In pain right now?</span>
+      <span class="jn-emergency-copy">Do not wait to register, call our 24/7 emergency line on <span class="jn-emergency-num">0141 548 6548</span>.</span>
+    </span>
+  </a>
+</div></div>
+<div class="pl-cell"><p class="pl-label">Option D &middot; The Trust Stack</p><div class="tr-panel">
+  <span class="tr-eyebrow"><span class="tr-eyebrow-dot"></span>New Patients</span>
+
+  <h2 class="tr-head">Register in <span class="tr-gold">three</span> minutes, seen by <span class="tr-blue">morning</span></h2>
+
+  <p class="tr-lead">We are taking on new patients for every treatment we offer, and we confirm your first appointment within one working hour.</p>
+
+  <div class="tr-rule"></div>
+
+  <div class="tr-visit">
+    <div class="tr-visit-head">
+      <h3 class="tr-visit-title">Your first visit</h3>
+      <span class="tr-visit-tag">All included</span>
+    </div>
+
+    <ul class="tr-list">
+      <li class="tr-item">
+        <span class="tr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f8c760" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tr-item-t">Comprehensive examination</span>
+        <span class="tr-item-d">A 45-minute full assessment with intra-oral scans and bite analysis.</span>
+      </li>
+      <li class="tr-item">
+        <span class="tr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f8c760" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tr-item-t">Digital x-rays</span>
+        <span class="tr-item-d">Low-dose imaging, no films to develop, so you are not left waiting.</span>
+      </li>
+      <li class="tr-item">
+        <span class="tr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f8c760" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tr-item-t">Personalised treatment plan</span>
+        <span class="tr-item-d">Written, with the cost of each item set out before any work starts.</span>
+      </li>
+      <li class="tr-item">
+        <span class="tr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f8c760" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tr-item-t">Hygiene appointment</span>
+        <span class="tr-item-d">Booked in alongside your examination, so you leave with a fresh start.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tr-trust">
+    <div class="tr-price">
+      <span class="tr-price-label">First visit from</span>
+      <span class="tr-price-value">£95</span>
+    </div>
+    <ul class="tr-notes">
+      <li class="tr-note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span><b>Children under 18 are examined free.</b></span>
+      </li>
+      <li class="tr-note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>NHS care is by waiting list when we have space.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tr-emg">
+    <div class="tr-emg-top">
+      <span class="tr-live"></span>
+      <span class="tr-emg-live">Line open now</span>
+      <span class="tr-emg-247">24 / 7</span>
+    </div>
+    <p class="tr-emg-copy"><b>In pain right now?</b> Do not wait to register, call our 24/7 emergency line on <a class="tr-emg-tel" href="tel:01415486548">0141 548 6548</a>.</p>
+  </div>
+</div></div>
+<div class="pl-cell"><p class="pl-label">Option E &middot; The Bold Statement</p><div class="bd-panel">
+  <div class="bd-glow bd-glow-gold" aria-hidden="true"></div>
+  <div class="bd-glow bd-glow-blue" aria-hidden="true"></div>
+
+  <div class="bd-inner">
+    <span class="bd-eyebrow">New Patients</span>
+
+    <h2 class="bd-headline">
+      Register in <span class="bd-gold">three</span> minutes,
+      seen by <span class="bd-blue">morning</span>.
+    </h2>
+
+    <p class="bd-lead">
+      We are taking on new patients for every treatment we offer, and we confirm
+      your first appointment within one working hour.
+    </p>
+
+    <div class="bd-visit">
+      <span class="bd-visit-label">Your first visit</span>
+
+      <ul class="bd-cards">
+        <li class="bd-card bd-card-day">
+          <span class="bd-num">01</span>
+          <div class="bd-card-body">
+            <h3 class="bd-card-title">Comprehensive examination</h3>
+            <p class="bd-card-copy">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+          </div>
+        </li>
+
+        <li class="bd-card bd-card-night">
+          <span class="bd-num">02</span>
+          <div class="bd-card-body">
+            <h3 class="bd-card-title">Digital x-rays</h3>
+            <p class="bd-card-copy">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+          </div>
+        </li>
+
+        <li class="bd-card bd-card-day">
+          <span class="bd-num">03</span>
+          <div class="bd-card-body">
+            <h3 class="bd-card-title">Personalised treatment plan</h3>
+            <p class="bd-card-copy">Written, with the cost of each item set out before any work starts.</p>
+          </div>
+        </li>
+
+        <li class="bd-card bd-card-night">
+          <span class="bd-num">04</span>
+          <div class="bd-card-body">
+            <h3 class="bd-card-title">Hygiene appointment</h3>
+            <p class="bd-card-copy">Booked in alongside your examination, so you leave with a fresh start.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bd-price">
+      <div class="bd-price-plate">
+        <span class="bd-price-lead">First visit</span>
+        <span class="bd-price-figure">from <strong>£95</strong></span>
+      </div>
+      <ul class="bd-policy">
+        <li><span class="bd-policy-dot" aria-hidden="true"></span>Children under 18 are examined free.</li>
+        <li><span class="bd-policy-dot" aria-hidden="true"></span>NHS care is by waiting list when we have space.</li>
+      </ul>
+    </div>
+
+    <div class="bd-emergency">
+      <div class="bd-live">
+        <span class="bd-live-dot" aria-hidden="true"></span>
+        <span class="bd-live-text">24/7 emergency line, live now</span>
+      </div>
+      <p class="bd-emergency-copy">
+        In pain right now? Do not wait to register, call our 24/7 emergency line on
+      </p>
+      <a class="bd-emergency-tel" href="tel:01415486548">0141 548 6548</a>
+    </div>
+  </div>
+</div></div>
+<div class="pl-cell"><p class="pl-label">Option F &middot; The Visit Ledger</p><div class="lg-panel">
+  <div class="lg-glow" aria-hidden="true"></div>
+
+  <header class="lg-masthead">
+    <div class="lg-mast-row">
+      <span class="lg-eyebrow">New Patients</span>
+      <span class="lg-folio">No. 01 · Registry</span>
+    </div>
+    <h2 class="lg-headline">
+      Register in <em class="lg-hl-gold">three</em> minutes,<br>
+      seen by <em class="lg-hl-blue">morning</em>.
+    </h2>
+    <p class="lg-lead">We are taking on new patients for every treatment we offer, and we confirm your first appointment within one working hour.</p>
+  </header>
+
+  <section class="lg-ledger" aria-label="Your first visit">
+    <div class="lg-ledger-head">
+      <span class="lg-ledger-title">Your first visit</span>
+      <span class="lg-ledger-sub">Itemised, all included</span>
+    </div>
+
+    <ol class="lg-items">
+      <li class="lg-item">
+        <span class="lg-index">A</span>
+        <div class="lg-item-body">
+          <div class="lg-item-line">
+            <span class="lg-item-name">Comprehensive examination</span>
+            <span class="lg-leader" aria-hidden="true"></span>
+            <span class="lg-incl">incl.</span>
+          </div>
+          <p class="lg-item-desc">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+        </div>
+      </li>
+      <li class="lg-item">
+        <span class="lg-index">B</span>
+        <div class="lg-item-body">
+          <div class="lg-item-line">
+            <span class="lg-item-name">Digital x-rays</span>
+            <span class="lg-leader" aria-hidden="true"></span>
+            <span class="lg-incl">incl.</span>
+          </div>
+          <p class="lg-item-desc">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+        </div>
+      </li>
+      <li class="lg-item">
+        <span class="lg-index">C</span>
+        <div class="lg-item-body">
+          <div class="lg-item-line">
+            <span class="lg-item-name">Personalised treatment plan</span>
+            <span class="lg-leader" aria-hidden="true"></span>
+            <span class="lg-incl">incl.</span>
+          </div>
+          <p class="lg-item-desc">Written, with the cost of each item set out before any work starts.</p>
+        </div>
+      </li>
+      <li class="lg-item">
+        <span class="lg-index">D</span>
+        <div class="lg-item-body">
+          <div class="lg-item-line">
+            <span class="lg-item-name">Hygiene appointment</span>
+            <span class="lg-leader" aria-hidden="true"></span>
+            <span class="lg-incl">incl.</span>
+          </div>
+          <p class="lg-item-desc">Booked in alongside your examination, so you leave with a fresh start.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="lg-total">
+      <span class="lg-total-label">First visit from</span>
+      <span class="lg-total-leader" aria-hidden="true"></span>
+      <span class="lg-total-value">£95</span>
+    </div>
+  </section>
+
+  <div class="lg-notes">
+    <p class="lg-note"><span class="lg-note-mark">*</span> Children under 18 are examined free.</p>
+    <p class="lg-note"><span class="lg-note-mark">†</span> NHS care is by waiting list when we have space.</p>
+  </div>
+
+  <aside class="lg-stamp" aria-label="24/7 emergency line">
+    <span class="lg-stamp-corner lg-tl" aria-hidden="true"></span>
+    <span class="lg-stamp-corner lg-tr" aria-hidden="true"></span>
+    <span class="lg-stamp-corner lg-bl" aria-hidden="true"></span>
+    <span class="lg-stamp-corner lg-br" aria-hidden="true"></span>
+    <div class="lg-stamp-head">
+      <span class="lg-live"><span class="lg-live-dot" aria-hidden="true"></span>Open now</span>
+      <span class="lg-stamp-tag">24 / 7 Emergency</span>
+    </div>
+    <p class="lg-stamp-copy">In pain right now? Do not wait to register, call our 24/7 emergency line.</p>
+    <a class="lg-stamp-num" href="tel:01415486548">0141 548 6548</a>
+  </aside>
+</div></div>
+    </div>
+  </div>
+</body>
+</html>

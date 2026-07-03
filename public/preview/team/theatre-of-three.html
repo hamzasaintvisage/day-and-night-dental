@@ -29,171 +29,277 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 </style>
 <title>Theatre of Three - The Practitioners - Day Night Dental</title>
 <style>
-/* ============ Concept: Theatre of Three ============ */
-.dn-section{padding:clamp(4rem,9vw,8rem) 0;}
+/* ============ Concept: Theatre of Three (Immersive) ============ */
+/* One darkened stage. Three figures, each lit by their own shaft of light,    */
+/* the lead raised at centre on a plinth. Evolved further: a true proscenium    */
+/* frame with brass corner ticks, an engraved playbill header carrying an act   */
+/* register, monogrammed light-medallions with a lit halo, footlight pools, a   */
+/* curtain-call seam beneath the floor and tightened editorial type, so the     */
+/* trio reads as one cinematic tableau rather than three adjacent cards.        */
+
+.dn-section{padding:clamp(3.5rem,8vw,7rem) 0;}
 .dn-container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:clamp(1rem,5vw,2rem);}
 
 /* The single immersive, edge-to-edge stage */
 .dn-team-stage{
   position:relative;
   margin-inline:calc(50% - 50vw);
-  padding:clamp(3rem,7vw,6rem) clamp(1rem,5vw,4rem) clamp(4rem,9vw,7rem);
+  padding:clamp(3rem,7vw,6rem) clamp(1rem,5vw,4rem) clamp(4.5rem,10vw,7.5rem);
   background:
-    radial-gradient(120% 80% at 50% -10%,rgba(248,199,96,.10),transparent 55%),
+    radial-gradient(118% 76% at 50% -12%,rgba(248,199,96,.12),transparent 56%),
+    radial-gradient(98% 58% at 50% 118%,rgba(69,144,236,.06),transparent 60%),
     var(--dn-near-black);
   overflow:hidden;
+  isolation:isolate;
 }
 /* deep atmospheric vignette */
 .dn-team-stage::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(110% 120% at 50% 120%,transparent 40%,rgba(0,0,0,.85));
+  content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(110% 122% at 50% 122%,transparent 36%,rgba(0,0,0,.9));
   pointer-events:none;
 }
 /* soft top-centre spotlight wash beam */
 .dn-team-stage::before{
-  content:"";position:absolute;top:-12%;left:50%;transform:translateX(-50%);
-  width:min(78vw,720px);height:62%;
-  background:radial-gradient(closest-side,rgba(248,199,96,.16),rgba(248,199,96,.05) 55%,transparent 78%);
-  filter:blur(8px);pointer-events:none;z-index:0;
+  content:"";position:absolute;top:-13%;left:50%;transform:translateX(-50%);
+  width:min(82vw,820px);height:66%;
+  background:radial-gradient(closest-side,rgba(248,199,96,.18),rgba(248,199,96,.05) 54%,transparent 78%);
+  filter:blur(11px);pointer-events:none;z-index:0;
 }
 
-.dn-stage-head{position:relative;z-index:2;text-align:center;max-width:760px;margin-inline:auto;margin-bottom:clamp(3rem,7vw,5rem);}
-.dn-stage-head .dn-eyebrow.dn-pill{margin-bottom:1.4rem;}
+/* a slim proscenium frame keeps the stage feeling theatrical, not boxed */
+.dn-stage-inner{
+  position:relative;z-index:2;
+  max-width:1080px;margin-inline:auto;
+  padding:clamp(1.4rem,3.4vw,2.8rem) clamp(.9rem,3vw,2.2rem) clamp(1.1rem,2.6vw,2rem);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:calc(var(--dn-r-card) + 6px);
+  background:linear-gradient(180deg,rgba(255,255,255,.018),transparent 30%);
+}
+/* brass proscenium corner ticks - hairline L-marks at each corner of the frame */
+.dn-prosc{position:absolute;width:26px;height:26px;z-index:3;pointer-events:none;opacity:.55;}
+.dn-prosc::before,.dn-prosc::after{content:"";position:absolute;background:linear-gradient(90deg,var(--dn-day),transparent);}
+.dn-prosc::before{width:100%;height:1px;}
+.dn-prosc::after{width:1px;height:100%;background:linear-gradient(180deg,var(--dn-day),transparent);}
+.dn-prosc.tl{top:10px;left:10px;}
+.dn-prosc.tr{top:10px;right:10px;transform:scaleX(-1);}
+.dn-prosc.bl{bottom:10px;left:10px;transform:scaleY(-1);}
+.dn-prosc.br{bottom:10px;right:10px;transform:scale(-1);}
+
+/* engraved playbill header */
+.dn-stage-head{position:relative;text-align:center;max-width:720px;margin-inline:auto;margin-bottom:clamp(2.6rem,6vw,4.4rem);}
+.dn-stage-head .dn-eyebrow.dn-pill{margin-bottom:1.5rem;}
 .dn-display{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1.05;letter-spacing:-.01em;
-  margin:0 0 1.1rem;text-wrap:balance;
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(2.2rem,5.6vw,4rem);line-height:1.02;letter-spacing:-.02em;
+  margin:0 0 1.15rem;text-wrap:balance;
 }
+.dn-display em.dn-hl-gold{font-weight:600;}
 .dn-section-lead{
-  margin:0 auto;max-width:54ch;color:var(--dn-bone-dim);
-  font-size:clamp(1rem,1.6vw,1.12rem);
+  margin:0 auto;max-width:52ch;color:var(--dn-bone-dim);
+  font-size:clamp(1rem,1.55vw,1.13rem);line-height:1.64;
 }
+/* the playbill meta: thin rule + centred caps line, the programme credit */
+.dn-stage-meta{
+  display:inline-flex;align-items:center;gap:.85rem;
+  margin-top:1.7rem;
+  font-size:.66rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--dn-bone-faint);
+}
+.dn-stage-meta::before,.dn-stage-meta::after{
+  content:"";width:clamp(22px,7vw,48px);height:1px;
+  background:linear-gradient(90deg,transparent,var(--dn-mist));
+}
+.dn-stage-meta::after{background:linear-gradient(90deg,var(--dn-mist),transparent);}
+.dn-stage-meta b{font-family:var(--font-display);font-weight:600;color:var(--dn-day);font-size:.84rem;letter-spacing:.02em;}
 
 /* shared deep-stage floor - figures stand on one line */
 .dn-stage-floor{
   position:relative;z-index:2;
   display:grid;grid-template-columns:repeat(3,1fr);align-items:end;
-  gap:clamp(.5rem,2vw,1.5rem);
+  gap:clamp(.6rem,2.2vw,1.85rem);
   max-width:1040px;margin-inline:auto;
-  padding-top:clamp(1rem,4vw,2.5rem);
+  padding-top:clamp(1.6rem,4.5vw,3.2rem);
 }
 /* the floor line - a faint reflective glow where figures stand */
 .dn-stage-floor::before{
-  content:"";position:absolute;left:6%;right:6%;bottom:-2px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--dn-mist) 18%,var(--dn-mist) 82%,transparent);
+  content:"";position:absolute;left:4%;right:4%;bottom:-2px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--dn-mist) 14%,rgba(255,255,255,.16) 50%,var(--dn-mist) 86%,transparent);
   z-index:0;
 }
 .dn-stage-floor::after{
-  content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-26px;
-  width:min(70%,560px);height:60px;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(248,199,96,.10),transparent 72%);
-  filter:blur(6px);pointer-events:none;
+  content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-32px;
+  width:min(74%,600px);height:70px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(248,199,96,.11),transparent 72%);
+  filter:blur(8px);pointer-events:none;
 }
 
 .dn-figure{
   position:relative;aspect-ratio:5/9;
   border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);
-  background:linear-gradient(180deg,var(--dn-charcoal),var(--dn-near-black));
+  background:linear-gradient(180deg,var(--dn-charcoal),var(--dn-near-black) 92%);
   overflow:hidden;
-  transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s,opacity .4s;
+  box-shadow:0 30px 60px -40px rgba(0,0,0,.9);
+  transition:transform .55s cubic-bezier(.16,1,.3,1),box-shadow .45s,border-color .45s,opacity .45s;
 }
 .dn-figure.day{--acc:var(--dn-day);}
 .dn-figure.night{--acc:var(--dn-night);}
-/* the lead - raised + scaled, the centre figure */
-.dn-figure.lead{transform:translateY(clamp(-2.5rem,-4vw,-1rem)) scale(1.05);z-index:3;}
+/* the lead - raised + scaled, the centre figure on a plinth */
+.dn-figure.lead{transform:translateY(clamp(-2.8rem,-4.4vw,-1.2rem)) scale(1.07);z-index:3;}
+/* the lead's plinth - a thin lit step beneath the raised centre figure */
+.dn-figure.lead::before{
+  content:"";position:absolute;left:8%;right:8%;bottom:-13px;height:9px;z-index:-1;
+  border-radius:0 0 6px 6px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 24%,transparent),transparent);
+}
 
 /* per-figure vertical light-shaft */
 .dn-shaft{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 20%,transparent),transparent 60%);
-  opacity:.55;transition:opacity .4s;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 22%,transparent),transparent 60%);
+  opacity:.55;transition:opacity .45s;
 }
 /* a narrower beam within the shaft for a true spotlight cone */
 .dn-shaft::before{
   content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:62%;height:72%;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 26%,transparent),transparent 80%);
+  width:58%;height:76%;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 30%,transparent),transparent 80%);
   filter:blur(2px);
 }
-
-/* avatar floats in the upper light */
-.dn-avatar{
-  position:absolute;top:clamp(1.4rem,5%,2.4rem);left:50%;transform:translateX(-50%);
-  z-index:2;color:var(--acc);
-  width:clamp(56px,28%,96px);height:clamp(56px,28%,96px);
-  display:grid;place-items:center;border-radius:50%;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--acc) 16%,transparent),transparent 78%);
+/* footlight: a thin accent line glowing up from the stage floor of each figure */
+.dn-shaft::after{
+  content:"";position:absolute;left:16%;right:16%;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--acc),transparent);
+  opacity:.42;transition:opacity .45s;
 }
-.dn-avatar svg{width:78%;height:78%;}
+/* footlight pool: a soft accent glow welling up from the floor of each figure */
+.dn-foot{
+  position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
+  width:74%;height:40px;z-index:1;pointer-events:none;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--acc) 26%,transparent),transparent 76%);
+  filter:blur(5px);opacity:.5;transition:opacity .45s;
+}
+
+/* monogrammed light-medallion floats in the upper light */
+.dn-avatar{
+  position:absolute;top:clamp(1.5rem,5.5%,2.6rem);left:50%;transform:translateX(-50%);
+  z-index:2;color:var(--acc);
+  width:clamp(62px,30%,108px);height:clamp(62px,30%,108px);
+  display:grid;place-items:center;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--acc) 34%,transparent);
+  background:
+    radial-gradient(closest-side,color-mix(in srgb,var(--acc) 19%,transparent),transparent 80%),
+    rgba(255,255,255,.015);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    0 0 30px -8px color-mix(in srgb,var(--acc) 58%,transparent);
+}
+/* engraved monogram initials, the actor's mark */
+.dn-monogram{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.2rem,3.5vw,1.78rem);letter-spacing:.02em;line-height:1;
+  color:var(--acc);
+}
+/* a hairline halo ring that completes the disc as a lit medallion */
+.dn-avatar::after{
+  content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--acc) 18%,transparent);
+}
+/* a finer second halo for depth */
+.dn-avatar::before{
+  content:"";position:absolute;inset:-13px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--acc) 8%,transparent);
+}
+
+/* the act register tag - a small Roman numeral marking each figure's billing */
+.dn-act{
+  position:absolute;top:clamp(.85rem,4%,1.25rem);left:50%;transform:translateX(-50%);
+  z-index:3;
+  font-family:var(--font-display);font-weight:600;font-size:.6rem;
+  letter-spacing:.34em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--acc) 78%,var(--dn-bone));
+  opacity:.78;
+}
 
 /* darkening floor gradient + etched lower-third caption */
 .dn-figure-cap{
   position:absolute;left:0;right:0;bottom:0;z-index:2;
-  padding:1.4rem clamp(.9rem,4%,1.4rem) clamp(1.2rem,5%,1.6rem);
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.55) 38%,rgba(0,0,0,.86));
+  padding:1.5rem clamp(.95rem,4.5%,1.5rem) clamp(1.25rem,5.5%,1.85rem);
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.55) 36%,rgba(0,0,0,.9));
 }
 .dn-figure-cap .dn-eyebrow{
-  display:inline-block;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
-  font-weight:700;margin-bottom:.5rem;color:var(--acc);
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:700;margin-bottom:.55rem;color:var(--acc);
+}
+.dn-figure-cap .dn-eyebrow::before{
+  content:"";width:14px;height:1px;background:currentColor;opacity:.7;
 }
 .dn-figure-cap h3{
   font-family:var(--font-display);font-weight:600;
-  font-size:clamp(1.05rem,2.3vw,1.4rem);line-height:1.12;margin:0 0 .55rem;
-  letter-spacing:-.01em;
+  font-size:clamp(1.08rem,2.35vw,1.48rem);line-height:1.1;margin:0 0 .65rem;
+  letter-spacing:-.016em;
 }
-.dn-team-specialty{
+.dn-team-credential{
   display:inline-flex;align-items:center;gap:.45rem;
   font-size:.74rem;letter-spacing:.04em;color:var(--dn-bone-dim);
 }
-.dn-team-specialty::before{
+.dn-team-credential::before{
   content:"";width:5px;height:5px;border-radius:50%;background:var(--acc);flex:none;
+  box-shadow:0 0 8px -1px var(--acc);
 }
+.dn-team-credential b{font-weight:600;color:var(--dn-bone);font-variant-numeric:tabular-nums;}
 
 /* hover / focus: this figure brightens + glows, neighbours dim */
 .dn-figure:hover,.dn-figure:focus-within{
   border-color:color-mix(in srgb,var(--acc) 82%,transparent);
   box-shadow:
     0 0 0 1.5px color-mix(in srgb,var(--acc) 75%,transparent),
-    0 0 40px -2px color-mix(in srgb,var(--acc) 50%,transparent),
-    0 26px 54px -20px color-mix(in srgb,var(--acc) 60%,transparent);
+    0 0 46px -2px color-mix(in srgb,var(--acc) 50%,transparent),
+    0 28px 58px -20px color-mix(in srgb,var(--acc) 60%,transparent);
 }
-.dn-figure:not(.lead):hover,.dn-figure:not(.lead):focus-within{transform:translateY(-8px) scale(1.03);}
-.dn-figure.lead:hover,.dn-figure.lead:focus-within{transform:translateY(clamp(-2.9rem,-4.6vw,-1.4rem)) scale(1.08);}
+.dn-figure:not(.lead):hover,.dn-figure:not(.lead):focus-within{transform:translateY(-10px) scale(1.03);}
+.dn-figure.lead:hover,.dn-figure.lead:focus-within{transform:translateY(clamp(-3.2rem,-5vw,-1.6rem)) scale(1.1);}
 .dn-figure:hover .dn-shaft,.dn-figure:focus-within .dn-shaft{opacity:1;}
+.dn-figure:hover .dn-shaft::after,.dn-figure:focus-within .dn-shaft::after{opacity:.95;}
+.dn-figure:hover .dn-foot,.dn-figure:focus-within .dn-foot{opacity:.95;}
 .dn-stage-floor:hover .dn-figure:not(:hover),
-.dn-stage-floor:focus-within .dn-figure:not(:focus-within):not(:hover){opacity:.55;}
+.dn-stage-floor:focus-within .dn-figure:not(:focus-within):not(:hover){opacity:.5;}
 
 .dn-figure:focus-visible{outline:none;}
 
-/* footnote under the stage */
+/* footnote under the stage - the curtain-call register line */
 .dn-stage-note{
   position:relative;z-index:2;text-align:center;
-  margin:clamp(3rem,7vw,4.5rem) auto 0;max-width:60ch;
-  font-size:.86rem;color:var(--dn-bone-faint);
+  margin:clamp(3.4rem,7.5vw,5rem) auto 0;max-width:58ch;
+  font-size:.86rem;color:var(--dn-bone-faint);line-height:1.6;
 }
 .dn-stage-note span{color:var(--dn-day);}
 
 /* ---- mobile: stack into letterbox cinematic frames ---- */
 @media(max-width:640px){
-  .dn-stage-floor{grid-template-columns:1fr;gap:1rem;max-width:420px;}
+  .dn-stage-floor{grid-template-columns:1fr;gap:1rem;max-width:430px;}
   .dn-stage-floor::before,.dn-stage-floor::after{display:none;}
-  .dn-figure{aspect-ratio:4/3;}
+  .dn-figure{aspect-ratio:16/9;box-shadow:0 20px 44px -36px rgba(0,0,0,.9);}
   .dn-figure.lead{transform:none;}
+  .dn-figure.lead::before{display:none;}
   .dn-figure.lead:hover,.dn-figure.lead:focus-within{transform:translateY(-6px) scale(1.02);}
-  .dn-avatar{top:50%;left:clamp(1rem,7%,1.6rem);transform:translateY(-50%);width:clamp(64px,30%,96px);height:clamp(64px,30%,96px);}
+  .dn-avatar{top:50%;left:clamp(1.1rem,7%,1.7rem);transform:translateY(-50%);width:clamp(68px,30%,96px);height:clamp(68px,30%,96px);}
+  .dn-act{top:clamp(.7rem,5%,1rem);left:auto;right:clamp(.9rem,5%,1.2rem);transform:none;}
+  .dn-foot{display:none;}
   .dn-figure-cap{
     text-align:left;
-    padding:1rem 1.1rem 1.1rem clamp(96px,40%,140px);
-    background:linear-gradient(90deg,rgba(0,0,0,.86),rgba(0,0,0,.45) 70%,transparent),
+    padding:1rem 1.1rem 1.1rem clamp(100px,42%,148px);
+    background:linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.45) 70%,transparent),
                linear-gradient(180deg,transparent,rgba(0,0,0,.6));
     top:0;display:flex;flex-direction:column;justify-content:center;
   }
-  .dn-shaft{background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 18%,transparent),transparent 55%);}
-  .dn-shaft::before{width:50%;height:100%;top:0;left:0;transform:none;background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 24%,transparent),transparent 80%);}
+  .dn-shaft{background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 20%,transparent),transparent 55%);}
+  .dn-shaft::before{width:50%;height:100%;top:0;left:0;transform:none;background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 26%,transparent),transparent 80%);}
+  .dn-shaft::after{left:0;right:auto;bottom:auto;top:18%;height:64%;width:2px;background:linear-gradient(180deg,transparent,var(--acc),transparent);}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .dn-figure,.dn-shaft{transition:none;}
+  .dn-figure,.dn-shaft,.dn-shaft::after,.dn-foot{transition:none;}
 }
 </style>
 </head>
@@ -202,71 +308,73 @@ em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
 
 <section id="team" class="dn-section">
   <div class="dn-team-stage">
-    <div class="dn-stage-head">
-      <span class="dn-eyebrow dn-pill day">The Practitioners</span>
-      <h2 class="dn-display">The people behind your <em class="dn-hl-gold">smile</em></h2>
-      <p class="dn-section-lead">
-        Our dentists are GDC-registered and experienced across emergency, restorative
-        and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
+    <div class="dn-stage-inner">
+      <span class="dn-prosc tl"></span><span class="dn-prosc tr"></span>
+      <span class="dn-prosc bl"></span><span class="dn-prosc br"></span>
+
+      <div class="dn-stage-head">
+        <span class="dn-eyebrow dn-pill day">The Practitioners</span>
+        <h2 class="dn-display">The people behind your <em class="dn-hl-gold">smile</em></h2>
+        <p class="dn-section-lead">
+          Our dentists are GDC-registered and experienced across emergency, restorative
+          and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
+        </p>
+        <p class="dn-stage-meta">GDC-registered <b>03</b> practitioners</p>
+      </div>
+
+      <div class="dn-stage-floor">
+        <!-- Day side -->
+        <article class="dn-figure day" tabindex="0">
+          <div class="dn-shaft"></div>
+          <div class="dn-foot"></div>
+          <span class="dn-act" aria-hidden="true">I</span>
+          <div class="dn-avatar day">
+            <span class="dn-monogram" aria-hidden="true">WC</span>
+          </div>
+          <div class="dn-figure-cap">
+            <span class="dn-eyebrow">Principal Dentist</span>
+            <h3>Dr Willie Chang</h3>
+            <span class="dn-team-credential">GDC No.<b>296929</b></span>
+          </div>
+        </article>
+
+        <!-- Night side - the lead, centre, raised -->
+        <article class="dn-figure night lead" tabindex="0">
+          <div class="dn-shaft"></div>
+          <div class="dn-foot"></div>
+          <span class="dn-act" aria-hidden="true">II</span>
+          <div class="dn-avatar night">
+            <span class="dn-monogram" aria-hidden="true">PC</span>
+          </div>
+          <div class="dn-figure-cap">
+            <span class="dn-eyebrow">Dentist</span>
+            <h3>Dr Pei Hsin Chiang</h3>
+            <span class="dn-team-credential">GDC No.<b>333443</b></span>
+          </div>
+        </article>
+
+        <!-- Day side -->
+        <article class="dn-figure day" tabindex="0">
+          <div class="dn-shaft"></div>
+          <div class="dn-foot"></div>
+          <span class="dn-act" aria-hidden="true">III</span>
+          <div class="dn-avatar day">
+            <span class="dn-monogram" aria-hidden="true">CL</span>
+          </div>
+          <div class="dn-figure-cap">
+            <span class="dn-eyebrow">Dentist</span>
+            <h3>Dr Chia-Hsuan Lee</h3>
+            <span class="dn-team-credential">GDC No.<b>310152</b></span>
+          </div>
+        </article>
+      </div>
+
+      <p class="dn-stage-note">
+        Every clinician here is <span>registered with the General Dental Council</span>. Verify any name on the public GDC register before your visit.
       </p>
     </div>
-
-    <div class="dn-stage-floor">
-      <!-- Day side -->
-      <article class="dn-figure day" tabindex="0">
-        <div class="dn-shaft"></div>
-        <div class="dn-avatar day">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="32" cy="25" r="11"></circle>
-            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"></path>
-          </svg>
-        </div>
-        <div class="dn-figure-cap">
-          <span class="dn-eyebrow">Principal Dentist</span>
-          <h3>Dr Willie Chang</h3>
-          <span class="dn-team-specialty">GDC No. 296929</span>
-        </div>
-      </article>
-
-      <!-- Night side - the lead, centre, raised -->
-      <article class="dn-figure night lead" tabindex="0">
-        <div class="dn-shaft"></div>
-        <div class="dn-avatar night">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="32" cy="25" r="11"></circle>
-            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"></path>
-          </svg>
-        </div>
-        <div class="dn-figure-cap">
-          <span class="dn-eyebrow">Dentist</span>
-          <h3>Dr Pei Hsin Chiang</h3>
-          <span class="dn-team-specialty">GDC No. 333443</span>
-        </div>
-      </article>
-
-      <!-- Day side -->
-      <article class="dn-figure day" tabindex="0">
-        <div class="dn-shaft"></div>
-        <div class="dn-avatar day">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="32" cy="25" r="11"></circle>
-            <path d="M13 52 C13 41, 22 36.5, 32 36.5 C42 36.5, 51 41, 51 52"></path>
-          </svg>
-        </div>
-        <div class="dn-figure-cap">
-          <span class="dn-eyebrow">Dentist</span>
-          <h3>Dr Chia-Hsuan Lee</h3>
-          <span class="dn-team-specialty">GDC No. 310152</span>
-        </div>
-      </article>
-    </div>
-
-    <p class="dn-stage-note">
-      Every clinician here is <span>registered with the General Dental Council</span> - verify any name on the public GDC register before your visit.
-    </p>
   </div>
 </section>
-
-<script src="/preview/_nav.js?v=49925fd766" defer></script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
 </body>
 </html>

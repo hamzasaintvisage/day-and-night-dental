@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Your first visit - treatment options</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;background:#0a0a0c;color:#fff;margin:0;font-family:'Inter Tight',-apple-system,system-ui,sans-serif;}
+  .bl-wrap{max-width:1320px;margin:0 auto;padding:52px 24px 100px;}
+  .bl-head{text-align:center;margin-bottom:44px;}
+  .bl-head .eb{display:inline-block;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#f8c760;border:1px solid rgba(248,199,96,.4);border-radius:100px;padding:7px 15px;margin-bottom:16px;}
+  .bl-head h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 10px;}
+  .bl-head p{color:rgba(255,255,255,.62);max-width:620px;margin:0 auto;line-height:1.6;}
+  .bl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(390px,1fr));gap:22px;align-items:start;}
+  .bl-cell{background:#0e0e12;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px 22px 28px;}
+  .bl-cell.cur{background:#0b0b0e;border-style:dashed;border-color:rgba(255,255,255,.16);}
+  .bl-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#f8c760;margin:0 0 20px;font-weight:600;}
+  .bl-cell.cur .bl-label{color:rgba(255,255,255,.5);}
+
+.cur-list{list-style:none;margin:0;padding:0;}
+.cur-list li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.cur-list li:last-child{border-bottom:none;}
+.cur-num{font-family:'Fraunces',Georgia,serif;color:#f8c760;font-size:1.15rem;line-height:1;}
+.cur-list h4{font-family:'Fraunces',Georgia,serif;font-size:1rem;font-weight:600;margin:0 0 4px;}
+.cur-list p{font-size:.8rem;line-height:1.5;color:rgba(255,255,255,.6);margin:0;}
+
+.ic-block{
+  --ic-gold:#f8c760;
+  font-family:'Inter Tight',system-ui,-apple-system,sans-serif;
+  color:#e9e9ee;
+}
+.ic-block *{box-sizing:border-box;}
+.ic-head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:12px;margin:0 0 4px;
+}
+.ic-eyebrow{
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ic-gold);font-weight:600;margin:0;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.ic-eyebrow::before{
+  content:"";width:16px;height:1px;background:var(--ic-gold);
+  display:inline-block;opacity:.55;
+}
+.ic-title{
+  font-family:'Fraunces',Georgia,serif;font-weight:500;
+  font-size:26px;line-height:1.1;letter-spacing:-.015em;
+  color:#f6f4f0;margin:13px 0 20px;
+}
+.ic-list{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;gap:10px;
+}
+.ic-item{
+  position:relative;display:flex;gap:14px;align-items:flex-start;
+  padding:14px 16px 14px 15px;
+  background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012));
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  transition:border-color .3s ease,background .3s ease,transform .3s ease;
+}
+.ic-item::before{
+  content:"";position:absolute;left:0;top:13px;bottom:13px;width:2px;
+  border-radius:2px;background:var(--ic-gold);
+  opacity:0;transform:scaleY(.4);transform-origin:center;
+  transition:opacity .3s ease,transform .3s ease;
+}
+.ic-item:hover{
+  border-color:rgba(248,199,96,.34);
+  background:linear-gradient(180deg,rgba(248,199,96,.05),rgba(248,199,96,.014));
+  transform:translateX(2px);
+}
+.ic-item:hover::before{opacity:1;transform:scaleY(1);}
+.ic-chip{
+  flex:0 0 auto;width:38px;height:38px;border-radius:11px;
+  display:grid;place-items:center;
+  background:rgba(248,199,96,.10);
+  border:1px solid rgba(248,199,96,.24);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 0 18px -8px rgba(248,199,96,.55);
+  transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.ic-item:hover .ic-chip{
+  background:rgba(248,199,96,.17);
+  border-color:rgba(248,199,96,.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 0 24px -5px rgba(248,199,96,.75);
+}
+.ic-chip svg{width:19px;height:19px;display:block;color:var(--ic-gold);}
+.ic-body{min-width:0;flex:1;padding-top:1px;}
+.ic-name{
+  font-size:14.5px;font-weight:600;letter-spacing:-.005em;
+  color:#f1efe9;margin:0 0 3px;line-height:1.25;
+  display:flex;align-items:baseline;gap:8px;
+}
+.ic-idx{
+  font-family:'Fraunces',serif;font-size:11px;font-weight:500;
+  color:var(--ic-gold);opacity:.5;letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;margin-left:auto;
+}
+.ic-desc{
+  font-size:12.5px;line-height:1.5;color:#8f8f99;margin:0;
+}
+.tl-block{--tl-gold:var(--dn-day,#f8c760);--tl-line:rgba(248,199,96,.24);--tl-node:rgba(248,199,96,.5);font-family:var(--font-body,'Inter Tight',system-ui,sans-serif);}
+.tl-head{margin:0 0 1.6rem;}
+.tl-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--tl-gold);margin-bottom:.9rem;}
+.tl-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tl-gold);box-shadow:0 0 8px rgba(248,199,96,.7);}
+.tl-title{font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:600;font-size:1.6rem;letter-spacing:-.015em;line-height:1.05;margin:0;color:var(--dn-bone,#fff);}
+.tl-list{list-style:none;margin:0;padding:0;position:relative;}
+.tl-item{position:relative;padding:0 0 1.55rem 3.15rem;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:"";position:absolute;left:15px;top:1.9rem;bottom:-.15rem;width:1px;background:linear-gradient(to bottom,var(--tl-line),rgba(248,199,96,.06));}
+.tl-item:last-child::before{display:none;}
+.tl-node{position:absolute;left:0;top:0;width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 38%,rgba(248,199,96,.16),rgba(248,199,96,.03));border:1px solid var(--tl-node);font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:600;font-size:.82rem;color:var(--tl-gold);line-height:1;font-feature-settings:"tnum" 1;box-shadow:inset 0 0 0 3px rgba(10,10,12,.9);}
+.tl-item:first-child .tl-node{background:var(--tl-gold);color:#0a0a0c;border-color:var(--tl-gold);box-shadow:0 0 0 4px rgba(248,199,96,.14),0 0 18px rgba(248,199,96,.35);}
+.tl-item-t{font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:600;font-size:1.02rem;letter-spacing:-.01em;line-height:1.15;margin:.28rem 0 .3rem;color:var(--dn-bone,#fff);}
+.tl-item-d{font-size:.9rem;line-height:1.5;color:var(--dn-bone-dim,rgba(255,255,255,.72));margin:0;max-width:38ch;}
+.tl-foot{display:flex;align-items:center;gap:9px;margin-top:1.7rem;padding-top:1.25rem;border-top:1px solid var(--dn-mist,rgba(255,255,255,.1));font-size:.8rem;color:var(--dn-bone-faint,rgba(255,255,255,.5));}
+.tl-foot b{font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:600;color:var(--tl-gold);}
+.gb-visit {
+  --gb-day: #f8c760;
+  --gb-night: #4590ec;
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+}
+.gb-head {
+  margin: 0 0 18px;
+}
+.gb-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+.gb-eyebrow::before {
+  content: "";
+  width: 16px;
+  height: 1px;
+  background: var(--gb-day);
+  opacity: 0.7;
+}
+.gb-title {
+  margin: 0;
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #f4f4f6;
+}
+.gb-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.gb-card {
+  position: relative;
+  padding: 15px 15px 16px;
+  border-radius: 13px;
+  background: #111116;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  isolation: isolate;
+}
+.gb-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+.gb-card::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.16;
+  z-index: -1;
+  pointer-events: none;
+}
+.gb-card.gb-day::before,
+.gb-card.gb-day::after {
+  background: var(--gb-day);
+}
+.gb-card.gb-night::before,
+.gb-card.gb-night::after {
+  background: var(--gb-night);
+}
+.gb-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 10px;
+}
+.gb-num {
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.gb-card.gb-day .gb-num {
+  color: var(--gb-day);
+}
+.gb-card.gb-night .gb-num {
+  color: var(--gb-night);
+}
+.gb-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.gb-card.gb-day .gb-dot {
+  background: var(--gb-day);
+  box-shadow: 0 0 9px 0 rgba(248, 199, 96, 0.55);
+}
+.gb-card.gb-night .gb-dot {
+  background: var(--gb-night);
+  box-shadow: 0 0 9px 0 rgba(69, 144, 236, 0.55);
+}
+.gb-card-title {
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: #f0f0f2;
+}
+.gb-card-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(232, 232, 240, 0.6);
+}
+.ed-firstvisit {
+  --ed-gold: #f8c760;
+  --ed-ink: #0a0a0c;
+  --ed-panel: #14141a;
+  --ed-text: #f4f2ee;
+  --ed-muted: #9a978f;
+  --ed-hair: rgba(248, 199, 96, 0.28);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  padding: 28px 26px 30px;
+  background: var(--ed-panel);
+  border: 1px solid rgba(248, 199, 96, 0.14);
+  border-radius: 16px;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  color: var(--ed-text);
+  -webkit-font-smoothing: antialiased;
+}
+.ed-firstvisit *,
+.ed-firstvisit *::before,
+.ed-firstvisit *::after { box-sizing: border-box; }
+
+.ed-head { margin: 0 0 22px; }
+.ed-eyebrow {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ed-gold);
+  margin: 0 0 9px;
+}
+.ed-title {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ed-text);
+}
+
+.ed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ed-item {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  align-items: baseline;
+  column-gap: 16px;
+  padding: 19px 0 18px;
+  border-top: 1px solid var(--ed-hair);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ed-item:last-child {
+  border-bottom: 1px solid var(--ed-hair);
+}
+
+.ed-num {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ed-gold);
+  text-align: left;
+  transition: color 260ms ease;
+}
+
+.ed-body { min-width: 0; }
+.ed-name {
+  margin: 0 0 5px;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: 16.5px;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--ed-text);
+}
+.ed-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ed-muted);
+  max-width: 40ch;
+}
+
+.ed-item:hover {
+  transform: translateX(3px);
+}
+.ed-item:hover .ed-num {
+  color: #ffd67d;
+}
+
+@media (max-width: 380px) {
+  .ed-firstvisit { padding: 24px 20px 26px; }
+  .ed-item { grid-template-columns: 46px 1fr; column-gap: 13px; }
+  .ed-num { font-size: 34px; }
+  .ed-title { font-size: 24px; }
+}
+.ck-block{
+  --ck-gold:#f8c760;
+  font-family:'Inter Tight',system-ui,-apple-system,sans-serif;
+}
+.ck-block .ck-head{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:14px; margin:0 0 3px;
+}
+.ck-block .ck-eyebrow{
+  display:inline-flex; align-items:center; gap:8px; margin:0;
+  font-size:10.5px; font-weight:600; letter-spacing:.17em; text-transform:uppercase;
+  color:var(--ck-gold);
+}
+.ck-block .ck-eyebrow::before{
+  content:""; width:5px; height:5px; border-radius:50%; background:var(--ck-gold);
+  box-shadow:0 0 9px 1px rgba(248,199,96,.6);
+}
+.ck-block .ck-count{
+  font-size:10.5px; font-weight:500; letter-spacing:.02em; color:#71717c;
+  white-space:nowrap; display:inline-flex; align-items:center; gap:7px;
+}
+.ck-block .ck-count::before{
+  content:""; width:16px; height:1px; background:rgba(255,255,255,.14);
+}
+.ck-block .ck-title{
+  margin:13px 0 20px; font-family:'Fraunces',Georgia,serif;
+  font-weight:500; font-size:26px; line-height:1.1; letter-spacing:-.015em; color:#f6f4f0;
+}
+.ck-block .ck-list{ list-style:none; margin:0; padding:0; }
+.ck-block .ck-item{
+  position:relative; display:flex; align-items:flex-start; gap:15px;
+  padding:15px 2px 16px 0;
+}
+.ck-block .ck-item + .ck-item{ border-top:1px solid rgba(255,255,255,.065); }
+.ck-block .ck-tick{
+  flex:0 0 auto; width:27px; height:27px; margin-top:1px; border-radius:50%;
+  display:grid; place-items:center; background:rgba(248,199,96,.09);
+  border:1px solid rgba(248,199,96,.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 0 20px -7px rgba(248,199,96,.55);
+  transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.ck-block .ck-tick svg{ width:13px; height:13px; display:block; }
+.ck-block .ck-tick svg path{
+  stroke:var(--ck-gold); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; fill:none;
+}
+.ck-block .ck-item:hover .ck-tick{
+  background:rgba(248,199,96,.17); border-color:rgba(248,199,96,.6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 0 26px -4px rgba(248,199,96,.8);
+}
+.ck-block .ck-body{ min-width:0; padding-top:1px; }
+.ck-block .ck-name{
+  margin:0; font-size:14.5px; font-weight:600; letter-spacing:-.005em;
+  color:#edebe6; line-height:1.32;
+}
+.ck-block .ck-desc{
+  margin:4px 0 0; font-size:12.5px; font-weight:400; line-height:1.5; color:#8a8a94;
+}
+.ck-block .ck-foot{
+  display:flex; align-items:center; gap:9px; margin:18px 0 0; padding-top:15px;
+  border-top:1px solid rgba(255,255,255,.065);
+  font-size:11.5px; font-weight:500; letter-spacing:.01em; color:#9a9aa4;
+}
+.ck-block .ck-foot svg{ width:14px; height:14px; flex:0 0 auto; }
+.ck-block .ck-foot svg path{
+  stroke:var(--ck-gold); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; fill:none;
+}
+.ck-block .ck-foot b{ color:#d8d6d0; font-weight:600; }
+.st-card{position:relative;background:linear-gradient(180deg,#101015 0%,#0c0c10 100%);border:1px solid var(--dn-mist,rgba(255,255,255,.1));border-radius:16px;padding:22px 22px 20px;box-shadow:0 30px 70px -34px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.03);overflow:hidden;}
+.st-card::before{content:"";position:absolute;top:-40%;left:-30%;width:70%;height:80%;background:radial-gradient(circle at center,rgba(248,199,96,.09),transparent 70%);pointer-events:none;z-index:0;}
+.st-card > *{position:relative;z-index:1;}
+
+.st-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+.st-eyebrow{display:inline-flex;align-items:center;gap:8px;font:600 10.5px/1 var(--font-body,'Inter Tight',system-ui,sans-serif);letter-spacing:.24em;text-transform:uppercase;color:#f8c760;}
+.st-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#f8c760;box-shadow:0 0 8px rgba(248,199,96,.7);}
+.st-serial{font:600 9.5px/1 var(--font-body,'Inter Tight',system-ui,sans-serif);letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint,rgba(255,255,255,.5));white-space:nowrap;}
+.st-title{margin:12px 0 4px;font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:340;font-size:26px;line-height:1.05;letter-spacing:-.01em;color:var(--dn-bone,#fff);}
+.st-sub{margin:0;font-size:12.5px;line-height:1.5;color:var(--dn-bone-dim,rgba(255,255,255,.72));}
+
+.st-rule{display:flex;align-items:center;gap:10px;margin:16px 0 2px;}
+.st-perf{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--dn-mist,rgba(255,255,255,.1)) 0 6px,transparent 6px 12px);}
+.st-perf-label{font:600 9px/1 var(--font-body,'Inter Tight',system-ui,sans-serif);letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint,rgba(255,255,255,.5));}
+
+.st-list{list-style:none;margin:0;padding:0;}
+.st-item{position:relative;display:grid;grid-template-columns:30px 1fr;gap:0 14px;align-items:start;padding:15px 2px 15px 0;border-bottom:1px solid var(--dn-mist,rgba(255,255,255,.1));}
+.st-item:last-child{border-bottom:0;padding-bottom:6px;}
+.st-idx{grid-row:1/3;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(248,199,96,.35);border-radius:9px;background:rgba(248,199,96,.06);font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:500;font-size:15px;line-height:1;color:#f8c760;margin-top:1px;transition:border-color .25s,box-shadow .25s,background .25s;}
+.st-item:hover .st-idx{border-color:rgba(248,199,96,.7);background:rgba(248,199,96,.11);box-shadow:0 0 18px -4px rgba(248,199,96,.55);}
+.st-row-top{grid-column:2;display:flex;align-items:baseline;gap:10px;}
+.st-name{font-size:14.5px;font-weight:600;letter-spacing:.005em;color:var(--dn-bone,#fff);line-height:1.25;}
+.st-lead{flex:1;min-width:14px;height:1px;align-self:center;margin-top:2px;background:radial-gradient(circle,var(--dn-bone-faint,rgba(255,255,255,.5)) .8px,transparent .8px);background-size:5px 1px;background-repeat:repeat-x;opacity:.5;}
+.st-inc{flex:none;font:600 9px/1 var(--font-body,'Inter Tight',system-ui,sans-serif);letter-spacing:.16em;text-transform:uppercase;color:#f8c760;opacity:.85;white-space:nowrap;}
+.st-desc{grid-column:2;margin:5px 0 0;font-size:12.5px;line-height:1.5;color:var(--dn-bone-dim,rgba(255,255,255,.72));max-width:42ch;}
+
+.st-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--dn-mist,rgba(255,255,255,.1));}
+.st-foot-label{display:inline-flex;align-items:center;gap:8px;font:600 10px/1 var(--font-body,'Inter Tight',system-ui,sans-serif);letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint,rgba(255,255,255,.5));}
+.st-dot{width:6px;height:6px;border-radius:50%;background:#4590ec;box-shadow:0 0 8px rgba(69,144,236,.8);}
+.st-foot-val{font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:400;font-size:14px;letter-spacing:.01em;color:var(--dn-bone,#fff);}
+.st-foot-val b{font-weight:600;color:#f8c760;}
+</style>
+</head>
+<body>
+  <div class="bl-wrap">
+    <div class="bl-head">
+      <span class="eb">Your first visit &middot; 6 options</span>
+      <h1>Pick how the "first visit" list should look</h1>
+      <p>Same four items and copy in every one. The flat current version is first for reference; the rest are the new treatments. Tell me the letter you like and I'll roll it into the designs.</p>
+    </div>
+    <div class="bl-grid">
+      <div class="bl-cell cur"><p class="bl-label">Current (flat) &middot; for reference</p>
+<div style="font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">What's included</div>
+<h3 style="font-family:'Fraunces',Georgia,serif;font-size:1.5rem;font-weight:600;margin:0 0 18px;">Your first visit</h3>
+<ul class="cur-list">
+  <li><span class="cur-num">01</span><div><h4>Comprehensive examination</h4><p>A 45-minute full assessment with intra-oral scans and bite analysis.</p></div></li>
+  <li><span class="cur-num">02</span><div><h4>Digital x-rays</h4><p>Low-dose imaging, no films to develop, so you are not left waiting.</p></div></li>
+  <li><span class="cur-num">03</span><div><h4>Personalised treatment plan</h4><p>Written, with the cost of each item set out before any work starts.</p></div></li>
+  <li><span class="cur-num">04</span><div><h4>Hygiene appointment</h4><p>Booked in alongside your examination, so you leave with a fresh start.</p></div></li>
+</ul>
+</div>
+<div class="bl-cell"><p class="bl-label">Option A &middot; Icon Cards</p><section class="ic-block" aria-labelledby="ic-title">
+  <header class="ic-head">
+    <p class="ic-eyebrow">What's included</p>
+  </header>
+  <h2 class="ic-title" id="ic-title">Your first visit</h2>
+  <ul class="ic-list">
+    <li class="ic-item">
+      <span class="ic-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.2"/><path d="M15.2 15.2 L20 20"/><path d="M8 9.4c0-1 .9-1.8 2.5-1.8s2.5.8 2.5 1.8c0 1.3-1 1.6-1 3.1 0 .7-.5 1.1-1.5 1.1s-1.5-.4-1.5-1.1c0-1.5-1-1.8-1-3.1Z"/></svg>
+      </span>
+      <div class="ic-body">
+        <p class="ic-name">Comprehensive examination <span class="ic-idx">01</span></p>
+        <p class="ic-desc">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+      </div>
+    </li>
+    <li class="ic-item">
+      <span class="ic-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M9 4v16"/><path d="M4 9h16"/><path d="M13.5 12.2c0 .9-.7 1.5-1.5 1.5s-1.5-.6-1.5-1.5.7-1.5 1.5-1.5 1.5.6 1.5 1.5Z"/><path d="M11.5 13.7c-1.1.15-1.5.9-1.5 2.3M12.5 13.7c1.1.15 1.5.9 1.5 2.3"/></svg>
+      </span>
+      <div class="ic-body">
+        <p class="ic-name">Digital x-rays <span class="ic-idx">02</span></p>
+        <p class="ic-desc">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+      </div>
+    </li>
+    <li class="ic-item">
+      <span class="ic-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h6.5L18 8v11.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M13 3.5V8h4.6"/><path d="M9 12.5h6M9 15.5h4.5"/><path d="m9 9 1 1 1.8-1.9"/></svg>
+      </span>
+      <div class="ic-body">
+        <p class="ic-name">Personalised treatment plan <span class="ic-idx">03</span></p>
+        <p class="ic-desc">Written, with the cost of each item set out before any work starts.</p>
+      </div>
+    </li>
+    <li class="ic-item">
+      <span class="ic-chip" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c2.6 3.3 4.5 5.8 4.5 8.4a4.5 4.5 0 0 1-9 0c0-2.6 1.9-5.1 4.5-8.4Z"/><path d="M10 11.8c0 1.2.9 2.1 2 2.1"/><path d="M18.5 5.2l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6.6-1.5Z"/></svg>
+      </span>
+      <div class="ic-body">
+        <p class="ic-name">Hygiene appointment <span class="ic-idx">04</span></p>
+        <p class="ic-desc">Booked in alongside your examination, so you leave with a fresh start.</p>
+      </div>
+    </li>
+  </ul>
+</section></div>
+<div class="bl-cell"><p class="bl-label">Option B &middot; Vertical Timeline</p><div class="tl-block">
+  <header class="tl-head">
+    <div class="tl-eyebrow">What's included</div>
+    <h2 class="tl-title">Your first visit</h2>
+  </header>
+  <ol class="tl-list">
+    <li class="tl-item">
+      <span class="tl-node">01</span>
+      <h3 class="tl-item-t">Comprehensive examination</h3>
+      <p class="tl-item-d">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+    </li>
+    <li class="tl-item">
+      <span class="tl-node">02</span>
+      <h3 class="tl-item-t">Digital x-rays</h3>
+      <p class="tl-item-d">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+    </li>
+    <li class="tl-item">
+      <span class="tl-node">03</span>
+      <h3 class="tl-item-t">Personalised treatment plan</h3>
+      <p class="tl-item-d">Written, with the cost of each item set out before any work starts.</p>
+    </li>
+    <li class="tl-item">
+      <span class="tl-node">04</span>
+      <h3 class="tl-item-t">Hygiene appointment</h3>
+      <p class="tl-item-d">Booked in alongside your examination, so you leave with a fresh start.</p>
+    </li>
+  </ol>
+  <div class="tl-foot"><b>~90 min</b><span>start to finish, all in one visit</span></div>
+</div></div>
+<div class="bl-cell"><p class="bl-label">Option C &middot; Day/Night 2x2 Grid</p><section class="gb-visit" aria-labelledby="gb-visit-heading">
+  <header class="gb-head">
+    <p class="gb-eyebrow">What's included</p>
+    <h2 class="gb-title" id="gb-visit-heading">Your first visit</h2>
+  </header>
+  <ol class="gb-grid">
+    <li class="gb-card gb-day">
+      <div class="gb-topline">
+        <span class="gb-num">01</span>
+        <span class="gb-dot" aria-hidden="true"></span>
+      </div>
+      <h3 class="gb-card-title">Comprehensive examination</h3>
+      <p class="gb-card-desc">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+    </li>
+    <li class="gb-card gb-night">
+      <div class="gb-topline">
+        <span class="gb-num">02</span>
+        <span class="gb-dot" aria-hidden="true"></span>
+      </div>
+      <h3 class="gb-card-title">Digital x-rays</h3>
+      <p class="gb-card-desc">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+    </li>
+    <li class="gb-card gb-night">
+      <div class="gb-topline">
+        <span class="gb-num">03</span>
+        <span class="gb-dot" aria-hidden="true"></span>
+      </div>
+      <h3 class="gb-card-title">Personalised treatment plan</h3>
+      <p class="gb-card-desc">Written, with the cost of each item set out before any work starts.</p>
+    </li>
+    <li class="gb-card gb-day">
+      <div class="gb-topline">
+        <span class="gb-num">04</span>
+        <span class="gb-dot" aria-hidden="true"></span>
+      </div>
+      <h3 class="gb-card-title">Hygiene appointment</h3>
+      <p class="gb-card-desc">Booked in alongside your examination, so you leave with a fresh start.</p>
+    </li>
+  </ol>
+</section></div>
+<div class="bl-cell"><p class="bl-label">Option D &middot; Editorial Big Numbers</p><section class="ed-firstvisit" aria-labelledby="ed-title">
+  <header class="ed-head">
+    <span class="ed-eyebrow">What's included</span>
+    <h2 class="ed-title" id="ed-title">Your first visit</h2>
+  </header>
+
+  <ol class="ed-list">
+    <li class="ed-item">
+      <span class="ed-num" aria-hidden="true">01</span>
+      <div class="ed-body">
+        <h3 class="ed-name">Comprehensive examination</h3>
+        <p class="ed-desc">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+      </div>
+    </li>
+    <li class="ed-item">
+      <span class="ed-num" aria-hidden="true">02</span>
+      <div class="ed-body">
+        <h3 class="ed-name">Digital x-rays</h3>
+        <p class="ed-desc">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+      </div>
+    </li>
+    <li class="ed-item">
+      <span class="ed-num" aria-hidden="true">03</span>
+      <div class="ed-body">
+        <h3 class="ed-name">Personalised treatment plan</h3>
+        <p class="ed-desc">Written, with the cost of each item set out before any work starts.</p>
+      </div>
+    </li>
+    <li class="ed-item">
+      <span class="ed-num" aria-hidden="true">04</span>
+      <div class="ed-body">
+        <h3 class="ed-name">Hygiene appointment</h3>
+        <p class="ed-desc">Booked in alongside your examination, so you leave with a fresh start.</p>
+      </div>
+    </li>
+  </ol>
+</section></div>
+<div class="bl-cell"><p class="bl-label">Option E &middot; Included Checklist</p><section class="ck-block" aria-labelledby="ck-title">
+  <div class="ck-head">
+    <p class="ck-eyebrow">What's included</p>
+    <span class="ck-count">4 of 4 included</span>
+  </div>
+  <h2 class="ck-title" id="ck-title">Your first visit</h2>
+  <ul class="ck-list">
+    <li class="ck-item">
+      <span class="ck-tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></span>
+      <div class="ck-body">
+        <p class="ck-name">Comprehensive examination</p>
+        <p class="ck-desc">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+      </div>
+    </li>
+    <li class="ck-item">
+      <span class="ck-tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></span>
+      <div class="ck-body">
+        <p class="ck-name">Digital x-rays</p>
+        <p class="ck-desc">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+      </div>
+    </li>
+    <li class="ck-item">
+      <span class="ck-tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></span>
+      <div class="ck-body">
+        <p class="ck-name">Personalised treatment plan</p>
+        <p class="ck-desc">Written, with the cost of each item set out before any work starts.</p>
+      </div>
+    </li>
+    <li class="ck-item">
+      <span class="ck-tick" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5"/></svg></span>
+      <div class="ck-body">
+        <p class="ck-name">Hygiene appointment</p>
+        <p class="ck-desc">Booked in alongside your examination, so you leave with a fresh start.</p>
+      </div>
+    </li>
+  </ul>
+  <p class="ck-foot">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5"/></svg>
+    <span>All of the above, <b>included in your first visit</b>.</span>
+  </p>
+</section></div>
+<div class="bl-cell"><p class="bl-label">Option F &middot; Itemised Visit Card</p><article class="st-card" aria-labelledby="st-card-title">
+  <div class="st-head">
+    <span class="st-eyebrow">Your first visit</span>
+    <span class="st-serial">No. 01 / New patient</span>
+  </div>
+  <h3 class="st-title" id="st-card-title">What's included</h3>
+  <p class="st-sub">Set out in full, so there are no surprises on the day.</p>
+
+  <div class="st-rule" aria-hidden="true">
+    <span class="st-perf"></span>
+    <span class="st-perf-label">Itemised</span>
+    <span class="st-perf"></span>
+  </div>
+
+  <ul class="st-list">
+    <li class="st-item">
+      <span class="st-idx" aria-hidden="true">A</span>
+      <div class="st-row-top">
+        <span class="st-name">Comprehensive examination</span>
+        <span class="st-lead" aria-hidden="true"></span>
+        <span class="st-inc">Incl.</span>
+      </div>
+      <p class="st-desc">A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+    </li>
+    <li class="st-item">
+      <span class="st-idx" aria-hidden="true">B</span>
+      <div class="st-row-top">
+        <span class="st-name">Digital x-rays</span>
+        <span class="st-lead" aria-hidden="true"></span>
+        <span class="st-inc">Incl.</span>
+      </div>
+      <p class="st-desc">Low-dose imaging, no films to develop, so you are not left waiting.</p>
+    </li>
+    <li class="st-item">
+      <span class="st-idx" aria-hidden="true">C</span>
+      <div class="st-row-top">
+        <span class="st-name">Personalised treatment plan</span>
+        <span class="st-lead" aria-hidden="true"></span>
+        <span class="st-inc">Incl.</span>
+      </div>
+      <p class="st-desc">Written, with the cost of each item set out before any work starts.</p>
+    </li>
+    <li class="st-item">
+      <span class="st-idx" aria-hidden="true">D</span>
+      <div class="st-row-top">
+        <span class="st-name">Hygiene appointment</span>
+        <span class="st-lead" aria-hidden="true"></span>
+        <span class="st-inc">Incl.</span>
+      </div>
+      <p class="st-desc">Booked in alongside your examination, so you leave with a fresh start.</p>
+    </li>
+  </ul>
+
+  <div class="st-foot">
+    <span class="st-foot-label"><span class="st-dot" aria-hidden="true"></span> Four items</span>
+    <span class="st-foot-val">All in <b>one first visit</b></span>
+  </div>
+</article></div>
+    </div>
+  </div>
+</body>
+</html>

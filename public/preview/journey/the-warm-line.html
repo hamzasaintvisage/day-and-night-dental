@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Warm Line - What to expect when you call · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE WARM LINE - a calm, human "you are not alone" journey.
+   Lead with empathy, then three gentle reassurance steps bound by a
+   single soft luminous thread (a steadying hand, not a clinical
+   stepper or dots-on-a-line). Closes with an embracing call panel.
+   Solid gold day-side, solid blue night-side, never a gold-to-blue
+   blend. Soft continuous gold/blue depth-glow. Full default state
+   renders with JS disabled.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.4rem,8vw,6.5rem) 0;
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(64% 52% at 12% 6%, rgba(248,199,96,.11), transparent 60%),
+    radial-gradient(70% 60% at 90% 98%, rgba(69,144,236,.10), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── empathy opening: a steady, human welcome ── */
+.dn-open{
+  max-width:760px;
+}
+.dn-open .dn-eyebrow{margin-bottom:1.5rem;}
+.dn-head{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.2rem,5.6vw,4rem);
+  line-height:1.06;
+  letter-spacing:-.018em;
+  margin:0;
+  max-width:20ch;
+  color:var(--dn-bone);
+}
+/* live "grad" headline span rendered as a SOLID gold, never a blend */
+.dn-head .gold{color:var(--dn-day);font-style:italic;font-weight:380;}
+.dn-reassure{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(1.22rem,2.5vw,1.7rem);
+  line-height:1.4;
+  letter-spacing:-.006em;
+  margin:clamp(1.5rem,3vw,2rem) 0 0;
+  max-width:34ch;
+  color:var(--dn-bone-dim);
+}
+.dn-reassure .day{color:var(--dn-day);font-style:italic;}
+
+/* ── the warm line: three reassurance steps bound by one soft thread ── */
+.dn-line{
+  position:relative;
+  list-style:none;
+  margin:clamp(2.6rem,5vw,3.6rem) 0 0;
+  padding:0 0 0 clamp(2.2rem,5vw,3rem);
+}
+/* the single luminous thread that guides you down, like a steadying hand */
+.dn-line::before{
+  content:'';
+  position:absolute;
+  left:clamp(11px,2.4vw,17px);
+  top:14px;
+  bottom:14px;
+  width:2px;
+  border-radius:2px;
+  /* gold fades to transparent, blue emerges from transparent: a clean
+     hand-off with a transparent gap, never a gold-into-blue blend */
+  background:linear-gradient(
+    to bottom,
+    rgba(248,199,96,.0) 0%,
+    rgba(248,199,96,.55) 8%,
+    rgba(248,199,96,.55) 42%,
+    rgba(248,199,96,.0) 50%,
+    rgba(69,144,236,.0) 50%,
+    rgba(69,144,236,.55) 58%,
+    rgba(69,144,236,.55) 92%,
+    rgba(69,144,236,.0) 100%
+  );
+  box-shadow:0 0 22px rgba(248,199,96,.16);
+  z-index:0;
+}
+.dn-step{
+  position:relative;
+  padding:clamp(1.3rem,2.6vw,1.7rem) clamp(1.4rem,3vw,2rem);
+  border-radius:var(--dn-r-card);
+  background:rgba(255,255,255,.028);
+  border:1px solid var(--dn-mist);
+  z-index:1;
+}
+.dn-step + .dn-step{margin-top:clamp(1rem,2vw,1.4rem);}
+/* the soft glowing bead that ties each step to the warm thread */
+.dn-step::before{
+  content:'';
+  position:absolute;
+  left:calc(-1 * clamp(2.2rem,5vw,3rem) + clamp(11px,2.4vw,17px) - 6px);
+  top:clamp(1.55rem,2.9vw,2rem);
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--dn-near-black);
+  border:2px solid var(--accent,var(--dn-day));
+  box-shadow:0 0 0 5px color-mix(in srgb, var(--accent,var(--dn-day)) 16%, transparent),
+             0 0 18px color-mix(in srgb, var(--accent,var(--dn-day)) 45%, transparent);
+  z-index:2;
+}
+.dn-step.night{--accent:var(--dn-night);}
+
+.dn-step-row{
+  display:flex;
+  align-items:flex-start;
+  gap:clamp(.9rem,2vw,1.2rem);
+}
+.dn-step-ico{
+  flex:0 0 auto;
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:color-mix(in srgb, var(--accent,var(--dn-day)) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent,var(--dn-day)) 32%, transparent);
+  color:var(--accent,var(--dn-day));
+}
+.dn-step-ico svg{width:23px;height:23px;stroke:currentColor;stroke-width:1.7;fill:none;}
+.dn-step-txt{min-width:0;}
+.dn-step-kicker{
+  display:block;
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent,var(--dn-day));
+  margin-bottom:.45rem;
+}
+.dn-step h3{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(1.2rem,2.5vw,1.5rem);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  margin:0;
+  color:var(--dn-bone);
+}
+.dn-step p{
+  margin:.55rem 0 0;
+  color:var(--dn-bone-dim);
+  font-size:clamp(.98rem,1.4vw,1.06rem);
+  line-height:1.62;
+  max-width:46ch;
+}
+
+/* ── the embracing call panel ── */
+.dn-call{
+  position:relative;
+  margin:clamp(2.6rem,5vw,3.6rem) 0 0;
+  padding:clamp(1.8rem,4vw,2.6rem);
+  border-radius:22px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(248,199,96,.08), transparent 55%),
+    rgba(255,255,255,.03);
+  border:1px solid var(--dn-mist);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(1.2rem,3vw,2rem);
+}
+.dn-call-lead{min-width:0;flex:1 1 280px;}
+.dn-call-lead .small{
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-day);
+}
+.dn-call-lead .line{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(1.4rem,2.8vw,1.9rem);
+  line-height:1.2;
+  letter-spacing:-.01em;
+  margin:.5rem 0 0;
+  color:var(--dn-bone);
+}
+.dn-call-act{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.9rem;
+  flex:0 0 auto;
+}
+
+/* primary call button - solid gold, warm, generous target */
+.dn-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  min-height:54px;
+  padding:0 1.5rem;
+  border-radius:999px;
+  font-family:var(--font-body);
+  font-weight:640;
+  font-size:1.04rem;
+  letter-spacing:.005em;
+  text-decoration:none;
+  color:#0a0a0c;
+  background:var(--dn-day);
+  border:1px solid var(--dn-day);
+  box-shadow:0 0 0 0 rgba(248,199,96,.42);
+  transition:transform .2s ease, box-shadow .25s ease, background .2s ease;
+}
+.dn-btn .dn-btn-pulse{
+  position:absolute;
+  inset:-1px;
+  border-radius:999px;
+  border:1px solid rgba(248,199,96,.55);
+  animation:dn-ring 2.8s ease-out infinite;
+  pointer-events:none;
+}
+.dn-btn .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-btn:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(248,199,96,.22);}
+  .dn-btn:hover .arrow{transform:translateX(3px);}
+}
+.dn-btn:focus-visible{outline:2px solid var(--dn-bone);outline-offset:3px;}
+@keyframes dn-ring{
+  0%{transform:scale(1);opacity:.5;}
+  70%{transform:scale(1.14);opacity:0;}
+  100%{transform:scale(1.14);opacity:0;}
+}
+
+.dn-num{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  font-family:var(--font-display);
+  font-weight:430;
+  font-size:clamp(1.5rem,3vw,2rem);
+  letter-spacing:.01em;
+  text-decoration:none;
+  color:var(--dn-bone);
+  transition:color .2s ease;
+}
+.dn-num::before{
+  content:'';
+  width:9px;height:9px;border-radius:50%;
+  background:var(--dn-night);
+  box-shadow:0 0 14px rgba(69,144,236,.6);
+}
+@media (hover:hover){
+  .dn-num:hover{color:var(--dn-day);}
+}
+.dn-num:focus-visible{outline:2px solid var(--dn-night);outline-offset:3px;border-radius:6px;}
+
+.dn-foot{
+  margin:clamp(1.6rem,3vw,2rem) 0 0;
+  font-size:.9rem;
+  color:var(--dn-bone-faint);
+  max-width:52ch;
+  line-height:1.6;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-btn-pulse{animation:none;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-call{flex-direction:column;align-items:stretch;}
+  .dn-call-act{align-items:stretch;}
+  .dn-btn{width:100%;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-head{font-size:2rem;}
+  .dn-line{padding-left:30px;}
+  .dn-step-row{gap:.8rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Warm Line</b> <span class="lab-lens">reassurance</span></div><span></span></div>
+
+<section class="dn-section dn-journey" id="how-it-works" aria-labelledby="journey-heading">
+  <div class="dn-container">
+
+    <div class="dn-open">
+      <span class="dn-eyebrow dn-pill day">What to expect when you call</span>
+      <h2 class="dn-head" id="journey-heading">Call with dental pain. <span class="gold">We&rsquo;ll help you get seen fast.</span></h2>
+      <p class="dn-reassure">Take a breath. You&rsquo;re not on your own with this. Here is exactly what happens, step by gentle step, from the moment you call.</p>
+    </div>
+
+    <ol class="dn-line">
+      <li class="dn-step day">
+        <div class="dn-step-row">
+          <span class="dn-step-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>
+            </svg>
+          </span>
+          <div class="dn-step-txt">
+            <span class="dn-step-kicker">First, we listen</span>
+            <h3>Tell us what&rsquo;s happening</h3>
+            <p>We&rsquo;ll ask a few quick questions to understand your symptoms and how urgent they are.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="dn-step day">
+        <div class="dn-step-row">
+          <span class="dn-step-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2"/>
+              <path d="M3 9h18M8 3v4M16 3v4"/>
+            </svg>
+          </span>
+          <div class="dn-step-txt">
+            <span class="dn-step-kicker">Then, we make space</span>
+            <h3>We&rsquo;ll find the earliest appointment</h3>
+            <p>If you need urgent care, we&rsquo;ll help arrange the soonest suitable appointment.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="dn-step night">
+        <div class="dn-step-row">
+          <span class="dn-step-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3c3 0 5 2 5 5 0 4-2 6-2 9 0 1-1 2-2 2s-1-2-1-4-1-2-2 0-1 4-2 4-2-1-2-2c0-3-2-5-2-9 0-3 2-5 5-5"/>
+            </svg>
+          </span>
+          <div class="dn-step-txt">
+            <span class="dn-step-kicker">And you leave cared for</span>
+            <h3>Get relief and a clear plan</h3>
+            <p>A dentist will assess the problem, explain your options, and provide urgent treatment where appropriate.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="dn-call">
+      <div class="dn-call-lead">
+        <span class="small">When you&rsquo;re ready</span>
+        <p class="line">Whatever the hour, a real person is waiting to help.</p>
+      </div>
+      <div class="dn-call-act">
+        <a href="tel:+441415486548" class="dn-btn">
+          <span class="dn-btn-pulse" aria-hidden="true"></span>
+          Call the 24/7 emergency line <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="tel:+441415486548" class="dn-num" aria-label="Call 0141 548 6548">0141 548 6548</a>
+      </div>
+    </div>
+
+    <p class="dn-foot">Day Night Dental, Merchant City, Glasgow. Open through the day and night for emergencies, so help is never far away.</p>
+
+  </div>
+</section>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

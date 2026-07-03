@@ -1,8 +1,9 @@
 # Day Night Dental — website
 
 Marketing website for **Day Night Dental** — a 24/7 emergency + cosmetic/implant dental
-practice in **Merchant City, Glasgow** (UK, GDC-regulated). Pre-launch, currently behind a
-"coming soon" gate. SEO + local search are the top priority.
+practice in **Merchant City, Glasgow** (UK, GDC-regulated). **LIVE and ungated** at
+daynightdental.co.uk (verified 2026-07-02; the coming-soon gate has been removed).
+SEO + local search are the top priority.
 
 ## Stack
 Vite 7 + React 19 + React Router 6 + **`vite-react-ssg`** (static pre-renders every route to

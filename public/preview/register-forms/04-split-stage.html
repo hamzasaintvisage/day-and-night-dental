@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview · Register · The Split Stage</title>
+<!-- Real brand tokens, fonts and base component classes -->
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     THE SPLIT STAGE
+     A true 50/50 editorial split.
+       LEFT  - a sticky reassurance "stage": eyebrow, a large pull-quote
+               promise, a continuous glow, and the first-visit value points
+               (from £95 / under-18 free / NHS waiting list / 24-7 line).
+       RIGHT - the compact, full 11-field form.
+     The left half is deliberately more dramatic than a plain sidebar:
+     oversized serif type, a central hairline spine, a slow continuous glow,
+     a numbered "what's included" ledger and a gold price plate.
+     All custom CSS is in this single block; only deps are ./_styles.css
+     and the fonts it loads.
+     ============================================================ */
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--dn-black,#000);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),"Inter Tight",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  ::selection{background:rgba(248,199,96,.22);}
+
+  /* ---------- shell : the 50/50 split ---------- */
+  .ss{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:100vh;
+    overflow-x:clip;
+  }
+  /* the central hairline that divides the two halves */
+  .ss::after{
+    content:"";
+    position:absolute;
+    top:0;bottom:0;left:50%;
+    width:1px;
+    background:linear-gradient(180deg,
+      transparent,
+      var(--dn-mist,rgba(255,255,255,.12)) 12%,
+      var(--dn-mist,rgba(255,255,255,.12)) 88%,
+      transparent);
+    z-index:3;
+    pointer-events:none;
+  }
+
+  /* ============================================================
+     LEFT - the stage
+     ============================================================ */
+  .ss-stage{
+    position:relative;
+    background:
+      radial-gradient(120% 90% at 18% 8%, rgba(248,199,96,.07), transparent 55%),
+      radial-gradient(110% 90% at 85% 100%, rgba(69,144,236,.08), transparent 55%),
+      var(--dn-near-black,#0a0a0c);
+    overflow:hidden;
+  }
+  /* sticky inner so the stage holds while the form scrolls */
+  .ss-stage-inner{
+    position:sticky;
+    top:0;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:clamp(2.5rem,5vw,5.5rem) clamp(2rem,4.5vw,4.5rem);
+    gap:2.25rem;
+  }
+  /* continuous slow glow living behind the quote */
+  .ss-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(8px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .ss-glow.day{
+    width:460px;height:460px;top:6%;left:-150px;
+    background:radial-gradient(circle, rgba(248,199,96,.16), transparent 68%);
+    animation:ssDrift 16s ease-in-out infinite;
+  }
+  .ss-glow.night{
+    width:520px;height:520px;bottom:-4%;right:-180px;
+    background:radial-gradient(circle, rgba(69,144,236,.18), transparent 68%);
+    animation:ssDrift 20s ease-in-out infinite reverse;
+  }
+  @keyframes ssDrift{
+    0%,100%{transform:translate3d(0,0,0) scale(1);}
+    50%{transform:translate3d(18px,-22px,0) scale(1.08);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ss-glow{animation:none!important;}
+  }
+  .ss-stage-inner > *{position:relative;z-index:1;}
+
+  .ss-eyebrow{
+    display:inline-flex;align-items:center;gap:.55rem;
+    align-self:flex-start;
+    padding:.42rem .95rem;
+    border:1px solid rgba(248,199,96,.42);
+    border-radius:999px;
+    background:rgba(248,199,96,.05);
+    font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--dn-day,#f8c760);
+    font-weight:600;
+  }
+  .ss-eyebrow .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--dn-day,#f8c760);
+    box-shadow:0 0 10px rgba(248,199,96,.9);
+  }
+
+  /* the dramatic pull-quote promise */
+  .ss-quote{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-weight:600;
+    font-size:clamp(2.4rem,4.4vw,3.9rem);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:0;
+    color:var(--dn-bone,#fff);
+  }
+  .ss-quote em{font-style:italic;color:var(--dn-day,#f8c760);}
+  .ss-quote .night{color:var(--dn-night-soft,#6aa6f0);font-style:normal;}
+  .ss-promise{
+    max-width:30ch;
+    font-size:1.02rem;
+    line-height:1.6;
+    color:var(--dn-bone-dim,rgba(255,255,255,.66));
+    margin:0;
+  }
+
+  /* numbered "what's included" ledger */
+  .ss-includes{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;
+    border-top:1px solid var(--dn-mist,rgba(255,255,255,.1));
+  }
+  .ss-includes li{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:1.1rem;
+    padding:1.05rem 0;
+    border-bottom:1px solid var(--dn-mist,rgba(255,255,255,.1));
+  }
+  .ss-includes .num{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:1.05rem;line-height:1;
+    color:var(--dn-day,#f8c760);
+    padding-top:.18rem;
+  }
+  .ss-includes li:nth-child(even) .num{color:var(--dn-night-soft,#6aa6f0);}
+  .ss-includes h4{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:1rem;font-weight:600;margin:0 0 .2rem;
+    letter-spacing:-.01em;color:var(--dn-bone,#fff);
+  }
+  .ss-includes p{
+    margin:0;font-size:.82rem;line-height:1.5;
+    color:var(--dn-bone-dim,rgba(255,255,255,.62));
+  }
+
+  /* price plate + the three policy lines */
+  .ss-foot{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:1.5rem;
+    align-items:center;
+    padding-top:.5rem;
+  }
+  .ss-price{
+    border:1px solid rgba(248,199,96,.4);
+    background:rgba(248,199,96,.04);
+    border-radius:var(--dn-r-card,12px);
+    padding:1rem 1.25rem;
+    text-align:center;
+    min-width:140px;
+  }
+  .ss-price .label{
+    display:block;
+    font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-bone-dim,rgba(255,255,255,.6));
+    margin-bottom:.35rem;
+  }
+  .ss-price .amount{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:2.6rem;font-weight:700;line-height:1;
+    color:var(--dn-day,#f8c760);
+  }
+  .ss-price .amount .cur{font-size:1.25rem;vertical-align:.55em;margin-right:.05em;}
+  .ss-notes{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:.55rem;
+  }
+  .ss-notes li{
+    display:flex;gap:.6rem;align-items:flex-start;
+    font-size:.82rem;line-height:1.45;
+    color:var(--dn-bone-dim,rgba(255,255,255,.66));
+  }
+  .ss-notes .tick{
+    flex:none;width:16px;height:16px;margin-top:.08rem;
+    color:var(--dn-day,#f8c760);
+  }
+  .ss-notes li:nth-child(2) .tick{color:var(--dn-night-soft,#6aa6f0);}
+
+  /* 24/7 emergency line, anchored at the very base of the stage */
+  .ss-urgent{
+    margin-top:.25rem;
+    padding:.95rem 1.15rem;
+    border:1px solid rgba(69,144,236,.4);
+    background:rgba(69,144,236,.05);
+    border-radius:var(--dn-r-card,12px);
+    font-size:.85rem;line-height:1.5;
+    color:var(--dn-bone-dim,rgba(255,255,255,.72));
+    display:flex;gap:.75rem;align-items:flex-start;
+  }
+  .ss-urgent .pulse{
+    flex:none;width:9px;height:9px;border-radius:50%;margin-top:.42rem;
+    background:var(--dn-night-soft,#6aa6f0);
+    box-shadow:0 0 0 0 rgba(69,144,236,.5);
+    animation:ssPulse 2.4s ease-out infinite;
+  }
+  @keyframes ssPulse{
+    0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}
+    70%{box-shadow:0 0 0 10px rgba(69,144,236,0);}
+    100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}
+  }
+  @media (prefers-reduced-motion:reduce){ .ss-urgent .pulse{animation:none;} }
+  .ss-urgent a{color:var(--dn-night-soft,#6aa6f0);font-weight:600;white-space:nowrap;}
+  .ss-urgent strong{color:var(--dn-bone,#fff);font-weight:600;}
+
+  /* ============================================================
+     RIGHT - the form
+     ============================================================ */
+  .ss-form-col{
+    position:relative;
+    background:var(--dn-black,#000);
+    padding:clamp(2.5rem,4.5vw,5rem) clamp(1.75rem,4vw,4.5rem);
+  }
+  .ss-form{display:flex;flex-direction:column;}
+
+  .ss-form-head{margin-bottom:2.25rem;}
+  .ss-form-head .kicker{
+    font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--dn-bone-faint,rgba(255,255,255,.4));
+    margin:0 0 .65rem;
+  }
+  .ss-form-head h1{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:clamp(1.7rem,2.6vw,2.2rem);font-weight:600;
+    letter-spacing:-.02em;margin:0 0 .55rem;color:var(--dn-bone,#fff);
+  }
+  .ss-form-head p{
+    margin:0;font-size:.92rem;line-height:1.55;
+    color:var(--dn-bone-dim,rgba(255,255,255,.62));max-width:46ch;
+  }
+
+  /* a group with a small index header */
+  .ss-group{margin-bottom:2.4rem;}
+  .ss-group-head{
+    display:flex;align-items:center;gap:.85rem;
+    margin-bottom:1.4rem;
+    padding-bottom:.85rem;
+    border-bottom:1px solid var(--dn-mist,rgba(255,255,255,.1));
+  }
+  .ss-group-head .gnum{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:.85rem;
+    width:1.7rem;height:1.7rem;flex:none;
+    display:grid;place-items:center;
+    border-radius:50%;
+    border:1px solid rgba(248,199,96,.45);
+    color:var(--dn-day,#f8c760);
+  }
+  .ss-group.night .gnum{
+    border-color:rgba(69,144,236,.45);
+    color:var(--dn-night-soft,#6aa6f0);
+  }
+  .ss-group-head h2{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:1.18rem;font-weight:600;margin:0;letter-spacing:-.01em;
+    color:var(--dn-bone,#fff);
+  }
+
+  /* rows + fields */
+  .ss-row{margin-bottom:1.25rem;}
+  .ss-row-2{
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  }
+  .ss-field{display:flex;flex-direction:column;gap:.5rem;}
+  .ss-field > span,
+  .ss-label{
+    font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-bone-dim,rgba(255,255,255,.6));
+    font-weight:500;
+  }
+  .ss-field .req{color:var(--dn-day,#f8c760);margin-left:.15em;}
+  .ss-field .opt{
+    color:var(--dn-bone-faint,rgba(255,255,255,.38));
+    letter-spacing:.12em;margin-left:.4em;text-transform:none;font-size:.62rem;
+  }
+
+  .ss-input,
+  .ss-select,
+  .ss-textarea{
+    width:100%;
+    padding:.85rem 1rem;
+    background:var(--dn-charcoal,#14141a);
+    border:1px solid var(--dn-mist,rgba(255,255,255,.12));
+    border-radius:var(--dn-r-inset,8px);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),"Inter Tight",system-ui,sans-serif;
+    font-size:1rem; /* 16px : avoids iOS zoom on focus */
+    transition:border-color .25s, box-shadow .25s, background .25s;
+  }
+  .ss-input::placeholder,
+  .ss-textarea::placeholder{color:var(--dn-bone-faint,rgba(255,255,255,.34));}
+  .ss-input:focus,
+  .ss-select:focus,
+  .ss-textarea:focus{
+    outline:none;
+    border-color:var(--dn-day,#f8c760);
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+    background:#17171d;
+  }
+  .ss-textarea{resize:vertical;min-height:96px;line-height:1.5;}
+
+  /* native selects styled on-brand */
+  .ss-select{
+    appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 1rem center;
+    padding-right:2.5rem;
+    cursor:pointer;
+  }
+  .ss-select option{color:var(--dn-bone,#fff);background:var(--dn-charcoal,#14141a);}
+
+  .ss-dob{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:.6rem;}
+
+  /* care-type cards */
+  .ss-care{
+    display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.2rem;
+  }
+  .ss-care-card{
+    position:relative;
+    display:flex;flex-direction:column;gap:.2rem;
+    padding:.85rem 1rem;
+    background:var(--dn-charcoal,#14141a);
+    border:1px solid var(--dn-mist,rgba(255,255,255,.12));
+    border-radius:var(--dn-r-inset,8px);
+    cursor:pointer;
+    transition:border-color .25s, background .25s, box-shadow .25s, transform .2s;
+  }
+  .ss-care-card:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.28);}
+  .ss-care-card input{
+    position:absolute;width:1px;height:1px;opacity:0;margin:0;
+  }
+  .ss-care-card .ct{
+    font-family:var(--font-display),"Fraunces",serif;
+    font-size:1.02rem;color:var(--dn-bone,#fff);transition:color .25s;
+  }
+  .ss-care-card .cd{
+    font-size:.72rem;line-height:1.35;color:var(--dn-bone-dim,rgba(255,255,255,.58));
+  }
+  .ss-care-card .chk{
+    position:absolute;top:.7rem;right:.7rem;
+    width:16px;height:16px;border-radius:50%;
+    border:1px solid var(--dn-mist,rgba(255,255,255,.25));
+    display:grid;place-items:center;
+    opacity:0;transform:scale(.7);transition:all .25s;
+  }
+  .ss-care-card .chk svg{width:9px;height:9px;}
+  .ss-care-card:has(input:focus-visible){
+    outline:2px solid var(--dn-day,#f8c760);outline-offset:2px;
+  }
+  /* selected states, one colour per side */
+  .ss-care-card.is-on.day{
+    border-color:var(--dn-day,#f8c760);
+    background:rgba(248,199,96,.06);
+    box-shadow:0 0 0 1px rgba(248,199,96,.4), 0 12px 30px -18px rgba(248,199,96,.5);
+  }
+  .ss-care-card.is-on.day .ct{color:var(--dn-day,#f8c760);}
+  .ss-care-card.is-on.day .chk{opacity:1;transform:scale(1);border-color:var(--dn-day,#f8c760);background:var(--dn-day,#f8c760);color:#000;}
+  .ss-care-card.is-on.night{
+    border-color:var(--dn-night,#4590ec);
+    background:rgba(69,144,236,.07);
+    box-shadow:0 0 0 1px rgba(69,144,236,.4), 0 12px 30px -18px rgba(69,144,236,.55);
+  }
+  .ss-care-card.is-on.night .ct{color:var(--dn-night-soft,#6aa6f0);}
+  .ss-care-card.is-on.night .chk{opacity:1;transform:scale(1);border-color:var(--dn-night,#4590ec);background:var(--dn-night,#4590ec);color:#fff;}
+
+  /* consent */
+  .ss-consent{
+    display:flex;align-items:flex-start;gap:.8rem;
+    padding:1rem 1.1rem;
+    background:var(--dn-charcoal,#14141a);
+    border:1px solid var(--dn-mist,rgba(255,255,255,.12));
+    border-radius:var(--dn-r-inset,8px);
+    cursor:pointer;
+  }
+  .ss-consent input{
+    flex:none;width:18px;height:18px;margin-top:.1rem;
+    accent-color:var(--dn-day,#f8c760);cursor:pointer;
+  }
+  .ss-consent span{
+    font-size:.8rem;line-height:1.5;color:var(--dn-bone-dim,rgba(255,255,255,.66));
+  }
+  .ss-consent a{color:var(--dn-day,#f8c760);text-decoration:underline;text-underline-offset:2px;}
+
+  /* submit */
+  .ss-actions{margin-top:1.9rem;}
+  .ss-submit{
+    width:100%;
+    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+    padding:1.05rem 1.5rem;
+    border:none;border-radius:999px;
+    background:var(--dn-day,#f8c760);
+    color:#000;
+    font-family:var(--font-body),"Inter Tight",system-ui,sans-serif;
+    font-size:.95rem;font-weight:600;letter-spacing:.02em;
+    cursor:pointer;
+    transition:transform .2s, box-shadow .3s, background .25s;
+    box-shadow:0 10px 32px -14px rgba(248,199,96,.55);
+  }
+  .ss-submit:hover{
+    transform:translateY(-2px);
+    background:#fad27e;
+    box-shadow:0 16px 40px -14px rgba(248,199,96,.7);
+  }
+  .ss-submit .arrow{transition:transform .25s;}
+  .ss-submit:hover .arrow{transform:translateX(4px);}
+  .ss-fineprint{
+    margin:1rem 0 0;text-align:center;
+    font-size:.74rem;line-height:1.5;
+    color:var(--dn-bone-faint,rgba(255,255,255,.42));
+  }
+
+  /* ============================================================
+     RESPONSIVE - collapse the split below 1000px
+     ============================================================ */
+  @media (max-width:1000px){
+    .ss{grid-template-columns:1fr;}
+    .ss::after{display:none;}
+    .ss-stage-inner{position:static;min-height:0;justify-content:flex-start;}
+    .ss-form-col{border-top:1px solid var(--dn-mist,rgba(255,255,255,.1));}
+  }
+  @media (max-width:560px){
+    .ss-row-2{grid-template-columns:1fr;}
+    .ss-care{grid-template-columns:1fr;}
+    .ss-dob{grid-template-columns:1fr 1.4fr 1fr;}
+    .ss-foot{grid-template-columns:1fr;gap:1.1rem;}
+    .ss-price{min-width:0;}
+    .ss-stage-inner,
+    .ss-form-col{padding-left:1.4rem;padding-right:1.4rem;}
+  }
+
+  /* preview-only : let the standalone page scroll normally */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+  <div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Split Stage</div>
+
+  <div class="ss">
+
+    <!-- ============================================================
+         LEFT : THE STAGE
+         ============================================================ -->
+    <aside class="ss-stage">
+      <div class="ss-glow day"></div>
+      <div class="ss-glow night"></div>
+
+      <div class="ss-stage-inner">
+        <span class="ss-eyebrow"><span class="dot"></span>New Patients</span>
+
+        <h2 class="ss-quote">
+          Register in <em>three</em> minutes,<br>
+          seen by <span class="night">morning</span>.
+        </h2>
+        <p class="ss-promise">
+          We are taking on new patients for every treatment we offer. Fill in the
+          form and we confirm your first appointment within one working hour.
+        </p>
+
+        <ul class="ss-includes">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h4>Comprehensive examination</h4>
+              <p>A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h4>Digital x-rays</h4>
+              <p>Low-dose imaging, no films to develop, so you are not left waiting.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h4>Personalised treatment plan</h4>
+              <p>Written, with the cost of each item set out before any work starts.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <h4>Hygiene appointment</h4>
+              <p>Booked in alongside your examination, so you leave with a fresh start.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="ss-foot">
+          <div class="ss-price">
+            <span class="label">First visit from</span>
+            <span class="amount"><span class="cur">£</span>95</span>
+          </div>
+          <ul class="ss-notes">
+            <li>
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Children under 18 are examined free.</span>
+            </li>
+            <li>
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>NHS care is by waiting list when we have space.</span>
+            </li>
+            <li>
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>We confirm the cost of your first visit before anything goes ahead.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="ss-urgent">
+          <span class="pulse" aria-hidden="true"></span>
+          <span>
+            In pain right now? <strong>A new practice in Merchant City, Glasgow.</strong>
+            Do not wait to register, call our 24/7 emergency line on
+            <a href="tel:+441415486548">0141 548 6548</a>.
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+         RIGHT : THE FORM
+         ============================================================ -->
+    <div class="ss-form-col">
+      <form class="ss-form" onsubmit="return false;">
+
+        <div class="ss-form-head">
+          <p class="kicker">Patient Registration</p>
+          <h1>Let's get you on the books</h1>
+          <p>It takes about three minutes. Everything marked with a star is required, the rest just helps us prepare for your call.</p>
+        </div>
+
+        <!-- ===== Group 1 : Your details ===== -->
+        <section class="ss-group day">
+          <div class="ss-group-head">
+            <span class="gnum">1</span>
+            <h2>Your details</h2>
+          </div>
+
+          <div class="ss-row ss-row-2">
+            <label class="ss-field">
+              <span>First name <span class="req">*</span></span>
+              <input class="ss-input" type="text" name="firstName" autocomplete="given-name" placeholder="Hamza">
+            </label>
+            <label class="ss-field">
+              <span>Last name <span class="req">*</span></span>
+              <input class="ss-input" type="text" name="lastName" autocomplete="family-name" placeholder="Abrar">
+            </label>
+          </div>
+
+          <div class="ss-row">
+            <span class="ss-label">Date of birth <span class="req">*</span></span>
+            <div class="ss-dob" style="margin-top:.5rem;">
+              <select class="ss-select" name="dobDay" aria-label="Day of birth">
+                <option value="" selected>Day</option>
+                <option>1</option><option>2</option><option>3</option>
+                <option>14</option><option>21</option><option>28</option><option>31</option>
+              </select>
+              <select class="ss-select" name="dobMonth" aria-label="Month of birth">
+                <option value="" selected>Month</option>
+                <option>January</option><option>February</option><option>March</option>
+                <option>June</option><option>September</option><option>December</option>
+              </select>
+              <select class="ss-select" name="dobYear" aria-label="Year of birth">
+                <option value="" selected>Year</option>
+                <option>2008</option><option>2000</option><option>1992</option>
+                <option>1985</option><option>1970</option><option>1955</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="ss-row ss-row-2">
+            <label class="ss-field">
+              <span>Phone <span class="req">*</span></span>
+              <input class="ss-input" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number">
+            </label>
+            <label class="ss-field">
+              <span>Email <span class="req">*</span></span>
+              <input class="ss-input" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </label>
+          </div>
+
+          <div class="ss-row ss-row-2">
+            <label class="ss-field">
+              <span>Address <span class="opt">optional</span></span>
+              <input class="ss-input" type="text" name="address" autocomplete="street-address" placeholder="Street address (optional)">
+            </label>
+            <label class="ss-field">
+              <span>Postcode <span class="req">*</span></span>
+              <input class="ss-input" type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH">
+            </label>
+          </div>
+        </section>
+
+        <!-- ===== Group 2 : Your care ===== -->
+        <section class="ss-group night">
+          <div class="ss-group-head">
+            <span class="gnum">2</span>
+            <h2>Your care</h2>
+          </div>
+
+          <div class="ss-row">
+            <span class="ss-label" id="care-label">Care type <span class="req">*</span></span>
+            <div class="ss-care" data-care role="radiogroup" aria-labelledby="care-label">
+              <label class="ss-care-card day">
+                <input type="radio" name="careType" value="private">
+                <span class="chk"><svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ct">Private</span>
+                <span class="cd">Full choice of times and treatments</span>
+              </label>
+              <label class="ss-care-card night">
+                <input type="radio" name="careType" value="nhs">
+                <span class="chk"><svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ct">NHS</span>
+                <span class="cd">Waiting list, when we have space</span>
+              </label>
+              <label class="ss-care-card day">
+                <input type="radio" name="careType" value="mixed">
+                <span class="chk"><svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ct">Either</span>
+                <span class="cd">Whatever gets you seen soonest</span>
+              </label>
+              <label class="ss-care-card night">
+                <input type="radio" name="careType" value="unsure">
+                <span class="chk"><svg viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ct">Not sure yet</span>
+                <span class="cd">We'll talk it through on the call</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="ss-row">
+            <label class="ss-field">
+              <span>How did you hear about us? <span class="opt">optional</span></span>
+              <select class="ss-select" name="referral">
+                <option value="" selected>Optional</option>
+                <option>Google search</option>
+                <option>Friend or family</option>
+                <option>Instagram</option>
+                <option>Walked past the practice</option>
+                <option>Existing patient</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="ss-row">
+            <label class="ss-field">
+              <span>What do you need help with? <span class="opt">optional</span></span>
+              <textarea class="ss-textarea" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+            </label>
+          </div>
+
+          <div class="ss-row">
+            <label class="ss-consent">
+              <input type="checkbox" name="consent">
+              <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+            </label>
+          </div>
+        </section>
+
+        <div class="ss-actions">
+          <button type="submit" class="ss-submit">Complete Registration <span class="arrow" aria-hidden="true">&rarr;</span></button>
+          <p class="ss-fineprint">We confirm your first appointment within one working hour.</p>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+  <script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

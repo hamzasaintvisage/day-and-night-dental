@@ -1,39 +1,13 @@
 import Layout from './components/Layout'
 import Home from './pages/Home'
-import AreasServed from './pages/AreasServed'
-import Invisalign from './pages/treatments/Invisalign'
-import GeneralDentistry from './pages/treatments/GeneralDentistry'
-import CosmeticDentistry from './pages/treatments/CosmeticDentistry'
-import DentalImplants from './pages/treatments/DentalImplants'
-import TeethWhitening from './pages/treatments/TeethWhitening'
-import EmergencyDentist from './pages/treatments/EmergencyDentist'
-import CompositeBonding from './pages/treatments/CompositeBonding'
-import PorcelainVeneers from './pages/treatments/PorcelainVeneers'
-import SmileMakeover from './pages/treatments/SmileMakeover'
-import WhiteFillings from './pages/treatments/WhiteFillings'
-import RootCanalTreatment from './pages/treatments/RootCanalTreatment'
-import DentalHygiene from './pages/treatments/DentalHygiene'
-import ToothExtraction from './pages/treatments/ToothExtraction'
-import DentalCrowns from './pages/treatments/DentalCrowns'
-import DentalBridges from './pages/treatments/DentalBridges'
-import Dentures from './pages/treatments/Dentures'
-import ChildrensDentistry from './pages/treatments/ChildrensDentistry'
-import GumDiseaseTreatment from './pages/treatments/GumDiseaseTreatment'
-import DentalCheckUps from './pages/treatments/DentalCheckUps'
-import InlaysOnlays from './pages/treatments/InlaysOnlays'
-import NervousPatients from './pages/treatments/NervousPatients'
-import Privacy from './pages/legal/Privacy'
-import Complaints from './pages/legal/Complaints'
-import Terms from './pages/legal/Terms'
-import Accessibility from './pages/legal/Accessibility'
-import ThankYou from './pages/ThankYou'
-import Registered from './pages/Registered'
-import OurTeam from './pages/OurTeam'
-import RegisterAsPatient from './pages/RegisterAsPatient'
-import TreatmentsIndex from './pages/TreatmentsIndex'
-import Blog from './pages/Blog'
-import BlogPost from './pages/BlogPost'
 import { posts } from './data/blog'
+
+// vite-react-ssg pre-renders every path below to static HTML for SEO, then hydrates.
+// Only Layout + Home load eagerly (the homepage's critical render path). Every other
+// route is code-split into its own chunk via `lazy`, so the homepage no longer ships
+// the JavaScript for 40+ pages. The static prerender still emits full HTML + per-page
+// <Head> for each lazy route (verified in the build output).
+const page = (loader) => () => loader().then((m) => ({ Component: m.default }))
 
 // Static routes, every path here is pre-rendered to HTML by vite-react-ssg.
 export const routes = [
@@ -42,39 +16,45 @@ export const routes = [
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'areas-served', element: <AreasServed /> },
-      { path: 'our-team', element: <OurTeam /> },
-      { path: 'register-as-patient', element: <RegisterAsPatient /> },
-      { path: 'treatments', element: <TreatmentsIndex /> },
-      { path: 'treatments/invisalign', element: <Invisalign /> },
-      { path: 'treatments/general-dentistry', element: <GeneralDentistry /> },
-      { path: 'treatments/cosmetic-dentistry', element: <CosmeticDentistry /> },
-      { path: 'treatments/dental-implants', element: <DentalImplants /> },
-      { path: 'treatments/teeth-whitening', element: <TeethWhitening /> },
-      { path: 'treatments/emergency-dentist', element: <EmergencyDentist /> },
-      { path: 'treatments/composite-bonding', element: <CompositeBonding /> },
-      { path: 'treatments/porcelain-veneers', element: <PorcelainVeneers /> },
-      { path: 'treatments/smile-makeover', element: <SmileMakeover /> },
-      { path: 'treatments/white-fillings', element: <WhiteFillings /> },
-      { path: 'treatments/root-canal-treatment', element: <RootCanalTreatment /> },
-      { path: 'treatments/dental-hygiene', element: <DentalHygiene /> },
-      { path: 'treatments/tooth-extraction', element: <ToothExtraction /> },
-      { path: 'treatments/dental-crowns', element: <DentalCrowns /> },
-      { path: 'treatments/dental-bridges', element: <DentalBridges /> },
-      { path: 'treatments/dentures', element: <Dentures /> },
-      { path: 'treatments/childrens-dentistry', element: <ChildrensDentistry /> },
-      { path: 'treatments/gum-disease-treatment', element: <GumDiseaseTreatment /> },
-      { path: 'treatments/dental-check-ups', element: <DentalCheckUps /> },
-      { path: 'treatments/inlays-onlays', element: <InlaysOnlays /> },
-      { path: 'treatments/nervous-patients', element: <NervousPatients /> },
-      { path: 'privacy', element: <Privacy /> },
-      { path: 'complaints', element: <Complaints /> },
-      { path: 'terms', element: <Terms /> },
-      { path: 'accessibility', element: <Accessibility /> },
-      { path: 'thank-you', element: <ThankYou /> },
-      { path: 'registered', element: <Registered /> },
-      { path: 'blog', element: <Blog /> },
-      ...posts.map((p) => ({ path: `blog/${p.slug}`, element: <BlogPost slug={p.slug} /> })),
+      { path: 'areas-served', lazy: page(() => import('./pages/AreasServed')) },
+      { path: 'our-team', lazy: page(() => import('./pages/OurTeam')) },
+      { path: 'register-as-patient', lazy: page(() => import('./pages/RegisterAsPatient')) },
+      { path: 'treatments', lazy: page(() => import('./pages/TreatmentsIndex')) },
+      { path: 'treatments/invisalign', lazy: page(() => import('./pages/treatments/Invisalign')) },
+      { path: 'treatments/general-dentistry', lazy: page(() => import('./pages/treatments/GeneralDentistry')) },
+      { path: 'treatments/cosmetic-dentistry', lazy: page(() => import('./pages/treatments/CosmeticDentistry')) },
+      { path: 'treatments/dental-implants', lazy: page(() => import('./pages/treatments/DentalImplants')) },
+      { path: 'treatments/teeth-whitening', lazy: page(() => import('./pages/treatments/TeethWhitening')) },
+      { path: 'treatments/emergency-dentist', lazy: page(() => import('./pages/treatments/EmergencyDentist')) },
+      { path: 'treatments/composite-bonding', lazy: page(() => import('./pages/treatments/CompositeBonding')) },
+      { path: 'treatments/porcelain-veneers', lazy: page(() => import('./pages/treatments/PorcelainVeneers')) },
+      { path: 'treatments/smile-makeover', lazy: page(() => import('./pages/treatments/SmileMakeover')) },
+      { path: 'treatments/white-fillings', lazy: page(() => import('./pages/treatments/WhiteFillings')) },
+      { path: 'treatments/root-canal-treatment', lazy: page(() => import('./pages/treatments/RootCanalTreatment')) },
+      { path: 'treatments/dental-hygiene', lazy: page(() => import('./pages/treatments/DentalHygiene')) },
+      { path: 'treatments/tooth-extraction', lazy: page(() => import('./pages/treatments/ToothExtraction')) },
+      { path: 'treatments/dental-crowns', lazy: page(() => import('./pages/treatments/DentalCrowns')) },
+      { path: 'treatments/dental-bridges', lazy: page(() => import('./pages/treatments/DentalBridges')) },
+      { path: 'treatments/dentures', lazy: page(() => import('./pages/treatments/Dentures')) },
+      { path: 'treatments/childrens-dentistry', lazy: page(() => import('./pages/treatments/ChildrensDentistry')) },
+      { path: 'treatments/gum-disease-treatment', lazy: page(() => import('./pages/treatments/GumDiseaseTreatment')) },
+      { path: 'treatments/dental-check-ups', lazy: page(() => import('./pages/treatments/DentalCheckUps')) },
+      { path: 'treatments/inlays-onlays', lazy: page(() => import('./pages/treatments/InlaysOnlays')) },
+      { path: 'treatments/nervous-patients', lazy: page(() => import('./pages/treatments/NervousPatients')) },
+      { path: 'privacy', lazy: page(() => import('./pages/legal/Privacy')) },
+      { path: 'complaints', lazy: page(() => import('./pages/legal/Complaints')) },
+      { path: 'terms', lazy: page(() => import('./pages/legal/Terms')) },
+      { path: 'accessibility', lazy: page(() => import('./pages/legal/Accessibility')) },
+      { path: 'thank-you', lazy: page(() => import('./pages/ThankYou')) },
+      { path: 'registered', lazy: page(() => import('./pages/Registered')) },
+      { path: 'blog', lazy: page(() => import('./pages/Blog')) },
+      ...posts.map((p) => ({
+        path: `blog/${p.slug}`,
+        lazy: () => import('./pages/BlogPost').then((m) => {
+          const Post = m.default
+          return { Component: () => <Post slug={p.slug} /> }
+        }),
+      })),
     ],
   },
 ]

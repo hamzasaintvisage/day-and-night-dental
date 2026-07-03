@@ -244,63 +244,77 @@
           .dn-hide-desktop { display: none !important; }
         }
 
-        /* FAQ, d3 side-nav: narrow question list + bordered answer card */
-        .dn-faq-side {
-          display: grid;
-          grid-template-columns: 0.5fr 1fr;
-          gap: 30px;
-          align-items: start;
-          max-width: 920px;
-          margin: 3rem auto 0;
+        /* FAQ - inline accordion: a big gold number + the question; the answer opens in a
+           gold-edged box directly beneath that question. Mobile-light: no backdrop-filter,
+           no infinite animation, no blur. Every answer stays in the DOM for SEO. */
+        .dn-head-rule {
+          width: 56px; height: 2px; margin: 1.5rem auto 0;
+          background: var(--dn-day); border-radius: 2px;
+          box-shadow: 0 0 18px -2px color-mix(in srgb, var(--dn-day) 70%, transparent);
         }
-        .dn-faq-nav { display: flex; flex-direction: column; gap: 4px; }
+        .dn-faq-acc { list-style: none; max-width: 860px; margin: clamp(2rem, 4vw, 3rem) auto 0; padding: 0; border-top: 1px solid var(--dn-mist); }
+        .dn-faq-item { border-bottom: 1px solid var(--dn-mist); }
+        .dn-faq-h { margin: 0; }
         .dn-faq-q {
-          --dn-faq-accent: var(--dn-day);
-          text-align: left;
-          background: transparent;
-          border: none;
-          border-left: 2px solid var(--dn-mist);
-          color: var(--dn-bone-dim);
-          padding: 10px 14px;
-          font-family: var(--font-body);
-          font-size: 0.82rem;
-          line-height: 1.45;
-          cursor: pointer;
-          transition: color 0.2s, background 0.2s, border-color 0.2s;
-          /* a11y: ~44px tap target for the FAQ tab buttons (WCAG 2.5.8) - matters most
-             on mobile where they reflow into a wrapped row. min-height (not a fixed
-             height) so long, multi-line questions never clip. */
-          display: flex;
-          align-items: center;
-          min-height: 44px;
+          position: relative; display: grid;
+          grid-template-columns: clamp(54px, 8vw, 92px) 1fr auto;
+          align-items: center; gap: clamp(14px, 3vw, 34px);
+          width: 100%; text-align: left; border: 0; background: transparent;
+          padding: clamp(18px, 2.8vw, 28px) 8px; min-height: 44px; cursor: pointer;
+          color: var(--dn-bone-dim); font-family: var(--font-body);
+          transition: padding-left 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
         }
-        .dn-faq-q:nth-child(even) { --dn-faq-accent: var(--dn-night); }
+        .dn-faq-num {
+          font-family: var(--font-display); font-weight: 600;
+          font-size: clamp(2.3rem, 7vw, 4rem); line-height: 0.78; letter-spacing: -0.02em;
+          font-variant-numeric: tabular-nums; color: var(--dn-mist);
+          transition: color 0.24s ease, text-shadow 0.24s ease;
+        }
+        .dn-faq-qtext {
+          font-family: var(--font-display); font-weight: 520;
+          font-size: clamp(1.08rem, 2.5vw, 1.5rem); line-height: 1.18; letter-spacing: -0.008em;
+          color: var(--dn-bone-dim); transition: color 0.24s ease;
+        }
+        .dn-faq-caret {
+          flex: none; width: 11px; height: 11px;
+          border-right: 1.7px solid currentColor; border-bottom: 1.7px solid currentColor;
+          transform: rotate(45deg) translateY(-2px); color: var(--dn-bone-faint); opacity: 0.45;
+          transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.24s ease, color 0.24s ease;
+        }
         @media (hover: hover) {
-          .dn-faq-q:hover { color: var(--dn-bone); border-left-color: var(--dn-faq-accent); background: color-mix(in srgb, var(--dn-faq-accent) 7%, transparent); box-shadow: -8px 0 18px -12px color-mix(in srgb, var(--dn-faq-accent) 58%, transparent); }
+          .dn-faq-q:hover { padding-left: 16px; }
+          .dn-faq-q:hover .dn-faq-num { color: color-mix(in srgb, var(--dn-day) 60%, var(--dn-bone-faint)); }
+          .dn-faq-q:hover .dn-faq-qtext { color: var(--dn-day); }
+          .dn-faq-q:hover .dn-faq-caret { opacity: 0.8; color: var(--dn-day); }
         }
-        .dn-faq-q.on {
-          border-left-color: var(--dn-faq-accent);
-          color: var(--dn-bone);
-          background: linear-gradient(90deg, rgba(248,199,96,0.05), transparent);
+        .dn-faq-q[aria-expanded="true"] .dn-faq-num { color: var(--dn-day); text-shadow: 0 0 30px color-mix(in srgb, var(--dn-day) 36%, transparent); }
+        .dn-faq-q[aria-expanded="true"] .dn-faq-qtext { color: var(--dn-day); }
+        .dn-faq-q[aria-expanded="true"] .dn-faq-caret { color: var(--dn-day); opacity: 1; transform: rotate(225deg) translateY(-2px); }
+        .dn-faq-q:focus-visible { outline: 2px solid var(--dn-day); outline-offset: -3px; border-radius: 10px; }
+        .dn-faq-ans { display: none; }
+        .dn-faq-ans.on { display: block; animation: faqfade 0.3s ease both; }
+        @keyframes faqfade { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+        .dn-faq-ans-inner {
+          margin: 0 8px clamp(16px, 2.6vw, 24px);
+          border: 1px solid color-mix(in srgb, var(--dn-day) 36%, transparent); border-radius: var(--dn-r-card);
+          padding: clamp(20px, 3vw, 28px) clamp(20px, 3.4vw, 32px);
+          background: linear-gradient(180deg, color-mix(in srgb, var(--dn-day) 4%, transparent), transparent 42%), var(--dn-near-black);
+          box-shadow: 0 0 0 1px color-mix(in srgb, var(--dn-day) 7%, transparent), 0 20px 50px -30px color-mix(in srgb, var(--dn-day) 36%, transparent);
         }
-        .dn-faq-panel {
-          border: 1px solid var(--dn-mist);
-          border-radius: var(--dn-r-card);
-          padding: 26px 28px;
-          background: var(--dn-near-black);
-          min-height: 200px;
+        .dn-faq-ans-inner p { margin: 0; font-size: 1.04rem; line-height: 1.68; color: var(--dn-bone-dim); max-width: 64ch; }
+        .dn-faq-foot { margin: clamp(2.4rem, 5vw, 3.4rem) 0 0; text-align: center; font-size: 1.02rem; color: var(--dn-bone-dim); }
+        .dn-faq-foot a { color: var(--dn-night); text-decoration: none; font-weight: 600; border-bottom: 1px solid color-mix(in srgb, var(--dn-night) 45%, transparent); transition: color 0.2s ease, border-color 0.2s ease; }
+        .dn-faq-foot a:hover { color: var(--dn-night-soft); border-color: var(--dn-night-soft); }
+        @media (max-width: 600px) {
+          .dn-faq-q { grid-template-columns: clamp(40px, 13vw, 56px) 1fr auto; gap: 14px; padding: 18px 4px; }
+          .dn-faq-num { font-size: clamp(1.9rem, 11vw, 2.6rem); }
+          .dn-faq-ans-inner { margin: 0 4px 16px; }
+          .dn-faq-ans-inner p { max-width: none; }
         }
-        .dn-faq-a { display: none; }
-        .dn-faq-a.on { display: block; animation: dn-fade-up 0.3s ease; }
-        .dn-faq-a .q { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; margin: 0 0 12px; color: var(--dn-bone); }
-        .dn-faq-a .a { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.65; margin: 0; }
-        .dn-faq-foot { text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: var(--dn-bone-dim); }
-        .dn-faq-foot a { color: var(--dn-night-soft); font-weight: 600; }
-        @media (max-width: 768px) {
-          .dn-faq-side { grid-template-columns: 1fr; gap: 16px; }
-          .dn-faq-nav { flex-direction: row; flex-wrap: wrap; }
+        @media (prefers-reduced-motion: reduce) {
+          .dn-faq-ans.on { animation: none; }
+          .dn-faq-q, .dn-faq-num, .dn-faq-caret, .dn-faq-qtext { transition: none; }
         }
-        @media (prefers-reduced-motion: reduce) { .dn-faq-a.on { animation: none; } }
       
 
 
@@ -312,7 +326,6 @@
 /* ============================================================= */
 
 .txg-root{
-  /* local palette mapped to site design tokens */
   --txg-gold: var(--dn-day, #f8c760);
   --txg-gold-soft: #f6d68a;
   --txg-blue: var(--dn-night, #4590ec);
@@ -323,6 +336,7 @@
   --txg-line: rgba(255,255,255,0.08);
   --txg-line-2: rgba(255,255,255,0.14);
   --txg-bg-2: #0a0a0c;
+  --txg-live: #34d399;
 
   position: relative;
   isolation: isolate;
@@ -331,14 +345,7 @@
   color: var(--txg-white);
 }
 
-/* Ambient corner wash, gold hugging the section TOP-LEFT, blue the
-   BOTTOM-RIGHT. Scoped to this section's root (NOT body/viewport) so it
-   only lights this section. Flashing animation matches the design. */
-/* Disabled: the single continuous page glow (.dn-ambient) now lights this
-   section; a section-scoped wash would create a brighter island / edge seam. */
-.txg-root::before{
-  content:none;
-}
+.txg-root::before{ content:none; }
 @keyframes txg-wash-flash{0%,100%{opacity:.45}50%{opacity:1}}
 
 .txg-wrap{
@@ -368,6 +375,60 @@
   font-weight:500;
   color:var(--txg-gold);
 }
+
+/* ===== LIVE 24/7 status banner (emergency-led addition) ===== */
+.txg-live-banner{
+  display:inline-flex;
+  align-items:center;
+  gap:13px;
+  margin:24px auto 0;
+  padding:9px 10px 9px 16px;
+  border-radius:100px;
+  background:
+    linear-gradient(180deg, rgba(248,199,96,0.12), rgba(248,199,96,0.05)),
+    rgba(255,255,255,0.02);
+  border:1px solid rgba(248,199,96,0.34);
+  box-shadow:0 0 0 0 rgba(248,199,96,0.0), 0 14px 40px -22px rgba(248,199,96,0.6);
+  font-size:13px;
+  letter-spacing:0.01em;
+  color:var(--txg-white);
+  max-width:100%;
+}
+.txg-live-banner .txg-live-pip{
+  position:relative;
+  width:9px;height:9px;flex:none;border-radius:50%;
+  background:var(--txg-live);
+  box-shadow:0 0 0 0 rgba(52,211,153,0.6);
+  animation:txg-pulse 2s infinite;
+}
+.txg-live-banner .txg-live-now{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-size:11px;
+  color:var(--txg-gold-soft);
+}
+.txg-live-banner .txg-live-copy{color:var(--txg-muted);}
+.txg-live-banner .txg-live-copy b{color:var(--txg-white);font-weight:600;}
+.txg-live-banner .txg-live-call{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-left:2px;
+  font-size:13px;
+  font-weight:600;
+  color:#1a1306;
+  background:linear-gradient(180deg,var(--txg-gold-soft),var(--txg-gold));
+  padding:8px 15px;
+  border-radius:100px;
+  text-decoration:none;
+  white-space:nowrap;
+  box-shadow:0 8px 22px -10px rgba(248,199,96,0.7);
+  transition:transform .2s ease, box-shadow .25s ease;
+}
+.txg-live-banner .txg-live-call svg{width:15px;height:15px;stroke:currentColor;flex:none;}
+.txg-live-banner .txg-live-call:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px rgba(248,199,96,0.8);}
 
 /* header trust line */
 .txg-head-trust{
@@ -423,10 +484,10 @@
 .txg-option-num{
   font-family:var(--font-display);
   font-weight:500;
-  font-size:13px;
+  font-size:15.5px;
   color:var(--txg-muted-2);
-  width:22px;flex:none;
-  margin-top:3px;
+  width:24px;flex:none;
+  margin-top:2px;
   letter-spacing:0.02em;
   transition:color .3s ease;
 }
@@ -464,7 +525,7 @@
 }
 .txg-option-teaser{
   display:block;
-  font-size:13px;
+  font-size:15px;
   line-height:1.45;
   color:var(--txg-muted);
   margin-top:5px;
@@ -491,7 +552,6 @@
   box-shadow:0 0 14px var(--txg-gold);
 }
 
-/* hover */
 /* hover bar follows the item's side - gold for day, blue for night (never both) */
 .txg-option:hover{background:rgba(255,255,255,0.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14);}
 .txg-option.day:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,0.14), inset 2px 0 0 0 color-mix(in srgb, var(--txg-gold) 70%, transparent);}
@@ -499,7 +559,7 @@
 .txg-option:hover .txg-option-name{color:#fff;}
 .txg-option:hover .txg-option-ico{color:var(--txg-white);}
 
-/* ===== ACTIVE state (React .is-active) ===== */
+/* ===== ACTIVE state (.is-active) ===== */
 .txg-option.is-active{
   background:rgba(255,255,255,0.04);
   padding-left:26px;
@@ -521,11 +581,39 @@
 .txg-option.is-active.night .txg-option-arrow{opacity:1;transform:translateX(0);stroke:var(--txg-blue-soft);}
 .txg-option.is-active.night .txg-option-cat{color:var(--txg-blue-soft);border-color:rgba(69,144,236,0.35);}
 
+/* ===== EMERGENCY-LED: the Emergency row reads as the primary, always-live option ===== */
+.txg-option.is-emergency{
+  border-top:1px solid rgba(248,199,96,0.22);
+  background:
+    linear-gradient(180deg, rgba(248,199,96,0.07), rgba(248,199,96,0.018));
+  box-shadow:inset 2px 0 0 0 var(--txg-gold);
+  border-radius:0 12px 12px 0;
+}
+.txg-option.is-emergency .txg-option-name{color:#fff;}
+.txg-option.is-emergency .txg-option-num{color:var(--txg-gold);}
+.txg-option.is-emergency .txg-option-ico{color:var(--txg-gold);}
+.txg-option.is-emergency::before{height:60%;}
+.txg-option.is-emergency.is-active{
+  background:
+    linear-gradient(180deg, rgba(248,199,96,0.12), rgba(248,199,96,0.03));
+  box-shadow:inset 2px 0 0 0 var(--txg-gold), inset 0 0 0 1px rgba(248,199,96,0.18);
+}
+.txg-option.is-emergency:hover{
+  background:linear-gradient(180deg, rgba(248,199,96,0.14), rgba(248,199,96,0.04));
+  box-shadow:inset 2px 0 0 0 var(--txg-gold), inset 0 0 0 1px rgba(248,199,96,0.22);
+}
+/* the "24/7 Available" cat pill on the emergency row glows live gold */
+.txg-option.is-emergency .txg-option-cat{
+  color:var(--txg-gold-soft);
+  border-color:rgba(248,199,96,0.4);
+  background:rgba(248,199,96,0.06);
+}
+
 /* emergency live pulse marker in the list */
 .txg-live{display:inline-flex;align-items:center;gap:6px;}
 .txg-live::before{
   content:"";width:6px;height:6px;border-radius:50%;
-  background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,0.6);
+  background:var(--txg-live);box-shadow:0 0 0 0 rgba(52,211,153,0.6);
   animation:txg-pulse 2s infinite;
 }
 @keyframes txg-pulse{
@@ -590,6 +678,12 @@
 .txg-stage:has(.txg-panel.is-active.night)::after{
   background:radial-gradient(circle, rgba(69,144,236,0.16), transparent 62%);
 }
+/* emergency-led: a touch more gold glow + a brighter top hairline while the
+   emergency panel is the active one */
+.txg-stage:has(.txg-panel.is-emergency.is-active)::after{
+  background:radial-gradient(circle, rgba(248,199,96,0.2), transparent 60%);
+}
+.txg-stage:has(.txg-panel.is-emergency.is-active)::before{opacity:0.95;}
 
 /* the stage sizes to the active panel via a grid stack */
 .txg-stage-inner{
@@ -616,6 +710,46 @@
   opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
 }
 
+/* ===== EMERGENCY-LED: a live status banner across the top of the emergency panel ===== */
+.txg-emg-banner{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:-52px -54px 28px;
+  padding:14px 54px;
+  background:
+    linear-gradient(180deg, rgba(248,199,96,0.16), rgba(248,199,96,0.05)),
+    rgba(255,255,255,0.01);
+  border-bottom:1px solid rgba(248,199,96,0.28);
+  font-size:13px;
+  color:var(--txg-white);
+}
+.txg-emg-banner .txg-emg-pip{
+  position:relative;width:10px;height:10px;flex:none;border-radius:50%;
+  background:var(--txg-live);box-shadow:0 0 0 0 rgba(52,211,153,0.6);
+  animation:txg-pulse 2s infinite;
+}
+.txg-emg-banner .txg-emg-now{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-size:11px;
+  color:var(--txg-gold-soft);
+}
+.txg-emg-banner .txg-emg-copy{color:var(--txg-muted);}
+.txg-emg-banner .txg-emg-copy b{color:var(--txg-white);font-weight:600;}
+.txg-emg-banner .txg-emg-num{
+  margin-left:auto;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:16px;
+  color:var(--txg-gold-soft);
+  letter-spacing:0.01em;
+  white-space:nowrap;
+}
+
 /* the big watermark numeral */
 .txg-pnum{
   position:absolute;
@@ -630,6 +764,8 @@
   pointer-events:none;
   user-select:none;
 }
+/* emergency-led: nudge the watermark down so it clears the banner */
+.txg-panel.is-emergency .txg-pnum{top:78px;}
 
 .txg-ptag{
   display:inline-flex;
@@ -654,9 +790,10 @@
 .txg-panel.day .txg-ptag .txg-pdot { background: var(--txg-gold); box-shadow: 0 0 10px var(--txg-gold); }
 
 /* emergency tag flips to gold + live pulse */
-.txg-ptag.is-emergency{color:var(--txg-gold-soft);background:rgba(248,199,96,0.07);}
+.txg-ptag.is-emergency{color:var(--txg-gold-soft);background:rgba(248,199,96,0.07);border-color:rgba(248,199,96,0.34);}
 .txg-ptag.is-emergency .txg-pdot{
-  background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,0.6);
+  width:8px;height:8px;
+  background:var(--txg-live);box-shadow:0 0 0 0 rgba(52,211,153,0.6);
   animation:txg-pulse 2s infinite;
 }
 
@@ -673,13 +810,13 @@
   font-family:var(--font-display);
   font-style:italic;
   font-weight:500;
-  font-size:18px;
+  font-size:19px;
   color:var(--txg-gold);
   margin-bottom:22px;
 }
 .txg-panel.night .txg-psub { color: var(--txg-blue-soft); }
 .txg-pdesc{
-  font-size:16.5px;
+  font-size:18px;
   line-height:1.6;
   color:var(--txg-muted);
   max-width:46ch;
@@ -697,19 +834,36 @@
 .txg-points li{
   list-style:none;
   display:flex;
-  align-items:flex-start;
-  gap:11px;
+  align-items:center;
+  gap:12px;
   font-size:14.5px;
   color:rgba(255,255,255,0.84);
   line-height:1.35;
 }
 .txg-check{
   flex:none;
-  width:16px;height:16px;
-  margin-top:1px;
+  width:13px;height:13px;
   stroke:var(--txg-gold);
+  stroke-width:2.2;
 }
 .txg-panel.night .txg-check { stroke: var(--txg-blue); }
+/* point ticks: a refined circular chip around each check (day gold / night blue) */
+.txg-tick{
+  flex:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;height:24px;
+  border-radius:50%;
+  background:rgba(248,199,96,0.10);
+  border:1px solid rgba(248,199,96,0.36);
+  box-shadow:0 0 0 3px rgba(248,199,96,0.045), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.txg-panel.night .txg-tick{
+  background:rgba(69,144,236,0.10);
+  border-color:rgba(69,144,236,0.36);
+  box-shadow:0 0 0 3px rgba(69,144,236,0.045), inset 0 1px 0 rgba(255,255,255,0.06);
+}
 
 /* CTAs */
 .txg-cta{
@@ -747,27 +901,35 @@
 .txg-btn-ghost:hover{border-color:rgba(255,255,255,0.32);background:rgba(255,255,255,0.05);transform:translateY(-2px);}
 .txg-btn svg{width:16px;height:16px;stroke:currentColor;}
 
-/* emergency call CTA, visually dominant */
+/* emergency call CTA, visually dominant (emergency-led: taken up a notch) */
 .txg-btn-call{
   position:relative;
-  font-size:16px;
-  font-weight:600;
-  padding:17px 30px;
-  box-shadow:0 14px 40px -10px rgba(248,199,96,0.65);
+  font-size:17px;
+  font-weight:700;
+  padding:18px 32px;
+  box-shadow:0 16px 46px -10px rgba(248,199,96,0.72);
 }
-.txg-btn-call svg{width:19px;height:19px;}
+.txg-btn-call svg{width:20px;height:20px;}
+.txg-btn-call .txg-btn-call-sub{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  opacity:0.72;
+  margin-left:2px;
+}
 .txg-btn-call::after{
   content:"";
   position:absolute;
   inset:0;
   border-radius:inherit;
-  box-shadow:0 0 0 0 rgba(248,199,96,0.45);
-  animation:txg-ring 2.6s ease-out infinite;
+  box-shadow:0 0 0 0 rgba(248,199,96,0.5);
+  animation:txg-ring 2.4s ease-out infinite;
   pointer-events:none;
 }
 @keyframes txg-ring{
-  0%{box-shadow:0 0 0 0 rgba(248,199,96,0.45);}
-  70%{box-shadow:0 0 0 14px rgba(248,199,96,0);}
+  0%{box-shadow:0 0 0 0 rgba(248,199,96,0.5);}
+  70%{box-shadow:0 0 0 16px rgba(248,199,96,0);}
   100%{box-shadow:0 0 0 0 rgba(248,199,96,0);}
 }
 
@@ -823,8 +985,6 @@
 
 /* ============ responsive ============ */
 @media (max-width:980px){
-  /* keep the header CENTRED on mobile (matches every other section); the
-     list+detail below still stacks left. */
   .txg-head{text-align:center;}
   .txg-head-trust{justify-content:center;}
   .txg-split{grid-template-columns:1fr;gap:30px;}
@@ -840,8 +1000,17 @@
     box-shadow:0 30px 70px -44px rgba(0,0,0,0.9);
   }
   .txg-acc .txg-pnum{font-size:78px;top:16px;right:18px;}
+  /* mobile emergency panel: thicker gold frame + clear the banner */
+  .txg-acc .txg-panel.is-emergency{border-color:rgba(248,199,96,0.32);box-shadow:0 30px 70px -44px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(248,199,96,0.16);}
+  .txg-acc .txg-panel.is-emergency .txg-emg-banner{margin:-26px -22px 22px;padding:13px 22px;}
+  .txg-acc .txg-panel.is-emergency .txg-pnum{top:74px;}
+  .txg-acc .txg-emg-banner .txg-emg-num{margin-left:0;flex-basis:100%;}
   /* mobile: surface the emergency call button right in the list row */
   .txg-option .txg-option-call{display:inline-flex;}
+  /* mobile: the live banner becomes a clean rounded card, not a bloated pill */
+  .txg-live-banner{flex-wrap:wrap;justify-content:center;text-align:center;gap:7px 10px;padding:14px 18px 16px;border-radius:18px;margin-top:20px;}
+  .txg-live-banner .txg-live-copy{flex-basis:100%;line-height:1.4;}
+  .txg-live-banner .txg-live-call{margin-left:0;}
 }
 @media (max-width:560px){
   .txg-wrap{padding:80px 20px 100px;}
@@ -850,15 +1019,21 @@
   .txg-acc .txg-panel{padding:22px 18px 26px;}
   .txg-acc .txg-pnum{font-size:66px;top:14px;right:16px;}
   .txg-btn{padding:13px 20px;font-size:14px;}
-  .txg-btn-call{padding:15px 22px;font-size:15px;flex:1;justify-content:center;}
-  .txg-btn-primary{flex:1;justify-content:center;}
-  .txg-cta .txg-link-quiet{flex-basis:100%;}
+  /* mobile: stack the CTAs full-width so the long call label never wraps into a circle */
+  .txg-cta{flex-direction:column;align-items:stretch;gap:12px;}
+  .txg-btn-call{padding:16px 22px;font-size:15.5px;}
+  .txg-btn-call,.txg-btn-primary,.txg-btn-ghost{flex:none;width:100%;justify-content:center;}
+  .txg-cta .txg-link-quiet{flex-basis:100%;justify-content:center;}
+  .txg-live-banner{width:100%;}
+  .txg-live-banner .txg-live-call{width:100%;justify-content:center;}
 }
 
 @media (prefers-reduced-motion:reduce){
   .txg-root::before,
   .txg-ptag.is-emergency .txg-pdot,
   .txg-live::before,
+  .txg-live-banner .txg-live-pip,
+  .txg-emg-banner .txg-emg-pip,
   .txg-btn-call::after{animation:none;}
   .txg-panel{transition-duration:.001ms;}
 }

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+
+.dn-section{position:relative;padding:clamp(2.6rem,6vw,4.6rem) 0;overflow:hidden;}
+.dn-section::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(70% 60% at 14% 6%, rgba(248,199,96,.10), transparent 60%),
+  radial-gradient(70% 60% at 86% 98%, rgba(69,144,236,.10), transparent 62%);
+  pointer-events:none;z-index:0;}
+.dn-container{position:relative;z-index:1;width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+
+.head{max-width:760px;margin:0 0 .4rem;}
+.head h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2rem,5vw,3.1rem);line-height:1.05;letter-spacing:-.016em;margin:1.1rem 0 .5rem;}
+.head h1 .gold{color:var(--dn-day);font-style:italic;font-weight:380;}
+.head .by{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-faint);}
+.head p{color:var(--dn-bone-dim);max-width:60ch;font-size:1.02rem;}
+
+/* groups */
+.grp{margin-top:clamp(2.2rem,5vw,3.4rem);}
+.grp-head{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;border-bottom:1px solid var(--dn-mist);padding-bottom:.7rem;margin-bottom:1.6rem;}
+.grp-head h2{font-family:var(--font-display);font-weight:380;font-size:1.7rem;letter-spacing:-.01em;margin:0;}
+.grp-head .tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);}
+
+.takes{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+@media(max-width:880px){.takes{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:460px){.takes{grid-template-columns:1fr;}}
+
+.take{position:relative;border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);background:rgba(255,255,255,.022);padding:1.1rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.take .num{position:absolute;top:.7rem;left:.85rem;font-family:var(--font-display);font-weight:600;font-size:.95rem;color:var(--dn-day);}
+.grp.night .take .num{color:var(--dn-night);}
+
+/* medallion holding the 56px icon */
+.medal{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 38%, rgba(255,255,255,.05), rgba(255,255,255,.012));
+  border:1px solid var(--dn-mist);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+  margin:.4rem 0 .9rem;color:var(--dn-day);}
+.grp.night .medal{color:var(--dn-night);}
+.medal svg{width:56px;height:56px;display:block;}
+
+/* the 28px legibility proof row */
+.proof{display:flex;align-items:center;gap:.5rem;color:var(--dn-bone-dim);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;}
+.proof .px{display:grid;place-items:center;width:28px;height:28px;color:var(--dn-bone);}
+.proof .px svg{width:28px;height:28px;display:block;}
+
+.cap{margin-top:.7rem;font-size:.82rem;line-height:1.4;color:var(--dn-bone-dim);}
+.cap b{color:var(--dn-bone);font-weight:600;}
+
+.foot{margin-top:clamp(2.4rem,5vw,3.4rem);border-top:1px solid var(--dn-mist);padding-top:1.2rem;color:var(--dn-bone-faint);font-size:.85rem;max-width:64ch;}
+</style>
+<title>Icon fixes B (symbolic) - Cosmetic / Implant / Denture · Day Night Dental</title>
+</head>
+<body>
+<section class="dn-section">
+  <div class="dn-container">
+
+    <div class="head">
+      <span class="dn-eyebrow dn-pill day">Icon studio B - symbolic</span>
+      <h1>Three icons, drawn <span class="gold">properly</span>.</h1>
+      <p class="by">Studio B - lead with the clearest simple symbol that reads at 28px</p>
+      <p>Cosmetic, implant and denture, each as four distinct ideas in the brand dental line style.
+      viewBox 36, stroke currentColor at about 1.5, round caps and joins, no fills. Every take is
+      shown once big inside a medallion and once at the true 28px nav size to prove it holds up.</p>
+    </div>
+
+    <!-- ───────────────────────── COSMETIC ───────────────────────── -->
+    <div class="grp day">
+      <div class="grp-head">
+        <h2>Cosmetic dentistry</h2>
+        <span class="tag">Smile makeover - how teeth look</span>
+      </div>
+      <div class="takes">
+
+        <!-- 1 even row of smiling teeth -->
+        <div class="take">
+          <span class="num">1</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- a confident upward arc of even teeth: the smile is the form, not a face -->
+              <path d="M5 15 Q18 8 31 15"/>
+              <path d="M7.5 14.2 L7.5 20.5 Q7.5 23 10 23 L26 23 Q28.5 23 28.5 20.5 L28.5 14.2"/>
+              <path d="M12 13 L12 23 M18 11.6 L18 23 M24 13 L24 23"/>
+              <path d="M10 24.6 Q18 30 26 24.6"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 15 Q18 8 31 15"/>
+              <path d="M7.5 14.2 L7.5 20.5 Q7.5 23 10 23 L26 23 Q28.5 23 28.5 20.5 L28.5 14.2"/>
+              <path d="M12 13 L12 23 M18 11.6 L18 23 M24 13 L24 23"/>
+              <path d="M10 24.6 Q18 30 26 24.6"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Even smile row.</b> A bright arc of matched teeth over a smile line. The makeover read, no smiley face.</p>
+        </div>
+
+        <!-- 2 tooth with a veneer facet -->
+        <div class="take">
+          <span class="num">2</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- single tooth, a veneer facet shell laid over the front face -->
+              <path d="M18 7 Q11 7 9.5 13 Q8.5 21 11.5 28 Q13 30.5 14 26.5 Q15 22.5 18 22.5 Q21 22.5 22 26.5 Q23 30.5 24.5 28 Q27.5 21 26.5 13 Q25 7 18 7 Z"/>
+              <!-- the veneer face: a clean facet panel sitting proud on the front -->
+              <path d="M14.4 12 Q18 10.4 21.6 12 Q22.4 17 20.8 21.5 Q18 23 15.2 21.5 Q13.6 17 14.4 12 Z"/>
+              <path d="M18 11.4 L18 22" opacity="0.45"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 7 Q11 7 9.5 13 Q8.5 21 11.5 28 Q13 30.5 14 26.5 Q15 22.5 18 22.5 Q21 22.5 22 26.5 Q23 30.5 24.5 28 Q27.5 21 26.5 13 Q25 7 18 7 Z"/>
+              <path d="M14.4 12 Q18 10.4 21.6 12 Q22.4 17 20.8 21.5 Q18 23 15.2 21.5 Q13.6 17 14.4 12 Z"/>
+              <path d="M18 11.4 L18 22" opacity="0.45"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Veneer facet.</b> A tooth wearing a fitted veneer shell. The exact craft of cosmetic work.</p>
+        </div>
+
+        <!-- 3 tooth with hand-mirror -->
+        <div class="take">
+          <span class="num">3</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- a tooth admiring itself in a small hand mirror -->
+              <path d="M13 7 Q7.5 7 6.3 12 Q5.5 18.5 8 24 Q9.3 26 10.1 22.7 Q10.9 19.4 13 19.4 Q15.1 19.4 15.9 22.7 Q16.7 26 18 24 Q20.5 18.5 19.7 12 Q18.5 7 13 7 Z"/>
+              <!-- round hand mirror to the right -->
+              <circle cx="26" cy="13.5" r="5.4"/>
+              <path d="M26 19 L26 27 M22.8 27 L29.2 27"/>
+              <path d="M24 11.6 Q26.2 10.6 28 11.8" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 7 Q7.5 7 6.3 12 Q5.5 18.5 8 24 Q9.3 26 10.1 22.7 Q10.9 19.4 13 19.4 Q15.1 19.4 15.9 22.7 Q16.7 26 18 24 Q20.5 18.5 19.7 12 Q18.5 7 13 7 Z"/>
+              <circle cx="26" cy="13.5" r="5.4"/>
+              <path d="M26 19 L26 27 M22.8 27 L29.2 27"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Tooth + hand mirror.</b> Appearance is the whole point: a tooth checking its own look.</p>
+        </div>
+
+        <!-- 4 tooth with shine facet sparkle -->
+        <div class="take">
+          <span class="num">4</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- tooth with a beauty-shine diagonal highlight (not a whitening 4-point sparkle) -->
+              <path d="M18 7 Q11 7 9.5 13 Q8.5 21 11.5 28 Q13 30.5 14 26.5 Q15 22.5 18 22.5 Q21 22.5 22 26.5 Q23 30.5 24.5 28 Q27.5 21 26.5 13 Q25 7 18 7 Z"/>
+              <!-- a soft gloss curve, the polished cosmetic shine -->
+              <path d="M13.5 12.5 Q12.5 17 14 21"/>
+              <path d="M16.5 11.8 Q15.8 15 16.6 18.5" opacity="0.55"/>
+              <!-- one tidy four-point glint top-right -->
+              <path d="M25.5 9.5 L25.5 13 M23.8 11.2 L27.2 11.2"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 7 Q11 7 9.5 13 Q8.5 21 11.5 28 Q13 30.5 14 26.5 Q15 22.5 18 22.5 Q21 22.5 22 26.5 Q23 30.5 24.5 28 Q27.5 21 26.5 13 Q25 7 18 7 Z"/>
+              <path d="M13.5 12.5 Q12.5 17 14 21"/>
+              <path d="M25.5 9.5 L25.5 13 M23.8 11.2 L27.2 11.2"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Polished tooth gloss.</b> Twin highlight curves read as a buffed, finished surface, distinct from a plain sparkle.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ───────────────────────── IMPLANT ───────────────────────── -->
+    <div class="grp night">
+      <div class="grp-head">
+        <h2>Dental implant</h2>
+        <span class="tag">Threaded root anchored in the jaw</span>
+      </div>
+      <div class="takes">
+
+        <!-- 1 crown on threaded post -->
+        <div class="take">
+          <span class="num">1</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- crown on top, threaded fixture below -->
+              <path d="M11 13 Q11 7 18 7 Q25 7 25 13 Q25 16 23 17 L13 17 Q11 16 11 13 Z"/>
+              <path d="M14 17 L22 17 L21 21 L15 21 Z"/>
+              <!-- threaded screw post, tapering to a point -->
+              <path d="M15 21 L21 21 L18 31 Z"/>
+              <path d="M15.5 23.5 L20.5 23.5 M16.1 26 L19.9 26 M16.8 28.5 L19.2 28.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 13 Q11 7 18 7 Q25 7 25 13 Q25 16 23 17 L13 17 Q11 16 11 13 Z"/>
+              <path d="M14 17 L22 17 L21 21 L15 21 Z"/>
+              <path d="M15 21 L21 21 L18 31 Z"/>
+              <path d="M15.5 23.5 L20.5 23.5 M16.1 26 L19.9 26 M16.8 28.5 L19.2 28.5"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Crown on threaded post.</b> Crown, abutment collar, screw fixture. The complete implant in one silhouette.</p>
+        </div>
+
+        <!-- 2 post seated below a gum line -->
+        <div class="take">
+          <span class="num">2</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- gum/bone line across the middle gives dental context -->
+              <path d="M5 18 Q11 16 18 16 Q25 16 31 18"/>
+              <!-- crown above the gum -->
+              <path d="M13 16 Q12 9 18 9 Q24 9 23 16"/>
+              <!-- threaded fixture seated below the line -->
+              <path d="M15 18 L21 18 L18.6 28 Q18 29.5 17.4 28 Z"/>
+              <path d="M15.6 20.5 L20.4 20.5 M16.2 23 L19.8 23 M16.9 25.5 L19.1 25.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 18 Q11 16 18 16 Q25 16 31 18"/>
+              <path d="M13 16 Q12 9 18 9 Q24 9 23 16"/>
+              <path d="M15 18 L21 18 L18.6 28 Q18 29.5 17.4 28 Z"/>
+              <path d="M15.6 20.5 L20.4 20.5 M16.2 23 L19.8 23 M16.9 25.5 L19.1 25.5"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Seated below the gum.</b> A gum line splits crown from buried thread. Unmistakably dental, never a loose bolt.</p>
+        </div>
+
+        <!-- 3 exploded fixture + abutment + crown -->
+        <div class="take">
+          <span class="num">3</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- crown -->
+              <path d="M12.5 9.5 Q12 5 18 5 Q24 5 23.5 9.5 Q21 11.5 18 11.5 Q15 11.5 12.5 9.5 Z"/>
+              <!-- abutment, the connector wedge -->
+              <path d="M15.5 13.5 L20.5 13.5 L19.4 17 L16.6 17 Z"/>
+              <!-- threaded fixture, separated to show the parts -->
+              <path d="M15.2 19 L20.8 19 L18 30 Z"/>
+              <path d="M15.9 21.7 L20.1 21.7 M16.5 24.4 L19.5 24.4 M17.1 27.1 L18.9 27.1"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12.5 9.5 Q12 5 18 5 Q24 5 23.5 9.5 Q21 11.5 18 11.5 Q15 11.5 12.5 9.5 Z"/>
+              <path d="M15.5 13.5 L20.5 13.5 L19.4 17 L16.6 17 Z"/>
+              <path d="M15.2 19 L20.8 19 L18 30 Z"/>
+              <path d="M15.9 21.7 L20.1 21.7 M16.5 24.4 L19.5 24.4 M17.1 27.1 L18.9 27.1"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Exploded assembly.</b> Crown, abutment, fixture stacked apart. Reads as the engineered three-part system.</p>
+        </div>
+
+        <!-- 4 natural tooth anchored by a post -->
+        <div class="take">
+          <span class="num">4</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- a tooth-shaped crown carried on a single threaded root -->
+              <path d="M11 12 Q11 6 18 6 Q25 6 25 12 Q25 15 23 16.5 L13 16.5 Q11 15 11 12 Z"/>
+              <!-- one anchoring threaded root descending from the crown -->
+              <path d="M16 16.5 L20 16.5 L18.8 29 Q18 31 17.2 29 Z"/>
+              <path d="M16.4 19.5 L19.6 19.5 M16.7 22.5 L19.3 22.5 M17 25.5 L19 25.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 12 Q11 6 18 6 Q25 6 25 12 Q25 15 23 16.5 L13 16.5 Q11 15 11 12 Z"/>
+              <path d="M16 16.5 L20 16.5 L18.8 29 Q18 31 17.2 29 Z"/>
+              <path d="M16.4 19.5 L19.6 19.5 M16.7 22.5 L19.3 22.5 M17 25.5 L19 25.5"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Tooth on a root.</b> A natural-looking crown growing from a threaded root. The promise: a replacement tooth that holds.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ───────────────────────── DENTURE ───────────────────────── -->
+    <div class="grp day">
+      <div class="grp-head">
+        <h2>Denture</h2>
+        <span class="tag">Removable plate of false teeth</span>
+      </div>
+      <div class="takes">
+
+        <!-- 1 U-arch on a gum base -->
+        <div class="take">
+          <span class="num">1</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- U-shaped gum plate -->
+              <path d="M7 11 L7 18 Q7 27 18 28 Q29 27 29 18 L29 11"/>
+              <!-- the teeth ridge running along the arch -->
+              <path d="M7 14 Q7 22 18 24.5 Q29 22 29 14"/>
+              <!-- tooth divisions across the arch -->
+              <path d="M10 13.4 L10 16 M14 15.3 L14 18.4 M18 16 L18 19.2 M22 15.3 L22 18.4 M26 13.4 L26 16"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 11 L7 18 Q7 27 18 28 Q29 27 29 18 L29 11"/>
+              <path d="M7 14 Q7 22 18 24.5 Q29 22 29 14"/>
+              <path d="M10 13.4 L10 16 M14 15.3 L14 18.4 M18 16 L18 19.2 M22 15.3 L22 18.4 M26 13.4 L26 16"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>U-arch on a gum base.</b> The classic single plate: teeth seated in a horseshoe gum ridge.</p>
+        </div>
+
+        <!-- 2 upper + lower set -->
+        <div class="take">
+          <span class="num">2</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- upper arch, opening down -->
+              <path d="M7 8 Q7 16 18 17 Q29 16 29 8"/>
+              <path d="M11 9.5 L11 12.5 M18 10.5 L18 13.5 M25 9.5 L25 12.5"/>
+              <!-- lower arch, opening up -->
+              <path d="M7 28 Q7 20 18 19 Q29 20 29 28"/>
+              <path d="M11 26.5 L11 23.5 M18 25.5 L18 22.5 M25 26.5 L25 23.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 8 Q7 16 18 17 Q29 16 29 8"/>
+              <path d="M11 9.5 L11 12.5 M18 10.5 L18 13.5 M25 9.5 L25 12.5"/>
+              <path d="M7 28 Q7 20 18 19 Q29 20 29 28"/>
+              <path d="M11 26.5 L11 23.5 M18 25.5 L18 22.5 M25 26.5 L25 23.5"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Full upper and lower set.</b> Two facing arches read instantly as a complete set of false teeth.</p>
+        </div>
+
+        <!-- 3 denture resting in a glass -->
+        <div class="take">
+          <span class="num">3</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- tumbler glass -->
+              <path d="M9 9 L11 30 Q11 31.5 13 31.5 L23 31.5 Q25 31.5 25 30 L27 9"/>
+              <!-- water line -->
+              <path d="M9.7 16 L26.3 16" opacity="0.5"/>
+              <!-- denture arch resting inside the glass -->
+              <path d="M12.5 18 Q12.5 25 18 26.5 Q23.5 25 23.5 18"/>
+              <path d="M14.5 19 L14.5 21.5 M18 19.4 L18 22 M21.5 19 L21.5 21.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 9 L11 30 Q11 31.5 13 31.5 L23 31.5 Q25 31.5 25 30 L27 9"/>
+              <path d="M12.5 18 Q12.5 25 18 26.5 Q23.5 25 23.5 18"/>
+              <path d="M14.5 19 L14.5 21.5 M18 19.4 L18 22 M21.5 19 L21.5 21.5"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Denture in a glass.</b> The unmistakable cultural signal: a removable plate soaking overnight.</p>
+        </div>
+
+        <!-- 4 plate held in fingers -->
+        <div class="take">
+          <span class="num">4</span>
+          <div class="medal">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- U-arch denture plate, tilted, with tooth marks -->
+              <path d="M6 9 Q6 17 18 19 Q30 17 30 9 Q30 7 28 8 Q24 9.5 18 9.5 Q12 9.5 8 8 Q6 7 6 9 Z"/>
+              <path d="M11 9 L11 12 M18 9.5 L18 13 M25 9 L25 12"/>
+              <!-- "removable" cue: a clean lift arrow under the plate -->
+              <path d="M18 22 L18 29 M14.5 25.5 L18 22 L21.5 25.5"/>
+            </svg>
+          </div>
+          <div class="proof"><span class="px">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9 Q6 17 18 19 Q30 17 30 9 Q30 7 28 8 Q24 9.5 18 9.5 Q12 9.5 8 8 Q6 7 6 9 Z"/>
+              <path d="M11 9 L11 12 M18 9.5 L18 13 M25 9 L25 12"/>
+              <path d="M18 22 L18 29 M14.5 25.5 L18 22 L21.5 25.5"/>
+            </svg>
+          </span>28px</div>
+          <p class="cap"><b>Liftable plate.</b> A gum-pink arch over a lift arrow. The defining trait of a denture: it comes out.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="foot">
+      Studio B, symbolic. Picks: <b>Cosmetic</b> - take 2, the veneer facet, names the exact craft.
+      <b>Implant</b> - take 2, the post seated below a gum line, is the most honestly dental.
+      <b>Denture</b> - take 1, the U-arch on a gum base, is the cleanest removable-plate read at 28px.
+    </div>
+
+  </div>
+</section>
+</body>
+</html>

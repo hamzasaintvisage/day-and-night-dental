@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview · Register · The Ledger</title>
+<!-- Inherits real brand tokens, fonts and base component classes. Throwaway mockup under /preview/. -->
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ===========================================================
+     THE LEDGER
+     A single-column editorial registry. Numbered entries
+     (01, 02, 03 ...), thin gold hairline rules between rows,
+     orderly letter-spaced labels in a left marginalia column.
+     Precise, archival, confident. Distinct from the two-column
+     baseline and the split-sheet "quiet ledger".
+     =========================================================== */
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  /* ---- page shell ---- */
+  .lg-wrap{position:relative;overflow-x:clip;}
+  .lg-glow{position:absolute;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0;}
+  .lg-glow.day{width:520px;height:520px;background:var(--dn-day);opacity:.07;top:-80px;left:-200px;}
+  .lg-glow.night{width:560px;height:560px;background:var(--dn-night);opacity:.06;bottom:4%;right:-220px;}
+
+  .lg-sheet{
+    position:relative;z-index:1;
+    max-width:920px;
+    margin-inline:auto;
+    padding:clamp(2.5rem,6vw,5.5rem) clamp(1.1rem,5vw,2.5rem) clamp(3rem,7vw,6rem);
+  }
+
+  /* ---- masthead ---- */
+  .lg-mast{
+    border:1px solid var(--dn-mist);
+    border-top:2px solid var(--dn-day);
+    background:rgba(255,255,255,.012);
+    padding:clamp(1.6rem,3.5vw,2.6rem) clamp(1.4rem,4vw,2.8rem) clamp(1.8rem,4vw,2.6rem);
+  }
+  .lg-mast-top{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;flex-wrap:wrap;
+    padding-bottom:1.25rem;margin-bottom:1.6rem;
+    border-bottom:1px solid var(--dn-mist);
+  }
+  .lg-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:7px 15px;border-radius:999px;
+    background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+    color:var(--dn-day);
+  }
+  .lg-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+  .lg-folio{
+    font-family:var(--font-display);font-weight:600;
+    font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--dn-bone-faint);
+  }
+  .lg-title{
+    font-family:var(--font-display);font-weight:430;letter-spacing:-.02em;line-height:1.02;
+    font-size:clamp(2.3rem,6vw,3.9rem);margin:0;
+  }
+  .lg-title em{font-style:normal;color:var(--dn-day);border-bottom:2px solid var(--dn-day);}
+  .lg-lead{
+    margin:1.3rem 0 0;color:var(--dn-bone-dim);
+    font-size:clamp(1rem,1.4vw,1.1rem);line-height:1.6;max-width:60ch;
+  }
+  .lg-lead b{color:var(--dn-bone);font-weight:600;}
+
+  /* ---- urgent / 24-7 line ---- */
+  .lg-urgent{
+    margin-top:1.5rem;
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:1rem 1.15rem;
+    border:1px solid rgba(69,144,236,.30);
+    background:rgba(69,144,236,.05);
+    border-radius:6px;
+    font-size:.9rem;line-height:1.55;color:var(--dn-bone-dim);
+  }
+  .lg-urgent .pulse{
+    flex:none;width:9px;height:9px;border-radius:50%;margin-top:.45rem;
+    background:var(--dn-night);box-shadow:0 0 0 0 rgba(69,144,236,.55);
+    animation:lgpulse 2.4s ease-out infinite;
+  }
+  @keyframes lgpulse{
+    0%{box-shadow:0 0 0 0 rgba(69,144,236,.55);}
+    70%{box-shadow:0 0 0 10px rgba(69,144,236,0);}
+    100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}
+  }
+  @media (prefers-reduced-motion: reduce){ .lg-urgent .pulse{animation:none;} }
+  .lg-urgent a{color:var(--dn-night-soft);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(125,181,240,.4);}
+  .lg-urgent a:hover{border-bottom-color:var(--dn-night-soft);}
+
+  /* ---- the visit index (value content, as ledger entries) ---- */
+  .lg-index{
+    margin-top:1.25rem;
+    border:1px solid var(--dn-mist);
+    background:rgba(255,255,255,.012);
+  }
+  .lg-index-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    padding:1.1rem clamp(1.2rem,3vw,1.8rem);
+    border-bottom:1px solid var(--dn-mist);
+  }
+  .lg-index-head .k{
+    font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-day);font-weight:600;
+  }
+  .lg-index-head .h{
+    font-family:var(--font-display);font-size:1.15rem;font-weight:500;letter-spacing:-.01em;color:var(--dn-bone);
+  }
+  .lg-entries{list-style:none;margin:0;padding:0;}
+  .lg-entry{
+    display:grid;grid-template-columns:auto 1fr;gap:1.1rem;
+    padding:1.05rem clamp(1.2rem,3vw,1.8rem);
+    border-bottom:1px solid var(--dn-mist);
+  }
+  .lg-entry:last-child{border-bottom:none;}
+  .lg-entry .num{
+    font-family:var(--font-display);font-size:1.05rem;font-weight:600;line-height:1;
+    color:var(--dn-day);padding-top:.15rem;
+  }
+  .lg-entry:nth-child(even) .num{color:var(--dn-night-soft);}
+  .lg-entry h4{
+    margin:0 0 .25rem;font-family:var(--font-display);font-size:1.02rem;font-weight:600;letter-spacing:-.01em;color:var(--dn-bone);
+  }
+  .lg-entry p{margin:0;font-size:.86rem;line-height:1.55;color:var(--dn-bone-dim);}
+
+  /* footer of index: price + facts */
+  .lg-index-foot{
+    display:grid;grid-template-columns:auto 1fr;gap:clamp(1.2rem,3vw,2rem);align-items:center;
+    padding:1.2rem clamp(1.2rem,3vw,1.8rem);
+    border-top:1px solid var(--dn-mist);
+    background:rgba(248,199,96,.025);
+  }
+  .lg-price{display:flex;flex-direction:column;gap:.2rem;}
+  .lg-price .lab{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);}
+  .lg-price .amt{font-family:var(--font-display);font-size:2.3rem;font-weight:600;line-height:1;color:var(--dn-day);}
+  .lg-price .amt .cur{font-size:1.1rem;margin-right:.06em;vertical-align:.18em;}
+  .lg-facts{display:flex;flex-direction:column;gap:.5rem;}
+  .lg-fact{display:flex;align-items:flex-start;gap:.6rem;margin:0;font-size:.83rem;line-height:1.45;color:var(--dn-bone-dim);}
+  .lg-fact .tick{flex:none;color:var(--dn-day);font-family:var(--font-display);font-weight:700;line-height:1.3;}
+  .lg-fact:nth-child(2) .tick{color:var(--dn-night-soft);}
+
+  /* ---- the register / form body ---- */
+  .lg-form{
+    margin-top:clamp(1.5rem,3.5vw,2.2rem);
+    border:1px solid var(--dn-mist);
+    background:rgba(255,255,255,.012);
+  }
+  .lg-group-head{
+    display:flex;align-items:center;gap:1rem;
+    padding:1.05rem clamp(1.2rem,3vw,2rem);
+    border-bottom:1px solid var(--dn-mist);
+    background:var(--dn-charcoal);
+  }
+  .lg-group-head .gn{
+    font-family:var(--font-display);font-size:.95rem;font-weight:600;letter-spacing:.04em;
+    color:var(--dn-day);
+  }
+  .lg-group-head.night .gn{color:var(--dn-night-soft);}
+  .lg-group-head .gt{
+    font-family:var(--font-display);font-size:1.25rem;font-weight:500;letter-spacing:-.01em;color:var(--dn-bone);
+  }
+  .lg-group-head .grule{flex:1;height:1px;background:linear-gradient(90deg,var(--dn-mist),transparent);}
+
+  /* a ledger row: marginalia number + label on the left, field on the right */
+  .lg-row{
+    display:grid;
+    grid-template-columns:3.2rem minmax(0,11rem) 1fr;
+    align-items:start;
+    gap:1.25rem;
+    padding:1.15rem clamp(1.2rem,3vw,2rem);
+    border-bottom:1px solid rgba(248,199,96,.14); /* thin gold hairline rules between rows */
+  }
+  .lg-row:last-child{border-bottom:none;}
+  .lg-rownum{
+    font-family:var(--font-display);font-size:.85rem;font-weight:600;letter-spacing:.05em;
+    color:var(--dn-bone-faint);padding-top:.65rem;font-variant-numeric:tabular-nums;
+  }
+  .lg-rowlab{padding-top:.55rem;}
+  .lg-rowlab .lab{
+    display:block;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-bone-dim);
+  }
+  .lg-rowlab .req{color:var(--dn-day);font-weight:700;margin-left:.15em;}
+  .lg-rowlab .hint{
+    display:block;margin-top:.4rem;font-size:.72rem;letter-spacing:0;text-transform:none;
+    color:var(--dn-bone-faint);line-height:1.45;
+  }
+  .lg-field{min-width:0;}
+
+  /* paired sub-fields inside one field cell */
+  .lg-sub2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+  .lg-sub-lab{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:.4rem;}
+
+  /* inputs */
+  .lg-form input,
+  .lg-form select,
+  .lg-form textarea{
+    width:100%;
+    padding:.8rem .95rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:4px;
+    color:var(--dn-bone);
+    font-family:var(--font-body);
+    font-size:1rem; /* 16px: avoids iOS zoom */
+    line-height:1.35;
+    transition:border-color .25s,box-shadow .25s;
+  }
+  .lg-form input::placeholder,
+  .lg-form textarea::placeholder{color:var(--dn-bone-faint);}
+  .lg-form input:focus,
+  .lg-form select:focus,
+  .lg-form textarea:focus{
+    outline:none;
+    border-color:var(--dn-day);
+    box-shadow:0 0 0 1px var(--dn-day),0 0 26px -10px rgba(248,199,96,.55);
+  }
+  .lg-form textarea{resize:vertical;min-height:96px;}
+  .lg-form select{
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    background-image:
+      linear-gradient(45deg,transparent 50%,var(--dn-bone-dim) 50%),
+      linear-gradient(135deg,var(--dn-bone-dim) 50%,transparent 50%);
+    background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;
+    background-size:5px 5px,5px 5px;
+    background-repeat:no-repeat;
+    padding-right:2.2rem;cursor:pointer;
+  }
+  .lg-dob{display:grid;grid-template-columns:1fr 1.4fr 1.1fr;gap:.7rem;}
+
+  /* care-type cards */
+  .lg-care{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+  .lg-care-card{
+    position:relative;display:flex;flex-direction:column;gap:.25rem;
+    padding:.95rem 1.05rem;border:1px solid var(--dn-mist);border-radius:6px;
+    background:var(--dn-charcoal);cursor:pointer;transition:border-color .25s,background .25s,box-shadow .25s;
+  }
+  .lg-care-card input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
+  .lg-care-card .ct{font-family:var(--font-display);font-size:1.05rem;font-weight:600;letter-spacing:-.01em;color:var(--dn-bone);transition:color .25s;}
+  .lg-care-card .cd{font-size:.74rem;line-height:1.4;color:var(--dn-bone-dim);max-width:88%;}
+  .lg-care-card .cmk{
+    position:absolute;top:.85rem;right:.95rem;width:16px;height:16px;border-radius:50%;
+    border:1px solid var(--dn-bone-faint);transition:all .25s;
+  }
+  .lg-care-card:hover{border-color:var(--dn-bone-faint);}
+  .lg-care-card:has(input:focus-visible){outline:2px solid var(--dn-day);outline-offset:2px;}
+  /* selected states, single colour per card per its tone */
+  .lg-care-card.is-on.day{border-color:var(--dn-day);background:rgba(248,199,96,.06);box-shadow:0 0 26px -12px rgba(248,199,96,.6);}
+  .lg-care-card.is-on.day .ct{color:var(--dn-day);}
+  .lg-care-card.is-on.day .cmk{border-color:var(--dn-day);background:var(--dn-day);box-shadow:inset 0 0 0 3px var(--dn-charcoal);}
+  .lg-care-card.is-on.night{border-color:var(--dn-night);background:rgba(69,144,236,.06);box-shadow:0 0 26px -12px rgba(69,144,236,.6);}
+  .lg-care-card.is-on.night .ct{color:var(--dn-night-soft);}
+  .lg-care-card.is-on.night .cmk{border-color:var(--dn-night);background:var(--dn-night);box-shadow:inset 0 0 0 3px var(--dn-charcoal);}
+
+  /* consent */
+  .lg-consent{
+    display:flex;align-items:flex-start;gap:.85rem;cursor:pointer;
+    padding:1rem 1.1rem;border:1px solid var(--dn-mist);border-radius:6px;background:var(--dn-charcoal);
+  }
+  .lg-consent input{flex:none;width:18px;height:18px;margin-top:1px;accent-color:var(--dn-day);}
+  .lg-consent span{font-size:.83rem;line-height:1.55;color:var(--dn-bone-dim);}
+  .lg-consent a{color:var(--dn-day);text-decoration:none;border-bottom:1px solid rgba(248,199,96,.4);}
+
+  /* ---- sign-off row ---- */
+  .lg-signoff{
+    display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap;
+    padding:clamp(1.3rem,3vw,1.8rem) clamp(1.2rem,3vw,2rem);
+    border-top:2px solid var(--dn-day);
+    background:var(--dn-charcoal);
+  }
+  .lg-signoff-note{margin:0;font-size:.78rem;letter-spacing:.04em;color:var(--dn-bone-faint);max-width:42ch;line-height:1.5;}
+  .lg-signoff-note b{color:var(--dn-bone-dim);font-weight:600;}
+  .dn-btn .arrow{transition:transform .4s cubic-bezier(.16,1,.3,1);}
+  .dn-btn:hover .arrow{transform:translateX(4px);}
+
+  /* ---- responsive: collapse the marginalia column ---- */
+  @media (max-width:760px){
+    .lg-row{
+      grid-template-columns:1fr;
+      gap:.65rem;
+    }
+    .lg-rownum{
+      padding-top:0;display:inline-block;
+      color:var(--dn-day);font-size:.78rem;letter-spacing:.16em;
+    }
+    .lg-rowlab{padding-top:0;}
+    .lg-rowlab .hint{margin-top:.3rem;}
+  }
+  @media (max-width:560px){
+    .lg-care,.lg-sub2{grid-template-columns:1fr;}
+    .lg-dob{grid-template-columns:1fr;}
+    .lg-index-foot{grid-template-columns:1fr;gap:1rem;}
+    .lg-signoff{flex-direction:column;align-items:stretch;}
+    .lg-signoff .dn-btn{justify-content:center;width:100%;}
+    .lg-care-card .cd{max-width:100%;}
+  }
+
+  /* preview-only override so the page scrolls normally when opened standalone */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Ledger</div>
+
+<div class="lg-wrap">
+  <div class="lg-glow day"></div>
+  <div class="lg-glow night"></div>
+
+  <main class="lg-sheet">
+
+    <!-- ===================== MASTHEAD ===================== -->
+    <header class="lg-mast">
+      <div class="lg-mast-top">
+        <span class="lg-eyebrow">New Patients</span>
+        <span class="lg-folio">The Register · Merchant City, Glasgow</span>
+      </div>
+
+      <h1 class="lg-title">Register in <em>three</em> minutes</h1>
+      <p class="lg-lead">
+        We are a new practice in Merchant City and we are taking on patients for every treatment we offer.
+        Complete the entries below and we will <b>confirm your first appointment within one working hour</b>.
+      </p>
+
+      <p class="lg-urgent">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>In pain right now? Do not wait to register,
+          <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.</span>
+      </p>
+
+      <!-- ===== VISIT INDEX (all required value content) ===== -->
+      <section class="lg-index" aria-label="Your first visit, what is included">
+        <div class="lg-index-head">
+          <span class="k">What's Included</span>
+          <span class="h">Your first visit</span>
+        </div>
+        <ul class="lg-entries">
+          <li class="lg-entry">
+            <span class="num">01</span>
+            <div>
+              <h4>Comprehensive examination</h4>
+              <p>A 45-minute full assessment with intra-oral scans and bite analysis, with your assigned dentist.</p>
+            </div>
+          </li>
+          <li class="lg-entry">
+            <span class="num">02</span>
+            <div>
+              <h4>Digital x-rays</h4>
+              <p>Low-dose imaging when it is clinically needed. There are no films to develop, so you are not left waiting.</p>
+            </div>
+          </li>
+          <li class="lg-entry">
+            <span class="num">03</span>
+            <div>
+              <h4>Personalised treatment plan</h4>
+              <p>Written, with the cost of each item set out before any work starts, so you always know where you stand.</p>
+            </div>
+          </li>
+          <li class="lg-entry">
+            <span class="num">04</span>
+            <div>
+              <h4>Hygiene appointment</h4>
+              <p>Booked in alongside your examination, so you leave with a proper clean and a fresh start.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="lg-index-foot">
+          <div class="lg-price">
+            <span class="lab">First visit from</span>
+            <span class="amt"><span class="cur">£</span>95</span>
+          </div>
+          <div class="lg-facts">
+            <p class="lg-fact"><span class="tick">+</span><span>Children under 18 are examined free.</span></p>
+            <p class="lg-fact"><span class="tick">+</span><span>NHS care is by waiting list when we have space.</span></p>
+            <p class="lg-fact"><span class="tick">+</span><span>We confirm the cost of your first visit before anything goes ahead, so there are no surprises.</span></p>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- ===================== THE REGISTER FORM ===================== -->
+    <form class="lg-form" onsubmit="return false;">
+
+      <!-- ---- Group A: Your details ---- -->
+      <div class="lg-group-head">
+        <span class="gn">A.</span>
+        <span class="gt">Your details</span>
+        <span class="grule" aria-hidden="true"></span>
+      </div>
+
+      <!-- 01 first name -->
+      <div class="lg-row">
+        <span class="lg-rownum">01</span>
+        <label class="lg-rowlab" for="lg-first"><span class="lab">First name<span class="req">*</span></span></label>
+        <div class="lg-field"><input id="lg-first" type="text" name="firstName" autocomplete="given-name" placeholder="Hamza"></div>
+      </div>
+
+      <!-- 02 last name -->
+      <div class="lg-row">
+        <span class="lg-rownum">02</span>
+        <label class="lg-rowlab" for="lg-last"><span class="lab">Last name<span class="req">*</span></span></label>
+        <div class="lg-field"><input id="lg-last" type="text" name="lastName" autocomplete="family-name" placeholder="Abrar"></div>
+      </div>
+
+      <!-- 03 date of birth -->
+      <div class="lg-row">
+        <span class="lg-rownum">03</span>
+        <span class="lg-rowlab">
+          <span class="lab">Date of birth<span class="req">*</span></span>
+          <span class="hint">Day, month and year.</span>
+        </span>
+        <div class="lg-field">
+          <div class="lg-dob">
+            <div>
+              <span class="lg-sub-lab">Day</span>
+              <select name="dobDay" aria-label="Day of birth">
+                <option value="" selected>Day</option>
+                <option>01</option><option>02</option><option>14</option><option>23</option><option>31</option>
+              </select>
+            </div>
+            <div>
+              <span class="lg-sub-lab">Month</span>
+              <select name="dobMonth" aria-label="Month of birth">
+                <option value="" selected>Month</option>
+                <option>January</option><option>April</option><option>July</option><option>October</option><option>December</option>
+              </select>
+            </div>
+            <div>
+              <span class="lg-sub-lab">Year</span>
+              <select name="dobYear" aria-label="Year of birth">
+                <option value="" selected>Year</option>
+                <option>2008</option><option>1999</option><option>1985</option><option>1970</option><option>1955</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 phone -->
+      <div class="lg-row">
+        <span class="lg-rownum">04</span>
+        <label class="lg-rowlab" for="lg-phone"><span class="lab">Phone<span class="req">*</span></span></label>
+        <div class="lg-field"><input id="lg-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number"></div>
+      </div>
+
+      <!-- 05 email -->
+      <div class="lg-row">
+        <span class="lg-rownum">05</span>
+        <label class="lg-rowlab" for="lg-email"><span class="lab">Email<span class="req">*</span></span></label>
+        <div class="lg-field"><input id="lg-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com"></div>
+      </div>
+
+      <!-- 06 / 07 address + postcode -->
+      <div class="lg-row">
+        <span class="lg-rownum">06</span>
+        <span class="lg-rowlab">
+          <span class="lab">Address &amp; postcode</span>
+          <span class="hint">Address is optional. Postcode is required.</span>
+        </span>
+        <div class="lg-field">
+          <div class="lg-sub2">
+            <div>
+              <span class="lg-sub-lab">Address</span>
+              <input type="text" name="address" autocomplete="street-address" placeholder="Street address (optional)">
+            </div>
+            <div>
+              <span class="lg-sub-lab">Postcode <span class="req" style="color:var(--dn-day);font-weight:700">*</span></span>
+              <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- Group B: Your care ---- -->
+      <div class="lg-group-head night">
+        <span class="gn">B.</span>
+        <span class="gt">Your care</span>
+        <span class="grule" aria-hidden="true"></span>
+      </div>
+
+      <!-- 07 care type -->
+      <div class="lg-row">
+        <span class="lg-rownum">07</span>
+        <span class="lg-rowlab">
+          <span class="lab">Care type<span class="req">*</span></span>
+          <span class="hint">Choose one. Nothing is locked in.</span>
+        </span>
+        <div class="lg-field">
+          <div class="lg-care" data-care role="radiogroup" aria-label="Care type">
+            <label class="lg-care-card day">
+              <input type="radio" name="careType" value="private">
+              <span class="cmk" aria-hidden="true"></span>
+              <span class="ct">Private</span>
+              <span class="cd">Full choice of times and treatments</span>
+            </label>
+            <label class="lg-care-card night">
+              <input type="radio" name="careType" value="nhs">
+              <span class="cmk" aria-hidden="true"></span>
+              <span class="ct">NHS</span>
+              <span class="cd">Waiting list, when we have space</span>
+            </label>
+            <label class="lg-care-card day">
+              <input type="radio" name="careType" value="mixed">
+              <span class="cmk" aria-hidden="true"></span>
+              <span class="ct">Either</span>
+              <span class="cd">Whatever gets you seen soonest</span>
+            </label>
+            <label class="lg-care-card night">
+              <input type="radio" name="careType" value="unsure">
+              <span class="cmk" aria-hidden="true"></span>
+              <span class="ct">Not sure yet</span>
+              <span class="cd">We'll talk it through on the call</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 how did you hear -->
+      <div class="lg-row">
+        <span class="lg-rownum">08</span>
+        <label class="lg-rowlab" for="lg-ref"><span class="lab">How did you hear about us?</span></label>
+        <div class="lg-field">
+          <select id="lg-ref" name="referral" aria-label="How did you hear about us?">
+            <option value="" selected>Optional</option>
+            <option>Google search</option>
+            <option>Friend or family</option>
+            <option>Instagram</option>
+            <option>Walked past the practice</option>
+            <option>Existing patient</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 09 needs -->
+      <div class="lg-row">
+        <span class="lg-rownum">09</span>
+        <label class="lg-rowlab" for="lg-notes">
+          <span class="lab">What do you need help with?</span>
+          <span class="hint">Optional, but it helps us prepare for your call.</span>
+        </label>
+        <div class="lg-field">
+          <textarea id="lg-notes" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+        </div>
+      </div>
+
+      <!-- 10 consent -->
+      <div class="lg-row">
+        <span class="lg-rownum">10</span>
+        <span class="lg-rowlab"><span class="lab">Consent<span class="req">*</span></span></span>
+        <div class="lg-field">
+          <label class="lg-consent">
+            <input type="checkbox" name="consent">
+            <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- sign-off -->
+      <div class="lg-signoff">
+        <p class="lg-signoff-note">
+          <b>Register in three minutes.</b> Once filed, we confirm your first appointment within one working hour.
+        </p>
+        <button type="submit" class="dn-btn primary">Complete Registration <span class="arrow" aria-hidden="true">→</span></button>
+      </div>
+
+    </form>
+  </main>
+</div>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Pulse - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE PULSE - a LIVE "open now" hero.
+   A bold gold ECG / heartbeat trace runs the full width behind the
+   statement, with a pulsing live dot and an "OPEN NOW, 24/7" status
+   pill. The trace is a static inline SVG path: it renders complete
+   with JS disabled. JS only adds a sweeping scanner glow + dot that
+   rides the same path; no clock or random APIs are used. Solid gold
+   day-side, solid blue night-side, never a gold-to-blue blend.
+   Continuous gold/blue depth-glow on a dark near-black ground.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.4rem,8vw,6.5rem) 0;
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(70% 60% at 12% 6%, rgba(248,199,96,.12), transparent 60%),
+    radial-gradient(70% 60% at 88% 96%, rgba(69,144,236,.11), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── the full-bleed ECG trace, behind the statement ── */
+.dn-ecg{
+  position:absolute;
+  left:0; right:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:100%;
+  height:clamp(220px,42vw,440px);
+  z-index:0;
+  pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.dn-ecg svg{width:100%;height:100%;display:block;}
+/* faint baseline grid lines */
+.dn-ecg .grid{stroke:rgba(255,255,255,.045);stroke-width:1;}
+/* the static gold heartbeat trace (always visible, JS or not) */
+.dn-ecg .trace{
+  fill:none;
+  stroke:var(--dn-day);
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 10px rgba(248,199,96,.55));
+  opacity:.9;
+}
+/* a soft under-trace echo for depth */
+.dn-ecg .trace-soft{
+  fill:none;
+  stroke:rgba(248,199,96,.18);
+  stroke-width:9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+/* the moving scanner segment + dot, added/animated by JS only */
+.dn-ecg .scan{
+  fill:none;
+  stroke:var(--dn-bone);
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  /* dash describes the lit segment length; CSS animates the offset so it
+     drifts even with JS off, but the underlying gold trace already reads */
+  stroke-dasharray:130 3000;
+  stroke-dashoffset:0;
+  filter:drop-shadow(0 0 7px rgba(255,255,255,.9));
+  animation:dn-sweep 7s linear infinite;
+  opacity:.85;
+}
+.dn-ecg .scan-dot{
+  fill:var(--dn-bone);
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.95)) drop-shadow(0 0 14px rgba(248,199,96,.7));
+  opacity:0;
+}
+@keyframes dn-sweep{
+  from{stroke-dashoffset:0;}
+  to{stroke-dashoffset:-3130;}
+}
+
+/* ── live status pill ── */
+.dn-status{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  padding:9px 18px 9px 14px;
+  border-radius:999px;
+  background:rgba(248,199,96,.08);
+  border:1px solid rgba(248,199,96,.4);
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:.74rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--dn-day);
+}
+.dn-livedot{
+  position:relative;
+  width:11px;height:11px;
+  flex:0 0 auto;
+}
+.dn-livedot::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:0 0 8px rgba(248,199,96,.9);
+}
+.dn-livedot::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:var(--dn-day);
+  animation:dn-ping 1.9s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes dn-ping{
+  0%{transform:scale(1);opacity:.7;}
+  80%,100%{transform:scale(3.2);opacity:0;}
+}
+
+/* ── the static statement, centred over the trace ── */
+.dn-stage{
+  position:relative;
+  z-index:2;
+  max-width:880px;
+  margin:0 auto;
+  padding:clamp(2.2rem,5vw,3.8rem) 0;
+  text-align:center;
+}
+.dn-stage .dn-eyebrow{margin-bottom:1.4rem;}
+.dn-stage .dn-status{margin-bottom:1.6rem;}
+
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.3rem,6vw,4.4rem);
+  line-height:1.04;
+  letter-spacing:-.018em;
+  margin:0 auto;
+  max-width:17ch;
+  color:var(--dn-bone);
+  /* legibility halo over the trace */
+  text-shadow:0 2px 30px rgba(10,10,12,.95), 0 0 14px rgba(10,10,12,.85);
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:380;}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(1.3rem,2.6vw,1.95rem);
+  line-height:1.3;
+  letter-spacing:-.008em;
+  margin:clamp(1.5rem,3vw,2.1rem) auto 0;
+  color:var(--dn-bone-dim);
+  text-shadow:0 2px 22px rgba(10,10,12,.9);
+}
+.dn-lead .day{color:var(--dn-day);}
+.dn-lead .night{color:var(--dn-night);}
+
+.dn-body{
+  margin:clamp(1.3rem,2.6vw,1.7rem) auto 0;
+  max-width:52ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.4vw,1.08rem);
+  line-height:1.78;
+  text-shadow:0 1px 18px rgba(10,10,12,.85);
+}
+
+/* ── three live "vital" readouts, day side gold / night side blue ── */
+.dn-vitals{
+  list-style:none;
+  margin:clamp(2rem,4vw,2.8rem) auto 0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.8rem;
+}
+.dn-vital{
+  flex:1 1 200px;
+  max-width:260px;
+  min-width:0;
+  text-align:left;
+  padding:16px 18px;
+  border-radius:14px;
+  background:rgba(10,10,12,.55);
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+  border:1px solid var(--dn-mist);
+  border-left:2px solid var(--accent,var(--dn-day));
+}
+.dn-vital .when{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent,var(--dn-day));
+  margin-bottom:.5rem;
+}
+.dn-vital .when::before{
+  content:'';
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent,var(--dn-day));
+  box-shadow:0 0 7px var(--accent,var(--dn-day));
+}
+.dn-vital .what{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:1.18rem;
+  line-height:1.2;
+  color:var(--dn-bone);
+}
+.dn-vital.night{--accent:var(--dn-night);}
+
+/* ── byline + team link ── */
+.dn-by{
+  margin:clamp(2rem,4vw,2.6rem) auto 0;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  margin-top:1rem;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-ecg .scan{animation:none;opacity:0;}
+  .dn-livedot::after{animation:none;display:none;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-vital{flex:1 1 100%;max-width:340px;}
+  .dn-ecg{height:clamp(180px,60vw,300px);}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-headline{font-size:2.05rem;}
+  .dn-status{font-size:.66rem;letter-spacing:.16em;padding:8px 14px 8px 12px;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Pulse</b> <span class="lab-lens">live</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+
+  <!-- full-bleed gold ECG heartbeat trace; static, renders with JS off -->
+  <div class="dn-ecg" aria-hidden="true">
+    <svg viewBox="0 0 1200 300" preserveAspectRatio="none" fill="none">
+      <line class="grid" x1="0" y1="75" x2="1200" y2="75"></line>
+      <line class="grid" x1="0" y1="150" x2="1200" y2="150"></line>
+      <line class="grid" x1="0" y1="225" x2="1200" y2="225"></line>
+      <path class="trace-soft" d="M-20 150 H120 l18 -10 18 20 22 -90 26 168 20 -88 H300 l16 -8 16 16 H420 l22 -118 26 196 22 -78 H560 l18 -9 18 18 H660 l24 -126 26 206 22 -80 H820 l16 -8 16 16 H940 l22 -110 26 184 22 -74 H1080 l18 -9 18 18 H1240"></path>
+      <path class="trace" d="M-20 150 H120 l18 -10 18 20 22 -90 26 168 20 -88 H300 l16 -8 16 16 H420 l22 -118 26 196 22 -78 H560 l18 -9 18 18 H660 l24 -126 26 206 22 -80 H820 l16 -8 16 16 H940 l22 -110 26 184 22 -74 H1080 l18 -9 18 18 H1240"></path>
+      <path class="scan" d="M-20 150 H120 l18 -10 18 20 22 -90 26 168 20 -88 H300 l16 -8 16 16 H420 l22 -118 26 196 22 -78 H560 l18 -9 18 18 H660 l24 -126 26 206 22 -80 H820 l16 -8 16 16 H940 l22 -110 26 184 22 -74 H1080 l18 -9 18 18 H1240"></path>
+      <circle class="scan-dot" r="5" cx="-20" cy="150"></circle>
+    </svg>
+  </div>
+
+  <div class="dn-container">
+    <div class="dn-stage">
+      <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+      <div class="dn-status"><span class="dn-livedot" aria-hidden="true"></span>Open now, 24/7</div>
+
+      <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+
+      <p class="dn-lead">
+        <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+      </p>
+
+      <p class="dn-body">
+        We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+        weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+        consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+        to look after your teeth.
+      </p>
+
+      <ul class="dn-vitals">
+        <li class="dn-vital day">
+          <span class="when">Early mornings</span>
+          <span class="what">Before the school run</span>
+        </li>
+        <li class="dn-vital day">
+          <span class="when">Daytime and evenings</span>
+          <span class="what">On your lunch break</span>
+        </li>
+        <li class="dn-vital night">
+          <span class="when">24-hour emergency line</span>
+          <span class="what">Or at midnight</span>
+        </li>
+      </ul>
+
+      <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+      <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  // The gold ECG trace is fully static in the SVG above; it reads with JS off.
+  // This only rides a bright "scanner" dot along the same path so the trace
+  // feels alive. No clock, no randomness - just geometric path sampling.
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(prefersReduced) return;
+
+  var scan = document.querySelector('.dn-ecg .scan');
+  var dot = document.querySelector('.dn-ecg .scan-dot');
+  if(!scan || !dot || typeof scan.getTotalLength !== 'function') return;
+
+  var len = scan.getTotalLength();
+  var period = 7000; // ms, must match the CSS .scan sweep duration
+  var start = null;
+
+  function frame(t){
+    if(start === null) start = t;
+    var phase = ((t - start) % period) / period; // 0..1, deterministic
+    // The lit dash segment is 130 units long and travels the whole path.
+    // Place the dot near the leading edge of that segment.
+    var d = (phase * (len + 130)) - 65;
+    if(d < 0) d = 0;
+    if(d > len) d = len;
+    var p = scan.getPointAtLength(d);
+    dot.setAttribute('cx', p.x);
+    dot.setAttribute('cy', p.y);
+    dot.style.opacity = (d > 4 && d < len - 4) ? '1' : '0';
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

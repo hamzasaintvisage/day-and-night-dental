@@ -9,7 +9,7 @@ const data = {
   ctaPrimaryLabel: 'Book a Consultation',
   lastReviewed: '2026-06-16',
   lastReviewedLabel: 'June 2026',
-  title: (<>A precise, lab-made repair, the <em>sensible middle ground</em></>),
+  title: (<>Inlays and onlays, a precise repair, the <em>sensible middle ground</em></>),
   lead: "A precise, lab-made repair for a tooth that is too damaged for a normal filling but does not yet need a full crown.",
   seo: { title: "Inlays and Onlays in Glasgow | Day Night Dental", description: "Tooth-coloured inlays and onlays in Glasgow. A precise, lab-made middle ground between a filling and a crown. Day and evening appointments, 7 days a week." },
   meta: [{"k": "Best for", "v": "Heavily filled back teeth", "tone": "day"}, {"k": "Visits", "v": "Usually two", "tone": ""}, {"k": "Finish", "v": "Tooth-coloured", "tone": "night"}],

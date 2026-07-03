@@ -15,7 +15,7 @@ const order = ['real-smiles', 'registration', 'where-we-serve', 'team', 'faq', '
 const EVOLVED = new Set(['where-we-serve', 'book', 'registration']); // sections whose existing previews were evolved this round
 const esc = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-const dirs = fs.readdirSync(SRC).filter((d) => { try { return fs.statSync(path.join(SRC, d)).isDirectory(); } catch (e) { return false; } });
+const dirs = fs.readdirSync(SRC).filter((d) => { if (d === 'icons' || d.startsWith('_')) return false; try { return fs.statSync(path.join(SRC, d)).isDirectory(); } catch (e) { return false; } });
 const secs = [...new Set([...order.filter((o) => dirs.includes(o)), ...dirs])];
 
 const read = (sec) => fs.readdirSync(path.join(SRC, sec)).filter((f) => f.endsWith('.html')).map((f) => {

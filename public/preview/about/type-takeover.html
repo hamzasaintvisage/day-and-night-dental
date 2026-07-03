@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Type Takeover - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   TYPE TAKEOVER - a full-bleed typographic poster.
+   The headline is the whole stage: "office" is visibly CANCELLED
+   (a gold strike is drawn through it, once, on load) while
+   "REAL LIFE" dominates edge to edge. No scrolling bands; one giant
+   kinetic statement. Solid gold day-side / solid blue night-side,
+   never a gold-to-blue blend. With JS off the page renders its full
+   default state: "office" already struck, "real life" already in.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  min-height:calc(100vh - 49px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(2.4rem,6vw,4.4rem) 0;
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, hard-separated, no blend */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(78% 64% at 8% 4%, rgba(248,199,96,.13), transparent 58%),
+    radial-gradient(78% 64% at 92% 98%, rgba(69,144,236,.12), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+/* a faint oversized ghost word anchoring the poster behind everything */
+.dn-section::after{
+  content:'24/7';
+  position:absolute;
+  right:clamp(-2rem,2vw,2rem);
+  bottom:clamp(-1.5rem,-2vw,0rem);
+  font-family:var(--font-display);
+  font-weight:300;
+  font-size:clamp(9rem,30vw,26rem);
+  line-height:.8;
+  letter-spacing:-.04em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.045);
+  pointer-events:none;
+  z-index:0;
+  user-select:none;
+}
+
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,44px);
+}
+
+.dn-eyebrow{margin-bottom:clamp(1.4rem,3vw,2.1rem);}
+
+/* ── the giant takeover headline ── */
+.dn-takeover{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:340;
+  line-height:.92;
+  letter-spacing:-.022em;
+  color:var(--dn-bone);
+}
+.dn-tk-line{display:block;}
+.dn-tk-small{
+  font-size:clamp(2rem,6.4vw,4.6rem);
+  font-weight:330;
+  letter-spacing:-.018em;
+  color:var(--dn-bone-dim);
+}
+/* "real life" runs edge to edge, the loud line */
+.dn-tk-huge{
+  font-size:clamp(3.6rem,17vw,14rem);
+  font-weight:380;
+  letter-spacing:-.038em;
+  line-height:.86;
+  text-transform:uppercase;
+  margin-top:.06em;
+}
+.dn-tk-real{color:var(--dn-day);font-style:italic;}
+.dn-tk-life{color:var(--dn-bone);}
+
+/* the "not [office] hours" line where office gets cancelled */
+.dn-tk-not{
+  display:block;
+  margin-top:clamp(.5rem,1.6vw,1rem);
+  font-size:clamp(1.5rem,4.6vw,3.2rem);
+  font-weight:330;
+  letter-spacing:-.014em;
+  color:var(--dn-bone-faint);
+}
+/* the cancelled word */
+.dn-strike{
+  position:relative;
+  display:inline-block;
+  color:var(--dn-bone-dim);
+  white-space:nowrap;
+}
+.dn-strike > .word{position:relative;z-index:1;}
+/* the drawn gold cancel line */
+.dn-strike::after{
+  content:'';
+  position:absolute;
+  left:-.04em;right:-.04em;
+  top:52%;
+  height:.085em;
+  min-height:3px;
+  background:var(--dn-day);
+  border-radius:999px;
+  transform:scaleX(1);
+  transform-origin:left center;
+  z-index:2;
+  box-shadow:0 0 14px rgba(248,199,96,.5);
+}
+/* JS-on: start uncut, then draw once */
+.js .dn-strike::after{transform:scaleX(0);}
+.js .dn-strike.is-cut::after{
+  transform:scaleX(1);
+  transition:transform .62s cubic-bezier(.7,0,.2,1);
+}
+.dn-tk-hours{color:var(--dn-bone-dim);}
+
+/* ── lead, body, byline below the poster ── */
+.dn-lower{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(1.6rem,4vw,3.4rem);
+  align-items:end;
+  margin-top:clamp(2.2rem,5vw,3.6rem);
+}
+.dn-lead{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(1.5rem,3.4vw,2.4rem);
+  line-height:1.16;
+  letter-spacing:-.012em;
+  color:var(--dn-bone);
+}
+.dn-lead .day{color:var(--dn-day);}
+.dn-lead .night{color:var(--dn-night);}
+.dn-body{
+  margin:0;
+  max-width:46ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.4vw,1.1rem);
+  line-height:1.74;
+}
+
+.dn-foot{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem 1.4rem;
+  margin-top:clamp(2rem,4.4vw,3rem);
+  padding-top:clamp(1.4rem,3vw,2rem);
+  border-top:1px solid var(--dn-mist);
+}
+.dn-by{
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1.02rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+@media (prefers-reduced-motion:reduce){
+  .js .dn-strike::after{transform:scaleX(1);transition:none;}
+}
+
+/* ── tablet / mobile ── */
+@media (max-width:820px){
+  .dn-lower{grid-template-columns:1fr;align-items:start;gap:clamp(1.2rem,4vw,1.8rem);}
+}
+@media (max-width:560px){
+  .dn-section{min-height:0;}
+  .dn-tk-huge{font-size:clamp(3.2rem,19vw,5.6rem);}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-tk-huge{font-size:clamp(2.9rem,20vw,4.4rem);}
+  .dn-tk-small{font-size:1.85rem;}
+  .dn-tk-not{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Type Takeover</b> <span class="lab-lens">kinetic</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+    <h2 class="dn-takeover" id="about-heading">
+      <span class="dn-tk-line dn-tk-small">Built for</span>
+      <span class="dn-tk-line dn-tk-huge"><span class="dn-tk-real">Real</span> <span class="dn-tk-life">life</span>,</span>
+      <span class="dn-tk-not">not <span class="dn-strike" data-cut><span class="word">office</span></span> <span class="dn-tk-hours">hours.</span></span>
+    </h2>
+
+    <div class="dn-lower">
+      <p class="dn-lead">
+        <span class="day">Daytime</span> dentistry.<br>
+        <span class="night">Night-time</span> emergencies.
+      </p>
+      <p class="dn-body">
+        We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+        weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+        consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+        to look after your teeth.
+      </p>
+    </div>
+
+    <div class="dn-foot">
+      <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+      <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Progressive enhancement: with JS off, "office" is already struck (default
+  // CSS draws the full cancel line). With JS on we start it uncut, then draw the
+  // strike once when the headline scrolls into view, for a single kinetic cancel.
+  var root = document.documentElement;
+  root.classList.add('js');
+  var strike = document.querySelector('.dn-strike[data-cut]');
+  if(!strike) return;
+
+  function cut(){ strike.classList.add('is-cut'); }
+
+  if(!('IntersectionObserver' in window)){ cut(); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        // small delay so the eye lands on "office" before it's cancelled
+        window.setTimeout(cut, 280);
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  io.observe(strike);
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

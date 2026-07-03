@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Billboard - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE BILLBOARD - an out-of-home / hoarding mockup.
+   The "Why We're Different" statement rendered at city-scale on a
+   physical billboard board: a posted card lifted off a steel
+   mounting frame, with rivets, a brand topper, an OOH spec strip,
+   and a small "Merchant City, Glasgow" location tagline as if the
+   poster were planted on a street corner. The headline is oversized
+   and punchy; the day/night lead is the strapline. Solid gold
+   day-side, solid blue night-side, never a gold-to-blue blend.
+   The page renders fully with JS disabled; the only script is a
+   light parallax/tilt on the board and a spotlight sweep, both
+   gated behind prefers-reduced-motion and a no-op without JS.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(2.4rem,6vw,4.6rem) 0 clamp(3rem,7vw,5.4rem);
+  overflow:hidden;
+  perspective:1600px;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(72% 62% at 12% 6%, rgba(248,199,96,.12), transparent 60%),
+    radial-gradient(72% 62% at 88% 98%, rgba(69,144,236,.12), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+/* faint blueprint grid behind the board, like a hoarding site board */
+.dn-section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 40%,#000,transparent 78%);
+          mask-image:radial-gradient(120% 90% at 50% 40%,#000,transparent 78%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── the mounting rig: posts + cross-beams the board hangs from ── */
+.dn-rig{
+  position:relative;
+  margin:0 auto;
+  max-width:1020px;
+  padding-top:clamp(1.4rem,3.4vw,2.4rem);
+}
+/* OOH spec strip across the very top, like a media-owner ribbon */
+.dn-spec{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:.6rem 1.2rem;
+  margin:0 auto clamp(1rem,2.4vw,1.6rem);
+  padding:0 .2rem;
+  font-size:.6rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-bone-faint);
+}
+.dn-spec .seg{display:inline-flex;align-items:center;gap:.5rem;}
+.dn-spec .dot{width:6px;height:6px;border-radius:50%;background:var(--dn-day);box-shadow:0 0 8px rgba(248,199,96,.6);}
+.dn-spec .dot.night{background:var(--dn-night);box-shadow:0 0 8px rgba(69,144,236,.6);}
+.dn-spec .rule{flex:1 1 40px;height:1px;min-width:18px;background:var(--dn-mist);}
+
+/* the board itself, tilted slightly toward the viewer */
+.dn-board-wrap{
+  position:relative;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .25s ease-out;
+}
+.dn-board{
+  position:relative;
+  border-radius:20px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.012)),
+    var(--dn-charcoal);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.06) inset,
+    0 50px 90px -40px rgba(0,0,0,.9),
+    0 0 0 10px rgba(255,255,255,.015);
+  padding:clamp(1.8rem,4.4vw,3.4rem) clamp(1.4rem,4vw,3.2rem) clamp(2rem,4.4vw,3rem);
+  overflow:hidden;
+}
+/* the lit poster face glow: gold on the upper-left, blue on the lower-right, hard-separated */
+.dn-board::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(60% 70% at 6% 0%, rgba(248,199,96,.14), transparent 58%),
+    radial-gradient(60% 70% at 96% 100%, rgba(69,144,236,.14), transparent 60%);
+  pointer-events:none;
+}
+/* a moving spotlight wash, like a billboard floodlight; subtle, decorative */
+.dn-spot{
+  position:absolute;
+  top:-30%;
+  left:var(--spot,18%);
+  width:48%;
+  height:160%;
+  background:radial-gradient(closest-side, rgba(255,255,255,.07), transparent 72%);
+  pointer-events:none;
+  transition:left .9s cubic-bezier(.4,0,.2,1);
+  z-index:0;
+}
+/* corner rivets / bolts holding the board to its frame */
+.dn-rivet{
+  position:absolute;
+  width:13px;height:13px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #3a3a44, #0c0c10 70%);
+  box-shadow:0 1px 1px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.07);
+  z-index:3;
+}
+.dn-rivet.tl{top:14px;left:14px;}
+.dn-rivet.tr{top:14px;right:14px;}
+.dn-rivet.bl{bottom:14px;left:14px;}
+.dn-rivet.br{bottom:14px;right:14px;}
+
+.dn-face{position:relative;z-index:2;text-align:center;}
+
+/* brand topper: the media-owner / advertiser line on the board */
+.dn-topper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.85rem;
+  margin-bottom:clamp(1.2rem,2.6vw,1.7rem);
+}
+.dn-topper .mark{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(.95rem,1.6vw,1.18rem);
+  letter-spacing:.01em;
+  color:var(--dn-bone);
+}
+.dn-topper .mark .d{color:var(--dn-day);}
+.dn-topper .mark .n{color:var(--dn-night);}
+.dn-topper .mark .glyph{
+  width:14px;height:14px;border-radius:50%;
+  background:
+    linear-gradient(90deg, var(--dn-day) 0 50%, var(--dn-night) 50% 100%);
+  box-shadow:0 0 0 3px rgba(255,255,255,.04);
+}
+.dn-topper .topper-rule{flex:0 0 clamp(28px,8vw,64px);height:1px;background:var(--dn-mist);}
+
+.dn-face .dn-eyebrow{margin-bottom:clamp(1.1rem,2.4vw,1.6rem);}
+
+/* THE STATEMENT - oversized poster headline */
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:420;
+  font-size:clamp(2.7rem,9.4vw,7.2rem);
+  line-height:.96;
+  letter-spacing:-.022em;
+  margin:0 auto;
+  max-width:13ch;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:440;}
+
+/* the strapline - day/night lead, set big under the headline */
+.dn-strap{
+  font-family:var(--font-display);
+  font-weight:360;
+  font-size:clamp(1.45rem,4vw,2.8rem);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  margin:clamp(1.3rem,3vw,2rem) auto 0;
+  color:var(--dn-bone-dim);
+}
+.dn-strap .day{color:var(--dn-day);}
+.dn-strap .night{color:var(--dn-night);}
+
+/* hard-stop seam: a gold half / blue half divider, never a blend */
+.dn-seam{
+  display:flex;
+  width:min(420px,80%);
+  height:4px;
+  margin:clamp(1.5rem,3vw,2.2rem) auto 0;
+  border-radius:999px;
+  overflow:hidden;
+}
+.dn-seam .s-day{flex:1;background:var(--dn-day);}
+.dn-seam .s-night{flex:1;background:var(--dn-night);}
+
+.dn-body{
+  margin:clamp(1.4rem,3vw,1.9rem) auto 0;
+  max-width:58ch;
+  color:var(--dn-bone-dim);
+  font-size:clamp(1.02rem,1.5vw,1.16rem);
+  line-height:1.78;
+}
+
+/* the small location tagline + team link, footer-of-poster */
+.dn-footer{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:1rem 1.6rem;
+  margin:clamp(1.8rem,3.6vw,2.6rem) auto 0;
+}
+.dn-by{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-bone-faint);
+}
+.dn-by .pin{width:9px;height:9px;border-radius:50% 50% 50% 0;transform:rotate(45deg);background:var(--dn-day);}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+/* ── the support posts under the board, like real hoarding legs ── */
+.dn-legs{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  gap:clamp(120px,32vw,360px);
+  margin:-1px auto 0;
+  height:clamp(34px,7vw,64px);
+}
+.dn-legs .leg{
+  width:clamp(14px,2.2vw,22px);
+  background:linear-gradient(90deg, #14141a, #2a2a32 50%, #14141a);
+  border:1px solid rgba(255,255,255,.08);
+  border-top:none;
+  border-radius:0 0 3px 3px;
+}
+.dn-ground{
+  width:min(740px,86%);
+  height:14px;
+  margin:0 auto;
+  border-radius:50%;
+  background:radial-gradient(closest-side, rgba(0,0,0,.7), transparent 78%);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-board-wrap{transform:none!important;transition:none;}
+  .dn-spot{transition:none;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-spec{justify-content:center;text-align:center;font-size:.55rem;letter-spacing:.18em;}
+  .dn-spec .rule{display:none;}
+  .dn-legs{gap:38vw;}
+  .dn-board{border-radius:16px;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-board{padding:1.6rem 1.1rem 1.8rem;}
+  .dn-headline{font-size:2.5rem;max-width:none;}
+  .dn-strap{font-size:1.35rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Billboard</b> <span class="lab-lens">ooh</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <div class="dn-rig">
+
+      <div class="dn-spec" aria-hidden="true">
+        <span class="seg"><span class="dot"></span> Out of home</span>
+        <span class="rule"></span>
+        <span class="seg">Merchant City placement</span>
+        <span class="rule"></span>
+        <span class="seg"><span class="dot night"></span> Day &amp; night</span>
+      </div>
+
+      <div class="dn-board-wrap" id="board">
+        <div class="dn-board">
+          <span class="dn-spot" aria-hidden="true"></span>
+          <span class="dn-rivet tl" aria-hidden="true"></span>
+          <span class="dn-rivet tr" aria-hidden="true"></span>
+          <span class="dn-rivet bl" aria-hidden="true"></span>
+          <span class="dn-rivet br" aria-hidden="true"></span>
+
+          <div class="dn-face">
+            <div class="dn-topper" aria-hidden="true">
+              <span class="topper-rule"></span>
+              <span class="mark"><span class="glyph"></span><span class="d">Day</span> <span class="n">Night</span> Dental</span>
+              <span class="topper-rule"></span>
+            </div>
+
+            <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+            <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+
+            <p class="dn-strap">
+              <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+            </p>
+
+            <div class="dn-seam" aria-hidden="true"><span class="s-day"></span><span class="s-night"></span></div>
+
+            <p class="dn-body">
+              We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+              weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+              consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+              to look after your teeth.
+            </p>
+
+            <div class="dn-footer">
+              <span class="dn-by"><span class="pin" aria-hidden="true"></span> Day Night Dental, Merchant City, Glasgow</span>
+              <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dn-legs" aria-hidden="true">
+        <span class="leg"></span>
+        <span class="leg"></span>
+      </div>
+      <div class="dn-ground" aria-hidden="true"></div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Decorative only. The board + poster render fully without JS; this adds a
+  // light pointer-tilt to the hoarding and a slow spotlight sweep. Respects
+  // reduced-motion and never touches time/random APIs.
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce) return;
+
+  var board = document.getElementById('board');
+  var spot = board && board.querySelector('.dn-spot');
+
+  // pointer tilt: parallax the board toward the cursor, capped small
+  if(board && window.matchMedia('(hover:hover)').matches){
+    var frame = 0;
+    board.parentNode.addEventListener('mousemove', function(e){
+      if(frame) return;
+      frame = requestAnimationFrame(function(){
+        frame = 0;
+        var r = board.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        board.style.transform = 'rotateY(' + (px * 4).toFixed(2) + 'deg) rotateX(' + (-py * 3).toFixed(2) + 'deg)';
+        if(spot) spot.style.left = (28 + px * 30).toFixed(1) + '%';
+      });
+    });
+    board.parentNode.addEventListener('mouseleave', function(){
+      board.style.transform = '';
+      if(spot) spot.style.left = '';
+    });
+  }
+
+  // slow spotlight sweep on touch / no-hover, stepping between fixed positions
+  if(spot && !(window.matchMedia('(hover:hover)').matches)){
+    var stops = [18, 52, 30, 64];
+    var i = 0;
+    setInterval(function(){
+      i = (i + 1) % stops.length;
+      spot.style.left = stops[i] + '%';
+    }, 2600);
+  }
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

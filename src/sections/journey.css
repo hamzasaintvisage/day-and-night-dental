@@ -1,70 +1,328 @@
-/* "What to expect when you call" - connected timeline of 3 icon-node steps. Scoped under .dn-journey. */
-/* .dn-section.dn-journey (two classes) so this padding wins over the generic
-   .dn-section { padding-block: var(--space-section) } - otherwise the section
-   inherits the full ~7rem section padding and looks far too tall. */
-.dn-section.dn-journey {
-  background: transparent;
-  padding-block: 2.25rem;
-  padding-inline: 0;
-  position: relative;
-}
-.dn-journey-inner { width: var(--container); margin: 0 auto; text-align: center; }
+/* "What to expect when you call" - the "You and Us" split.
+   A small YOU side (gold, one thing to do) handed over to a larger US side
+   (blue, the three things we carry). Everything here is scoped under
+   .dn-journey so it never leaks into other sections. Solid gold / solid blue,
+   never a gold-to-blue blend. Renders fully server-side; no JS required. */
 
+/* Two classes (.dn-section.dn-journey) so this padding wins over the generic
+   .dn-section padding - otherwise the section inherits the full section block
+   padding and looks far too tall. */
+.dn-section.dn-journey {
+  position: relative;
+  background: transparent;
+  padding-block: clamp(2.6rem, 6vw, 4.4rem);
+  padding-inline: 0;
+  overflow: hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them.
+   Static (no animation), GPU-cheap, no blur filter. */
+.dn-section.dn-journey::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(58% 56% at 16% 12%, rgba(248, 199, 96, 0.10), transparent 60%),
+    radial-gradient(64% 60% at 86% 90%, rgba(69, 144, 236, 0.10), transparent 62%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* scope the shared .dn-container override under this section only */
+.dn-journey .dn-journey-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── intro ── */
+.dn-journey-intro {
+  max-width: 760px;
+  margin: 0 auto clamp(2.2rem, 5vw, 3.2rem);
+  text-align: center;
+}
 .dn-journey-head {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.18; margin: 0.6rem auto 0; max-width: 720px;
+  font-family: var(--font-display);
+  font-weight: 340;
+  line-height: 1.08;
+  letter-spacing: -0.014em;
+  margin: 0 auto;
+  max-width: 18ch;
   color: var(--dn-bone);
 }
+/* the live "grad" headline span rendered as a SOLID colour, never a blend */
 .dn-journey-head .grad {
-  color: var(--dn-night);
-  -webkit-text-fill-color: var(--dn-night);
+  color: var(--dn-day);
+  -webkit-text-fill-color: var(--dn-day);
+  font-style: italic;
+  font-weight: 380;
 }
 
-/* timeline */
-.dn-journey-tl {
-  list-style: none; margin: 1.2rem 0 0; padding: 0;
+/* ── the split: YOU | US ── */
+.dn-journey-split {
   position: relative;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+  align-items: stretch;
 }
-.dn-journey-tl::before {
-  content: ''; position: absolute; top: 30px; left: 16.5%; right: 16.5%; height: 2px;
-  background: var(--dn-day); opacity: 0.55; z-index: 0;
+/* the seam glyph in the gap, reading "you -> us" as a handover */
+.dn-journey-seam {
+  position: absolute;
+  top: 50%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
 }
-.dn-journey-st { position: relative; text-align: center; padding: 0 0.5rem; }
-.dn-journey-node {
-  display: block; width: 60px; height: 60px; border-radius: 50%; margin: 0 auto;
-  background: var(--dn-day);
-  padding: 2px; position: relative; z-index: 2;
-}
-.dn-journey-node-in {
-  width: 100%; height: 100%; border-radius: 50%;
+.dn-journey-seam-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
   background: var(--dn-near-black);
-  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--dn-mist);
+  box-shadow: 0 0 0 6px var(--dn-near-black), 0 0 28px rgba(0, 0, 0, 0.6);
 }
-.dn-journey-node-in svg { width: 23px; height: 23px; stroke: var(--dn-bone); fill: none; stroke-width: 1.7; }
-.dn-journey-node-n {
-  position: absolute; top: -5px; right: -5px;
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--dn-day); color: var(--dn-black);
-  font-family: var(--font-display); font-weight: 800; font-size: 0.72rem;
-  display: flex; align-items: center; justify-content: center;
+.dn-journey-seam-badge svg {
+  width: 24px;
+  height: 24px;
 }
-/* Process rings alternate down the row: 1 gold · 2 blue · 3 gold.
-   Steps 1 & 3 keep the default gold; only the middle step flips to blue
-   (both the node ring and its number badge). Black number stays legible on
-   both accents (#4590ec gives black ~6.4:1 contrast). */
-.dn-journey-st:nth-child(2) .dn-journey-node,
-.dn-journey-st:nth-child(2) .dn-journey-node-n {
-  background: var(--dn-night);
-}
-.dn-journey-st h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0.8rem 0 0.4rem; color: var(--dn-bone); }
-.dn-journey-st p { font-size: 0.9rem; color: var(--dn-bone-dim); line-height: 1.55; margin: 0 auto; max-width: 30ch; }
+.dn-journey-seam-badge .a { stroke: var(--dn-day); }
+.dn-journey-seam-badge .b { stroke: var(--dn-night); }
 
-.dn-journey-cta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 1.2rem; flex-wrap: wrap; }
-.dn-journey-num { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--dn-bone); text-decoration: none; transition: color 0.2s; }
-.dn-journey-num:hover { color: var(--dn-day); }
+.dn-journey-col {
+  position: relative;
+  border-radius: var(--dn-r-card, 16px);
+  border: 1px solid var(--dn-mist);
+  background: rgba(255, 255, 255, 0.025);
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dn-journey-col::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--dn-jn-accent) 38%, transparent), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.dn-journey-col-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--dn-jn-accent);
+  margin-bottom: 1.1rem;
+}
+.dn-journey-col-tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dn-jn-accent);
+}
 
-@media (max-width: 760px) {
-  .dn-journey-tl { grid-template-columns: 1fr; gap: 2.2rem; }
-  .dn-journey-tl::before { display: none; }
+/* YOU side - gold, one calm instruction */
+.dn-journey-you {
+  --dn-jn-accent: var(--dn-day);
+  justify-content: center;
+  text-align: left;
+}
+.dn-journey-you-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(3rem, 7vw, 4.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--dn-day);
+  margin: 0 0 0.2rem;
+}
+.dn-journey-you-do {
+  font-family: var(--font-display);
+  font-weight: 340;
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--dn-bone);
+  margin: 0.4rem 0 0;
+  max-width: 14ch;
+}
+.dn-journey-you-sub {
+  margin: 1rem 0 0;
+  font-size: clamp(1rem, 1.4vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--dn-bone-faint);
+  max-width: 30ch;
+}
+.dn-journey-you-count {
+  margin-top: auto;
+  padding-top: 1.6rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+.dn-journey-you-count b {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--dn-day);
+}
+.dn-journey-you-count span {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--dn-bone-faint);
+}
+
+/* US side - blue, the three things we carry */
+.dn-journey-us { --dn-jn-accent: var(--dn-night); }
+.dn-journey-us-lede {
+  font-family: var(--font-display);
+  font-weight: 340;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+  color: var(--dn-bone);
+  margin: 0 0 1.3rem;
+}
+.dn-journey-us-lede em {
+  font-style: normal;
+  color: var(--dn-night);
+  font-weight: 420;
+}
+
+.dn-journey-tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.dn-journey-task {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.95rem;
+  align-items: start;
+  padding: 1rem 1.1rem;
+  border-radius: 13px;
+  background: rgba(69, 144, 236, 0.05);
+  border: 1px solid rgba(69, 144, 236, 0.16);
+}
+.dn-journey-task-icon {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(69, 144, 236, 0.12);
+  border: 1px solid rgba(69, 144, 236, 0.3);
+}
+.dn-journey-task-icon svg {
+  width: 21px;
+  height: 21px;
+  stroke: var(--dn-night);
+  stroke-width: 1.7;
+  fill: none;
+}
+.dn-journey-task-body h3 {
+  font-family: var(--font-display);
+  font-weight: 420;
+  font-size: 1.16rem;
+  line-height: 1.18;
+  letter-spacing: -0.006em;
+  color: var(--dn-bone);
+  margin: 0.15rem 0 0.35rem;
+}
+.dn-journey-task-body p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--dn-bone-faint);
+}
+
+/* ── CTA bar ── */
+.dn-journey-cta {
+  margin: clamp(2.2rem, 4.5vw, 3rem) auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.4rem;
+  text-align: center;
+}
+.dn-journey-num {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  letter-spacing: 0.01em;
+  color: var(--dn-bone);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--dn-day) 40%, transparent);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .dn-journey-num:hover { color: var(--dn-day); border-color: var(--dn-day); }
+}
+.dn-journey-num:focus-visible {
+  outline: 2px solid var(--dn-day);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.dn-journey-cta-note {
+  flex: 1 1 100%;
+  margin: 0.2rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--dn-bone-faint);
+}
+
+/* ── responsive ── */
+@media (max-width: 820px) {
+  .dn-journey-split { grid-template-columns: 1fr; gap: 1.1rem; }
+  .dn-journey-seam {
+    position: static;
+    transform: none;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    margin: -0.2rem 0;
+  }
+  .dn-journey-seam-badge {
+    transform: rotate(90deg);
+    box-shadow: 0 0 0 6px var(--dn-near-black);
+  }
+  .dn-journey-you { text-align: center; align-items: center; }
+  .dn-journey-you-do, .dn-journey-you-sub { max-width: 34ch; }
+  .dn-journey-you-count { justify-content: center; }
+}
+@media (max-width: 480px) {
+  .dn-journey-task { padding: 0.9rem; gap: 0.75rem; }
+  .dn-journey-task-icon { width: 38px; height: 38px; }
+}
+@media (max-width: 380px) {
+  .dn-journey-you-label { font-size: 2.6rem; }
 }

@@ -9,7 +9,7 @@ const data = {
   side: "night",
   tag: "24/7 Available",
   h1Plain: "Emergency Dentist",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>Emergency dentist in Glasgow. <em>We are awake and ready</em></>),
   lead: "Our emergency line is open every hour of every day. So when you get sudden toothache, a broken crown or a knocked-out tooth, you can call for urgent help straight away. Most patients are seen the same day.",
   seo: { title: "Emergency Dentist in Glasgow | Day Night Dental", description: "Need an emergency dentist in Glasgow? Day Night Dental has a 24-hour helpline, same-day appointments and out-of-hours care. Pain relief first, 7 days a week." },

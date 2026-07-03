@@ -13,7 +13,7 @@ const data = {
   side: "night",
   tag: "Gentle Care",
   h1Plain: "Nervous Patients",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>Nervous patient? You are <em>welcome here</em></>),
   lead: "Nervous patient? You are welcome here, and you will not be judged.",
   seo: { title: "Nervous Patients & Dental Anxiety in Glasgow | Day Night Dental", description: "Gentle, judgement-free care for nervous and anxious dental patients in Glasgow. We go at your pace. Day and evening appointments, 7 days a week." },

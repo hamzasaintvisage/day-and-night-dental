@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register · Night Watch</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ===== Night Watch, dark, quietly dramatic, 24/7-aware =====
+     Leans into the blue/night side of the palette. Solid colours only,
+     no gold->blue gradients. All custom CSS lives in this single block. */
+
+  :root{
+    --nw-bg:#06070b;
+    --nw-card:#0a0a0e;
+    --nw-card-2:#0c0d12;
+    --nw-field:#101218;
+    --nw-line:rgba(255,255,255,.08);
+    --nw-line-soft:rgba(255,255,255,.05);
+    --nw-night:#4590ec;
+    --nw-night-soft:#7DB5F0;
+    --nw-day:#f8c760;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--nw-bg);
+    color:#fff;
+    font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:rgba(69,144,236,.35);}
+
+  .nw-display{font-family:var(--font-display),'Fraunces',serif;font-weight:600;letter-spacing:-.015em;}
+  em.nw-hl{font-style:normal;color:var(--nw-night-soft);}
+  em.nw-hl-gold{font-style:normal;color:var(--nw-day);}
+
+  /* ---------- ambient night scene ---------- */
+  .nw-wrap{position:relative;min-height:100vh;overflow:hidden;}
+  .nw-stars,
+  .nw-glow-a,
+  .nw-glow-b,
+  .nw-vignette{position:fixed;pointer-events:none;inset:0;z-index:0;}
+  .nw-glow-a{
+    background:radial-gradient(620px 620px at 78% -8%,rgba(69,144,236,.22),transparent 62%);
+  }
+  .nw-glow-b{
+    background:radial-gradient(540px 540px at -6% 84%,rgba(69,144,236,.12),transparent 60%);
+  }
+  /* a single faint warm anchor (day side) kept small + solid-derived, no blue blend */
+  .nw-glow-c{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(300px 300px at 14% 6%,rgba(248,199,96,.06),transparent 60%);
+  }
+  .nw-vignette{
+    background:radial-gradient(120% 90% at 50% 0%,transparent 55%,rgba(0,0,0,.55) 100%);
+  }
+  /* scattered stars via layered radial dots */
+  .nw-stars{
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 18%,rgba(255,255,255,.55),transparent),
+      radial-gradient(1px 1px at 28% 42%,rgba(255,255,255,.35),transparent),
+      radial-gradient(1.2px 1.2px at 64% 12%,rgba(125,181,240,.55),transparent),
+      radial-gradient(1px 1px at 82% 34%,rgba(255,255,255,.4),transparent),
+      radial-gradient(1.1px 1.1px at 46% 8%,rgba(255,255,255,.3),transparent),
+      radial-gradient(1.3px 1.3px at 90% 64%,rgba(125,181,240,.4),transparent),
+      radial-gradient(1px 1px at 8% 70%,rgba(255,255,255,.28),transparent),
+      radial-gradient(1.2px 1.2px at 70% 82%,rgba(255,255,255,.32),transparent),
+      radial-gradient(1px 1px at 36% 88%,rgba(125,181,240,.32),transparent);
+    opacity:.9;
+    animation:nw-twinkle 7s ease-in-out infinite alternate;
+  }
+  @keyframes nw-twinkle{from{opacity:.55;}to{opacity:1;}}
+
+  .nw-page{position:relative;z-index:1;}
+
+  .nw-container{max-width:1180px;margin:0 auto;padding:0 1.5rem;}
+
+  /* ---------- top status bar ---------- */
+  .nw-topbar{
+    position:relative;z-index:2;
+    border-bottom:1px solid var(--nw-line-soft);
+    background:rgba(6,7,11,.55);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  }
+  .nw-topbar-inner{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:.85rem 0;flex-wrap:wrap;
+  }
+  .nw-brand{display:flex;align-items:center;gap:.6rem;font-size:.82rem;letter-spacing:.04em;color:var(--dn-bone-dim,rgba(255,255,255,.72));}
+  .nw-brand .moon{
+    width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 32% 32%,#fff,#7DB5F0 70%,#4590ec);
+    box-shadow:0 0 14px rgba(69,144,236,.6);flex:none;
+  }
+  .nw-brand b{color:#fff;font-weight:600;letter-spacing:.02em;}
+
+  /* live 24/7 line indicator */
+  .nw-live{
+    display:inline-flex;align-items:center;gap:.6rem;
+    padding:.45rem .85rem;border:1px solid rgba(69,144,236,.4);border-radius:999px;
+    background:rgba(69,144,236,.07);font-size:.74rem;letter-spacing:.02em;color:var(--nw-night-soft);
+    white-space:nowrap;
+  }
+  .nw-live .dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--nw-night);flex:none;}
+  .nw-live .dot::after{
+    content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--nw-night);
+    animation:nw-ping 2.4s ease-out infinite;
+  }
+  @keyframes nw-ping{0%{transform:scale(.6);opacity:.9;}100%{transform:scale(1.9);opacity:0;}}
+  .nw-live b{color:#fff;font-weight:600;}
+
+  /* ---------- hero header ---------- */
+  .nw-hero{padding:3.4rem 0 1.6rem;text-align:center;position:relative;}
+  .nw-pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.42rem 1rem;border-radius:999px;
+    border:1px solid rgba(69,144,236,.45);background:rgba(69,144,236,.08);
+    font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--nw-night-soft);
+    font-weight:600;
+  }
+  .nw-pill .clk{width:6px;height:6px;border-radius:50%;background:var(--nw-night);box-shadow:0 0 8px var(--nw-night);}
+  .nw-hero h1{
+    font-size:clamp(2.4rem,5.4vw,3.9rem);line-height:1.02;margin:1.3rem 0 0;
+  }
+  .nw-hero .lead{
+    max-width:620px;margin:1.2rem auto 0;color:var(--dn-bone-dim,rgba(255,255,255,.72));
+    font-size:1.04rem;line-height:1.6;
+  }
+  .nw-hero .meta{
+    display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;
+    font-size:.8rem;color:var(--dn-bone-faint,rgba(255,255,255,.55));
+  }
+  .nw-hero .meta span{display:inline-flex;align-items:center;gap:.5rem;}
+  .nw-hero .meta i{font-style:normal;color:var(--nw-night-soft);font-weight:600;}
+  .nw-hero .meta .sep{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.25);}
+
+  .nw-urgent{
+    margin-top:1.7rem;font-size:.92rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));
+  }
+  .nw-urgent a{color:var(--nw-night-soft);font-weight:600;border-bottom:1px solid rgba(125,181,240,.4);padding-bottom:1px;}
+  .nw-urgent a:hover{color:#fff;border-bottom-color:#fff;}
+
+  /* ---------- layout ---------- */
+  .nw-grid{
+    display:grid;grid-template-columns:1.45fr .95fr;gap:1.6rem;
+    margin:2.6rem 0 4rem;align-items:start;
+  }
+
+  /* ---------- the focused dark form card ---------- */
+  .nw-card{
+    position:relative;border-radius:20px;padding:2.6rem;
+    background:linear-gradient(180deg,rgba(14,16,24,.96),rgba(8,9,13,.97));
+    border:1px solid var(--nw-line);
+    box-shadow:0 40px 90px -50px rgba(0,0,0,.9),0 0 0 1px rgba(69,144,236,.04);
+    overflow:hidden;
+  }
+  .nw-card::before{
+    content:'';position:absolute;inset:0;border-radius:20px;padding:1px;pointer-events:none;
+    background:linear-gradient(160deg,rgba(69,144,236,.45),transparent 40%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .nw-card-glow{
+    position:absolute;top:-120px;right:-120px;width:320px;height:320px;border-radius:50%;
+    background:radial-gradient(circle,rgba(69,144,236,.16),transparent 65%);pointer-events:none;
+  }
+
+  .nw-form-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:2rem;position:relative;}
+  .nw-form-head h2{font-size:1.55rem;margin:0;}
+  .nw-form-head .sub{font-size:.85rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));margin-top:.35rem;}
+  .nw-anytime{
+    flex:none;display:inline-flex;flex-direction:column;align-items:flex-end;gap:.15rem;
+    text-align:right;
+  }
+  .nw-anytime .big{font-family:var(--font-display),'Fraunces',serif;font-size:1.15rem;color:var(--nw-night-soft);font-weight:600;}
+  .nw-anytime .small{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint,rgba(255,255,255,.55));}
+
+  /* group label */
+  .nw-group{margin-top:.4rem;}
+  .nw-group + .nw-group{margin-top:2.4rem;padding-top:2.4rem;border-top:1px solid var(--nw-line-soft);}
+  .nw-group-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.5rem;}
+  .nw-group-head .idx{
+    font-family:var(--font-display),'Fraunces',serif;font-size:.85rem;
+    width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none;
+    border:1px solid rgba(69,144,236,.5);color:var(--nw-night-soft);
+  }
+  .nw-group-head h3{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-bone-dim,rgba(255,255,255,.72));margin:0;font-weight:600;}
+
+  /* fields */
+  .nw-row{margin-bottom:1.15rem;}
+  .nw-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .nw-row > label > span,
+  .nw-lbl{
+    display:block;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-bone-dim,rgba(255,255,255,.72));margin-bottom:.5rem;
+  }
+  .nw-req{color:var(--nw-night-soft);}
+  .nw-opt{color:var(--dn-bone-faint,rgba(255,255,255,.5));letter-spacing:.1em;}
+
+  .nw-row > label{display:block;}
+
+  input[type=text],input[type=tel],input[type=email],select,textarea{
+    width:100%;padding:.85rem 1rem;
+    background:var(--nw-field);
+    border:1px solid var(--nw-line);
+    border-radius:10px;
+    color:#fff;font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1rem;
+    transition:border-color .25s,box-shadow .25s,background .25s;
+  }
+  input::placeholder,textarea::placeholder{color:rgba(255,255,255,.34);}
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--nw-night);
+    background:#0e1117;
+    box-shadow:0 0 0 3px rgba(69,144,236,.18);
+  }
+  textarea{resize:vertical;min-height:96px;line-height:1.55;}
+
+  select{
+    -webkit-appearance:none;appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237DB5F0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.4rem;
+  }
+
+  .nw-dob{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:.7rem;}
+
+  /* care-type cards */
+  .nw-care{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.25rem;}
+  .nw-care label{
+    position:relative;display:flex;flex-direction:column;gap:.25rem;cursor:pointer;
+    padding:1rem 1.15rem;border-radius:12px;
+    background:var(--nw-field);border:1px solid var(--nw-line);
+    transition:border-color .25s,background .25s,box-shadow .25s,transform .12s;
+  }
+  .nw-care label:hover{border-color:rgba(69,144,236,.45);transform:translateY(-1px);}
+  .nw-care label .title{font-family:var(--font-display),'Fraunces',serif;font-size:1.06rem;color:#fff;font-weight:600;}
+  .nw-care label .desc{font-size:.74rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));line-height:1.4;}
+  .nw-care label .tick{
+    position:absolute;top:.85rem;right:.95rem;width:16px;height:16px;border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.22);transition:all .2s;
+  }
+  .nw-care input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
+  .nw-care label:has(input:focus-visible){outline:2px solid var(--nw-night);outline-offset:2px;}
+  /* selected state, night blue lead */
+  .nw-care label.is-on{
+    border-color:var(--nw-night);background:rgba(69,144,236,.1);
+    box-shadow:0 0 0 1px rgba(69,144,236,.35),0 14px 30px -22px rgba(69,144,236,.7);
+  }
+  .nw-care label.is-on .title{color:var(--nw-night-soft);}
+  .nw-care label.is-on .tick{border-color:var(--nw-night);background:var(--nw-night);box-shadow:0 0 0 3px rgba(69,144,236,.2);}
+  .nw-care label.is-on .tick::after{
+    content:'';position:absolute;width:5px;height:9px;
+    border:solid #06070b;border-width:0 2px 2px 0;transform:rotate(45deg);
+    left:5px;top:2px;
+  }
+
+  /* consent */
+  .nw-consent{
+    display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;
+    padding:1.1rem 1.15rem;border-radius:12px;
+    background:var(--nw-field);border:1px solid var(--nw-line);
+    transition:border-color .25s;
+  }
+  .nw-consent:hover{border-color:rgba(69,144,236,.35);}
+  .nw-consent input{width:18px;height:18px;flex:none;margin-top:1px;accent-color:var(--nw-night);cursor:pointer;}
+  .nw-consent span{font-size:.82rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));line-height:1.55;}
+  .nw-consent a{color:var(--nw-night-soft);border-bottom:1px solid rgba(125,181,240,.4);}
+
+  /* submit */
+  .nw-actions{margin-top:2rem;display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;}
+  .nw-submit{
+    flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+    padding:1.05rem 1.6rem;border:none;border-radius:12px;cursor:pointer;
+    background:var(--nw-night);color:#04060c;
+    font-family:var(--font-body),'Inter Tight',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.01em;
+    transition:transform .15s,box-shadow .25s,background .25s;
+    box-shadow:0 18px 40px -18px rgba(69,144,236,.7);
+  }
+  .nw-submit:hover{background:var(--nw-night-soft);transform:translateY(-2px);box-shadow:0 22px 48px -16px rgba(69,144,236,.8);}
+  .nw-submit .arrow{transition:transform .25s;}
+  .nw-submit:hover .arrow{transform:translateX(4px);}
+  .nw-actions .reassure{font-size:.78rem;color:var(--dn-bone-faint,rgba(255,255,255,.55));}
+  .nw-actions .reassure b{color:var(--nw-night-soft);font-weight:600;}
+
+  /* ---------- side rail (reassurance / what's included) ---------- */
+  .nw-rail{display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:1.4rem;}
+
+  .nw-panel{
+    position:relative;border-radius:18px;padding:1.7rem;
+    background:linear-gradient(180deg,rgba(12,13,18,.95),rgba(8,9,13,.96));
+    border:1px solid var(--nw-line);overflow:hidden;
+  }
+  .nw-panel::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--nw-night);opacity:.6;
+  }
+  .nw-panel-eyebrow{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--nw-night-soft);font-weight:600;}
+  .nw-panel h4{font-family:var(--font-display),'Fraunces',serif;font-size:1.3rem;margin:.5rem 0 1.3rem;font-weight:600;}
+
+  .nw-includes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+  .nw-includes li{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--nw-line-soft);}
+  .nw-includes li:first-child{padding-top:0;}
+  .nw-includes li:last-child{border-bottom:none;padding-bottom:0;}
+  .nw-includes .num{
+    font-family:var(--font-display),'Fraunces',serif;font-size:1.1rem;line-height:1;
+    color:var(--nw-night-soft);
+  }
+  .nw-includes h5{font-family:var(--font-display),'Fraunces',serif;font-size:1rem;font-weight:600;margin:0 0 .3rem;}
+  .nw-includes p{font-size:.82rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));line-height:1.5;margin:0;}
+
+  /* price + facts strip */
+  .nw-price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem;}
+  .nw-price-row .label{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-dim,rgba(255,255,255,.72));}
+  .nw-price-row .amount{font-family:var(--font-display),'Fraunces',serif;font-size:2.3rem;font-weight:600;color:var(--nw-day);}
+  .nw-price-row .amount .cur{font-size:1.1rem;margin-right:.05em;}
+  .nw-facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem;}
+  .nw-facts li{display:flex;gap:.65rem;font-size:.82rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));line-height:1.45;}
+  .nw-facts li .b{
+    width:16px;height:16px;border-radius:50%;flex:none;margin-top:1px;display:grid;place-items:center;
+    border:1px solid rgba(125,181,240,.5);color:var(--nw-night-soft);font-size:.6rem;
+  }
+  .nw-facts li.gold .b{border-color:rgba(248,199,96,.5);color:var(--nw-day);}
+  .nw-facts li b{color:#fff;font-weight:600;}
+
+  /* night-line panel */
+  .nw-line-panel{
+    border:1px solid rgba(69,144,236,.35);
+    background:linear-gradient(180deg,rgba(69,144,236,.1),rgba(8,9,13,.9));
+  }
+  .nw-line-panel::before{display:none;}
+  .nw-line-panel .row{display:flex;align-items:center;gap:.85rem;margin-bottom:.9rem;}
+  .nw-line-panel .moon2{
+    width:34px;height:34px;border-radius:50%;flex:none;
+    background:radial-gradient(circle at 32% 32%,#fff,#7DB5F0 68%,#4590ec);
+    box-shadow:0 0 18px rgba(69,144,236,.7);
+  }
+  .nw-line-panel .ttl{font-family:var(--font-display),'Fraunces',serif;font-size:1.05rem;font-weight:600;}
+  .nw-line-panel .ttl small{display:block;font-family:var(--font-body),sans-serif;font-size:.72rem;letter-spacing:.04em;color:var(--nw-night-soft);font-weight:400;margin-top:.1rem;}
+  .nw-line-panel p{font-size:.84rem;color:var(--dn-bone-dim,rgba(255,255,255,.72));line-height:1.55;margin:0 0 1rem;}
+  .nw-callbtn{
+    display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;
+    padding:.9rem 1rem;border-radius:11px;
+    border:1px solid rgba(69,144,236,.5);background:rgba(69,144,236,.12);
+    color:#fff;font-weight:600;font-size:1rem;letter-spacing:.02em;transition:background .2s,border-color .2s;
+  }
+  .nw-callbtn:hover{background:rgba(69,144,236,.22);border-color:var(--nw-night);}
+  .nw-callbtn .num{color:var(--nw-night-soft);}
+
+  /* ---------- mobile ---------- */
+  @media (max-width:960px){
+    .nw-grid{grid-template-columns:1fr;}
+    .nw-rail{position:static;}
+  }
+  @media (max-width:560px){
+    .nw-card{padding:1.7rem 1.3rem;}
+    .nw-panel{padding:1.4rem;}
+    .nw-row-2{grid-template-columns:1fr;}
+    .nw-care{grid-template-columns:1fr;}
+    .nw-dob{gap:.5rem;}
+    .nw-hero h1{font-size:2.2rem;}
+    .nw-form-head{flex-direction:column;}
+    .nw-anytime{align-items:flex-start;text-align:left;}
+    .nw-topbar-inner{justify-content:center;}
+    .nw-actions .reassure{flex:1 1 100%;}
+  }
+
+  /* preview-only override so the standalone page scrolls normally */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Night Watch</div>
+
+<div class="nw-wrap">
+  <div class="nw-glow-a"></div>
+  <div class="nw-glow-b"></div>
+  <div class="nw-glow-c"></div>
+  <div class="nw-stars"></div>
+  <div class="nw-vignette"></div>
+
+  <div class="nw-page">
+
+    <!-- top status bar -->
+    <div class="nw-topbar">
+      <div class="nw-container nw-topbar-inner">
+        <div class="nw-brand"><span class="moon"></span><span><b>Day Night Dental</b> &middot; Merchant City, Glasgow</span></div>
+        <div class="nw-live"><span class="dot"></span><span><b>24/7 line open</b> &middot; we never close</span></div>
+      </div>
+    </div>
+
+    <!-- hero -->
+    <header class="nw-hero">
+      <div class="nw-container">
+        <span class="nw-pill"><span class="clk"></span>Register any time, even at 2am</span>
+        <h1 class="nw-display">Register in <em class="nw-hl">three</em> minutes</h1>
+        <p class="lead">
+          The lights stay on. Whether it is the middle of the afternoon or the middle of the night,
+          you can register as a new patient and we will confirm your first appointment within one working hour.
+        </p>
+        <div class="meta">
+          <span><i>3 min</i> to complete</span>
+          <span class="sep"></span>
+          <span>First appointment confirmed within <i>1 working hour</i></span>
+          <span class="sep"></span>
+          <span>Taking on new patients now</span>
+        </div>
+        <p class="nw-urgent">
+          In pain right now? Don't wait to register,
+          <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        </p>
+      </div>
+    </header>
+
+    <div class="nw-container">
+      <div class="nw-grid">
+
+        <!-- ============ FORM CARD ============ -->
+        <div class="nw-card">
+          <div class="nw-card-glow"></div>
+
+          <div class="nw-form-head">
+            <div>
+              <h2 class="nw-display">Your registration</h2>
+              <p class="sub">A new practice in Merchant City, Glasgow. Same care, day or night.</p>
+            </div>
+            <div class="nw-anytime">
+              <span class="big">Open now</span>
+              <span class="small">Submit any hour</span>
+            </div>
+          </div>
+
+          <form onsubmit="return false;" novalidate>
+
+            <!-- ----- Group 1: your details ----- -->
+            <section class="nw-group">
+              <div class="nw-group-head"><span class="idx nw-display">1</span><h3>Your details</h3></div>
+
+              <div class="nw-row nw-row-2">
+                <label><span>First name <span class="nw-req">*</span></span>
+                  <input type="text" name="firstName" autocomplete="given-name" placeholder="Hamza"></label>
+                <label><span>Last name <span class="nw-req">*</span></span>
+                  <input type="text" name="lastName" autocomplete="family-name" placeholder="Abrar"></label>
+              </div>
+
+              <div class="nw-row">
+                <span class="nw-lbl">Date of birth <span class="nw-req">*</span></span>
+                <div class="nw-dob">
+                  <select name="dobDay" aria-label="Day of birth" required>
+                    <option value="" selected>Day</option>
+                    <option>01</option><option>02</option><option>03</option>
+                    <option>14</option><option>21</option><option>28</option><option>31</option>
+                  </select>
+                  <select name="dobMonth" aria-label="Month of birth" required>
+                    <option value="" selected>Month</option>
+                    <option>January</option><option>February</option><option>March</option>
+                    <option>June</option><option>September</option><option>December</option>
+                  </select>
+                  <select name="dobYear" aria-label="Year of birth" required>
+                    <option value="" selected>Year</option>
+                    <option>2008</option><option>2000</option><option>1994</option>
+                    <option>1985</option><option>1972</option><option>1960</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="nw-row nw-row-2">
+                <label><span>Phone <span class="nw-req">*</span></span>
+                  <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number"></label>
+                <label><span>Email <span class="nw-req">*</span></span>
+                  <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com"></label>
+              </div>
+
+              <div class="nw-row nw-row-2">
+                <label><span>Address <span class="nw-opt">(optional)</span></span>
+                  <input type="text" name="address" autocomplete="street-address" placeholder="Street address, optional"></label>
+                <label><span>Postcode <span class="nw-req">*</span></span>
+                  <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH"></label>
+              </div>
+            </section>
+
+            <!-- ----- Group 2: your care ----- -->
+            <section class="nw-group">
+              <div class="nw-group-head"><span class="idx nw-display">2</span><h3>Your care</h3></div>
+
+              <div class="nw-row">
+                <span class="nw-lbl" id="nw-care-lbl">Care type <span class="nw-req">*</span></span>
+                <div class="nw-care" data-care role="radiogroup" aria-labelledby="nw-care-lbl">
+                  <label>
+                    <input type="radio" name="careType" value="private">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="title">Private</span>
+                    <span class="desc">Full choice of times and treatments</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="careType" value="nhs">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="title">NHS</span>
+                    <span class="desc">Waiting list, when we have space</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="careType" value="mixed">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="title">Either</span>
+                    <span class="desc">Whatever gets you seen soonest</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="careType" value="unsure">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="title">Not sure yet</span>
+                    <span class="desc">We'll talk it through on the call</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="nw-row">
+                <label><span>How did you hear about us? <span class="nw-opt">(optional)</span></span>
+                  <select name="referral" aria-label="How did you hear about us?">
+                    <option value="" selected>Optional</option>
+                    <option>Google search</option>
+                    <option>Friend or family</option>
+                    <option>Instagram</option>
+                    <option>Walked past the practice</option>
+                    <option>Existing patient</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="nw-row">
+                <label><span>What do you need help with? <span class="nw-opt">(optional)</span></span>
+                  <textarea name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+                </label>
+              </div>
+
+              <div class="nw-row">
+                <label class="nw-consent">
+                  <input type="checkbox" name="consent">
+                  <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+                </label>
+              </div>
+            </section>
+
+            <div class="nw-actions">
+              <button type="submit" class="nw-submit">Complete Registration <span class="arrow" aria-hidden="true">&rarr;</span></button>
+              <span class="reassure">We reply within <b>one working hour</b>, even on overnight submissions.</span>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- ============ SIDE RAIL ============ -->
+        <aside class="nw-rail">
+
+          <!-- night line panel (24/7 reassurance) -->
+          <div class="nw-panel nw-line-panel">
+            <div class="row">
+              <span class="moon2"></span>
+              <span class="ttl">The night line is always open<small>24/7 emergency cover</small></span>
+            </div>
+            <p>In pain right now? You don't have to wait to register. Our emergency line answers any hour of the day or night.</p>
+            <a class="nw-callbtn" href="tel:+441415486548">Call <span class="num">0141 548 6548</span></a>
+          </div>
+
+          <!-- what's included -->
+          <div class="nw-panel">
+            <span class="nw-panel-eyebrow">What's included</span>
+            <h4 class="nw-display">Your first visit</h4>
+            <ul class="nw-includes">
+              <li><span class="num">01</span>
+                <div><h5>Comprehensive examination</h5><p>A 45-minute full assessment with intra-oral scans and bite analysis.</p></div></li>
+              <li><span class="num">02</span>
+                <div><h5>Digital x-rays</h5><p>Low-dose imaging, no films to develop, so you are not left waiting.</p></div></li>
+              <li><span class="num">03</span>
+                <div><h5>Personalised treatment plan</h5><p>Written, with the cost of each item set out before any work starts.</p></div></li>
+              <li><span class="num">04</span>
+                <div><h5>Hygiene appointment</h5><p>Booked alongside the examination.</p></div></li>
+            </ul>
+          </div>
+
+          <!-- price + facts -->
+          <div class="nw-panel">
+            <div class="nw-price-row">
+              <span class="label">First visit from</span>
+              <span class="amount nw-display"><span class="cur">£</span>95</span>
+            </div>
+            <ul class="nw-facts">
+              <li class="gold"><span class="b">&#10003;</span><span><b>Children under 18 are examined free.</b></span></li>
+              <li><span class="b">&#10003;</span><span><b>NHS care is by waiting list</b> when we have space.</span></li>
+              <li><span class="b">&#10003;</span><span>We confirm the cost of your first visit before anything goes ahead, so there are no surprises.</span></li>
+            </ul>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

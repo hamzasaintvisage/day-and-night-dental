@@ -2,16 +2,34 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "preview",
+      "name": "dnd-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "preview", "--", "--port", "4173"],
-      "port": 4173
+      "runtimeArgs": ["run", "dev", "--", "--port", "5199", "--host", "127.0.0.1"],
+      "port": 5199
     },
     {
-      "name": "static-public",
+      "name": "preview-static",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8099", "--directory", "/Users/admin/day-and-night-dental-recovered/public"],
-      "port": 8099
+      "runtimeArgs": ["-m", "http.server", "8899", "--directory", "public"],
+      "port": 8899
+    },
+    {
+      "name": "dist-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8077", "--directory", "dist"],
+      "port": 8077
+    },
+    {
+      "name": "kirkcaldy-mirror",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "/Users/admin/kirkcaldy-kds"],
+      "port": 8123
+    },
+    {
+      "name": "kirkcaldy-react",
+      "runtimeExecutable": "/Users/admin/kirkcaldy-react/node_modules/.bin/vite",
+      "runtimeArgs": ["/Users/admin/kirkcaldy-react", "--port", "5173", "--host", "127.0.0.1"],
+      "port": 5173
     }
   ]
 }

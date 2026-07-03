@@ -20,11 +20,51 @@ export function buildEnquiryExtras(loadedAt, botField = '') {
 }
 
 /**
+ * Lazily inject the Google reCAPTCHA v3 script exactly once. No-op when the site key is empty
+ * (protection off, zero network to Google) or when not running in a browser (SSR-safe: all
+ * window/document access is guarded so this can be called from an effect during hydration).
+ *
+ * @param {string} siteKey - the public reCAPTCHA v3 Site key (empty = disabled).
+ */
+export function loadRecaptcha(siteKey) {
+  if (!siteKey || typeof window === 'undefined' || typeof document === 'undefined') return
+  if (document.getElementById('dn-recaptcha')) return
+  const script = document.createElement('script')
+  script.id = 'dn-recaptcha'
+  script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(siteKey)}`
+  script.async = true
+  script.defer = true
+  document.head.appendChild(script)
+}
+
+/**
+ * Get a fresh reCAPTCHA v3 token for an action, or '' when protection is off / grecaptcha is
+ * not available. reCAPTCHA v3 is invisible (score-based) and shows only a small badge, so there
+ * is no widget to render. SSR-safe: never touches window/grecaptcha at module scope.
+ *
+ * @param {string} siteKey - the public reCAPTCHA v3 Site key (empty = disabled).
+ * @param {'register'|'contact'} action - the action name, for score context + server checks.
+ * @returns {Promise<string>} a one-time token, or '' when disabled/unavailable.
+ */
+export async function getRecaptchaToken(siteKey, action) {
+  if (!siteKey || typeof window === 'undefined' || !window.grecaptcha) return ''
+  try {
+    return await new Promise((resolve) => {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(siteKey, { action }).then(resolve, () => resolve(''))
+      })
+    })
+  } catch {
+    return ''
+  }
+}
+
+/**
  * POST a form submission to the custom email pipeline at /api/send-enquiry.php.
  *
  * @param {'contact'|'register'} formType - which form is submitting.
  * @param {Record<string, unknown>} fields - the user-entered fields.
- * @param {Record<string, unknown>} [extras] - anti-bot extras (see buildEnquiryExtras) plus any turnstileToken.
+ * @param {Record<string, unknown>} [extras] - anti-bot extras (see buildEnquiryExtras) plus any recaptchaToken.
  * @returns {Promise<Response>} the raw fetch Response so callers can check res.ok.
  */
 export async function submitEnquiry(formType, fields, extras = {}) {

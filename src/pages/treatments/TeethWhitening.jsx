@@ -13,7 +13,7 @@ const data = {
   side: "day",
   tag: "Brighter Smile",
   h1Plain: "Teeth Whitening",
-  procedureType: "CosmeticProcedure",
+  procedureType: "MedicalProcedure",
   title: (<>Teeth whitening, done properly. <em>Brighter and even</em></>),
   lead: "A dentist-led whitening plan that lifts years of staining and brings back a naturally brighter smile. We keep a close eye on sensitivity the whole way through.",
   seo: { title: "Teeth Whitening in Glasgow | Day Night Dental", description: "Professional teeth whitening at Day Night Dental in Glasgow. Dentist-led, sensitivity managed, day and evening appointments, 7 days a week." },

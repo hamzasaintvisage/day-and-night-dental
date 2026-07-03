@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register · Thirty Seconds</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     DESIGN: Thirty Seconds
+     Speed-first. Ultra-compact, dense, minimal chrome, one short
+     scroll. A prominent "30 seconds" timer-style promise, tight
+     field rows, one big confident submit. Frictionless, on-brand.
+     ============================================================ */
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  .ts-wrap{
+    position:relative;
+    max-width:1080px;
+    margin:0 auto;
+    padding:clamp(2.2rem,5vw,4rem) clamp(1rem,4vw,2rem) 4rem;
+    z-index:1;
+  }
+
+  /* ---- speed banner / promise rail ---- */
+  .ts-promise{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:1.4rem;
+    padding:1rem 1.4rem;
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-card);
+    background:linear-gradient(180deg,rgba(248,199,96,.05),rgba(248,199,96,0) 80%),var(--dn-near-black);
+    overflow:hidden;
+  }
+  .ts-promise::before{
+    content:'';
+    position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-day);
+  }
+  .ts-stopwatch{
+    flex:none;
+    width:78px;height:78px;
+    border-radius:50%;
+    display:grid;place-items:center;
+    position:relative;
+    border:1px solid rgba(248,199,96,.4);
+    background:rgba(248,199,96,.04);
+  }
+  .ts-stopwatch::after{
+    content:'';
+    position:absolute;inset:-1px;
+    border-radius:50%;
+    border:2px solid transparent;
+    border-top-color:var(--dn-day);
+    border-right-color:var(--dn-day);
+    animation:ts-spin 4.5s linear infinite;
+  }
+  @keyframes ts-spin{to{transform:rotate(360deg);}}
+  .ts-stopwatch .num{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.7rem;
+    line-height:.9;
+    color:var(--dn-day);
+  }
+  .ts-stopwatch .unit{
+    font-size:.52rem;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+    margin-top:.18rem;
+  }
+  .ts-promise-copy{min-width:0;}
+  .ts-promise-copy .lead{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.25rem,3.4vw,1.85rem);
+    line-height:1.05;
+    letter-spacing:-.01em;
+    margin:0 0 .35rem;
+  }
+  .ts-promise-copy .lead em{font-style:normal;color:var(--dn-day);}
+  .ts-promise-copy .sub{
+    margin:0;
+    font-size:.86rem;
+    line-height:1.45;
+    color:var(--dn-bone-dim);
+  }
+  .ts-promise-copy .sub b{color:var(--dn-night-soft);font-weight:600;}
+
+  /* ---- header row ---- */
+  .ts-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:1rem;
+    margin:2rem 0 1rem;
+  }
+  .ts-head h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.6rem,4vw,2.3rem);
+    line-height:1;
+    letter-spacing:-.015em;
+    margin:.7rem 0 0;
+  }
+  .ts-head h1 em{font-style:normal;color:var(--dn-day);}
+  .ts-urgent{
+    font-size:.8rem;
+    color:var(--dn-bone-dim);
+    text-align:right;
+    line-height:1.4;
+    max-width:280px;
+  }
+  .ts-urgent a{color:var(--dn-night-soft);font-weight:600;white-space:nowrap;}
+  .ts-urgent .ping{
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:var(--dn-online,#4ade80);margin-right:.4rem;
+    box-shadow:0 0 8px 1px rgba(74,222,128,.7);
+    animation:ts-ping 2s ease-in-out infinite;
+  }
+  @keyframes ts-ping{50%{opacity:.4;}}
+
+  /* ---- the card ---- */
+  .ts-card{
+    position:relative;
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-card);
+    background:var(--dn-near-black);
+    overflow:hidden;
+  }
+  .ts-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-night);
+  }
+  .ts-card-inner{padding:clamp(1.3rem,3.2vw,2.2rem);}
+
+  /* compact field rhythm */
+  .ts-group + .ts-group{
+    margin-top:1.3rem;
+    padding-top:1.3rem;
+    border-top:1px solid var(--dn-mist);
+  }
+  .ts-group-head{
+    display:flex;align-items:center;gap:.7rem;
+    margin-bottom:1rem;
+  }
+  .ts-group-head .tag{
+    font-family:var(--font-body);
+    font-size:.62rem;
+    font-weight:600;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+    display:inline-flex;align-items:center;gap:.5rem;
+  }
+  .ts-group-head .tag::before{
+    content:'';width:6px;height:6px;border-radius:50%;
+    background:var(--dn-day);
+    box-shadow:0 0 8px 1px rgba(248,199,96,.6);
+  }
+  .ts-group.night .ts-group-head .tag::before{
+    background:var(--dn-night);box-shadow:0 0 8px 1px rgba(69,144,236,.6);
+  }
+  .ts-group-head .rule{flex:1;height:1px;background:var(--dn-mist);}
+
+  /* tight grid: dense rows */
+  .ts-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:.7rem;
+  }
+  .ts-field{display:flex;flex-direction:column;gap:.32rem;min-width:0;}
+  .ts-field.c6{grid-column:span 6;}
+  .ts-field.c4{grid-column:span 4;}
+  .ts-field.c8{grid-column:span 8;}
+  .ts-field.c12{grid-column:span 12;}
+
+  .ts-field > label,
+  .ts-field > .lbl{
+    font-size:.6rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+    font-weight:600;
+  }
+  .ts-field .req{color:var(--dn-day);margin-left:.15rem;}
+
+  .ts-input,
+  .ts-select,
+  .ts-textarea{
+    width:100%;
+    padding:.62rem .75rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-inset,12px);
+    color:var(--dn-bone);
+    font-family:var(--font-body);
+    font-size:1rem; /* 16px: no iOS zoom */
+    line-height:1.2;
+    transition:border-color .2s, box-shadow .2s, background .2s;
+  }
+  .ts-input::placeholder,.ts-textarea::placeholder{color:var(--dn-bone-faint);}
+  .ts-input:focus,
+  .ts-select:focus,
+  .ts-textarea:focus{
+    outline:none;
+    border-color:var(--dn-day);
+    background:rgba(248,199,96,.04);
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+  }
+  .ts-textarea{resize:vertical;min-height:64px;line-height:1.4;}
+
+  /* native selects, on-brand chevron */
+  .ts-select{
+    -webkit-appearance:none;appearance:none;
+    padding-right:2rem;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right .75rem center;
+    cursor:pointer;
+  }
+  .ts-select:invalid{color:var(--dn-bone-faint);}
+  .ts-select option{color:#fff;background:var(--dn-charcoal);}
+
+  .ts-dob{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:.45rem;}
+
+  /* care-type cards: compact chips, but clearly clickable */
+  .ts-care{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:.55rem;
+  }
+  .ts-care label{
+    position:relative;
+    display:flex;flex-direction:column;gap:.18rem;
+    padding:.7rem .75rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-inset,12px);
+    cursor:pointer;
+    transition:border-color .2s, background .2s, transform .15s;
+  }
+  .ts-care label:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.28);}
+  .ts-care label .t{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:.98rem;
+    line-height:1;
+    color:var(--dn-bone);
+  }
+  .ts-care label .d{
+    font-size:.66rem;
+    line-height:1.35;
+    color:var(--dn-bone-dim);
+  }
+  .ts-care input{
+    position:absolute;width:1px;height:1px;opacity:0;margin:0;
+  }
+  .ts-care label:has(input:focus-visible){
+    outline:2px solid var(--dn-day);outline-offset:2px;
+  }
+  /* selected states, single colour per card, alternating gold / blue */
+  .ts-care label.is-on.day{
+    border-color:var(--dn-day);
+    background:rgba(248,199,96,.07);
+    box-shadow:0 0 0 1px var(--dn-day), 0 0 22px -8px rgba(248,199,96,.8);
+  }
+  .ts-care label.is-on.day .t{color:var(--dn-day);}
+  .ts-care label.is-on.night{
+    border-color:var(--dn-night);
+    background:rgba(69,144,236,.07);
+    box-shadow:0 0 0 1px var(--dn-night), 0 0 22px -8px rgba(69,144,236,.8);
+  }
+  .ts-care label.is-on.night .t{color:var(--dn-night-soft);}
+  .ts-care label .tick{
+    position:absolute;top:.5rem;right:.5rem;
+    width:14px;height:14px;border-radius:50%;
+    border:1px solid var(--dn-mist);
+    opacity:0;transition:opacity .2s;
+  }
+  .ts-care label.is-on .tick{opacity:1;border-color:currentColor;}
+  .ts-care label.is-on.day .tick{background:var(--dn-day);}
+  .ts-care label.is-on.night .tick{background:var(--dn-night);}
+
+  /* consent */
+  .ts-consent{
+    display:flex;align-items:flex-start;gap:.7rem;
+    padding:.8rem .9rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-inset,12px);
+    cursor:pointer;
+  }
+  .ts-consent input{
+    margin-top:2px;flex:none;
+    accent-color:var(--dn-day);
+    width:16px;height:16px;
+  }
+  .ts-consent span{
+    font-size:.78rem;line-height:1.45;color:var(--dn-bone-dim);
+  }
+  .ts-consent a{color:var(--dn-night-soft);font-weight:600;}
+
+  /* submit bar */
+  .ts-submit-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;flex-wrap:wrap;
+    margin-top:1.4rem;padding-top:1.3rem;
+    border-top:1px solid var(--dn-mist);
+  }
+  .ts-submit-note{
+    font-size:.74rem;color:var(--dn-bone-faint);line-height:1.4;max-width:300px;
+  }
+  .ts-go{
+    flex:1 1 auto;min-width:240px;
+    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+    padding:1rem 1.8rem;
+    border:none;border-radius:999px;
+    background:var(--dn-day);
+    color:#0a0a0c;
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:1.02rem;
+    letter-spacing:.01em;
+    cursor:pointer;
+    position:relative;overflow:hidden;
+    box-shadow:0 0 0 1px rgba(248,199,96,.4), 0 16px 40px -18px rgba(248,199,96,.85);
+    transition:transform .18s, box-shadow .25s;
+  }
+  .ts-go:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 1px var(--dn-day), 0 22px 48px -16px rgba(248,199,96,.95);
+  }
+  .ts-go:active{transform:translateY(0);}
+  .ts-go .arrow{transition:transform .25s;font-size:1.1em;}
+  .ts-go:hover .arrow{transform:translateX(4px);}
+
+  /* ---- value rail: same info as baseline, compact strip below ---- */
+  .ts-value{
+    margin-top:1.4rem;
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:.9rem;
+  }
+  .ts-includes{
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-card);
+    background:var(--dn-near-black);
+    padding:1.3rem 1.4rem;
+    position:relative;overflow:hidden;
+  }
+  .ts-includes::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--dn-day);
+  }
+  .ts-includes .cap{
+    display:flex;align-items:baseline;justify-content:space-between;gap:.8rem;
+    flex-wrap:wrap;margin-bottom:1rem;
+  }
+  .ts-includes h3{
+    font-family:var(--font-display);font-weight:700;font-size:1.15rem;margin:0;letter-spacing:-.01em;
+  }
+  .ts-includes .from{
+    font-family:var(--font-display);font-weight:700;color:var(--dn-day);font-size:1.15rem;
+  }
+  .ts-includes .from small{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);font-family:var(--font-body);font-weight:600;margin-right:.4rem;display:inline-block;vertical-align:middle;}
+  .ts-inc-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:1fr 1fr;gap:.8rem 1.2rem;
+  }
+  .ts-inc-list li{display:grid;grid-template-columns:auto 1fr;gap:.7rem;}
+  .ts-inc-list .n{
+    font-family:var(--font-display);font-weight:700;font-size:.95rem;line-height:1;color:var(--dn-day);
+  }
+  .ts-inc-list li:nth-child(even) .n{color:var(--dn-night-soft);}
+  .ts-inc-list h4{font-family:var(--font-display);font-size:.86rem;font-weight:700;margin:0 0 .2rem;}
+  .ts-inc-list p{font-size:.7rem;line-height:1.4;color:var(--dn-bone-dim);margin:0;}
+
+  .ts-facts{
+    display:flex;flex-direction:column;gap:.7rem;
+  }
+  .ts-fact{
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-inset,12px);
+    background:var(--dn-charcoal);
+    padding:.85rem 1rem;
+  }
+  .ts-fact .k{
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;
+    display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;
+  }
+  .ts-fact .k::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 7px 1px rgba(69,144,236,.6);}
+  .ts-fact.gold .k::before{background:var(--dn-day);box-shadow:0 0 7px 1px rgba(248,199,96,.6);}
+  .ts-fact .v{font-size:.82rem;line-height:1.4;color:var(--dn-bone-dim);}
+  .ts-fact .v b{color:var(--dn-bone);font-weight:600;}
+
+  /* ---- responsive ---- */
+  @media (max-width:820px){
+    .ts-value{grid-template-columns:1fr;}
+    .ts-inc-list{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    .ts-head{flex-direction:column;align-items:flex-start;}
+    .ts-urgent{text-align:left;max-width:none;}
+    .ts-care{grid-template-columns:1fr 1fr;}
+    .ts-field.c6,.ts-field.c4,.ts-field.c8{grid-column:span 12;}
+    .ts-promise{flex-direction:row;}
+  }
+  @media (max-width:420px){
+    .ts-care{grid-template-columns:1fr;}
+    .ts-promise-copy .lead{font-size:1.2rem;}
+    .ts-go{min-width:0;width:100%;}
+  }
+
+  /* preview-only: allow normal scrolling standalone */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Thirty Seconds</div>
+
+<section class="dn-section dn-register">
+  <div class="dn-glow day" style="width:520px;height:520px;top:-120px;left:-160px;opacity:.07;"></div>
+  <div class="dn-glow night" style="width:560px;height:560px;bottom:-140px;right:-180px;opacity:.07;"></div>
+
+  <div class="ts-wrap">
+
+    <!-- speed promise rail -->
+    <div class="ts-promise">
+      <div class="ts-stopwatch" aria-hidden="true">
+        <div style="text-align:center;line-height:1;">
+          <div class="num">30</div>
+          <div class="unit">seconds</div>
+        </div>
+      </div>
+      <div class="ts-promise-copy">
+        <p class="lead">Register in <em>thirty seconds</em>, seen within the hour.</p>
+        <p class="sub">Eleven quick fields, one tap to send. We confirm your first appointment <b>within one working hour</b>. No wizard, no back-and-forth.</p>
+      </div>
+    </div>
+
+    <!-- header -->
+    <div class="ts-head">
+      <div>
+        <span class="dn-eyebrow dn-pill day">New Patients</span>
+        <h1>Your <em>fast</em> registration</h1>
+      </div>
+      <p class="ts-urgent">
+        <span class="ping" aria-hidden="true"></span>In pain right now? Don't wait,
+        <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        We're a new practice in Merchant City, Glasgow.
+      </p>
+    </div>
+
+    <!-- the dense form -->
+    <div class="ts-card">
+      <div class="ts-card-inner">
+        <form onsubmit="return false;" novalidate>
+
+          <!-- DETAILS -->
+          <div class="ts-group day">
+            <div class="ts-group-head">
+              <span class="tag">Your details</span>
+              <span class="rule"></span>
+            </div>
+
+            <div class="ts-grid">
+              <div class="ts-field c6">
+                <label for="ts-fn">First name<span class="req">*</span></label>
+                <input class="ts-input" id="ts-fn" type="text" name="firstName" autocomplete="given-name" placeholder="Hamza" required>
+              </div>
+              <div class="ts-field c6">
+                <label for="ts-ln">Last name<span class="req">*</span></label>
+                <input class="ts-input" id="ts-ln" type="text" name="lastName" autocomplete="family-name" placeholder="Abrar" required>
+              </div>
+
+              <div class="ts-field c12">
+                <span class="lbl">Date of birth<span class="req">*</span></span>
+                <div class="ts-dob">
+                  <select class="ts-select" name="dobDay" aria-label="Day of birth" required>
+                    <option value="" selected disabled>Day</option>
+                    <option>01</option><option>02</option><option>09</option><option>14</option><option>21</option><option>28</option><option>31</option>
+                  </select>
+                  <select class="ts-select" name="dobMonth" aria-label="Month of birth" required>
+                    <option value="" selected disabled>Month</option>
+                    <option>January</option><option>March</option><option>June</option><option>September</option><option>December</option>
+                  </select>
+                  <select class="ts-select" name="dobYear" aria-label="Year of birth" required>
+                    <option value="" selected disabled>Year</option>
+                    <option>1955</option><option>1972</option><option>1989</option><option>1996</option><option>2008</option><option>2019</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ts-field c6">
+                <label for="ts-ph">Phone<span class="req">*</span></label>
+                <input class="ts-input" id="ts-ph" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number" required>
+              </div>
+              <div class="ts-field c6">
+                <label for="ts-em">Email<span class="req">*</span></label>
+                <input class="ts-input" id="ts-em" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              </div>
+
+              <div class="ts-field c8">
+                <label for="ts-ad">Address</label>
+                <input class="ts-input" id="ts-ad" type="text" name="address" autocomplete="street-address" placeholder="Street address (optional)">
+              </div>
+              <div class="ts-field c4">
+                <label for="ts-pc">Postcode<span class="req">*</span></label>
+                <input class="ts-input" id="ts-pc" type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARE -->
+          <div class="ts-group night">
+            <div class="ts-group-head">
+              <span class="tag">Your care</span>
+              <span class="rule"></span>
+            </div>
+
+            <div class="ts-grid">
+              <div class="ts-field c12">
+                <span class="lbl">How would you like to be seen?<span class="req">*</span></span>
+                <div class="ts-care" data-care role="radiogroup" aria-label="Care type">
+                  <label class="day">
+                    <input type="radio" name="careType" value="private">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="t">Private</span>
+                    <span class="d">Full choice of times and treatments</span>
+                  </label>
+                  <label class="night">
+                    <input type="radio" name="careType" value="nhs">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="t">NHS</span>
+                    <span class="d">Waiting list, when we have space</span>
+                  </label>
+                  <label class="day">
+                    <input type="radio" name="careType" value="mixed">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="t">Either</span>
+                    <span class="d">Whatever gets you seen soonest</span>
+                  </label>
+                  <label class="night">
+                    <input type="radio" name="careType" value="unsure">
+                    <span class="tick" aria-hidden="true"></span>
+                    <span class="t">Not sure yet</span>
+                    <span class="d">We'll talk it through on the call</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="ts-field c6">
+                <label for="ts-hear">How did you hear about us?</label>
+                <select class="ts-select" id="ts-hear" name="referral">
+                  <option value="" selected disabled>Optional</option>
+                  <option>Google search</option>
+                  <option>Friend or family</option>
+                  <option>Instagram</option>
+                  <option>Walked past the practice</option>
+                  <option>Existing patient</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="ts-field c6">
+                <label for="ts-help">What do you need help with?</label>
+                <textarea class="ts-textarea" id="ts-help" name="notes" rows="1" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+              </div>
+
+              <div class="ts-field c12">
+                <label class="ts-consent">
+                  <input type="checkbox" name="consent" required>
+                  <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- submit -->
+          <div class="ts-submit-bar">
+            <p class="ts-submit-note">That's it. We'll text and email to confirm your first appointment within one working hour.</p>
+            <button type="submit" class="ts-go">Complete Registration <span class="arrow" aria-hidden="true">&rarr;</span></button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- value rail: same content as the baseline, compact -->
+    <div class="ts-value">
+      <div class="ts-includes">
+        <div class="cap">
+          <h3>Your first visit, all included</h3>
+          <span class="from"><small>First visit from</small>£95</span>
+        </div>
+        <ul class="ts-inc-list">
+          <li><span class="n">01</span><div><h4>Comprehensive examination</h4><p>A 45-minute full assessment with intra-oral scans and bite analysis.</p></div></li>
+          <li><span class="n">02</span><div><h4>Digital x-rays</h4><p>Low-dose, no films to develop, so you are not left waiting.</p></div></li>
+          <li><span class="n">03</span><div><h4>Personalised treatment plan</h4><p>Written, with the cost of each item set out before any work starts.</p></div></li>
+          <li><span class="n">04</span><div><h4>Hygiene appointment</h4><p>Booked alongside the examination, so you leave with a proper clean.</p></div></li>
+        </ul>
+      </div>
+
+      <div class="ts-facts">
+        <div class="ts-fact gold">
+          <div class="k">Under 18</div>
+          <div class="v"><b>Children under 18 are examined free.</b></div>
+        </div>
+        <div class="ts-fact">
+          <div class="k">NHS care</div>
+          <div class="v">NHS care is <b>by waiting list</b> when we have space.</div>
+        </div>
+        <div class="ts-fact gold">
+          <div class="k">The promise</div>
+          <div class="v">Register in three minutes, and we confirm your first appointment <b>within one working hour</b>.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

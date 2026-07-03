@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Map Led - Contact Us · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   MAP LED - a location-forward contact page.
+   A large styled static-map facade hero anchors the page: an inline
+   SVG mini-map of Merchant City with a single gold pin on Day Night
+   Dental, the address overlaid as a card. No live Google iframe, no
+   third-party requests, no cookies. The enquiry form sits beside it
+   on a premium charcoal field-kit (custom dropdown + field wells).
+   Solid gold day-side, solid blue night-side, never a gold-to-blue
+   blend. Opening hours shown verbatim as placeholders.
+   ───────────────────────────────────────────────────────────── */
+.ml-wrap{max-width:var(--container);margin:0 auto;padding:46px 20px 100px;position:relative;}
+.ml-glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.ml-glow.day{width:520px;height:520px;background:var(--dn-day);opacity:.07;top:-30px;left:-160px;}
+.ml-glow.night{width:560px;height:560px;background:var(--dn-night);opacity:.06;bottom:120px;right:-180px;}
+.ml-inner{position:relative;z-index:1;}
+
+/* intro */
+.ml-intro{max-width:660px;margin:0 0 30px;}
+.ml-intro .pill-line{margin-bottom:18px;}
+.ml-intro h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.04;letter-spacing:-.014em;margin:0 0 14px;}
+.ml-intro p{color:var(--dn-bone-dim);font-size:1.06rem;max-width:52ch;margin:0;}
+
+/* ===== THE MAP FACADE HERO ===== */
+.ml-map{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--dn-mist);background:#0d0f15;box-shadow:0 40px 110px -54px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.02) inset;margin-bottom:26px;}
+.ml-map::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:rgba(248,199,96,.5);z-index:4;}
+.ml-map-canvas{position:relative;width:100%;height:clamp(300px,40vw,440px);display:block;}
+.ml-map-canvas svg{position:absolute;inset:0;width:100%;height:100%;}
+/* the address card overlaid on the map */
+.ml-map-card{position:absolute;left:24px;bottom:24px;right:24px;max-width:380px;z-index:5;background:linear-gradient(180deg,rgba(20,20,26,.94),rgba(12,12,16,.96));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--dn-mist);border-radius:18px;padding:20px 22px;box-shadow:0 24px 60px -28px rgba(0,0,0,.9);}
+.ml-map-card .k{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dn-day);display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;}
+.ml-map-card .k::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+.ml-map-card .name{font-family:var(--font-display);font-weight:560;font-size:1.32rem;line-height:1.18;letter-spacing:-.01em;margin:0 0 5px;}
+.ml-map-card .addr{color:var(--dn-bone-dim);font-size:.96rem;line-height:1.5;margin:0 0 14px;}
+.ml-map-card .park{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--dn-bone-faint);}
+.ml-map-card .park svg{width:15px;height:15px;color:var(--dn-night-soft);flex:0 0 auto;}
+.ml-map-dir{display:inline-flex;align-items:center;gap:8px;margin-top:15px;font-size:.86rem;font-weight:600;color:var(--dn-day);text-decoration:none;padding:10px 16px;border-radius:999px;border:1px solid rgba(248,199,96,.34);background:rgba(248,199,96,.08);min-height:44px;transition:background .18s,border-color .18s;}
+.ml-map-dir:hover{background:rgba(248,199,96,.16);border-color:rgba(248,199,96,.55);}
+.ml-map-dir svg{width:14px;height:14px;}
+/* the floating pin marker */
+.ml-pin{position:absolute;z-index:3;transform:translate(-50%,-100%);}
+.ml-pin svg{width:42px;height:42px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.55));}
+.ml-pin .pulse{position:absolute;left:50%;bottom:3px;width:42px;height:42px;border-radius:50%;background:rgba(248,199,96,.4);transform:translate(-50%,0);animation:mlpulse 2.6s ease-out infinite;z-index:-1;}
+@keyframes mlpulse{0%{transform:translate(-50%,0) scale(.5);opacity:.6;}100%{transform:translate(-50%,0) scale(2.4);opacity:0;}}
+@media(prefers-reduced-motion:reduce){.ml-pin .pulse{animation:none;}}
+
+/* ===== two-column body: details | form ===== */
+.ml-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start;}
+
+/* details column */
+.ml-info{display:flex;flex-direction:column;gap:16px;}
+.ml-methods{display:grid;gap:14px;}
+.ml-method{display:flex;gap:15px;align-items:flex-start;background:linear-gradient(180deg,rgba(22,22,28,.7),rgba(14,14,18,.8));border:1px solid var(--dn-mist);border-radius:16px;padding:17px 18px;}
+.ml-method .ic{width:44px;height:44px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;}
+.ml-method .ic svg{width:21px;height:21px;}
+.ml-method.day .ic{background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.32);color:var(--dn-day);}
+.ml-method.night .ic{background:rgba(69,144,236,.12);border:1px solid rgba(69,144,236,.34);color:var(--dn-night-soft);}
+.ml-method.neutral .ic{background:rgba(255,255,255,.04);border:1px solid var(--dn-mist);color:var(--dn-bone-dim);}
+.ml-method .body{min-width:0;flex:1;}
+.ml-method .lab{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:4px;}
+.ml-method.day .lab{color:var(--dn-day);}
+.ml-method.night .lab{color:var(--dn-night-soft);}
+.ml-method .val{font-family:var(--font-display);font-weight:560;font-size:1.22rem;line-height:1.2;letter-spacing:-.01em;color:var(--dn-bone);text-decoration:none;display:inline-block;word-break:break-word;}
+a.ml-method .val,.ml-method a.val{transition:color .16s;}
+.ml-method a.val:hover{color:var(--dn-day);}
+.ml-method.night a.val:hover{color:var(--dn-night-soft);}
+.ml-method .hint{display:block;font-size:.85rem;color:var(--dn-bone-dim);margin-top:3px;}
+.ml-method .em-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ad07a;margin-right:7px;vertical-align:middle;box-shadow:0 0 0 4px rgba(58,208,122,.16);}
+
+/* opening hours */
+.ml-hours{background:linear-gradient(180deg,rgba(22,22,28,.7),rgba(14,14,18,.8));border:1px solid var(--dn-mist);border-radius:16px;padding:18px 20px;}
+.ml-hours-head{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 12px;}
+.ml-hours table{width:100%;border-collapse:collapse;}
+.ml-hours td{padding:9px 0;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.ml-hours tr:last-child td{border-bottom:none;}
+.ml-hours td:first-child{color:var(--dn-bone-dim);}
+.ml-hours td:last-child{text-align:right;color:var(--dn-bone);font-weight:500;}
+.ml-hours .em-row td:first-child{color:var(--dn-night-soft);font-weight:500;}
+.ml-hours .em-row td:last-child{color:var(--dn-bone);}
+.ml-hours .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ad07a;margin-right:7px;vertical-align:middle;box-shadow:0 0 0 4px rgba(58,208,122,.16);}
+
+/* ===== FORM card (premium charcoal field-kit) ===== */
+.ml-form-card{position:relative;background:linear-gradient(180deg,rgba(22,22,28,.96),rgba(14,14,18,.97));border:1px solid var(--dn-mist);border-radius:24px;padding:28px 26px 26px;box-shadow:0 40px 110px -50px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.02) inset;overflow:visible;}
+.ml-form-card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:rgba(248,199,96,.5);}
+.ml-form-head{margin-bottom:20px;}
+.ml-form-head h2{font-family:var(--font-display);font-weight:380;font-size:1.62rem;line-height:1.14;letter-spacing:-.01em;margin:0 0 6px;}
+.ml-form-head h2 em{font-style:normal;color:var(--dn-day);}
+.ml-form-head p{color:var(--dn-bone-dim);font-size:.95rem;margin:0;}
+
+.ml-field{position:relative;}
+.ml-field + .ml-field{margin-top:15px;}
+.ml-label{display:block;font-size:.92rem;color:var(--dn-bone);margin-bottom:8px;font-weight:500;}
+.ml-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+textarea.ml-input{padding:13px 15px;min-height:96px;resize:vertical;line-height:1.55;}
+.ml-input::placeholder{color:var(--dn-bone-faint);}
+.ml-input:hover{border-color:rgba(255,255,255,.2);}
+.ml-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.ml-grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.ml-grid2 .ml-field + .ml-field{margin-top:0;}
+
+/* preferred-time radios */
+.ml-radios{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ml-radio{position:relative;display:flex;align-items:center;gap:10px;padding:0 14px;min-height:50px;border-radius:13px;background:var(--dn-charcoal);border:1px solid var(--dn-mist);cursor:pointer;font-size:.95rem;color:var(--dn-bone-dim);transition:border-color .16s,background .16s,color .16s;}
+.ml-radio input{position:absolute;opacity:0;width:1px;height:1px;}
+.ml-radio .box{width:18px;height:18px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--dn-bone-faint);display:grid;place-items:center;transition:border-color .16s;}
+.ml-radio .box::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--dn-day);transform:scale(0);transition:transform .16s;}
+.ml-radio:hover{border-color:rgba(255,255,255,.22);color:var(--dn-bone);}
+.ml-radio input:checked ~ .box{border-color:var(--dn-day);}
+.ml-radio input:checked ~ .box::after{transform:scale(1);}
+.ml-radio:has(input:checked){border-color:var(--dn-day);background:#181820;color:var(--dn-bone);}
+.ml-radio input:focus-visible ~ .box{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.ml-radio .urgent-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dn-night);margin-right:2px;}
+/* emergency radio leans night/blue */
+.ml-radio.urgent .box{border-color:rgba(69,144,236,.6);}
+.ml-radio.urgent .box::after{background:var(--dn-night);}
+.ml-radio.urgent input:checked ~ .box{border-color:var(--dn-night);}
+.ml-radio.urgent:has(input:checked){border-color:var(--dn-night);background:rgba(69,144,236,.08);}
+.ml-radio.urgent input:focus-visible ~ .box{box-shadow:0 0 0 4px rgba(69,144,236,.2);}
+
+/* custom dropdown */
+.ml-dd{position:relative;}
+.ml-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.ml-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.ml-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.ml-dd.open .ml-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.ml-dd-trigger .ph{color:var(--dn-bone-faint);}
+.ml-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.ml-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.ml-dd.open .ml-chev{transform:rotate(180deg);}
+.ml-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:300px;overflow-y:auto;list-style:none;margin:0;}
+.ml-dd:not(.open) .ml-dd-list{display:none;}
+.ml-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.ml-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.ml-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.ml-opt:hover,.ml-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.ml-opt:hover::before,.ml-opt.active::before{opacity:1;}
+.ml-opt[aria-selected="true"]{color:var(--dn-day);}
+.ml-opt[aria-selected="true"] .check{opacity:1;}
+.ml-dd-native{margin-top:9px;}
+
+/* submit */
+.ml-send{margin-top:20px;}
+.ml-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.05rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s,background .18s,color .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);position:relative;overflow:hidden;}
+.ml-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.ml-btn:active{transform:scale(.985);}
+.ml-btn svg{width:18px;height:18px;}
+/* emergency state: solid blue path */
+.ml-btn.is-emergency{background:var(--dn-night);color:#fff;box-shadow:0 14px 36px -14px rgba(69,144,236,.7);}
+.ml-btn.is-emergency:hover{box-shadow:0 18px 44px -14px rgba(69,144,236,.85);}
+.ml-btn .em-pulse{position:absolute;inset:0;background:rgba(255,255,255,.18);opacity:0;animation:btnpulse 1.8s ease-in-out infinite;pointer-events:none;}
+.ml-btn.is-emergency .em-pulse{opacity:1;}
+@keyframes btnpulse{0%,100%{transform:scale(0);opacity:0;}50%{transform:scale(1);opacity:.25;}}
+@media(prefers-reduced-motion:reduce){.ml-btn .em-pulse{animation:none;}}
+.ml-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;font-size:.84rem;color:var(--dn-bone-dim);}
+.ml-reassure svg{width:15px;height:15px;color:#5cd98c;flex:0 0 auto;}
+.ml-disclaimer{font-size:.8rem;color:var(--dn-bone-faint);text-align:center;margin:14px 0 0;line-height:1.5;}
+.ml-disclaimer a{color:var(--dn-day);text-decoration:none;}
+
+.ml-noscript{margin:0 0 16px;padding:13px 15px;border-radius:13px;background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.28);font-size:.9rem;color:var(--dn-bone-dim);}
+.ml-noscript a{color:var(--dn-day);}
+
+@media(max-width:880px){
+  .ml-grid{grid-template-columns:1fr;gap:20px;}
+}
+@media(max-width:480px){
+  .ml-wrap{padding:34px 16px 80px;}
+  .ml-map-card{left:14px;right:14px;bottom:14px;padding:17px 17px;}
+  .ml-form-card{padding:24px 18px 22px;}
+  .ml-form-card::before,.ml-map::before{left:18px;right:18px;}
+  .ml-grid2{grid-template-columns:1fr;gap:13px;}
+  .ml-grid2 .ml-field + .ml-field{margin-top:13px;}
+  .ml-radios{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Map Led</b> <span class="lab-lens">location</span></div><span></span></div>
+
+<div class="ml-wrap">
+  <div class="ml-glow day"></div>
+  <div class="ml-glow night"></div>
+  <div class="ml-inner">
+
+    <header class="ml-intro">
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">Get in touch</span></div>
+      <h1>You will find us in the heart of <em class="dn-hl-gold">Merchant City</em>.</h1>
+      <p>Call us, email us, or send your details below. For urgent toothache, swelling or a broken tooth, our emergency line answers around the clock.</p>
+    </header>
+
+    <!-- ===== MAP FACADE HERO (static, no live iframe, no third-party requests) ===== -->
+    <section class="ml-map" aria-label="Day Night Dental location, Merchant City, Glasgow">
+      <div class="ml-map-canvas">
+        <svg viewBox="0 0 1180 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Stylised map of Merchant City, Glasgow with a pin on Day Night Dental">
+          <defs>
+            <pattern id="mlGrid" width="46" height="46" patternUnits="userSpaceOnUse">
+              <path d="M46 0H0V46" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <!-- ground -->
+          <rect width="1180" height="440" fill="#0d0f15"/>
+          <rect width="1180" height="440" fill="url(#mlGrid)"/>
+          <!-- river clyde, blue ribbon along the bottom -->
+          <path d="M0 392 C 220 372, 420 412, 640 388 S 1020 372, 1180 396 L1180 440 L0 440 Z" fill="rgba(69,144,236,.16)"/>
+          <path d="M0 392 C 220 372, 420 412, 640 388 S 1020 372, 1180 396" fill="none" stroke="rgba(69,144,236,.4)" stroke-width="2"/>
+          <!-- a few parks / blocks -->
+          <rect x="120" y="96" width="150" height="96" rx="10" fill="rgba(248,199,96,.05)" stroke="rgba(255,255,255,.05)"/>
+          <rect x="900" y="120" width="170" height="120" rx="10" fill="rgba(69,144,236,.05)" stroke="rgba(255,255,255,.05)"/>
+          <rect x="760" y="280" width="120" height="80" rx="10" fill="rgba(255,255,255,.025)" stroke="rgba(255,255,255,.05)"/>
+          <!-- main roads (grid of streets) -->
+          <g stroke="rgba(255,255,255,.1)" stroke-width="9" stroke-linecap="round">
+            <line x1="-20" y1="150" x2="1200" y2="150"/>
+            <line x1="-20" y1="250" x2="1200" y2="250"/>
+            <line x1="-20" y1="330" x2="1200" y2="330"/>
+            <line x1="300" y1="-20" x2="300" y2="460"/>
+            <line x1="560" y1="-20" x2="560" y2="460"/>
+            <line x1="820" y1="-20" x2="820" y2="460"/>
+          </g>
+          <!-- thinner cross streets -->
+          <g stroke="rgba(255,255,255,.05)" stroke-width="4">
+            <line x1="-20" y1="60" x2="1200" y2="60"/>
+            <line x1="-20" y1="200" x2="1200" y2="200"/>
+            <line x1="160" y1="-20" x2="160" y2="460"/>
+            <line x1="430" y1="-20" x2="430" y2="460"/>
+            <line x1="690" y1="-20" x2="690" y2="460"/>
+            <line x1="950" y1="-20" x2="950" y2="460"/>
+            <line x1="1080" y1="-20" x2="1080" y2="460"/>
+          </g>
+          <!-- the gold highlighted street the practice sits on (Hutcheson Street) -->
+          <line x1="560" y1="-20" x2="560" y2="250" stroke="rgba(248,199,96,.28)" stroke-width="10" stroke-linecap="round"/>
+          <!-- street labels -->
+          <text x="14" y="142" fill="rgba(255,255,255,.32)" font-family="Inter Tight, sans-serif" font-size="14" letter-spacing="1">INGRAM STREET</text>
+          <text x="14" y="242" fill="rgba(255,255,255,.32)" font-family="Inter Tight, sans-serif" font-size="14" letter-spacing="1">WILSON STREET</text>
+          <text x="14" y="322" fill="rgba(255,255,255,.32)" font-family="Inter Tight, sans-serif" font-size="14" letter-spacing="1">TRONGATE</text>
+          <text x="572" y="86" fill="rgba(248,199,96,.55)" font-family="Inter Tight, sans-serif" font-size="14" letter-spacing="1" transform="rotate(0 572 86)">HUTCHESON ST</text>
+          <text x="1006" y="418" fill="rgba(69,144,236,.6)" font-family="Inter Tight, sans-serif" font-size="14" letter-spacing="1">RIVER CLYDE</text>
+        </svg>
+        <!-- the pin, positioned at the Hutcheson St / Wilson St junction -->
+        <span class="ml-pin" style="left:47.5%;top:57%;" aria-hidden="true">
+          <span class="pulse"></span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 23s8-6.2 8-13a8 8 0 1 0-16 0c0 6.8 8 13 8 13z" fill="#f8c760" stroke="#0a0a0c" stroke-width="1"/>
+            <circle cx="12" cy="10" r="3" fill="#0a0a0c"/>
+          </svg>
+        </span>
+      </div>
+
+      <!-- address card overlaid on the map -->
+      <div class="ml-map-card">
+        <span class="k">Visit us</span>
+        <p class="name">Day Night Dental</p>
+        <p class="addr">80 Hutcheson Street,<br>Merchant City, Glasgow G1 1SH</p>
+        <span class="park">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+          Free parking nearby
+        </span>
+        <a class="ml-map-dir" href="https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z" target="_blank" rel="noopener noreferrer">
+          Get directions
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== details | form ===== -->
+    <div class="ml-grid">
+
+      <!-- LEFT: contact methods + hours -->
+      <div class="ml-info">
+        <div class="ml-methods">
+
+          <div class="ml-method day">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div class="body">
+              <div class="lab">Day line</div>
+              <a class="val" href="tel:+441415486548">0141 548 6548</a>
+              <span class="hint">Open Mon to Sun, 7am to 11pm</span>
+            </div>
+          </div>
+
+          <div class="ml-method night">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+            <div class="body">
+              <div class="lab">Night &amp; emergency</div>
+              <a class="val" href="tel:+441415486548">0141 548 6548</a>
+              <span class="hint"><span class="em-dot"></span>24-hour emergency line</span>
+            </div>
+          </div>
+
+          <div class="ml-method neutral">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <div class="body">
+              <div class="lab">Email</div>
+              <a class="val" href="mailto:reception@daynightdental.co.uk" style="font-size:1.04rem;">reception@daynightdental.co.uk</a>
+              <span class="hint">We reply within 1 working hour</span>
+            </div>
+          </div>
+
+          <div class="ml-method neutral">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div class="body">
+              <div class="lab">Visit</div>
+              <span class="val" style="font-size:1.08rem;">80 Hutcheson Street, Merchant City, Glasgow G1 1SH</span>
+              <span class="hint">Free parking nearby</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ml-hours">
+          <p class="ml-hours-head">Opening hours</p>
+          <table>
+            <tbody>
+              <tr><td>Monday to Friday</td><td>7am to 11pm</td></tr>
+              <tr><td>Saturday</td><td>8am to 10pm</td></tr>
+              <tr><td>Sunday</td><td>9am to 9pm</td></tr>
+              <tr class="em-row"><td>Emergency line</td><td><span class="live-dot"></span>24 hours, 7 days</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT: enquiry form -->
+      <div class="ml-form-card">
+        <div class="ml-form-head">
+          <h2>Request an <em>appointment</em>.</h2>
+          <p>Send us your details and the team will get back to you.</p>
+        </div>
+
+        <noscript>
+          <p class="ml-noscript">
+            This form works best with JavaScript. You can also call us on
+            <a href="tel:+441415486548">0141 548 6548</a> or email
+            <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>.
+          </p>
+        </noscript>
+
+        <form id="ml-form" method="post" action="/api/send-enquiry.php" novalidate>
+          <!-- honeypot -->
+          <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="ml-field">
+            <label class="ml-label" for="ml-name">Your name</label>
+            <input class="ml-input" type="text" id="ml-name" name="name" required autocomplete="name" placeholder="Full name">
+          </div>
+
+          <div class="ml-grid2" style="margin-top:15px;">
+            <div class="ml-field">
+              <label class="ml-label" for="ml-phone">Phone</label>
+              <input class="ml-input" type="tel" id="ml-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+            </div>
+            <div class="ml-field">
+              <label class="ml-label" for="ml-email">Email</label>
+              <input class="ml-input" type="email" id="ml-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+            </div>
+          </div>
+
+          <div class="ml-field" style="margin-top:15px;">
+            <span class="ml-label" id="ml-pref-label">Preferred time</span>
+            <div class="ml-radios" role="radiogroup" aria-labelledby="ml-pref-label">
+              <label class="ml-radio urgent">
+                <input type="radio" name="preference" value="emergency">
+                <span class="box" aria-hidden="true"></span>
+                <span><span class="urgent-dot"></span>Emergency, today</span>
+              </label>
+              <label class="ml-radio">
+                <input type="radio" name="preference" value="day">
+                <span class="box" aria-hidden="true"></span>
+                <span>Day, 7am to 5pm</span>
+              </label>
+              <label class="ml-radio">
+                <input type="radio" name="preference" value="evening">
+                <span class="box" aria-hidden="true"></span>
+                <span>Evening, 5pm to 11pm</span>
+              </label>
+              <label class="ml-radio">
+                <input type="radio" name="preference" value="weekend">
+                <span class="box" aria-hidden="true"></span>
+                <span>Weekend</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="ml-field" style="margin-top:15px;">
+            <label class="ml-label" id="ml-dd-label">Treatment of interest</label>
+            <div class="ml-dd" id="ml-dd">
+              <button type="button" class="ml-dd-trigger" id="ml-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ml-dd-label ml-dd-trigger">
+                <span class="ph" id="ml-dd-val">Select an option</span>
+                <svg class="ml-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="ml-dd-list" id="ml-dd-list" role="listbox" aria-labelledby="ml-dd-label" tabindex="-1">
+                <li class="ml-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="New patient examination">New patient examination<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="Hygienist appointment">Hygienist appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="Invisalign">Invisalign<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="Dental implants">Dental implants<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="Teeth whitening">Teeth whitening<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+                <li class="ml-opt" role="option" data-value="Other / unsure">Other / unsure<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              </ul>
+            </div>
+            <input type="hidden" name="treatment" id="ml-treatment" value="">
+            <noscript>
+              <div class="ml-dd-native">
+                <select name="treatment" aria-label="Treatment of interest" style="width:100%;font-size:16px;color:#fff;background:#14141a;border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:14px 15px;min-height:50px;">
+                  <option value="">Select an option</option>
+                  <option value="Emergency / pain">Emergency / pain</option>
+                  <option value="New patient examination">New patient examination</option>
+                  <option value="Hygienist appointment">Hygienist appointment</option>
+                  <option value="Cosmetic consultation">Cosmetic consultation</option>
+                  <option value="Invisalign">Invisalign</option>
+                  <option value="Dental implants">Dental implants</option>
+                  <option value="Teeth whitening">Teeth whitening</option>
+                  <option value="Other / unsure">Other / unsure</option>
+                </select>
+              </div>
+            </noscript>
+          </div>
+
+          <div class="ml-field" style="margin-top:15px;">
+            <label class="ml-label" for="ml-notes">Anything we should know?</label>
+            <textarea class="ml-input" id="ml-notes" name="notes" rows="3" placeholder="Optional. Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+          </div>
+
+          <div class="ml-send">
+            <button type="submit" class="ml-btn" id="ml-submit">
+              <span class="em-pulse" aria-hidden="true"></span>
+              <span class="ml-btn-label">Request Booking</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="ml-reassure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              We reply within 1 working hour
+            </p>
+            <p class="ml-disclaimer">
+              We will never share your details. By sending this you are happy for us to
+              contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+            </p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('ml-dd');
+  if(dd){
+    var trigger = document.getElementById('ml-dd-trigger');
+    var list = document.getElementById('ml-dd-list');
+    var valEl = document.getElementById('ml-dd-val');
+    var hidden = document.getElementById('ml-treatment');
+    var opts = Array.prototype.slice.call(list.querySelectorAll('.ml-opt'));
+    var activeIdx = -1;
+
+    function open(){
+      dd.classList.add('open');
+      trigger.setAttribute('aria-expanded','true');
+      var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+      setActive(sel > -1 ? sel : 0);
+      list.focus();
+    }
+    function close(focusTrigger){
+      dd.classList.remove('open');
+      trigger.setAttribute('aria-expanded','false');
+      if(focusTrigger) trigger.focus();
+    }
+    function setActive(i){
+      if(i < 0) i = 0;
+      if(i > opts.length-1) i = opts.length-1;
+      opts.forEach(function(o){o.classList.remove('active');});
+      activeIdx = i;
+      opts[i].classList.add('active');
+      opts[i].scrollIntoView({block:'nearest'});
+    }
+    function choose(o){
+      opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+      o.setAttribute('aria-selected','true');
+      var v = o.getAttribute('data-value');
+      valEl.textContent = v;
+      trigger.classList.add('has-val');
+      hidden.value = v;
+      close(true);
+    }
+
+    trigger.addEventListener('click', function(){
+      dd.classList.contains('open') ? close(false) : open();
+    });
+    trigger.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+    });
+    opts.forEach(function(o,i){
+      o.addEventListener('click', function(){ choose(o); });
+      o.addEventListener('mousemove', function(){ setActive(i); });
+    });
+    list.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+      else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+      else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+      else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+      else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+    });
+    document.addEventListener('click', function(e){
+      if(!dd.contains(e.target)) close(false);
+    });
+  }
+
+  /* ---- emergency path: swap the submit button to the blue emergency styling/label ---- */
+  var btn = document.getElementById('ml-submit');
+  var btnLabel = btn ? btn.querySelector('.ml-btn-label') : null;
+  var radios = document.querySelectorAll('input[name="preference"]');
+  radios.forEach(function(r){
+    r.addEventListener('change', function(){
+      if(!btn) return;
+      if(r.value === 'emergency' && r.checked){
+        btn.classList.add('is-emergency');
+        if(btnLabel) btnLabel.textContent = 'Request Emergency Appointment';
+      } else {
+        btn.classList.remove('is-emergency');
+        if(btnLabel) btnLabel.textContent = 'Request Booking';
+      }
+    });
+  });
+
+  /* static preview: never actually submit */
+  var form = document.getElementById('ml-form');
+  if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); }); }
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

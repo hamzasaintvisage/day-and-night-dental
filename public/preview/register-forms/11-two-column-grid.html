@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview · Register · The Grid</title>
+<!-- Throwaway preview mockup under /preview/register-forms/. Inherits the real brand tokens,
+     fonts and base component classes from the compiled stylesheet. The live form is NOT touched. -->
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ===== The Grid: a compact, contemporary two-column field grid in one card ===== */
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 600px at 8% -8%, rgba(248,199,96,.06), transparent 60%),
+      radial-gradient(900px 600px at 100% 108%, rgba(69,144,236,.06), transparent 60%),
+      var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  .grid-wrap{max-width:1180px;margin:0 auto;padding:4.5rem 1.5rem 5.5rem;position:relative;}
+
+  /* ---- Header ---- */
+  .grid-head{max-width:760px;}
+  .grid-head .dn-eyebrow{margin-bottom:1.1rem;}
+  .grid-head h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:-.02em;
+    line-height:1.02;
+    font-size:clamp(2.4rem,5vw,3.6rem);
+    margin:0 0 1rem;
+  }
+  .grid-head h1 em{font-style:italic;color:var(--dn-day);}
+  .grid-head .lead{
+    color:var(--dn-bone-dim);
+    font-size:1.02rem;
+    line-height:1.55;
+    margin:0;
+    max-width:60ch;
+  }
+  .grid-urgent{
+    margin-top:1.15rem;
+    font-size:.9rem;
+    color:var(--dn-bone-dim);
+    display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+  }
+  .grid-urgent .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--dn-night);
+    box-shadow:0 0 0 4px rgba(69,144,236,.15);flex:none;
+    animation:pulseDot 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseDot{0%,100%{box-shadow:0 0 0 4px rgba(69,144,236,.15);}50%{box-shadow:0 0 0 7px rgba(69,144,236,.04);}}
+  .grid-urgent a{color:var(--dn-night-soft);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(125,181,240,.35);}
+  .grid-urgent a:hover{border-bottom-color:var(--dn-night-soft);}
+
+  /* ---- Value strip: a row of small cards carrying ALL the reassurance content ---- */
+  .value-strip{
+    margin:2.6rem 0 0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--dn-mist);
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-card);
+    overflow:hidden;
+  }
+  .vcard{
+    background:var(--dn-near-black);
+    padding:1.35rem 1.4rem 1.45rem;
+    position:relative;
+    display:flex;flex-direction:column;gap:.4rem;
+  }
+  .vcard .vnum{
+    font-family:var(--font-display);
+    font-size:.95rem;color:var(--dn-day);line-height:1;margin-bottom:.35rem;
+  }
+  .vcard:nth-child(even) .vnum{color:var(--dn-night-soft);}
+  .vcard h4{
+    font-family:var(--font-display);
+    font-size:1.02rem;font-weight:700;letter-spacing:-.01em;margin:0;color:var(--dn-bone);
+  }
+  .vcard p{font-size:.8rem;line-height:1.48;color:var(--dn-bone-dim);margin:0;}
+
+  /* facts row sits under the four benefits: the price + policy lines */
+  .value-facts{
+    margin-top:1px;
+    display:grid;
+    grid-template-columns:1.15fr 1fr 1fr 1fr;
+    gap:1px;
+    background:var(--dn-mist);
+    border:1px solid var(--dn-mist);
+    border-top:none;
+    border-radius:0 0 var(--dn-r-card) var(--dn-r-card);
+    overflow:hidden;
+  }
+  .fact{
+    background:var(--dn-near-black);
+    padding:1.05rem 1.4rem;
+    display:flex;flex-direction:column;gap:.28rem;justify-content:center;
+  }
+  .fact .flabel{
+    font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-faint);
+  }
+  .fact .fval{font-size:.92rem;line-height:1.35;color:var(--dn-bone);font-weight:500;}
+  .fact.price .fval{
+    font-family:var(--font-display);font-weight:700;font-size:1.7rem;color:var(--dn-day);line-height:1;
+  }
+  .fact.price .fval .cur{font-size:.95rem;margin-right:.05em;}
+  .fact .fval b{color:var(--dn-night-soft);font-weight:600;}
+  .promise-line{
+    margin:1.4rem 0 0;
+    font-size:.86rem;color:var(--dn-bone-dim);line-height:1.5;
+    display:flex;align-items:baseline;gap:.6rem;
+  }
+  .promise-line .pk{
+    font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-day);flex:none;
+    font-weight:600;
+  }
+
+  /* ---- The form card ---- */
+  .form-card{
+    margin-top:2.4rem;
+    background:var(--dn-near-black);
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-card);
+    position:relative;
+    overflow:hidden;
+  }
+  .form-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--dn-night);
+  }
+  .form-card-inner{padding:2.8rem 2.8rem 2.4rem;}
+
+  .fgroup + .fgroup{
+    margin-top:2.4rem;padding-top:2.4rem;border-top:1px solid var(--dn-mist);
+  }
+  .fgroup-head{
+    display:flex;align-items:baseline;gap:.9rem;margin-bottom:1.7rem;flex-wrap:wrap;
+  }
+  .fgroup-head .gnum{
+    font-family:var(--font-display);font-size:.9rem;color:var(--dn-bone-faint);line-height:1;
+  }
+  .fgroup-head h2{
+    font-family:var(--font-display);font-size:1.5rem;font-weight:700;letter-spacing:-.01em;margin:0;
+  }
+  .fgroup-head .ghint{font-size:.78rem;color:var(--dn-bone-faint);margin-left:auto;}
+
+  /* the field grid */
+  .fg{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 1.2rem;}
+  .field{display:flex;flex-direction:column;gap:.5rem;min-width:0;}
+  .field.span2{grid-column:1 / -1;}
+  .field > .lab{
+    font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-dim);
+    display:flex;align-items:center;gap:.4rem;
+  }
+  .field > .lab .req{color:var(--dn-day);font-size:.85rem;line-height:0;}
+  .field > .lab .opt{
+    color:var(--dn-bone-faint);letter-spacing:.12em;font-size:.6rem;text-transform:uppercase;
+  }
+  .ctrl{
+    width:100%;
+    padding:.82rem .95rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    color:var(--dn-bone);
+    font-family:var(--font-body);
+    font-size:1rem; /* 16px: prevents iOS zoom-on-focus */
+    border-radius:8px;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .ctrl::placeholder{color:var(--dn-bone-faint);}
+  .ctrl:focus{
+    outline:none;border-color:var(--dn-day);
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+  }
+  textarea.ctrl{resize:vertical;min-height:96px;line-height:1.5;}
+
+  /* select styling (native, on-brand) */
+  select.ctrl{
+    -webkit-appearance:none;appearance:none;cursor:pointer;
+    background-image:
+      linear-gradient(45deg,transparent 50%,var(--dn-bone-dim) 50%),
+      linear-gradient(135deg,var(--dn-bone-dim) 50%,transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(50% - 2px),
+      calc(100% - 13px) calc(50% - 2px);
+    background-size:5px 5px,5px 5px;
+    background-repeat:no-repeat;
+    padding-right:2.4rem;
+  }
+  select.ctrl option{background:var(--dn-charcoal);color:var(--dn-bone);}
+  select.ctrl:invalid,select.ctrl.is-placeholder{color:var(--dn-bone-faint);}
+
+  /* date of birth: three selects */
+  .dob{display:grid;grid-template-columns:.9fr 1.25fr 1fr;gap:.7rem;}
+  .dob select{min-width:0;}
+
+  /* ---- Care type: 4-up row of cards ---- */
+  .care-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;}
+  .care-card{
+    position:relative;
+    padding:1.15rem 1.15rem 1.2rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:10px;
+    cursor:pointer;
+    transition:border-color .25s, background .25s, transform .25s;
+    display:flex;flex-direction:column;gap:.4rem;min-width:0;
+  }
+  .care-card:hover{transform:translateY(-2px);}
+  .care-card input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
+  .care-card .ctitle{
+    font-family:var(--font-display);font-size:1.08rem;font-weight:700;color:var(--dn-bone);letter-spacing:-.01em;
+    display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  }
+  .care-card .tick{
+    width:18px;height:18px;border-radius:50%;border:1px solid var(--dn-mist);flex:none;
+    position:relative;transition:border-color .25s, background .25s;
+  }
+  .care-card .tick::after{
+    content:'';position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;
+    background:transparent;transition:background .25s;
+  }
+  .care-card .cdesc{font-size:.76rem;line-height:1.42;color:var(--dn-bone-dim);}
+  .care-card:has(input:focus-visible){outline:2px solid var(--dn-day);outline-offset:2px;}
+
+  /* selected states: gold for day cards, blue for night cards */
+  .care-card.day.is-on{border-color:var(--dn-day);background:rgba(248,199,96,.06);}
+  .care-card.day.is-on .ctitle{color:var(--dn-day);}
+  .care-card.day.is-on .tick{border-color:var(--dn-day);}
+  .care-card.day.is-on .tick::after{background:var(--dn-day);}
+  .care-card.night.is-on{border-color:var(--dn-night);background:rgba(69,144,236,.06);}
+  .care-card.night.is-on .ctitle{color:var(--dn-night-soft);}
+  .care-card.night.is-on .tick{border-color:var(--dn-night);}
+  .care-card.night.is-on .tick::after{background:var(--dn-night-soft);}
+
+  /* ---- Consent + submit ---- */
+  .consent{
+    display:flex;align-items:flex-start;gap:.8rem;
+    padding:1.05rem 1.15rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:1.6rem;
+  }
+  .consent input{width:auto;margin-top:3px;accent-color:var(--dn-day);flex:none;}
+  .consent span{font-size:.82rem;line-height:1.5;color:var(--dn-bone-dim);}
+  .consent a{color:var(--dn-night-soft);text-decoration:underline;text-underline-offset:2px;}
+
+  .submit-row{
+    margin-top:1.8rem;
+    display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+  }
+  .submit-note{font-size:.78rem;color:var(--dn-bone-faint);display:flex;align-items:center;gap:.5rem;}
+  .submit-note .lock{color:var(--dn-bone-dim);}
+  .btn-go{
+    font-family:var(--font-body);
+    font-weight:600;font-size:1rem;letter-spacing:.01em;
+    padding:.95rem 1.7rem;
+    background:var(--dn-day);color:#0a0a0c;
+    border:none;border-radius:999px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:.6rem;
+    transition:transform .25s, box-shadow .25s, background .25s;
+    box-shadow:0 12px 30px -14px rgba(248,199,96,.6);
+  }
+  .btn-go .arrow{transition:transform .3s ease;}
+  .btn-go:hover{background:var(--dn-day-soft);box-shadow:0 16px 36px -14px rgba(248,199,96,.7);}
+  .btn-go:hover .arrow{transform:translateX(4px);}
+
+  /* ---- Responsive ---- */
+  @media (max-width:980px){
+    .value-strip{grid-template-columns:1fr 1fr;}
+    .value-facts{grid-template-columns:1fr 1fr;border-radius:0;}
+    .care-row{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    .grid-wrap{padding:3.2rem 1.1rem 4rem;}
+    .form-card-inner{padding:1.9rem 1.4rem 1.7rem;}
+    .value-strip{grid-template-columns:1fr;}
+    .value-facts{grid-template-columns:1fr;}
+    .fg{grid-template-columns:1fr;}
+    .field.span2{grid-column:auto;}
+    .care-row{grid-template-columns:1fr;}
+    .dob{grid-template-columns:.85fr 1.3fr 1fr;}
+    .fgroup-head .ghint{margin-left:0;flex-basis:100%;}
+    .submit-row .btn-go{flex:1 1 100%;justify-content:center;}
+  }
+  @media (max-width:380px){
+    .dob{gap:.45rem;}
+    .dob select{padding-left:.55rem;padding-right:1.7rem;}
+  }
+
+  /* preview-only override: let the page scroll normally when opened standalone */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Grid</div>
+
+<div class="grid-wrap">
+
+  <!-- ===== Header ===== -->
+  <header class="grid-head">
+    <span class="dn-eyebrow dn-pill day">New Patients</span>
+    <h1>Register in <em>three</em> minutes</h1>
+    <p class="lead">
+      We're taking on new patients for every treatment we offer. Fill in the form below
+      and we'll confirm your first appointment within one working hour.
+    </p>
+    <p class="grid-urgent">
+      <span class="dot" aria-hidden="true"></span>
+      In pain right now? Don't wait to register,
+      <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+      We're a new practice in Merchant City, Glasgow.
+    </p>
+  </header>
+
+  <!-- ===== Value strip: four benefits ===== -->
+  <div class="value-strip">
+    <div class="vcard">
+      <span class="vnum">01</span>
+      <h4>Comprehensive examination</h4>
+      <p>A 45 minute full assessment with intra-oral scans and bite analysis.</p>
+    </div>
+    <div class="vcard">
+      <span class="vnum">02</span>
+      <h4>Digital x-rays</h4>
+      <p>Low-dose, with no films to develop, so you are not left waiting.</p>
+    </div>
+    <div class="vcard">
+      <span class="vnum">03</span>
+      <h4>Personalised treatment plan</h4>
+      <p>Written, with the cost of each item set out before any work starts.</p>
+    </div>
+    <div class="vcard">
+      <span class="vnum">04</span>
+      <h4>Hygiene appointment</h4>
+      <p>Booked in alongside your examination, so you leave with a fresh start.</p>
+    </div>
+  </div>
+
+  <!-- ===== Facts row: price + policy ===== -->
+  <div class="value-facts">
+    <div class="fact price">
+      <span class="flabel">First visit from</span>
+      <span class="fval"><span class="cur">£</span>95</span>
+    </div>
+    <div class="fact">
+      <span class="flabel">Children under 18</span>
+      <span class="fval">Examined <b>free</b></span>
+    </div>
+    <div class="fact">
+      <span class="flabel">NHS care</span>
+      <span class="fval">By waiting list, when we have space</span>
+    </div>
+    <div class="fact">
+      <span class="flabel">No surprises</span>
+      <span class="fval">First-visit cost confirmed before anything goes ahead</span>
+    </div>
+  </div>
+
+  <p class="promise-line">
+    <span class="pk">Our promise</span>
+    Register in three minutes and we confirm your first appointment within one working hour.
+  </p>
+
+  <!-- ===== The form card ===== -->
+  <div class="form-card">
+    <div class="form-card-inner">
+      <form onsubmit="return false;">
+
+        <!-- ----- Group 1: Your details ----- -->
+        <section class="fgroup">
+          <div class="fgroup-head">
+            <span class="gnum">01</span>
+            <h2>Your details</h2>
+            <span class="ghint">Fields marked * are required</span>
+          </div>
+
+          <div class="fg">
+            <div class="field">
+              <span class="lab">First name <span class="req" aria-hidden="true">*</span></span>
+              <input class="ctrl" type="text" name="firstName" autocomplete="given-name" placeholder="Hamza" required>
+            </div>
+            <div class="field">
+              <span class="lab">Last name <span class="req" aria-hidden="true">*</span></span>
+              <input class="ctrl" type="text" name="lastName" autocomplete="family-name" placeholder="Abrar" required>
+            </div>
+
+            <div class="field span2">
+              <span class="lab">Date of birth <span class="req" aria-hidden="true">*</span></span>
+              <div class="dob">
+                <select class="ctrl is-placeholder" name="dobDay" aria-label="Day of birth" required onchange="this.classList.toggle('is-placeholder',!this.value)">
+                  <option value="" selected disabled>Day</option>
+                  <option>1</option><option>2</option><option>3</option>
+                  <option>14</option><option>21</option><option>28</option><option>31</option>
+                </select>
+                <select class="ctrl is-placeholder" name="dobMonth" aria-label="Month of birth" required onchange="this.classList.toggle('is-placeholder',!this.value)">
+                  <option value="" selected disabled>Month</option>
+                  <option>January</option><option>February</option><option>March</option>
+                  <option>June</option><option>September</option><option>December</option>
+                </select>
+                <select class="ctrl is-placeholder" name="dobYear" aria-label="Year of birth" required onchange="this.classList.toggle('is-placeholder',!this.value)">
+                  <option value="" selected disabled>Year</option>
+                  <option>2007</option><option>1998</option><option>1990</option>
+                  <option>1985</option><option>1972</option><option>1960</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="lab">Phone <span class="req" aria-hidden="true">*</span></span>
+              <input class="ctrl" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number" required>
+            </div>
+            <div class="field">
+              <span class="lab">Email <span class="req" aria-hidden="true">*</span></span>
+              <input class="ctrl" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+            </div>
+
+            <div class="field">
+              <span class="lab">Address <span class="opt">optional</span></span>
+              <input class="ctrl" type="text" name="address" autocomplete="street-address" placeholder="Street address (optional)">
+            </div>
+            <div class="field">
+              <span class="lab">Postcode <span class="req" aria-hidden="true">*</span></span>
+              <input class="ctrl" type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ----- Group 2: Your care ----- -->
+        <section class="fgroup">
+          <div class="fgroup-head">
+            <span class="gnum">02</span>
+            <h2>Your care</h2>
+          </div>
+
+          <div class="field span2" style="margin-bottom:1.7rem;">
+            <span class="lab" id="care-label">Care type <span class="req" aria-hidden="true">*</span></span>
+            <div class="care-row" role="radiogroup" aria-labelledby="care-label" data-care>
+              <label class="care-card day">
+                <input type="radio" name="careType" value="private" required>
+                <span class="ctitle">Private <span class="tick" aria-hidden="true"></span></span>
+                <span class="cdesc">Full choice of times and treatments</span>
+              </label>
+              <label class="care-card night">
+                <input type="radio" name="careType" value="nhs" required>
+                <span class="ctitle">NHS <span class="tick" aria-hidden="true"></span></span>
+                <span class="cdesc">Waiting list, when we have space</span>
+              </label>
+              <label class="care-card day">
+                <input type="radio" name="careType" value="mixed" required>
+                <span class="ctitle">Either <span class="tick" aria-hidden="true"></span></span>
+                <span class="cdesc">Whatever gets you seen soonest</span>
+              </label>
+              <label class="care-card night">
+                <input type="radio" name="careType" value="unsure" required>
+                <span class="ctitle">Not sure yet <span class="tick" aria-hidden="true"></span></span>
+                <span class="cdesc">We'll talk it through on the call</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="fg">
+            <div class="field">
+              <span class="lab">How did you hear about us? <span class="opt">optional</span></span>
+              <select class="ctrl is-placeholder" name="referral" aria-label="How did you hear about us?" onchange="this.classList.toggle('is-placeholder',!this.value)">
+                <option value="" selected disabled>Optional</option>
+                <option>Google search</option>
+                <option>Friend or family</option>
+                <option>Instagram</option>
+                <option>Walked past the practice</option>
+                <option>Existing patient</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <span class="lab">What do you need help with? <span class="opt">optional</span></span>
+              <textarea class="ctrl" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+            </div>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>I'm happy for Day Night Dental to hold my information in line with the
+              <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+          </label>
+        </section>
+
+        <!-- ----- Submit ----- -->
+        <div class="submit-row">
+          <span class="submit-note"><span class="lock" aria-hidden="true">&#128274;</span> Your details are handled privately and never shared.</span>
+          <button type="submit" class="btn-go">Complete Registration <span class="arrow" aria-hidden="true">&rarr;</span></button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

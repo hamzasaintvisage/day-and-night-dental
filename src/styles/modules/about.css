@@ -187,114 +187,263 @@
           }
         }
 
-        /* === "Why we're different" arc (sunrise to midnight) === */
-        .dn-arc-head { text-align: center; margin-bottom: clamp(1.6rem, 3.4vw, 2.6rem); }
-        .dn-arc-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(2.5rem, 5vw, 4.5rem);
-          align-items: center;
+        /* === "Why we're different" - The Marquee ===
+           Kinetic motion-band statement. Two slow bands of day/night words drift
+           above and below a static, fully-legible editorial statement. ALL rules are
+           scoped under .dn-about because the live "Where We Are" section owns
+           .dn-marquee / .dn-marquee-track GLOBALLY (shared.css) - these must never
+           collide. Solid gold day-side, solid blue night-side, never a blend. */
+
+        /* full-bleed bands need a clipping context; scope so we never alter other sections */
+        .dn-about { overflow: hidden; }
+        /* continuous gold day-side / blue night-side depth-glow, no blend between them */
+        .dn-about::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(70% 60% at 14% 8%, rgba(248, 199, 96, 0.10), transparent 60%),
+            radial-gradient(70% 60% at 86% 96%, rgba(69, 144, 236, 0.10), transparent 62%);
+          pointer-events: none;
+          z-index: 0;
         }
-        .dn-arc-lede { display: flex; flex-direction: column; align-items: flex-start; }
-        .dn-arc-quote {
+        /* scoped container override: global .dn-container is fixed-width; the bands and
+           stage want a centred, padded, full-width column above the glow */
+        .dn-about .dn-container {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          max-width: var(--container);
+          margin: 0 auto;
+          padding: 0 clamp(20px, 5vw, 40px);
+        }
+
+        /* the band tap target: a transparent full-bleed button wrapping each marquee */
+        .dn-about .dn-mq-band-btn {
+          display: block;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          border: 0;
+          background: none;
+          color: inherit;
+          font: inherit;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .dn-about .dn-mq-band-btn:focus-visible {
+          outline: 2px solid var(--dn-day);
+          outline-offset: -4px;
+        }
+
+        /* ── kinetic marquee bands ── */
+        .dn-about .dn-marquee {
+          position: relative;
+          width: 100vw;
+          margin-left: calc(50% - 50vw);
+          overflow: hidden;
+          -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+                  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+          padding: 0.18em 0;
+          user-select: none;
+        }
+        .dn-about .dn-marquee-track {
+          display: flex;
+          width: max-content;
+          white-space: nowrap;
+          will-change: transform;
+          /* single GPU transform; runs with JS off via the keyframe below */
+          animation: dn-about-march var(--dur, 46s) linear infinite;
+          animation-direction: var(--dir, normal);
+        }
+        .dn-about .dn-marquee-track .seg {
+          display: inline-flex;
+          align-items: baseline;
+          flex: 0 0 auto;
+        }
+        .dn-about .dn-mq-word {
           font-family: var(--font-display);
-          font-weight: 800;
-          /* match the uniform main-section title size (same clamp as .dn-pill + h2) */
-          font-size: clamp(2.2rem, 5.4vw, 3.4rem);
-          line-height: 1.1;
-          letter-spacing: -0.02em;
-          color: var(--dn-bone);
-          margin: 1.1rem 0 0.9rem;
+          font-weight: 330;
+          font-size: clamp(2.6rem, 7.4vw, 5.6rem);
+          line-height: 1;
+          letter-spacing: -0.018em;
+          padding: 0 0.28em;
+          color: transparent;
+          -webkit-text-stroke: 1px var(--dn-mist);
         }
-        .dn-arc-gold { color: var(--dn-day); }
-        .dn-arc-blue { color: var(--dn-night); }
-        .dn-arc-lead {
+        /* lit words: solid gold for day, solid blue for night, no gradient */
+        .dn-about .dn-mq-word.day { color: var(--dn-day); -webkit-text-stroke: 0; }
+        .dn-about .dn-mq-word.night { color: var(--dn-night); -webkit-text-stroke: 0; }
+        .dn-about .dn-mq-word.ghost { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.14); }
+        .dn-about .dn-mq-sep {
+          align-self: center;
+          width: 8px;
+          height: 8px;
+          margin: 0 0.55em;
+          border-radius: 50%;
+          background: var(--dn-bone-faint);
+          opacity: 0.5;
+        }
+        .dn-about .dn-mq-sep.day { background: var(--dn-day); opacity: 0.8; }
+        .dn-about .dn-mq-sep.night { background: var(--dn-night); opacity: 0.8; }
+
+        /* scoped keyframe name so it never shadows the areas marquee's dn-marquee */
+        @keyframes dn-about-march {
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* ── the static statement, centred between the bands ── */
+        .dn-about .dn-stage {
+          position: relative;
+          max-width: 880px;
+          margin: 0 auto;
+          padding: clamp(2.2rem, 5vw, 3.6rem) 0;
+          text-align: center;
+        }
+        .dn-about .dn-stage .dn-eyebrow { margin-bottom: 1.5rem; }
+
+        /* .dn-stage scope raises specificity above the global
+           ".dn-eyebrow.dn-pill + h2" title-size rule so this headline wins */
+        .dn-about .dn-stage .dn-headline {
           font-family: var(--font-display);
-          font-weight: 600;
-          font-size: 1.15rem;
+          font-weight: 340;
+          font-size: clamp(2.3rem, 6vw, 4.2rem);
+          line-height: 1.05;
+          letter-spacing: -0.016em;
+          margin: 1.5rem auto 0;
+          max-width: 18ch;
           color: var(--dn-bone);
-          margin: 0 0 1.3rem;
         }
-        .dn-arc-body {
+        .dn-about .dn-stage .dn-headline .gold { color: var(--dn-day); font-style: italic; font-weight: 380; }
+
+        .dn-about .dn-lead {
+          font-family: var(--font-display);
+          font-weight: 330;
+          font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+          line-height: 1.3;
+          letter-spacing: -0.008em;
+          margin: clamp(1.6rem, 3vw, 2.2rem) auto 0;
           color: var(--dn-bone-dim);
-          font-size: 1.05rem;
-          line-height: 1.7;
-          max-width: 46ch;
-          margin: 0 0 1.5rem;
         }
-        .dn-arc-by {
-          font-size: 0.72rem;
+        .dn-about .dn-lead .day { color: var(--dn-day); }
+        .dn-about .dn-lead .night { color: var(--dn-night); }
+
+        .dn-about .dn-body {
+          margin: clamp(1.3rem, 2.6vw, 1.7rem) auto 0;
+          max-width: 52ch;
+          color: var(--dn-bone-faint);
+          font-size: clamp(1rem, 1.4vw, 1.08rem);
+          line-height: 1.78;
+        }
+
+        /* ── three real-life moments, day side gold / night side blue ── */
+        .dn-about .dn-moments {
+          list-style: none;
+          margin: clamp(2rem, 4vw, 2.8rem) auto 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.8rem;
+        }
+        .dn-about .dn-moment {
+          flex: 1 1 200px;
+          max-width: 260px;
+          min-width: 0;
+          text-align: left;
+          padding: 16px 18px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.025);
+          border: 1px solid var(--dn-mist);
+          border-top: 2px solid var(--accent, var(--dn-day));
+        }
+        .dn-about .dn-moment .when {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.6rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--dn-bone-faint);
-          margin: 0 0 1.6rem;
+          font-weight: 700;
+          color: var(--accent, var(--dn-day));
+          margin-bottom: 0.5rem;
         }
-        .dn-arc-link {
+        .dn-about .dn-moment .when::before {
+          content: '';
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: var(--accent, var(--dn-day));
+        }
+        .dn-about .dn-moment .what {
+          font-family: var(--font-display);
+          font-weight: 380;
+          font-size: 1.18rem;
+          line-height: 1.2;
+          color: var(--dn-bone);
+        }
+        .dn-about .dn-moment.night { --accent: var(--dn-night); }
+
+        /* ── byline + team link ── */
+        .dn-about .dn-by {
+          margin: clamp(2rem, 4vw, 2.6rem) auto 0;
+          font-size: 0.7rem;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: var(--dn-bone-faint);
+        }
+        .dn-about .dn-link {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.78rem;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--dn-bone-dim);
-          transition: color 0.3s ease;
+          min-height: 44px;
+          margin-top: 1rem;
+          padding: 0 0.2rem;
+          font-weight: 560;
+          font-size: 1rem;
+          text-decoration: none;
+          color: var(--dn-night);
+          border-bottom: 1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+          transition: color 0.2s ease, border-color 0.2s ease, gap 0.25s ease;
         }
-        .dn-arc-link:hover { color: var(--dn-day); }
-        .dn-arc-link .arrow { transition: transform 0.3s ease; }
-        .dn-arc-link:hover .arrow { transform: translateX(3px); }
-        .dn-arc-vis { position: relative; }
-        .dn-arc-vis svg { width: 100%; height: auto; display: block; overflow: visible; }
-        .dn-arc-ends {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 0.2rem;
-          font-family: var(--font-display);
-          font-weight: 700;
-          font-size: 0.7rem;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
+        .dn-about .dn-link .arrow { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        @media (hover: hover) {
+          .dn-about .dn-link:hover {
+            color: var(--dn-night-soft);
+            border-color: var(--dn-night-soft);
+            gap: 0.75rem;
+          }
+          .dn-about .dn-link:hover .arrow { transform: translateX(3px); }
         }
-        .dn-arc-ends .sun { color: var(--dn-day); }
-        .dn-arc-ends .moon { color: var(--dn-night); }
-        .dn-arc-legend {
-          list-style: none;
-          margin: 1.6rem 0 0;
-          padding: 0;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.2rem;
+        .dn-about .dn-link:focus-visible {
+          outline: 2px solid var(--dn-night);
+          outline-offset: 4px;
+          border-radius: 4px;
         }
-        .dn-arc-lg { position: relative; padding-left: 1.3rem; }
-        .dn-arc-lg .dot {
-          position: absolute;
-          left: 0;
-          top: 0.4rem;
-          width: 11px;
-          height: 11px;
-          border-radius: 50%;
+
+        /* tap-to-pause state toggle (React useState) */
+        .dn-about.dn-paused .dn-marquee-track { animation-play-state: paused; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .dn-about .dn-marquee-track { animation: none; transform: none; }
+          .dn-about .dn-marquee {
+            -webkit-mask-image: none;
+            mask-image: none;
+            display: flex;
+            justify-content: center;
+          }
         }
-        .dn-arc-lg.day .dot { background: var(--dn-day); box-shadow: 0 0 10px var(--dn-day); }
-        .dn-arc-lg.night .dot { background: var(--dn-night); box-shadow: 0 0 10px var(--dn-night); }
-        .dn-arc-lg .t {
-          display: block;
-          font-family: var(--font-display);
-          font-weight: 700;
-          font-size: 0.98rem;
-          color: var(--dn-bone);
-          line-height: 1.25;
-        }
-        .dn-arc-lg .s {
-          display: block;
-          font-size: 0.8rem;
-          color: var(--dn-bone-faint);
-          margin-top: 0.15rem;
-        }
-        @media (max-width: 900px) {
-          .dn-arc-grid { grid-template-columns: 1fr; gap: 2.6rem; }
-          .dn-arc-body { max-width: none; }
-        }
+
+        /* ── mobile ── */
         @media (max-width: 560px) {
-          .dn-arc-legend { grid-template-columns: 1fr; gap: 0.9rem; }
+          .dn-about .dn-moment { flex: 1 1 100%; max-width: 340px; }
+          .dn-about .dn-mq-word { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+        }
+        @media (max-width: 380px) {
+          .dn-about .dn-container { padding: 0 16px; }
+          .dn-about .dn-headline { font-size: 2.05rem; }
         }
       
 

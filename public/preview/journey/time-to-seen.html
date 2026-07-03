@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Time to Seen - What to expect when you call · Day Night Dental</title>
+<style>
+/* ============================================================
+   TIME TO SEEN - #NEW / timeline lens
+   A "FROM CALL TO SEEN" TIME PROGRESSION. A single horizontal
+   time-from-call axis runs left to right: the moment you call
+   (0:00, gold/day) flows through the three steps and lands on
+   relief (blue/night). Each step is pinned to a moment on the
+   axis with a sense of momentum and speed. Pure CSS, renders
+   with no JS. Brand stays SOLID: gold #f8c760 and blue #4590ec,
+   never a gold-to-blue blend.
+   ============================================================ */
+
+.dn-section{
+  position:relative;
+  padding:clamp(4rem,9vw,8rem) 0;
+  background:
+    radial-gradient(120% 80% at 6% 4%, color-mix(in srgb, var(--dn-day) 9%, transparent) 0%, transparent 52%),
+    radial-gradient(110% 80% at 96% 102%, color-mix(in srgb, var(--dn-night) 8%, transparent) 0%, transparent 56%),
+    var(--dn-near-black);
+}
+.dn-container{
+  width:min(var(--container), 100% - 2.6rem);
+  margin-inline:auto;
+}
+
+/* ---- masthead ---- */
+.tt-head{
+  max-width:760px;
+  margin:0 0 clamp(2.6rem,5.5vw,4rem);
+}
+.tt-head .dn-eyebrow{margin-bottom:1.25rem;}
+.tt-display{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.05rem,5.2vw,3.5rem);
+  line-height:1.06;
+  letter-spacing:-.014em;
+  margin:0;
+  color:var(--dn-bone);
+}
+/* the live "grad" span rendered SOLID gold here (no blend) */
+.tt-display .grad{color:var(--dn-day);}
+
+/* ====================== THE TIME AXIS ====================== */
+.tt-rail{
+  position:relative;
+  margin-top:clamp(2rem,4vw,3.2rem);
+}
+
+/* the time-from-call axis line itself */
+.tt-axis{
+  position:relative;
+  height:3px;
+  margin:0 clamp(10px,3vw,28px);
+  border-radius:3px;
+  background:var(--dn-mist);
+  overflow:visible;
+}
+/* gold day departing the call, fading down the rail toward relief */
+.tt-axis::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(90deg,
+    var(--dn-day) 0%,
+    color-mix(in srgb, var(--dn-day) 60%, transparent) 55%,
+    color-mix(in srgb, var(--dn-day) 32%, transparent) 100%);
+  box-shadow:0 0 22px -4px color-mix(in srgb, var(--dn-day) 50%, transparent);
+}
+/* the "moving now" pip racing along the axis - speed cue */
+.tt-axis::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:0;
+  width:10px;height:10px;
+  margin-top:-5px;margin-left:-5px;
+  border-radius:50%;
+  background:var(--dn-day);
+  box-shadow:0 0 0 5px color-mix(in srgb, var(--dn-day) 16%, transparent),0 0 20px 2px color-mix(in srgb, var(--dn-day) 60%, transparent);
+  animation:ttRace 5.2s cubic-bezier(.45,.05,.35,1) infinite;
+}
+@keyframes ttRace{
+  0%{left:0;background:var(--dn-day);box-shadow:0 0 0 5px color-mix(in srgb,var(--dn-day) 16%,transparent),0 0 20px 2px color-mix(in srgb,var(--dn-day) 60%,transparent);}
+  46%{background:var(--dn-day);}
+  62%{background:var(--dn-night);box-shadow:0 0 0 5px color-mix(in srgb,var(--dn-night) 16%,transparent),0 0 20px 2px color-mix(in srgb,var(--dn-night) 60%,transparent);}
+  88%,100%{left:100%;background:var(--dn-night);box-shadow:0 0 0 5px color-mix(in srgb,var(--dn-night) 16%,transparent),0 0 20px 2px color-mix(in srgb,var(--dn-night) 60%,transparent);}
+}
+
+/* endpoint markers: the call (gold) and relief (blue) */
+.tt-endcap{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.6rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  white-space:nowrap;
+}
+.tt-endcap .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+.tt-endcap.start{left:0;color:var(--dn-day);}
+.tt-endcap.start .dot{background:var(--dn-day);box-shadow:0 0 14px 1px color-mix(in srgb,var(--dn-day) 60%,transparent);}
+.tt-endcap.end{right:0;flex-direction:row-reverse;color:var(--dn-night);}
+.tt-endcap.end .dot{background:var(--dn-night);box-shadow:0 0 14px 1px color-mix(in srgb,var(--dn-night) 60%,transparent);}
+
+/* ---- the three steps, placed along the axis ---- */
+.tt-steps{
+  list-style:none;
+  margin:clamp(2.4rem,4vw,3.4rem) 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2.4vw,30px);
+}
+.tt-step{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding-top:clamp(30px,4vw,46px);
+}
+/* the tick that drops each step onto the time axis */
+.tt-step::before{
+  content:'';
+  position:absolute;
+  top:calc(-1 * clamp(2.4rem,4vw,3.4rem) - 1.5px);
+  left:clamp(18px,3vw,30px);
+  width:1.5px;
+  height:calc(clamp(2.4rem,4vw,3.4rem) + clamp(30px,4vw,46px) - 8px);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--st) 70%,transparent),transparent);
+}
+/* the node sitting on the axis - the moment on the clock */
+.tt-node{
+  position:absolute;
+  top:calc(-1 * clamp(2.4rem,4vw,3.4rem) - clamp(18px,2.4vw,22px));
+  left:clamp(18px,3vw,30px);
+  transform:translateX(-50%);
+  width:clamp(36px,5vw,44px);
+  height:clamp(36px,5vw,44px);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--dn-near-black);
+  border:1.5px solid color-mix(in srgb,var(--st) 55%,transparent);
+  box-shadow:0 0 0 6px var(--dn-near-black),0 0 26px -6px color-mix(in srgb,var(--st) 60%,transparent);
+  color:var(--st);
+  z-index:2;
+}
+.tt-node svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.7;fill:none;}
+.tt-node-n{
+  position:absolute;
+  bottom:-7px;right:-7px;
+  width:19px;height:19px;
+  border-radius:50%;
+  background:var(--st);
+  color:#0a0a0c;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.7rem;
+  display:grid;place-items:center;
+  box-shadow:0 0 12px -2px color-mix(in srgb,var(--st) 70%,transparent);
+}
+
+/* time-from-call label per step - the speed/urgency cue */
+.tt-when{
+  display:inline-flex;
+  align-items:baseline;
+  gap:.4rem;
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--st);
+  margin-bottom:.7rem;
+}
+.tt-when .clock{
+  font-family:var(--font-display);
+  font-size:1.18rem;
+  font-weight:600;
+  letter-spacing:.01em;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.tt-when .from{color:var(--dn-bone-faint);font-weight:600;}
+
+.tt-step h3{
+  font-family:var(--font-display);
+  font-weight:480;
+  font-size:clamp(1.12rem,2.3vw,1.4rem);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  margin:0 0 .55rem;
+  color:var(--dn-bone);
+}
+.tt-step p{
+  margin:0;
+  font-size:.98rem;
+  line-height:1.6;
+  color:var(--dn-bone-dim);
+  max-width:34ch;
+}
+
+/* per-step accent: gold day fading to blue night down the line */
+.tt-step.s1{--st:var(--dn-day);}
+.tt-step.s2{--st:var(--dn-night-soft);}
+.tt-step.s3{--st:var(--dn-night);}
+
+/* ---- the CTA: arrival at relief ---- */
+.tt-cta{
+  margin-top:clamp(2.8rem,5vw,4rem);
+  display:flex;
+  align-items:center;
+  gap:clamp(.9rem,2vw,1.4rem);
+  flex-wrap:wrap;
+}
+.dn-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:48px;
+  padding:.85rem 1.5rem;
+  border-radius:999px;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:1rem;
+  text-decoration:none;
+  letter-spacing:.005em;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.dn-btn.primary{
+  background:var(--dn-day);
+  color:#0a0a0c;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 30%,transparent),0 14px 40px -16px color-mix(in srgb,var(--dn-day) 80%,transparent);
+}
+.dn-btn-emergency .dn-btn-pulse{
+  width:9px;height:9px;border-radius:50%;
+  background:#0a0a0c;
+  position:relative;
+  flex:none;
+}
+.dn-btn-emergency .dn-btn-pulse::after{
+  content:'';
+  position:absolute;inset:0;border-radius:50%;
+  background:#0a0a0c;
+  animation:ttPulse 1.8s ease-out infinite;
+}
+@keyframes ttPulse{0%{transform:scale(1);opacity:.6;}100%{transform:scale(3.2);opacity:0;}}
+.dn-btn .arrow{transition:transform .2s ease;}
+@media (hover:hover){
+  .dn-btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px color-mix(in srgb,var(--dn-day) 40%,transparent),0 18px 48px -16px color-mix(in srgb,var(--dn-day) 90%,transparent);}
+  .dn-btn.primary:hover .arrow{transform:translateX(4px);}
+}
+.dn-btn.primary:focus-visible{outline:3px solid var(--dn-night);outline-offset:3px;}
+.tt-num{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(1.25rem,2.6vw,1.6rem);
+  letter-spacing:.01em;
+  color:var(--dn-bone);
+  text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--dn-night) 45%,transparent);
+  padding-bottom:2px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  transition:color .2s ease, border-color .2s ease;
+}
+.tt-num:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);}
+
+@media (prefers-reduced-motion:reduce){
+  .tt-axis::after{animation:none;}
+  .dn-btn-emergency .dn-btn-pulse::after{animation:none;}
+  .dn-btn,.dn-btn .arrow{transition:none;}
+}
+
+/* ---- responsive: stack the axis vertically on narrow screens ---- */
+@media (max-width:760px){
+  .tt-rail{padding-left:6px;}
+  /* axis becomes a vertical spine on the left */
+  .tt-axis{
+    width:3px;height:auto;
+    position:absolute;
+    top:8px;bottom:8px;left:21px;
+    margin:0;
+  }
+  .tt-axis::before{
+    background:linear-gradient(180deg,
+      var(--dn-day) 0%,
+      color-mix(in srgb,var(--dn-day) 60%,transparent) 55%,
+      color-mix(in srgb,var(--dn-day) 32%,transparent) 100%);
+  }
+  .tt-axis::after{
+    left:50%;top:0;
+    margin-left:-5px;margin-top:-5px;
+    animation:ttRaceV 5.2s cubic-bezier(.45,.05,.35,1) infinite;
+  }
+  @keyframes ttRaceV{
+    0%{top:0;background:var(--dn-day);box-shadow:0 0 0 5px color-mix(in srgb,var(--dn-day) 16%,transparent),0 0 20px 2px color-mix(in srgb,var(--dn-day) 60%,transparent);}
+    46%{background:var(--dn-day);}
+    62%{background:var(--dn-night);box-shadow:0 0 0 5px color-mix(in srgb,var(--dn-night) 16%,transparent),0 0 20px 2px color-mix(in srgb,var(--dn-night) 60%,transparent);}
+    88%,100%{top:100%;background:var(--dn-night);box-shadow:0 0 0 5px color-mix(in srgb,var(--dn-night) 16%,transparent),0 0 20px 2px color-mix(in srgb,var(--dn-night) 60%,transparent);}
+  }
+  .tt-endcap{position:static;transform:none;margin:0 0 1.4rem 6px;}
+  .tt-endcap.end{flex-direction:row;justify-content:flex-start;margin:1.6rem 0 0 6px;}
+  .tt-steps{
+    grid-template-columns:1fr;
+    gap:clamp(26px,7vw,40px);
+    margin-top:clamp(1.4rem,5vw,2rem);
+    padding-left:54px;
+    position:relative;
+  }
+  .tt-step{padding-top:0;padding-left:0;}
+  .tt-step::before{display:none;}
+  .tt-node{
+    position:absolute;
+    top:2px;
+    left:-39px;
+    transform:none;
+  }
+  .tt-when{margin-bottom:.5rem;}
+  .tt-step p{max-width:none;}
+}
+@media (max-width:375px){
+  .dn-container{width:min(var(--container),100% - 1.8rem);}
+  .tt-steps{padding-left:48px;}
+  .tt-node{left:-37px;width:34px;height:34px;}
+  .tt-cta{gap:.8rem;}
+  .dn-btn.primary{font-size:.94rem;padding:.8rem 1.2rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Time to Seen</b> <span class="lab-lens">timeline</span></div><span></span></div>
+
+<section class="dn-section" id="how-it-works" aria-labelledby="tt-heading">
+  <div class="dn-container">
+    <div class="tt-head">
+      <span class="dn-eyebrow dn-pill day">What to expect when you call</span>
+      <h2 class="tt-display" id="tt-heading">
+        Call with dental pain. <span class="grad">We&rsquo;ll help you get seen fast.</span>
+      </h2>
+    </div>
+
+    <div class="tt-rail">
+      <!-- the time-from-call axis: gold day at the call, blue night at relief -->
+      <div class="tt-axis" role="presentation" aria-hidden="true"></div>
+      <span class="tt-endcap start" aria-hidden="true"><span class="dot"></span>0:00 You call</span>
+      <span class="tt-endcap end" aria-hidden="true"><span class="dot"></span>Relief</span>
+
+      <ol class="tt-steps">
+        <li class="tt-step s1">
+          <span class="tt-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+            </svg>
+            <span class="tt-node-n">1</span>
+          </span>
+          <span class="tt-when"><span class="from">at</span><span class="clock">0:00</span></span>
+          <h3>Tell us what&rsquo;s happening</h3>
+          <p>We&rsquo;ll ask a few quick questions to understand your symptoms and how urgent they are.</p>
+        </li>
+
+        <li class="tt-step s2">
+          <span class="tt-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M3 9h18M8 3v4M16 3v4" />
+            </svg>
+            <span class="tt-node-n">2</span>
+          </span>
+          <span class="tt-when"><span class="from">within</span><span class="clock">minutes</span></span>
+          <h3>We&rsquo;ll find the earliest appointment</h3>
+          <p>If you need urgent care, we&rsquo;ll help arrange the soonest suitable appointment.</p>
+        </li>
+
+        <li class="tt-step s3">
+          <span class="tt-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3c3 0 5 2 5 5 0 4-2 6-2 9 0 1-1 2-2 2s-1-2-1-4-1-2-2 0-1 4-2 4-2-1-2-2c0-3-2-5-2-9 0-3 2-5 5-5" />
+            </svg>
+            <span class="tt-node-n">3</span>
+          </span>
+          <span class="tt-when"><span class="from">then</span><span class="clock">seen fast</span></span>
+          <h3>Get relief and a clear plan</h3>
+          <p>A dentist will assess the problem, explain your options, and provide urgent treatment where appropriate.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="tt-cta">
+      <a href="tel:+441415486548" class="dn-btn primary dn-btn-emergency">
+        <span class="dn-btn-pulse" aria-hidden="true"></span>
+        Call the 24/7 emergency line<span class="arrow" aria-hidden="true"> →</span>
+      </a>
+      <a href="tel:+441415486548" class="tt-num">0141 548 6548</a>
+    </div>
+  </div>
+</section>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

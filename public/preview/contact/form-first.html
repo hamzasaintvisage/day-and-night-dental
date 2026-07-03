@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Form First - Contact Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   FORM FIRST - the enquiry form is the centred hero of the page.
+   One large, elevated premium form sits dead centre as the focal
+   object; the contact methods, opening hours and address are a
+   quiet supporting band arranged below it. Solid gold day accents,
+   solid blue night accents, never a gold-to-blue blend. A soft
+   continuous depth-glow. The custom dropdown degrades to a native
+   select inside <noscript>; the whole page is usable without JS.
+   ───────────────────────────────────────────────────────────── */
+
+.ff-page{position:relative;overflow:hidden;padding:clamp(2.6rem,6vw,5rem) 0 clamp(3.6rem,8vw,6rem);}
+.ff-page::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 50% at 50% -4%, rgba(248,199,96,.12), transparent 60%),
+    radial-gradient(70% 60% at 8% 30%, rgba(248,199,96,.07), transparent 60%),
+    radial-gradient(70% 60% at 92% 92%, rgba(69,144,236,.09), transparent 62%);
+}
+.ff-wrap{position:relative;z-index:1;width:100%;max-width:760px;margin:0 auto;padding:0 18px;}
+
+/* page intro above the hero form */
+.ff-intro{text-align:center;margin-bottom:clamp(22px,3.4vw,34px);}
+.ff-intro .pill-line{display:flex;justify-content:center;margin-bottom:18px;}
+.ff-intro h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2.1rem,6.6vw,3.4rem);line-height:1.04;letter-spacing:-.014em;margin:0 0 14px;}
+.ff-intro p{color:var(--dn-bone-dim);font-size:clamp(1rem,2.4vw,1.1rem);max-width:42ch;margin:0 auto;}
+
+/* THE HERO FORM - one large elevated luxe object, centred */
+.ff-card{position:relative;background:linear-gradient(180deg,rgba(22,22,28,.96),rgba(14,14,18,.97));border:1px solid var(--dn-mist);border-radius:26px;box-shadow:0 50px 120px -50px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.02) inset;overflow:hidden;}
+.ff-card::before{content:'';position:absolute;top:0;left:26px;right:26px;height:1px;background:rgba(248,199,96,.55);}
+
+.ff-card-head{padding:clamp(26px,4vw,34px) clamp(22px,4vw,34px) 6px;text-align:center;}
+.ff-crest{width:54px;height:54px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;background:rgba(248,199,96,.1);border:1px solid rgba(248,199,96,.34);color:var(--dn-day);}
+.ff-crest svg{width:25px;height:25px;}
+.ff-card-head h2{font-family:var(--font-display);font-weight:360;font-size:clamp(1.5rem,3.6vw,1.9rem);line-height:1.16;letter-spacing:-.01em;margin:0 0 8px;}
+.ff-card-head h2 em{font-style:normal;color:var(--dn-day);}
+.ff-card-head .sub{color:var(--dn-bone-dim);font-size:.98rem;max-width:44ch;margin:0 auto;}
+
+.ff-rule{display:flex;align-items:center;gap:14px;padding:0 clamp(22px,4vw,34px);margin:20px 0 22px;}
+.ff-rule::before,.ff-rule::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--dn-mist),transparent);}
+.ff-rule span{font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dn-bone-faint);white-space:nowrap;}
+
+.ff-form{padding:0 clamp(22px,4vw,34px) clamp(26px,4vw,34px);}
+
+/* premium inputs - FILLED charcoal wells, gold focus glow, 16px text (no iOS zoom) */
+.ff-field + .ff-field{margin-top:16px;}
+.ff-label{display:block;font-size:.94rem;color:var(--dn-bone);margin-bottom:8px;font-weight:500;}
+.ff-label .opt{color:var(--dn-bone-faint);font-weight:400;font-size:.84rem;margin-left:5px;}
+.ff-input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;line-height:1.4;transition:border-color .18s,box-shadow .18s,background .18s;-webkit-appearance:none;appearance:none;}
+textarea.ff-input{padding:13px 15px;min-height:96px;resize:vertical;line-height:1.55;}
+.ff-input::placeholder{color:var(--dn-bone-faint);}
+.ff-input:hover{border-color:rgba(255,255,255,.2);}
+.ff-input:focus{outline:none;border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.ff-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ff-grid2 .ff-field + .ff-field{margin-top:0;}
+
+/* preferred-time radios - pill chips, single-colour-per-side */
+.ff-radios{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ff-radio{position:relative;display:flex;align-items:center;gap:10px;min-height:50px;padding:0 16px;border-radius:13px;background:var(--dn-charcoal);border:1px solid var(--dn-mist);cursor:pointer;font-size:.96rem;color:var(--dn-bone-dim);transition:border-color .16s,background .16s,color .16s;}
+.ff-radio input{position:absolute;opacity:0;width:1px;height:1px;}
+.ff-radio .mark{width:18px;height:18px;flex:0 0 auto;border-radius:50%;border:1.5px solid var(--dn-bone-faint);position:relative;transition:border-color .16s;}
+.ff-radio .mark::after{content:'';position:absolute;inset:0;margin:auto;width:8px;height:8px;border-radius:50%;background:var(--dn-day);opacity:0;transform:scale(.5);transition:opacity .16s,transform .16s;}
+.ff-radio.day .mark::after{background:var(--dn-day);}
+.ff-radio.night .mark::after{background:var(--dn-night);}
+.ff-radio:hover{border-color:rgba(255,255,255,.22);color:var(--dn-bone);}
+.ff-radio input:focus-visible + .mark{box-shadow:0 0 0 4px rgba(248,199,96,.18);}
+.ff-radio.day.checked{border-color:var(--dn-day);background:rgba(248,199,96,.08);color:var(--dn-bone);}
+.ff-radio.day.checked .mark{border-color:var(--dn-day);}
+.ff-radio.night.checked{border-color:var(--dn-night);background:rgba(69,144,236,.1);color:var(--dn-bone);}
+.ff-radio.night.checked .mark{border-color:var(--dn-night);}
+.ff-radio.checked .mark::after{opacity:1;transform:scale(1);}
+.ff-radio.urgent .udot{width:7px;height:7px;border-radius:50%;background:var(--dn-night);box-shadow:0 0 0 0 rgba(69,144,236,.5);animation:ffPulse 2s infinite;}
+@keyframes ffPulse{0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}70%{box-shadow:0 0 0 7px rgba(69,144,236,0);}100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}}
+
+/* custom dropdown - styled trigger + floating dark listbox */
+.ff-dd{position:relative;}
+.ff-dd-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-body);font-size:16px;color:var(--dn-bone);background:var(--dn-charcoal);border:1px solid var(--dn-mist);border-radius:13px;padding:0 15px;min-height:50px;cursor:pointer;text-align:left;transition:border-color .18s,box-shadow .18s,background .18s;}
+.ff-dd-trigger:hover{border-color:rgba(255,255,255,.2);}
+.ff-dd-trigger:focus-visible{outline:none;border-color:var(--dn-day);box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.ff-dd.open .ff-dd-trigger{border-color:var(--dn-day);background:#181820;box-shadow:0 0 0 4px rgba(248,199,96,.16);}
+.ff-dd-trigger .ph{color:var(--dn-bone-faint);}
+.ff-dd-trigger.has-val .ph{color:var(--dn-bone);}
+.ff-chev{width:18px;height:18px;flex:0 0 auto;transition:transform .22s;color:var(--dn-bone-dim);}
+.ff-dd.open .ff-chev{transform:rotate(180deg);}
+.ff-dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:#15151c;border:1px solid var(--dn-mist);border-radius:16px;padding:7px;box-shadow:0 24px 60px -20px rgba(0,0,0,.85);max-height:300px;overflow-y:auto;list-style:none;margin:0;}
+.ff-dd:not(.open) .ff-dd-list{display:none;}
+.ff-opt{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;font-size:.97rem;cursor:pointer;position:relative;color:var(--dn-bone-dim);min-height:44px;}
+.ff-opt::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--dn-day);opacity:0;transition:opacity .15s;}
+.ff-opt .check{margin-left:auto;width:16px;height:16px;color:var(--dn-day);opacity:0;flex:0 0 auto;}
+.ff-opt:hover,.ff-opt.active{background:rgba(248,199,96,.09);color:var(--dn-day);}
+.ff-opt:hover::before,.ff-opt.active::before{opacity:1;}
+.ff-opt[aria-selected="true"]{color:var(--dn-day);}
+.ff-opt[aria-selected="true"] .check{opacity:1;}
+.ff-dd-native{margin-top:9px;}
+
+/* submit - solid gold primary; emergency path turns night-blue */
+.ff-send-row{margin-top:22px;}
+.ff-btn{position:relative;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:1.06rem;color:var(--dn-near-black);background:var(--dn-day);border:none;border-radius:14px;padding:16px 22px;min-height:56px;cursor:pointer;transition:transform .12s,box-shadow .2s,filter .18s,background .18s,color .18s;box-shadow:0 14px 36px -14px rgba(248,199,96,.6);overflow:hidden;}
+.ff-btn:hover{filter:brightness(1.05);box-shadow:0 18px 44px -14px rgba(248,199,96,.75);}
+.ff-btn:active{transform:scale(.985);}
+.ff-btn svg{width:18px;height:18px;}
+.ff-btn.emergency{background:var(--dn-night);color:#fff;box-shadow:0 14px 36px -14px rgba(69,144,236,.7);}
+.ff-btn.emergency:hover{box-shadow:0 18px 44px -14px rgba(69,144,236,.85);}
+.ff-btn .pulse{display:none;position:absolute;left:18px;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.6);animation:ffPulse2 1.8s infinite;}
+.ff-btn.emergency .pulse{display:inline-block;}
+@keyframes ffPulse2{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55);}70%{box-shadow:0 0 0 8px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
+.ff-reassure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:.86rem;color:var(--dn-bone-dim);}
+.ff-reassure svg{width:15px;height:15px;color:#5cd98c;flex:0 0 auto;}
+.ff-disclaimer{margin:16px 0 0;font-size:.78rem;color:var(--dn-bone-faint);line-height:1.55;text-align:center;}
+.ff-disclaimer a{color:var(--dn-bone-dim);text-decoration:underline;text-underline-offset:2px;}
+
+.ff-form-error{margin:0 0 16px;padding:13px 15px;border-radius:13px;background:rgba(69,144,236,.08);border:1px solid rgba(69,144,236,.28);font-size:.9rem;color:var(--dn-bone-dim);}
+.ff-form-error a{color:var(--dn-day);}
+
+/* ===== SUPPORTING BAND - contact methods, hours, address ===== */
+.ff-band{margin-top:clamp(34px,5vw,52px);}
+.ff-band-head{text-align:center;margin-bottom:24px;}
+.ff-band-head .pill-line{display:flex;justify-content:center;margin-bottom:14px;}
+.ff-band-head h3{font-family:var(--font-display);font-weight:360;font-size:clamp(1.4rem,3.4vw,1.8rem);line-height:1.14;letter-spacing:-.01em;margin:0;}
+
+.ff-methods{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ff-method{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:18px;background:rgba(255,255,255,.022);border:1px solid var(--dn-mist);text-decoration:none;transition:border-color .18s,background .18s;}
+.ff-method:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04);}
+.ff-method .ic{width:44px;height:44px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;}
+.ff-method .ic svg{width:21px;height:21px;}
+.ff-method.day .ic{background:rgba(248,199,96,.12);border:1px solid rgba(248,199,96,.34);color:var(--dn-day);}
+.ff-method.night .ic{background:rgba(69,144,236,.13);border:1px solid rgba(69,144,236,.36);color:var(--dn-night-soft);}
+.ff-method.plain .ic{background:rgba(255,255,255,.05);border:1px solid var(--dn-mist);color:var(--dn-bone);}
+.ff-method .body{min-width:0;}
+.ff-method .k{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);margin-bottom:3px;}
+.ff-method.day .k{color:var(--dn-day);}
+.ff-method.night .k{color:var(--dn-night-soft);}
+.ff-method .v{font-family:var(--font-display);font-weight:600;font-size:1.18rem;line-height:1.2;color:var(--dn-bone);letter-spacing:-.01em;word-break:break-word;}
+.ff-method .hint{font-size:.82rem;color:var(--dn-bone-dim);margin-top:4px;}
+.ff-method .ic.night{position:relative;}
+.ff-method .ic.night::after{content:'';position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;background:#3ad07a;border:2px solid var(--dn-near-black);}
+
+/* hours + map row */
+.ff-lower{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.ff-panel{padding:20px;border-radius:18px;background:rgba(255,255,255,.022);border:1px solid var(--dn-mist);}
+.ff-panel .ptitle{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 14px;}
+.ff-hours{list-style:none;margin:0;padding:0;}
+.ff-hours li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.94rem;}
+.ff-hours li:last-child{border-bottom:none;}
+.ff-hours .d{color:var(--dn-bone-dim);}
+.ff-hours .t{color:var(--dn-bone);font-weight:500;}
+.ff-hours .emergency{margin-top:4px;padding-top:13px;border-top:1px solid var(--dn-mist);border-bottom:none;}
+.ff-hours .emergency .d{color:var(--dn-night-soft);display:inline-flex;align-items:center;gap:8px;}
+.ff-hours .emergency .live{width:8px;height:8px;border-radius:50%;background:#3ad07a;box-shadow:0 0 0 0 rgba(58,208,122,.6);animation:ffLive 2.2s infinite;flex:0 0 auto;}
+@keyframes ffLive{0%{box-shadow:0 0 0 0 rgba(58,208,122,.55);}70%{box-shadow:0 0 0 6px rgba(58,208,122,0);}100%{box-shadow:0 0 0 0 rgba(58,208,122,0);}}
+
+/* location facade - tasteful static map placeholder, no third-party requests */
+.ff-map{position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.ff-map-face{position:relative;flex:1;min-height:148px;border-radius:12px;overflow:hidden;border:1px solid var(--dn-mist);background:#0e0e13;}
+.ff-map-face svg{position:absolute;inset:0;width:100%;height:100%;}
+.ff-map-pin{position:absolute;left:50%;top:48%;transform:translate(-50%,-100%);color:var(--dn-day);filter:drop-shadow(0 6px 10px rgba(0,0,0,.6));z-index:2;}
+.ff-map-pin svg{position:static;width:30px;height:30px;}
+.ff-map-ping{position:absolute;left:50%;top:48%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:rgba(248,199,96,.35);z-index:1;animation:ffPing 2.6s infinite;}
+@keyframes ffPing{0%{transform:translate(-50%,-50%) scale(1);opacity:.7;}70%{transform:translate(-50%,-50%) scale(3.4);opacity:0;}100%{opacity:0;}}
+.ff-map-cap{display:flex;align-items:center;gap:11px;margin-top:13px;}
+.ff-map-cap .v{font-family:var(--font-display);font-weight:600;font-size:1.04rem;line-height:1.25;color:var(--dn-bone);}
+.ff-map-cap .s{font-size:.82rem;color:var(--dn-bone-dim);}
+.ff-map-cap .ic{width:38px;height:38px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;background:rgba(248,199,96,.12);border:1px solid rgba(248,199,96,.34);color:var(--dn-day);}
+.ff-map-cap .ic svg{width:18px;height:18px;}
+
+.ff-foot{margin:clamp(30px,5vw,46px) auto 0;max-width:560px;text-align:center;font-size:.84rem;color:var(--dn-bone-dim);line-height:1.75;}
+.ff-foot a{color:var(--dn-day);text-decoration:none;word-break:break-word;}
+
+@media(max-width:560px){
+  .ff-grid2{grid-template-columns:1fr;gap:16px;}
+  .ff-grid2 .ff-field + .ff-field{margin-top:16px;}
+  .ff-radios{grid-template-columns:1fr;}
+  .ff-methods{grid-template-columns:1fr;}
+  .ff-lower{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Form First</b> <span class="lab-lens">form-led</span></div><span></span></div>
+
+<div class="ff-page">
+  <div class="ff-wrap">
+
+    <header class="ff-intro">
+      <div class="pill-line"><span class="dn-eyebrow dn-pill day">Get in touch</span></div>
+      <h1>Tell us what you need, <em class="dn-hl-gold">we take it from there</em>.</h1>
+      <p>One short form and our team gets back to you. In pain right now? Pick the emergency time and we answer around the clock.</p>
+    </header>
+
+    <!-- THE HERO FORM: the centrepiece of the page -->
+    <div class="ff-card">
+      <div class="ff-card-head">
+        <span class="ff-crest" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.5C.6 8 2.3 4.5 5.6 4.5c2 0 3.4 1.2 4.4 2.6C11 5.7 12.4 4.5 14.4 4.5c3.3 0 5 3.5 3.6 7C21 16.4 12 21 12 21z"/></svg>
+        </span>
+        <h2>Request an <em>appointment</em></h2>
+        <p class="sub">Leave your details below. A real person replies, no queue and no chatbot.</p>
+      </div>
+
+      <div class="ff-rule"><span>Your details</span></div>
+
+      <noscript>
+        <p class="ff-form-error" style="margin:0 34px 18px;">
+          This form works best with JavaScript. You can also call us on
+          <a href="tel:+441415486548">0141 548 6548</a> or email
+          <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a> and we will help straight away.
+        </p>
+      </noscript>
+
+      <form class="ff-form" id="ff-form" method="post" action="/api/send-enquiry.php" novalidate>
+        <!-- honeypot bot-field: hidden from users, password managers and the keyboard -->
+        <div hidden aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="ff-field">
+          <label class="ff-label" for="ff-name">Your name</label>
+          <input class="ff-input" type="text" id="ff-name" name="name" required autocomplete="name" placeholder="Full name">
+        </div>
+
+        <div class="ff-grid2" style="margin-top:16px;">
+          <div class="ff-field">
+            <label class="ff-label" for="ff-phone">Phone</label>
+            <input class="ff-input" type="tel" id="ff-phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="Best number to call">
+          </div>
+          <div class="ff-field">
+            <label class="ff-label" for="ff-email">Email</label>
+            <input class="ff-input" type="email" id="ff-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@email.com">
+          </div>
+        </div>
+
+        <div class="ff-field" style="margin-top:16px;">
+          <span class="ff-label" id="ff-pref-label">Preferred time</span>
+          <div class="ff-radios" role="radiogroup" aria-labelledby="ff-pref-label">
+            <label class="ff-radio night urgent" data-pref="emergency">
+              <input type="radio" name="preference" value="emergency">
+              <span class="mark" aria-hidden="true"></span>
+              <span class="udot" aria-hidden="true"></span>
+              <span>Emergency, today</span>
+            </label>
+            <label class="ff-radio day" data-pref="day">
+              <input type="radio" name="preference" value="day">
+              <span class="mark" aria-hidden="true"></span>
+              <span>Day, 7am to 5pm</span>
+            </label>
+            <label class="ff-radio night" data-pref="evening">
+              <input type="radio" name="preference" value="evening">
+              <span class="mark" aria-hidden="true"></span>
+              <span>Evening, 5pm to 11pm</span>
+            </label>
+            <label class="ff-radio night" data-pref="weekend">
+              <input type="radio" name="preference" value="weekend">
+              <span class="mark" aria-hidden="true"></span>
+              <span>Weekend</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="ff-field" style="margin-top:16px;">
+          <label class="ff-label" id="ff-dd-label">Treatment of interest</label>
+          <div class="ff-dd" id="ff-dd">
+            <button type="button" class="ff-dd-trigger" id="ff-dd-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ff-dd-label ff-dd-trigger">
+              <span class="ph" id="ff-dd-val">Select an option</span>
+              <svg class="ff-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="ff-dd-list" id="ff-dd-list" role="listbox" aria-labelledby="ff-dd-label" tabindex="-1">
+              <li class="ff-opt" role="option" data-value="Emergency / pain">Emergency / pain<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="New patient examination">New patient examination<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="Hygienist appointment">Hygienist appointment<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="Cosmetic consultation">Cosmetic consultation<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="Invisalign">Invisalign<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="Dental implants">Dental implants<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="Teeth whitening">Teeth whitening<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+              <li class="ff-opt" role="option" data-value="Other / unsure">Other / unsure<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></li>
+            </ul>
+          </div>
+          <input type="hidden" name="treatment" id="ff-treatment" value="">
+          <!-- SSR-safe / no-JS fallback: native select only inside noscript -->
+          <noscript>
+            <div class="ff-dd-native">
+              <select name="treatment" aria-label="Treatment of interest" style="width:100%;font-size:16px;color:#fff;background:#14141a;border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:14px 15px;min-height:50px;">
+                <option value="">Select an option</option>
+                <option value="Emergency / pain">Emergency / pain</option>
+                <option value="New patient examination">New patient examination</option>
+                <option value="Hygienist appointment">Hygienist appointment</option>
+                <option value="Cosmetic consultation">Cosmetic consultation</option>
+                <option value="Invisalign">Invisalign</option>
+                <option value="Dental implants">Dental implants</option>
+                <option value="Teeth whitening">Teeth whitening</option>
+                <option value="Other / unsure">Other / unsure</option>
+              </select>
+            </div>
+          </noscript>
+        </div>
+
+        <div class="ff-field" style="margin-top:16px;">
+          <label class="ff-label" for="ff-notes">Anything we should know? <span class="opt">optional</span></label>
+          <textarea class="ff-input" id="ff-notes" name="notes" rows="3" placeholder="Anything that helps us handle your enquiry, e.g. best times to call. Please don't include detailed medical information here."></textarea>
+        </div>
+
+        <div class="ff-send-row">
+          <button type="submit" class="ff-btn" id="ff-btn">
+            <span class="pulse" aria-hidden="true"></span>
+            <span id="ff-btn-text">Request Booking</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <p class="ff-reassure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            We reply within 1 working hour
+          </p>
+          <p class="ff-disclaimer">
+            We will never share your details. By sending this you are happy for us to
+            contact you about your enquiry. Read our <a href="/privacy/">privacy policy</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- SUPPORTING BAND: contact methods, hours, address -->
+    <section class="ff-band" aria-label="Other ways to reach us">
+      <div class="ff-band-head">
+        <div class="pill-line"><span class="dn-eyebrow dn-pill night">Contact</span></div>
+        <h3>Or reach us directly</h3>
+      </div>
+
+      <div class="ff-methods">
+        <a class="ff-method day" href="tel:+441415486548">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="body">
+            <span class="k">Day line</span>
+            <span class="v">0141 548 6548</span>
+            <span class="hint">Open Mon to Sun, 7am to 11pm</span>
+          </span>
+        </a>
+
+        <a class="ff-method night" href="tel:+441415486548">
+          <span class="ic night" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>
+          </span>
+          <span class="body">
+            <span class="k">Night &amp; emergency</span>
+            <span class="v">0141 548 6548</span>
+            <span class="hint">24-hour emergency line</span>
+          </span>
+        </a>
+
+        <a class="ff-method plain" href="mailto:reception@daynightdental.co.uk">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+          </span>
+          <span class="body">
+            <span class="k">Email</span>
+            <span class="v">reception@daynightdental.co.uk</span>
+            <span class="hint">We reply within 1 working hour</span>
+          </span>
+        </a>
+
+        <a class="ff-method plain" href="https://www.google.com/maps/place/Day+Night+Dental/@55.8592,-4.2474899,17z" target="_blank" rel="noopener noreferrer">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="body">
+            <span class="k">Visit</span>
+            <span class="v">80 Hutcheson Street</span>
+            <span class="hint">Merchant City, Glasgow G1 1SH &middot; Free parking nearby</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="ff-lower">
+        <div class="ff-panel">
+          <p class="ptitle">Opening hours</p>
+          <ul class="ff-hours">
+            <li><span class="d">Monday to Friday</span><span class="t">7am to 11pm</span></li>
+            <li><span class="d">Saturday</span><span class="t">8am to 10pm</span></li>
+            <li><span class="d">Sunday</span><span class="t">9am to 9pm</span></li>
+            <li class="emergency"><span class="d"><span class="live" aria-hidden="true"></span>Emergency line</span><span class="t">24 hours, 7 days</span></li>
+          </ul>
+        </div>
+
+        <div class="ff-panel ff-map">
+          <p class="ptitle">Where to find us</p>
+          <!-- location facade: a styled static map, no third-party map requests -->
+          <div class="ff-map-face" role="img" aria-label="Map showing Day Night Dental in Merchant City, Glasgow">
+            <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="300" height="200" fill="#0e0e13"/>
+              <g stroke="rgba(255,255,255,.07)" stroke-width="1">
+                <line x1="0" y1="44" x2="300" y2="44"/>
+                <line x1="0" y1="96" x2="300" y2="96"/>
+                <line x1="0" y1="150" x2="300" y2="150"/>
+                <line x1="62" y1="0" x2="62" y2="200"/>
+                <line x1="150" y1="0" x2="150" y2="200"/>
+                <line x1="232" y1="0" x2="232" y2="200"/>
+              </g>
+              <g stroke="rgba(248,199,96,.16)" stroke-width="3">
+                <line x1="0" y1="96" x2="300" y2="96"/>
+                <line x1="150" y1="0" x2="150" y2="200"/>
+              </g>
+              <rect x="76" y="58" width="54" height="26" rx="2" fill="rgba(69,144,236,.07)"/>
+              <rect x="170" y="108" width="48" height="30" rx="2" fill="rgba(255,255,255,.03)"/>
+              <rect x="20" y="116" width="34" height="24" rx="2" fill="rgba(255,255,255,.03)"/>
+            </svg>
+            <span class="ff-map-ping" aria-hidden="true"></span>
+            <span class="ff-map-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="#0a0a0c" stroke-width="1.2"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.4" fill="#0a0a0c" stroke="none"/></svg>
+            </span>
+          </div>
+          <div class="ff-map-cap">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span>
+              <span class="v">Merchant City, Glasgow G1 1SH</span><br>
+              <span class="s">80 Hutcheson Street &middot; free parking nearby</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="ff-foot">
+      Day Night Dental &middot; 80 Hutcheson Street, Merchant City, Glasgow G1 1SH<br>
+      <a href="tel:+441415486548">0141 548 6548</a> &middot;
+      <a href="mailto:reception@daynightdental.co.uk">reception@daynightdental.co.uk</a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- custom dropdown (open / close / select / keyboard / click-outside) ---- */
+  var dd = document.getElementById('ff-dd');
+  if(dd){
+    var trigger = document.getElementById('ff-dd-trigger');
+    var list = document.getElementById('ff-dd-list');
+    var valEl = document.getElementById('ff-dd-val');
+    var hidden = document.getElementById('ff-treatment');
+    var opts = Array.prototype.slice.call(list.querySelectorAll('.ff-opt'));
+    var activeIdx = -1;
+
+    function open(){
+      dd.classList.add('open');
+      trigger.setAttribute('aria-expanded','true');
+      var sel = opts.findIndex(function(o){return o.getAttribute('aria-selected')==='true';});
+      setActive(sel > -1 ? sel : 0);
+      list.focus();
+    }
+    function close(focusTrigger){
+      dd.classList.remove('open');
+      trigger.setAttribute('aria-expanded','false');
+      if(focusTrigger) trigger.focus();
+    }
+    function setActive(i){
+      if(i < 0) i = 0;
+      if(i > opts.length-1) i = opts.length-1;
+      opts.forEach(function(o){o.classList.remove('active');});
+      activeIdx = i;
+      opts[i].classList.add('active');
+      opts[i].scrollIntoView({block:'nearest'});
+    }
+    function choose(o){
+      opts.forEach(function(x){x.setAttribute('aria-selected','false');});
+      o.setAttribute('aria-selected','true');
+      var v = o.getAttribute('data-value');
+      valEl.textContent = v;
+      trigger.classList.add('has-val');
+      hidden.value = v;
+      close(true);
+    }
+
+    trigger.addEventListener('click', function(){
+      dd.classList.contains('open') ? close(false) : open();
+    });
+    trigger.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+    });
+    opts.forEach(function(o,i){
+      o.addEventListener('click', function(){ choose(o); });
+      o.addEventListener('mousemove', function(){ setActive(i); });
+    });
+    list.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'){ e.preventDefault(); setActive(activeIdx+1); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); setActive(activeIdx-1); }
+      else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(activeIdx>-1) choose(opts[activeIdx]); }
+      else if(e.key==='Escape'){ e.preventDefault(); close(true); }
+      else if(e.key==='Home'){ e.preventDefault(); setActive(0); }
+      else if(e.key==='End'){ e.preventDefault(); setActive(opts.length-1); }
+    });
+    document.addEventListener('click', function(e){
+      if(!dd.contains(e.target)) close(false);
+    });
+  }
+
+  /* ---- preferred-time radios: checked class + emergency styling on the button ---- */
+  var radios = Array.prototype.slice.call(document.querySelectorAll('.ff-radio input'));
+  var btn = document.getElementById('ff-btn');
+  var btnText = document.getElementById('ff-btn-text');
+  function syncRadios(){
+    radios.forEach(function(r){
+      r.closest('.ff-radio').classList.toggle('checked', r.checked);
+    });
+    var pref = radios.filter(function(r){return r.checked;})[0];
+    var isEmergency = pref && pref.value === 'emergency';
+    if(btn) btn.classList.toggle('emergency', !!isEmergency);
+    if(btnText) btnText.textContent = isEmergency ? 'Request Emergency Appointment' : 'Request Booking';
+  }
+  radios.forEach(function(r){ r.addEventListener('change', syncRadios); });
+
+  /* static preview: never actually submit */
+  var form = document.getElementById('ff-form');
+  if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); }); }
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

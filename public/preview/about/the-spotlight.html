@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Spotlight - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE SPOTLIGHT - a cinematic lit-stage poster.
+   A single dramatic gold spotlight cone falls from above onto the
+   statement, centred on a near-black stage. The day/night lead and
+   the three real-life moments emerge from the dark at the foot of
+   the beam. Moody and theatrical: the lit-stage staging (cone +
+   floor pool + falloff vignette) is what makes it a stage, not a
+   plain manifesto. Solid gold beam, blue reserved for the
+   night-time word and the emergency moment. Never a gold-to-blue
+   blend. Full default state renders with JS disabled; the JS only
+   adds a gentle beam sway.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-stage-wrap{
+  position:relative;
+  overflow:hidden;
+  background:var(--dn-black);
+  padding:clamp(3.6rem,9vw,7rem) 0 clamp(3rem,7vw,5.5rem);
+}
+/* deep theatrical vignette: the edges of the stage fall to black */
+.dn-stage-wrap::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(120% 90% at 50% -8%, rgba(248,199,96,.06), transparent 46%),
+    radial-gradient(150% 120% at 50% 120%, rgba(0,0,0,.9), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+/* a low blue wash on the far night-side floor, never touching the gold cone */
+.dn-stage-wrap::after{
+  content:'';
+  position:absolute;
+  right:0;bottom:0;
+  width:46%;height:38%;
+  background:radial-gradient(90% 90% at 90% 100%, rgba(69,144,236,.12), transparent 64%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── the spotlight beam: a gold cone, wide at top, narrow above the stage ── */
+.dn-beam{
+  position:absolute;
+  top:-6%;
+  left:50%;
+  width:min(92vw,720px);
+  height:118%;
+  transform:translateX(-50%);
+  transform-origin:50% 0;
+  pointer-events:none;
+  z-index:1;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 64%,transparent 96%);
+          mask-image:linear-gradient(180deg,#000 0%,#000 64%,transparent 96%);
+  animation:dn-sway 11s ease-in-out infinite;
+}
+/* the cone body - a clipped trapezoid of soft gold light */
+.dn-beam .cone{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(248,199,96,.22) 0%, rgba(248,199,96,.10) 44%, rgba(248,199,96,.03) 78%, transparent 100%);
+  -webkit-clip-path:polygon(34% 0, 66% 0, 92% 100%, 8% 100%);
+          clip-path:polygon(34% 0, 66% 0, 92% 100%, 8% 100%);
+  filter:blur(2px);
+}
+/* a brighter central shaft for depth */
+.dn-beam .shaft{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(248,199,96,.34) 0%, rgba(248,199,96,.12) 50%, transparent 86%);
+  -webkit-clip-path:polygon(44% 0, 56% 0, 70% 100%, 30% 100%);
+          clip-path:polygon(44% 0, 56% 0, 70% 100%, 30% 100%);
+  filter:blur(4px);
+}
+/* the source flare at the lamp */
+.dn-beam .source{
+  position:absolute;
+  top:-3%;left:50%;
+  width:40%;height:16%;
+  transform:translateX(-50%);
+  background:radial-gradient(50% 80% at 50% 0, rgba(248,199,96,.5), transparent 70%);
+  filter:blur(6px);
+}
+
+/* the pool of light on the stage floor where the beam lands */
+.dn-pool{
+  position:absolute;
+  left:50%;
+  bottom:clamp(1rem,4vw,3rem);
+  width:min(86vw,640px);
+  height:clamp(70px,14vw,140px);
+  transform:translateX(-50%);
+  background:radial-gradient(50% 50% at 50% 50%, rgba(248,199,96,.16), rgba(248,199,96,.05) 52%, transparent 72%);
+  filter:blur(3px);
+  pointer-events:none;
+  z-index:1;
+}
+
+.dn-container{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+.dn-stage{
+  position:relative;
+  max-width:760px;
+  margin:0 auto;
+  text-align:center;
+}
+.dn-stage .dn-eyebrow{margin-bottom:clamp(1.4rem,3vw,1.9rem);}
+
+/* the lit statement, glowing as if under the beam */
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(2.4rem,6.6vw,4.6rem);
+  line-height:1.04;
+  letter-spacing:-.018em;
+  margin:0 auto;
+  max-width:15ch;
+  color:var(--dn-bone);
+  text-shadow:0 0 38px rgba(248,199,96,.22), 0 0 4px rgba(255,255,255,.12);
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:380;text-shadow:0 0 30px rgba(248,199,96,.5);}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(1.35rem,2.8vw,2rem);
+  line-height:1.3;
+  letter-spacing:-.008em;
+  margin:clamp(1.5rem,3.2vw,2.2rem) auto 0;
+  color:var(--dn-bone-dim);
+}
+.dn-lead .day{color:var(--dn-day);text-shadow:0 0 22px rgba(248,199,96,.4);}
+.dn-lead .night{color:var(--dn-night);text-shadow:0 0 22px rgba(69,144,236,.45);}
+
+.dn-body{
+  margin:clamp(1.3rem,2.6vw,1.7rem) auto 0;
+  max-width:50ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.4vw,1.08rem);
+  line-height:1.78;
+}
+
+/* ── three real-life moments, emerging from the dark at the foot of the beam ── */
+.dn-moments{
+  list-style:none;
+  margin:clamp(2.2rem,4.4vw,3rem) auto 0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.85rem;
+}
+.dn-moment{
+  flex:1 1 200px;
+  max-width:240px;
+  min-width:0;
+  text-align:left;
+  padding:16px 18px;
+  border-radius:14px;
+  background:rgba(255,255,255,.028);
+  border:1px solid var(--dn-mist);
+  border-top:2px solid var(--accent,var(--dn-day));
+  -webkit-backdrop-filter:blur(2px);
+  backdrop-filter:blur(2px);
+}
+.dn-moment .when{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.6rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent,var(--dn-day));
+  margin-bottom:.5rem;
+}
+.dn-moment .when::before{
+  content:'';
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent,var(--dn-day));
+}
+.dn-moment .what{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:1.16rem;
+  line-height:1.2;
+  color:var(--dn-bone);
+}
+.dn-moment.night{--accent:var(--dn-night);}
+
+/* ── byline + team link ── */
+.dn-by{
+  margin:clamp(2rem,4vw,2.6rem) auto 0;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  margin-top:1rem;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+@keyframes dn-sway{
+  0%,100%{transform:translateX(-50%) rotate(-1.1deg);}
+  50%{transform:translateX(-50%) rotate(1.1deg);}
+}
+@media (prefers-reduced-motion:reduce){
+  .dn-beam{animation:none;transform:translateX(-50%);}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-moment{flex:1 1 100%;max-width:340px;}
+  .dn-beam{width:118vw;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-headline{font-size:2.15rem;}
+  .dn-pool{width:94vw;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Spotlight</b> <span class="lab-lens">cinematic</span></div><span></span></div>
+
+<section class="dn-stage-wrap" id="about" aria-labelledby="about-heading">
+
+  <!-- the gold spotlight cone falling onto the stage -->
+  <div class="dn-beam" aria-hidden="true">
+    <span class="cone"></span>
+    <span class="shaft"></span>
+    <span class="source"></span>
+  </div>
+  <!-- the pool of light on the stage floor -->
+  <div class="dn-pool" aria-hidden="true"></div>
+
+  <div class="dn-container">
+    <div class="dn-stage">
+      <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+      <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+
+      <p class="dn-lead">
+        <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+      </p>
+
+      <p class="dn-body">
+        We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+        weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+        consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+        to look after your teeth.
+      </p>
+
+      <ul class="dn-moments">
+        <li class="dn-moment day">
+          <span class="when">Early mornings</span>
+          <span class="what">Before the school run</span>
+        </li>
+        <li class="dn-moment day">
+          <span class="when">Daytime and evenings</span>
+          <span class="what">On your lunch break</span>
+        </li>
+        <li class="dn-moment night">
+          <span class="when">24-hour emergency line</span>
+          <span class="what">Or at midnight</span>
+        </li>
+      </ul>
+
+      <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+      <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  // The beam already sways via CSS with JS off. This just nudges the
+  // beam to follow horizontal pointer movement for a touch of theatre,
+  // and bows out entirely when reduced motion is preferred.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var beam = document.querySelector('.dn-beam');
+  var wrap = document.querySelector('.dn-stage-wrap');
+  if (!beam || !wrap) return;
+  var raf = 0, target = 0, current = 0;
+  function onMove(e){
+    var r = wrap.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width; // 0..1
+    target = Math.max(-1, Math.min(1, (x - 0.5) * 2)) * 2.4; // degrees, capped
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  function tick(){
+    current += (target - current) * 0.08;
+    beam.style.animation = 'none';
+    beam.style.transform = 'translateX(-50%) rotate(' + current.toFixed(2) + 'deg)';
+    if (Math.abs(target - current) > 0.01){ raf = requestAnimationFrame(tick); }
+    else { raf = 0; }
+  }
+  wrap.addEventListener('pointermove', onMove);
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

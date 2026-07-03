@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register · The Reception Desk</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     THE RECEPTION DESK
+     A calm front-desk check-in. A nameplate header bar across the
+     top, grouped two-up rows on a slightly raised "desk" surface,
+     an orderly, warm, welcoming feel.
+     ============================================================ */
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 600px at 50% -8%, rgba(248,199,96,.05), transparent 60%),
+      var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  .rd-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:clamp(2.5rem,5vw,5rem) clamp(1rem,4vw,2.5rem) 5rem;
+    position:relative;
+  }
+
+  /* soft glows behind the desk */
+  .rd-glow{position:absolute;border-radius:50%;filter:blur(50px);pointer-events:none;z-index:0;}
+  .rd-glow.day{width:440px;height:440px;top:60px;left:-160px;background:rgba(248,199,96,.10);}
+  .rd-glow.night{width:480px;height:480px;bottom:120px;right:-180px;background:rgba(69,144,236,.10);}
+
+  /* ---------- NAMEPLATE HEADER BAR ---------- */
+  .rd-nameplate{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1.5rem;
+    padding:1.5rem clamp(1.5rem,3vw,2.5rem);
+    background:linear-gradient(180deg, #15151c, #101015);
+    border:1px solid var(--dn-mist);
+    border-radius:18px 18px 0 0;
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 60px -40px rgba(0,0,0,.9);
+  }
+  .rd-nameplate::before{
+    /* engraved gold top hairline, like a brass nameplate edge */
+    content:'';
+    position:absolute;left:0;right:0;top:0;height:2px;
+    background:linear-gradient(90deg, transparent, var(--dn-day), transparent);
+    border-radius:18px 18px 0 0;
+    opacity:.85;
+  }
+  .rd-plate-left{display:flex;align-items:center;gap:1.1rem;min-width:0;}
+  .rd-bell{
+    flex:none;
+    width:52px;height:52px;border-radius:50%;
+    display:grid;place-items:center;
+    background:radial-gradient(circle at 38% 32%, #1d1d26, #0c0c11);
+    border:1px solid var(--dn-mist);
+    box-shadow:0 0 0 1px rgba(248,199,96,.18) inset;
+  }
+  .rd-bell svg{width:24px;height:24px;}
+  .rd-plate-titles{min-width:0;}
+  .rd-plate-eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--dn-day);font-weight:600;
+    padding:.32rem .7rem;
+    border:1px solid rgba(248,199,96,.32);
+    border-radius:999px;
+    background:rgba(248,199,96,.05);
+  }
+  .rd-plate-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.5rem,2.6vw,2rem);
+    font-weight:600;
+    letter-spacing:-.01em;
+    line-height:1.05;
+    margin:.55rem 0 0;
+  }
+  .rd-plate-title em{font-style:italic;color:var(--dn-day);}
+  .rd-plate-right{
+    display:flex;align-items:center;gap:.85rem;
+    padding:.7rem 1.05rem;
+    border:1px solid rgba(69,144,236,.35);
+    border-radius:14px;
+    background:rgba(69,144,236,.06);
+  }
+  .rd-status-dot{
+    width:9px;height:9px;border-radius:50%;flex:none;
+    background:var(--dn-night-soft);
+    box-shadow:0 0 0 4px rgba(69,144,236,.18);
+    animation:rd-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes rd-pulse{0%,100%{box-shadow:0 0 0 4px rgba(69,144,236,.18);}50%{box-shadow:0 0 0 7px rgba(69,144,236,.05);}}
+  .rd-status-txt b{display:block;font-family:var(--font-display),'Fraunces',serif;font-size:.92rem;color:var(--dn-bone);font-weight:600;}
+  .rd-status-txt span{display:block;font-size:.7rem;color:var(--dn-bone-dim);letter-spacing:.02em;}
+
+  /* ---------- THE DESK SURFACE (raised) ---------- */
+  .rd-desk{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1fr 340px;
+    gap:0;
+    border:1px solid var(--dn-mist);
+    border-top:none;
+    border-radius:0 0 18px 18px;
+    background:linear-gradient(180deg, #101016, #0c0c11);
+    overflow:hidden;
+    box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
+  }
+
+  /* left: the form surface, slightly raised with an inset top sheen */
+  .rd-form-panel{
+    position:relative;
+    padding:clamp(1.75rem,3.2vw,2.75rem);
+    border-right:1px solid var(--dn-mist);
+  }
+
+  /* desk "blotter" intro line */
+  .rd-form-intro{
+    display:flex;align-items:baseline;gap:.7rem;
+    padding-bottom:1.4rem;margin-bottom:1.8rem;
+    border-bottom:1px solid var(--dn-mist);
+  }
+  .rd-form-intro h2{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.35rem;font-weight:600;margin:0;letter-spacing:-.01em;
+  }
+  .rd-form-intro span{font-size:.78rem;color:var(--dn-bone-dim);}
+
+  /* ---------- field group (a "drawer" on the desk) ---------- */
+  .rd-group{margin-bottom:1.9rem;}
+  .rd-group-head{
+    display:flex;align-items:center;gap:.85rem;
+    margin-bottom:1.15rem;
+  }
+  .rd-group-tab{
+    flex:none;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.85rem;font-weight:600;
+    width:30px;height:30px;border-radius:8px;
+    display:grid;place-items:center;
+    color:var(--dn-day);
+    background:rgba(248,199,96,.07);
+    border:1px solid rgba(248,199,96,.28);
+  }
+  .rd-group.care .rd-group-tab{
+    color:var(--dn-night-soft);
+    background:rgba(69,144,236,.07);
+    border-color:rgba(69,144,236,.30);
+  }
+  .rd-group-head h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;
+  }
+  .rd-group-head .rd-group-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
+
+  /* ---------- two-up rows ---------- */
+  .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
+  .rd-row.one{grid-template-columns:1fr;}
+  .rd-row.address{grid-template-columns:1.6fr 1fr;}
+
+  .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
+  .rd-field > .rd-label,
+  .rd-label{
+    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--dn-bone-dim);font-weight:600;
+    display:flex;align-items:center;gap:.35rem;
+  }
+  .rd-req{color:var(--dn-day);}
+  .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
+
+  .rd-input,
+  .rd-select,
+  .rd-textarea{
+    width:100%;
+    padding:.82rem .95rem;
+    background:#0c0c11;
+    border:1px solid var(--dn-mist);
+    border-radius:11px;
+    color:var(--dn-bone);
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1rem;
+    transition:border-color .25s, box-shadow .25s, background .25s;
+  }
+  .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
+  .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
+    outline:none;
+    border-color:var(--dn-day);
+    background:#101015;
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+  }
+  .rd-textarea{resize:vertical;min-height:96px;line-height:1.5;}
+
+  /* native select on-brand */
+  .rd-select{
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right .95rem center;
+    padding-right:2.4rem;
+    cursor:pointer;
+  }
+  .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
+  .rd-select option{background:#101015;color:var(--dn-bone);}
+
+  .rd-dob{display:grid;grid-template-columns:.85fr 1.2fr .9fr;gap:.6rem;}
+
+  /* ---------- care-type cards ---------- */
+  .rd-care-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+  .rd-care-card{
+    position:relative;
+    display:flex;flex-direction:column;gap:.25rem;
+    padding:.95rem 1.05rem .95rem 1.05rem;
+    background:#0c0c11;
+    border:1px solid var(--dn-mist);
+    border-radius:12px;
+    cursor:pointer;
+    transition:border-color .25s, background .25s, transform .15s;
+  }
+  .rd-care-card:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.22);}
+  .rd-care-card input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
+  .rd-care-card .rd-care-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.02rem;font-weight:600;color:var(--dn-bone);
+    display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+  }
+  .rd-care-card .rd-care-desc{font-size:.74rem;color:var(--dn-bone-dim);line-height:1.4;}
+  .rd-care-tick{
+    width:18px;height:18px;border-radius:50%;flex:none;
+    border:1px solid var(--dn-mist);
+    display:grid;place-items:center;
+    transition:border-color .25s, background .25s;
+  }
+  .rd-care-tick svg{width:10px;height:10px;opacity:0;transform:scale(.5);transition:opacity .2s, transform .2s;}
+  .rd-care-card:has(input:focus-visible){outline:2px solid var(--dn-day);outline-offset:2px;}
+
+  /* selected states (day = gold cards, night = blue cards) */
+  .rd-care-card.day.is-on{border-color:var(--dn-day);background:rgba(248,199,96,.06);}
+  .rd-care-card.day.is-on .rd-care-title{color:var(--dn-day);}
+  .rd-care-card.day.is-on .rd-care-tick{border-color:var(--dn-day);background:var(--dn-day);}
+  .rd-care-card.night.is-on{border-color:var(--dn-night);background:rgba(69,144,236,.07);}
+  .rd-care-card.night.is-on .rd-care-title{color:var(--dn-night-soft);}
+  .rd-care-card.night.is-on .rd-care-tick{border-color:var(--dn-night);background:var(--dn-night);}
+  .rd-care-card.is-on .rd-care-tick svg{opacity:1;transform:scale(1);}
+
+  /* ---------- consent ---------- */
+  .rd-consent{
+    display:flex;align-items:flex-start;gap:.8rem;
+    padding:1rem 1.1rem;
+    background:#0c0c11;
+    border:1px solid var(--dn-mist);
+    border-radius:12px;
+    cursor:pointer;
+    margin-top:.3rem;
+  }
+  .rd-consent input{
+    width:18px;height:18px;flex:none;margin-top:2px;
+    accent-color:var(--dn-day);cursor:pointer;
+  }
+  .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
+  .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+
+  /* ---------- submit row ---------- */
+  .rd-submit-row{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    margin-top:1.9rem;padding-top:1.6rem;
+    border-top:1px solid var(--dn-mist);
+  }
+  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:240px;line-height:1.45;}
+  .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
+  .rd-submit{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:.95rem;font-weight:600;letter-spacing:.01em;
+    padding:.95rem 1.7rem;
+    color:#0a0a0c;
+    background:var(--dn-day);
+    border:1px solid var(--dn-day);
+    border-radius:12px;
+    cursor:pointer;
+    transition:transform .15s, box-shadow .25s, background .25s;
+    box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
+  }
+  .rd-submit:hover{transform:translateY(-1px);background:var(--dn-day-soft);box-shadow:0 18px 40px -16px rgba(248,199,96,.7);}
+  .rd-submit .arrow{transition:transform .25s;}
+  .rd-submit:hover .arrow{transform:translateX(4px);}
+
+  /* ============================================================
+     RIGHT: the reception "ledger" rail (all value content)
+     ============================================================ */
+  .rd-rail{
+    position:relative;
+    padding:clamp(1.75rem,3vw,2.4rem) clamp(1.5rem,2.4vw,2rem);
+    background:linear-gradient(180deg, #0e0e14, #0a0a0e);
+  }
+  .rd-rail::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, transparent, var(--dn-night), transparent);
+    opacity:.7;
+  }
+
+  .rd-rail-eyebrow{
+    display:inline-block;
+    font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--dn-night-soft);font-weight:600;
+    padding:.3rem .7rem;border:1px solid rgba(69,144,236,.3);
+    border-radius:999px;background:rgba(69,144,236,.05);
+  }
+  .rd-rail h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.45rem;font-weight:600;letter-spacing:-.01em;
+    margin:.85rem 0 .35rem;
+  }
+  .rd-rail-lead{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.55;margin:0 0 1.6rem;}
+
+  .rd-includes{list-style:none;padding:0;margin:0 0 1.6rem;display:flex;flex-direction:column;gap:1.05rem;}
+  .rd-includes li{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;}
+  .rd-inc-num{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.78rem;font-weight:600;
+    width:24px;height:24px;border-radius:7px;flex:none;
+    display:grid;place-items:center;
+    color:var(--dn-day);
+    border:1px solid rgba(248,199,96,.25);
+    background:rgba(248,199,96,.05);
+  }
+  .rd-includes li:nth-child(even) .rd-inc-num{color:var(--dn-night-soft);border-color:rgba(69,144,236,.28);background:rgba(69,144,236,.05);}
+  .rd-inc-body h4{font-family:var(--font-display),'Fraunces',serif;font-size:.9rem;font-weight:600;margin:0 0 .2rem;letter-spacing:-.01em;}
+  .rd-inc-body p{font-size:.74rem;color:var(--dn-bone-dim);line-height:1.5;margin:0;}
+
+  .rd-price{
+    display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;
+    padding:1rem 1.1rem;
+    border:1px solid var(--dn-mist);border-radius:12px;
+    background:#0c0c11;
+    margin-bottom:1rem;
+  }
+  .rd-price .rd-price-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dn-bone-dim);}
+  .rd-price .rd-price-amt{font-family:var(--font-display),'Fraunces',serif;font-size:2rem;font-weight:600;color:var(--dn-day);line-height:1;}
+  .rd-price .rd-price-amt .cur{font-size:1.05rem;margin-right:.05em;}
+
+  .rd-rail-notes{list-style:none;padding:0;margin:0 0 1.5rem;display:flex;flex-direction:column;gap:.7rem;}
+  .rd-rail-notes li{display:flex;gap:.6rem;font-size:.76rem;color:var(--dn-bone-dim);line-height:1.45;}
+  .rd-rail-notes svg{flex:none;width:15px;height:15px;margin-top:1px;}
+
+  .rd-emergency{
+    padding:1.05rem 1.15rem;
+    border:1px solid rgba(69,144,236,.35);
+    border-radius:12px;
+    background:rgba(69,144,236,.06);
+  }
+  .rd-emergency .rd-em-eyebrow{
+    display:flex;align-items:center;gap:.45rem;
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);font-weight:600;margin-bottom:.5rem;
+  }
+  .rd-emergency p{font-size:.77rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 .55rem;}
+  .rd-emergency a{
+    display:inline-flex;align-items:center;gap:.45rem;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.05rem;font-weight:600;color:var(--dn-night-soft);
+    text-decoration:none;
+  }
+  .rd-emergency a:hover{color:#a9cdf6;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .rd-desk{grid-template-columns:1fr;}
+    .rd-form-panel{border-right:none;border-bottom:1px solid var(--dn-mist);}
+    .rd-rail::before{background:linear-gradient(90deg, transparent, var(--dn-night), transparent);}
+  }
+  @media (max-width:620px){
+    .rd-nameplate{flex-direction:column;align-items:flex-start;}
+    .rd-plate-right{align-self:stretch;}
+    .rd-row,.rd-row.address{grid-template-columns:1fr;}
+    .rd-care-grid{grid-template-columns:1fr;}
+    .rd-dob{grid-template-columns:.85fr 1.2fr .9fr;}
+    .rd-submit{width:100%;justify-content:center;}
+    .rd-submit-note{max-width:none;}
+  }
+  @media (max-width:380px){
+    .rd-dob{gap:.4rem;}
+    .rd-select{padding-right:2rem;background-position:right .6rem center;}
+  }
+
+  /* preview scroll override (keep LAST) */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Reception Desk</div>
+
+<div class="rd-wrap">
+  <div class="rd-glow day"></div>
+  <div class="rd-glow night"></div>
+
+  <!-- ============ NAMEPLATE HEADER BAR ============ -->
+  <header class="rd-nameplate">
+    <div class="rd-plate-left">
+      <div class="rd-bell" aria-hidden="true">
+        <!-- reception bell -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f8c760" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 17h14"/>
+          <path d="M4 17a8 8 0 0 1 16 0"/>
+          <path d="M12 6V4"/>
+          <path d="M10 4h4"/>
+          <path d="M3 20h18"/>
+        </svg>
+      </div>
+      <div class="rd-plate-titles">
+        <span class="rd-plate-eyebrow">New Patients · Front Desk</span>
+        <h2 class="rd-plate-title">Register with the <em>practice</em></h2>
+      </div>
+    </div>
+    <div class="rd-plate-right">
+      <span class="rd-status-dot" aria-hidden="true"></span>
+      <span class="rd-status-txt">
+        <b>Register in three minutes</b>
+        <span>We confirm your first appointment within one working hour.</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- ============ THE DESK SURFACE ============ -->
+  <div class="rd-desk">
+
+    <!-- ===== left: the form ===== -->
+    <div class="rd-form-panel">
+      <form onsubmit="return false;">
+
+        <div class="rd-form-intro">
+          <h2>Please check in</h2>
+          <span>Just the essentials, the rest we cover on the call.</span>
+        </div>
+
+        <!-- ===== GROUP 1: YOUR DETAILS ===== -->
+        <section class="rd-group">
+          <div class="rd-group-head">
+            <span class="rd-group-tab">A</span>
+            <div>
+              <h3>Your details</h3>
+              <div class="rd-group-sub">Who we should welcome, and how to reach you.</div>
+            </div>
+          </div>
+
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
+              <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
+            </div>
+            <div class="rd-field">
+              <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
+              <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
+            </div>
+          </div>
+
+          <div class="rd-row one">
+            <div class="rd-field">
+              <span class="rd-label">Date of birth <span class="rd-req">*</span></span>
+              <div class="rd-dob">
+                <select class="rd-select" name="dobDay" aria-label="Day of birth" required>
+                  <option value="" selected disabled>Day</option>
+                  <option>01</option><option>02</option><option>07</option><option>14</option>
+                  <option>21</option><option>28</option><option>31</option>
+                </select>
+                <select class="rd-select" name="dobMonth" aria-label="Month of birth" required>
+                  <option value="" selected disabled>Month</option>
+                  <option>January</option><option>February</option><option>March</option>
+                  <option>June</option><option>September</option><option>December</option>
+                </select>
+                <select class="rd-select" name="dobYear" aria-label="Year of birth" required>
+                  <option value="" selected disabled>Year</option>
+                  <option>2008</option><option>1999</option><option>1990</option>
+                  <option>1985</option><option>1972</option><option>1960</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
+              <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
+            </div>
+            <div class="rd-field">
+              <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
+              <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
+            </div>
+          </div>
+
+          <div class="rd-row address">
+            <div class="rd-field">
+              <label class="rd-label" for="address">Address <span class="rd-opt">optional</span></label>
+              <input class="rd-input" id="address" name="address" type="text" autocomplete="street-address" placeholder="Street address (optional)">
+            </div>
+            <div class="rd-field">
+              <label class="rd-label" for="postcode">Postcode <span class="rd-req">*</span></label>
+              <input class="rd-input" id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="G1 1SH" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== GROUP 2: YOUR CARE ===== -->
+        <section class="rd-group care">
+          <div class="rd-group-head">
+            <span class="rd-group-tab">B</span>
+            <div>
+              <h3>Your care</h3>
+              <div class="rd-group-sub">How you would like to be seen, and what is on your mind.</div>
+            </div>
+          </div>
+
+          <div class="rd-field" style="margin-bottom:1.1rem;">
+            <span class="rd-label">Care type <span class="rd-req">*</span></span>
+            <div class="rd-care-grid" data-care role="radiogroup" aria-label="Care type">
+              <label class="rd-care-card day">
+                <input type="radio" name="careType" value="private" required>
+                <span class="rd-care-title">Private
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">Full choice of times and treatments</span>
+              </label>
+              <label class="rd-care-card night">
+                <input type="radio" name="careType" value="nhs" required>
+                <span class="rd-care-title">NHS
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">Waiting list, when we have space</span>
+              </label>
+              <label class="rd-care-card day">
+                <input type="radio" name="careType" value="mixed" required>
+                <span class="rd-care-title">Either
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">Whatever gets you seen soonest</span>
+              </label>
+              <label class="rd-care-card night">
+                <input type="radio" name="careType" value="unsure" required>
+                <span class="rd-care-title">Not sure yet
+                  <span class="rd-care-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="#0a0a0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6.5l3 3 6-7"/></svg></span>
+                </span>
+                <span class="rd-care-desc">We'll talk it through on the call</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rd-row">
+            <div class="rd-field">
+              <label class="rd-label" for="referral">How did you hear about us? <span class="rd-opt">optional</span></label>
+              <select class="rd-select" id="referral" name="referral">
+                <option value="" selected disabled>Optional</option>
+                <option>Google search</option>
+                <option>Friend or family</option>
+                <option>Instagram</option>
+                <option>Walked past the practice</option>
+                <option>Existing patient</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="rd-field" style="justify-content:flex-end;">
+              <span class="rd-label" style="visibility:hidden;">spacer</span>
+              <div style="font-size:.74rem;color:var(--dn-bone-faint);line-height:1.45;align-self:center;padding-bottom:.6rem;">
+                Anything you tell us helps the desk prepare before your call.
+              </div>
+            </div>
+          </div>
+
+          <div class="rd-row one">
+            <div class="rd-field">
+              <label class="rd-label" for="notes">What do you need help with? <span class="rd-opt">optional</span></label>
+              <textarea class="rd-textarea" id="notes" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+            </div>
+          </div>
+
+          <div class="rd-row one">
+            <label class="rd-consent">
+              <input type="checkbox" name="consent" required>
+              <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- ===== submit ===== -->
+        <div class="rd-submit-row">
+          <p class="rd-submit-note"><strong>No payment now.</strong> We confirm the cost of your first visit before anything goes ahead.</p>
+          <button type="submit" class="rd-submit">Complete Registration <span class="arrow" aria-hidden="true">→</span></button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ===== right: the reception ledger rail (all value content) ===== -->
+    <aside class="rd-rail">
+      <span class="rd-rail-eyebrow">What's included</span>
+      <h3>Your first visit</h3>
+      <p class="rd-rail-lead">Everything below is part of your first appointment, set out plainly before you decide anything.</p>
+
+      <ul class="rd-includes">
+        <li>
+          <span class="rd-inc-num">01</span>
+          <div class="rd-inc-body">
+            <h4>Comprehensive examination</h4>
+            <p>A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rd-inc-num">02</span>
+          <div class="rd-inc-body">
+            <h4>Digital x-rays</h4>
+            <p>Low-dose, with no films to develop, so you are not left waiting.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rd-inc-num">03</span>
+          <div class="rd-inc-body">
+            <h4>Personalised treatment plan</h4>
+            <p>Written, with the cost of each item set out before any work starts.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rd-inc-num">04</span>
+          <div class="rd-inc-body">
+            <h4>Hygiene appointment</h4>
+            <p>Booked alongside the examination, so you leave with a fresh start.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="rd-price">
+        <span class="rd-price-label">First visit from</span>
+        <span class="rd-price-amt"><span class="cur">£</span>95</span>
+      </div>
+
+      <ul class="rd-rail-notes">
+        <li>
+          <svg viewBox="0 0 16 16" fill="none" stroke="#f8c760" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-8"/></svg>
+          <span>Children under 18 are examined free.</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 16 16" fill="none" stroke="#7DB5F0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 5v3.5l2 1.3"/></svg>
+          <span>NHS care is by waiting list when we have space.</span>
+        </li>
+      </ul>
+
+      <div class="rd-emergency">
+        <div class="rd-em-eyebrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#7DB5F0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M3 4.5c0 5 3.5 8.5 8.5 8.5l1.5-2.2-2.6-1.2-1.3 1.2a8 8 0 0 1-3.4-3.4l1.2-1.3L5.2 3.5 3 4.5z"/></svg>
+          24/7 Emergency
+        </div>
+        <p>In pain right now? Don't wait to register, we are a new practice in Merchant City, Glasgow.</p>
+        <a href="tel:+441415486548">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M3 4.5c0 5 3.5 8.5 8.5 8.5l1.5-2.2-2.6-1.2-1.3 1.2a8 8 0 0 1-3.4-3.4l1.2-1.3L5.2 3.5 3 4.5z"/></svg>
+          0141 548 6548
+        </a>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

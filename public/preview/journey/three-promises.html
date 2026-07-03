@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Three Promises - What to Expect When You Call · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THREE PROMISES - an editorial statement, not a stepper.
+   The three reassuring steps are recast as confident, signed
+   promises set in a refined magazine layout: an oversized opening
+   statement, a thin gold rule, then three promise entries with
+   large display numerals serving as drop-folios rather than badges
+   on a connector line. Solid gold day-side, solid blue night-side,
+   never a gold-to-blue blend. Renders fully with no JS.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.4rem,8vw,6.5rem) 0;
+  overflow:hidden;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(72% 58% at 10% 4%, rgba(248,199,96,.11), transparent 60%),
+    radial-gradient(72% 58% at 92% 98%, rgba(69,144,236,.11), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── masthead: eyebrow + oversized editorial statement ── */
+.dn-masthead{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;
+  gap:1.4rem 2rem;
+  padding-bottom:clamp(1.6rem,3vw,2.2rem);
+  border-bottom:1px solid var(--dn-mist);
+}
+.dn-mast-lede{min-width:0;}
+.dn-eyebrow.dn-pill{margin-bottom:clamp(1.3rem,2.6vw,1.8rem);}
+
+.dn-statement{
+  font-family:var(--font-display);
+  font-weight:330;
+  font-size:clamp(2.1rem,5.4vw,4rem);
+  line-height:1.04;
+  letter-spacing:-.018em;
+  margin:0;
+  max-width:17ch;
+  color:var(--dn-bone);
+  text-wrap:balance;
+}
+/* live "grad" headline span rendered as a SOLID colour here, never a blend */
+.dn-statement .grad{color:var(--dn-day);font-style:italic;font-weight:360;}
+
+/* the signed dateline that sets the editorial tone */
+.dn-mast-mark{
+  flex:0 0 auto;
+  text-align:right;
+  padding-bottom:.25rem;
+}
+.dn-mast-mark .kicker{
+  display:block;
+  font-size:.58rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--dn-day);
+  margin-bottom:.5rem;
+}
+.dn-mast-mark .sig{
+  font-family:var(--font-display);
+  font-weight:430;
+  font-style:italic;
+  font-size:1.05rem;
+  line-height:1.25;
+  color:var(--dn-bone-dim);
+  white-space:nowrap;
+}
+
+/* ── the three promises, as editorial entries with folio numerals ── */
+.dn-promises{
+  list-style:none;
+  margin:0;
+  padding:0;
+  counter-reset:promise;
+}
+.dn-promise{
+  counter-increment:promise;
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,auto) minmax(0,1fr);
+  align-items:start;
+  gap:clamp(1rem,3.4vw,2.6rem);
+  padding:clamp(1.9rem,4vw,2.7rem) 0;
+  border-bottom:1px solid var(--dn-mist);
+}
+.dn-promise:last-child{border-bottom:0;padding-bottom:0;}
+
+/* large display folio numeral, hairline-outlined so it reads as type, not a badge */
+.dn-folio{
+  font-family:var(--font-display);
+  font-weight:300;
+  font-size:clamp(3.4rem,9vw,6.6rem);
+  line-height:.82;
+  letter-spacing:-.04em;
+  color:transparent;
+  -webkit-text-stroke:1px var(--accent,var(--dn-day));
+  text-stroke:1px var(--accent,var(--dn-day));
+  position:relative;
+  padding-top:.06em;
+  min-width:1.4ch;
+}
+.dn-folio::after{content:counter(promise,decimal-leading-zero);}
+
+.dn-promise-body{min-width:0;max-width:46ch;}
+/* the accent tag that frames each promise as a stated commitment */
+.dn-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:.6rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent,var(--dn-day));
+  margin-bottom:.85rem;
+}
+.dn-tag::before{
+  content:'';
+  width:18px;height:1px;
+  background:var(--accent,var(--dn-day));
+}
+.dn-promise h3{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(1.5rem,3vw,2.15rem);
+  line-height:1.12;
+  letter-spacing:-.012em;
+  margin:0 0 .6rem;
+  color:var(--dn-bone);
+}
+.dn-promise h3 .lead-word{color:var(--accent,var(--dn-day));font-style:italic;font-weight:400;}
+.dn-promise p{
+  margin:0;
+  font-size:clamp(1rem,1.5vw,1.12rem);
+  line-height:1.66;
+  color:var(--dn-bone-dim);
+}
+/* night-side accent for the final, treatment promise */
+.dn-promise.night{--accent:var(--dn-night);}
+
+/* ── closing CTA panel ── */
+.dn-close{
+  margin-top:clamp(2.4rem,5vw,3.4rem);
+  padding:clamp(1.8rem,4vw,2.6rem);
+  border:1px solid var(--dn-mist);
+  border-radius:var(--dn-r-card);
+  background:rgba(255,255,255,.025);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.4rem 2rem;
+}
+.dn-close-copy{min-width:0;}
+.dn-close-copy .line{
+  font-family:var(--font-display);
+  font-weight:360;
+  font-size:clamp(1.25rem,2.4vw,1.7rem);
+  line-height:1.18;
+  letter-spacing:-.01em;
+  color:var(--dn-bone);
+}
+.dn-close-copy .line .day{color:var(--dn-day);font-style:italic;}
+.dn-close-copy .sub{
+  margin-top:.5rem;
+  font-size:.92rem;
+  color:var(--dn-bone-faint);
+  letter-spacing:.01em;
+}
+.dn-close-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.7rem;
+}
+
+/* emergency call button: solid gold, no gradient */
+.dn-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:52px;
+  padding:0 1.5rem;
+  border-radius:999px;
+  font-family:var(--font-body);
+  font-weight:640;
+  font-size:1.02rem;
+  letter-spacing:.005em;
+  text-decoration:none;
+  color:#0a0a0c;
+  background:var(--dn-day);
+  border:1px solid var(--dn-day);
+  position:relative;
+  transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease, gap .25s ease;
+  box-shadow:0 0 0 0 rgba(248,199,96,.5);
+}
+.dn-btn .pulse{
+  width:8px;height:8px;border-radius:50%;
+  background:#0a0a0c;
+  position:relative;
+  flex:0 0 auto;
+}
+.dn-btn .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-btn:hover{box-shadow:0 0 28px -4px rgba(248,199,96,.55);gap:.75rem;transform:translateY(-1px);}
+  .dn-btn:hover .arrow{transform:translateX(3px);}
+}
+.dn-btn:focus-visible{outline:2px solid var(--dn-bone);outline-offset:3px;}
+
+/* the spoken number, a tap target in its own right */
+.dn-num{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  font-family:var(--font-display);
+  font-weight:430;
+  font-size:1.32rem;
+  letter-spacing:.01em;
+  text-decoration:none;
+  color:var(--dn-bone);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-day) 42%, transparent);
+  transition:color .2s ease, border-color .2s ease;
+}
+@media (hover:hover){
+  .dn-num:hover{color:var(--dn-day);border-color:var(--dn-day);}
+}
+.dn-num:focus-visible{outline:2px solid var(--dn-day);outline-offset:4px;border-radius:4px;}
+
+/* ── responsive ── */
+@media (max-width:720px){
+  .dn-masthead{grid-template-columns:1fr;align-items:start;}
+  .dn-mast-mark{text-align:left;padding-bottom:0;}
+  .dn-mast-mark .sig{white-space:normal;}
+  .dn-statement{max-width:none;}
+  .dn-close{flex-direction:column;align-items:stretch;}
+  .dn-close-actions{flex-direction:row;flex-wrap:wrap;align-items:center;}
+}
+@media (max-width:520px){
+  .dn-promise{grid-template-columns:1fr;gap:.6rem;}
+  .dn-folio{font-size:clamp(2.8rem,16vw,3.6rem);line-height:1;}
+  .dn-btn{width:100%;justify-content:center;}
+  .dn-close-actions{flex-direction:column;align-items:stretch;}
+  .dn-num{justify-content:center;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-statement{font-size:1.95rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  .dn-btn,.dn-btn .arrow{transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">&larr; all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>Three Promises</b> <span class="lab-lens">editorial</span></div><span></span></div>
+
+<section class="dn-section dn-journey" id="how-it-works" aria-labelledby="journey-heading">
+  <div class="dn-container">
+
+    <header class="dn-masthead">
+      <div class="dn-mast-lede">
+        <span class="dn-eyebrow dn-pill day">What to expect when you call</span>
+        <h2 class="dn-statement" id="journey-heading">
+          Call with dental pain. <span class="grad">We&rsquo;ll help you get seen fast.</span>
+        </h2>
+      </div>
+      <div class="dn-mast-mark" aria-hidden="true">
+        <span class="kicker">Our promise to you</span>
+        <span class="sig">Three things we&rsquo;ll do,<br>the moment you call.</span>
+      </div>
+    </header>
+
+    <ol class="dn-promises">
+      <li class="dn-promise day">
+        <span class="dn-folio" aria-hidden="true"></span>
+        <div class="dn-promise-body">
+          <span class="dn-tag">First, we listen</span>
+          <h3><span class="lead-word">Tell us</span> what&rsquo;s happening</h3>
+          <p>We&rsquo;ll ask a few quick questions to understand your symptoms and how urgent they are.</p>
+        </div>
+      </li>
+
+      <li class="dn-promise day">
+        <span class="dn-folio" aria-hidden="true"></span>
+        <div class="dn-promise-body">
+          <span class="dn-tag">Then, we act</span>
+          <h3><span class="lead-word">We&rsquo;ll find</span> the earliest appointment</h3>
+          <p>If you need urgent care, we&rsquo;ll help arrange the soonest suitable appointment.</p>
+        </div>
+      </li>
+
+      <li class="dn-promise night">
+        <span class="dn-folio" aria-hidden="true"></span>
+        <div class="dn-promise-body">
+          <span class="dn-tag">Finally, we treat</span>
+          <h3><span class="lead-word">Get relief</span> and a clear plan</h3>
+          <p>A dentist will assess the problem, explain your options, and provide urgent treatment where appropriate.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="dn-close">
+      <div class="dn-close-copy">
+        <div class="line">In pain right now? <span class="day">You can call any hour.</span></div>
+        <div class="sub">Our emergency line is answered 24 hours a day, every day of the year.</div>
+      </div>
+      <div class="dn-close-actions">
+        <a href="tel:+441415486548" class="dn-btn">
+          <span class="pulse" aria-hidden="true"></span>
+          Call the 24/7 emergency line<span class="arrow" aria-hidden="true"> &rarr;</span>
+        </a>
+        <a href="tel:+441415486548" class="dn-num">0141 548 6548</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

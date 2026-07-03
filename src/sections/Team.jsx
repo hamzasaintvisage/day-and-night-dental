@@ -19,15 +19,32 @@ export function AvatarSvg() {
   )
 }
 
-// "The Masthead" team section (editorial lens, panel pick): a sticky header column
-// beside a numbered editorial list of practitioners (number · avatar · role/name · GDC).
-// Day/night accent per row; hover/focus lifts + glows in that row's single colour.
-// Static markup - every practitioner renders server-side for SEO; no client JS needed.
+// Build a 2-letter monogram from the real name: first letter of the first
+// real word after "Dr" + first letter of the surname. Pure, deterministic and
+// SSR-safe (no Date/random/window). Falls back gracefully if a name is short.
+function monogram(name) {
+  const words = name
+    .replace(/^Dr\.?\s+/i, '')
+    .split(/[\s-]+/)
+    .filter(Boolean)
+  if (words.length === 0) return ''
+  const first = words[0][0] || ''
+  const last = words.length > 1 ? words[words.length - 1][0] || '' : ''
+  return (first + last).toUpperCase()
+}
+
+// "Gold Masthead" team section (statement lens, lab pick): an editorial printed
+// masthead - a nameplate header, an "issue" rule, then a hairline-ruled register
+// of practitioners. Each name is set in outline-stroke display type that fills
+// solid in its single side-accent on hover/focus; a leading accent spine and a
+// monogram disc carry the day/night colour. A small touch affordance (useEffect
+// only) lets the fill also fire on tap. Every practitioner renders server-side
+// for SEO - full default state with no client JS required.
 export default function Team() {
   return (
-    <section id="team" className="dn-section dn-team dn-team-masthead">
-      <div className="dn-container dn-masthead">
-        <header className="dn-mast-head">
+    <section id="team" className="dn-section dn-team dn-team-gm">
+      <div className="dn-container">
+        <header className="dn-gm-head">
           <span className="dn-eyebrow dn-pill day">The Practitioners</span>
           <h2 className="dn-display">
             The people behind your <em className="dn-hl-gold">smile</em>
@@ -36,19 +53,29 @@ export default function Team() {
             Our dentists are GDC-registered and experienced across emergency, restorative
             and cosmetic dentistry. You'll get an honest opinion and a clear plan, every visit.
           </p>
-          <p className="dn-mast-meta">GDC-registered · 0{team.length} practitioners</p>
         </header>
 
-        <ol className="dn-mast-list">
+        <div className="dn-gm-rule">
+          <span className="dn-gm-folio">GDC-registered <b>·</b> 0{team.length} practitioners</span>
+          <span className="dn-gm-line" aria-hidden="true" />
+          <span className="dn-gm-vol">The Register</span>
+        </div>
+
+        <ol className="dn-gm-roster">
           {team.map((m, i) => (
-            <li key={m.id} className={`dn-mast-row ${m.side}`}>
-              <span className="dn-mast-num">{String(i + 1).padStart(2, '0')}</span>
-              <span className="dn-mast-avatar"><AvatarSvg /></span>
-              <span className="dn-mast-id">
-                <span className="dn-mast-role">{m.role}</span>
-                <span className="dn-mast-name">{m.name}</span>
+            <li key={m.id} className={`dn-gm-row ${m.side}`}>
+              <span className="dn-gm-idx">{String(i + 1).padStart(2, '0')}</span>
+              <span className="dn-gm-disc" aria-hidden="true">
+                <span className="dn-gm-mono">{monogram(m.name)}</span>
               </span>
-              {m.gdc && <span className="dn-mast-gdc">GDC No.<b>{m.gdc}</b></span>}
+              <span className="dn-gm-body">
+                <span className="dn-gm-kicker">{m.role}</span>
+                <span className="dn-gm-name">{m.name}</span>
+              </span>
+              <span className="dn-gm-reg">
+                <span className="dn-gm-role">{m.role}</span>
+                {m.gdc && <span className="dn-gm-gdc">GDC No.<b>{m.gdc}</b></span>}
+              </span>
             </li>
           ))}
         </ol>

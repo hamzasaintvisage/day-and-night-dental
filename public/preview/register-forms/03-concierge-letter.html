@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register · The Concierge Letter</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     THE CONCIERGE LETTER
+     A warm, signed note from the practice presented as a single
+     piece of premium stationery. The reassurance content lives
+     inside the letter as an enclosed "what to expect" ledger,
+     and the form sits on the same sheet, divided by a hairline
+     fold, so it reads as one continuous correspondence card.
+     ============================================================ */
+
+  *{box-sizing:border-box;}
+  :root{
+    --paper:#101015;
+    --paper-warm: rgba(248,199,96,.028);
+    --ink: #ffffff;
+    --ink-soft: rgba(255,255,255,.72);
+    --ink-faint: rgba(255,255,255,.55);
+    --rule: rgba(255,255,255,.10);
+    --rule-strong: rgba(255,255,255,.16);
+    --gold:#f8c760;
+    --night:#4590ec;
+    --night-soft:#7DB5F0;
+  }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 600px at 12% -8%, rgba(248,199,96,.07), transparent 60%),
+      radial-gradient(900px 700px at 96% 108%, rgba(69,144,236,.06), transparent 62%),
+      #08080b;
+    color:var(--ink);
+    font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    line-height:1.5;
+  }
+  a{color:inherit;}
+
+  .cl-wrap{
+    max-width:780px;
+    margin:0 auto;
+    padding:72px 22px 100px;
+    position:relative;
+  }
+
+  /* ---- The stationery sheet ---- */
+  .cl-sheet{
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.018), transparent 240px),
+      var(--paper);
+    border:1px solid var(--rule-strong);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.04) inset,
+      0 40px 90px -50px rgba(0,0,0,.9);
+  }
+  /* hairline gold top edge, like an embossed border */
+  .cl-sheet::before{
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background:var(--gold);
+    opacity:.85;
+  }
+  /* faint ruled left margin, the letterhead fold line */
+  .cl-sheet::after{
+    content:'';
+    position:absolute; top:0; bottom:0;
+    left:64px; width:1px;
+    background:linear-gradient(180deg, transparent, var(--rule) 8%, var(--rule) 92%, transparent);
+    pointer-events:none;
+  }
+  @media (max-width:680px){ .cl-sheet::after{ display:none; } }
+
+  /* glows, single-colour-to-transparent only */
+  .cl-glow{ position:absolute; border-radius:50%; filter:blur(8px); pointer-events:none; z-index:0; }
+  .cl-glow.day{ width:360px; height:360px; top:-120px; right:-80px;
+    background:radial-gradient(circle, rgba(248,199,96,.14), transparent 70%); }
+  .cl-glow.night{ width:420px; height:420px; bottom:-160px; left:-110px;
+    background:radial-gradient(circle, rgba(69,144,236,.12), transparent 70%); }
+
+  /* ---- Letter body ---- */
+  .cl-letter{
+    position:relative;
+    z-index:1;
+    padding:44px 56px 40px 96px;
+  }
+  @media (max-width:680px){ .cl-letter{ padding:36px 26px 32px; } }
+
+  .cl-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:1rem; margin-bottom:30px;
+  }
+  .cl-pill{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.42rem .85rem;
+    border:1px solid rgba(248,199,96,.4);
+    border-radius:999px;
+    background:rgba(248,199,96,.05);
+    font-size:.66rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; white-space:nowrap;
+  }
+  .cl-pill .dot{ width:5px; height:5px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 0 3px rgba(248,199,96,.18); }
+  .cl-dateline{
+    text-align:right; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-faint); line-height:1.7; padding-top:.2rem;
+  }
+  .cl-dateline b{ color:var(--ink-soft); font-weight:600; }
+
+  .cl-greeting{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.9rem, 4.6vw, 2.7rem);
+    font-weight:600;
+    letter-spacing:-.015em;
+    line-height:1.08;
+    margin:0 0 1.1rem;
+  }
+  .cl-greeting em{ font-style:italic; color:var(--gold); }
+
+  .cl-body{
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0 0 1rem;
+  }
+  .cl-body .night{ color:var(--night-soft); font-weight:600; }
+  .cl-body strong{ color:var(--ink); font-weight:600; }
+
+  /* ---- Enclosed "what to expect" ledger (the benefits, inline in the letter) ---- */
+  .cl-enclosure{
+    margin:30px 0 8px;
+    border:1px solid var(--rule);
+    border-radius:14px;
+    background:
+      linear-gradient(180deg, var(--paper-warm), transparent 60%),
+      rgba(255,255,255,.012);
+    padding:24px 26px 22px;
+  }
+  .cl-enclosure-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:1rem; flex-wrap:wrap;
+    margin-bottom:18px; padding-bottom:14px;
+    border-bottom:1px solid var(--rule);
+  }
+  .cl-enclosure-title{
+    font-size:.66rem; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .cl-price{ display:flex; align-items:baseline; gap:.5rem; }
+  .cl-price .lbl{ font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-faint); }
+  .cl-price .amt{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.7rem; font-weight:700; color:var(--gold); line-height:1;
+  }
+  .cl-price .amt .cur{ font-size:1rem; }
+
+  .cl-includes{ list-style:none; margin:0; padding:0;
+    display:grid; grid-template-columns:1fr 1fr; gap:18px 30px; }
+  @media (max-width:560px){ .cl-includes{ grid-template-columns:1fr; gap:14px; } }
+  .cl-includes li{ display:grid; grid-template-columns:auto 1fr; gap:.9rem; align-items:start; }
+  .cl-includes .num{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.05rem; line-height:1.1; color:var(--gold); font-weight:600;
+  }
+  .cl-includes li:nth-child(even) .num{ color:var(--night-soft); }
+  .cl-includes h4{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.98rem; font-weight:600; margin:0 0 .25rem; letter-spacing:-.01em;
+  }
+  .cl-includes p{ margin:0; font-size:.8rem; color:var(--ink-faint); line-height:1.45; }
+
+  .cl-fineprint{
+    margin:16px 0 0; padding-top:14px;
+    border-top:1px solid var(--rule);
+    font-size:.78rem; color:var(--ink-faint); line-height:1.55;
+  }
+  .cl-fineprint b{ color:var(--ink-soft); font-weight:600; }
+
+  /* ---- Sign off ---- */
+  .cl-signoff{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1.2rem; margin-top:30px; flex-wrap:wrap;
+  }
+  .cl-sign .with{ font-size:.84rem; color:var(--ink-faint); margin-bottom:.15rem; }
+  .cl-sign .scrawl{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-style:italic; font-weight:500;
+    font-size:1.5rem; color:var(--ink);
+    line-height:1.05;
+  }
+  .cl-sign .role{ display:block; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--ink-faint); margin-top:.45rem; }
+  /* wax-seal style monogram medallion */
+  .cl-seal{
+    flex:0 0 auto;
+    width:74px; height:74px; border-radius:50%;
+    display:grid; place-items:center;
+    border:1px solid rgba(248,199,96,.45);
+    background:radial-gradient(circle at 35% 30%, rgba(248,199,96,.12), rgba(248,199,96,.03) 70%);
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.4rem; font-weight:700; letter-spacing:.04em;
+    color:var(--gold);
+    box-shadow:0 0 0 6px rgba(248,199,96,.04), inset 0 0 18px -8px rgba(248,199,96,.5);
+  }
+
+  /* ---- Urgent reassurance ---- */
+  .cl-urgent{
+    margin:26px 0 0; padding:14px 18px;
+    border:1px solid rgba(69,144,236,.32);
+    border-radius:12px;
+    background:rgba(69,144,236,.05);
+    font-size:.86rem; color:var(--ink-soft);
+  }
+  .cl-urgent a{ color:var(--night-soft); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(125,181,240,.4); }
+  .cl-urgent a:hover{ border-bottom-color:var(--night-soft); }
+
+  /* ---- The fold: divider between letter and form on the same sheet ---- */
+  .cl-fold{
+    position:relative; z-index:1;
+    margin:8px 56px 0 96px;
+    border-top:1px dashed var(--rule-strong);
+  }
+  @media (max-width:680px){ .cl-fold{ margin:8px 26px 0; } }
+  .cl-fold span{
+    position:absolute; top:-9px; left:0;
+    transform:translateY(-1px);
+    padding:.2rem .7rem;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:999px;
+    font-size:.6rem; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---- The form (lower half of the sheet) ---- */
+  .cl-form-area{
+    position:relative; z-index:1;
+    padding:42px 56px 50px 96px;
+  }
+  @media (max-width:680px){ .cl-form-area{ padding:34px 26px 40px; } }
+
+  .cl-form-intro{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.45rem; font-weight:600; margin:0 0 2px; letter-spacing:-.01em;
+  }
+  .cl-form-sub{ font-size:.88rem; color:var(--ink-faint); margin:0 0 28px; }
+
+  .cl-group{ margin-bottom:34px; }
+  .cl-group-head{ display:flex; align-items:center; gap:.75rem; margin-bottom:18px; }
+  .cl-group-num{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.85rem; color:var(--gold); font-weight:600;
+    border:1px solid rgba(248,199,96,.4); border-radius:50%;
+    width:26px; height:26px; display:grid; place-items:center; line-height:1;
+  }
+  .cl-group:nth-of-type(2) .cl-group-num{ color:var(--night-soft); border-color:rgba(69,144,236,.4); }
+  .cl-group-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.06rem; font-weight:600; margin:0; letter-spacing:-.005em;
+  }
+  .cl-group-line{ flex:1; height:1px; background:var(--rule); }
+
+  .cl-row{ margin-bottom:16px; }
+  .cl-row-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:560px){ .cl-row-2{ grid-template-columns:1fr; } }
+
+  .cl-field{ display:flex; flex-direction:column; gap:.5rem; min-width:0; }
+  .cl-label{ font-size:.66rem; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-faint); }
+  .cl-label .req{ color:var(--gold); margin-left:.15rem; }
+  .cl-label .opt{ text-transform:none; letter-spacing:0; color:var(--ink-faint);
+    font-size:.74rem; font-style:italic; margin-left:.3rem; }
+
+  .cl-input, .cl-select, .cl-textarea{
+    width:100%;
+    padding:.82rem 1rem;
+    background:#0c0c11;
+    border:1px solid var(--rule-strong);
+    border-radius:10px;
+    color:var(--ink);
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1rem;
+    transition:border-color .25s, box-shadow .25s, background .25s;
+  }
+  .cl-input::placeholder, .cl-textarea::placeholder{ color:rgba(255,255,255,.34); }
+  .cl-input:focus, .cl-select:focus, .cl-textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:#0e0e13;
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+  }
+  .cl-textarea{ resize:vertical; min-height:88px; line-height:1.5; }
+
+  /* native selects, styled with a chevron */
+  .cl-select{
+    appearance:none; -webkit-appearance:none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--ink-faint) 50%),
+      linear-gradient(135deg, var(--ink-faint) 50%, transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(50% - 2px),
+      calc(100% - 13px) calc(50% - 2px);
+    background-size:5px 5px, 5px 5px;
+    background-repeat:no-repeat;
+    padding-right:2.4rem; cursor:pointer;
+  }
+  .cl-select:invalid{ color:rgba(255,255,255,.34); }
+  .cl-select option{ color:var(--ink); background:#0c0c11; }
+
+  .cl-dob{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  @media (max-width:360px){ .cl-dob{ gap:7px; } .cl-dob .cl-select{ padding-left:.6rem; padding-right:1.9rem; } }
+
+  /* ---- Care cards ---- */
+  .cl-cards{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:560px){ .cl-cards{ grid-template-columns:1fr; } }
+  .cl-card{
+    position:relative;
+    padding:1rem 1.1rem;
+    background:#0c0c11;
+    border:1px solid var(--rule-strong);
+    border-radius:12px;
+    cursor:pointer;
+    transition:border-color .25s, background .25s, transform .15s;
+    display:flex; flex-direction:column; gap:.28rem;
+  }
+  .cl-card:hover{ transform:translateY(-1px); border-color:rgba(255,255,255,.28); }
+  .cl-card input{ position:absolute; width:1px; height:1px; opacity:0; margin:0; }
+  .cl-card .t{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.08rem; font-weight:600; color:var(--ink); letter-spacing:-.005em;
+  }
+  .cl-card .d{ font-size:.76rem; color:var(--ink-faint); line-height:1.4; padding-right:1.4rem; }
+  .cl-card .check{
+    position:absolute; top:.85rem; right:.95rem;
+    width:18px; height:18px; border-radius:50%;
+    border:1px solid var(--rule-strong);
+    display:grid; place-items:center;
+    font-size:.7rem; color:transparent;
+    transition:all .25s;
+  }
+  .cl-card:has(input:focus-visible){ outline:2px solid var(--gold); outline-offset:2px; }
+  /* selected states, single colour per card */
+  .cl-card.is-on.day{ border-color:var(--gold); background:rgba(248,199,96,.06); }
+  .cl-card.is-on.day .t{ color:var(--gold); }
+  .cl-card.is-on.day .check{ border-color:var(--gold); background:var(--gold); color:#0a0a0c; }
+  .cl-card.is-on.night{ border-color:var(--night); background:rgba(69,144,236,.07); }
+  .cl-card.is-on.night .t{ color:var(--night-soft); }
+  .cl-card.is-on.night .check{ border-color:var(--night); background:var(--night); color:#0a0a0c; }
+
+  /* ---- Consent ---- */
+  .cl-consent{
+    display:flex; align-items:flex-start; gap:.85rem;
+    padding:1rem 1.1rem;
+    background:#0c0c11;
+    border:1px solid var(--rule-strong);
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .cl-consent input{ width:auto; margin-top:3px; accent-color:var(--gold); flex:0 0 auto; }
+  .cl-consent span{ font-size:.82rem; color:var(--ink-soft); line-height:1.5; }
+  .cl-consent a{ color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(248,199,96,.4); }
+
+  /* ---- Submit ---- */
+  .cl-actions{ margin-top:30px; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .cl-actions .reassure{ font-size:.78rem; color:var(--ink-faint); max-width:30ch; }
+  .cl-submit{
+    appearance:none; cursor:pointer;
+    display:inline-flex; align-items:center; gap:.6rem;
+    padding:.95rem 1.7rem;
+    background:var(--gold);
+    color:#0a0a0c;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:.95rem; font-weight:700; letter-spacing:.01em;
+    transition:transform .15s, box-shadow .25s, background .25s;
+    box-shadow:0 14px 34px -18px rgba(248,199,96,.7);
+  }
+  .cl-submit:hover{ transform:translateY(-1px); box-shadow:0 18px 40px -16px rgba(248,199,96,.85); }
+  .cl-submit .arrow{ transition:transform .25s; }
+  .cl-submit:hover .arrow{ transform:translateX(4px); }
+  @media (max-width:560px){ .cl-submit{ flex:1 1 100%; justify-content:center; } }
+
+  .cl-footnote{ text-align:center; margin:26px auto 0; font-size:.72rem; color:var(--ink-faint); max-width:46ch; }
+
+  /* preview-only: allow normal scrolling when opened standalone */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+  <div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Concierge Letter</div>
+
+  <div class="cl-wrap">
+    <div class="cl-sheet">
+      <div class="cl-glow day" aria-hidden="true"></div>
+      <div class="cl-glow night" aria-hidden="true"></div>
+
+      <!-- ===================== THE LETTER ===================== -->
+      <section class="cl-letter" aria-label="A note from the practice">
+        <div class="cl-head">
+          <span class="cl-pill"><span class="dot"></span>A note before you begin</span>
+          <span class="cl-dateline"><b>Day Night Dental</b><br>Merchant City, Glasgow</span>
+        </div>
+
+        <p class="cl-greeting">Hello, and <em>welcome</em>.</p>
+
+        <p class="cl-body">
+          We are a new practice in Merchant City, and we are genuinely glad you found us.
+          Registering takes about <strong>three minutes</strong>, and once you have, a real
+          member of our team will confirm your first appointment <span class="night">within one
+          working hour</span>. No phone queues, no waiting to hear back.
+        </p>
+        <p class="cl-body">
+          Below is a short note on what your first visit includes, so you know exactly what to
+          expect before you fill anything in.
+        </p>
+
+        <!-- Benefits, presented as an enclosed note inside the letter -->
+        <div class="cl-enclosure">
+          <div class="cl-enclosure-head">
+            <span class="cl-enclosure-title">Enclosed · Your first visit</span>
+            <span class="cl-price">
+              <span class="lbl">From</span>
+              <span class="amt"><span class="cur">£</span>95</span>
+            </span>
+          </div>
+
+          <ul class="cl-includes">
+            <li>
+              <span class="num">01</span>
+              <div>
+                <h4>Comprehensive examination</h4>
+                <p>A 45-minute full assessment with intra-oral scans and bite analysis.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div>
+                <h4>Digital x-rays</h4>
+                <p>Low-dose imaging, no films to develop, so you are not left waiting.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div>
+                <h4>Personalised treatment plan</h4>
+                <p>Written, with the cost of each item set out before any work starts.</p>
+              </div>
+            </li>
+            <li>
+              <span class="num">04</span>
+              <div>
+                <h4>Hygiene appointment</h4>
+                <p>Booked alongside the examination, so you leave with a fresh start.</p>
+              </div>
+            </li>
+          </ul>
+
+          <p class="cl-fineprint">
+            <b>Children under 18 are examined free.</b> NHS care is by waiting list, when we have
+            space. Whichever you choose, we confirm every cost before anything goes ahead.
+          </p>
+        </div>
+
+        <div class="cl-signoff">
+          <div class="cl-sign">
+            <div class="with">With warmth,</div>
+            <span class="scrawl">The Day Night Dental team</span>
+            <span class="role">Reception &amp; clinical team</span>
+          </div>
+          <div class="cl-seal" aria-hidden="true">DN</div>
+        </div>
+
+        <p class="cl-urgent">
+          In pain right now? Please do not wait to register,
+          <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        </p>
+      </section>
+
+      <!-- the fold between letter and form -->
+      <div class="cl-fold"><span>The form</span></div>
+
+      <!-- ===================== THE FORM ===================== -->
+      <div class="cl-form-area">
+        <p class="cl-form-intro">A few details, and we will take it from here.</p>
+        <p class="cl-form-sub">Everything marked with <span style="color:#f8c760">*</span> we need; the rest just helps us prepare.</p>
+
+        <form onsubmit="return false;" novalidate>
+
+          <!-- ----- Group 01: Your details ----- -->
+          <div class="cl-group">
+            <div class="cl-group-head">
+              <span class="cl-group-num">01</span>
+              <h2 class="cl-group-title">Your details</h2>
+              <span class="cl-group-line"></span>
+            </div>
+
+            <div class="cl-row cl-row-2">
+              <label class="cl-field">
+                <span class="cl-label">First name <span class="req">*</span></span>
+                <input class="cl-input" type="text" name="firstName" autocomplete="given-name" placeholder="Hamza" required>
+              </label>
+              <label class="cl-field">
+                <span class="cl-label">Last name <span class="req">*</span></span>
+                <input class="cl-input" type="text" name="lastName" autocomplete="family-name" placeholder="Abrar" required>
+              </label>
+            </div>
+
+            <div class="cl-row">
+              <span class="cl-label" id="dob-label">Date of birth <span class="req">*</span></span>
+              <div class="cl-dob" role="group" aria-labelledby="dob-label" style="margin-top:.5rem;">
+                <select class="cl-select" name="dobDay" aria-label="Day of birth" required>
+                  <option value="" selected disabled>Day</option>
+                  <option>1</option><option>2</option><option>3</option><option>14</option>
+                  <option>21</option><option>28</option><option>31</option>
+                </select>
+                <select class="cl-select" name="dobMonth" aria-label="Month of birth" required>
+                  <option value="" selected disabled>Month</option>
+                  <option>January</option><option>February</option><option>March</option>
+                  <option>June</option><option>September</option><option>December</option>
+                </select>
+                <select class="cl-select" name="dobYear" aria-label="Year of birth" required>
+                  <option value="" selected disabled>Year</option>
+                  <option>2008</option><option>2000</option><option>1992</option>
+                  <option>1985</option><option>1974</option><option>1960</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="cl-row cl-row-2">
+              <label class="cl-field">
+                <span class="cl-label">Phone <span class="req">*</span></span>
+                <input class="cl-input" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number" required>
+              </label>
+              <label class="cl-field">
+                <span class="cl-label">Email <span class="req">*</span></span>
+                <input class="cl-input" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              </label>
+            </div>
+
+            <div class="cl-row cl-row-2">
+              <label class="cl-field">
+                <span class="cl-label">Address <span class="opt">(optional)</span></span>
+                <input class="cl-input" type="text" name="address" autocomplete="street-address" placeholder="Street address, optional">
+              </label>
+              <label class="cl-field">
+                <span class="cl-label">Postcode <span class="req">*</span></span>
+                <input class="cl-input" type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH" required>
+              </label>
+            </div>
+          </div>
+
+          <!-- ----- Group 02: Your care ----- -->
+          <div class="cl-group">
+            <div class="cl-group-head">
+              <span class="cl-group-num">02</span>
+              <h2 class="cl-group-title">Your care</h2>
+              <span class="cl-group-line"></span>
+            </div>
+
+            <div class="cl-row">
+              <span class="cl-label" id="care-label">Care type <span class="req">*</span></span>
+              <div class="cl-cards" role="radiogroup" aria-labelledby="care-label" data-care style="margin-top:.55rem;">
+                <label class="cl-card day">
+                  <input type="radio" name="careType" value="private">
+                  <span class="check">✓</span>
+                  <span class="t">Private</span>
+                  <span class="d">Full choice of times and treatments</span>
+                </label>
+                <label class="cl-card night">
+                  <input type="radio" name="careType" value="nhs">
+                  <span class="check">✓</span>
+                  <span class="t">NHS</span>
+                  <span class="d">Waiting list, when we have space</span>
+                </label>
+                <label class="cl-card day">
+                  <input type="radio" name="careType" value="mixed">
+                  <span class="check">✓</span>
+                  <span class="t">Either</span>
+                  <span class="d">Whatever gets you seen soonest</span>
+                </label>
+                <label class="cl-card night">
+                  <input type="radio" name="careType" value="unsure">
+                  <span class="check">✓</span>
+                  <span class="t">Not sure yet</span>
+                  <span class="d">We'll talk it through on the call</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="cl-row">
+              <label class="cl-field">
+                <span class="cl-label">How did you hear about us? <span class="opt">(optional)</span></span>
+                <select class="cl-select" name="referral">
+                  <option value="" selected disabled>Optional</option>
+                  <option>Google search</option>
+                  <option>Friend or family</option>
+                  <option>Instagram</option>
+                  <option>Walked past the practice</option>
+                  <option>Existing patient</option>
+                  <option>Other</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="cl-row">
+              <label class="cl-field">
+                <span class="cl-label">What do you need help with? <span class="opt">(optional)</span></span>
+                <textarea class="cl-textarea" name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+              </label>
+            </div>
+
+            <div class="cl-row">
+              <label class="cl-consent">
+                <input type="checkbox" name="consent" required>
+                <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="cl-actions">
+            <span class="reassure">We will reply within one working hour, by phone or email, whichever suits you.</span>
+            <button type="submit" class="cl-submit">Complete Registration <span class="arrow" aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <p class="cl-footnote">
+      Day Night Dental, Merchant City, Glasgow. GDC-regulated. Open 24 hours a day for emergencies.
+    </p>
+  </div>
+
+  <script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

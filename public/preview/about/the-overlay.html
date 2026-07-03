@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.lab-top{position:sticky;top:0;z-index:60;display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(10,10,12,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--dn-mist);font-size:.85rem;}
+.lab-top a{color:var(--dn-bone-dim);text-decoration:none;}
+.lab-top a:hover{color:var(--dn-bone);}
+.lab-meta{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;}
+.lab-meta b{font-family:var(--font-display);font-weight:600;}
+.lab-rank{font-family:var(--font-display);font-weight:700;color:var(--dn-day);}
+.lab-lens{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);border:1px solid var(--dn-mist);border-radius:999px;padding:2px 9px;}
+.lab-win{color:#0a0a0c;background:var(--dn-day);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.dn-eyebrow.dn-pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;font-family:var(--font-body);}
+.dn-eyebrow.dn-pill.day{color:var(--dn-day);}
+.dn-eyebrow.dn-pill.night{color:var(--dn-night);}
+.dn-eyebrow.dn-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>The Overlay - Why We're Different · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   THE OVERLAY - a layered, depth-led type poster.
+   Two enormous translucent words overlap with offset and depth:
+   gold "DAYTIME" and blue "NIGHT-TIME". They are SOLID translucent
+   fills (never a smooth gold-to-blue blend) that cross over each
+   other so the seam where they overlap reads as deliberate depth.
+   The editorial statement reads through the layered composition on
+   a legible plate. With JS off the whole poster renders in its full
+   default state; the only motion is a gentle parallax drift on the
+   big words driven by plain inline JS.
+   ───────────────────────────────────────────────────────────── */
+
+.dn-section{
+  position:relative;
+  padding:clamp(3.2rem,7vw,5.4rem) 0 clamp(3.6rem,8vw,6rem);
+  overflow:hidden;
+  isolation:isolate;
+}
+/* continuous gold day-side / blue night-side depth-glow, no blend between them */
+.dn-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(64% 56% at 12% 6%, rgba(248,199,96,.14), transparent 60%),
+    radial-gradient(66% 58% at 88% 98%, rgba(69,144,236,.14), transparent 62%);
+  pointer-events:none;
+  z-index:0;
+}
+/* faint vertical grain lines to add poster structure behind the type */
+.dn-section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(100% / 12 - 1px),rgba(255,255,255,.018) calc(100% / 12 - 1px) calc(100% / 12));
+  pointer-events:none;
+  z-index:0;
+}
+.dn-container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,40px);
+}
+
+/* ── the layered stage ── */
+.dn-stage{
+  position:relative;
+  min-height:clamp(560px,86vh,860px);
+  display:grid;
+  place-items:center;
+}
+
+/* big overlapping type layers (decorative) */
+.dn-layers{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  -webkit-user-select:none;
+          user-select:none;
+}
+.dn-word{
+  position:absolute;
+  font-family:var(--font-display);
+  font-weight:700;
+  line-height:.82;
+  letter-spacing:-.03em;
+  white-space:nowrap;
+  font-size:clamp(4.6rem,21vw,15rem);
+  will-change:transform;
+  transition:transform .9s cubic-bezier(.2,.7,.2,1);
+}
+/* gold layer sits high-left, blue layer low-right; they overlap centre */
+.dn-word.day{
+  top:6%;
+  left:-3%;
+  color:rgba(248,199,96,.30);          /* solid translucent gold */
+}
+.dn-word.night{
+  bottom:5%;
+  right:-4%;
+  color:rgba(69,144,236,.30);          /* solid translucent blue */
+}
+/* a third, fainter outline echo of each word for stacked depth */
+.dn-word.day.echo{
+  top:11%;left:1%;
+  color:transparent;
+  -webkit-text-stroke:1.4px rgba(248,199,96,.20);
+  font-size:clamp(4.6rem,21vw,15rem);
+}
+.dn-word.night.echo{
+  bottom:0%;right:0%;
+  color:transparent;
+  -webkit-text-stroke:1.4px rgba(69,144,236,.18);
+}
+/* a deep, near-black ghost of each to deepen the seam where they cross */
+.dn-word.day.deep{top:8%;left:-1%;color:rgba(248,199,96,.10);}
+.dn-word.night.deep{bottom:7%;right:-2%;color:rgba(69,144,236,.10);}
+
+/* ── the legible statement plate, reading through the layers ── */
+.dn-plate{
+  position:relative;
+  z-index:2;
+  max-width:680px;
+  width:100%;
+  margin:0 auto;
+  text-align:center;
+  padding:clamp(1.9rem,4vw,2.9rem) clamp(1.4rem,4vw,2.6rem);
+  border-radius:20px;
+  background:rgba(10,10,12,.62);
+  -webkit-backdrop-filter:blur(7px) saturate(120%);
+          backdrop-filter:blur(7px) saturate(120%);
+  border:1px solid var(--dn-mist);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.8);
+}
+.dn-plate .dn-eyebrow{margin-bottom:1.4rem;}
+
+.dn-headline{
+  font-family:var(--font-display);
+  font-weight:380;
+  font-size:clamp(2.1rem,5.4vw,3.7rem);
+  line-height:1.04;
+  letter-spacing:-.018em;
+  margin:0 auto;
+  max-width:16ch;
+  color:var(--dn-bone);
+}
+.dn-headline .gold{color:var(--dn-day);font-style:italic;font-weight:420;}
+
+.dn-lead{
+  font-family:var(--font-display);
+  font-weight:340;
+  font-size:clamp(1.25rem,2.6vw,1.85rem);
+  line-height:1.3;
+  letter-spacing:-.008em;
+  margin:clamp(1.4rem,3vw,1.9rem) auto 0;
+  color:var(--dn-bone-dim);
+}
+.dn-lead .day{color:var(--dn-day);}
+.dn-lead .night{color:var(--dn-night);}
+
+.dn-body{
+  margin:clamp(1.2rem,2.6vw,1.5rem) auto 0;
+  max-width:48ch;
+  color:var(--dn-bone-faint);
+  font-size:clamp(1rem,1.4vw,1.06rem);
+  line-height:1.78;
+}
+
+/* a thin day-side / night-side rule, hard-stop seam, never a blend */
+.dn-seam{
+  display:flex;
+  width:min(220px,60%);
+  height:2px;
+  margin:clamp(1.6rem,3vw,2rem) auto 0;
+  border-radius:2px;
+  overflow:hidden;
+}
+.dn-seam .s-day{flex:1;background:var(--dn-day);}
+.dn-seam .s-night{flex:1;background:var(--dn-night);}
+
+.dn-by{
+  margin:clamp(1.5rem,3vw,1.9rem) auto 0;
+  font-size:.7rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--dn-bone-faint);
+}
+.dn-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  min-height:44px;
+  margin-top:.8rem;
+  padding:0 .2rem;
+  font-weight:560;
+  font-size:1rem;
+  text-decoration:none;
+  color:var(--dn-night);
+  border-bottom:1px solid color-mix(in srgb, var(--dn-night) 40%, transparent);
+  transition:color .2s ease, border-color .2s ease, gap .25s ease;
+}
+.dn-link .arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+@media (hover:hover){
+  .dn-link:hover{color:var(--dn-night-soft);border-color:var(--dn-night-soft);gap:.75rem;}
+  .dn-link:hover .arrow{transform:translateX(3px);}
+}
+.dn-link:focus-visible{outline:2px solid var(--dn-night);outline-offset:4px;border-radius:4px;}
+
+@media (prefers-reduced-motion:reduce){
+  .dn-word{transition:none;}
+}
+
+/* ── mobile ── */
+@media (max-width:560px){
+  .dn-stage{min-height:auto;display:block;padding:clamp(2.4rem,16vw,4rem) 0;}
+  .dn-layers{position:absolute;}
+  .dn-word{font-size:clamp(3.4rem,26vw,6rem);}
+  .dn-word.day{top:2%;left:-6%;}
+  .dn-word.day.echo{top:7%;left:-3%;}
+  .dn-word.night{bottom:2%;right:-7%;}
+  .dn-plate{max-width:440px;}
+}
+@media (max-width:380px){
+  .dn-container{padding:0 16px;}
+  .dn-headline{font-size:2rem;}
+  .dn-word{font-size:clamp(3rem,28vw,5rem);}
+  .dn-plate{padding:1.7rem 1.2rem;}
+}
+</style>
+</head>
+<body>
+<div class="lab-top"><a href="/preview/">← all designs</a><div class="lab-meta"><span class="lab-rank">#NEW</span> <b>The Overlay</b> <span class="lab-lens">layered</span></div><span></span></div>
+
+<section class="dn-section dn-about" id="about" aria-labelledby="about-heading">
+  <div class="dn-container">
+    <div class="dn-stage">
+
+      <!-- big overlapping translucent type layers, purely decorative -->
+      <div class="dn-layers" aria-hidden="true">
+        <span class="dn-word day deep" data-depth="14">DAYTIME</span>
+        <span class="dn-word night deep" data-depth="-12">NIGHT-TIME</span>
+        <span class="dn-word day echo" data-depth="22">DAYTIME</span>
+        <span class="dn-word night echo" data-depth="-20">NIGHT-TIME</span>
+        <span class="dn-word day" data-depth="34">DAYTIME</span>
+        <span class="dn-word night" data-depth="-30">NIGHT-TIME</span>
+      </div>
+
+      <!-- the legible statement, reading through the layers -->
+      <div class="dn-plate">
+        <span class="dn-eyebrow dn-pill day">WHY WE&rsquo;RE DIFFERENT</span>
+
+        <h2 class="dn-headline" id="about-heading">Built for real life, not <span class="gold">office</span> hours.</h2>
+
+        <p class="dn-lead">
+          <span class="day">Daytime</span> dentistry. <span class="night">Night-time</span> emergencies.
+        </p>
+
+        <p class="dn-body">
+          We&rsquo;re a Merchant City practice in the heart of Glasgow, open mornings, evenings and
+          weekends, with a 24-hour line for emergencies. Whether it&rsquo;s a routine check-up, a cosmetic
+          consultation, or urgent help when you need it, you shouldn&rsquo;t have to book time off work just
+          to look after your teeth.
+        </p>
+
+        <div class="dn-seam" aria-hidden="true"><span class="s-day"></span><span class="s-night"></span></div>
+
+        <div class="dn-by">Day Night Dental, Merchant City, Glasgow</div>
+        <a href="/our-team/" class="dn-link">Meet our team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Gentle parallax drift on the big overlapping words. The poster renders
+  // in its full default state with JS off; this only nudges each layer a few
+  // pixels in response to pointer movement (and a slow idle sway) to deepen
+  // the sense of stacked depth. No time-of-day or random APIs are used.
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
+  var words = Array.prototype.slice.call(document.querySelectorAll('.dn-word'));
+  if(!words.length) return;
+
+  var px = 0, py = 0;        // target offset, -1..1
+  var cx = 0, cy = 0;        // current, eased
+  var t = 0;
+
+  function apply(){
+    cx += (px - cx) * 0.06;
+    cy += (py - cy) * 0.06;
+    t += 0.006;
+    var sway = Math.sin(t) * 0.5;   // slow idle drift, bounded
+    for(var i=0;i<words.length;i++){
+      var d = parseFloat(words[i].getAttribute('data-depth')) || 0;
+      var tx = (cx + sway) * d;
+      var ty = cy * d * 0.5;
+      words[i].style.transform = 'translate3d(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px,0)';
+    }
+    requestAnimationFrame(apply);
+  }
+
+  var stage = document.querySelector('.dn-stage');
+  if(stage){
+    stage.addEventListener('pointermove', function(e){
+      var r = stage.getBoundingClientRect();
+      px = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+      py = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+    });
+    stage.addEventListener('pointerleave', function(){ px = 0; py = 0; });
+  }
+  requestAnimationFrame(apply);
+})();
+</script>
+<script src="/preview/_nav.js?v=494771792e" defer></script>
+</body>
+</html>

@@ -16,7 +16,7 @@ const labels = {
 const order = ['real-smiles', 'registration', 'where-we-serve', 'team', 'faq', 'book', 'about', 'journey', 'treatments'];
 const EVOLVED = new Set(['where-we-serve', 'book', 'registration']);
 
-const dirs = fs.readdirSync(SRC).filter((d) => { try { return fs.statSync(path.join(SRC, d)).isDirectory(); } catch (e) { return false; } });
+const dirs = fs.readdirSync(SRC).filter((d) => { if (d === 'icons' || d.startsWith('_')) return false; try { return fs.statSync(path.join(SRC, d)).isDirectory(); } catch (e) { return false; } });
 const secs = [...new Set([...order.filter((o) => dirs.includes(o)), ...dirs])];
 
 const meta = (sec, f) => {

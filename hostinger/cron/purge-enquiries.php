@@ -15,13 +15,18 @@ if (PHP_SAPI !== 'cli') { http_response_code(404); exit; }
 
 const RETENTION_DAYS = 90;
 
+// IDENTICAL resolution to the endpoint's private_dir() (send-enquiry.php): the SAME
+// above-webroot candidates and the SAME order, and deliberately NO sys_get_temp_dir()
+// fallback, so all three scripts bind to the exact same directory and cannot drift. The
+// endpoint holds enquiry PII here; the system temp dir is commonly world-readable.
 function private_dir(): ?string {
-    foreach ([
-        !empty($_SERVER['DOCUMENT_ROOT']) ? dirname($_SERVER['DOCUMENT_ROOT']) . '/dnd-private' : null,
-        dirname(__DIR__, 2) . '/dnd-private',   // .../public_html/cron -> .../<domain>/dnd-private
-        sys_get_temp_dir() . '/dnd-private',
-    ] as $dir) {
-        if ($dir && is_dir($dir)) return $dir;
+    $candidates = [];
+    if (!empty($_SERVER['DOCUMENT_ROOT'])) {
+        $candidates[] = dirname($_SERVER['DOCUMENT_ROOT']) . '/dnd-private';
+    }
+    $candidates[] = dirname(__DIR__, 2) . '/dnd-private';   // .../public_html/cron -> .../<domain>/dnd-private
+    foreach ($candidates as $dir) {
+        if (is_dir($dir) && is_writable($dir)) return $dir;
     }
     return null;
 }

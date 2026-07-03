@@ -42,10 +42,11 @@ export const dentistLd = {
   address: {
     '@type': 'PostalAddress',
     streetAddress: PRACTICE.streetAddress,
-    // Mirror the visible NAP ("Merchant City, Glasgow") so the machine-readable address agrees
-    // with the printed one and keeps the strongest hyperlocal term (Merchant City) in the entity.
-    addressLocality: PRACTICE.locality,
-    addressRegion: PRACTICE.city,
+    // Match the verified Google Business Profile line exactly ("80 Hutcheson St, Glasgow G1 1SH"):
+    // locality must be the postal town (Glasgow), not the neighbourhood. Merchant City stays as a
+    // hyperlocal signal via areaServed + the visible copy, where it belongs.
+    addressLocality: PRACTICE.city,
+    addressRegion: PRACTICE.region,
     postalCode: PRACTICE.postcode,
     addressCountry: PRACTICE.country,
   },

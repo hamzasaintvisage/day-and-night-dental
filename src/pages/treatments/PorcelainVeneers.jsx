@@ -13,7 +13,7 @@ const data = {
   side: "day",
   tag: "Smile Design",
   h1Plain: "Porcelain Veneers",
-  procedureType: "Dentistry",
+  procedureType: "MedicalProcedure",
   title: (<>Porcelain veneers, a way to <em>reshape and even out</em> your smile</>),
   lead: "Thin, custom porcelain shells bonded to the front of your teeth to change their shape, shade and symmetry. A way to even out a smile, hide chips and gaps, and lift the colour of teeth that won't whiten.",
   seo: { title: "Porcelain Veneers in Glasgow | Day Night Dental", description: "Porcelain veneers in Glasgow to reshape, brighten and even out your smile. Day and evening appointments, 7 days a week. Honest advice from our Merchant City clinic." },

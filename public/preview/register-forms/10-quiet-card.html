@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preview · Register · The Quiet Card</title>
+<!-- Throwaway mockup under /preview/. Inherits the REAL brand tokens + fonts from the
+     compiled stylesheet; the live form (src/sections/Register.jsx) is NOT touched. -->
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  *{box-sizing:border-box;}
+  :root{
+    /* local convenience aliases mapped onto the real brand tokens */
+    --q-day:var(--dn-day,#f8c760);
+    --q-night:var(--dn-night,#4590ec);
+    --q-night-soft:var(--dn-night-soft,#6aa6f0);
+    --q-bg:var(--dn-near-black,#0a0a0c);
+    --q-card:#0c0c10;
+    --q-inset:var(--dn-charcoal,#14141a);
+    --q-line:var(--dn-mist,rgba(255,255,255,.08));
+    --q-bone:var(--dn-bone,#fff);
+    --q-dim:var(--dn-bone-dim,rgba(255,255,255,.62));
+    --q-faint:var(--dn-bone-faint,rgba(255,255,255,.4));
+  }
+
+  body{
+    margin:0;
+    background:var(--q-bg);
+    color:var(--q-bone);
+    font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  /* ============ the field + the one soft glow ============ */
+  .q-field{
+    position:relative;
+    min-height:100vh;
+    padding:5.5rem 1.5rem 4.5rem;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    overflow:hidden;
+  }
+  /* single soft radial glow behind the card. gold-to-transparent only (no gold->blue). */
+  .q-field::before{
+    content:'';
+    position:absolute;
+    top:-14%;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1100px,140vw);
+    height:760px;
+    background:radial-gradient(50% 50% at 50% 50%,
+        rgba(248,199,96,.13) 0%,
+        rgba(248,199,96,.05) 38%,
+        rgba(248,199,96,0) 72%);
+    pointer-events:none;
+    z-index:0;
+  }
+  /* a whisper of night low and to the side, kept as its own separate glow (never blended into gold) */
+  .q-field::after{
+    content:'';
+    position:absolute;
+    bottom:-10%;
+    right:-6%;
+    width:520px;
+    height:520px;
+    background:radial-gradient(50% 50% at 50% 50%,
+        rgba(69,144,236,.10) 0%,
+        rgba(69,144,236,0) 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ============ the quiet card ============ */
+  .q-card{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:760px;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,0) 200px),
+      var(--q-card);
+    border:1px solid var(--q-line);
+    border-radius:var(--dn-r-card,18px);
+    padding:3.4rem 3.4rem 3rem;
+    box-shadow:
+      0 1px 0 0 rgba(248,199,96,.22) inset,
+      0 40px 120px -50px rgba(0,0,0,.9),
+      0 8px 40px -28px rgba(248,199,96,.12);
+  }
+
+  /* ---- card head ---- */
+  .q-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.4rem .9rem;
+    border:1px solid rgba(248,199,96,.4);
+    border-radius:999px;
+    font-size:.66rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--q-day);
+    background:rgba(248,199,96,.05);
+  }
+  .q-eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--q-day);box-shadow:0 0 10px 1px rgba(248,199,96,.7);}
+  .q-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(2rem,4.4vw,2.85rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    margin:1.1rem 0 .85rem;
+  }
+  .q-title em{font-style:italic;color:var(--q-day);}
+  .q-lead{
+    color:var(--q-dim);
+    font-size:1rem;
+    line-height:1.6;
+    max-width:54ch;
+    margin:0;
+  }
+  .q-promise{
+    margin-top:1rem;
+    font-size:.92rem;
+    color:var(--q-dim);
+  }
+  .q-promise strong{color:var(--q-bone);font-weight:600;}
+
+  /* ---- the 24/7 reassurance line ---- */
+  .q-urgent{
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+    margin-top:1.5rem;
+    padding:.85rem 1.1rem;
+    border:1px solid rgba(69,144,236,.28);
+    border-left:2px solid var(--q-night);
+    border-radius:var(--dn-r-inset,10px);
+    background:rgba(69,144,236,.05);
+    font-size:.88rem;
+    color:var(--q-dim);
+    line-height:1.5;
+  }
+  .q-urgent .pulse{
+    flex:none;width:9px;height:9px;border-radius:50%;
+    background:var(--q-night);
+    box-shadow:0 0 0 0 rgba(69,144,236,.55);
+    animation:qpulse 2.4s ease-out infinite;
+  }
+  @keyframes qpulse{
+    0%{box-shadow:0 0 0 0 rgba(69,144,236,.5);}
+    70%{box-shadow:0 0 0 8px rgba(69,144,236,0);}
+    100%{box-shadow:0 0 0 0 rgba(69,144,236,0);}
+  }
+  .q-urgent a{color:var(--q-night-soft);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(106,166,240,.4);}
+
+  /* ---- divider ---- */
+  .q-rule{
+    height:1px;
+    border:0;
+    margin:2.5rem 0;
+    background:linear-gradient(90deg,transparent,var(--q-line) 12%,var(--q-line) 88%,transparent);
+  }
+  .q-rule.tight{margin:2rem 0;}
+
+  /* ============ value block (everything present, neatly ordered) ============ */
+  .q-section-tag{
+    font-size:.66rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--q-faint);
+    margin:0 0 1.25rem;
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+  }
+  .q-section-tag::after{content:'';flex:1;height:1px;background:var(--q-line);}
+
+  .q-includes{
+    list-style:none;
+    margin:0 0 0;
+    padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.1rem 1.6rem;
+  }
+  .q-includes li{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:.85rem;
+    align-items:start;
+  }
+  .q-includes .num{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:.95rem;
+    line-height:1.3;
+    color:var(--q-day);
+    width:1.6rem;
+  }
+  .q-includes li:nth-child(even) .num{color:var(--q-night-soft);}
+  .q-includes h4{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1rem;
+    font-weight:600;
+    margin:0 0 .25rem;
+    letter-spacing:-.01em;
+  }
+  .q-includes p{
+    margin:0;
+    font-size:.82rem;
+    line-height:1.5;
+    color:var(--q-dim);
+  }
+
+  /* ---- price + facts strip ---- */
+  .q-facts{
+    margin-top:1.9rem;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:1.4rem;
+    padding:1.25rem 1.4rem;
+    border:1px solid var(--q-line);
+    border-radius:var(--dn-r-inset,12px);
+    background:linear-gradient(180deg,rgba(248,199,96,.04),rgba(248,199,96,0));
+  }
+  .q-price{display:flex;flex-direction:column;gap:.15rem;padding-right:1.4rem;border-right:1px solid var(--q-line);}
+  .q-price .label{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--q-faint);}
+  .q-price .amount{font-family:var(--font-display),'Fraunces',serif;font-weight:600;font-size:2rem;line-height:1;color:var(--q-day);}
+  .q-price .amount .cur{font-size:1.05rem;margin-right:.05em;vertical-align:.08em;}
+  .q-facts-notes{display:flex;flex-direction:column;gap:.45rem;flex:1;min-width:200px;}
+  .q-facts-notes span{font-size:.82rem;color:var(--q-dim);line-height:1.4;display:flex;align-items:center;gap:.55rem;}
+  .q-facts-notes span::before{content:'';flex:none;width:5px;height:5px;border-radius:50%;background:var(--q-day);opacity:.85;}
+  .q-facts-notes span.night::before{background:var(--q-night);}
+
+  /* ============ the form ============ */
+  .q-form-tag{margin-bottom:1.6rem;}
+  .q-row{margin-bottom:1.3rem;}
+  .q-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .q-label{
+    display:block;
+    font-size:.66rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--q-faint);
+    margin-bottom:.55rem;
+  }
+  .q-label .req{color:var(--q-day);}
+  .q-label .opt{color:var(--q-faint);letter-spacing:.04em;text-transform:none;font-size:.74rem;}
+
+  .q-input,
+  .q-select,
+  .q-textarea{
+    width:100%;
+    padding:.85rem 1rem;
+    background:var(--q-inset);
+    border:1px solid var(--q-line);
+    border-radius:var(--dn-r-inset,9px);
+    color:var(--q-bone);
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1rem; /* 16px: avoids iOS focus-zoom */
+    transition:border-color .25s,box-shadow .25s,background .25s;
+  }
+  .q-input::placeholder,.q-textarea::placeholder{color:var(--q-faint);}
+  .q-input:focus,
+  .q-select:focus,
+  .q-textarea:focus{
+    outline:none;
+    border-color:var(--q-day);
+    background:#15151b;
+    box-shadow:0 0 0 3px rgba(248,199,96,.16);
+  }
+  .q-textarea{resize:vertical;min-height:96px;line-height:1.55;}
+
+  /* on-brand native select with custom chevron */
+  .q-select{
+    appearance:none;-webkit-appearance:none;
+    cursor:pointer;
+    padding-right:2.4rem;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 1rem center;
+    color:var(--q-bone);
+  }
+  .q-select:invalid{color:var(--q-faint);}
+  .q-dob{display:grid;grid-template-columns:.8fr 1.2fr 1fr;gap:.7rem;}
+
+  /* ---- care-type cards ---- */
+  .q-care{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+  .q-care label{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:.2rem;
+    padding:.95rem 1.1rem;
+    background:var(--q-inset);
+    border:1px solid var(--q-line);
+    border-radius:var(--dn-r-inset,10px);
+    cursor:pointer;
+    transition:border-color .25s,background .25s,box-shadow .25s;
+  }
+  .q-care label .ctitle{font-family:var(--font-display),'Fraunces',serif;font-size:1.02rem;font-weight:600;color:var(--q-bone);transition:color .2s;}
+  .q-care label .cdesc{font-size:.74rem;color:var(--q-dim);line-height:1.35;}
+  .q-care input{position:absolute;width:1px;height:1px;opacity:0;margin:0;} /* hidden, kept in tab order */
+  .q-care label:hover{border-color:rgba(255,255,255,.22);}
+  .q-care label:has(input:focus-visible){outline:2px solid var(--q-day);outline-offset:2px;}
+  /* selected states (driven by .is-on via the required script) */
+  .q-care label.day.is-on{border-color:var(--q-day);background:rgba(248,199,96,.06);box-shadow:0 0 0 1px rgba(248,199,96,.4),0 10px 30px -22px rgba(248,199,96,.5);}
+  .q-care label.day.is-on .ctitle{color:var(--q-day);}
+  .q-care label.night.is-on{border-color:var(--q-night);background:rgba(69,144,236,.06);box-shadow:0 0 0 1px rgba(69,144,236,.4),0 10px 30px -22px rgba(69,144,236,.5);}
+  .q-care label.night.is-on .ctitle{color:var(--q-night-soft);}
+  /* a small tick that fades in on selection */
+  .q-care label .tick{position:absolute;top:.85rem;right:1rem;width:16px;height:16px;opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s;}
+  .q-care label.is-on .tick{opacity:1;transform:scale(1);}
+
+  /* ---- consent ---- */
+  .q-consent{
+    display:flex;
+    align-items:flex-start;
+    gap:.85rem;
+    padding:1rem 1.1rem;
+    background:var(--q-inset);
+    border:1px solid var(--q-line);
+    border-radius:var(--dn-r-inset,10px);
+    cursor:pointer;
+  }
+  .q-consent input{flex:none;width:18px;height:18px;margin-top:1px;accent-color:var(--q-day);cursor:pointer;}
+  .q-consent span{font-size:.82rem;color:var(--q-dim);line-height:1.55;}
+  .q-consent a{color:var(--q-day);text-decoration:none;border-bottom:1px solid rgba(248,199,96,.35);}
+
+  /* ---- submit ---- */
+  .q-actions{margin-top:2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+  .q-actions .note{font-size:.74rem;color:var(--q-faint);letter-spacing:.04em;}
+  .q-submit{
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+    padding:.95rem 1.7rem;
+    border:1px solid var(--q-day);
+    border-radius:999px;
+    background:var(--q-day);
+    color:#0a0a0c;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    letter-spacing:.01em;
+    cursor:pointer;
+    transition:transform .2s,box-shadow .25s,background .25s;
+  }
+  .q-submit .arrow{transition:transform .25s;}
+  .q-submit:hover{box-shadow:0 12px 34px -16px rgba(248,199,96,.7);transform:translateY(-1px);}
+  .q-submit:hover .arrow{transform:translateX(4px);}
+  .q-submit:focus-visible{outline:2px solid var(--q-bone);outline-offset:3px;}
+
+  /* ============ responsive ============ */
+  @media (max-width:680px){
+    .q-card{padding:2.4rem 1.5rem 2.2rem;}
+    .q-field{padding:4rem 1rem 3.5rem;}
+    .q-includes{grid-template-columns:1fr;gap:1.1rem;}
+    .q-row-2{grid-template-columns:1fr;}
+    .q-care{grid-template-columns:1fr;}
+    .q-facts{flex-direction:column;align-items:flex-start;gap:1.1rem;}
+    .q-price{border-right:none;border-bottom:1px solid var(--q-line);padding-right:0;padding-bottom:1.1rem;width:100%;}
+    .q-actions{flex-direction:column-reverse;align-items:stretch;}
+    .q-submit{justify-content:center;width:100%;}
+    .q-actions .note{text-align:center;}
+  }
+  @media (max-width:380px){
+    .q-card{padding:2rem 1.1rem 1.8rem;}
+    .q-dob{gap:.45rem;}
+  }
+
+  /* preview-only: let the page scroll normally when opened standalone */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+  <div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Quiet Card</div>
+
+  <main class="q-field">
+    <section class="q-card">
+
+      <!-- ===== head ===== -->
+      <span class="q-eyebrow"><span class="dot"></span>New Patients</span>
+      <h1 class="q-title">Register in <em>three</em> minutes</h1>
+      <p class="q-lead">
+        A new practice in Merchant City, Glasgow, taking on patients for every treatment we offer.
+        Fill in the form below and we'll confirm your first appointment within one working hour.
+      </p>
+      <p class="q-promise"><strong>Register in three minutes.</strong> We reply within one working hour, every working day.</p>
+
+      <div class="q-urgent">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>In pain right now? Don't wait to register, call our 24/7 emergency line on
+          <a href="tel:+441415486548">0141 548 6548</a>.</span>
+      </div>
+
+      <hr class="q-rule">
+
+      <!-- ===== value: your first visit ===== -->
+      <p class="q-section-tag">Your first visit, what's included</p>
+      <ul class="q-includes">
+        <li>
+          <span class="num">01</span>
+          <div>
+            <h4>Comprehensive examination</h4>
+            <p>A 45 minute full assessment with intra-oral scans and bite analysis.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div>
+            <h4>Digital x-rays</h4>
+            <p>Low-dose, with no films to develop, so you are not left waiting.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div>
+            <h4>Personalised treatment plan</h4>
+            <p>Written, with the cost of each item set out before any work starts.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">04</span>
+          <div>
+            <h4>Hygiene appointment</h4>
+            <p>Booked alongside the examination, so you leave with a fresh start.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="q-facts">
+        <div class="q-price">
+          <span class="label">First visit from</span>
+          <span class="amount"><span class="cur">£</span>95</span>
+        </div>
+        <div class="q-facts-notes">
+          <span>Children under 18 are examined free.</span>
+          <span class="night">NHS care is by waiting list, when we have space.</span>
+        </div>
+      </div>
+
+      <hr class="q-rule">
+
+      <!-- ===== the form ===== -->
+      <form onsubmit="return false;" novalidate>
+
+        <!-- Your details -->
+        <p class="q-section-tag q-form-tag">Your details</p>
+
+        <div class="q-row q-row-2">
+          <div>
+            <label class="q-label" for="firstName">First name <span class="req">*</span></label>
+            <input class="q-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza">
+          </div>
+          <div>
+            <label class="q-label" for="lastName">Last name <span class="req">*</span></label>
+            <input class="q-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar">
+          </div>
+        </div>
+
+        <div class="q-row">
+          <span class="q-label">Date of birth <span class="req">*</span></span>
+          <div class="q-dob">
+            <select class="q-select" name="dobDay" aria-label="Day of birth" required>
+              <option value="" selected disabled>Day</option>
+              <option>1</option><option>2</option><option>7</option><option>14</option><option>21</option><option>28</option><option>31</option>
+            </select>
+            <select class="q-select" name="dobMonth" aria-label="Month of birth" required>
+              <option value="" selected disabled>Month</option>
+              <option>January</option><option>February</option><option>March</option><option>June</option><option>September</option><option>December</option>
+            </select>
+            <select class="q-select" name="dobYear" aria-label="Year of birth" required>
+              <option value="" selected disabled>Year</option>
+              <option>2008</option><option>2000</option><option>1992</option><option>1985</option><option>1974</option><option>1960</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="q-row q-row-2">
+          <div>
+            <label class="q-label" for="phone">Phone <span class="req">*</span></label>
+            <input class="q-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number">
+          </div>
+          <div>
+            <label class="q-label" for="email">Email <span class="req">*</span></label>
+            <input class="q-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com">
+          </div>
+        </div>
+
+        <div class="q-row q-row-2">
+          <div>
+            <label class="q-label" for="address">Address <span class="opt">(optional)</span></label>
+            <input class="q-input" id="address" name="address" type="text" autocomplete="street-address" placeholder="Street address, optional">
+          </div>
+          <div>
+            <label class="q-label" for="postcode">Postcode <span class="req">*</span></label>
+            <input class="q-input" id="postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="G1 1SH">
+          </div>
+        </div>
+
+        <hr class="q-rule tight">
+
+        <!-- Your care -->
+        <p class="q-section-tag q-form-tag">Your care</p>
+
+        <div class="q-row">
+          <span class="q-label">How would you like to be seen? <span class="req">*</span></span>
+          <div class="q-care" data-care>
+            <label class="day">
+              <input type="radio" name="careType" value="private">
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#f8c760" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ctitle">Private</span>
+              <span class="cdesc">Full choice of times and treatments</span>
+            </label>
+            <label class="night">
+              <input type="radio" name="careType" value="nhs">
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#6aa6f0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ctitle">NHS</span>
+              <span class="cdesc">Waiting list, when we have space</span>
+            </label>
+            <label class="day">
+              <input type="radio" name="careType" value="either">
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#f8c760" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ctitle">Either</span>
+              <span class="cdesc">Whatever gets you seen soonest</span>
+            </label>
+            <label class="night">
+              <input type="radio" name="careType" value="unsure">
+              <svg class="tick" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#6aa6f0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="ctitle">Not sure yet</span>
+              <span class="cdesc">We'll talk it through on the call</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="q-row q-row-2">
+          <div>
+            <label class="q-label" for="hear">How did you hear about us? <span class="opt">(optional)</span></label>
+            <select class="q-select" id="hear" name="hear" required>
+              <option value="" selected disabled>Optional</option>
+              <option>Google search</option>
+              <option>Friend or family</option>
+              <option>Instagram</option>
+              <option>Walked past the practice</option>
+              <option>Existing patient</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="q-row">
+          <label class="q-label" for="help">What do you need help with? <span class="opt">(optional)</span></label>
+          <textarea class="q-textarea" id="help" name="notes" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+        </div>
+
+        <div class="q-row">
+          <label class="q-consent">
+            <input type="checkbox" name="consent" required>
+            <span>I'm happy for Day Night Dental to hold my information in line with the
+              <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration. <span class="req" style="color:var(--q-day)">*</span></span>
+          </label>
+        </div>
+
+        <div class="q-actions">
+          <span class="note">We confirm your first appointment within one working hour.</span>
+          <button type="submit" class="q-submit">Complete Registration <span class="arrow" aria-hidden="true">→</span></button>
+        </div>
+
+      </form>
+    </section>
+  </main>
+
+  <script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>

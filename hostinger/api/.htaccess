@@ -3,8 +3,9 @@
 # ever not applied (server misconfig, a move), this keeps the Resend secret and
 # any stray data files unreachable. send-enquiry.php stays served normally.
 
-# Never serve the secret config or its source.
-<FilesMatch "^_config\.php$">
+# Never serve the underscore-prefixed includes (_config.php secrets, _validation.php)
+# or their source. Only send-enquiry.php is meant to be reachable over the web.
+<FilesMatch "^_.+\.php$">
   Require all denied
 </FilesMatch>
 

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Inter Tight';src:url('/fonts/inter-tight.woff2') format('woff2');font-weight:100 900;font-display:swap;}
+:root{--dn-day:#f8c760;--dn-night:#4590ec;--dn-night-soft:#6aa8f2;--dn-black:#000;--dn-near-black:#0a0a0c;--dn-charcoal:#14141a;--dn-bone:#fff;--dn-bone-dim:rgba(255,255,255,.72);--dn-bone-faint:rgba(255,255,255,.5);--dn-mist:rgba(255,255,255,.1);--dn-r-card:16px;--container:1180px;--font-display:'Fraunces',Georgia,serif;--font-body:'Inter Tight',system-ui,sans-serif;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--dn-near-black);color:var(--dn-bone);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+em.dn-hl-gold{font-style:normal;color:var(--dn-day);}
+em.dn-hl-blue{font-style:normal;color:var(--dn-night);}
+</style>
+<title>Confident Line - dental icon family · Day Night Dental</title>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   CONFIDENT LINE - a 7-icon dental family for Day Night Dental.
+   One viewBox (0 0 24 24), one stroke weight (1.85), round caps
+   and joins, all currentColor so each mark inherits solid gold
+   or solid blue, never a gold/blue blend. A soft continuous
+   gold day-side / blue night-side depth-glow sits behind.
+   ───────────────────────────────────────────────────────────── */
+.wrap{position:relative;max-width:var(--container);margin:0 auto;padding:clamp(2.4rem,6vw,4.4rem) clamp(20px,5vw,40px) 5rem;}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 50% at 12% 6%, rgba(248,199,96,.10), transparent 60%),
+    radial-gradient(60% 50% at 88% 98%, rgba(69,144,236,.10), transparent 62%);}
+.wrap>*{position:relative;z-index:1;}
+
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dn-day);}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;}
+h1{font-family:var(--font-display);font-weight:340;font-size:clamp(2.2rem,5.4vw,3.6rem);line-height:1.04;letter-spacing:-.016em;margin:1.3rem 0 .6rem;max-width:20ch;}
+h1 .gold{color:var(--dn-day);font-style:italic;font-weight:380;}
+.deck{font-family:var(--font-display);font-weight:330;font-size:clamp(1.05rem,1.9vw,1.32rem);line-height:1.5;color:var(--dn-bone-dim);max-width:60ch;margin:0;}
+.deck b{color:var(--dn-bone);font-weight:430;}
+
+h2{font-family:var(--font-display);font-weight:360;font-size:clamp(1.4rem,2.6vw,1.85rem);letter-spacing:-.01em;margin:3.6rem 0 .35rem;}
+.sec-sub{color:var(--dn-bone-faint);font-size:.96rem;margin:0 0 1.6rem;max-width:62ch;}
+.rule{height:1px;background:var(--dn-mist);border:0;margin:0;}
+
+/* ── icon grid: 7 marks across the three sizes ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+.cell{border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);background:rgba(255,255,255,.025);padding:20px 16px 16px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.cell .ico-row{display:flex;align-items:flex-end;gap:18px;min-height:84px;}
+.cell .ico-row .stack{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.cell .ico-row .px{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-faint);}
+.cell .name{font-family:var(--font-display);font-weight:420;font-size:1.06rem;color:var(--dn-bone);}
+.cell .meaning{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;}
+.cell.day{color:var(--dn-day);}
+.cell.night{color:var(--dn-night);}
+.cell .name,.cell .px{color:inherit;}
+.cell.day .name,.cell.night .name{color:var(--dn-bone);}
+.s28 svg{width:28px;height:28px;}
+.s48 svg{width:48px;height:48px;}
+.s72 svg{width:72px;height:72px;}
+
+/* ── current vs new ── */
+.vs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.vs{border:1px solid var(--dn-mist);border-radius:var(--dn-r-card);background:rgba(255,255,255,.025);padding:18px 18px 16px;}
+.vs h3{font-family:var(--font-display);font-weight:430;font-size:1.05rem;margin:0 0 2px;}
+.vs .why{color:var(--dn-bone-faint);font-size:.8rem;margin:0 0 16px;}
+.vs .pair{display:flex;align-items:stretch;gap:14px;}
+.vs .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:12px;}
+.vs .col.old{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);color:var(--dn-bone-faint);}
+.vs .col.new{background:rgba(248,199,96,.05);border:1px solid rgba(248,199,96,.18);}
+.vs .col.new.night{background:rgba(69,144,236,.06);border:1px solid rgba(69,144,236,.2);}
+.vs .col .tag{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;}
+.vs .col.old .tag{color:var(--dn-bone-faint);}
+.vs .col.new .tag{color:var(--dn-day);}
+.vs .col.new.night .tag{color:var(--dn-night);}
+.vs .col svg{width:46px;height:46px;}
+.vs .col.new{color:var(--dn-day);}
+.vs .col.new.night{color:var(--dn-night);}
+.vs .arrow{align-self:center;color:var(--dn-bone-faint);font-size:1.1rem;}
+
+/* ── context chips ── */
+.ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:start;}
+.ctx-note{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dn-bone-faint);font-weight:600;margin:0 0 10px;}
+
+/* treatment chip - mirrors the homepage txg-option look */
+.tchip{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--dn-mist);border-left:2px solid var(--accent,var(--dn-day));}
+.tchip .ic{flex:0 0 auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,.04);color:var(--accent,var(--dn-day));}
+.tchip .ic svg{width:26px;height:26px;}
+.tchip .tx .t{font-family:var(--font-display);font-weight:430;font-size:1.08rem;color:var(--dn-bone);line-height:1.15;}
+.tchip .tx .d{font-size:.82rem;color:var(--dn-bone-faint);}
+.tchip.night{--accent:var(--dn-night);}
+
+/* concern chip - mirrors the cxg-chip pill look */
+.cchip{display:inline-flex;align-items:center;gap:11px;padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.03);border:1px solid var(--dn-mist);}
+.cchip .ic{display:flex;color:var(--accent,var(--dn-day));}
+.cchip .ic svg{width:24px;height:24px;}
+.cchip .lab{font-weight:540;font-size:.98rem;color:var(--dn-bone);}
+.cchip.is-active{background:rgba(248,199,96,.08);border-color:rgba(248,199,96,.4);}
+.cchip.night{--accent:var(--dn-night);}
+.cchip.night.is-active{background:rgba(69,144,236,.1);border-color:rgba(69,144,236,.42);}
+.chip-stack{display:flex;flex-direction:column;gap:12px;align-items:flex-start;}
+
+.foot{margin-top:3.4rem;color:var(--dn-bone-faint);font-size:.82rem;line-height:1.7;max-width:70ch;}
+.foot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;color:var(--dn-bone-dim);background:rgba(255,255,255,.05);padding:1px 6px;border-radius:5px;}
+
+@media (max-width:560px){
+  .cell .ico-row{gap:12px;}
+  .s72 svg{width:60px;height:60px;}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="wrap">
+
+  <span class="eyebrow">Icon system</span>
+  <h1>Confident <span class="gold">Line</span>: one dental family, seven marks.</h1>
+  <p class="deck">
+    <b>The style:</b> a slightly heavier, rounder line (stroke 1.85 on a 24 grid) with fully
+    rounded caps and joins. Friendly but premium, legible from 24px, refined at 72px. Every
+    mark is genuinely dental, drawn by one hand, and inherits solid gold or solid blue through
+    <code style="color:var(--dn-bone-dim)">currentColor</code> with no gold-to-blue blend.
+  </p>
+
+  <hr class="rule" style="margin-top:2.4rem">
+
+  <!-- (a) all 7 at 28 / 48 / 72 -->
+  <h2>The seven, at 28, 48 and 72px</h2>
+  <p class="sec-sub">Same viewBox, weight, corner radius and optical density across the set. Gold and blue alternate only to prove the marks read in either brand colour.</p>
+
+  <div class="grid" id="grid"></div>
+
+  <hr class="rule" style="margin-top:3.4rem">
+
+  <!-- (b) current vs new for the three weakest -->
+  <h2>Current vs new: the three weakest marks</h2>
+  <p class="sec-sub">Emergency was a borrowed Lucide clock (not dental, not urgent). Smile was a generic round smiley. Sparkle was a soft blob. Each is rebuilt in the Confident Line hand.</p>
+
+  <div class="vs-grid">
+
+    <div class="vs">
+      <h3>Emergency Care</h3>
+      <p class="why">Was a generic clock. Now a clean tooth carrying a bold medical cross, urgent and unmistakably dental.</p>
+      <div class="pair">
+        <div class="col old">
+          <span class="tag">Current</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+        <div class="col new night" id="vs-emergency">
+          <span class="tag">New</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs">
+      <h3>Cosmetic Dentistry</h3>
+      <p class="why">Was a round smiley face. Now a true cosmetic mark: a row of even teeth with a refined shine.</p>
+      <div class="pair">
+        <div class="col old">
+          <span class="tag">Current</span>
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="11"/><path d="M12 20 Q18 26, 24 20"/><circle cx="14" cy="14" r="0.8" fill="currentColor"/><circle cx="22" cy="14" r="0.8" fill="currentColor"/></svg>
+        </div>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+        <div class="col new" id="vs-cosmetic">
+          <span class="tag">New</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs">
+      <h3>Teeth Whitening</h3>
+      <p class="why">Was a soft blob with stray ticks. Now a clean healthy tooth with a crisp shine and two sized sparkles.</p>
+      <div class="pair">
+        <div class="col old">
+          <span class="tag">Current</span>
+          <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18 Q10 10, 18 10 Q26 10, 26 18 Q26 26, 18 26 Q10 26, 10 18 Z"/><path d="M18 6 L18 9 M18 27 L18 30 M6 18 L9 18 M27 18 L30 18" opacity="0.6"/><path d="M15 15 Q17 17, 19 16"/></svg>
+        </div>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+        <div class="col new" id="vs-whitening">
+          <span class="tag">New</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="rule" style="margin-top:3.4rem">
+
+  <!-- (c) in context -->
+  <h2>In context</h2>
+  <p class="sec-sub">The marks sitting inside a real treatment chip and a real concern chip, one gold side, one blue side.</p>
+
+  <div class="ctx">
+    <div>
+      <p class="ctx-note">Treatment chip</p>
+      <div class="chip-stack">
+        <div class="tchip">
+          <span class="ic" id="ctx-t1"></span>
+          <span class="tx"><span class="t">General Dentistry</span><br><span class="d">Check-ups, hygiene and everyday care</span></span>
+        </div>
+        <div class="tchip night">
+          <span class="ic" id="ctx-t2"></span>
+          <span class="tx"><span class="t">Emergency Care</span><br><span class="d">24-hour line for dental emergencies</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="ctx-note">Concern chip</p>
+      <div class="chip-stack">
+        <div class="cchip is-active">
+          <span class="ic" id="ctx-c1"></span>
+          <span class="lab">I want a brighter smile</span>
+        </div>
+        <div class="cchip night">
+          <span class="ic" id="ctx-c2"></span>
+          <span class="lab">I'm in pain right now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">
+    Confident Line. Seven original marks on one 24 grid at stroke 1.85, round caps and joins,
+    all <code>currentColor</code> so they inherit solid gold or solid blue with no blend. Drop-in
+    set for <code>src/components/ConcernIcon.jsx</code> (scale the viewBox from 36 to 24, or wrap
+    at the existing 36 box). No fake reviews, no em dashes, original drawing only.
+  </p>
+
+</div>
+
+<script>
+/* ───────────────────────────────────────────────────────────────
+   The seven Confident Line marks. One factory: every icon shares
+   viewBox 0 0 24 24, stroke 1.85, round caps and joins, currentColor.
+   Each entry holds only its inner geometry, so the family stays
+   provably consistent. Markup is built here AND printed below so the
+   exact SVG can be lifted into the codebase.
+   ─────────────────────────────────────────────────────────────── */
+var ICONS = {
+  /* TOOTH - General Dentistry. A clean healthy molar: two cusps up top,
+     a soft waist, twin roots tapering down. One faint inner contour for life. */
+  tooth:
+    '<path d="M6.4 7.1C7.7 5.5 9.4 5.2 10.7 6c.8.5 1.7.5 2.6 0 1.3-.8 3-.5 4.3 1.1 1.3 1.7 1.3 4 .7 6.5-.4 1.6-.7 3-.9 4.6-.2 1.4-.4 2.8-1.1 3.9-.5.8-1.4.7-1.7-.2-.4-1.1-.5-2.4-.8-3.6-.2-.9-.7-1.6-1.8-1.6s-1.6.7-1.8 1.6c-.3 1.2-.4 2.5-.8 3.6-.3.9-1.2 1-1.7.2-.7-1.1-.9-2.5-1.1-3.9-.2-1.6-.5-3-.9-4.6-.6-2.5-.6-4.8.7-6.5Z"/>'+
+    '<path d="M9 9.2c-.5.7-.6 1.6-.3 2.5" opacity=".45"/>',
+
+  /* EMERGENCY - Emergency Care. A single clean tooth carrying a bold medical
+     cross on its crown. Urgent and unmistakably dental at any size. */
+  emergency:
+    '<path d="M6.6 7.2C7.8 5.6 9.4 5.3 10.6 6.1c.9.6 1.9.6 2.8 0 1.2-.8 2.8-.5 4 1.1 1.2 1.6 1.2 3.8.6 6.1-.4 1.5-.6 2.8-.8 4.2-.2 1.3-.4 2.6-1 3.6-.5.8-1.3.7-1.6-.2-.4-1-.5-2.2-.8-3.4-.2-.8-.6-1.5-1.6-1.5s-1.4.7-1.6 1.5c-.3 1.2-.4 2.4-.8 3.4-.3.9-1.1 1-1.6.2-.6-1-.8-2.3-1-3.6-.2-1.4-.4-2.7-.8-4.2-.6-2.3-.6-4.5.6-6.1Z"/>'+
+    '<path d="M12 9.4v4.2M9.9 11.5h4.2"/>',
+
+  /* COSMETIC - Cosmetic Dentistry. A row of three even, rounded teeth standing
+     on a smile-line, with a refined four-point shine. Dental, never a smiley. */
+  cosmetic:
+    '<path d="M5.5 13.5c0-2.6.6-4.4 2.2-4.4S9.9 10.9 9.9 13.5"/>'+
+    '<path d="M9.9 13.5c0-2.9.7-4.8 2.4-4.8s2.4 1.9 2.4 4.8"/>'+
+    '<path d="M14.7 13.5c0-2.6.6-4.4 2.2-4.4s2.2 1.8 2.2 4.4"/>'+
+    '<path d="M4.6 14.2c2.8 3.2 12.2 3.2 15 0" opacity=".55"/>'+
+    '<path d="M19.6 3.6l.55 1.5 1.5.55-1.5.55-.55 1.5-.55-1.5-1.5-.55 1.5-.55Z"/>',
+
+  /* ALIGNER - Invisalign. A clear tray cupping a row of teeth: the tray is the
+     bold rounded shell with a smile-curve base, the teeth nested inside it. */
+  aligner:
+    '<path d="M5 8c0-1 .7-1.6 1.7-1.5 1.7.2 3.6.3 5.3.3s3.6-.1 5.3-.3c1-.1 1.7.5 1.7 1.5 0 4.6-2.6 9.4-7 9.4S5 12.6 5 8Z"/>'+
+    '<path d="M6.5 9.2c1.6.5 3.5.7 5.5.7s3.9-.2 5.5-.7" opacity=".55"/>'+
+    '<path d="M9.4 9.6v3M12 9.8v3.2M14.6 9.6v3" opacity=".55"/>',
+
+  /* IMPLANT - Dental Implants. Crown on top, a tapered abutment in the middle,
+     and a threaded screw post below. Three clear stacked parts. */
+  implant:
+    '<path d="M7.5 7.2c.7-1.2 2-1.6 3-1 .9.5 2 .5 2.9 0 1-.6 2.3-.2 3 1 .8 1.3.7 2.7-.2 3.5-.4.3-.6.7-.7 1.2H8.4c-.1-.5-.3-.9-.7-1.2-.9-.8-1-2.2-.2-3.5Z"/>'+
+    '<path d="M9.3 11.9c0 .9-.2 1.7-.5 2.4h6.4c-.3-.7-.5-1.5-.5-2.4"/>'+
+    '<path d="M9.2 14.3l.5 6.4c.1 1.4 1.1 2.6 2.3 2.6s2.2-1.2 2.3-2.6l.5-6.4"/>'+
+    '<path d="M9.5 16.4h5M9.7 18.7h4.6M10.4 21h3.2" opacity=".75"/>',
+
+  /* WHITENING - Teeth Whitening. A clean healthy tooth with a crisp inner shine
+     and two sized sparkles, reading as a bright, polished result. */
+  whitening:
+    '<path d="M6.6 7.2C7.8 5.6 9.4 5.3 10.6 6.1c.9.5 1.9.5 2.8 0 1.2-.8 2.8-.5 4 1.1 1.2 1.6 1.2 3.8.6 6.1-.4 1.5-.6 2.8-.8 4.2-.2 1.3-.4 2.6-1 3.6-.5.8-1.3.7-1.6-.2-.4-1-.5-2.2-.8-3.4-.2-.8-.6-1.5-1.6-1.5s-1.4.7-1.6 1.5c-.3 1.2-.4 2.4-.8 3.4-.3.9-1.1 1-1.6.2-.6-1-.8-2.3-1-3.6-.2-1.4-.4-2.7-.8-4.2-.6-2.3-.6-4.5.6-6.1Z"/>'+
+    '<path d="M9.2 9.3c-.5.7-.7 1.6-.5 2.6" opacity=".5"/>'+
+    '<path d="M17.6 4.1l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6Z"/>'+
+    '<path d="M20.4 9.1l.3.9.9.3-.9.3-.3.9-.3-.9-.9-.3.9-.3Z" opacity=".7"/>',
+
+  /* DENTURE - Dentures. A removable upper arch: a smooth horseshoe gum ridge
+     over a row of even teeth, clearly a set you can lift out. */
+  denture:
+    '<path d="M3.8 8.4C3.8 6.8 5.2 6 7 6c2 0 3.4.8 5 .8S15 6 17 6c1.8 0 3.2.8 3.2 2.4 0 3-1.2 5.6-3.4 7.2-1 .8-1.6 1.9-2 3.1-.3.9-.9 1.5-2 1.5h-1.6c-1.1 0-1.7-.6-2-1.5-.4-1.2-1-2.3-2-3.1C5 14 3.8 11.4 3.8 8.4Z"/>'+
+    '<path d="M6.3 11.4c0-1.7.5-2.7 1.5-2.7s1.5 1 1.5 2.7"/>'+
+    '<path d="M9.3 11.6c0-1.9.6-3 1.7-3s1.7 1.1 1.7 3"/>'+
+    '<path d="M12.7 11.4c0-1.7.5-2.7 1.5-2.7s1.5 1 1.5 2.7"/>'
+};
+
+function svgFor(name){
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" '+
+         'stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="'+name+'">'+
+         ICONS[name]+'</svg>';
+}
+
+var ORDER = [
+  ['tooth','General Dentistry','day'],
+  ['emergency','Emergency Care','night'],
+  ['cosmetic','Cosmetic Dentistry','day'],
+  ['aligner','Invisalign','night'],
+  ['implant','Dental Implants','day'],
+  ['whitening','Teeth Whitening','night'],
+  ['denture','Dentures','day']
+];
+
+(function build(){
+  var grid = document.getElementById('grid');
+  ORDER.forEach(function(row){
+    var name=row[0], meaning=row[1], side=row[2];
+    var s = svgFor(name);
+    var cell = document.createElement('div');
+    cell.className = 'cell '+side;
+    cell.innerHTML =
+      '<div class="ico-row">'+
+        '<div class="stack s28">'+s+'<span class="px">28</span></div>'+
+        '<div class="stack s48">'+s+'<span class="px">48</span></div>'+
+        '<div class="stack s72">'+s+'<span class="px">72</span></div>'+
+      '</div>'+
+      '<div style="text-align:center"><div class="name">'+name+'</div>'+
+      '<div class="meaning">'+meaning+'</div></div>';
+    grid.appendChild(cell);
+  });
+
+  document.getElementById('vs-emergency').insertAdjacentHTML('beforeend', svgFor('emergency'));
+  document.getElementById('vs-cosmetic').insertAdjacentHTML('beforeend', svgFor('cosmetic'));
+  document.getElementById('vs-whitening').insertAdjacentHTML('beforeend', svgFor('whitening'));
+
+  document.getElementById('ctx-t1').innerHTML = svgFor('tooth');
+  document.getElementById('ctx-t2').innerHTML = svgFor('emergency');
+  document.getElementById('ctx-c1').innerHTML = svgFor('whitening');
+  document.getElementById('ctx-c2').innerHTML = svgFor('emergency');
+})();
+</script>
+<script src="/preview/_nav.js?v=e660d7ac65" defer></script>
+</body>
+</html>

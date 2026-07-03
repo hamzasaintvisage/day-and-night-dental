@@ -14,7 +14,7 @@ const data = {
   tag: "Oral Surgery",
   h1Plain: "Tooth Extraction",
   procedureType: "MedicalProcedure",
-  title: (<>When a tooth cannot be saved, <em>a gentle way out</em></>),
+  title: (<>Tooth extraction, when a tooth cannot be saved, <em>a gentle way out</em></>),
   lead: "No one wants a tooth taken out. But sometimes it is the right call, and putting it off only makes things worse. If a tooth is too damaged or infected to keep, removing it deals with the source of the problem and can relieve the pain and help stop it spreading.",
   seo: { title: "Tooth Extraction in Glasgow | Day Night Dental", description: "Tooth extraction in Glasgow, simple or surgical, under local anaesthetic. Honest aftercare and replacement advice. Day and evening appointments, 7 days a week." },
   meta: [{"k": "Anaesthetic", "v": "Local, fully numb", "tone": "day"}, {"k": "Type", "v": "Simple or surgical", "tone": ""}, {"k": "Gum healing", "v": "About 1 to 2 weeks", "tone": "night"}],

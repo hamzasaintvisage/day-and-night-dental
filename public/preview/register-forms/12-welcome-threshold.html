@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register · The Welcome Threshold</title>
+<link rel="stylesheet" href="./_styles.css">
+<style>
+  /* ============================================================
+     THE WELCOME THRESHOLD
+     Reassurance-led, top-down vertical flow:
+       hero welcome  ->  horizontal value strip  ->  full-width form.
+     Warm and confidence-building. Distinct from the side-panel
+     and ledger concepts: nothing is set in a sticky sidebar,
+     everything reads as one calm descent down the page.
+     ============================================================ */
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+
+  .wt{
+    position:relative;
+    overflow-x:clip;
+    padding:5.5rem 0 6rem;
+  }
+  .wt-container{
+    width:100%;
+    max-width:920px;
+    margin:0 auto;
+    padding:0 1.5rem;
+    position:relative;
+    z-index:2;
+  }
+  /* decorative warm glows: gold above, blue settling below. single-colour only. */
+  .wt-glow{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(8px);
+    z-index:0;
+  }
+  .wt-glow.day{
+    width:640px;height:640px;
+    top:-220px;left:50%;transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(248,199,96,.13) 0%, transparent 68%);
+  }
+  .wt-glow.night{
+    width:560px;height:560px;
+    bottom:4%;right:-180px;
+    background:radial-gradient(circle, rgba(69,144,236,.11) 0%, transparent 70%);
+  }
+  .wt-glow.night2{
+    width:480px;height:480px;
+    top:46%;left:-200px;
+    background:radial-gradient(circle, rgba(69,144,236,.07) 0%, transparent 72%);
+  }
+
+  /* ---------- HERO ---------- */
+  .wt-hero{
+    text-align:center;
+    max-width:660px;
+    margin:0 auto;
+  }
+  .wt-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:.55rem;
+    padding:.5rem 1.1rem;
+    border:1px solid var(--dn-mist);
+    border-radius:999px;
+    background:rgba(20,20,26,.7);
+    font-size:.66rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--dn-bone-dim);
+  }
+  .wt-pill .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--dn-day);
+    box-shadow:0 0 10px var(--dn-day);
+  }
+  .wt-hero h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.6rem,6vw,4rem);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin:1.4rem 0 0;
+  }
+  .wt-hero h1 em{
+    font-style:italic;
+    color:var(--dn-day);
+  }
+  .wt-hero-lead{
+    margin:1.5rem auto 0;
+    max-width:520px;
+    font-size:1.06rem;
+    line-height:1.6;
+    color:var(--dn-bone-dim);
+  }
+  .wt-promise{
+    margin:1.6rem auto 0;
+    display:inline-flex;
+    align-items:center;
+    gap:.7rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:.7rem 1.2rem;
+    border:1px solid rgba(248,199,96,.32);
+    border-radius:999px;
+    background:rgba(248,199,96,.05);
+    font-size:.82rem;
+    color:var(--dn-bone);
+  }
+  .wt-promise b{color:var(--dn-day);font-weight:600;}
+  .wt-promise .sep{
+    width:4px;height:4px;border-radius:50%;
+    background:var(--dn-bone-faint);
+  }
+
+  /* urgent 24/7 line */
+  .wt-urgent{
+    margin:1.5rem auto 0;
+    max-width:560px;
+    text-align:center;
+    font-size:.9rem;
+    line-height:1.55;
+    color:var(--dn-bone-dim);
+  }
+  .wt-urgent a{
+    color:var(--dn-night-soft);
+    font-weight:600;
+    text-decoration:none;
+    border-bottom:1px solid rgba(125,181,240,.4);
+    padding-bottom:1px;
+  }
+  .wt-urgent a:hover{color:var(--dn-night);border-bottom-color:var(--dn-night);}
+
+  /* ---------- VALUE STRIP ---------- */
+  .wt-strip-head{
+    text-align:center;
+    margin:4.5rem 0 1.4rem;
+  }
+  .wt-strip-eyebrow{
+    font-size:.66rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+  }
+  .wt-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:.9rem;
+  }
+  .wt-card{
+    position:relative;
+    padding:1.5rem 1.25rem 1.4rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:14px;
+    overflow:hidden;
+    transition:border-color .3s, transform .3s;
+  }
+  .wt-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;height:1px;
+    background:var(--dn-day);
+    opacity:.55;
+  }
+  .wt-card.night::before{background:var(--dn-night);}
+  .wt-card:hover{transform:translateY(-3px);border-color:rgba(248,199,96,.45);}
+  .wt-card.night:hover{border-color:rgba(69,144,236,.45);}
+  .wt-card .ico{
+    width:34px;height:34px;
+    margin-bottom:.9rem;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--dn-mist);
+    border-radius:9px;
+    color:var(--dn-day);
+  }
+  .wt-card.night .ico{color:var(--dn-night-soft);}
+  .wt-card .ico svg{width:18px;height:18px;}
+  .wt-card .big{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.55rem;
+    line-height:1.05;
+    color:var(--dn-bone);
+    letter-spacing:-0.01em;
+  }
+  .wt-card .big .cur{font-size:.95rem;color:var(--dn-day);margin-right:.05em;vertical-align:.06em;}
+  .wt-card.night .big{font-size:1.18rem;}
+  .wt-card .cap{
+    margin-top:.5rem;
+    font-size:.78rem;
+    line-height:1.5;
+    color:var(--dn-bone-dim);
+  }
+
+  /* ---------- FORM SHELL ---------- */
+  .wt-form-shell{
+    margin-top:3.2rem;
+    background:var(--dn-near-black);
+    border:1px solid var(--dn-mist);
+    border-radius:var(--dn-r-card,16px);
+    position:relative;
+    overflow:hidden;
+  }
+  .wt-form-shell::before{
+    content:'';
+    position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-night);
+    opacity:.7;
+  }
+  .wt-form-inner{padding:3rem 3rem 3.2rem;}
+
+  .wt-group{margin-bottom:2.6rem;}
+  .wt-group:last-of-type{margin-bottom:0;}
+  .wt-group-head{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    margin-bottom:1.8rem;
+  }
+  .wt-group-no{
+    flex:none;
+    width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--dn-mist);
+    border-radius:50%;
+    font-family:var(--font-display);
+    font-size:.95rem;
+    color:var(--dn-day);
+  }
+  .wt-group-head.night .wt-group-no{color:var(--dn-night-soft);}
+  .wt-group-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.4rem;
+    letter-spacing:-0.01em;
+    line-height:1.1;
+  }
+  .wt-group-sub{
+    font-size:.82rem;
+    color:var(--dn-bone-dim);
+    margin-top:.15rem;
+  }
+  .wt-group-head .txt{min-width:0;}
+
+  /* rows */
+  .wt-row{margin-bottom:1.3rem;}
+  .wt-row:last-child{margin-bottom:0;}
+  .wt-row-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+  }
+  .wt-field{display:flex;flex-direction:column;gap:.5rem;min-width:0;}
+  .wt-label{
+    font-size:.68rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--dn-bone-faint);
+  }
+  .wt-label .req{color:var(--dn-day);margin-left:.15em;}
+  .wt-label .opt{
+    color:var(--dn-bone-faint);
+    letter-spacing:.08em;
+    text-transform:none;
+    font-size:.78em;
+  }
+
+  .wt-field input,
+  .wt-field select,
+  .wt-field textarea{
+    width:100%;
+    padding:.85rem 1rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:9px;
+    color:var(--dn-bone);
+    font-family:var(--font-body);
+    font-size:1rem;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .wt-field input::placeholder,
+  .wt-field textarea::placeholder{color:var(--dn-bone-faint);}
+  .wt-field input:focus,
+  .wt-field select:focus,
+  .wt-field textarea:focus{
+    outline:none;
+    border-color:var(--dn-day);
+    box-shadow:0 0 0 3px rgba(248,199,96,.14);
+  }
+  .wt-field textarea{resize:vertical;min-height:96px;line-height:1.5;}
+  .wt-field select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23f8c760' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 1rem center;
+    padding-right:2.6rem;
+    cursor:pointer;
+  }
+  .wt-field select:invalid{color:var(--dn-bone-faint);}
+
+  /* DOB */
+  .wt-dob{
+    display:grid;
+    grid-template-columns:1fr 1.4fr 1.1fr;
+    gap:.7rem;
+  }
+
+  /* care cards */
+  .wt-care{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:.85rem;
+    margin-top:.2rem;
+  }
+  .wt-care-card{
+    position:relative;
+    padding:1.1rem 1.2rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:11px;
+    cursor:pointer;
+    transition:border-color .25s, background .25s, transform .2s;
+    display:flex;
+    flex-direction:column;
+    gap:.3rem;
+  }
+  .wt-care-card:hover{transform:translateY(-2px);}
+  .wt-care-card input{
+    position:absolute;width:1px;height:1px;opacity:0;margin:0;
+  }
+  .wt-care-card .ct-title{
+    display:flex;align-items:center;gap:.55rem;
+    font-family:var(--font-display);
+    font-size:1.08rem;
+    color:var(--dn-bone);
+  }
+  .wt-care-card .ct-mark{
+    flex:none;
+    width:16px;height:16px;
+    border:1.5px solid var(--dn-mist);
+    border-radius:50%;
+    position:relative;
+    transition:border-color .25s;
+  }
+  .wt-care-card .ct-desc{
+    font-size:.76rem;
+    color:var(--dn-bone-dim);
+    line-height:1.4;
+  }
+  .wt-care-card:has(input:focus-visible){
+    outline:2px solid var(--dn-day);
+    outline-offset:2px;
+  }
+  /* selected, single colour per card */
+  .wt-care-card.is-on.day{
+    border-color:var(--dn-day);
+    background:rgba(248,199,96,.06);
+  }
+  .wt-care-card.is-on.day .ct-title{color:var(--dn-day);}
+  .wt-care-card.is-on.day .ct-mark{border-color:var(--dn-day);}
+  .wt-care-card.is-on.day .ct-mark::after{
+    content:'';position:absolute;inset:3px;border-radius:50%;
+    background:var(--dn-day);
+  }
+  .wt-care-card.is-on.night{
+    border-color:var(--dn-night);
+    background:rgba(69,144,236,.06);
+  }
+  .wt-care-card.is-on.night .ct-title{color:var(--dn-night-soft);}
+  .wt-care-card.is-on.night .ct-mark{border-color:var(--dn-night);}
+  .wt-care-card.is-on.night .ct-mark::after{
+    content:'';position:absolute;inset:3px;border-radius:50%;
+    background:var(--dn-night);
+  }
+
+  /* consent */
+  .wt-consent{
+    display:flex;
+    flex-direction:row;
+    align-items:flex-start;
+    gap:.85rem;
+    padding:1.1rem 1.2rem;
+    background:var(--dn-charcoal);
+    border:1px solid var(--dn-mist);
+    border-radius:11px;
+    cursor:pointer;
+  }
+  .wt-consent input{
+    width:18px;height:18px;flex:none;margin-top:1px;
+    accent-color:var(--dn-day);
+    cursor:pointer;
+  }
+  .wt-consent span{
+    font-size:.82rem;
+    line-height:1.5;
+    color:var(--dn-bone-dim);
+  }
+  .wt-consent a{color:var(--dn-day);text-decoration:none;border-bottom:1px solid rgba(248,199,96,.4);}
+
+  /* submit */
+  .wt-actions{
+    margin-top:2.4rem;
+    padding-top:2rem;
+    border-top:1px solid var(--dn-mist);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1.2rem;
+    flex-wrap:wrap;
+  }
+  .wt-actions .note{
+    font-size:.78rem;
+    color:var(--dn-bone-faint);
+    line-height:1.5;
+    max-width:300px;
+  }
+  .wt-actions .note b{color:var(--dn-bone-dim);font-weight:600;}
+  .wt-submit{
+    flex:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.7rem;
+    padding:1rem 1.9rem;
+    border:none;
+    border-radius:999px;
+    background:var(--dn-day);
+    color:#0a0a0c;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:.95rem;
+    letter-spacing:.01em;
+    cursor:pointer;
+    transition:transform .25s, box-shadow .25s, background .25s;
+    box-shadow:0 12px 34px -16px rgba(248,199,96,.7);
+  }
+  .wt-submit:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 42px -16px rgba(248,199,96,.85);
+  }
+  .wt-submit .arrow{transition:transform .25s;}
+  .wt-submit:hover .arrow{transform:translateX(4px);}
+
+  /* footer reassurance ribbon */
+  .wt-foot{
+    margin-top:2rem;
+    text-align:center;
+    font-size:.8rem;
+    color:var(--dn-bone-faint);
+    line-height:1.6;
+  }
+  .wt-foot b{color:var(--dn-bone-dim);font-weight:600;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .wt-strip{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:720px){
+    .wt{padding:4rem 0 4.5rem;}
+    .wt-form-inner{padding:2.2rem 1.5rem 2.4rem;}
+    .wt-row-2{grid-template-columns:1fr;}
+    .wt-care{grid-template-columns:1fr;}
+    .wt-actions{flex-direction:column;align-items:stretch;}
+    .wt-actions .note{max-width:none;text-align:center;}
+    .wt-submit{justify-content:center;}
+  }
+  @media (max-width:440px){
+    .wt-strip{grid-template-columns:1fr;}
+    .wt-dob{grid-template-columns:1fr 1.3fr 1fr;gap:.5rem;}
+    .wt-dob select{padding-left:.6rem;padding-right:1.9rem;background-position:right .6rem center;}
+    .wt-group-head{gap:.75rem;}
+  }
+
+  /* preview-only override so the page scrolls normally when opened standalone */
+  html,body{overflow:visible!important;height:auto!important;max-height:none!important;}
+</style>
+</head>
+<body>
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: The Welcome Threshold</div>
+
+<section class="wt">
+  <div class="wt-glow day"></div>
+  <div class="wt-glow night2"></div>
+  <div class="wt-glow night"></div>
+
+  <div class="wt-container">
+
+    <!-- ============ HERO ============ -->
+    <div class="wt-hero">
+      <span class="wt-pill"><span class="dot"></span>New Patient Registration</span>
+      <h1>Welcome to <br><em>the practice</em></h1>
+      <p class="wt-hero-lead">
+        We are taking on new patients for every treatment we offer. Settle in, tell us a
+        little about you, and we will take it from there.
+      </p>
+      <div class="wt-promise">
+        <span><b>Register in three minutes.</b></span>
+        <span class="sep"></span>
+        <span>We confirm your first appointment within one working hour.</span>
+      </div>
+      <p class="wt-urgent">
+        In pain right now? Don't wait to register,
+        <a href="tel:+441415486548">call our 24/7 emergency line on 0141 548 6548</a>.
+        We are a new practice in Merchant City, Glasgow, and the line is answered any hour.
+      </p>
+    </div>
+
+    <!-- ============ VALUE STRIP ============ -->
+    <div class="wt-strip-head">
+      <span class="wt-strip-eyebrow">What new patients can count on</span>
+    </div>
+    <div class="wt-strip">
+      <div class="wt-card day">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="big"><span class="cur">£</span>95</div>
+        <div class="cap">First visit from £95, with the cost confirmed before anything goes ahead.</div>
+      </div>
+      <div class="wt-card night">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <div class="big">Under 18s<br>examined free</div>
+        <div class="cap">Children under 18 are examined free, so the whole family is covered.</div>
+      </div>
+      <div class="wt-card day">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <div class="big">45-minute<br>first exam</div>
+        <div class="cap">A full 45-minute assessment with your assigned dentist, never rushed.</div>
+      </div>
+      <div class="wt-card night">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h10"/><path d="M8 12h10"/><path d="M8 18h10"/><circle cx="3.5" cy="6" r="1.2"/><circle cx="3.5" cy="12" r="1.2"/><circle cx="3.5" cy="18" r="1.2"/></svg>
+        </div>
+        <div class="big">NHS by<br>waiting list</div>
+        <div class="cap">NHS care is by waiting list when we have space. We will be straight with you about timing.</div>
+      </div>
+    </div>
+
+    <!-- ============ FORM ============ -->
+    <div class="wt-form-shell">
+      <div class="wt-form-inner">
+        <form onsubmit="return false;" novalidate>
+
+          <!-- GROUP 1: YOUR DETAILS -->
+          <div class="wt-group">
+            <div class="wt-group-head">
+              <span class="wt-group-no">1</span>
+              <span class="txt">
+                <span class="wt-group-title">Your details</span>
+                <span class="wt-group-sub">Just enough to get your file started and to call you back.</span>
+              </span>
+            </div>
+
+            <div class="wt-row wt-row-2">
+              <label class="wt-field">
+                <span class="wt-label">First name<span class="req">*</span></span>
+                <input type="text" name="firstName" autocomplete="given-name" placeholder="Hamza" required>
+              </label>
+              <label class="wt-field">
+                <span class="wt-label">Last name<span class="req">*</span></span>
+                <input type="text" name="lastName" autocomplete="family-name" placeholder="Abrar" required>
+              </label>
+            </div>
+
+            <div class="wt-row">
+              <div class="wt-field">
+                <span class="wt-label">Date of birth<span class="req">*</span></span>
+                <div class="wt-dob">
+                  <select name="dobDay" required aria-label="Day of birth">
+                    <option value="" selected disabled>Day</option>
+                    <option>1</option><option>2</option><option>3</option>
+                    <option>14</option><option>15</option><option>16</option>
+                    <option>28</option><option>29</option><option>30</option><option>31</option>
+                  </select>
+                  <select name="dobMonth" required aria-label="Month of birth">
+                    <option value="" selected disabled>Month</option>
+                    <option>January</option><option>February</option><option>March</option>
+                    <option>April</option><option>May</option><option>June</option>
+                    <option>July</option><option>August</option><option>September</option>
+                    <option>October</option><option>November</option><option>December</option>
+                  </select>
+                  <select name="dobYear" required aria-label="Year of birth">
+                    <option value="" selected disabled>Year</option>
+                    <option>2008</option><option>2000</option><option>1995</option>
+                    <option>1988</option><option>1979</option><option>1966</option>
+                    <option>1954</option><option>1948</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="wt-row wt-row-2">
+              <label class="wt-field">
+                <span class="wt-label">Phone<span class="req">*</span></span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Best contact number" required>
+              </label>
+              <label class="wt-field">
+                <span class="wt-label">Email<span class="req">*</span></span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+              </label>
+            </div>
+
+            <div class="wt-row wt-row-2">
+              <label class="wt-field">
+                <span class="wt-label">Address <span class="opt">(optional)</span></span>
+                <input type="text" name="address" autocomplete="street-address" placeholder="Street address, optional">
+              </label>
+              <label class="wt-field">
+                <span class="wt-label">Postcode<span class="req">*</span></span>
+                <input type="text" name="postcode" autocomplete="postal-code" placeholder="G1 1SH" required>
+              </label>
+            </div>
+          </div>
+
+          <!-- GROUP 2: YOUR CARE -->
+          <div class="wt-group">
+            <div class="wt-group-head night">
+              <span class="wt-group-no">2</span>
+              <span class="txt">
+                <span class="wt-group-title">Your care</span>
+                <span class="wt-group-sub">How you would like to be seen, and anything that helps us prepare.</span>
+              </span>
+            </div>
+
+            <div class="wt-row">
+              <div class="wt-field">
+                <span class="wt-label">Care type<span class="req">*</span></span>
+                <div class="wt-care" data-care role="radiogroup" aria-label="Care type">
+                  <label class="wt-care-card day">
+                    <input type="radio" name="careType" value="private" required>
+                    <span class="ct-title"><span class="ct-mark"></span>Private</span>
+                    <span class="ct-desc">Full choice of times and treatments</span>
+                  </label>
+                  <label class="wt-care-card night">
+                    <input type="radio" name="careType" value="nhs">
+                    <span class="ct-title"><span class="ct-mark"></span>NHS</span>
+                    <span class="ct-desc">Waiting list, when we have space</span>
+                  </label>
+                  <label class="wt-care-card day">
+                    <input type="radio" name="careType" value="either">
+                    <span class="ct-title"><span class="ct-mark"></span>Either</span>
+                    <span class="ct-desc">Whatever gets you seen soonest</span>
+                  </label>
+                  <label class="wt-care-card night">
+                    <input type="radio" name="careType" value="unsure">
+                    <span class="ct-title"><span class="ct-mark"></span>Not sure yet</span>
+                    <span class="ct-desc">We'll talk it through on the call</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="wt-row wt-row-2">
+              <label class="wt-field">
+                <span class="wt-label">How did you hear about us? <span class="opt">(optional)</span></span>
+                <select name="referral">
+                  <option value="" selected disabled>Optional</option>
+                  <option>Google search</option>
+                  <option>Friend or family</option>
+                  <option>Instagram</option>
+                  <option>Walked past the practice</option>
+                  <option>Existing patient</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <div class="wt-field" aria-hidden="true"></div>
+            </div>
+
+            <div class="wt-row">
+              <label class="wt-field">
+                <span class="wt-label">What do you need help with? <span class="opt">(optional)</span></span>
+                <textarea name="notes" rows="3" placeholder="e.g. toothache, a check-up, whitening, or a second opinion. Optional, but it helps us prepare for your call."></textarea>
+              </label>
+            </div>
+
+            <div class="wt-row">
+              <label class="wt-consent">
+                <input type="checkbox" name="consent" required>
+                <span>I'm happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my registration.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="wt-actions">
+            <p class="note"><b>No payment now.</b> Registering takes about three minutes, and we confirm your first appointment within one working hour.</p>
+            <button type="submit" class="wt-submit">Complete Registration <span class="arrow">&rarr;</span></button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- footer reassurance -->
+    <p class="wt-foot">
+      Your first visit includes a <b>comprehensive 45-minute examination</b> with intra-oral scans and bite analysis,
+      <b>low-dose digital x-rays</b> with no films to develop so you are not left waiting, a <b>written, personalised treatment plan</b>
+      with the cost of each item set out before any work starts, and a <b>hygiene appointment</b> booked alongside the examination.
+    </p>
+
+  </div>
+</section>
+
+<script>document.querySelectorAll('[data-care]').forEach(function(g){g.addEventListener('change',function(e){g.querySelectorAll('label').forEach(function(c){c.classList.toggle('is-on',c.contains(e.target)&&e.target.checked)})})})</script>
+    <script src="./_dropdowns.js"></script>
+<script src="./_nav.js"></script>
+</body>
+</html>
