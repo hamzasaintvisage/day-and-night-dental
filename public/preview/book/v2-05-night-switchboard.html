@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="../register-forms/_styles.css">
-<title>Night Switchboard - Book Appointment · Day Night Dental</title>
+<title>Enquiries · Night Switchboard · Day Night Dental</title>
 <style>
   *{box-sizing:border-box;}
   body{
@@ -197,9 +197,9 @@
 
 <main class="wrap">
 
-  <span class="eyebrow">Book / Merchant City</span>
-  <h1>The <em>night switchboard</em> is open.</h1>
-  <p class="lede">Toothache at 3am or a chipped crown before a wedding, the line to our surgery on Hutcheson Street never closes. Call now for emergencies, or leave your details below for a routine appointment.</p>
+  <span class="eyebrow">Get in touch / Merchant City</span>
+  <h1>How can we <em>help</em>?</h1>
+  <p class="lede">Send us a message and our reception team will get back to you, whether you want to book a routine appointment, arrange a cosmetic consultation, ask about a treatment, or just have a general question. In pain right now? Please call the emergency line below, do not wait.</p>
 
   <!-- ===== EMERGENCY SWITCHBOARD (blue, top) ===== -->
   <section class="switchboard" aria-label="Emergency dental line">
@@ -237,9 +237,9 @@
   <!-- ===== ROUTINE BOOKING FORM + DETAILS ===== -->
   <section class="routine">
     <div class="card">
-      <span class="eyebrow">Routine enquiry</span>
-      <h2>Request an appointment</h2>
-      <p class="sub">Not an emergency? Tell us what you need and when suits, and the front desk will come back to you to confirm a time.</p>
+      <span class="eyebrow">Enquiries</span>
+      <h2>Send us a message</h2>
+      <p class="sub">Not an emergency? Tell us what you need, from a routine appointment to a cosmetic consultation or a general question, and the front desk will come back to you.</p>
 
       <form onsubmit="event.preventDefault();this.querySelector('.form-note').textContent='Preview only, this form does not submit.';">
         <div class="field">
@@ -269,15 +269,14 @@
             </select>
           </div>
           <div>
-            <label for="treatment">Treatment or reason</label>
+            <label for="treatment">What is this about?</label>
             <select id="treatment" name="treatment">
               <option value="">Please choose</option>
-              <option>New patient check-up</option>
-              <option>Routine check-up and clean</option>
-              <option>Cosmetic (whitening, veneers)</option>
-              <option>Dental implants</option>
-              <option>Dentures</option>
-              <option>Nervous patient consultation</option>
+              <option>Request an appointment</option>
+              <option>Cosmetic consultation</option>
+              <option>Routine check-up or hygiene</option>
+              <option>A question about a treatment</option>
+              <option>General enquiry</option>
               <option>Something else</option>
             </select>
           </div>
@@ -293,7 +292,7 @@
           <label for="consent">I am happy for Day Night Dental to contact me about my enquiry. My details will not be used for marketing.</label>
         </div>
 
-        <button class="submit" type="submit">Request appointment</button>
+        <button class="submit" type="submit">Send enquiry</button>
         <p class="form-note">We reply within one working day. For anything urgent, please call the line above.</p>
       </form>
     </div>

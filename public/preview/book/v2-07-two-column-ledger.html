@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="../register-forms/_styles.css">
-<title>Two Column Ledger - Book an appointment · Day Night Dental</title>
+<title>Enquiries · Two-Column Ledger · Day Night Dental</title>
 <style>
 /* ============================================================
    V2-07  TWO-COLUMN LEDGER
@@ -174,20 +174,20 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:rgba(248,199,9
 
 <main class="wrap">
   <header class="masthead">
-    <span class="dn-pill">Book · Day Night Dental</span>
+    <span class="dn-pill">Get in touch · Day Night Dental</span>
     <h1>Two ways to reach us, <em>day or night.</em></h1>
-    <p>Send a request on the left and the front desk replies at your preferred time. In pain right now? The emergency line on the right is answered around the clock.</p>
+    <p>Send us a message on the left and our reception team replies at your preferred time, whether you want to book an appointment, ask about a treatment, or just have a question. In pain right now? The emergency line on the right is answered around the clock.</p>
   </header>
 
   <div class="grid">
 
     <!-- LEFT: the enquiry form -->
     <section class="card form-card" aria-labelledby="form-h">
-      <p class="card-label"><b>01</b> The request <span class="ln"></span></p>
-      <h2 id="form-h">Request an appointment</h2>
-      <p class="sub">Routine, cosmetic or implant enquiries. We usually reply the same working day.</p>
+      <p class="card-label"><b>01</b> Your message <span class="ln"></span></p>
+      <h2 id="form-h">Send us a message</h2>
+      <p class="sub">Routine appointments, cosmetic consultations and general questions all welcome. We usually reply the same working day.</p>
 
-      <form onsubmit="event.preventDefault();this.querySelector('.btn-submit').textContent='Request sent';this.querySelector('.btn-submit').disabled=true;">
+      <form onsubmit="event.preventDefault();this.querySelector('.btn-submit').textContent='Message sent';this.querySelector('.btn-submit').disabled=true;">
         <div class="field">
           <label for="name">Full name <span class="req">*</span></label>
           <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Bruce" required>
@@ -216,15 +216,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:rgba(248,199,9
             </select>
           </div>
           <div>
-            <label for="reason">Treatment or reason</label>
+            <label for="reason">What is this about?</label>
             <select id="reason" name="reason">
               <option value="">Select one</option>
-              <option>General check-up</option>
-              <option>Emergency or pain</option>
-              <option>Cosmetic (whitening, veneers)</option>
-              <option>Dental implants</option>
-              <option>Dentures</option>
-              <option>NHS waiting list</option>
+              <option>Request an appointment</option>
+              <option>Cosmetic consultation</option>
+              <option>Routine check-up or hygiene</option>
+              <option>A question about a treatment</option>
+              <option>General enquiry</option>
               <option>Something else</option>
             </select>
           </div>
@@ -240,7 +239,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:rgba(248,199,9
           <label for="consent">I consent to Day Night Dental contacting me about my enquiry. See our privacy notice for how we handle your details. <span class="req">*</span></label>
         </div>
 
-        <button type="submit" class="btn-submit">Send request</button>
+        <button type="submit" class="btn-submit">Send enquiry</button>
         <p class="form-note">This is a preview. No details are sent.</p>
       </form>
     </section>

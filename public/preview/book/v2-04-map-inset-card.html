@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Map Inset Card - Book an appointment · Day Night Dental</title>
+<title>Enquiries · Map Inset Card · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
 /* ============================================================
@@ -234,11 +234,12 @@ svg{width:1.1em;height:1.1em;}
 
     <!-- CENTRED HEADER -->
     <header class="dn-head">
-      <span class="dn-eyebrow dn-pill day">Book an appointment</span>
-      <h1 class="dn-display">Let&rsquo;s get you <em class="dn-hl-gold">seen</em>.</h1>
+      <span class="dn-eyebrow dn-pill day">Get in touch</span>
+      <h1 class="dn-display">How can we <em class="dn-hl-gold">help</em>?</h1>
       <p class="dn-lead">
-        For a routine check-up, hygiene visit or a cosmetic consultation, leave your details below
-        and our Merchant City team will be in touch. In pain right now? Skip the form and call.
+        Send us a message and our Merchant City reception team will get back to you, whether you want
+        to book a routine appointment, ask about a cosmetic consultation, or just have a general question.
+        In pain right now? Skip the form and call.
       </p>
     </header>
 
@@ -257,15 +258,15 @@ svg{width:1.1em;height:1.1em;}
 
     <div class="dn-or">
       <span class="dn-or-line" aria-hidden="true"></span>
-      <span class="dn-or-label">Or request a routine booking</span>
+      <span class="dn-or-label">Or send us a message</span>
       <span class="dn-or-line" aria-hidden="true"></span>
     </div>
 
     <!-- THE FORM (hero) -->
     <form class="dn-form" id="bookForm" novalidate>
-      <span class="dn-form-badge"><span class="dot" aria-hidden="true"></span>Appointment request</span>
-      <h2 class="dn-form-title">Tell us a little about your visit</h2>
-      <p class="dn-form-sub">A few details is all we need. We reply within one working hour.</p>
+      <span class="dn-form-badge"><span class="dot" aria-hidden="true"></span>Enquiries</span>
+      <h2 class="dn-form-title">Send us a message</h2>
+      <p class="dn-form-sub">A few details is all we need, whether it is a routine appointment, a cosmetic consultation or a general question. We reply within one working hour.</p>
 
       <!-- Name -->
       <div class="dn-form-row">
@@ -318,18 +319,15 @@ svg{width:1.1em;height:1.1em;}
       <!-- Treatment / reason -->
       <div class="dn-form-row">
         <div class="dn-field">
-          <label class="dn-label" for="f-treatment">Treatment or reason <span class="opt">(optional)</span></label>
+          <label class="dn-label" for="f-treatment">What is this about? <span class="opt">(optional)</span></label>
           <select class="dn-select" id="f-treatment" name="treatment" data-empty="true">
             <option value="" disabled selected>Select an option</option>
-            <option value="New patient examination">New patient examination</option>
-            <option value="Routine check-up">Routine check-up</option>
-            <option value="Hygienist appointment">Hygienist appointment</option>
+            <option value="Request an appointment">Request an appointment</option>
             <option value="Cosmetic consultation">Cosmetic consultation</option>
-            <option value="Teeth whitening">Teeth whitening</option>
-            <option value="Invisalign">Invisalign</option>
-            <option value="Dental implants">Dental implants</option>
-            <option value="Emergency / pain">Emergency / pain</option>
-            <option value="Other / unsure">Other / unsure</option>
+            <option value="Routine check-up or hygiene">Routine check-up or hygiene</option>
+            <option value="A question about a treatment">A question about a treatment</option>
+            <option value="General enquiry">General enquiry</option>
+            <option value="Something else">Something else</option>
           </select>
         </div>
       </div>
@@ -353,7 +351,7 @@ svg{width:1.1em;height:1.1em;}
       </div>
 
       <button type="submit" class="dn-submit" id="submitBtn">
-        <span class="btn-label">Request booking</span>
+        <span class="btn-label">Send enquiry</span>
         <span class="arrow" aria-hidden="true">→</span>
       </button>
 
@@ -491,7 +489,7 @@ svg{width:1.1em;height:1.1em;}
       if (label) label.textContent = 'Preview only, not sent';
       btn.style.opacity = '.75';
       setTimeout(function(){
-        if (label) label.textContent = 'Request booking';
+        if (label) label.textContent = 'Send enquiry';
         btn.style.opacity = '';
       }, 1800);
     });
