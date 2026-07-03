@@ -7,325 +7,498 @@
 <title>Enquiries · Map Hero Banner · Day Night Dental</title>
 <link rel="stylesheet" href="../register-forms/_styles.css">
 <style>
-  :root{
-    --edge: rgba(255,255,255,.10);
-    --edge-soft: rgba(255,255,255,.08);
-    --surface: #101015;
-    --surface-2: #14141a;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
-  body{
-    background:var(--dn-near-black);
-    color:var(--dn-bone);
-    font-family:var(--font-body);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    position:relative;
-  }
-  /* continuous soft glow, gold top-left / blue bottom-right, no gradients between them */
-  body::before,body::after{
-    content:"";position:fixed;inset:auto;z-index:0;pointer-events:none;filter:blur(10px);
-  }
-  body::before{
-    top:-14vh;left:-10vw;width:60vw;height:60vw;border-radius:50%;
-    background:radial-gradient(circle,rgba(248,199,96,.16),rgba(248,199,96,0) 62%);
-  }
-  body::after{
-    bottom:-18vh;right:-12vw;width:64vw;height:64vw;border-radius:50%;
-    background:radial-gradient(circle,rgba(69,144,236,.16),rgba(69,144,236,0) 62%);
-  }
-  .wrap{position:relative;z-index:1}
+  /* ============================================================
+     MAP HERO BANNER
+     A wide Google Maps hero across the top, with a dark overlay
+     strip carrying the NAP + a blue 24/7 emergency CTA. The
+     enquiry form sits in a centred card below, using the REAL
+     site form classes (rd-input / rd-field / rd-label / rd-select
+     / rd-textarea / rd-consent / rd-submit) from 14-reception.
+     ============================================================ */
 
-  /* ---------- HERO MAP BANNER ---------- */
-  .hero{position:relative;width:100%;border-bottom:1px solid var(--edge)}
-  .hero-map{position:relative;width:100%;height:min(56vh,520px);min-height:340px;background:var(--surface)}
-  .hero-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;filter:grayscale(.25) contrast(1.02)}
-  /* dark scrims, solid/opacity only (no gradient blends of brand colours) */
-  .hero-map::after{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(to bottom,rgba(10,10,12,.55) 0%,rgba(10,10,12,.12) 30%,rgba(10,10,12,.20) 70%,rgba(10,10,12,.86) 100%);
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 600px at 50% -8%, rgba(248,199,96,.05), transparent 60%),
+      var(--dn-near-black,#0a0a0c);
+    color:var(--dn-bone,#fff);
+    font-family:var(--font-body),'Inter Tight',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .hero-badge{
-    position:absolute;top:22px;left:22px;z-index:2;
-    display:inline-flex;align-items:center;gap:.55rem;
-    padding:.5rem .95rem;border-radius:100px;
-    background:rgba(10,10,12,.72);border:1px solid rgba(69,144,236,.55);
-    font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dn-night-soft);
+  a{color:inherit;}
+
+  /* ---------- HERO BANNER: map + overlay strip ---------- */
+  .mh-hero{
+    position:relative;
+    width:100%;
+    min-height:clamp(320px,46vw,480px);
+    overflow:hidden;
+    border-bottom:1px solid var(--dn-mist);
+  }
+  .mh-hero iframe{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    border:0;
+    filter:grayscale(.35) contrast(1.05) brightness(.82);
+  }
+  /* dark scrim so text stays legible over the map, weighted to the bottom */
+  .mh-scrim{
+    position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,.15) 34%, rgba(10,10,12,.78) 82%, rgba(10,10,12,.96) 100%);
+  }
+  .mh-scrim::after{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(60% 40% at 18% 12%, rgba(248,199,96,.10), transparent 60%),
+      radial-gradient(60% 45% at 90% 90%, rgba(69,144,236,.12), transparent 60%);
+  }
+
+  /* eyebrow pinned top-left of the hero */
+  .mh-hero-eyebrow{
+    position:absolute;top:clamp(1.25rem,3vw,2rem);left:clamp(1rem,4vw,2.5rem);
+    z-index:3;
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px 6px 11px;border-radius:999px;
+    font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-day);
+    background:rgba(10,10,12,.55);
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 0 20px -6px rgba(248,199,96,.5), inset 0 1px 0 rgba(255,255,255,.05);
     backdrop-filter:blur(6px);
   }
-  .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--dn-online);box-shadow:0 0 10px 2px rgba(74,222,128,.7)}
+  .mh-hero-eyebrow::before{
+    content:'';width:6px;height:6px;flex:none;border-radius:50%;
+    background:currentColor;box-shadow:0 0 8px 1px rgba(248,199,96,.7);
+  }
 
-  /* NAP + emergency strip overlaid across the bottom of the banner */
-  .hero-strip{
+  /* the overlay strip sitting along the bottom of the hero */
+  .mh-strip-wrap{
     position:absolute;left:0;right:0;bottom:0;z-index:3;
-    padding:1.4rem clamp(1rem,4vw,2.5rem);
+    padding:0 clamp(1rem,4vw,2.5rem) clamp(1.1rem,2.6vw,1.8rem);
   }
-  .strip-inner{
-    width:var(--container);margin:0 auto;
-    display:grid;grid-template-columns:1.4fr 1fr auto;gap:clamp(1rem,3vw,2.4rem);align-items:end;
+  .mh-strip{
+    max-width:1180px;margin:0 auto;
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:clamp(.9rem,2vw,1.4rem);
+    align-items:stretch;
   }
-  .nap-name{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.35rem);line-height:1.05;margin:0 0 .3rem}
-  .nap-addr{color:var(--dn-bone-dim);font-size:.95rem;margin:0}
-  .nap-addr a{color:var(--dn-day);text-decoration:none}
-  .nap-addr a:hover{text-decoration:underline}
-  .strip-phone{display:flex;flex-direction:column;gap:.2rem}
-  .strip-phone .lbl{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dn-bone-faint)}
-  .strip-phone a{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,1.9rem);color:var(--dn-bone);text-decoration:none;font-weight:600}
-  .strip-phone a:hover{color:var(--dn-day-soft)}
+  .mh-nap,.mh-emergency{
+    border-radius:16px;
+    background:rgba(12,12,17,.82);
+    border:1px solid var(--dn-mist);
+    backdrop-filter:blur(10px);
+    box-shadow:0 30px 70px -40px rgba(0,0,0,.95);
+  }
 
-  /* Emergency CTA, blue/night accented, stands apart */
-  .btn-emergency{
-    display:inline-flex;align-items:center;gap:.6rem;white-space:nowrap;
-    padding:1rem 1.7rem;border-radius:100px;
-    background:var(--dn-night);color:#04101f;font-weight:700;font-size:1.02rem;
-    text-decoration:none;border:1px solid transparent;
-    box-shadow:0 0 0 1.5px rgba(69,144,236,.55),0 0 34px -4px rgba(69,144,236,.6),0 20px 44px -18px rgba(69,144,236,.7);
-    transition:transform .22s ease,box-shadow .22s ease,background .22s ease;
+  /* NAP card (gold-accented) */
+  .mh-nap{
+    position:relative;
+    padding:clamp(1.1rem,2.2vw,1.5rem) clamp(1.2rem,2.4vw,1.7rem);
+    overflow:hidden;
   }
-  .btn-emergency:hover{
-    transform:translateY(-3px);background:var(--dn-night-soft);
-    box-shadow:0 0 0 1.5px rgba(69,144,236,.75),0 0 40px -2px rgba(69,144,236,.7),0 24px 50px -18px rgba(69,144,236,.8);
+  .mh-nap::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-day);opacity:.7;
   }
-  .btn-emergency .pulse{width:9px;height:9px;border-radius:50%;background:#04101f;position:relative}
-  .btn-emergency .pulse::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid #04101f;opacity:.5;animation:ring 1.8s ease-out infinite}
-  @keyframes ring{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.7);opacity:0}}
+  .mh-nap-name{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:600;
+    letter-spacing:-.01em;margin:0 0 .3rem;
+  }
+  .mh-nap-name .day{color:var(--dn-day);font-style:italic;}
+  .mh-nap-name .night{color:var(--dn-night);font-style:italic;}
+  .mh-nap-addr{
+    font-size:.82rem;color:var(--dn-bone-dim);line-height:1.5;margin:0 0 .85rem;
+    font-style:normal;
+  }
+  .mh-hours{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:.4rem;
+  }
+  .mh-hours li{
+    position:relative;padding-left:15px;
+    font-size:.76rem;line-height:1.4;color:var(--dn-bone-dim);
+  }
+  .mh-hours li::before{
+    content:'';position:absolute;left:0;top:6px;
+    width:5px;height:5px;border-radius:50%;background:var(--dn-day);
+  }
+  .mh-hours li:nth-child(1)::before{background:var(--dn-night-soft);}
+  .mh-hours li b{color:var(--dn-bone);font-weight:600;}
+  .mh-nap-phone{
+    display:inline-flex;align-items:center;gap:.5rem;
+    margin-top:.9rem;
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.05rem;font-weight:600;color:var(--dn-day);
+    text-decoration:none;
+    border-bottom:1px solid rgba(248,199,96,.35);
+  }
+  .mh-nap-phone:hover{color:var(--dn-day-soft);border-bottom-color:rgba(255,214,109,.6);}
 
-  /* ---------- BODY / FORM ---------- */
-  .body{width:var(--container);margin:0 auto;padding:clamp(2.4rem,6vw,4.5rem) 0 clamp(3rem,7vw,5rem)}
-  .eyebrow{
-    display:inline-block;padding:.42rem 1rem;border-radius:100px;
-    border:1px solid rgba(248,199,96,.5);color:var(--dn-day);
-    font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;margin:0 0 1rem;
+  /* emergency card (blue / night accented) */
+  .mh-emergency{
+    position:relative;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(1.1rem,2.2vw,1.5rem) clamp(1.2rem,2.4vw,1.7rem);
+    background:rgba(11,17,28,.86);
+    border-color:rgba(69,144,236,.4);
+    overflow:hidden;
   }
-  .intro{text-align:center;max-width:640px;margin:0 auto 2.6rem}
-  .intro h2{font-family:var(--font-display);font-weight:600;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.06;margin:0 0 .8rem}
-  .intro p{color:var(--dn-bone-dim);margin:0;font-size:1.05rem}
-
-  .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(1.2rem,3vw,2rem);align-items:start}
-
-  .card{
-    background:var(--surface);border:1px solid var(--edge);border-radius:16px;
-    padding:clamp(1.5rem,3.2vw,2.4rem);
-    transition:transform .24s ease,box-shadow .24s ease;
+  .mh-emergency::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-night);opacity:.8;
   }
-  .form-card{max-width:100%}
-  .form-card:hover{
+  .mh-em-eyebrow{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dn-night-soft);font-weight:600;margin:0 0 .5rem;
+  }
+  .mh-em-dot{
+    position:relative;width:10px;height:10px;flex:none;border-radius:50%;
+    background:rgba(69,144,236,.22);
+  }
+  .mh-em-dot::before{
+    content:'';position:absolute;inset:-5px;border-radius:50%;
+    background:rgba(69,144,236,.45);
+    animation:mh-pulse 2s ease-out infinite;
+  }
+  .mh-em-dot::after{
+    content:'';position:absolute;inset:2px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#8fc0ff,#4590ec);
+    box-shadow:0 0 6px 1px rgba(69,144,236,.7);
+  }
+  @keyframes mh-pulse{0%{transform:scale(.6);opacity:.8;}70%{transform:scale(1.9);opacity:0;}100%{transform:scale(1.9);opacity:0;}}
+  .mh-em-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(1.05rem,2vw,1.3rem);font-weight:600;line-height:1.15;
+    margin:0 0 .55rem;color:var(--dn-bone);
+  }
+  .mh-em-title em{font-style:italic;color:var(--dn-night-soft);}
+  .mh-em-call{
+    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+    align-self:flex-start;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:1rem;font-weight:600;letter-spacing:.01em;
+    padding:.85rem 1.5rem;border-radius:12px;
+    color:#0a0a0c;background:var(--dn-night);
+    border:1px solid var(--dn-night);text-decoration:none;
+    box-shadow:0 14px 34px -16px rgba(69,144,236,.65);
+    transition:transform .15s, background .25s, box-shadow .25s;
+  }
+  .mh-em-call:hover{transform:translateY(-1px);background:var(--dn-night-soft);box-shadow:0 18px 40px -16px rgba(69,144,236,.8);}
+  .mh-em-call .arrow{transition:transform .25s;}
+  .mh-em-call:hover .arrow{transform:translateX(4px);}
+  .mh-em-sub{font-size:.72rem;color:var(--dn-bone-faint);line-height:1.45;margin:.7rem 0 0;}
+
+  /* ---------- FORM SECTION ---------- */
+  .mh-formwrap{
+    max-width:840px;margin:0 auto;
+    padding:clamp(3rem,6vw,4.5rem) clamp(1rem,4vw,2.5rem) 5rem;
+    position:relative;
+  }
+  .mh-glow{position:absolute;border-radius:50%;filter:blur(50px);pointer-events:none;z-index:0;}
+  .mh-glow.day{width:420px;height:420px;top:-40px;left:-180px;background:rgba(248,199,96,.09);}
+  .mh-glow.night{width:460px;height:460px;bottom:80px;right:-200px;background:rgba(69,144,236,.09);}
+
+  .mh-head{position:relative;z-index:2;text-align:center;margin-bottom:2.5rem;}
+  .mh-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px 6px 11px;border-radius:999px;
+    font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dn-day);
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 0 20px -6px rgba(248,199,96,.5), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .mh-eyebrow::before{
+    content:'';width:6px;height:6px;flex:none;border-radius:50%;
+    background:currentColor;box-shadow:0 0 8px 1px rgba(248,199,96,.7);
+  }
+  .mh-title{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:clamp(2rem,4.2vw,2.9rem);font-weight:600;line-height:1.06;
+    letter-spacing:-.02em;margin:1.1rem 0 .7rem;
+  }
+  .mh-title em{font-style:italic;color:var(--dn-day);}
+  .mh-title .night{font-style:italic;color:var(--dn-night);}
+  .mh-lead{
+    font-size:.95rem;color:var(--dn-bone-dim);line-height:1.6;
+    max-width:560px;margin:0 auto;
+  }
+
+  /* the centred form card */
+  .mh-card{
+    position:relative;z-index:2;
+    border:1px solid var(--dn-mist);
+    border-radius:18px;
+    background:linear-gradient(180deg, #101016, #0c0c11);
+    box-shadow:0 40px 90px -50px rgba(0,0,0,.95);
+    padding:clamp(1.6rem,3.4vw,2.75rem);
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .mh-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:var(--dn-day);opacity:.7;
+  }
+  .mh-card:hover{
     transform:translateY(-4px);
-    box-shadow:0 0 0 1.5px rgba(248,199,96,.75),0 0 32px -2px rgba(248,199,96,.48),0 22px 46px -18px rgba(248,199,96,.62);
+    border-color:rgba(248,199,96,.28);
+    box-shadow:0 46px 96px -50px rgba(0,0,0,.95), 0 0 40px -22px rgba(248,199,96,.28);
   }
-  .card h3{font-family:var(--font-display);font-weight:600;font-size:1.45rem;margin:0 0 .35rem}
-  .card .sub{color:var(--dn-bone-dim);font-size:.92rem;margin:0 0 1.5rem}
 
-  .field{margin-bottom:1.05rem}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  label{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dn-bone-faint);margin:0 0 .45rem}
-  .req{color:var(--dn-day)}
-  input,select,textarea{
-    width:100%;font-family:var(--font-body);font-size:.98rem;color:var(--dn-bone);
-    background:var(--surface-2);border:1px solid var(--edge);border-radius:12px;
-    padding:.85rem 1rem;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+  /* ----- REAL SITE FORM CLASSES (ported verbatim from 14-reception-native) ----- */
+  .rd-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem;}
+  .rd-row.one{grid-template-columns:1fr;}
+  .rd-field{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
+  .rd-label{
+    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--dn-bone-dim);font-weight:600;
+    display:flex;align-items:center;gap:.35rem;
   }
-  textarea{resize:vertical;min-height:110px}
-  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f8c760' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.6rem}
-  input::placeholder,textarea::placeholder{color:rgba(255,255,255,.32)}
-  input:focus,select:focus,textarea:focus{
-    outline:none;border-color:rgba(248,199,96,.6);background:#16161d;
+  .rd-req{color:var(--dn-day);}
+  .rd-opt{color:var(--dn-bone-faint);letter-spacing:.08em;font-weight:500;text-transform:none;font-size:.62rem;}
+
+  .rd-input,.rd-select,.rd-textarea{
+    width:100%;padding:.82rem .95rem;
+    background:#0c0c11;border:1px solid var(--dn-mist);border-radius:11px;
+    color:var(--dn-bone);
+    font-family:var(--font-body),'Inter Tight',sans-serif;font-size:1rem;
+    transition:border-color .25s, box-shadow .25s, background .25s;
+  }
+  .rd-input::placeholder,.rd-textarea::placeholder{color:rgba(255,255,255,.34);}
+  .rd-input:focus,.rd-select:focus,.rd-textarea:focus{
+    outline:none;border-color:var(--dn-day);background:#101015;
     box-shadow:0 0 0 3px rgba(248,199,96,.14);
   }
-  .consent{display:flex;gap:.7rem;align-items:flex-start;margin:.4rem 0 1.4rem}
-  .consent input{width:18px;height:18px;flex:0 0 auto;margin-top:2px;accent-color:var(--dn-day)}
-  .consent label{text-transform:none;letter-spacing:normal;font-size:.85rem;color:var(--dn-bone-dim);margin:0}
-  .consent a{color:var(--dn-day);text-decoration:none}
-  .consent a:hover{text-decoration:underline}
+  .rd-textarea{resize:vertical;min-height:120px;line-height:1.5;}
+  .rd-select{
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f8c760' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat;background-position:right .95rem center;
+    padding-right:2.4rem;cursor:pointer;
+  }
+  .rd-select:invalid,.rd-select option[value=""]{color:rgba(255,255,255,.4);}
+  .rd-select option{background:#101015;color:var(--dn-bone);}
 
-  .btn-submit{
-    width:100%;padding:1rem 1.5rem;border-radius:100px;border:1px solid transparent;cursor:pointer;
-    background:var(--dn-day);color:#1a1305;font-weight:700;font-size:1.02rem;font-family:var(--font-body);
-    box-shadow:0 0 0 1.5px rgba(248,199,96,.45),0 14px 34px -16px rgba(248,199,96,.7);
-    transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+  .rd-consent{
+    display:flex;align-items:flex-start;gap:.8rem;
+    padding:1rem 1.1rem;background:#0c0c11;
+    border:1px solid var(--dn-mist);border-radius:12px;cursor:pointer;margin-top:.3rem;
   }
-  .btn-submit:hover{transform:translateY(-2px);background:var(--dn-day-soft);
-    box-shadow:0 0 0 1.5px rgba(248,199,96,.7),0 0 34px -4px rgba(248,199,96,.5),0 20px 44px -18px rgba(248,199,96,.7);}
-  .form-note{text-align:center;font-size:.78rem;color:var(--dn-bone-faint);margin:.9rem 0 0}
+  .rd-consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--dn-day);cursor:pointer;}
+  .rd-consent span{font-size:.8rem;color:var(--dn-bone-dim);line-height:1.5;}
+  .rd-consent a{color:var(--dn-night-soft);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
 
-  /* aside: hours + emergency */
-  .aside{display:flex;flex-direction:column;gap:clamp(1.2rem,3vw,2rem)}
-  .hours-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 0 1.5px rgba(248,199,96,.75),0 0 32px -2px rgba(248,199,96,.48),0 22px 46px -18px rgba(248,199,96,.62);
+  .rd-submit-row{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    margin-top:1.9rem;padding-top:1.6rem;border-top:1px solid var(--dn-mist);
   }
-  .hours{list-style:none;margin:0;padding:0}
-  .hours li{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--edge-soft)}
-  .hours li:last-child{border-bottom:0}
-  .hours .k{color:var(--dn-bone);font-weight:600;font-size:.95rem}
-  .hours .k span{display:block;color:var(--dn-bone-faint);font-weight:400;font-size:.8rem;text-transform:none;letter-spacing:normal;margin-top:.15rem}
-  .hours .v{color:var(--dn-day);font-size:.9rem;text-align:right;white-space:nowrap;font-weight:600}
-  .hours .v.night{color:var(--dn-night-soft)}
-  .hours .v.muted{color:var(--dn-bone-dim);font-weight:400}
+  .rd-submit-note{font-size:.74rem;color:var(--dn-bone-faint);max-width:280px;line-height:1.45;}
+  .rd-submit-note strong{color:var(--dn-bone-dim);font-weight:600;}
+  .rd-submit{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:var(--font-body),'Inter Tight',sans-serif;
+    font-size:.95rem;font-weight:600;letter-spacing:.01em;
+    padding:.95rem 1.7rem;color:#0a0a0c;background:var(--dn-day);
+    border:1px solid var(--dn-day);border-radius:12px;cursor:pointer;
+    transition:transform .15s, box-shadow .25s, background .25s;
+    box-shadow:0 14px 34px -16px rgba(248,199,96,.55);
+  }
+  .rd-submit:hover{transform:translateY(-1px);background:var(--dn-day-soft);box-shadow:0 18px 40px -16px rgba(248,199,96,.7);}
+  .rd-submit .arrow{transition:transform .25s;}
+  .rd-submit:hover .arrow{transform:translateX(4px);}
 
-  .em-card{
-    background:var(--surface);border:1px solid rgba(69,144,236,.45);border-radius:16px;
-    padding:clamp(1.5rem,3.2vw,2rem);text-align:center;
-    transition:transform .24s ease,box-shadow .24s ease;
+  /* form section head */
+  .mh-group-head{display:flex;align-items:center;gap:.85rem;margin:0 0 1.15rem;}
+  .mh-group-tab{
+    flex:none;font-family:var(--font-display),'Fraunces',serif;
+    font-size:.85rem;font-weight:600;width:30px;height:30px;border-radius:8px;
+    display:grid;place-items:center;color:var(--dn-day);
+    background:rgba(248,199,96,.07);border:1px solid rgba(248,199,96,.28);
   }
-  .em-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 0 1.5px rgba(69,144,236,.75),0 0 32px -2px rgba(69,144,236,.48),0 22px 46px -18px rgba(69,144,236,.62);
+  .mh-group-head h3{
+    font-family:var(--font-display),'Fraunces',serif;
+    font-size:1.05rem;font-weight:600;margin:0;letter-spacing:-.01em;
   }
-  .em-card .pill{display:inline-block;padding:.4rem .95rem;border-radius:100px;border:1px solid rgba(69,144,236,.5);color:var(--dn-night-soft);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:.9rem}
-  .em-card h3{color:var(--dn-bone)}
-  .em-card p{color:var(--dn-bone-dim);font-size:.92rem;margin:.2rem 0 1.3rem}
-  .em-card .btn-emergency{width:100%;justify-content:center}
+  .mh-group-head .mh-sub{font-size:.74rem;color:var(--dn-bone-faint);margin-top:.1rem;}
+  .mh-divider{height:1px;background:var(--dn-mist);margin:1.6rem 0;}
 
-  @media(max-width:860px){
-    .strip-inner{grid-template-columns:1fr;gap:1rem}
-    .grid{grid-template-columns:1fr}
-    .hero-strip{position:static;background:var(--surface);border-top:1px solid var(--edge);padding:1.4rem clamp(1rem,4vw,2.5rem)}
-    .hero-map::after{background:linear-gradient(to bottom,rgba(10,10,12,.35),rgba(10,10,12,.15) 60%,rgba(10,10,12,.7))}
-    .hero-map{height:min(42vh,360px)}
-    .btn-emergency{width:100%;justify-content:center}
+  @media (prefers-reduced-motion:reduce){.mh-em-dot::before{animation:none;}}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    .mh-strip{grid-template-columns:1fr;}
+    .mh-hero{min-height:auto;}
+    .mh-hero iframe{position:relative;height:clamp(220px,50vw,320px);}
+    .mh-scrim{background:linear-gradient(180deg, rgba(10,10,12,.2) 0%, rgba(10,10,12,.5) 60%, rgba(10,10,12,.95) 100%);}
+    .mh-strip-wrap{position:static;padding:1rem clamp(1rem,4vw,2.5rem) 1.4rem;background:var(--dn-near-black);}
   }
-  @media(max-width:520px){
-    .row2{grid-template-columns:1fr}
+  @media (max-width:560px){
+    .rd-row{grid-template-columns:1fr;}
+    .rd-submit{width:100%;justify-content:center;}
+    .rd-submit-note{max-width:none;}
+    .rd-select{padding-right:2rem;background-position:right .6rem center;}
   }
+
+  /* preview scroll override (keep LAST) */
+  html,body{overflow:visible!important;overflow-x:clip!important;height:auto!important;max-height:none!important;}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div style="position:fixed;top:8px;left:10px;z-index:99;font:600 11px/1 'Inter Tight',sans-serif;letter-spacing:.08em;color:#f8c760;opacity:.7">DESIGN: Map Hero Banner</div>
 
-  <!-- ===== HERO MAP BANNER ===== -->
-  <header class="hero">
-    <div class="hero-map">
-      <iframe
-        title="Map showing Day Night Dental, 80 Hutcheson Street, Merchant City, Glasgow G1 1SH"
-        src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <span class="hero-badge"><span class="dot"></span> Open now · Merchant City</span>
-    </div>
+<!-- ============ HERO BANNER: MAP + OVERLAY STRIP ============ -->
+<section class="mh-hero" aria-label="Where to find us">
+  <iframe
+    src="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH&output=embed"
+    loading="lazy"
+    title="Day Night Dental location, 80 Hutcheson Street, Glasgow"></iframe>
+  <div class="mh-scrim" aria-hidden="true"></div>
 
-    <div class="hero-strip">
-      <div class="strip-inner">
-        <div class="nap">
-          <p class="nap-name">Day Night Dental</p>
-          <p class="nap-addr">80 Hutcheson St, Merchant City, Glasgow&nbsp;G1&nbsp;1SH ·
-            <a href="https://www.google.com/maps?q=Day+Night+Dental,+80+Hutcheson+Street,+Glasgow+G1+1SH" target="_blank" rel="noopener">Get directions</a>
-          </p>
-        </div>
-        <div class="strip-phone">
-          <span class="lbl">Front desk</span>
-          <a href="tel:01415486548">0141 548 6548</a>
-        </div>
-        <a class="btn-emergency" href="tel:01415486548">
-          <span class="pulse"></span> Dental emergency? Call now
-        </a>
+  <span class="mh-hero-eyebrow">Find us in Merchant City</span>
+
+  <div class="mh-strip-wrap">
+    <div class="mh-strip">
+
+      <!-- NAP card -->
+      <div class="mh-nap">
+        <h2 class="mh-nap-name"><span class="day">Day</span> <span class="night">Night</span> Dental</h2>
+        <address class="mh-nap-addr">
+          80 Hutcheson St, Merchant City, Glasgow G1 1SH
+        </address>
+        <ul class="mh-hours">
+          <li><b>Emergency dental care:</b> open 24 hours, 7 days</li>
+          <li><b>Routine appointments:</b> by appointment</li>
+          <li><b>NHS places:</b> waiting list when available</li>
+        </ul>
+        <a class="mh-nap-phone" href="tel:+441415486548">0141 548 6548</a>
       </div>
+
+      <!-- Emergency CTA card -->
+      <div class="mh-emergency">
+        <p class="mh-em-eyebrow"><span class="mh-em-dot" aria-hidden="true"></span>24/7 Emergency line</p>
+        <h3 class="mh-em-title">In pain <em>right now?</em> Do not wait.</h3>
+        <a class="mh-em-call" href="tel:+441415486548">Call our 24/7 line <span class="arrow" aria-hidden="true">→</span></a>
+        <p class="mh-em-sub">A dentist is on hand around the clock. For anything urgent, please phone rather than fill in the form.</p>
+      </div>
+
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- ===== BODY ===== -->
-  <main class="body">
-    <div class="intro">
-      <span class="eyebrow">Get in touch</span>
-      <h2>How can we help?</h2>
-      <p>Send us a message and our reception team will get back to you, whether you want to book a routine appointment, arrange a cosmetic consultation, ask about a treatment or just have a general question. In pain right now? Skip the form and call the emergency line, day or night.</p>
-    </div>
+<!-- ============ ENQUIRY FORM ============ -->
+<div class="mh-formwrap">
+  <div class="mh-glow day" aria-hidden="true"></div>
+  <div class="mh-glow night" aria-hidden="true"></div>
 
-    <div class="grid">
-      <!-- FORM -->
-      <section class="card form-card">
-        <h3>Enquiry form</h3>
-        <p class="sub">Fields marked <span class="req">*</span> are required. We reply within one working day for routine requests.</p>
+  <div class="mh-head">
+    <span class="mh-eyebrow">Make an enquiry</span>
+    <h2 class="mh-title">Send us a note, <em>day</em> or <span class="night">night</span>.</h2>
+    <p class="mh-lead">Tell us a little about what you need and how best to reach you. We read every enquiry and come back to you personally. For anything urgent, please call the 24/7 line above.</p>
+  </div>
 
-        <form onsubmit="event.preventDefault();this.querySelector('.btn-submit').textContent='Thank you, we will be in touch';this.querySelector('.btn-submit').disabled=true;">
-          <div class="row2">
-            <div class="field">
-              <label for="name">Full name <span class="req">*</span></label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Docherty" required>
-            </div>
-            <div class="field">
-              <label for="phone">Phone <span class="req">*</span></label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="07xxx xxxxxx" required>
-            </div>
-          </div>
+  <div class="mh-card">
+    <form onsubmit="return false;" novalidate>
 
-          <div class="field">
-            <label for="email">Email <span class="req">*</span></label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-          </div>
+      <!-- your details -->
+      <div class="mh-group-head">
+        <span class="mh-group-tab">1</span>
+        <div>
+          <h3>Your details</h3>
+          <div class="mh-sub">How we should reach you back.</div>
+        </div>
+      </div>
 
-          <div class="row2">
-            <div class="field">
-              <label for="contact_time">Preferred contact time</label>
-              <select id="contact_time" name="contact_time">
-                <option value="">No preference</option>
-                <option>Morning (9am to 12pm)</option>
-                <option>Afternoon (12pm to 5pm)</option>
-                <option>Evening (after 5pm)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="reason">What is this about?</label>
-              <select id="reason" name="reason">
-                <option value="">Please choose</option>
-                <option>Request an appointment</option>
-                <option>Cosmetic consultation</option>
-                <option>Routine check-up or hygiene</option>
-                <option>A question about a treatment</option>
-                <option>General enquiry</option>
-                <option>Something else</option>
-              </select>
-            </div>
-          </div>
+      <div class="rd-row">
+        <div class="rd-field">
+          <label class="rd-label" for="firstName">First name <span class="rd-req">*</span></label>
+          <input class="rd-input" id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Hamza" required>
+        </div>
+        <div class="rd-field">
+          <label class="rd-label" for="lastName">Last name <span class="rd-req">*</span></label>
+          <input class="rd-input" id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Abrar" required>
+        </div>
+      </div>
 
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us briefly what is going on, and any dates or times that suit you."></textarea>
-          </div>
+      <div class="rd-row">
+        <div class="rd-field">
+          <label class="rd-label" for="phone">Phone <span class="rd-req">*</span></label>
+          <input class="rd-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Best contact number" required>
+        </div>
+        <div class="rd-field">
+          <label class="rd-label" for="email">Email <span class="rd-req">*</span></label>
+          <input class="rd-input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required>
+        </div>
+      </div>
 
-          <div class="consent">
-            <input id="consent" name="consent" type="checkbox" required>
-            <label for="consent">I agree to Day Night Dental contacting me about my enquiry and have read the <a href="#">privacy notice</a>. <span class="req">*</span></label>
-          </div>
+      <div class="rd-row one">
+        <div class="rd-field">
+          <label class="rd-label" for="contactTime">Preferred contact time <span class="rd-opt">optional</span></label>
+          <select class="rd-select" id="contactTime" name="contactTime">
+            <option value="" selected disabled>No preference</option>
+            <option>No preference</option>
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+          </select>
+        </div>
+      </div>
 
-          <button class="btn-submit" type="submit">Send enquiry</button>
-          <p class="form-note">This is a preview form and does not send. For urgent problems, please call the emergency line.</p>
-        </form>
-      </section>
+      <div class="mh-divider" aria-hidden="true"></div>
 
-      <!-- ASIDE: hours + emergency -->
-      <aside class="aside">
-        <section class="card hours-card">
-          <h3>Opening hours</h3>
-          <ul class="hours">
-            <li>
-              <span class="k">Emergency dental care<span>Walk-in and phone, any hour</span></span>
-              <span class="v night">Open 24 hours, 7 days</span>
-            </li>
-            <li>
-              <span class="k">Routine appointments<span>Check-ups, cosmetic, implants</span></span>
-              <span class="v">By appointment</span>
-            </li>
-            <li>
-              <span class="k">NHS places<span>Subject to availability</span></span>
-              <span class="v muted">Waiting list when available</span>
-            </li>
-          </ul>
-        </section>
+      <!-- your enquiry -->
+      <div class="mh-group-head">
+        <span class="mh-group-tab">2</span>
+        <div>
+          <h3>Your enquiry</h3>
+          <div class="mh-sub">What is on your mind, in your own words.</div>
+        </div>
+      </div>
 
-        <section class="em-card">
-          <span class="pill">Around the clock</span>
-          <h3>In pain tonight?</h3>
-          <p>Toothache, swelling, a knocked-out tooth or a lost filling. Our emergency line is answered 24 hours a day, every day of the year.</p>
-          <a class="btn-emergency" href="tel:01415486548">
-            <span class="pulse"></span> Call 0141 548 6548
-          </a>
-        </section>
-      </aside>
-    </div>
-  </main>
+      <div class="rd-row one">
+        <div class="rd-field">
+          <label class="rd-label" for="about">What is this about? <span class="rd-req">*</span></label>
+          <select class="rd-select" id="about" name="about" required>
+            <option value="" selected disabled>Choose an option</option>
+            <option>Request an appointment</option>
+            <option>Cosmetic consultation</option>
+            <option>Routine check-up or hygiene</option>
+            <option>A question about a treatment</option>
+            <option>General enquiry</option>
+            <option>Something else</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rd-row one">
+        <div class="rd-field">
+          <label class="rd-label" for="message">Message <span class="rd-req">*</span></label>
+          <textarea class="rd-textarea" id="message" name="message" rows="4" placeholder="e.g. I would like to book a cosmetic consultation, or I have a question about implants. A few lines is plenty." required></textarea>
+        </div>
+      </div>
+
+      <div class="rd-row one">
+        <label class="rd-consent">
+          <input type="checkbox" name="consent" required>
+          <span>I am happy for Day Night Dental to hold my information in line with the <a href="#" onclick="return false;">privacy policy</a>, and to contact me about my enquiry.</span>
+        </label>
+      </div>
+
+      <!-- submit -->
+      <div class="rd-submit-row">
+        <p class="rd-submit-note"><strong>This is not for emergencies.</strong> In pain right now? Please call our 24/7 line on 0141 548 6548.</p>
+        <button type="submit" class="rd-submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
+      </div>
+
+    </form>
+  </div>
 </div>
 
+<script src="../register-forms/_dropdowns.js" defer></script>
 <script src="_nav-v2.js" defer></script>
 </body>
 </html>
