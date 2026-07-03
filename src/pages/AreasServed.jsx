@@ -176,6 +176,47 @@ export default function AreasServed() {
         </div>
       </section>
 
+      <section className="dn-section">
+        <div className="dn-container">
+          <div className="tp-section-head">
+            <span className="dn-eyebrow dn-pill night">Find Us</span>
+            <h2 className="dn-display">Right in the heart of <em className="dn-hl-blue">Merchant City</em></h2>
+            <p className="lead" style={{ maxWidth: '680px' }}>
+              We are at 80 Hutcheson Street, a couple of minutes on foot from Queen Street and
+              Argyle Street stations and the St Enoch subway, and a short taxi from anywhere in
+              Glasgow at any hour of the day or night.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'stretch' }}>
+            <div style={{ flex: '1 1 440px', minWidth: 0, borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.12)', minHeight: '400px' }}>
+              <iframe
+                src={PRACTICE.mapEmbed}
+                title="Day Night Dental on the map, 80 Hutcheson Street, Merchant City, Glasgow"
+                loading="lazy"
+                style={{ width: '100%', height: '100%', minHeight: '400px', border: 0, display: 'block' }}
+              />
+            </div>
+            <aside style={{ flex: '1 1 300px', minWidth: 0, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              <div>
+                <span className="dn-eyebrow day">Visit Us</span>
+                <address style={{ fontStyle: 'normal', lineHeight: 1.7, marginTop: '0.6rem' }}>
+                  {PRACTICE.streetAddress}<br />
+                  {PRACTICE.locality}, {PRACTICE.city} {PRACTICE.postcode}
+                </address>
+              </div>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: '0.55rem', lineHeight: 1.5 }}>
+                <li><strong>Emergency care:</strong> open 24 hours, 7 days</li>
+                <li><strong>Routine appointments:</strong> by appointment</li>
+                <li><strong>NHS places:</strong> waiting list, when available</li>
+              </ul>
+              <a href={`tel:${PRACTICE.phoneE164}`} className="dn-btn primary" style={{ marginTop: 'auto' }}>
+                Call {PRACTICE.phoneDisplay}
+              </a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       <section className="dn-section tp-cta">
         <div className="dn-glow day" style={{ width: '480px', height: '480px', top: 0, left: '8%', opacity: 0.08 }} />
         <div className="dn-container">
